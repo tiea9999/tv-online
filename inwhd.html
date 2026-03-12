@@ -1,10 +1,11 @@
-html <!DOCTYPE html> 
-<html lang="th"> 
-<head> <meta charset="UTF-8"> 
+html <!DOCTYPE html> <html lang="th">
+ <head> <meta charset="UTF-8"> 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <title>TIEA IPTV</title> 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <style> body{ background:#111; color:white; font-family:sans-serif; text-align:center; } h1{ margin:20px; } #channels{ display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:15px; padding:20px; } .card{ background:#222; padding:10px; border-radius:10px; cursor:pointer; } .card:hover{ background:#333; } .card img{ width:100%; height:60px; object-fit:contain; } video{ width:90%; max-width:800px; margin-top:20px; } .home-btn{ background:#e11d48; border:none; padding:10px 20px; border-radius:8px; color:white; cursor:pointer; margin-top:10px; } .home-btn:hover{ background:#be123c; } </style> </head> <body> <h1>TIEA IPTV</h1> <button class="home-btn" onclick="goHome()">🏠 กลับหน้า Home</button> <br> <video id="player" controls autoplay></video> <div id="channels"></div> <script> let hls; function goHome(){ window.location.href="https://tiea9999.github.io/tv-online/index.html"; 
-} const channels=[ 
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <style> body{ background:#111; color:white; font-family:sans-serif; text-align:center; } h1{margin:20px;} #channels{ display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:15px; padding:20px; } .card{ background:#222; padding:10px; border-radius:10px; cursor:pointer; } .card:hover{background:#333;} .card img{ width:100%; height:60px; object-fit:contain; } video{ width:90%; max-width:800px; margin-top:20px; } button{ padding:8px 15px; margin:5px; border:none; border-radius:6px; cursor:pointer; } .menu{background:#2563eb;color:white;} .home{background:#e11d48;color:white;} </style> </head> <body> <h1>TIEA IPTV</h1> <button class="home" onclick="goHome()">🏠 Home</button> <br> <button class="menu" onclick="show('sport')">กีฬา</button> <button class="menu" onclick="show('tv')">ทีวีดิจิตอล</button> <button class="menu" onclick="show('movie')">หนัง</button> <br> <video id="player" controls autoplay></video> <div id="channels"></div> <script> let hls function goHome(){ location.href="https://tiea9999.github.io/tv-online/index.html" }
+ /* 
+---------- ช่องกีฬา ---------- */ const sport=[
+
 
       { name:"MONO MAX1", logo:"https://www.fileinwtv.site/postor/20250830165328Mono1.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/th-monomax01_480/chunks.m3u8" },
       { name:"MONO MAX2", logo:"https://www.fileinwtv.site/postor/20250830165343Mono2.jpg", url:"https://love.pifipa2974.workers.dev/lx-origin/th-monomax02_480/chunks.m3u8" },
@@ -38,11 +39,12 @@ html <!DOCTYPE html>
       { name:"T-Sports7", logo:"https://www.fileinwtv.site/postor/20240418193731tsports7.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/sd-tsports_480/chunks.m3u8"},
 
       { name:"TPF3", logo:"https://www.fileinwtv.site/postor/1763868082_0011fc8de4e840e06ced.jpg", url:"https://love.r95lvvlb9o.workers.dev/vx-origin/epl-3_480/chunks.m3u8"},
-      { name:"TPF4", logo:"https://www.fileinwtv.site/postor/20250830205132Premier_Football4.jpg", url:"https://www.livedoomovies.com:4431/02_PremierHD4_720p/playlist.m3u8" },
+      { name:"TPF4", logo:"https://www.fileinwtv.site/postor/20250830205132Premier_Football4.jpg", url:"https://www.livedoomovies.com:4431/02_PremierHD4_720p/playlist.m3u8" }
 
-],
 
-DIGITAL: [
+] /*
+ ---------- ทีวีดิจิตอล ---------- */ const tv=[ 
+
       { name:"3HD", logo:"https://www.fileinwtv.site/postor/20240418191821ch3hd.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/hd-ch3_720/chunks.m3u8"},
       { name:"5HD", logo:"https://www.fileinwtv.site/postor/20240418185850ch5hd.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/hd-ch5_720/chunks.m3u8"},
       { name:"7HD", logo:"https://www.fileinwtv.site/postor/20240418185909ch7hd.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/hd-ch7_720/chunks.m3u8"},
@@ -59,10 +61,11 @@ DIGITAL: [
       { name:"PPTV", logo:"https://www.fileinwtv.site/postor/20240418191253pptvhd.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/hd-pptv_720/chunks.m3u8" },
       { name:"ONE31", logo:"https://www.fileinwtv.site/postor/20240418191350onehd.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/hd-gmmone_720/chunks.m3u8"},
       { name:"CH8", logo:"https://www.fileinwtv.site/postor/20240418191335ch8.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/hd-ch8_480/chunks.m3u8"},
-      { name:"NBT 2 HD", logo:"https://www.fileinwtv.site/postor/20240418191323nbthd.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/sd-nbt_720/chunks.m3u8"},
-],
+      { name:"NBT 2 HD", logo:"https://www.fileinwtv.site/postor/20240418191323nbthd.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/sd-nbt_720/chunks.m3u8"}
 
-MOVIE: [
+] /* 
+---------- หนัง  การ์ตูน  สาระคดี---------- */ const movie=[ 
+
       { name:"HBO", url:"https://love.pifipa2974.workers.dev/lx-origin/th-hbo_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201334HBO.jpg" },
       { name:"HBO Hits", url:"https://love.pifipa2974.workers.dev/lx-origin/th-hbohits_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201343HBO_Hits.jpg" },
       { name:"HBO Signature", url:"https://love.pifipa2974.workers.dev/lx-origin/th-hbosignature_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201358HBO_Signature.jpg" },
@@ -94,6 +97,7 @@ MOVIE: [
       { name:"Discovery", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-discovery_480/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418210226Discovery.jpg" },
       { name:"Discovery Asia", url:"https://night.redfight.info/iptv.php?id=1606", logo:"https://www.fileinwtv.site/postor/20240418210201DiscoveryAsia.jpg" },
       { name:"History", url:"https://love.pifipa2974.workers.dev/vx-origin/hd-history_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240423163921history.jpg" },
-      { name:"TLC", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-tlc_480/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418210246TLC.jpg" },
+      { name:"TLC", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-tlc_480/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418210246TLC.jpg" }
 
-]; function loadChannels(){ const box=document.getElementById("channels"); channels.forEach(ch=>{ const div=document.createElement("div"); div.className="card"; div.innerHTML=` <img src="${ch.logo}"> <div>${ch.name}</div> `; div.onclick=()=>play(ch.url); box.appendChild(div); }); } function play(url){ const video=document.getElementById("player"); if(hls){ hls.destroy(); } if(Hls.isSupported()){ hls=new Hls({ xhrSetup:function(xhr,requestUrl){ if(requestUrl.includes("livedoomovies")){ xhr.setRequestHeader("Referer","https://www.livedoomovies.com/"); } } }); hls.loadSource(url); hls.attachMedia(video); }else{ video.src=url; } } loadChannels(); </script> </body> </html>
+
+] function show(type){ let data=[] if(type=="sport") data=sport if(type=="tv") data=tv if(type=="movie") data=movie let box=document.getElementById("channels") box.innerHTML="" data.forEach(ch=>{ let d=document.createElement("div") d.className="card" d.innerHTML= "<img src='"+ch.logo+"'><br>"+ch.name d.onclick=function(){play(ch.url)} box.appendChild(d) }) } function play(url){ let video=document.getElementById("player") if(hls){hls.destroy()} if(Hls.isSupported()){ hls=new Hls({ xhrSetup:function(xhr,u){ if(u.includes("livedoomovies")){ xhr.setRequestHeader("Referer","https://www.livedoomovies.com/") } } }) hls.loadSource(url) hls.attachMedia(video) }else{ video.src=url } } /* เปิดหมวดกีฬาเป็นค่าเริ่มต้น */ show("sport") </script> </body> </html>
