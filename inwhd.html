@@ -98,7 +98,6 @@ const container=document.getElementById("channels");
 channels.forEach(ch=>{
 
 const card=document.createElement("div");
-
 card.className="channel-card";
 
 card.innerHTML=`
@@ -118,7 +117,7 @@ container.appendChild(card);
 });
 
 
-/* ULTRA PLAYER */
+/* ULTRA PLAYER ENGINE */
 
 let hls;
 
@@ -137,19 +136,19 @@ hls=new Hls({
 enableWorker:true,
 lowLatencyMode:true,
 
-backBufferLength:90,
-maxBufferLength:120,
-maxMaxBufferLength:240,
+backBufferLength:120,
+maxBufferLength:150,
+maxMaxBufferLength:300,
 
 liveSyncDurationCount:3,
-liveMaxLatencyDurationCount:6,
-
-startFragPrefetch:true,
-capLevelToPlayerSize:true,
+liveMaxLatencyDurationCount:5,
 
 manifestLoadingMaxRetry:8,
 levelLoadingMaxRetry:8,
-fragLoadingMaxRetry:10
+fragLoadingMaxRetry:10,
+
+startFragPrefetch:true,
+capLevelToPlayerSize:true
 
 });
 
@@ -160,6 +159,9 @@ hls.on(Hls.Events.MANIFEST_PARSED,function(){
 video.play();
 });
 
+
+/* AUTO STREAM RECOVERY */
+
 hls.on(Hls.Events.ERROR,function(event,data){
 
 if(data.fatal){
@@ -167,14 +169,17 @@ if(data.fatal){
 switch(data.type){
 
 case Hls.ErrorTypes.NETWORK_ERROR:
+console.log("Network error → retry");
 hls.startLoad();
 break;
 
 case Hls.ErrorTypes.MEDIA_ERROR:
+console.log("Media error → recover");
 hls.recoverMediaError();
 break;
 
 default:
+console.log("Fatal error → destroy");
 hls.destroy();
 break;
 
