@@ -33,13 +33,9 @@ card.className="channel-card";
 
 card.innerHTML=`
 
-<div onclick="openPlayer('${url}')">
-
 <img src="${logo}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png'">
 
-<div>${name}</div>
-
-</div>
+<div onclick="openPlayer('${url}')">${name}</div>
 
 `;
 
