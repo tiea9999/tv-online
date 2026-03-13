@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TIEA IPTV - SERIES</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+</head>
+
+<body>
+
+<header>TIEA IPTV - SERIES</header>
+
+<div id="channels" class="grid"></div>
+
+<div id="playerModal">
+
+<div id="playerBox">
+
+<span class="closeBtn" onclick="closePlayer()">✖</span>
+
+<video id="playerFrame" controls autoplay playsinline></video>
+
+</div>
+
+</div>
+
+<script src="channels.js"></script>
+
+<script src="player.js"></script>
+
+<script>
+
+const container=document.getElementById("channels");
+
+channels.series.forEach(ch=>{
+
+const card=document.createElement("div");
+
+card.className="channel-card";
+
+card.innerHTML=`
+
+<div onclick="openPlayer('${ch.url}')">
+
+<img src="${ch.logo}">
+
+<div>${ch.name}</div>
+
+</div>
+
+`;
+
+container.appendChild(card);
+
+});
+
+</script>
+
+</body>
+</html>
