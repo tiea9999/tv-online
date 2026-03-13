@@ -1,47 +1,225 @@
-html
 <!DOCTYPE html>
+
 <html lang="th">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <style>
-        body {
-            background: #0f172a;
-            font-family: sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIEA IPTV</title>
 
-        .channel-card {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 15px;
-            cursor: pointer;
-            transition: 0.25s;
-            text-align: center;
-        }
+<script src="https://cdn.tailwindcss.com"></script>
 
-        .channel-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
-        }
-    </style>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+body{
+background:#0f172a;
+font-family:sans-serif;
+}
+
+.channel-card{
+background:#1e293b;
+border-radius:12px;
+padding:15px;
+cursor:pointer;
+transition:0.25s;
+text-align:center;
+}
+
+.channel-card:hover{
+transform:scale(1.05);
+box-shadow:0 0 15px rgba(59,130,246,0.7);
+}
+</style>
+
 </head>
 
 <body class="text-white min-h-screen">
-    <header class="text-center py-6 text-3xl font-bold"> TIEA IPTV </header>
-    <div id="channels" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 px-6 pb-10"> </div> <!-- PLAYER -->
-    <div id="playerModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
-        <div class="bg-black p-4 rounded-xl w-11/12 md:w-3/4 lg:w-1/2 relative">
-            <button onclick="closePlayer()" class="absolute top-2 right-3 text-red-400 text-xl"> ✖ </button> <video
-                id="playerFrame" class="w-full h-72 md:h-96 bg-black rounded-lg" controls autoplay playsinline
-                webkit-playsinline> </video> </div>
-    </div>
-    <script>
-        /* ===== CHANNEL LIST ===== */ const channels=[ { name:"MONO MAX1", logo:"https://www.fileinwtv.site/postor/20250830165328Mono1.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/th-monomax01_480/chunks.m3u8" }, { name:"MONO MAX2", logo:"https://www.fileinwtv.site/postor/20250830165343Mono2.jpg", url:"https://love.pifipa2974.workers.dev/lx-origin/th-monomax02_480/chunks.m3u8" }, { name:"Bein Sport1", logo:"https://www.fileinwtv.site/postor/20240418192615Bein1.jpg", url:"https://love.r95lvvlb9o.workers.dev/vx-origin/epl-bein1_480/chunks.m3u8" }, { name:"True Sport1", logo:"https://www.fileinwtv.site/postor/20240418192933TrueSport1.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/th-tsporthd1_480/chunks.m3u8" } ]; /* ===== RENDER CHANNEL ===== */ const container=document.getElementById("channels"); channels.forEach(ch=>{ const card=document.createElement("div"); card.className="channel-card"; card.innerHTML=` <div onclick="openPlayer('${ch.url}')"> <div class="h-20 flex items-center justify-center"> <img src="${ch.logo}" class="max-h-16"> </div> <div class="mt-3 text-sm">${ch.name}</div> </div> `; container.appendChild(card); }); /* ===== ULTRA V3 PLAYER ===== */ let hls; function openPlayer(url){ const video=document.getElementById("playerFrame"); if(hls){ hls.destroy(); } /* Ultra Config */ if(Hls.isSupported()){ hls=new Hls({ enableWorker:true, lowLatencyMode:false, backBufferLength:90, maxBufferLength:140, maxMaxBufferLength:300, liveSyncDurationCount:4, liveMaxLatencyDurationCount:8, startFragPrefetch:true, capLevelToPlayerSize:true, progressive:true, fragLoadingMaxRetry:10, manifestLoadingMaxRetry:8, levelLoadingMaxRetry:8 }); hls.loadSource(url); hls.attachMedia(video); hls.on(Hls.Events.MANIFEST_PARSED,function(){ video.play(); }); /* AUTO FIX STREAM */ hls.on(Hls.Events.ERROR,function(event,data){ if(data.fatal){ switch(data.type){ case Hls.ErrorTypes.NETWORK_ERROR: hls.startLoad(); break; case Hls.ErrorTypes.MEDIA_ERROR: hls.recoverMediaError(); break; default: hls.destroy(); break; } } }); } /* Safari */ else if(video.canPlayType('application/vnd.apple.mpegurl')){ video.src=url; video.play(); } document.getElementById("playerModal").classList.remove("hidden"); document.getElementById("playerModal").classList.add("flex"); } /* ===== CLOSE PLAYER ===== */ function closePlayer(){ const modal=document.getElementById("playerModal"); const v=document.getElementById("playerFrame"); v.pause(); v.removeAttribute("src"); v.load(); if(hls){ hls.destroy(); } modal.classList.add("hidden"); modal.classList.remove("flex"); } 
-    </script>
-</body>
 
+<header class="text-center py-6 text-3xl font-bold">
+TIEA IPTV
+</header>
+
+<div id="channels" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 px-6 pb-10"></div>
+
+<div id="playerModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
+
+<div class="bg-black p-4 rounded-xl w-11/12 md:w-3/4 lg:w-1/2 relative">
+
+<button onclick="closePlayer()" class="absolute top-2 right-3 text-red-400 text-xl">✖</button>
+
+<video id="playerFrame"
+class="w-full h-72 md:h-96 bg-black rounded-lg"
+controls
+autoplay
+playsinline
+webkit-playsinline> </video>
+
+</div>
+</div>
+
+<script>
+
+/* CHANNEL LIST */
+
+const channels=[
+
+{
+name:"MONO MAX1",
+logo:"https://www.fileinwtv.site/postor/20250830165328Mono1.jpg",
+url:"https://love.r95lvvlb9o.workers.dev/lx-origin/th-monomax01_480/chunks.m3u8"
+},
+
+{
+name:"MONO MAX2",
+logo:"https://www.fileinwtv.site/postor/20250830165343Mono2.jpg",
+url:"https://love.pifipa2974.workers.dev/lx-origin/th-monomax02_480/chunks.m3u8"
+},
+
+{
+name:"Bein Sport1",
+logo:"https://www.fileinwtv.site/postor/20240418192615Bein1.jpg",
+url:"https://love.r95lvvlb9o.workers.dev/vx-origin/epl-bein1_480/chunks.m3u8"
+},
+
+{
+name:"True Sport1",
+logo:"https://www.fileinwtv.site/postor/20240418192933TrueSport1.jpg",
+url:"https://love.r95lvvlb9o.workers.dev/lx-origin/th-tsporthd1_480/chunks.m3u8"
+}
+
+];
+
+
+/* RENDER CHANNEL */
+
+const container=document.getElementById("channels");
+
+channels.forEach(ch=>{
+
+const card=document.createElement("div");
+
+card.className="channel-card";
+
+card.innerHTML=`
+<div onclick="openPlayer('${ch.url}')">
+
+<div class="h-20 flex items-center justify-center">
+<img src="${ch.logo}" class="max-h-16">
+</div>
+
+<div class="mt-3 text-sm">${ch.name}</div>
+
+</div>
+`;
+
+container.appendChild(card);
+
+});
+
+
+/* ULTRA PLAYER */
+
+let hls;
+
+function openPlayer(url){
+
+const video=document.getElementById("playerFrame");
+
+if(hls){
+hls.destroy();
+}
+
+if(Hls.isSupported()){
+
+hls=new Hls({
+
+enableWorker:true,
+lowLatencyMode:true,
+
+backBufferLength:90,
+maxBufferLength:120,
+maxMaxBufferLength:240,
+
+liveSyncDurationCount:3,
+liveMaxLatencyDurationCount:6,
+
+startFragPrefetch:true,
+capLevelToPlayerSize:true,
+
+manifestLoadingMaxRetry:8,
+levelLoadingMaxRetry:8,
+fragLoadingMaxRetry:10
+
+});
+
+hls.loadSource(url);
+hls.attachMedia(video);
+
+hls.on(Hls.Events.MANIFEST_PARSED,function(){
+video.play();
+});
+
+hls.on(Hls.Events.ERROR,function(event,data){
+
+if(data.fatal){
+
+switch(data.type){
+
+case Hls.ErrorTypes.NETWORK_ERROR:
+hls.startLoad();
+break;
+
+case Hls.ErrorTypes.MEDIA_ERROR:
+hls.recoverMediaError();
+break;
+
+default:
+hls.destroy();
+break;
+
+}
+
+}
+
+});
+
+}
+
+else if(video.canPlayType('application/vnd.apple.mpegurl')){
+
+video.src=url;
+video.play();
+
+}
+
+document.getElementById("playerModal").classList.remove("hidden");
+document.getElementById("playerModal").classList.add("flex");
+
+}
+
+
+/* CLOSE PLAYER */
+
+function closePlayer(){
+
+const modal=document.getElementById("playerModal");
+const v=document.getElementById("playerFrame");
+
+v.pause();
+v.removeAttribute("src");
+v.load();
+
+if(hls){
+hls.destroy();
+}
+
+modal.classList.add("hidden");
+modal.classList.remove("flex");
+
+}
+
+</script>
+
+</body>
 </html>
