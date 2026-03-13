@@ -17,13 +17,15 @@
 
 <body>
 
+<a href="index.html" class="home-btn">🏠 HOME</a>
+
 <header>TIEA IPTV - SERIES</header>
 
-<div id="channels" class="grid"></div>
+<div id="channels" class="channel-grid"></div>
 
-<div id="playerModal">
+<div id="playerModal" class="player-modal">
 
-<div id="playerBox">
+<div class="player-box">
 
 <span class="closeBtn" onclick="closePlayer()">✖</span>
 
@@ -33,35 +35,13 @@
 
 </div>
 
-<script src="channels.js"></script>
-
 <script src="player.js"></script>
+
+<script src="m3u-loader.js"></script>
 
 <script>
 
-const container=document.getElementById("channels");
-
-channels.series.forEach(ch=>{
-
-const card=document.createElement("div");
-
-card.className="channel-card";
-
-card.innerHTML=`
-
-<div onclick="openPlayer('${ch.url}')">
-
-<img src="${ch.logo}">
-
-<div>${ch.name}</div>
-
-</div>
-
-`;
-
-container.appendChild(card);
-
-});
+loadM3U("m3u/missav.m3u");
 
 </script>
 
