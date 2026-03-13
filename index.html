@@ -3,22 +3,41 @@
 <html lang="th">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>TIEA IPTV</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
-
 <style>
+
 body{
 background:#0f172a;
 font-family:sans-serif;
+color:white;
+margin:0;
+}
+
+header{
+text-align:center;
+font-size:32px;
+font-weight:bold;
+padding:30px;
+}
+
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:25px;
+padding:20px;
+max-width:900px;
+margin:auto;
 }
 
 .menu-card{
 background:#1e293b;
+padding:30px;
 border-radius:14px;
-padding:20px;
 text-align:center;
 cursor:pointer;
 transition:0.25s;
@@ -26,79 +45,82 @@ transition:0.25s;
 
 .menu-card:hover{
 transform:scale(1.05);
-box-shadow:0 0 20px rgba(59,130,246,0.7);
+box-shadow:0 0 15px rgba(59,130,246,0.7);
 }
 
 .menu-card img{
-height:60px;
-margin:auto;
+width:70px;
 margin-bottom:10px;
+}
+
+a{
+text-decoration:none;
+color:white;
 }
 
 </style>
 
 </head>
 
-<body class="text-white min-h-screen">
+<body>
 
-<header class="text-center py-8 text-3xl font-bold">
-TIEA IPTV
-</header>
+<header>TIEA IPTV</header>
 
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6 pb-10">
+<div class="menu-grid">
 
-<a href="inwhd.html" class="menu-card">
-<img src="https://cdn-icons-png.flaticon.com/512/1162/1162713.png">
-<div>ทีวีออนไลน์</div>
+<a href="inwhd.html">
+<div class="menu-card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png">
+
+<div>TV ONLINE</div>
+
+</div>
 </a>
 
-<a href="iptv.html" class="menu-card">
-<img src="https://cdn-icons-png.flaticon.com/512/633/633759.png">
-<div>IPTV</div>
-</a>
+<a href="movie01.html">
+<div class="menu-card">
 
-<a href="24hd.html" class="menu-card">
-<img src="https://cdn-icons-png.flaticon.com/512/777/777242.png">
-<div>หนัง 24HD</div>
-</a>
-
-<a href="123hd.html" class="menu-card">
-<img src="https://cdn-icons-png.flaticon.com/512/4221/4221419.png">
-<div>หนัง 123HD</div>
-</a>
-
-<a href="MOVIE01.html" class="menu-card">
 <img src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png">
-<div>หนังเพิ่มเติม</div>
+
+<div>MOVIE</div>
+
+</div>
 </a>
 
-<a href="seriesday.html" class="menu-card">
-<img src="https://cdn-icons-png.flaticon.com/512/4221/4221484.png">
-<div>ซีรีส์</div>
-</a>
+<a href="series.html">
+<div class="menu-card">
 
-<a href="flixmono.html" class="menu-card">
-<img src="https://cdn-icons-png.flaticon.com/512/732/732228.png">
-<div>Flixmono</div>
-</a>
-
-<a href="MOVIE02.html" class="menu-card">
 <img src="https://cdn-icons-png.flaticon.com/512/3659/3659784.png">
-<div>ซีรีส์เพิ่มเติม</div>
+
+<div>SERIES</div>
+
+</div>
 </a>
 
-<a href="MOVIE03.html" class="menu-card">
-<img src="https://cdn-icons-png.flaticon.com/512/686/686589.png">
-<div>อนิเมะ</div>
+<a href="iptv.html">
+<div class="menu-card">
+
+<img src="https://cdn-icons-png.flaticon.com/512/2920/2920349.png">
+
+<div>IPTV</div>
+
+</div>
 </a>
 
-<a href="VIP.html" class="menu-card">
+<a href="vip.html">
+<div class="menu-card">
+
 <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
+
 <div>VIP</div>
+
+</div>
 </a>
 
 </div>
 
 </body>
 </html>
+
 
