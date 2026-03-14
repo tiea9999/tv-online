@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>TIEA IPTV - TV</title>
+<title>TIEA IPTV</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
@@ -59,13 +59,28 @@ object-fit:contain;
 position:sticky;
 top:0;
 background:black;
-z-index:10;
+z-index:999;
 }
 
 video{
 width:100%;
-height:220px;
+height:480px;
 background:black;
+}
+
+.player-btn{
+position:absolute;
+top:10px;
+right:10px;
+}
+
+.player-btn button{
+background:#000;
+color:#fff;
+border:none;
+padding:8px 12px;
+border-radius:6px;
+cursor:pointer;
 }
 
 </style>
@@ -75,7 +90,13 @@ background:black;
 <body>
 
 <div class="player">
+
 <video id="video" controls autoplay></video>
+
+<div class="player-btn">
+<button onclick="fullscreen()">⛶ Fullscreen</button>
+</div>
+
 </div>
 
 <header>TIEA IPTV</header>
@@ -85,7 +106,6 @@ background:black;
 <script>
 
 const channels={
-
 digital:[
       { name:"3HD", logo:"https://www.fileinwtv.site/postor/20240418191821ch3hd.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/hd-ch3_720/chunks.m3u8"},
       { name:"5HD", logo:"https://www.fileinwtv.site/postor/20240418185850ch5hd.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/hd-ch5_720/chunks.m3u8"},
@@ -123,6 +143,7 @@ movie:[
       { name:"true x-zyte", url:"https://love.pifipa2974.workers.dev/lx-origin/hd-xzyte_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719206155.png" }
 
 ],
+
 sport:[
 
 
@@ -156,12 +177,15 @@ sport:[
       { name:"TPF3", logo:"https://www.fileinwtv.site/postor/1763868082_0011fc8de4e840e06ced.jpg", url:"https://love.r95lvvlb9o.workers.dev/vx-origin/epl-3_480/chunks.m3u8"},
       { name:"TPF4", logo:"https://www.fileinwtv.site/postor/20250830205132Premier_Football4.jpg", url:"https://www.livedoomovies.com:4431/02_PremierHD4_720p/playlist.m3u8"}
 ],
+
+
+
 kids:[
       { name:"dream works", url:"https://love.pifipa2974.workers.dev/lx-origin/hd-dreamworks_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1723200736.png" },
       { name:"Boomerang", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-boomerang_480/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418202911Boomerang.jpg" },
       { name:"Cartoon Network", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-cartoonnetwork_480/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418202927CN.jpg" },
       { name:"Nickelodeon", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-nickelodeon_480/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418205237Nickelodeon.jpg" },
-      { name:"Nick jr", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-nickjr_480/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418203048Nickjr.jpg" },
+      { name:"Nick jr", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-nickjr_480/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418203048Nickjr.jpg" }
 
 ],
 
@@ -174,6 +198,7 @@ documentary:[
 ]
 
 };
+
 
 
 const list=document.getElementById("list");
@@ -208,13 +233,24 @@ list.appendChild(grid);
 });
 
 
+let hls;
+
 function play(url){
 
 const video=document.getElementById("video");
 
+window.scrollTo({top:0,behavior:"smooth"});
+
+if(hls){
+hls.destroy();
+}
+
 if(Hls.isSupported()){
 
-const hls=new Hls();
+hls=new Hls({
+maxBufferLength:10
+});
+
 hls.loadSource(url);
 hls.attachMedia(video);
 
@@ -222,6 +258,16 @@ hls.attachMedia(video);
 
 video.src=url;
 
+}
+
+}
+
+function fullscreen(){
+
+const video=document.getElementById("video");
+
+if(video.requestFullscreen){
+video.requestFullscreen();
 }
 
 }
