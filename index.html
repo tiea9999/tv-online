@@ -1,120 +1,78 @@
 <!DOCTYPE html>
 
 <html lang="th">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIEA IPTV</title>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
 
-    <title>TIEA IPTV</title>
+body{
+background:#020617;
+color:white;
+font-family:sans-serif;
+text-align:center;
+margin:0;
+}
 
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#000000">
+.logo{
+font-size:30px;
+padding:30px;
+font-weight:bold;
+}
 
-    <link rel="icon"
-        href="https://raw.githubusercontent.com/tiea9999/tv-online/main/logo.png">
+.menu{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+padding:40px;
+max-width:600px;
+margin:auto;
+}
 
-    <style>
-        body {
-            margin: 0;
-            font-family: sans-serif;
-            background: #0f172a;
-            color: white;
-            text-align: center;
-        }
+.card{
+background:#1e293b;
+padding:40px;
+border-radius:12px;
+cursor:pointer;
+font-size:20px;
+transition:0.3s;
+}
 
-        header {
-            font-size: 28px;
-            padding: 20px;
-            background: #020617;
-        }
+.card:hover{
+background:#334155;
+}
 
-        .logo {
-            width: 90px;
-            margin-top: 15px;
-        }
+a{
+text-decoration:none;
+color:white;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            padding: 30px;
-            max-width: 900px;
-            margin: auto;
-        }
-
-        .card {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 20px;
-            text-decoration: none;
-            color: white;
-            transition: 0.25s;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 10px #3b82f6;
-        }
-
-        .card img {
-            width: 60px;
-            margin-bottom: 10px;
-        }
-    </style>
+</style>
 
 </head>
 
 <body>
 
-    <img class="logo" src="https://dl.dropboxusercontent.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png">
+<div class="logo">TIEA IPTV</div>
 
-    <header>TIEA IPTV</header>
+<div class="menu">
 
-    <div class="grid">
+<a href="tv.html">
+<div class="card">📺 TV</div>
+</a>
 
-        <a class="card" href="inwhd.html">
-            <img src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png">
-            <div>📺 TV</div>
-        </a>
+<a href="movie.html">
+<div class="card">🎬 MOVIE</div>
+</a>
 
-        <a class="card" href="iptv.html">
-            <img src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png">
-            <div>📡 IPTV</div>
-        </a>
+<a href="series.html">
+<div class="card">🎞 SERIES</div>
+</a>
 
-        <a class="card" href="24hd.html">
-            <img src="https://cdn-icons-png.flaticon.com/512/3659/3659784.png">
-            <div>🎬 หนัง</div>
-        </a>
-
-        <a class="card" href="seriesday.html">
-            <img src="https://cdn-icons-png.flaticon.com/512/3659/3659784.png">
-            <div>📺 ซีรีย์</div>
-        </a>
-
-        <a class="card" href="MOVIE03.html">
-            <img src="https://cdn-icons-png.flaticon.com/512/3659/3659784.png">
-            <div>🧸 อนิเมะ</div>
-        </a>
-
-        <a class="card" href="VIP.html">
-            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
-            <div>⭐ VIP</div>
-        </a>
-
-    </div>
-
-    <script>
-        if("serviceWorker" in navigator){
-
-navigator.serviceWorker.register("sw.js");
-
-}
-
-    </script>
+</div>
 
 </body>
-
 </html>
+
