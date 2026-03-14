@@ -1,4 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TIEA IPTV - MOVIE</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:sans-serif;
+margin:0;
+text-align:center;
+}
+
+header{
+font-size:24px;
+padding:15px;
+}
+
+.player{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+video{
+width:100%;
+background:black;
+border-radius:10px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+border-radius:10px;
+padding:10px;
+cursor:pointer;
+}
+
+.card img{
+width:100%;
+border-radius:6px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>TIEA IPTV - MOVIE</header>
+
+<div class="player">
+<video id="player" controls autoplay playsinline></video>
+</div>
+
+<div class="grid" id="channels"></div>
+
+<script src="channels.js"></script>
+
 <script>
+
+const video=document.getElementById("player");
+const list=document.getElementById("channels");
+
+function play(url){
+
+if(Hls.isSupported()){
+
+const hls=new Hls();
+hls.loadSource(url);
+hls.attachMedia(video);
+
+}else{
+
+video.src=url;
+
+}
+
+video.play();
+
+window.scrollTo({top:0,behavior:"smooth"});
+
+}
 
 channels.movie.forEach(ch=>{
 
@@ -20,3 +117,7 @@ list.appendChild(div);
 });
 
 </script>
+
+</body>
+</html>
+
