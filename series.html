@@ -9,40 +9,116 @@
 
 <title>TIEA IPTV - SERIES</title>
 
-<link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:sans-serif;
+margin:0;
+text-align:center;
+}
+
+header{
+font-size:24px;
+padding:15px;
+}
+
+.player{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+video{
+width:100%;
+background:black;
+border-radius:10px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+border-radius:10px;
+padding:10px;
+cursor:pointer;
+}
+
+.card img{
+max-height:120px;
+border-radius:6px;
+}
+
+</style>
 
 </head>
 
 <body>
 
-<a href="index.html" class="home-btn">🏠 HOME</a>
+<header>TIEA IPTV - SERIES</header>
 
-<header>SERIES</header>
-
-<div id="channels" class="channel-grid"></div>
-
-<div id="playerModal" class="player-modal">
-
-<div class="player-box">
-
-<span class="closeBtn" onclick="closePlayer()">✖</span>
-
-<video id="playerFrame" controls autoplay playsinline></video>
-
+<div class="player">
+<video id="player" controls autoplay playsinline></video>
 </div>
 
-</div>
+<div class="grid" id="channels"></div>
 
-<script src="player.js"></script>
-
-<script src="m3u-loader.js"></script>
+<script src="channels.js"></script>
 
 <script>
 
-loadM3U("m3u/missav.m3u");
+const video=document.getElementById("player");
+const list=document.getElementById("channels");
+
+function play(url){
+
+if(Hls.isSupported()){
+
+const hls=new Hls();
+hls.loadSource(url);
+hls.attachMedia(video);
+
+}else{
+
+video.src=url;
+
+}
+
+video.play();
+
+window.scrollTo({top:0,behavior:"smooth"});
+
+}
+
+channels.series.forEach(ch=>{
+
+const div=document.createElement("div");
+
+div.className="card";
+
+div.innerHTML=`
+<img src="${ch.logo}">
+<div>${ch.name}</div>
+`;
+
+div.onclick=function(){
+play(ch.url);
+};
+
+list.appendChild(div);
+
+});
 
 </script>
 
 </body>
 </html>
+
