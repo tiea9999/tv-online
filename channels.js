@@ -5,7 +5,7 @@ tv: [
 {
 name: "MONO MAX1",
 logo: "https://www.fileinwtv.site/postor/20250830165328Mono1.jpg",
-url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+url: "https://love.r95lvvlb9o.workers.dev/lx-origin/th-monomax01_720/chunks.m3u8"
 },
 
 {
