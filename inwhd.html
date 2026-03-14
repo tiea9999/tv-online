@@ -1,43 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TIEA IPTV - TV</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:sans-serif;
+margin:0;
+}
+
+header{
+text-align:center;
+padding:15px;
+font-size:24px;
+}
+
+.player-box{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+video{
+width:100%;
+background:black;
+border-radius:10px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.channel-card{
+background:#1e293b;
+border-radius:10px;
+padding:10px;
+text-align:center;
+cursor:pointer;
+}
+
+.channel-card img{
+max-height:50px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>TIEA IPTV - TV</header>
+
+<div class="player-box">
+
+<video id="player" controls autoplay playsinline></video>
+
+</div>
+
+<div class="grid" id="channels"></div>
+
+<script src="channels.js"></script>
+
 <script>
 
-let channelList=[];
-let currentIndex=0;
+const video=document.getElementById("player");
+const container=document.getElementById("channels");
 
-function buildChannelList(){
+function playStream(url){
 
-channelList=[];
+if(Hls.isSupported()){
 
-Object.values(channels.tv).forEach(group=>{
-group.forEach(ch=>{
-channelList.push(ch);
-});
-});
+const hls=new Hls();
+hls.loadSource(url);
+hls.attachMedia(video);
 
-}
+}else{
 
-function playByIndex(i){
-
-if(i<0) i=channelList.length-1;
-if(i>=channelList.length) i=0;
-
-currentIndex=i;
-
-playStream(channelList[i].url);
+video.src=url;
 
 }
 
-document.addEventListener("keydown",function(e){
+video.play();
 
-if(e.key==="ArrowRight"){
-playByIndex(currentIndex+1);
-}
-
-if(e.key==="ArrowLeft"){
-playByIndex(currentIndex-1);
-}
-
+window.scrollTo({
+top:0,
+behavior:"smooth"
 });
 
-buildChannelList();
+}
+
+channels.tv.digital.forEach(ch=>{
+
+const card=document.createElement("div");
+
+card.className="channel-card";
+
+card.innerHTML=`
+
+<img src="${ch.logo}">
+<div>${ch.name}</div>
+
+`;
+
+card.onclick=()=>playStream(ch.url);
+
+container.appendChild(card);
+
+});
 
 </script>
+
+</body>
+</html>
+
+
