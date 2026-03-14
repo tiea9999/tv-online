@@ -22,30 +22,36 @@ margin:0;
 
 header{
 padding:15px;
-font-size:22px;
 background:#0f172a;
 text-align:center;
+font-size:22px;
 }
 
 #playlistMenu{
 display:flex;
 flex-wrap:wrap;
 gap:10px;
-padding:15px;
+padding:10px;
 justify-content:center;
 }
 
 #playlistMenu button{
-padding:8px 15px;
+padding:8px 14px;
+background:#1e293b;
 border:none;
 border-radius:6px;
-background:#1e293b;
 color:white;
 cursor:pointer;
 }
 
-#playlistMenu button:hover{
-background:#334155;
+#search{
+width:90%;
+max-width:400px;
+padding:8px;
+margin:10px auto;
+display:block;
+border-radius:6px;
+border:none;
 }
 
 .player{
@@ -100,6 +106,8 @@ text-align:center;
 
 <div id="playlistMenu"></div>
 
+<input id="search" placeholder="ค้นหาหนัง...">
+
 <div id="movies" class="grid"></div>
 
 <script>
@@ -131,6 +139,9 @@ url:"https://raw.githubusercontent.com/9Pichapob/Movies/refs/heads/main/NETFLIX"
 const video=document.getElementById("player");
 const grid=document.getElementById("movies");
 const menu=document.getElementById("playlistMenu");
+const search=document.getElementById("search");
+
+let MOVIES=[];
 
 function play(url){
 
@@ -147,21 +158,39 @@ video.src=url;
 }
 
 video.play();
-
 window.scrollTo({top:0,behavior:"smooth"});
+
+}
+
+function addMovie(m){
+
+const div=document.createElement("div");
+
+div.className="card";
+
+div.innerHTML=`
+<img loading="lazy" src="${m.logo}">
+<div class="title">${m.name}</div>
+`;
+
+div.onclick=()=>play(m.url);
+
+grid.appendChild(div);
 
 }
 
 async function loadPlaylist(url){
 
 grid.innerHTML="Loading...";
+MOVIES=[];
 
 const res=await fetch(url);
 const text=await res.text();
 
 const lines=text.split("\n");
 
-let movies=[];
+grid.innerHTML="";
+
 let current={};
 
 lines.forEach(line=>{
@@ -171,7 +200,6 @@ line=line.trim();
 if(line.startsWith("#EXTINF")){
 
 const name=line.split(",")[1];
-
 const logo=line.match(/tvg-logo="(.*?)"/);
 
 current={
@@ -185,34 +213,11 @@ else if(line.startsWith("http")){
 
 current.url=line;
 
-movies.push(current);
+MOVIES.push(current);
+
+addMovie(current);
 
 }
-
-});
-
-renderMovies(movies);
-
-}
-
-function renderMovies(list){
-
-grid.innerHTML="";
-
-list.forEach(m=>{
-
-const div=document.createElement("div");
-
-div.className="card";
-
-div.innerHTML=`
-<img src="${m.logo}">
-<div class="title">${m.name}</div>
-`;
-
-div.onclick=()=>play(m.url);
-
-grid.appendChild(div);
 
 });
 
@@ -230,7 +235,20 @@ menu.appendChild(btn);
 
 });
 
+search.onkeyup=function(){
+
+const key=this.value.toLowerCase();
+
+grid.innerHTML="";
+
+MOVIES
+.filter(m=>m.name.toLowerCase().includes(key))
+.forEach(addMovie);
+
+};
+
 </script>
 
 </body>
 </html>
+
