@@ -1,30 +1,38 @@
-<script src="channels.js"></script>
-
 <script>
 
-const video=document.getElementById("player");
-const list=document.getElementById("channels");
-
-function play(url){
-
-if(Hls.isSupported()){
-
-const hls=new Hls();
-hls.loadSource(url);
-hls.attachMedia(video);
-
-}else{
-
-video.src=url;
-
-}
-
-video.play();
-
-}
-
 Object.keys(channels.tv).forEach(group=>{
-// โค้ดแสดงหมวด
+
+const title=document.createElement("h2");
+title.innerText=group.toUpperCase();
+title.style.padding="10px";
+title.style.textAlign="left";
+
+list.appendChild(title);
+
+const grid=document.createElement("div");
+grid.className="grid";
+
+channels.tv[group].forEach(ch=>{
+
+const div=document.createElement("div");
+
+div.className="card";
+
+div.innerHTML=`
+<img src="${ch.logo}">
+<div>${ch.name}</div>
+`;
+
+div.onclick=function(){
+play(ch.url);
+};
+
+grid.appendChild(div);
+
+});
+
+list.appendChild(grid);
+
 });
 
 </script>
