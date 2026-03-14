@@ -10,10 +10,32 @@
 <title>TIEA IPTV - TV</title>
 
 <link rel="stylesheet" href="style.css">
-
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:sans-serif;
+}
+
+header{
+text-align:center;
+padding:15px;
+font-size:24px;
+}
+
+.player-box{
+width:100%;
+max-width:900px;
+margin:auto;
+}
+
+video{
+width:100%;
+border-radius:10px;
+}
 
 .category{
 margin:20px;
@@ -47,6 +69,17 @@ max-height:50px;
 margin-bottom:8px;
 }
 
+.home-btn{
+position:fixed;
+top:10px;
+left:10px;
+background:#2563eb;
+padding:8px 14px;
+border-radius:6px;
+color:white;
+text-decoration:none;
+}
+
 </style>
 
 </head>
@@ -57,25 +90,46 @@ margin-bottom:8px;
 
 <header>TIEA IPTV</header>
 
+<!-- PLAYER -->
+
+<div class="player-box" id="playerTop">
+
+<video id="player" controls autoplay playsinline></video>
+
+</div>
+
+<!-- CHANNEL LIST -->
+
 <div id="channels"></div>
-
-<div id="playerModal" class="player-modal">
-
-<div class="player-box">
-
-<span class="closeBtn" onclick="closePlayer()">✖</span>
-
-<video id="playerFrame" controls autoplay playsinline></video>
-
-</div>
-
-</div>
 
 <script src="channels.js"></script>
 
-<script src="player.js"></script>
-
 <script>
+
+const video=document.getElementById("player");
+
+function playStream(url){
+
+if(Hls.isSupported()){
+
+const hls=new Hls();
+
+hls.loadSource(url);
+hls.attachMedia(video);
+
+}else{
+
+video.src=url;
+
+}
+
+video.play();
+
+document.getElementById("playerTop").scrollIntoView({
+behavior:"smooth"
+});
+
+}
 
 const container=document.getElementById("channels");
 
@@ -93,18 +147,18 @@ grid.className="grid";
 list.forEach(ch=>{
 
 const card=document.createElement("div");
+
 card.className="channel-card";
 
 card.innerHTML=`
 
 <img src="${ch.logo}">
-
 <div>${ch.name}</div>
 
 `;
 
 card.onclick=function(){
-openPlayer(ch.url);
+playStream(ch.url);
 };
 
 grid.appendChild(card);
@@ -125,4 +179,5 @@ render("🧸 การ์ตูน",channels.tv.cartoon);
 
 </body>
 </html>
+
 
