@@ -5,15 +5,14 @@
 "display": "standalone",
 "background_color": "#000000",
 "theme_color": "#000000",
-"orientation": "landscape",
 "icons": [
 {
-"src": "https://cdn-icons-png.flaticon.com/512/3659/3659899.png",
+"src": "https://dl.dropboxusercontent.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png",
 "sizes": "192x192",
 "type": "image/png"
 },
 {
-"src": "https://cdn-icons-png.flaticon.com/512/3659/3659899.png",
+"src": "https://dl.dropboxusercontent.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png",
 "sizes": "512x512",
 "type": "image/png"
 }
