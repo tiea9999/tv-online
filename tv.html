@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TIEA IPTV - TV</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+
+body{
+background:#020617;
+color:white;
+font-family:sans-serif;
+margin:0;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 20px;
+background:#0f172a;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.menu a{
+margin-left:15px;
+text-decoration:none;
+color:white;
+}
+
+.player{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+video{
+width:100%;
+background:black;
+border-radius:10px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+border-radius:10px;
+padding:10px;
+cursor:pointer;
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card img{
+max-height:60px;
+margin-bottom:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">TIEA IPTV</div>
+
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="tv.html">TV</a>
+<a href="movie.html">Movie</a>
+<a href="series.html">Series</a>
+</div>
+
+</header>
+
+<div class="player">
+<video id="player" controls autoplay playsinline></video>
+</div>
+
+<div class="grid" id="channels"></div>
+
+<script src="channels.js"></script>
+
+<script>
+
+const video=document.getElementById("player");
+const list=document.getElementById("channels");
+
+function play(url){
+
+if(Hls.isSupported()){
+
+const hls=new Hls();
+hls.loadSource(url);
+hls.attachMedia(video);
+
+}else{
+
+video.src=url;
+
+}
+
+video.play();
+window.scrollTo({top:0,behavior:"smooth"});
+
+}
+
+channels.tv.digital.forEach(ch=>{
+
+const div=document.createElement("div");
+
+div.className="card";
+
+div.innerHTML=`
+<img src="${ch.logo}">
+<div>${ch.name}</div>
+`;
+
+div.onclick=function(){
+play(ch.url);
+};
+
+list.appendChild(div);
+
+});
+
+</script>
+
+</body>
+</html>
