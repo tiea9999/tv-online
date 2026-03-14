@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TIEA IPTV - Live</title>
+
+<style>
+
+body{
+margin:0;
+background:#000;
+color:white;
+font-family:sans-serif;
+}
+
+.header{
+background:#111;
+padding:12px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.back{
+background:#222;
+border:none;
+color:white;
+padding:6px 12px;
+border-radius:6px;
+cursor:pointer;
+}
+
+iframe{
+width:100%;
+height:calc(100vh - 50px);
+border:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+<button class="back" onclick="history.back()">⬅ Back</button>
+<div>LIVE IPTV</div>
+</div>
+
+<iframe src="https://night.redfight.info/iptv.php"></iframe>
+
+</body>
+</html>
