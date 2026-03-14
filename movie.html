@@ -1,0 +1,22 @@
+<script>
+
+channels.movie.forEach(ch=>{
+
+const div=document.createElement("div");
+
+div.className="card";
+
+div.innerHTML=`
+<img src="${ch.logo}">
+<div>${ch.name}</div>
+`;
+
+div.onclick=function(){
+play(ch.url);
+};
+
+list.appendChild(div);
+
+});
+
+</script>
