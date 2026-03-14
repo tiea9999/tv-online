@@ -41,6 +41,8 @@
 
 <script>
 
+window.onload = function(){
+
 const container = document.getElementById("channels");
 
 channels.tv.forEach(ch=>{
@@ -49,11 +51,11 @@ const card=document.createElement("div");
 
 card.className="channel-card";
 
-card.innerHTML=`
-
-<img src="${ch.logo}">
+card.innerHTML = `
 
 <div onclick="openPlayer('${ch.url}')">
+
+<img src="${ch.logo}" style="max-height:60px"><br>
 
 ${ch.name}
 
@@ -65,8 +67,11 @@ container.appendChild(card);
 
 });
 
+};
+
 </script>
 
 </body>
 </html>
+
 
