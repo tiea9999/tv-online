@@ -142,22 +142,52 @@ const menu=document.getElementById("playlistMenu");
 const search=document.getElementById("search");
 
 let MOVIES=[];
+let hls=null;
 
 function play(url){
 
+if(hls){
+hls.destroy();
+hls=null;
+}
+
+video.pause();
+video.removeAttribute("src");
+video.load();
+
+if(url.includes(".m3u8")){
+
 if(Hls.isSupported()){
 
-const hls=new Hls();
+hls=new Hls({
+enableWorker:true,
+lowLatencyMode:true
+});
+
 hls.loadSource(url);
 hls.attachMedia(video);
 
-}else{
+hls.on(Hls.Events.MANIFEST_PARSED,function(){
+video.play();
+});
+
+}
+else{
 
 video.src=url;
+video.play();
 
 }
 
+}
+
+else{
+
+video.src=url;
 video.play();
+
+}
+
 window.scrollTo({top:0,behavior:"smooth"});
 
 }
@@ -251,4 +281,3 @@ MOVIES
 
 </body>
 </html>
-
