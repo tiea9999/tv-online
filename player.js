@@ -1,44 +1,33 @@
-let hls;
+let hls=null;
 
-function openPlayer(url){
+function play(url){
 
-const modal=document.getElementById("playerModal");
-const video=document.getElementById("playerFrame");
-
-modal.style.display="flex";
+const video=document.getElementById("player");
 
 if(hls){
 hls.destroy();
+hls=null;
 }
+
+video.pause();
+video.removeAttribute("src");
+video.load();
 
 if(Hls.isSupported()){
 
 hls=new Hls({
-
 enableWorker:true,
 lowLatencyMode:true,
-
-backBufferLength:120,
-maxBufferLength:150,
-maxMaxBufferLength:300,
-
-liveSyncDurationCount:3,
-liveMaxLatencyDurationCount:5,
-
-manifestLoadingMaxRetry:8,
-levelLoadingMaxRetry:8,
-fragLoadingMaxRetry:10,
-
-startFragPrefetch:true,
-capLevelToPlayerSize:true
-
+backBufferLength:90,
+maxBufferLength:30
 });
 
 hls.loadSource(url);
 hls.attachMedia(video);
 
 hls.on(Hls.Events.MANIFEST_PARSED,function(){
-video.play();
+video.muted=false;
+video.play().catch(()=>{});
 });
 
 hls.on(Hls.Events.ERROR,function(event,data){
@@ -66,29 +55,18 @@ break;
 });
 
 }
-
-else if(video.canPlayType('application/vnd.apple.mpegurl')){
+else if(video.canPlayType("application/vnd.apple.mpegurl")){
 
 video.src=url;
 video.play();
 
 }
+else{
+
+video.src=url;
 
 }
 
-function closePlayer(){
-
-const modal=document.getElementById("playerModal");
-const video=document.getElementById("playerFrame");
-
-video.pause();
-video.removeAttribute("src");
-video.load();
-
-if(hls){
-hls.destroy();
-}
-
-modal.style.display="none";
+window.scrollTo({top:0,behavior:"smooth"});
 
 }
