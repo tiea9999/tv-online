@@ -29,24 +29,27 @@ name:"PPTV HD",
 logo:"https://upload.wikimedia.org/wikipedia/th/2/2c/PPTV_HD36.png",
 url:"https://example.com/pptv.m3u8"
 }
+],
+
+kids:[
+{
+name:"Cartoon Network",
+logo:"https://upload.wikimedia.org/wikipedia/commons/6/64/Cartoon_Network_2010_logo.svg",
+url:"https://example.com/cartoon.m3u8"
+}
+],
+
+documentary:[
+{
+name:"Discovery",
+logo:"https://upload.wikimedia.org/wikipedia/commons/7/7f/Discovery_Channel_logo.svg",
+url:"https://example.com/discovery.m3u8"
+}
 ]
 
 },
 
-movie:[
-{
-name:"Movie Test",
-logo:"https://via.placeholder.com/300x450",
-url:"https://example.com/movie.m3u8"
-}
-],
-
-series:[
-{
-name:"Series Test",
-logo:"https://via.placeholder.com/300x450",
-url:"https://example.com/series.m3u8"
-}
-]
+movie:[],
+series:[]
 
 };
