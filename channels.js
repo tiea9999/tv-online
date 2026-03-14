@@ -1,31 +1,41 @@
 const channels = {
 
-tv: {
-
-digital: [
+tv:{
+digital:[
 {
-name:"MONO29",
-logo:"https://www.fileinwtv.site/postor/20250830165328Mono1.jpg",
-url:"https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+name:"CH7 HD",
+logo:"https://upload.wikimedia.org/wikipedia/th/1/1b/Channel_7_HD.png",
+url:"https://example.com/ch7.m3u8"
 },
 {
-name:"CH3 HD",
-logo:"https://upload.wikimedia.org/wikipedia/th/7/7a/Channel_3_HD.png",
-url:"https://test-streams.mux.dev/test_001/stream.m3u8"
+name:"MONO29",
+logo:"https://upload.wikimedia.org/wikipedia/th/4/4f/Mono29.png",
+url:"https://example.com/mono.m3u8"
+}
+]
+},
+
+movie:[
+{
+name:"Movie 1",
+logo:"https://via.placeholder.com/150x220?text=Movie+1",
+url:"https://example.com/movie1.m3u8"
+},
+{
+name:"Movie 2",
+logo:"https://via.placeholder.com/150x220?text=Movie+2",
+url:"https://example.com/movie2.m3u8"
 }
 ],
 
-movie: [],
-sport: [],
-documentary: [],
-cartoon: []
-
-},
-
-movie: [],
-series: []
+series:[
+{
+name:"Series 1",
+logo:"https://via.placeholder.com/150x220?text=Series+1",
+url:"https://example.com/series1.m3u8"
+}
+]
 
 };
-
 
 
