@@ -11,7 +11,7 @@ url: "https://love.r95lvvlb9o.workers.dev/lx-origin/th-monomax01_720/chunks.m3u8
 {
 name: "True Sport 1",
 logo: "https://www.fileinwtv.site/postor/20240418192933TrueSport1.jpg",
-url: "https://test-streams.mux.dev/test_001/stream.m3u8"
+url: "https://love.r95lvvlb9o.workers.dev/lx-origin/th-tsporthd1_480/chunks.m3u8"
 }
 
 ],
