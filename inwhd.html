@@ -1,57 +1,21 @@
-<!DOCTYPE html>
-
-<html lang="th">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>TIEA IPTV - TV ONLINE</title>
-
-<link rel="stylesheet" href="style.css">
-
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
-</head>
-
-<body>
-
-<a href="index.html" class="home-btn">🏠 HOME</a>
-
-<header>TIEA IPTV - TV ONLINE</header>
-
-<div id="channels" class="channel-grid"></div>
-
-<div id="playerModal" class="player-modal">
-
-<div class="player-box">
-
-<span class="closeBtn" onclick="closePlayer()">✖</span>
-
-<video id="playerFrame" controls autoplay playsinline></video>
-
-</div>
-
-</div>
-
-<script src="channels.js"></script>
-
-<script src="player.js"></script>
-
 <script>
-
-window.onload = function(){
 
 const container = document.getElementById("channels");
 
-channels.tv.forEach(ch=>{
+function renderCategory(title,list){
+
+const h = document.createElement("h2");
+h.innerText = title;
+h.style.margin="20px";
+container.appendChild(h);
+
+list.forEach(ch=>{
 
 const card=document.createElement("div");
 
 card.className="channel-card";
 
-card.innerHTML = `
+card.innerHTML=`
 
 <div onclick="openPlayer('${ch.url}')">
 
@@ -67,11 +31,15 @@ container.appendChild(card);
 
 });
 
-};
+}
+
+renderCategory("📺 ดิจิตอล",channels.tv.digital);
+renderCategory("🎬 หนัง",channels.tv.movie);
+renderCategory("⚽ กีฬา",channels.tv.sport);
+renderCategory("🌍 สารคดี",channels.tv.documentary);
+renderCategory("🧸 การ์ตูน",channels.tv.cartoon);
 
 </script>
 
-</body>
-</html>
 
 
