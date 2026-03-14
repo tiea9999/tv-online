@@ -1,17 +1,19 @@
 const channels = {
 
-tv: [
+tv: {
+
+digital: [
 
 {
-name: "MONO MAX1",
-logo: "https://www.fileinwtv.site/postor/20250830165328Mono1.jpg",
-url: "https://love.r95lvvlb9o.workers.dev/lx-origin/th-monomax01_720/chunks.m3u8"
+name: "MONO29",
+logo: "https://www.fileinwtv.site/postor/mono29.jpg",
+url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
 },
 
 {
-name: "True Sport 1",
-logo: "https://www.fileinwtv.site/postor/20240418192933TrueSport1.jpg",
-url: "https://love.r95lvvlb9o.workers.dev/lx-origin/th-tsporthd1_480/chunks.m3u8"
+name: "CH3 HD",
+logo: "https://www.fileinwtv.site/postor/ch3.jpg",
+url: "https://test-streams.mux.dev/test_001/stream.m3u8"
 }
 
 ],
@@ -19,22 +21,48 @@ url: "https://love.r95lvvlb9o.workers.dev/lx-origin/th-tsporthd1_480/chunks.m3u8
 movie: [
 
 {
-name: "Movie Channel",
-logo: "https://cdn-icons-png.flaticon.com/512/3659/3659899.png",
+name: "MONO MAX",
+logo: "https://www.fileinwtv.site/postor/20250830165328Mono1.jpg",
+url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+}
+
+],
+
+sport: [
+
+{
+name: "True Sport 1",
+logo: "https://www.fileinwtv.site/postor/20240418192933TrueSport1.jpg",
 url: "https://test-streams.mux.dev/test_001/stream.m3u8"
 }
 
 ],
 
-series: [
+documentary: [
 
 {
-name: "Series Channel",
-logo: "https://cdn-icons-png.flaticon.com/512/3659/3659784.png",
+name: "Discovery",
+logo: "https://cdn-icons-png.flaticon.com/512/2920/2920349.png",
 url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+}
+
+],
+
+cartoon: [
+
+{
+name: "Cartoon Network",
+logo: "https://cdn-icons-png.flaticon.com/512/3659/3659784.png",
+url: "https://test-streams.mux.dev/test_001/stream.m3u8"
 }
 
 ]
 
+},
+
+movie: [],
+series: []
+
 };
+
 
