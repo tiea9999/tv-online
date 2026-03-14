@@ -1,45 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TIEA IPTV - TV</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+
+.category{
+margin:20px;
+font-size:22px;
+font-weight:bold;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.channel-card{
+background:#1e293b;
+border-radius:10px;
+padding:10px;
+text-align:center;
+cursor:pointer;
+transition:0.25s;
+}
+
+.channel-card:hover{
+transform:scale(1.05);
+box-shadow:0 0 10px #3b82f6;
+}
+
+.channel-card img{
+max-height:50px;
+margin-bottom:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<a href="index.html" class="home-btn">🏠 HOME</a>
+
+<header>TIEA IPTV</header>
+
+<div id="channels"></div>
+
+<div id="playerModal" class="player-modal">
+
+<div class="player-box">
+
+<span class="closeBtn" onclick="closePlayer()">✖</span>
+
+<video id="playerFrame" controls autoplay playsinline></video>
+
+</div>
+
+</div>
+
+<script src="channels.js"></script>
+
+<script src="player.js"></script>
+
 <script>
 
-const container = document.getElementById("channels");
+const container=document.getElementById("channels");
 
-function renderCategory(title,list){
+function render(title,list){
 
-const h = document.createElement("h2");
-h.innerText = title;
-h.style.margin="20px";
+const h=document.createElement("div");
+h.className="category";
+h.innerText=title;
+
 container.appendChild(h);
+
+const grid=document.createElement("div");
+grid.className="grid";
 
 list.forEach(ch=>{
 
 const card=document.createElement("div");
-
 card.className="channel-card";
 
 card.innerHTML=`
 
-<div onclick="openPlayer('${ch.url}')">
+<img src="${ch.logo}">
 
-<img src="${ch.logo}" style="max-height:60px"><br>
-
-${ch.name}
-
-</div>
+<div>${ch.name}</div>
 
 `;
 
-container.appendChild(card);
+card.onclick=function(){
+openPlayer(ch.url);
+};
+
+grid.appendChild(card);
 
 });
 
+container.appendChild(grid);
+
 }
 
-renderCategory("📺 ดิจิตอล",channels.tv.digital);
-renderCategory("🎬 หนัง",channels.tv.movie);
-renderCategory("⚽ กีฬา",channels.tv.sport);
-renderCategory("🌍 สารคดี",channels.tv.documentary);
-renderCategory("🧸 การ์ตูน",channels.tv.cartoon);
+render("📺 ดิจิตอล",channels.tv.digital);
+render("🎬 หนัง",channels.tv.movie);
+render("⚽ กีฬา",channels.tv.sport);
+render("🌍 สารคดี",channels.tv.documentary);
+render("🧸 การ์ตูน",channels.tv.cartoon);
 
 </script>
 
-
+</body>
+</html>
 
