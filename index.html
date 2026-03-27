@@ -1,126 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV - Home</title>
-
+<title>TIEA IPTV</title>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <style>
-body{
-  margin:0;
-  background:#0f172a;
-  color:white;
-  font-family:sans-serif;
-}
-
-header{
-  font-size:24px;
-  padding:15px;
-  text-align:center;
-  background:#111;
-}
-
-.section{
-  padding:15px;
-}
-
-h2{
-  margin-bottom:10px;
-  border-bottom:1px solid #444;
-  padding-bottom:5px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
-  gap:15px;
-}
-
-.card{
-  background:#1e293b;
-  border-radius:10px;
-  padding:10px;
-  cursor:pointer;
-  text-align:center;
-}
-
-.card img{
-  max-height:50px;
-  margin-bottom:5px;
-}
-
-button{
-  background:#222;
-  border:none;
-  color:white;
-  padding:6px 12px;
-  border-radius:6px;
-  cursor:pointer;
-  margin-top:10px;
-}
-
-.video-container{
-  max-width:900px;
-  margin:auto;
-  padding:10px;
-}
-
-video{
-  width:100%;
-  border-radius:10px;
-}
+body{background:#0f172a;color:white;font-family:sans-serif;margin:0;padding:0;}
+header{font-size:24px;padding:15px;text-align:center;}
+.tabs{display:flex;overflow-x:auto;background:#1e293b;padding:5px;}
+.tabs button{flex:0 0 auto;margin:0 5px;padding:10px 15px;background:#334155;color:white;border:none;border-radius:8px;cursor:pointer;font-size:16px;}
+.tabs button:hover{background:#64748b;}
+.player{max-width:900px;margin:15px auto;padding:10px;position:relative;}
+video{width:100%;border-radius:10px;background:black;}
+.player button{position:absolute;bottom:10px;right:10px;padding:5px 10px;background:#64748b;color:white;border:none;border-radius:5px;cursor:pointer;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:15px;padding:10px;}
+.card{background:#1e293b;border-radius:10px;padding:10px;cursor:pointer;text-align:center;}
+.card img{max-height:50px;width:auto;margin-bottom:5px;}
 </style>
-
 </head>
-
 <body>
 
 <header>TIEA IPTV</header>
 
-<!-- 1️⃣ ตารางแข่งขันกีฬา + LIVE IPTV -->
-
-<div class="section">
-<h2>ตารางแข่งขันกีฬา + LIVE IPTV</h2>
-<iframe src="live.html"></iframe>
+<div class="tabs">
+  <button onclick="showCategory('sports')">🏟 ตารางแข่งขันกีฬา</button>
+  <button onclick="openTV()">📺 TV</button>
+  <button onclick="showCategory('movie')">🎬 Movie</button>
+  <button onclick="showCategory('series')">🎞 Series</button>
 </div>
 
-<!-- เครื่องเล่น Video -->
-
-<div class="video-container">
-<video id="player" controls autoplay playsinline></video>
-<br>
-<button id="fullscreen-btn">ขยายจอ / ย่อจอ</button>
+<div class="player">
+  <video id="player" controls autoplay playsinline></video>
+  <button onclick="toggleFullscreen()">ขยายจอ</button>
 </div>
 
-<!-- 2️⃣ TV -->
-
-<div class="section" id="tv-section">
-<h2>TV</h2>
-<div class="grid" id="tv-channels"></div>
-</div>
-
-<!-- 3️⃣ Movie -->
-
-<div class="section" id="movie-section">
-<h2>Movie</h2>
-<div class="grid" id="movie-channels"></div>
-</div>
-
-<!-- 4️⃣ Series -->
-
-<div class="section" id="series-section">
-<h2>Series</h2>
-<div class="grid" id="series-channels"></div>
-</div>
+<div id="content"></div>
 
 <script src="channels.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
 <script>
 const video = document.getElementById("player");
-const fullscreenBtn = document.getElementById("fullscreen-btn");
+const content = document.getElementById("content");
 
 function play(url){
   if(Hls.isSupported()){
@@ -131,45 +51,63 @@ function play(url){
     video.src = url;
   }
   video.play();
-  window.scrollTo({top:0,behavior:"smooth"});
+  video.scrollIntoView({behavior:"smooth"});
+  localStorage.setItem('lastChannel', url);
 }
 
-// ปุ่มขยายจอ
-fullscreenBtn.addEventListener("click", ()=>{
+function toggleFullscreen(){
   if(!document.fullscreenElement){
-    video.requestFullscreen().catch(err=>console.log(err));
+    video.requestFullscreen();
   } else {
     document.exitFullscreen();
   }
-});
+}
 
-// สร้างช่อง TV
-channels.tv.digital.forEach(ch=>{
-  const div = document.createElement("div");
-  div.className = "card";
-  div.innerHTML = `<img src="${ch.logo}"><div>${ch.name}</div>`;
-  div.onclick = ()=>play(ch.url);
-  document.getElementById("tv-channels").appendChild(div);
-});
+function clearContent(){content.innerHTML="";}
 
-// สร้างช่อง Movie
-channels.movie.forEach(ch=>{
-  const div = document.createElement("div");
-  div.className = "card";
-  div.innerHTML = `<img src="${ch.logo}"><div>${ch.name}</div>`;
-  div.onclick = ()=>play(ch.url);
-  document.getElementById("movie-channels").appendChild(div);
-});
+// เปิด TV และเล่นช่องแรก/ช่องล่าสุด
+function openTV(){
+  clearContent();
+  const last = localStorage.getItem('lastChannel');
+  const firstChannel = channels.tv.digital[0].url;
+  play(last || firstChannel);
 
-// สร้างช่อง Series
-channels.series.forEach(ch=>{
-  const div = document.createElement("div");
-  div.className = "card";
-  div.innerHTML = `<img src="${ch.logo}"><div>${ch.name}</div>`;
-  div.onclick = ()=>play(ch.url);
-  document.getElementById("series-channels").appendChild(div);
-});
+  Object.keys(channels.tv).forEach(group=>{
+    const title = document.createElement("h2");
+    title.innerText = group.toUpperCase();
+    title.style.padding="10px";
+    title.style.textAlign="left";
+    content.appendChild(title);
+
+    const grid = document.createElement("div");
+    grid.className="grid";
+
+    channels.tv[group].forEach(ch=>{
+      const div = document.createElement("div");
+      div.className="card";
+      div.innerHTML=`<img src="${ch.logo}"><div>${ch.name}</div>`;
+      div.onclick = ()=>play(ch.url);
+      grid.appendChild(div);
+    });
+    content.appendChild(grid);
+  });
+}
+
+// แสดง Movie / Series / ตารางกีฬา
+function showCategory(cat){
+  clearContent();
+  if(!channels[cat]) return;
+  channels[cat].forEach(item=>{
+    const div = document.createElement("div");
+    div.className="card";
+    div.innerHTML=`<img src="${item.logo || ''}"><div>${item.name}</div>`;
+    div.onclick=()=>play(item.url);
+    content.appendChild(div);
+  });
+}
+
+// โหลด TV เป็นค่าเริ่มต้น
+openTV();
 </script>
-
 </body>
 </html>
