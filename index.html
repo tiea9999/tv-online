@@ -6,116 +6,175 @@
 <title>TIEA IPTV</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <style>
-body{background:#0f172a;color:white;font-family:sans-serif;margin:0;padding:0;}
-header{font-size:24px;padding:15px;text-align:center;}
-.tabs{display:flex;overflow-x:auto;background:#1e293b;padding:5px;}
-.tabs button{flex:0 0 auto;margin:0 5px;padding:10px 15px;background:#334155;color:white;border:none;border-radius:8px;cursor:pointer;font-size:16px;}
-.tabs button:hover{background:#64748b;}
-.player{max-width:900px;margin:15px auto;padding:10px;position:relative;}
-video{width:100%;border-radius:10px;background:black;}
-.player button{position:absolute;bottom:10px;right:10px;padding:5px 10px;background:#64748b;color:white;border:none;border-radius:5px;cursor:pointer;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:15px;padding:10px;}
-.card{background:#334155;border-radius:10px;padding:10px;cursor:pointer;text-align:center;transition:transform 0.2s;}
-.card:hover{transform:scale(1.05);}
-.card img{max-height:50px;width:auto;margin-bottom:5px;}
+body{
+  background:#0f172a;
+  color:white;
+  font-family:sans-serif;
+  margin:0;
+}
+header{
+  font-size:24px;
+  padding:15px;
+  text-align:center;
+}
+nav{
+  display:flex;
+  justify-content:space-around;
+  background:#1e293b;
+  padding:10px 0;
+}
+nav button{
+  background:none;
+  border:none;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+nav button.active{
+  color:#facc15;
+}
+.player{
+  max-width:900px;
+  margin:auto;
+  padding:10px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+video{
+  width:100%;
+  border-radius:10px;
+  background:black;
+}
+#fullscreenBtn{
+  margin-top:5px;
+  background:#facc15;
+  color:#0f172a;
+  border:none;
+  padding:5px 10px;
+  border-radius:5px;
+  cursor:pointer;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+  gap:15px;
+  padding:20px;
+}
+.card{
+  background:#1e293b;
+  border-radius:10px;
+  padding:10px;
+  cursor:pointer;
+  text-align:center;
+}
+.card img{
+  max-height:50px;
+  margin-bottom:5px;
+}
+h2{
+  padding:10px;
+  text-align:left;
+}
 </style>
 </head>
 <body>
 
 <header>TIEA IPTV</header>
 
-<div class="tabs">
-  <button onclick="showCategory('sports')">🏟 ตารางแข่งขันกีฬา</button>
-  <button onclick="openTV()">📺 TV</button>
-  <button onclick="showCategory('movie')">🎬 Movie</button>
-  <button onclick="showCategory('series')">🎞 Series</button>
-</div>
-
 <div class="player">
   <video id="player" controls autoplay playsinline></video>
-  <button onclick="toggleFullscreen()">ขยายจอ</button>
+  <button id="fullscreenBtn">ขยายจอ</button>
 </div>
+
+<nav>
+  <button data-tab="sports" class="active">ตารางแข่งขันกีฬา</button>
+  <button data-tab="tv">TV</button>
+  <button data-tab="movie">Movie</button>
+  <button data-tab="series">Series</button>
+</nav>
 
 <div id="content"></div>
 
 <script src="channels.js"></script>
 <script>
-const video = document.getElementById("player");
-const content = document.getElementById("content");
+const video=document.getElementById("player");
+const content=document.getElementById("content");
+const fullscreenBtn=document.getElementById("fullscreenBtn");
+const navButtons=document.querySelectorAll("nav button");
+
+let lastChannel={ tv:0, movie:0, series:0, sports:0 };
 
 function play(url){
   if(Hls.isSupported()){
-    const hls = new Hls();
+    const hls=new Hls();
     hls.loadSource(url);
     hls.attachMedia(video);
-  } else {
-    video.src = url;
+  }else{
+    video.src=url;
   }
   video.play();
-  video.scrollIntoView({behavior:"smooth"});
-  localStorage.setItem('lastChannel', url);
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-function toggleFullscreen(){
-  if(!document.fullscreenElement){
-    video.requestFullscreen();
-  } else {
-    document.exitFullscreen();
-  }
-}
+function showTab(tab){
+  content.innerHTML="";
+  navButtons.forEach(b=>b.classList.remove("active"));
+  document.querySelector(`nav button[data-tab="${tab}"]`).classList.add("active");
 
-function clearContent(){content.innerHTML="";}
+  if(tab==="sports"){
+    const h2=document.createElement("h2");
+    h2.innerText="ตารางแข่งขันกีฬา";
+    content.appendChild(h2);
 
-// เปิด TV และเล่นช่องแรก/ช่องล่าสุด
-function openTV(){
-  clearContent();
-  const last = localStorage.getItem('lastChannel');
-  const firstChannel = channels.tv.digital[0].url;
-  play(last || firstChannel);
-
-  Object.keys(channels.tv).forEach(group=>{
-    const title = document.createElement("h2");
-    title.innerText = group.toUpperCase();
-    title.style.padding="10px";
-    title.style.textAlign="left";
-    content.appendChild(title);
-
-    const grid = document.createElement("div");
-    grid.className="grid";
-
-    channels.tv[group].forEach(ch=>{
-      const div = document.createElement("div");
+    channels.sports.forEach(s=>{
+      const div=document.createElement("div");
       div.className="card";
-      div.innerHTML=`<img src="${ch.logo}"><div>${ch.name}</div>`;
-      div.onclick = ()=>play(ch.url);
+      div.innerHTML=`<img src="${s.logo}" alt=""><div>${s.name}</div>`;
+      div.onclick=()=>play(s.url);
+      content.appendChild(div);
+    });
+
+  }else{
+    const items=channels[tab];
+    if(!items) return;
+
+    const grid=document.createElement("div");
+    grid.className="grid";
+    items.forEach((ch,i)=>{
+      const div=document.createElement("div");
+      div.className="card";
+      div.innerHTML=`<img src="${ch.logo||''}" alt=""><div>${ch.name}</div>`;
+      div.onclick=()=>{ play(ch.url); lastChannel[tab]=i; };
       grid.appendChild(div);
     });
     content.appendChild(grid);
-  });
+
+    // เล่นช่องแรก/ล่าสุด
+    if(items.length>0){
+      play(items[lastChannel[tab]].url);
+    }
+  }
 }
 
-// แสดง Movie / Series / ตารางกีฬา
-function showCategory(cat){
-  clearContent();
-  if(!channels[cat]) return;
+// เลือกแท็บ
+navButtons.forEach(b=>{
+  b.addEventListener("click",()=>showTab(b.dataset.tab));
+});
 
-  // ถ้าเป็น Movie/Series ให้เป็น Grid
-  const grid = document.createElement("div");
-  grid.className = "grid";
+// ขยายจอ
+fullscreenBtn.onclick=()=>{
+  if(video.requestFullscreen){
+    video.requestFullscreen();
+  }else if(video.webkitRequestFullscreen){
+    video.webkitRequestFullscreen();
+  }else if(video.msRequestFullscreen){
+    video.msRequestFullscreen();
+  }
+};
 
-  channels[cat].forEach(item=>{
-    const div = document.createElement("div");
-    div.className="card";
-    div.innerHTML=`<img src="${item.logo || ''}"><div>${item.name}</div>`;
-    div.onclick=()=>play(item.url);
-    grid.appendChild(div);
-  });
-
-  content.appendChild(grid);
-}
-
-// โหลด TV เป็นค่าเริ่มต้น
-openTV();
+// โหลดแท็บเริ่มต้น
+showTab("sports");
 </script>
 </body>
 </html>
