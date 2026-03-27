@@ -1,135 +1,33 @@
-<!DOCTYPE html>
+fetch("https://tiea9999.github.io/tv-online/matches.json")
+.then(res => res.json())
+.then(matches => {
 
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live Sports</title>
+```
+schedule.innerHTML = "";
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+matches.forEach((m)=>{
 
-<style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif}
+  const div=document.createElement("div");
+  div.className="match";
+  div.innerHTML=`<b>${m.title}</b><br>${m.time}`;
 
-.schedule{
-padding:10px;
-background:#111;
-display:flex;
-gap:10px;
-overflow-x:auto;
+  div.onclick=()=>{
+    currentUrls = m.urls;
+    current = 0;
+    play(currentUrls[current]);
+  };
+
+  schedule.appendChild(div);
+});
+
+if(matches.length){
+  currentUrls = matches[0].urls;
+  play(currentUrls[0]);
 }
+```
 
-.match{
-background:#222;
-padding:10px;
-border-radius:10px;
-min-width:220px;
-cursor:pointer;
-}
-
-video{
-width:100%;
-height:250px;
-background:black;
-}
-</style>
-
-</head>
-
-<body>
-
-<div class="schedule" id="schedule">กำลังโหลด...</div>
-<video id="player" controls autoplay></video>
-
-<script>
-const player = document.getElementById("player");
-const schedule = document.getElementById("schedule");
-
-let currentUrls = [];
-let current = 0;
-
-/* =========================
-   🔥 โหลด JSON ของเราเอง
-========================= */
-fetch("matches.json")
-  .then(res => res.json())
-  .then(matches => {
-
-    schedule.innerHTML = "";
-
-    matches.forEach((m)=>{
-
-      const div=document.createElement("div");
-      div.className="match";
-      div.innerHTML=`<b>${m.title}</b><br>${m.time}`;
-
-      div.onclick=()=>{
-        currentUrls = m.urls;
-        current = 0;
-        play(currentUrls[current]);
-      };
-
-      schedule.appendChild(div);
-    });
-
-    // ▶️ เล่นอันแรก
-    if(matches.length){
-      currentUrls = matches[0].urls;
-      play(currentUrls[0]);
-    }
-
-  })
-  .catch(()=>{
-    schedule.innerHTML = "❌ โหลดตารางไม่ได้ (เช็คชื่อไฟล์ matches.json)";
-  });
-
-/* =========================
-   🔥 PLAYER (กันหมุน + สลับลิงก์)
-========================= */
-function play(url){
-
-  if(window.hls){
-    window.hls.destroy();
-  }
-
-  if(Hls.isSupported()){
-
-    const hls = new Hls({
-      maxBufferLength: 30,
-      maxMaxBufferLength: 60
-    });
-
-    window.hls = hls;
-
-    hls.loadSource(url);
-    hls.attachMedia(player);
-
-    hls.on(Hls.Events.ERROR, function (event, data) {
-      if(data.fatal) switchStream();
-    });
-
-    hls.on(Hls.Events.MANIFEST_PARSED, function () {
-      player.play();
-    });
-
-  } else {
-    player.src = url;
-    player.play();
-  }
-}
-
-/* 🔁 สลับลิงก์ */
-function switchStream(){
-  current++;
-  if(current >= currentUrls.length) current = 0;
-  play(currentUrls[current]);
-}
-
-/* กันค้าง */
-player.addEventListener('stalled', switchStream);
-player.addEventListener('error', switchStream);
-
-</script>
-
-</body>
-</html>
+})
+.catch(err=>{
+console.log("❌ error:", err);
+schedule.innerHTML = "❌ โหลดตารางไม่ได้";
+});
