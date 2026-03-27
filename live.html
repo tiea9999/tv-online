@@ -84,7 +84,7 @@ function render(){
    🔥 PLAYER (แก้หมุน)
 ========================= */
 const video = document.getElementById("video");
-let hls = null;
+let hls;
 
 function play(url){
     currentUrl = url;
@@ -99,11 +99,13 @@ function play(url){
     }
 
     if(Hls.isSupported()){
+
         hls = new Hls({
             maxBufferLength: 10,
             maxMaxBufferLength: 20,
             liveSyncDuration: 3,
-            liveMaxLatencyDuration: 5
+            liveMaxLatencyDuration: 5,
+            enableWorker: true
         });
 
         hls.loadSource(url);
@@ -113,23 +115,23 @@ function play(url){
             video.play().catch(()=>{});
         });
 
-        // 🔥 กันหมุน
+        // 🔥 แก้หมุน (ตัวจริง)
         hls.on(Hls.Events.ERROR, function(event, data){
 
             if(data.fatal){
 
                 if(data.type === Hls.ErrorTypes.NETWORK_ERROR){
-                    console.log("🔄 retry network");
+                    console.log("retry network");
                     hls.startLoad();
 
                 }else if(data.type === Hls.ErrorTypes.MEDIA_ERROR){
-                    console.log("🔄 recover media");
+                    console.log("recover media");
                     hls.recoverMediaError();
 
                 }else{
-                    console.log("⛔ reload");
+                    console.log("reload stream");
                     hls.destroy();
-                    setTimeout(()=>play(currentUrl),1500);
+                    setTimeout(()=>play(url),1500);
                 }
             }
         });
@@ -139,7 +141,6 @@ function play(url){
         video.play();
     }
 }
-
 /* 🔥 กันค้าง */
 video.addEventListener("stalled", ()=>{
     if(currentUrl){
