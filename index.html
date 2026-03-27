@@ -4,35 +4,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV PRO</title>
+<title>TIEA IPTV</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-body{margin:0;background:#0f172a;color:white;font-family:sans-serif;display:flex;height:100vh;overflow:hidden}
-.sidebar{width:200px;background:#020617;padding-top:20px}
+body{margin:0;background:#111;color:white;font-family:sans-serif;display:flex;height:100vh}
+.sidebar{width:200px;background:#000}
 .menu-item{padding:15px;cursor:pointer}
-.menu-item:focus{background:#1e293b;outline:none}
+.menu-item:hover{background:#333}
+
 .main{flex:1;display:flex;flex-direction:column}
-.player{padding:10px}
-video{width:100%;height:260px;border-radius:10px;background:black}
+video{width:100%;height:250px;background:black}
+
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
-gap:15px;
-padding:15px;
+grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+gap:10px;
+padding:10px;
 overflow:auto;
 }
+
 .card{
-background:#334155;
+background:#222;
 padding:10px;
-border-radius:10px;
 text-align:center;
+border-radius:10px;
+cursor:pointer;
 }
 .card img{max-height:50px}
-.card:focus{
-outline:3px solid yellow;
-transform:scale(1.05);
-}
 </style>
 
 </head>
@@ -40,16 +39,14 @@ transform:scale(1.05);
 <body>
 
 <div class="sidebar">
-  <div class="menu-item" tabindex="0" onclick="openLive()">🏟 ตารางแข่งขันกีฬา</div>
-  <div class="menu-item" tabindex="0" onclick="openTVMenu()">📺 TV</div>
-  <div class="menu-item" tabindex="0" onclick="openMovie()">🎬 Movie</div>
-  <div class="menu-item" tabindex="0" onclick="openSeries()">🎞 Series</div>
+  <div class="menu-item" onclick="openLive()">🏟 ตารางแข่งขันกีฬา</div>
+  <div class="menu-item" onclick="openTVMenu()">📺 TV</div>
+  <div class="menu-item" onclick="openMovie()">🎬 Movie</div>
+  <div class="menu-item" onclick="openSeries()">🎞 Series</div>
 </div>
 
 <div class="main">
-<div class="player">
-  <video id="player" controls playsinline></video>
-</div>
+<video id="player" controls autoplay></video>
 <div id="list" class="grid"></div>
 </div>
 
@@ -62,83 +59,21 @@ const list = document.getElementById("list");
 let lastTV = localStorage.getItem("lastTV") || 0;
 
 /* =======================
-   🌐 PROXY
+   ▶️ PLAY (เสถียรแบบเดิม)
 ======================= */
-function proxy(url){
-  return "https://sparkling-river-40f9.tawatchai250958.workers.dev/?url=" + encodeURIComponent(url);
-}
-
-/* =======================
-   🧠 CHECK LINK
-======================= */
-async function checkLink(url){
-  try{
-    const start = Date.now();
-    const res = await fetch(proxy(url), {method:"HEAD"});
-    if(!res.ok) return null;
-    return {url, speed: Date.now()-start};
-  }catch{
-    return null;
-  }
-}
-
-/* =======================
-   🧠 SELECT BEST
-======================= */
-async function getBestStream(urls){
-
-  if(!Array.isArray(urls)) return urls;
-
-  const results = await Promise.all(urls.map(checkLink));
-  const valid = results.filter(r=>r);
-
-  if(valid.length===0) return urls[0];
-
-  valid.sort((a,b)=>a.speed-b.speed);
-  return valid[0].url;
-}
-
-/* =======================
-   ▶️ PLAY (แก้ tivov แล้ว)
-======================= */
-async function play(urls){
-
-  if(!Array.isArray(urls)) urls=[urls];
-
-  const best = await getBestStream(urls);
-
-  let url = best;
-
-  // 🔥 สำคัญ: tivov ไม่ต้อง proxy
-  if(!url.includes("tivov")){
-    url = proxy(url);
-  }
+function play(url){
 
   if(window.hls) window.hls.destroy();
 
   if(Hls.isSupported()){
-
-    const hls = new Hls({
-      maxBufferLength:60,
-      liveSyncDuration:10,
-      enableWorker:true,
-      lowLatencyMode:true
-    });
-
+    const hls = new Hls();
     window.hls = hls;
 
     hls.loadSource(url);
     hls.attachMedia(player);
 
-    hls.on(Hls.Events.MANIFEST_PARSED, ()=>{
+    hls.on(Hls.Events.MANIFEST_PARSED,function(){
       player.play();
-    });
-
-    hls.on(Hls.Events.ERROR, function(e,data){
-      if(data.fatal){
-        console.log("🔁 retry...");
-        setTimeout(()=>play(urls),1500);
-      }
     });
 
   }else{
@@ -148,7 +83,7 @@ async function play(urls){
 }
 
 /* =======================
-   📺 TV MENU
+   📺 MENU หมวด
 ======================= */
 function openTVMenu(){
 
@@ -156,25 +91,23 @@ function openTVMenu(){
 
   const groups = [
     {name:"Digital", key:"digital"},
-    {name:"บันเทิง", key:"movie"},
-    {name:"สารคดี", key:"documentary"},
-    {name:"การ์ตูน", key:"kids"}
+    {name:"Movie", key:"movie"},
+    {name:"Sport", key:"sport"},
+    {name:"Kids", key:"kids"},
+    {name:"Documentary", key:"documentary"}
   ];
 
   groups.forEach(g=>{
     const div=document.createElement("div");
     div.className="card";
-    div.tabIndex=0;
     div.innerHTML=`<div style="padding:20px">${g.name}</div>`;
     div.onclick=()=>openTVGroup(g.key);
     list.appendChild(div);
   });
-
-  focusFirst();
 }
 
 /* =======================
-   📺 GROUP
+   📺 เปิดหมวด
 ======================= */
 function openTVGroup(group){
 
@@ -182,29 +115,27 @@ function openTVGroup(group){
 
   const data = channels.tv[group];
 
-  if(!data || data.length === 0){
-    list.innerHTML = "<div style='padding:20px'>ไม่มีช่อง</div>";
-    return;
-  }
+  if(!data) return;
 
   data.forEach((ch,i)=>{
     const div=document.createElement("div");
     div.className="card";
-    div.tabIndex=0;
-    div.innerHTML=`<img src="${ch.logo||''}"><div>${ch.name}</div>`;
+    div.innerHTML=`<img src="${ch.logo}"><div>${ch.name}</div>`;
 
     div.onclick=()=>{
       play(ch.url);
-      lastTV=i;
-      localStorage.setItem("lastTV",i);
+      localStorage.setItem("lastTV", i);
     };
 
     list.appendChild(div);
   });
 
-  play(data[lastTV] ? data[lastTV].url : data[0].url);
-
-  focusFirst();
+  // ▶️ เล่นช่องล่าสุด
+  if(data[lastTV]){
+    play(data[lastTV].url);
+  }else{
+    play(data[0].url);
+  }
 }
 
 /* =======================
@@ -227,50 +158,7 @@ function openMovie(){
 function openSeries(){
   list.innerHTML=`<iframe src="series.html" style="width:100%;height:80vh;border:none;"></iframe>`;
 }
-
-/* =======================
-   🎯 FOCUS
-======================= */
-function focusFirst(){
-  setTimeout(()=>{
-    const first=document.querySelector(".card");
-    if(first) first.focus();
-  },100);
-}
-
-/* =======================
-   🎮 REMOTE
-======================= */
-document.addEventListener("keydown",e=>{
-  const items=[...document.querySelectorAll(".card, .menu-item")];
-  const i=items.indexOf(document.activeElement);
-
-  let next;
-
-  if(e.key==="ArrowRight") next=i+1;
-  if(e.key==="ArrowLeft") next=i-1;
-  if(e.key==="ArrowDown") next=i+4;
-  if(e.key==="ArrowUp") next=i-4;
-  if(e.key==="Enter") return document.activeElement.click();
-
-  if(items[next]) items[next].focus();
-});
-
-/* =======================
-   🔙 BACK
-======================= */
-document.addEventListener("keydown",function(e){
-  if(e.key==="Backspace"||e.key==="Escape"){
-    openTVMenu();
-  }
-});
-
-/* =======================
-   🚀 START
-======================= */
-document.querySelector(".menu-item").focus();
 </script>
 
 </body>
 </html>
-
