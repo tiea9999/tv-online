@@ -1,0 +1,18 @@
+[
+{
+"title": "พรีเมียร์ลีก แมนยู vs ลิเวอร์พูล",
+"time": "20:00",
+"urls": [
+"https://love.sikoyo3159.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8",
+"https://love.tivov68423.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8"
+]
+},
+{
+"title": "ลาลีกา บาร์เซโลนา",
+"time": "22:00",
+"urls": [
+"https://love.sikoyo3159.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8",
+"https://love.tivov68423.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8"
+]
+}
+]
