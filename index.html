@@ -4,18 +4,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV TV UI</title>
+<title>TIEA IPTV</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
 body{margin:0;background:#0f172a;color:white;font-family:sans-serif;display:flex;height:100vh;overflow:hidden}
 
-/* sidebar */
 .sidebar{
   width:200px;
   background:#020617;
   padding-top:20px;
 }
+
 .menu-item{
   padding:15px;
   cursor:pointer;
@@ -25,14 +25,12 @@ body{margin:0;background:#0f172a;color:white;font-family:sans-serif;display:flex
   outline:none;
 }
 
-/* main */
 .main{
   flex:1;
   display:flex;
   flex-direction:column;
 }
 
-/* player */
 .player{
   padding:10px;
 }
@@ -43,7 +41,6 @@ video{
   background:black;
 }
 
-/* grid */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
@@ -51,6 +48,7 @@ video{
   padding:15px;
   overflow:auto;
 }
+
 .card{
   background:#334155;
   padding:10px;
@@ -58,6 +56,7 @@ video{
   text-align:center;
 }
 .card img{max-height:50px}
+
 .card:focus{
   outline:3px solid yellow;
   transform:scale(1.05);
@@ -68,16 +67,14 @@ video{
 
 <body>
 
-<!-- เมนู -->
+<!-- 🔥 เมนู -->
 
 <div class="sidebar">
-  <div class="menu-item" tabindex="0" onclick="openTV()">📺 TV</div>
-  <div class="menu-item" tabindex="0" onclick="openCategory('sport')">🏟 กีฬา</div>
-  <div class="menu-item" tabindex="0" onclick="openCategory('movie')">🎬 Movie</div>
-  <div class="menu-item" tabindex="0" onclick="openCategory('series')">🎞 Series</div>
+  <div class="menu-item" tabindex="0" onclick="openLive()">🏟 ตารางแข่งขันกีฬา</div>
+  <div class="menu-item" tabindex="0" onclick="openTVMenu()">📺 TV</div>
+  <div class="menu-item" tabindex="0" onclick="openMovie()">🎬 Movie</div>
+  <div class="menu-item" tabindex="0" onclick="openSeries()">🎞 Series</div>
 </div>
-
-<!-- เนื้อหา -->
 
 <div class="main">
 
@@ -117,25 +114,55 @@ function play(url){
       player.play();
     });
 
-    hls.on(Hls.Events.ERROR, (e,d)=>{
-      if(d.fatal){
-        if(d.type==="networkError") hls.startLoad();
-        else if(d.type==="mediaError") hls.recoverMediaError();
-        else setTimeout(()=>play(url),2000);
-      }
-    });
-
   }else{
     player.src = url;
     player.play();
   }
 }
 
-// 📺 TV
-function openTV(){
+// 🏟 ตารางแข่งขัน (เปิด live.html)
+function openLive(){
+  window.location.href = "live.html";
+}
+
+// 🎬 Movie (ลิงก์เว็บ)
+function openMovie(){
+  window.location.href = "movie.html"; // หรือใส่ลิงก์เว็บคุณ
+}
+
+// 🎞 Series
+function openSeries(){
+  window.location.href = "series.html";
+}
+
+// 📺 เมนู TV
+function openTVMenu(){
+  list.innerHTML = "";
+
+  const groups = [
+    {name:"Digital", key:"digital"},
+    {name:"บันเทิง", key:"movie"},
+    {name:"สารคดี", key:"documentary"},
+    {name:"การ์ตูน", key:"kids"}
+  ];
+
+  groups.forEach(g=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.tabIndex=0;
+    div.innerHTML=`<div style="padding:20px">${g.name}</div>`;
+    div.onclick=()=>openTVGroup(g.key);
+    list.appendChild(div);
+  });
+
+  focusFirst();
+}
+
+// 📺 เปิดหมวดย่อย
+function openTVGroup(group){
   list.innerHTML="";
 
-  channels.tv.digital.forEach((ch,i)=>{
+  channels.tv[group].forEach((ch,i)=>{
     const div=document.createElement("div");
     div.className="card";
     div.tabIndex=0;
@@ -150,31 +177,14 @@ function openTV(){
     list.appendChild(div);
   });
 
-  // เล่นช่องล่าสุด
-  if(channels.tv.digital.length){
-    play(channels.tv.digital[lastTV].url);
+  if(channels.tv[group].length){
+    play(channels.tv[group][0].url);
   }
 
   focusFirst();
 }
 
-// 🎬 หมวดอื่น
-function openCategory(cat){
-  list.innerHTML="";
-
-  channels[cat].forEach(ch=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.tabIndex=0;
-    div.innerHTML=`<img src="${ch.logo||''}"><div>${ch.name}</div>`;
-    div.onclick=()=>play(ch.url);
-    list.appendChild(div);
-  });
-
-  focusFirst();
-}
-
-// 🎯 focus ตัวแรก
+// 🎯 focus
 function focusFirst(){
   setTimeout(()=>{
     const first=document.querySelector(".card");
@@ -198,7 +208,7 @@ document.addEventListener("keydown",e=>{
   if(items[next]) items[next].focus();
 });
 
-// เริ่มต้น
+// เริ่ม
 document.querySelector(".menu-item").focus();
 </script>
 
