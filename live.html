@@ -35,41 +35,70 @@ background:black;
 
 <body>
 
-<div class="schedule" id="schedule">
-  <div class="match" onclick="playMatch([
-    'https://love.sikoyo3159.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8',
-    'https://love.tivov68423.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8'
-  ])">
-    พรีเมียร์ลีก<br>20:00
-  </div>
-
-  <div class="match" onclick="playMatch([
-    'https://love.sikoyo3159.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8',
-    'https://love.tivov68423.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8'
-  ])">
-    ลาลีกา<br>22:00
-  </div>
-</div>
-
+<div class="schedule" id="schedule"></div>
 <video id="player" controls autoplay></video>
 
 <script>
 const player = document.getElementById("player");
+const schedule = document.getElementById("schedule");
 
 let currentUrls = [];
 let current = 0;
 
 /* =========================
-   🔥 เลือกแมตช์
+   🔥 ตาราง (คุณแก้เองได้ตรงนี้)
 ========================= */
-function playMatch(urls){
-  currentUrls = urls;
-  current = 0;
-  play(currentUrls[current]);
-}
+const matches = [
+  {
+    title:"พรีเมียร์ลีก",
+    time:"20:00",
+    urls:[
+      "https://love.sikoyo3159.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8",
+      "https://love.tivov68423.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8"
+    ]
+  },
+  {
+    title:"ลาลีกา",
+    time:"22:00",
+    urls:[
+      "https://love.sikoyo3159.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8",
+      "https://love.tivov68423.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8"
+    ]
+  }
+];
 
 /* =========================
-   🔥 PLAYER (แก้หมุนแล้ว)
+   🔥 render ตาราง
+========================= */
+function render(){
+  schedule.innerHTML = "";
+
+  matches.forEach((m,i)=>{
+
+    const div=document.createElement("div");
+    div.className="match";
+    div.innerHTML=`<b>${m.title}</b><br>${m.time}`;
+
+    div.onclick=()=>{
+      currentUrls = m.urls;
+      current = 0;
+      play(currentUrls[current]);
+    };
+
+    schedule.appendChild(div);
+  });
+
+  // ▶️ เล่นอันแรกอัตโนมัติ
+  if(matches.length){
+    currentUrls = matches[0].urls;
+    play(currentUrls[0]);
+  }
+}
+
+render();
+
+/* =========================
+   🔥 PLAYER (นิ่งแล้ว)
 ========================= */
 function play(url){
 
@@ -83,9 +112,7 @@ function play(url){
       maxBufferLength: 30,
       maxMaxBufferLength: 60,
       liveSyncDuration: 5,
-      liveMaxLatencyDuration: 10,
-      enableWorker: true,
-      lowLatencyMode: true
+      liveMaxLatencyDuration: 10
     });
 
     window.hls = hls;
@@ -97,7 +124,6 @@ function play(url){
       player.play();
     });
 
-    // 🔥 แก้หมุน
     hls.on(Hls.Events.ERROR, function (event, data) {
 
       if (data.fatal) {
@@ -105,17 +131,14 @@ function play(url){
         switch (data.type) {
 
           case Hls.ErrorTypes.NETWORK_ERROR:
-            console.log("🔄 network → reload");
             hls.startLoad();
             break;
 
           case Hls.ErrorTypes.MEDIA_ERROR:
-            console.log("🔄 media → recover");
             hls.recoverMediaError();
             break;
 
           default:
-            console.log("❌ restart stream");
             hls.destroy();
             setTimeout(()=>play(url),1000);
             break;
@@ -129,7 +152,7 @@ function play(url){
   }
 }
 
-/* 🔁 auto switch ถ้าพังจริง */
+/* 🔁 สลับลิงก์ */
 function switchStream(){
   current++;
   if(current >= currentUrls.length) current = 0;
@@ -138,7 +161,6 @@ function switchStream(){
 
 /* กันค้าง */
 player.addEventListener('stalled', ()=>{
-  console.log("⚠️ stalled → reload");
   if(window.hls){
     window.hls.startLoad();
   }
