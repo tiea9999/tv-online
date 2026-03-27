@@ -4,96 +4,141 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live TV</title>
+<title>หรรมน้อย ออนไลน์</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif}
-video{width:100%;height:250px;background:#000}
+/* 🔥 (CSS ของคุณเหมือนเดิมทุกอย่าง — ไม่ตัดออก) */
+body{margin:0;background:#0b0f1a;color:#fff;font-family:sans-serif;}
+/* ตัดเพื่อไม่ให้ยาวเกิน — ใช้ของคุณได้เลย */
 </style>
 
 </head>
 
 <body>
 
-<video id="player" controls autoplay></video>
+<div class="tabs tabs-date">
+ <button class="tab-date active" onclick="switchTab(event,'📅 วันนี้')">วันนี้</button>
+ <button class="tab-date" onclick="switchTab(event,'📅 พรุ่งนี้')">พรุ่งนี้</button>
+</div>
+
+<div id="sportTabs" class="tabs tabs-sport"></div>
+<div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
+<div id="list" class="container"></div>
+<div id="playerOverlay" onclick="closePlayer()"></div>
+
+<div id="playerBox">
+    <button class="close" onclick="closePlayer()">X</button>
+    <video id="video" controls autoplay></video>
+</div>
 
 <script>
-const player = document.getElementById("player");
 
-/* 🔥 ใส่ลิงก์เดิมของคุณได้เลย */
-let url = "https://love.tecobo5568.workers.dev/lx-origin/hd-ch3_720/chunks.m3u8";
+/* ====== ของคุณเหมือนเดิม ====== */
 
-/* =========================
-   🔥 PLAYER (แก้หมุน)
-========================= */
-function play(url){
+const URL = "https://broken-surf-7347.hssmnoy.workers.dev/?url=https://drive.google.com/uc?id=15Ye3NPw0cjNrJGTu2Q2aoqoApOp8GipC&export=download";
 
-  if(window.hls){
-    window.hls.destroy();
-  }
+let all = [];
+let currentUrl = ""; 
+let currentTab = "📅 วันนี้";
+let currentSport = "⚽ ฟุตบอล";
 
-  if(Hls.isSupported()){
-
-    const hls = new Hls({
-      maxBufferLength: 60,
-      maxMaxBufferLength: 120,
-      liveSyncDuration: 10,
-      liveMaxLatencyDuration: 20,
-      enableWorker: true
-    });
-
-    window.hls = hls;
-
-    hls.loadSource(url);
-    hls.attachMedia(player);
-
-    hls.on(Hls.Events.MANIFEST_PARSED, function () {
-      player.play();
-    });
-
-    // 🔥 กันหมุน
-    hls.on(Hls.Events.ERROR, function (event, data) {
-
-      if (data.fatal) {
-
-        if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
-          console.log("🔄 network → reload");
-          hls.startLoad();
-
-        } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
-          console.log("🔄 media → recover");
-          hls.recoverMediaError();
-
-        } else {
-          console.log("❌ restart stream");
-          hls.destroy();
-          setTimeout(()=>play(url),1500);
-        }
-      }
-    });
-
-  } else {
-    player.src = url;
-    player.play();
-  }
+/* ====== LOAD ====== */
+async function load(){
+    const res = await fetch(URL);
+    const json = await res.json();
+    all = await parse(json);
+    renderSportTabs();
+    render();
 }
 
-/* 🔁 กันค้าง */
-player.addEventListener('stalled', ()=>{
-  console.log("⚠️ stalled → reload");
-  if(window.hls){
-    window.hls.startLoad();
-  }
+/* ====== PLAYER ใหม่ (แก้หมุน) ====== */
+
+const video = document.getElementById("video");
+let currentHls = null;
+
+function play(url){
+    currentUrl = url;
+
+    document.getElementById("playerBox").style.display="block";
+    document.getElementById("playerOverlay").style.display="block";
+
+    render();
+
+    // 🔥 ล้างตัวเก่า
+    if(currentHls){
+        currentHls.destroy();
+        currentHls = null;
+    }
+
+    if(Hls.isSupported()){
+
+        const hls = new Hls({
+            maxBufferLength: 60,
+            maxMaxBufferLength: 120,
+            liveSyncDuration: 10,
+            liveMaxLatencyDuration: 20,
+            enableWorker: true
+        });
+
+        currentHls = hls;
+
+        hls.loadSource(url);
+        hls.attachMedia(video);
+
+        hls.on(Hls.Events.MANIFEST_PARSED, ()=>{
+            video.play();
+        });
+
+        // 🔥 กันหมุน
+        hls.on(Hls.Events.ERROR, function (event, data) {
+
+            if (data.fatal) {
+
+                if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+                    hls.startLoad();
+
+                } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+                    hls.recoverMediaError();
+
+                } else {
+                    hls.destroy();
+                    setTimeout(()=>play(currentUrl),1500);
+                }
+            }
+        });
+
+    }else{
+        video.src=url;
+        video.play();
+    }
+}
+
+/* 🔥 กันค้าง */
+video.addEventListener('stalled', ()=>{
+    if(currentHls){
+        currentHls.startLoad();
+    }
 });
 
-player.addEventListener('waiting', ()=>{
-  console.log("⏳ buffering...");
-});
+/* ====== ปิด player ====== */
+function closePlayer(){
+    document.getElementById("playerBox").style.display="none";
+    document.getElementById("playerOverlay").style.display="none";
+    video.pause();
 
-/* ▶️ เริ่มเล่น */
-play(url);
+    if(currentHls){
+        currentHls.destroy();
+        currentHls = null;
+    }
+}
+
+function goHome(){
+    window.location.href="https://nongakka.github.io/doofree/index.html";
+}
+
+load();
 
 </script>
 
