@@ -15,7 +15,8 @@ header{font-size:24px;padding:15px;text-align:center;}
 video{width:100%;border-radius:10px;background:black;}
 .player button{position:absolute;bottom:10px;right:10px;padding:5px 10px;background:#64748b;color:white;border:none;border-radius:5px;cursor:pointer;}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:15px;padding:10px;}
-.card{background:#1e293b;border-radius:10px;padding:10px;cursor:pointer;text-align:center;}
+.card{background:#334155;border-radius:10px;padding:10px;cursor:pointer;text-align:center;transition:transform 0.2s;}
+.card:hover{transform:scale(1.05);}
 .card img{max-height:50px;width:auto;margin-bottom:5px;}
 </style>
 </head>
@@ -97,13 +98,20 @@ function openTV(){
 function showCategory(cat){
   clearContent();
   if(!channels[cat]) return;
+
+  // ถ้าเป็น Movie/Series ให้เป็น Grid
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
   channels[cat].forEach(item=>{
     const div = document.createElement("div");
     div.className="card";
     div.innerHTML=`<img src="${item.logo || ''}"><div>${item.name}</div>`;
     div.onclick=()=>play(item.url);
-    content.appendChild(div);
+    grid.appendChild(div);
   });
+
+  content.appendChild(grid);
 }
 
 // โหลด TV เป็นค่าเริ่มต้น
