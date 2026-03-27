@@ -14,7 +14,37 @@ body{margin:0;background:#111;color:white;font-family:sans-serif;display:flex;he
 .menu-item:hover{background:#333}
 
 .main{flex:1;display:flex;flex-direction:column}
-video{width:100%;height:250px;background:black}
+
+#player{
+width:100%;
+height:250px;
+background:black;
+}
+
+/* fullscreen mode */
+.fullscreen{
+position:fixed !important;
+top:0;
+left:0;
+width:100% !important;
+height:100% !important;
+z-index:9999;
+}
+
+.controls{
+display:flex;
+gap:10px;
+padding:5px;
+background:#000;
+}
+
+.btn{
+background:#333;
+color:#fff;
+padding:8px 12px;
+border-radius:6px;
+cursor:pointer;
+}
 
 .grid{
 display:grid;
@@ -33,7 +63,6 @@ cursor:pointer;
 }
 .card img{max-height:50px}
 
-/* ปุ่มกลับ */
 .back-btn{
 background:#444;
 font-weight:bold;
@@ -52,8 +81,17 @@ font-weight:bold;
 </div>
 
 <div class="main">
+
 <video id="player" controls autoplay></video>
+
+<!-- 🔥 ปุ่มควบคุม -->
+
+<div class="controls">
+  <div class="btn" onclick="toggleFullscreen()">⛶ ขยายจอ</div>
+</div>
+
 <div id="list" class="grid"></div>
+
 </div>
 
 <script src="channels.js"></script>
@@ -62,6 +100,7 @@ font-weight:bold;
 const player = document.getElementById("player");
 const list = document.getElementById("list");
 
+let isFull = false;
 let lastTV = localStorage.getItem("lastTV") || 0;
 
 /* ▶️ PLAY */
@@ -82,7 +121,18 @@ function play(url){
   }
 }
 
-/* 📺 เมนูหลัก TV */
+/* 🔥 FULLSCREEN */
+function toggleFullscreen(){
+  if(!isFull){
+    player.classList.add("fullscreen");
+    isFull = true;
+  }else{
+    player.classList.remove("fullscreen");
+    isFull = false;
+  }
+}
+
+/* 📺 MENU */
 function openTVMenu(){
   list.innerHTML = "";
 
@@ -103,12 +153,11 @@ function openTVMenu(){
   });
 }
 
-/* 📺 เปิดหมวด + ปุ่มย้อนกลับ */
+/* 📺 GROUP + 🔙 */
 function openTVGroup(group){
 
   list.innerHTML="";
 
-  // 🔙 ปุ่มกลับ
   const backBtn = document.createElement("div");
   backBtn.className="card back-btn";
   backBtn.innerHTML="⬅️ กลับ";
@@ -131,10 +180,7 @@ function openTVGroup(group){
     list.appendChild(div);
   });
 
-  // ▶️ เล่นช่องแรก
-  if(data[0]){
-    play(data[0].url);
-  }
+  if(data[0]) play(data[0].url);
 }
 
 /* 🏟 LIVE */
