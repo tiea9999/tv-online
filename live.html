@@ -10,8 +10,6 @@
 
 <style>
 body{margin:0;background:#000;color:#fff;font-family:sans-serif}
-
-/* ตาราง */
 .schedule{
 padding:10px;
 background:#111;
@@ -19,16 +17,13 @@ display:flex;
 gap:10px;
 overflow-x:auto;
 }
-
 .match{
 background:#222;
 padding:10px;
 border-radius:10px;
-min-width:200px;
+min-width:220px;
 cursor:pointer;
 }
-
-/* player */
 video{
 width:100%;
 height:250px;
@@ -40,12 +35,7 @@ background:black;
 
 <body>
 
-<!-- 🏟 ตารางแข่งขัน -->
-
-<div class="schedule" id="schedule"></div>
-
-<!-- 🎬 player -->
-
+<div class="schedule" id="schedule">กำลังโหลด...</div>
 <video id="player" controls autoplay></video>
 
 <script>
@@ -56,21 +46,69 @@ let currentUrls = [];
 let current = 0;
 
 /* =========================
-   🔥 โหลด matches.json
+   🔥 map ลีก → ช่อง
 ========================= */
-fetch("matches.json")
+function getChannelUrls(title){
+
+  title = title.toLowerCase();
+
+  // พรีเมียร์ลีก / UCL
+  if(title.includes("premier") || title.includes("man") || title.includes("liverpool")){
+    return [
+      "https://love.sikoyo3159.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8",
+      "https://love.tivov68423.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8"
+    ];
+  }
+
+  // ลาลีกา
+  if(title.includes("real") || title.includes("barcelona")){
+    return [
+      "https://love.sikoyo3159.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8",
+      "https://love.tivov68423.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8"
+    ];
+  }
+
+  // ไทยลีก
+  if(title.includes("thai")){
+    return [
+      "https://love.r95lvvlb9o.workers.dev/lx-origin/sd-tsports_480/chunks.m3u8"
+    ];
+  }
+
+  // default
+  return [
+    "https://love.sikoyo3159.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8",
+    "https://love.tivov68423.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8"
+  ];
+}
+
+/* =========================
+   🔥 ดึงโปรแกรมบอล
+========================= */
+fetch("https://www.thesportsdb.com/api/v1/json/3/eventsday.php?s=Soccer")
   .then(res => res.json())
-  .then(matches => {
+  .then(data => {
 
     schedule.innerHTML = "";
 
-    matches.forEach((m)=>{
+    if(!data.events){
+      schedule.innerHTML = "❌ ไม่มีข้อมูลวันนี้";
+      return;
+    }
+
+    data.events.slice(0,12).forEach((m)=>{
+
+      const title = m.strEvent;
+      const time = m.strTime?.substring(0,5) || "--:--";
+
+      const urls = getChannelUrls(title);
+
       const div=document.createElement("div");
       div.className="match";
-      div.innerHTML=`<b>${m.title}</b><br>${m.time}`;
+      div.innerHTML=`<b>${title}</b><br>${time}`;
 
       div.onclick=()=>{
-        currentUrls = m.urls;
+        currentUrls = urls;
         current = 0;
         play(currentUrls[current]);
       };
@@ -78,19 +116,17 @@ fetch("matches.json")
       schedule.appendChild(div);
     });
 
-    // ▶️ เล่นอันแรกอัตโนมัติ
-    if(matches.length > 0){
-      currentUrls = matches[0].urls;
-      play(currentUrls[0]);
-    }
+    // ▶️ เล่นอันแรก
+    const first = schedule.querySelector(".match");
+    if(first) first.click();
 
   })
-  .catch(err=>{
-    console.log("❌ โหลดตารางไม่ได้", err);
+  .catch(()=>{
+    schedule.innerHTML = "❌ โหลดไม่ได้";
   });
 
 /* =========================
-   🔥 PLAYER + AUTO SWITCH
+   🔥 PLAYER
 ========================= */
 function play(url){
 
@@ -102,9 +138,7 @@ function play(url){
 
     const hls = new Hls({
       maxBufferLength: 30,
-      maxMaxBufferLength: 60,
-      liveSyncDuration: 5,
-      liveMaxLatencyDuration: 10
+      maxMaxBufferLength: 60
     });
 
     window.hls = hls;
@@ -112,15 +146,12 @@ function play(url){
     hls.loadSource(url);
     hls.attachMedia(player);
 
-    hls.on(Hls.Events.MANIFEST_PARSED, function () {
-      player.play();
+    hls.on(Hls.Events.ERROR, function (event, data) {
+      if(data.fatal) switchStream();
     });
 
-    hls.on(Hls.Events.ERROR, function (event, data) {
-
-      if (data.fatal) {
-        switchStream();
-      }
+    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+      player.play();
     });
 
   } else {
@@ -129,23 +160,14 @@ function play(url){
   }
 }
 
-/* 🔁 สลับลิงก์ */
+/* 🔁 auto switch */
 function switchStream(){
-
   current++;
-
-  if(current >= currentUrls.length){
-    current = 0;
-  }
-
-  console.log("➡️ switching:", currentUrls[current]);
-
-  setTimeout(()=>{
-    play(currentUrls[current]);
-  }, 500);
+  if(current >= currentUrls.length) current = 0;
+  play(currentUrls[current]);
 }
 
-/* 🔥 กันค้าง */
+/* กันค้าง */
 player.addEventListener('stalled', switchStream);
 player.addEventListener('error', switchStream);
 
@@ -153,5 +175,4 @@ player.addEventListener('error', switchStream);
 
 </body>
 </html>
-
 
