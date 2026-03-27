@@ -1,33 +1,152 @@
-fetch("https://tiea9999.github.io/tv-online/matches.json")
-.then(res => res.json())
-.then(matches => {
+<!DOCTYPE html>
 
-```
-schedule.innerHTML = "";
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Sports</title>
 
-matches.forEach((m)=>{
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-  const div=document.createElement("div");
-  div.className="match";
-  div.innerHTML=`<b>${m.title}</b><br>${m.time}`;
-
-  div.onclick=()=>{
-    currentUrls = m.urls;
-    current = 0;
-    play(currentUrls[current]);
-  };
-
-  schedule.appendChild(div);
-});
-
-if(matches.length){
-  currentUrls = matches[0].urls;
-  play(currentUrls[0]);
+<style>
+body{margin:0;background:#000;color:#fff;font-family:sans-serif}
+.schedule{
+padding:10px;
+background:#111;
+display:flex;
+gap:10px;
+overflow-x:auto;
 }
-```
+.match{
+background:#222;
+padding:10px;
+border-radius:10px;
+min-width:220px;
+cursor:pointer;
+}
+video{
+width:100%;
+height:250px;
+background:black;
+}
+</style>
 
-})
-.catch(err=>{
-console.log("❌ error:", err);
-schedule.innerHTML = "❌ โหลดตารางไม่ได้";
+</head>
+
+<body>
+
+<div class="schedule" id="schedule">
+  <div class="match" onclick="playMatch([
+    'https://love.sikoyo3159.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8',
+    'https://love.tivov68423.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8'
+  ])">
+    พรีเมียร์ลีก<br>20:00
+  </div>
+
+  <div class="match" onclick="playMatch([
+    'https://love.sikoyo3159.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8',
+    'https://love.tivov68423.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8'
+  ])">
+    ลาลีกา<br>22:00
+  </div>
+</div>
+
+<video id="player" controls autoplay></video>
+
+<script>
+const player = document.getElementById("player");
+
+let currentUrls = [];
+let current = 0;
+
+/* =========================
+   🔥 เลือกแมตช์
+========================= */
+function playMatch(urls){
+  currentUrls = urls;
+  current = 0;
+  play(currentUrls[current]);
+}
+
+/* =========================
+   🔥 PLAYER (แก้หมุนแล้ว)
+========================= */
+function play(url){
+
+  if(window.hls){
+    window.hls.destroy();
+  }
+
+  if(Hls.isSupported()){
+
+    const hls = new Hls({
+      maxBufferLength: 30,
+      maxMaxBufferLength: 60,
+      liveSyncDuration: 5,
+      liveMaxLatencyDuration: 10,
+      enableWorker: true,
+      lowLatencyMode: true
+    });
+
+    window.hls = hls;
+
+    hls.loadSource(url);
+    hls.attachMedia(player);
+
+    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+      player.play();
+    });
+
+    // 🔥 แก้หมุน
+    hls.on(Hls.Events.ERROR, function (event, data) {
+
+      if (data.fatal) {
+
+        switch (data.type) {
+
+          case Hls.ErrorTypes.NETWORK_ERROR:
+            console.log("🔄 network → reload");
+            hls.startLoad();
+            break;
+
+          case Hls.ErrorTypes.MEDIA_ERROR:
+            console.log("🔄 media → recover");
+            hls.recoverMediaError();
+            break;
+
+          default:
+            console.log("❌ restart stream");
+            hls.destroy();
+            setTimeout(()=>play(url),1000);
+            break;
+        }
+      }
+    });
+
+  } else {
+    player.src = url;
+    player.play();
+  }
+}
+
+/* 🔁 auto switch ถ้าพังจริง */
+function switchStream(){
+  current++;
+  if(current >= currentUrls.length) current = 0;
+  play(currentUrls[current]);
+}
+
+/* กันค้าง */
+player.addEventListener('stalled', ()=>{
+  console.log("⚠️ stalled → reload");
+  if(window.hls){
+    window.hls.startLoad();
+  }
 });
+
+player.addEventListener('error', switchStream);
+
+</script>
+
+</body>
+</html>
