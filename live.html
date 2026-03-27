@@ -4,31 +4,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live TV</title>
+<title>Live Sports</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
 body{margin:0;background:#000;color:#fff;font-family:sans-serif}
-video{width:100%;height:100vh;background:black}
+
+/* ตาราง */
+.schedule{
+padding:10px;
+background:#111;
+display:flex;
+gap:10px;
+overflow-x:auto;
+}
+
+.match{
+background:#222;
+padding:10px;
+border-radius:10px;
+min-width:200px;
+cursor:pointer;
+}
+
+/* player */
+video{
+width:100%;
+height:250px;
+background:black;
+}
 </style>
 
 </head>
 
 <body>
 
+<!-- 🏟 ตารางแข่งขัน -->
+
+<div class="schedule" id="schedule"></div>
+
+<!-- 🎬 player -->
+
 <video id="player" controls autoplay></video>
 
 <script>
 const player = document.getElementById("player");
+const schedule = document.getElementById("schedule");
 
-// 🔥 ใส่ลิงก์ที่ต้องการเล่น
-const url = "https://love.sikoyo3159.workers.dev/lx-origin/hd-ch3_720/chunks.m3u8";
-
-play(url);
+let currentUrls = [];
+let current = 0;
 
 /* =========================
-   🔥 PLAY (กันหมุนตัวจบ)
+   🔥 โหลด matches.json
+========================= */
+fetch("matches.json")
+  .then(res => res.json())
+  .then(matches => {
+
+    schedule.innerHTML = "";
+
+    matches.forEach((m)=>{
+      const div=document.createElement("div");
+      div.className="match";
+      div.innerHTML=`<b>${m.title}</b><br>${m.time}`;
+
+      div.onclick=()=>{
+        currentUrls = m.urls;
+        current = 0;
+        play(currentUrls[current]);
+      };
+
+      schedule.appendChild(div);
+    });
+
+    // ▶️ เล่นอันแรกอัตโนมัติ
+    if(matches.length > 0){
+      currentUrls = matches[0].urls;
+      play(currentUrls[0]);
+    }
+
+  })
+  .catch(err=>{
+    console.log("❌ โหลดตารางไม่ได้", err);
+  });
+
+/* =========================
+   🔥 PLAYER + AUTO SWITCH
 ========================= */
 function play(url){
 
@@ -42,9 +104,7 @@ function play(url){
       maxBufferLength: 30,
       maxMaxBufferLength: 60,
       liveSyncDuration: 5,
-      liveMaxLatencyDuration: 10,
-      enableWorker: true,
-      lowLatencyMode: true
+      liveMaxLatencyDuration: 10
     });
 
     window.hls = hls;
@@ -56,29 +116,10 @@ function play(url){
       player.play();
     });
 
-    /* 🔥 AUTO FIX หมุน */
     hls.on(Hls.Events.ERROR, function (event, data) {
 
       if (data.fatal) {
-
-        switch (data.type) {
-
-          case Hls.ErrorTypes.NETWORK_ERROR:
-            console.log("🔄 network error → reload");
-            hls.startLoad();
-            break;
-
-          case Hls.ErrorTypes.MEDIA_ERROR:
-            console.log("🔄 media error → recover");
-            hls.recoverMediaError();
-            break;
-
-          default:
-            console.log("❌ fatal error → restart");
-            hls.destroy();
-            setTimeout(()=>play(url),1000);
-            break;
-        }
+        switchStream();
       }
     });
 
@@ -88,19 +129,29 @@ function play(url){
   }
 }
 
-/* 🔥 กันค้าง */
-player.addEventListener('waiting', ()=>{
-  console.log("⏳ buffering...");
-});
+/* 🔁 สลับลิงก์ */
+function switchStream(){
 
-player.addEventListener('stalled', ()=>{
-  console.log("⚠️ stalled → reload");
-  if(window.hls){
-    window.hls.startLoad();
+  current++;
+
+  if(current >= currentUrls.length){
+    current = 0;
   }
-});
+
+  console.log("➡️ switching:", currentUrls[current]);
+
+  setTimeout(()=>{
+    play(currentUrls[current]);
+  }, 500);
+}
+
+/* 🔥 กันค้าง */
+player.addEventListener('stalled', switchStream);
+player.addEventListener('error', switchStream);
+
 </script>
 
 </body>
 </html>
+
 
