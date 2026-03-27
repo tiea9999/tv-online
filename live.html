@@ -10,6 +10,7 @@
 
 <style>
 body{margin:0;background:#000;color:#fff;font-family:sans-serif}
+
 .schedule{
 padding:10px;
 background:#111;
@@ -17,6 +18,7 @@ display:flex;
 gap:10px;
 overflow-x:auto;
 }
+
 .match{
 background:#222;
 padding:10px;
@@ -24,6 +26,7 @@ border-radius:10px;
 min-width:220px;
 cursor:pointer;
 }
+
 video{
 width:100%;
 height:250px;
@@ -45,102 +48,43 @@ const schedule = document.getElementById("schedule");
 let currentUrls = [];
 let current = 0;
 
-/* 🔥 fallback ตาราง (กัน API พัง) */
-const fallbackMatches = [
-  {
-    title: "พรีเมียร์ลีก",
-    time: "20:00"
-  },
-  {
-    title: "ลาลีกา",
-    time: "22:00"
-  }
-];
-
 /* =========================
-   🔥 map ลีก → ช่อง
+   🔥 โหลด JSON ของเราเอง
 ========================= */
-function getChannelUrls(title){
-
-  title = title.toLowerCase();
-
-  if(title.includes("premier") || title.includes("man") || title.includes("liverpool")){
-    return [
-      "https://love.sikoyo3159.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8",
-      "https://love.tivov68423.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8"
-    ];
-  }
-
-  if(title.includes("real") || title.includes("barcelona")){
-    return [
-      "https://love.sikoyo3159.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8",
-      "https://love.tivov68423.workers.dev/lx-origin/epl-bein2_720/chunks.m3u8"
-    ];
-  }
-
-  return [
-    "https://love.sikoyo3159.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8",
-    "https://love.tivov68423.workers.dev/lx-origin/epl-bein1_720/chunks.m3u8"
-  ];
-}
-
-/* =========================
-   🔥 render function
-========================= */
-function render(matches){
-
-  schedule.innerHTML = "";
-
-  matches.forEach((m)=>{
-
-    const urls = getChannelUrls(m.title);
-
-    const div=document.createElement("div");
-    div.className="match";
-    div.innerHTML=`<b>${m.title}</b><br>${m.time}`;
-
-    div.onclick=()=>{
-      currentUrls = urls;
-      current = 0;
-      play(currentUrls[current]);
-    };
-
-    schedule.appendChild(div);
-  });
-
-  // เล่นตัวแรก
-  if(matches.length){
-    currentUrls = getChannelUrls(matches[0].title);
-    play(currentUrls[0]);
-  }
-}
-
-/* =========================
-   🔥 ดึง API + fallback
-========================= */
-fetch("https://www.thesportsdb.com/api/v1/json/3/eventsday.php?s=Soccer")
+fetch("matches.json")
   .then(res => res.json())
-  .then(data => {
+  .then(matches => {
 
-    if(!data.events){
-      throw "no data";
+    schedule.innerHTML = "";
+
+    matches.forEach((m)=>{
+
+      const div=document.createElement("div");
+      div.className="match";
+      div.innerHTML=`<b>${m.title}</b><br>${m.time}`;
+
+      div.onclick=()=>{
+        currentUrls = m.urls;
+        current = 0;
+        play(currentUrls[current]);
+      };
+
+      schedule.appendChild(div);
+    });
+
+    // ▶️ เล่นอันแรก
+    if(matches.length){
+      currentUrls = matches[0].urls;
+      play(currentUrls[0]);
     }
-
-    const matches = data.events.slice(0,10).map(m=>({
-      title: m.strEvent,
-      time: m.strTime?.substring(0,5) || "--:--"
-    }));
-
-    render(matches);
 
   })
   .catch(()=>{
-    console.log("⚠️ ใช้ fallback");
-    render(fallbackMatches);
+    schedule.innerHTML = "❌ โหลดตารางไม่ได้ (เช็คชื่อไฟล์ matches.json)";
   });
 
 /* =========================
-   🔥 PLAYER
+   🔥 PLAYER (กันหมุน + สลับลิงก์)
 ========================= */
 function play(url){
 
@@ -174,7 +118,7 @@ function play(url){
   }
 }
 
-/* 🔁 auto switch */
+/* 🔁 สลับลิงก์ */
 function switchStream(){
   current++;
   if(current >= currentUrls.length) current = 0;
