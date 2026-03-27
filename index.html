@@ -1,10 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TIEA IPTV - Home</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
 <style>
 body {
     background:#0f172a;
@@ -12,80 +14,97 @@ body {
     font-family:sans-serif;
     margin:0;
 }
+
 header {
     font-size:24px;
     padding:15px;
     text-align:center;
 }
+
+/* 🔥 แก้จอไม่ให้ใหญ่เกิน */
 .player-container {
-    position:sticky;
-    top:0;
-    background:#0f172a;
-    z-index:100;
+    max-width:800px;
+    margin:15px auto;
     padding:10px;
 }
+
 video {
     width:100%;
+    height:450px;
     border-radius:10px;
     background:black;
 }
+
+/* 🔥 ปุ่มขยาย */
 #expandBtn {
-    margin-top:5px;
+    display:block;
+    margin:8px auto 0 auto;
     padding:8px 12px;
     border:none;
     border-radius:5px;
     cursor:pointer;
     background:#1e293b;
     color:white;
-    font-weight:bold;
 }
+
+/* หมวด */
 .section-title {
     padding:10px;
     font-size:20px;
 }
+
+/* grid ช่อง */
 .grid {
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
     gap:15px;
     padding:10px 20px 20px 20px;
 }
+
+/* card ช่อง */
 .card {
     background:#334155;
     border-radius:10px;
     padding:10px;
     cursor:pointer;
     text-align:center;
+    transition:0.2s;
 }
+
+.card:hover {
+    transform:scale(1.05);
+}
+
 .card img {
     max-height:50px;
     margin-bottom:5px;
 }
 </style>
+
 </head>
+
 <body>
 
 <header>TIEA IPTV</header>
 
+<!-- 🎬 PLAYER -->
+
 <div class="player-container">
-    <video id="player" controls autoplay playsinline></video>
+    <video id="player" controls playsinline></video>
     <button id="expandBtn">ขยายจอ</button>
 </div>
 
 <div id="content"></div>
 
 <script src="channels.js"></script>
+
 <script>
 const player = document.getElementById("player");
 const content = document.getElementById("content");
+
 let lastPlayedTV = 0;
 
-// ขยายจอ
-document.getElementById("expandBtn").onclick = () => {
-    if (player.requestFullscreen) player.requestFullscreen();
-    else if (player.webkitRequestFullscreen) player.webkitRequestFullscreen();
-};
-
-// เล่นวิดีโอ
+// ▶️ เล่นวิดีโอ + เลื่อนขึ้น
 function play(url){
     if(Hls.isSupported()){
         const hls = new Hls();
@@ -94,11 +113,20 @@ function play(url){
     } else {
         player.src = url;
     }
+
     player.play();
-    window.scrollTo({top:0, behavior:"smooth"});
+
+    // 🔥 เลื่อนเฉพาะตอนกด
+    player.scrollIntoView({behavior:"smooth"});
 }
 
-// สร้าง section
+// 🔳 ขยายจอ
+document.getElementById("expandBtn").onclick = () => {
+    if (player.requestFullscreen) player.requestFullscreen();
+    else if (player.webkitRequestFullscreen) player.webkitRequestFullscreen();
+};
+
+// สร้างหมวด
 function createSection(title, items, isTV=false){
     const sectionTitle = document.createElement("div");
     sectionTitle.className = "section-title";
@@ -111,33 +139,32 @@ function createSection(title, items, isTV=false){
     items.forEach((ch, idx) => {
         const card = document.createElement("div");
         card.className = "card";
-        card.innerHTML = `<img src="${ch.logo}" alt="${ch.name}"><div>${ch.name}</div>`;
+        card.innerHTML = `
+            <img src="${ch.logo || ''}">
+            <div>${ch.name}</div>
+        `;
+
         card.onclick = () => {
             play(ch.url);
             if(isTV) lastPlayedTV = idx;
         };
+
         grid.appendChild(card);
     });
 
     content.appendChild(grid);
 
-    // เล่นช่องแรกหรือช่องล่าสุด สำหรับ TV
-    if(isTV && items.length>0){
+    // ▶️ TV เล่นช่องแรก/ล่าสุด
+    if(isTV && items.length > 0){
         play(items[lastPlayedTV].url);
     }
 }
 
-// ตารางแข่งขันกีฬา
-createSection("ตารางแข่งขันกีฬา", channels.sport);
-
-// TV
-createSection("TV", channels.tv.digital, true);
-
-// Movie
-createSection("Movie", channels.movie);
-
-// Series
-createSection("Series", channels.series);
+// 🔥 โหลดหน้า
+createSection("🏟 ตารางแข่งขันกีฬา", channels.sport);
+createSection("📺 TV", channels.tv.digital, true);
+createSection("🎬 Movie", channels.movie);
+createSection("🎞 Series", channels.series);
 </script>
 
 </body>
