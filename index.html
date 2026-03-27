@@ -68,44 +68,35 @@ const list = document.getElementById("list");
 let lastTV = localStorage.getItem("lastTV") || 0;
 
 /* =======================
-   🌐 PROXY
+   🌐 PROXY (ใส่ให้แล้ว)
 ======================= */
 function proxy(url){
-  return "https://YOUR-WORKER.workers.dev/?url=" + encodeURIComponent(url);
+  return "https://sparkling-river-40f9.tawatchai250958.workers.dev/?url=" + encodeURIComponent(url);
 }
 
 /* =======================
-   🧠 AI CHECK LINK (เร็ว + ใช้ได้)
+   🧠 ตรวจลิงก์ + ความเร็ว
 ======================= */
 async function checkLink(url){
-
   try{
     const start = Date.now();
-
     const res = await fetch(proxy(url), {method:"HEAD", cache:"no-store"});
-
     if(!res.ok) return null;
-
-    const speed = Date.now() - start;
-
-    return {url, speed};
-
+    return {url, speed: Date.now() - start};
   }catch{
     return null;
   }
-
 }
 
 /* =======================
-   🧠 AI SELECT BEST STREAM
+   🧠 เลือก stream ดีสุด
 ======================= */
 async function getBestStream(urls){
 
   if(!Array.isArray(urls)) return urls;
 
   const results = await Promise.all(urls.map(checkLink));
-
-  const valid = results.filter(r=>r !== null);
+  const valid = results.filter(r=>r);
 
   if(valid.length === 0){
     console.log("❌ ไม่มีลิงก์ใช้ได้");
@@ -113,19 +104,15 @@ async function getBestStream(urls){
   }
 
   valid.sort((a,b)=>a.speed - b.speed);
-
-  console.log("⚡ best:", valid[0].url);
-
   return valid[0].url;
 }
 
 /* =======================
-   ▶️ PLAY (AI VERSION)
+   ▶️ PLAY
 ======================= */
 async function play(urls){
 
   const best = await getBestStream(urls);
-
   const url = proxy(best);
 
   if(window.hls) window.hls.destroy();
@@ -147,7 +134,6 @@ async function play(urls){
       player.play();
     });
 
-    // 🔁 fallback
     hls.on(Hls.Events.ERROR, function(e,data){
       if(data.fatal){
         console.log("🔁 stream error → retry...");
@@ -167,7 +153,6 @@ async function play(urls){
 let preloadCache = {};
 
 function preload(urls){
-
   if(!Array.isArray(urls)) urls=[urls];
 
   urls.forEach(url=>{
@@ -177,11 +162,10 @@ function preload(urls){
       preloadCache[p] = true;
     }
   });
-
 }
 
 /* =======================
-   📺 TV MENU
+   📺 MENU TV
 ======================= */
 function openTVMenu(){
 
@@ -207,7 +191,7 @@ function openTVMenu(){
 }
 
 /* =======================
-   📺 TV GROUP
+   📺 GROUP
 ======================= */
 function openTVGroup(group){
 
