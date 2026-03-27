@@ -32,6 +32,12 @@ border-radius:10px;
 cursor:pointer;
 }
 .card img{max-height:50px}
+
+/* ปุ่มกลับ */
+.back-btn{
+background:#444;
+font-weight:bold;
+}
 </style>
 
 </head>
@@ -58,35 +64,26 @@ const list = document.getElementById("list");
 
 let lastTV = localStorage.getItem("lastTV") || 0;
 
-/* =======================
-   ▶️ PLAY (เสถียรแบบเดิม)
-======================= */
+/* ▶️ PLAY */
 function play(url){
-
   if(window.hls) window.hls.destroy();
 
   if(Hls.isSupported()){
     const hls = new Hls();
     window.hls = hls;
-
     hls.loadSource(url);
     hls.attachMedia(player);
-
     hls.on(Hls.Events.MANIFEST_PARSED,function(){
       player.play();
     });
-
   }else{
     player.src = url;
     player.play();
   }
 }
 
-/* =======================
-   📺 MENU หมวด
-======================= */
+/* 📺 เมนูหลัก TV */
 function openTVMenu(){
-
   list.innerHTML = "";
 
   const groups = [
@@ -106,15 +103,19 @@ function openTVMenu(){
   });
 }
 
-/* =======================
-   📺 เปิดหมวด
-======================= */
+/* 📺 เปิดหมวด + ปุ่มย้อนกลับ */
 function openTVGroup(group){
 
   list.innerHTML="";
 
-  const data = channels.tv[group];
+  // 🔙 ปุ่มกลับ
+  const backBtn = document.createElement("div");
+  backBtn.className="card back-btn";
+  backBtn.innerHTML="⬅️ กลับ";
+  backBtn.onclick=openTVMenu;
+  list.appendChild(backBtn);
 
+  const data = channels.tv[group];
   if(!data) return;
 
   data.forEach((ch,i)=>{
@@ -130,31 +131,23 @@ function openTVGroup(group){
     list.appendChild(div);
   });
 
-  // ▶️ เล่นช่องล่าสุด
-  if(data[lastTV]){
-    play(data[lastTV].url);
-  }else{
+  // ▶️ เล่นช่องแรก
+  if(data[0]){
     play(data[0].url);
   }
 }
 
-/* =======================
-   🏟 LIVE
-======================= */
+/* 🏟 LIVE */
 function openLive(){
   window.location.href="live.html";
 }
 
-/* =======================
-   🎬 MOVIE
-======================= */
+/* 🎬 MOVIE */
 function openMovie(){
   list.innerHTML=`<iframe src="movie.html" style="width:100%;height:80vh;border:none;"></iframe>`;
 }
 
-/* =======================
-   🎞 SERIES
-======================= */
+/* 🎞 SERIES */
 function openSeries(){
   list.innerHTML=`<iframe src="series.html" style="width:100%;height:80vh;border:none;"></iframe>`;
 }
