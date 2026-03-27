@@ -86,7 +86,7 @@ function render(){
 const video = document.getElementById("video");
 let hls;
 
-function play(url){
+async function play(url){
     currentUrl = url;
 
     document.getElementById("playerBox").style.display="block";
@@ -98,46 +98,32 @@ function play(url){
         hls = null;
     }
 
-    if(Hls.isSupported()){
+    // 🔥 ใช้ fetch ใส่ header
+    const response = await fetch(url, {
+        headers:{
+            "Referer": "https://dooball66s.com/",
+            "User-Agent": navigator.userAgent
+        }
+    });
 
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    if(Hls.isSupported()){
         hls = new Hls({
             maxBufferLength: 10,
-            maxMaxBufferLength: 20,
-            liveSyncDuration: 3,
-            liveMaxLatencyDuration: 5,
-            enableWorker: true
+            liveSyncDuration: 3
         });
 
-        hls.loadSource(url);
+        hls.loadSource(blobUrl);
         hls.attachMedia(video);
 
         hls.on(Hls.Events.MANIFEST_PARSED, ()=>{
             video.play().catch(()=>{});
         });
 
-        // 🔥 แก้หมุน (ตัวจริง)
-        hls.on(Hls.Events.ERROR, function(event, data){
-
-            if(data.fatal){
-
-                if(data.type === Hls.ErrorTypes.NETWORK_ERROR){
-                    console.log("retry network");
-                    hls.startLoad();
-
-                }else if(data.type === Hls.ErrorTypes.MEDIA_ERROR){
-                    console.log("recover media");
-                    hls.recoverMediaError();
-
-                }else{
-                    console.log("reload stream");
-                    hls.destroy();
-                    setTimeout(()=>play(url),1500);
-                }
-            }
-        });
-
     }else{
-        video.src = url;
+        video.src = blobUrl;
         video.play();
     }
 }
