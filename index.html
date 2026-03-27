@@ -9,16 +9,12 @@
 
 <style>
 body{margin:0;background:#0f172a;color:white;font-family:sans-serif;display:flex;height:100vh;overflow:hidden}
-
 .sidebar{width:200px;background:#020617;padding-top:20px}
 .menu-item{padding:15px;cursor:pointer}
 .menu-item:focus{background:#1e293b;outline:none}
-
 .main{flex:1;display:flex;flex-direction:column}
-
 .player{padding:10px}
 video{width:100%;height:260px;border-radius:10px;background:black}
-
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
@@ -26,7 +22,6 @@ gap:15px;
 padding:15px;
 overflow:auto;
 }
-
 .card{
 background:#334155;
 padding:10px;
@@ -34,7 +29,6 @@ border-radius:10px;
 text-align:center;
 }
 .card img{max-height:50px}
-
 .card:focus{
 outline:3px solid yellow;
 transform:scale(1.05);
@@ -68,28 +62,28 @@ const list = document.getElementById("list");
 let lastTV = localStorage.getItem("lastTV") || 0;
 
 /* =======================
-   🌐 PROXY (ใส่ให้แล้ว)
+   🌐 PROXY
 ======================= */
 function proxy(url){
   return "https://sparkling-river-40f9.tawatchai250958.workers.dev/?url=" + encodeURIComponent(url);
 }
 
 /* =======================
-   🧠 ตรวจลิงก์ + ความเร็ว
+   🧠 CHECK LINK
 ======================= */
 async function checkLink(url){
   try{
     const start = Date.now();
-    const res = await fetch(proxy(url), {method:"HEAD", cache:"no-store"});
+    const res = await fetch(proxy(url), {method:"HEAD"});
     if(!res.ok) return null;
-    return {url, speed: Date.now() - start};
+    return {url, speed: Date.now()-start};
   }catch{
     return null;
   }
 }
 
 /* =======================
-   🧠 เลือก stream ดีสุด
+   🧠 SELECT BEST
 ======================= */
 async function getBestStream(urls){
 
@@ -98,31 +92,37 @@ async function getBestStream(urls){
   const results = await Promise.all(urls.map(checkLink));
   const valid = results.filter(r=>r);
 
-  if(valid.length === 0){
-    console.log("❌ ไม่มีลิงก์ใช้ได้");
-    return urls[0];
-  }
+  if(valid.length===0) return urls[0];
 
-  valid.sort((a,b)=>a.speed - b.speed);
+  valid.sort((a,b)=>a.speed-b.speed);
   return valid[0].url;
 }
 
 /* =======================
-   ▶️ PLAY
+   ▶️ PLAY (แก้ tivov แล้ว)
 ======================= */
 async function play(urls){
 
+  if(!Array.isArray(urls)) urls=[urls];
+
   const best = await getBestStream(urls);
-  const url = proxy(best);
+
+  let url = best;
+
+  // 🔥 สำคัญ: tivov ไม่ต้อง proxy
+  if(!url.includes("tivov")){
+    url = proxy(url);
+  }
 
   if(window.hls) window.hls.destroy();
 
   if(Hls.isSupported()){
 
     const hls = new Hls({
-      maxBufferLength:30,
-      liveSyncDuration:5,
-      enableWorker:true
+      maxBufferLength:60,
+      liveSyncDuration:10,
+      enableWorker:true,
+      lowLatencyMode:true
     });
 
     window.hls = hls;
@@ -136,7 +136,7 @@ async function play(urls){
 
     hls.on(Hls.Events.ERROR, function(e,data){
       if(data.fatal){
-        console.log("🔁 stream error → retry...");
+        console.log("🔁 retry...");
         setTimeout(()=>play(urls),1500);
       }
     });
@@ -148,24 +148,7 @@ async function play(urls){
 }
 
 /* =======================
-   🚀 PRELOAD
-======================= */
-let preloadCache = {};
-
-function preload(urls){
-  if(!Array.isArray(urls)) urls=[urls];
-
-  urls.forEach(url=>{
-    const p = proxy(url);
-    if(!preloadCache[p]){
-      fetch(p).catch(()=>{});
-      preloadCache[p] = true;
-    }
-  });
-}
-
-/* =======================
-   📺 MENU TV
+   📺 TV MENU
 ======================= */
 function openTVMenu(){
 
@@ -210,9 +193,6 @@ function openTVGroup(group){
     div.tabIndex=0;
     div.innerHTML=`<img src="${ch.logo||''}"><div>${ch.name}</div>`;
 
-    div.onmouseenter = ()=>preload(ch.url);
-    div.onfocus = ()=>preload(ch.url);
-
     div.onclick=()=>{
       play(ch.url);
       lastTV=i;
@@ -231,21 +211,21 @@ function openTVGroup(group){
    🏟 LIVE
 ======================= */
 function openLive(){
-  window.location.href = "live.html";
+  window.location.href="live.html";
 }
 
 /* =======================
    🎬 MOVIE
 ======================= */
 function openMovie(){
-  list.innerHTML = `<iframe src="movie.html" style="width:100%;height:80vh;border:none;"></iframe>`;
+  list.innerHTML=`<iframe src="movie.html" style="width:100%;height:80vh;border:none;"></iframe>`;
 }
 
 /* =======================
    🎞 SERIES
 ======================= */
 function openSeries(){
-  list.innerHTML = `<iframe src="series.html" style="width:100%;height:80vh;border:none;"></iframe>`;
+  list.innerHTML=`<iframe src="series.html" style="width:100%;height:80vh;border:none;"></iframe>`;
 }
 
 /* =======================
@@ -279,8 +259,8 @@ document.addEventListener("keydown",e=>{
 /* =======================
    🔙 BACK
 ======================= */
-document.addEventListener("keydown", function(e){
-  if(e.key === "Backspace" || e.key === "Escape"){
+document.addEventListener("keydown",function(e){
+  if(e.key==="Backspace"||e.key==="Escape"){
     openTVMenu();
   }
 });
@@ -293,3 +273,4 @@ document.querySelector(".menu-item").focus();
 
 </body>
 </html>
+
