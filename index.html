@@ -4,80 +4,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV - Home</title>
+<title>TIEA IPTV TV UI</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-body {
-    background:#0f172a;
-    color:white;
-    font-family:sans-serif;
-    margin:0;
+body{margin:0;background:#0f172a;color:white;font-family:sans-serif;display:flex;height:100vh;overflow:hidden}
+
+/* sidebar */
+.sidebar{
+  width:200px;
+  background:#020617;
+  padding-top:20px;
+}
+.menu-item{
+  padding:15px;
+  cursor:pointer;
+}
+.menu-item:focus{
+  background:#1e293b;
+  outline:none;
 }
 
-header {
-    font-size:24px;
-    padding:15px;
-    text-align:center;
+/* main */
+.main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
 }
 
-/* 🔥 แก้จอไม่ให้ใหญ่เกิน */
-.player-container {
-    max-width:800px;
-    margin:15px auto;
-    padding:10px;
+/* player */
+.player{
+  padding:10px;
+}
+video{
+  width:100%;
+  height:300px;
+  border-radius:10px;
+  background:black;
 }
 
-video {
-    width:100%;
-    height:450px;
-    border-radius:10px;
-    background:black;
+/* grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:15px;
+  padding:15px;
+  overflow:auto;
 }
-
-/* 🔥 ปุ่มขยาย */
-#expandBtn {
-    display:block;
-    margin:8px auto 0 auto;
-    padding:8px 12px;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-    background:#1e293b;
-    color:white;
+.card{
+  background:#334155;
+  padding:10px;
+  border-radius:10px;
+  text-align:center;
 }
-
-/* หมวด */
-.section-title {
-    padding:10px;
-    font-size:20px;
-}
-
-/* grid ช่อง */
-.grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
-    gap:15px;
-    padding:10px 20px 20px 20px;
-}
-
-/* card ช่อง */
-.card {
-    background:#334155;
-    border-radius:10px;
-    padding:10px;
-    cursor:pointer;
-    text-align:center;
-    transition:0.2s;
-}
-
-.card:hover {
-    transform:scale(1.05);
-}
-
-.card img {
-    max-height:50px;
-    margin-bottom:5px;
+.card img{max-height:50px}
+.card:focus{
+  outline:3px solid yellow;
+  transform:scale(1.05);
 }
 </style>
 
@@ -85,86 +68,138 @@ video {
 
 <body>
 
-<header>TIEA IPTV</header>
+<!-- เมนู -->
 
-<!-- 🎬 PLAYER -->
-
-<div class="player-container">
-    <video id="player" controls playsinline></video>
-    <button id="expandBtn">ขยายจอ</button>
+<div class="sidebar">
+  <div class="menu-item" tabindex="0" onclick="openTV()">📺 TV</div>
+  <div class="menu-item" tabindex="0" onclick="openCategory('sport')">🏟 กีฬา</div>
+  <div class="menu-item" tabindex="0" onclick="openCategory('movie')">🎬 Movie</div>
+  <div class="menu-item" tabindex="0" onclick="openCategory('series')">🎞 Series</div>
 </div>
 
-<div id="content"></div>
+<!-- เนื้อหา -->
+
+<div class="main">
+
+<div class="player">
+  <video id="player" controls playsinline></video>
+</div>
+
+<div id="list" class="grid"></div>
+
+</div>
 
 <script src="channels.js"></script>
 
 <script>
 const player = document.getElementById("player");
-const content = document.getElementById("content");
+const list = document.getElementById("list");
 
-let lastPlayedTV = 0;
+let lastTV = localStorage.getItem("lastTV") || 0;
 
-// ▶️ เล่นวิดีโอ + เลื่อนขึ้น
+// ▶️ เล่น
 function play(url){
-    if(Hls.isSupported()){
-        const hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(player);
-    } else {
-        player.src = url;
-    }
 
-    player.play();
+  if(window.hls) window.hls.destroy();
 
-    // 🔥 เลื่อนเฉพาะตอนกด
-    player.scrollIntoView({behavior:"smooth"});
-}
-
-// 🔳 ขยายจอ
-document.getElementById("expandBtn").onclick = () => {
-    if (player.requestFullscreen) player.requestFullscreen();
-    else if (player.webkitRequestFullscreen) player.webkitRequestFullscreen();
-};
-
-// สร้างหมวด
-function createSection(title, items, isTV=false){
-    const sectionTitle = document.createElement("div");
-    sectionTitle.className = "section-title";
-    sectionTitle.innerText = title;
-    content.appendChild(sectionTitle);
-
-    const grid = document.createElement("div");
-    grid.className = "grid";
-
-    items.forEach((ch, idx) => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-            <img src="${ch.logo || ''}">
-            <div>${ch.name}</div>
-        `;
-
-        card.onclick = () => {
-            play(ch.url);
-            if(isTV) lastPlayedTV = idx;
-        };
-
-        grid.appendChild(card);
+  if(Hls.isSupported()){
+    const hls = new Hls({
+      maxBufferLength:30,
+      liveSyncDuration:5
     });
 
-    content.appendChild(grid);
+    window.hls = hls;
 
-    // ▶️ TV เล่นช่องแรก/ล่าสุด
-    if(isTV && items.length > 0){
-        play(items[lastPlayedTV].url);
-    }
+    hls.loadSource(url);
+    hls.attachMedia(player);
+
+    hls.on(Hls.Events.MANIFEST_PARSED, ()=>{
+      player.play();
+    });
+
+    hls.on(Hls.Events.ERROR, (e,d)=>{
+      if(d.fatal){
+        if(d.type==="networkError") hls.startLoad();
+        else if(d.type==="mediaError") hls.recoverMediaError();
+        else setTimeout(()=>play(url),2000);
+      }
+    });
+
+  }else{
+    player.src = url;
+    player.play();
+  }
 }
 
-// 🔥 โหลดหน้า
-createSection("🏟 ตารางแข่งขันกีฬา", channels.sport);
-createSection("📺 TV", channels.tv.digital, true);
-createSection("🎬 Movie", channels.movie);
-createSection("🎞 Series", channels.series);
+// 📺 TV
+function openTV(){
+  list.innerHTML="";
+
+  channels.tv.digital.forEach((ch,i)=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.tabIndex=0;
+    div.innerHTML=`<img src="${ch.logo}"><div>${ch.name}</div>`;
+
+    div.onclick=()=>{
+      play(ch.url);
+      lastTV=i;
+      localStorage.setItem("lastTV",i);
+    };
+
+    list.appendChild(div);
+  });
+
+  // เล่นช่องล่าสุด
+  if(channels.tv.digital.length){
+    play(channels.tv.digital[lastTV].url);
+  }
+
+  focusFirst();
+}
+
+// 🎬 หมวดอื่น
+function openCategory(cat){
+  list.innerHTML="";
+
+  channels[cat].forEach(ch=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.tabIndex=0;
+    div.innerHTML=`<img src="${ch.logo||''}"><div>${ch.name}</div>`;
+    div.onclick=()=>play(ch.url);
+    list.appendChild(div);
+  });
+
+  focusFirst();
+}
+
+// 🎯 focus ตัวแรก
+function focusFirst(){
+  setTimeout(()=>{
+    const first=document.querySelector(".card");
+    if(first) first.focus();
+  },100);
+}
+
+// 🎮 รีโมท
+document.addEventListener("keydown",e=>{
+  const items=[...document.querySelectorAll(".card, .menu-item")];
+  const i=items.indexOf(document.activeElement);
+
+  let next;
+
+  if(e.key==="ArrowRight") next=i+1;
+  if(e.key==="ArrowLeft") next=i-1;
+  if(e.key==="ArrowDown") next=i+4;
+  if(e.key==="ArrowUp") next=i-4;
+  if(e.key==="Enter") return document.activeElement.click();
+
+  if(items[next]) items[next].focus();
+});
+
+// เริ่มต้น
+document.querySelector(".menu-item").focus();
 </script>
 
 </body>
