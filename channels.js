@@ -49,6 +49,6 @@ documentary:[
 },
 
 movie:[],
-series:[]
+series:[https://tiea9999.github.io/tv-online/goseries4k.html]
 
 };
