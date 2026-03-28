@@ -49,6 +49,8 @@ documentary:[
 },
 
 movie:[],
-series:[https://tiea9999.github.io/tv-online/goseries4k.html]
+series:[
+  { name:"goseries",logo:"https://www.dropbox.com/scl/fi/fc6keb9901o82g5gai55h/Series.png?rlkey=hemkijn2fgxrsg6l7t463vc5d&dl=1", url:"https://tiea9999.github.io/tv-online/goseries4k.html}
+  ]
 
 };
