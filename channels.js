@@ -26,19 +26,19 @@ digital:[
 /* ================== 🎬 MOVIE ================== */
 movie:[
       { name:"HBO", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-hbo_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201334HBO.jpg"},
-      { name:"HBO Hits", url:"https://love.pifipa2974.workers.dev/lx-origin/th-hbohits_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201343HBO_Hits.jpg" },
-      { name:"HBO Signature", url:"https://love.pifipa2974.workers.dev/lx-origin/th-hbosignature_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201358HBO_Signature.jpg" },
-      { name:"HBO Family", url:"https://love.pifipa2974.workers.dev/lx-origin/th-hbofamily_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201412HBO_Family.jpg" },
-      { name:"Cinemax", url:"https://love.pifipa2974.workers.dev/lx-origin/th-cinemax_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201426cinemax.jpg" },
-      { name:"WarnerTV", url:"https://love.pifipa2974.workers.dev/lx-origin/hd-warnertv_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201607WBTV.jpg" },
-      { name:"AXN", url:"https://love.pifipa2974.workers.dev/vx-origin/th-axn_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201633AXN.jpg" },
-      { name:"true moviehits", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-moviehits_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719803882.png" },
-      { name:"true thaifilm", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-thaifilm_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1706539896.png" },
-      { name:"true film asia", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-filmasia_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719205705.png" },
-      { name:"ccm", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-celestial_480/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719803240.png" },
-      { name:"true series", url:"https://love.pifipa2974.workers.dev/lx-origin/sd-series_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719205991.png" },
-      { name:"true asia more", url:"https://love.pifipa2974.workers.dev/lx-origin/hd-asianmore_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719205850.png" },
-      { name:"true x-zyte", url:"https://love.pifipa2974.workers.dev/lx-origin/hd-xzyte_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719206155.png" }
+      { name:"HBO Hits", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-hbohits_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201343HBO_Hits.jpg" },
+      { name:"HBO Signature", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-hbosignature_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201358HBO_Signature.jpg" },
+      { name:"HBO Family", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-hbofamily_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201412HBO_Family.jpg" },
+      { name:"Cinemax", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-cinemax_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201426cinemax.jpg" },
+      { name:"WarnerTV", url:"https://love.sikoyo3159.workers.dev/lx-origin/hd-warnertv_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201607WBTV.jpg" },
+      { name:"AXN", url:"https://love.sikoyo3159.workers.dev/vx-origin/th-axn_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201633AXN.jpg" },
+      { name:"true moviehits", url:"https://love.sikoyo3159.workers.dev/lx-origin/sd-moviehits_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719803882.png" },
+      { name:"true thaifilm", url:"https://love.sikoyo3159.workers.dev/lx-origin/sd-thaifilm_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1706539896.png" },
+      { name:"true film asia", url:"https://love.sikoyo3159.workers.dev/lx-origin/sd-filmasia_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719205705.png" },
+      { name:"ccm", url:"https://love.sikoyo3159.workers.dev/lx-origin/sd-celestial_480/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719803240.png" },
+      { name:"true series", url:"https://love.sikoyo3159.workers.dev/lx-origin/sd-series_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719205991.png" },
+      { name:"true asia more", url:"https://love.sikoyo3159.workers.dev/lx-origin/hd-asianmore_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719205850.png" },
+      { name:"true x-zyte", url:"https://love.sikoyo3159.workers.dev/lx-origin/hd-xzyte_720/chunks.m3u8", logo:"https://dookeela2.live/uploads/1719206155.png" }
 
 ],
 
