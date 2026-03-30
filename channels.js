@@ -25,7 +25,7 @@ digital:[
 
 /* ================== 🎬 MOVIE ================== */
 movie:[
-      { name:"HBO", url:"https://love.pifipa2974.workers.dev/lx-origin/th-hbo_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201334HBO.jpg"},
+      { name:"HBO", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-hbo_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201334HBO.jpg"},
       { name:"HBO Hits", url:"https://love.pifipa2974.workers.dev/lx-origin/th-hbohits_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201343HBO_Hits.jpg" },
       { name:"HBO Signature", url:"https://love.pifipa2974.workers.dev/lx-origin/th-hbosignature_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201358HBO_Signature.jpg" },
       { name:"HBO Family", url:"https://love.pifipa2974.workers.dev/lx-origin/th-hbofamily_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418201412HBO_Family.jpg" },
