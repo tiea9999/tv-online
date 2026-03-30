@@ -2,7 +2,7 @@ const channels = {
 
 tv:{
 
-/* ================== 📺 DIGITAL ================== */
+/* ================== 📺 DIGITAL ==================  */
 digital:[
       { name:"3HD", logo:"https://www.fileinwtv.site/postor/20240418191821ch3hd.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/hd-ch3_720/chunks.m3u8"},
       { name:"5HD", logo:"https://www.fileinwtv.site/postor/20240418185850ch5hd.jpg", url:"https://love.r95lvvlb9o.workers.dev/lx-origin/hd-ch5_720/chunks.m3u8"},
