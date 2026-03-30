@@ -39,23 +39,50 @@ movie:[
 
 /* ================== ⚽ SPORT ================== */
 sport:[
-{ name:"SPOTV", logo:"https://www.fileinwtv.site/postor/20240418193126SPOTV.jpg", url:"https://love.sikoyo3159.workers.dev/vx-origin/hd-spotv_480/chunks.m3u8" },
-{ name:"SPOTV2", logo:"https://www.fileinwtv.site/postor/20240418193135SPOTV2.jpg", url:"https://love.sikoyo3159.workers.dev/vx-origin/hd-spotv2_480/chunks.m3u8" },
-{ name:"True Sport 1", logo:"https://www.fileinwtv.site/postor/20240418192933TrueSport1.jpg", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-tsporthd1_480/chunks.m3u8" },
-{ name:"True Sport 2", logo:"https://www.fileinwtv.site/postor/20240418192951TrueSport2.jpg", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-tsporthd2_480/chunks.m3u8" },
-{ name:"True Sport 3", logo:"https://www.fileinwtv.site/postor/20240418193002TrueSport3.jpg", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-tsporthd3_480/chunks.m3u8" }
+      { name:"MONO MAX1", logo:"https://www.fileinwtv.site/postor/20250830165328Mono1.jpg", url:"https://night.redfight.info/iptv.php?id=82290" },
+      { name:"MONO MAX2", logo:"https://www.fileinwtv.site/postor/20250830165343Mono2.jpg", url:"https://night.redfight.info/iptv.php?id=82079" },
+      { name:"MONO MAX3", logo:"https://www.fileinwtv.site/postor/20250830165408Mono3.jpg", url:"https://night.redfight.info/iptv.php?id=82044" },
+      { name:"MONO MAX4", logo:"https://www.fileinwtv.site/postor/20250830165433Mono4.jpg", url:"https://night.redfight.info/iptv.php?id=81912" },
+      { name:"MONO MAX5", logo:"https://www.fileinwtv.site/postor/20250830165451Mono5.jpg", url:"https://night.redfight.info/iptv.php?id=81779" },
+      { name:"MONO MAX6", logo:"https://www.fileinwtv.site/postor/20250830165513Mono6.jpg", url:"https://night.redfight.info/iptv.php?id=81741" },
+      { name:"MONO MAX7", logo:"https://www.fileinwtv.site/postor/20250830165536Mono7.jpg", url:"https://night.redfight.info/iptv.php?id=81639" },
+      { name:"MONO MAX8", logo:"https://www.fileinwtv.site/postor/20250830165621Mono8.jpg", url:"https://night.redfight.info/iptv.php?id=81611" },
+      { name:"Bein Sport1", logo:"https://www.fileinwtv.site/postor/20240418192615Bein1.jpg", url:"https://night.redfight.info/iptv.php?id=7424" },
+      { name:"Bein Sport2", logo:"https://www.fileinwtv.site/postor/20240418192624Bein2.jpg", url:"https://night.redfight.info/iptv.php?id=7423" },
+      { name:"Bein Sport3", logo:"https://www.fileinwtv.site/postor/20240418192653Bein3.jpg", url:"https://night.redfight.info/iptv.php?id=7422" },
+      { name:"Bein Sport4", logo:"https://www.fileinwtv.site/postor/20240418192706Bein4.jpg", url:"https://night.redfight.info/iptv.php?id=7421" },
+      { name:"Bein Sport5", logo:"https://www.fileinwtv.site/postor/20240418192717Bein5.jpg", url:"https://night.redfight.info/iptv.php?id=7420" },
+      { name:"Bein Sport6", logo:"https://www.fileinwtv.site/postor/20240418192728Bein6.jpg", url:"https://night.redfight.info/iptv.php?id=7419" },
+      { name:"Bein Sport7", logo:"https://www.fileinwtv.site/postor/20240418195754Bein7.jpg", url:"https://night.redfight.info/iptv.php?id=7418" },
+      { name:"Bein Sport8", logo:"https://www.fileinwtv.site/postor/20240831143535Bein8.jpg", url:"https://night.redfight.info/iptv.php?id=7417" },
+      { name:"Bein Sport9", logo:"https://www.fileinwtv.site/postor/20240831143312Bein9.jpg", url:"https://night.redfight.info/iptv.php?id=7416" },
+      { name:"Bein Sport10", logo:"https://www.fileinwtv.site/postor/20240831143640Bein10.jpg", url:"https://night.redfight.info/iptv.php?id=7415" },
+      { name:"True Sport1", logo:"https://www.fileinwtv.site/postor/20240418192933TrueSport1.jpg", url:"https://night.redfight.info/iptv.php?id=2892" },
+      { name:"True Sport2", logo:"https://www.fileinwtv.site/postor/20240418192951TrueSport2.jpg", url:"https://night.redfight.info/iptv.php?id=2891" },
+      { name:"True Sport3", logo:"https://www.fileinwtv.site/postor/20240418193002TrueSport3.jpg", url:"https://night.redfight.info/iptv.php?id=2890" },
+      { name:"True Sport4", logo:"https://www.fileinwtv.site/postor/20240418193017TrueSport4.jpg", url:"https://night.redfight.info/iptv.php?id=2889" },
+      { name:"True Sport5", logo:"https://www.fileinwtv.site/postor/20240418193030TrueSport5.jpg", url:"https://night.redfight.info/iptv.php?id=2888" },
+      { name:"True Sport7", logo:"https://www.fileinwtv.site/postor/20240418193050TrueSport7.jpg", url:"https://night.redfight.info/iptv.php?id=2829" },
+      { name:"SPOTV", logo:"https://www.fileinwtv.site/postor/20240418193126SPOTV.jpg", url:"https://night.redfight.info/iptv.php?id=2027" },
+      { name:"SPOTV2", logo:"https://www.fileinwtv.site/postor/20240418193135SPOTV2.jpg", url:"https://night.redfight.info/iptv.php?id=2023" },
+      { name:"T-Sports7", logo:"https://www.fileinwtv.site/postor/20240418193731tsports7.jpg", url:"https://night.redfight.info/iptv.php?id=435" },
+      { name:"TPF3", logo:"https://www.fileinwtv.site/postor/1763868082_0011fc8de4e840e06ced.jpg", url:"https://night.redfight.info/iptv.php?id=2018" }
 ],
 
 /* ================== 👶 KIDS ================== */
 kids:[
-{ name:"Cartoon Network", logo:"https://www.fileinwtv.site/postor/20240418202927CN.jpg", url:"https://love.sikoyo3159.workers.dev/lx-origin/sd-cartoonnetwork_480/chunks.m3u8" },
-{ name:"Boomerang", logo:"https://www.fileinwtv.site/postor/20240418202911Boomerang.jpg", url:"https://love.sikoyo3159.workers.dev/lx-origin/sd-boomerang_480/chunks.m3u8" }
+      { name:"Boomerang", url:"https://night.redfight.info/iptv.php?id=8999", logo:"https://www.fileinwtv.site/postor/20240418202911Boomerang.jpg" },
+      { name:"Cartoon Network", url:"https://night.redfight.info/iptv.php?id=8007", logo:"https://www.fileinwtv.site/postor/20240418202927CN.jpg" },
+      { name:"Nickelodeon", url:"https://night.redfight.info/iptv.php?id=2029", logo:"https://www.fileinwtv.site/postor/20240418205237Nickelodeon.jpg" },
+      { name:"Nick jr", url:"https://night.redfight.info/iptv.php?id=2875", logo:"https://www.fileinwtv.site/postor/20240418203048Nickjr.jpg" }
 ],
 
 /* ================== 🌍 DOC ================== */
 documentary:[
-{ name:"Discovery", logo:"https://www.fileinwtv.site/postor/20240418210226Discovery.jpg", url:"https://love.sikoyo3159.workers.dev/lx-origin/sd-discovery_480/chunks.m3u8" },
-{ name:"TLC", logo:"https://www.fileinwtv.site/postor/20240418210246TLC.jpg", url:"https://love.sikoyo3159.workers.dev/lx-origin/sd-tlc_480/chunks.m3u8" }
+      { name:"Discovery", url:"https://night.redfight.info/iptv.php?id=1546", logo:"https://www.fileinwtv.site/postor/20240418210226Discovery.jpg" },
+      { name:"Discovery Asia", url:"https://night.redfight.info/iptv.php?id=1606", logo:"https://www.fileinwtv.site/postor/20240418210201DiscoveryAsia.jpg" },
+      { name:"History", url:"https://night.redfight.info/iptv.php?id=1667", logo:"https://www.fileinwtv.site/postor/20240423163921history.jpg" },
+      { name:"TLC", url:"https://night.redfight.info/iptv.php?id=1496", logo:"https://www.fileinwtv.site/postor/20240418210246TLC.jpg" }
 ]
 
 },
