@@ -44,9 +44,9 @@ movie:[
 
 /* ================== ⚽ SPORT ================== */
 sport:[
-      { name:"MONO MAX1", logo:"https://www.fileinwtv.site/postor/20250830165328Mono1.jpg", url:"https://night.redfight.info/iptv.php?id=82290" },
-      { name:"MONO MAX2", logo:"https://www.fileinwtv.site/postor/20250830165343Mono2.jpg", url:"https://night.redfight.info/iptv.php?id=82079" },
-      { name:"MONO MAX3", logo:"https://www.fileinwtv.site/postor/20250830165408Mono3.jpg", url:"https://night.redfight.info/iptv.php?id=82044" },
+      { name:"MONO MAX1", logo:"https://www.fileinwtv.site/postor/20250830165328Mono1.jpg", url:"https://embed-test.bananacake.org/embed/max-01" },
+      { name:"MONO MAX2", logo:"https://www.fileinwtv.site/postor/20250830165343Mono2.jpg", url:"https://embed-test.bananacake.org/embed/max-02" },
+      { name:"MONO MAX3", logo:"https://www.fileinwtv.site/postor/20250830165408Mono3.jpg", url:"https://embed-test.bananacake.org/embed/max-03" },
       { name:"MONO MAX4", logo:"https://www.fileinwtv.site/postor/20250830165433Mono4.jpg", url:"https://night.redfight.info/iptv.php?id=81912" },
       { name:"MONO MAX5", logo:"https://www.fileinwtv.site/postor/20250830165451Mono5.jpg", url:"https://night.redfight.info/iptv.php?id=81779" },
       { name:"MONO MAX6", logo:"https://www.fileinwtv.site/postor/20250830165513Mono6.jpg", url:"https://night.redfight.info/iptv.php?id=81741" },
