@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TIEA IPTV</title>
+
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
@@ -21,7 +21,6 @@ height:250px;
 background:black;
 }
 
-/* fullscreen mode */
 .fullscreen{
 position:fixed !important;
 top:0;
@@ -68,7 +67,6 @@ background:#444;
 font-weight:bold;
 }
 </style>
-
 </head>
 
 <body>
@@ -82,9 +80,7 @@ font-weight:bold;
 
 <div class="main">
 
-<video id="player" controls autoplay></video>
-
-<!-- 🔥 ปุ่มควบคุม -->
+<video id="player" controls autoplay playsinline preload="auto"></video>
 
 <div class="controls">
   <div class="btn" onclick="toggleFullscreen()">⛶ ขยายจอ</div>
@@ -97,31 +93,101 @@ font-weight:bold;
 <script src="channels.js"></script>
 
 <script>
+
 const player = document.getElementById("player");
 const list = document.getElementById("list");
 
 let isFull = false;
-let lastTV = localStorage.getItem("lastTV") || 0;
+let currentIndex = 0;
+let currentSources = [];
+let hls = null;
 
-/* ▶️ PLAY */
-function play(url){
-  if(window.hls) window.hls.destroy();
+/* ================= PLAY (MULTI SERVER) ================= */
+function play(source){
+
+  // รองรับทั้ง url เดียว และหลายลิงก์
+  if(Array.isArray(source)){
+    currentSources = source;
+  }else{
+    currentSources = [source];
+  }
+
+  currentIndex = 0;
+  startPlayer();
+}
+
+/* ================= START ================= */
+function startPlayer(){
+
+  let url = currentSources[currentIndex];
+
+  if(hls){
+    hls.destroy();
+    hls = null;
+  }
 
   if(Hls.isSupported()){
-    const hls = new Hls();
-    window.hls = hls;
+
+    hls = new Hls({
+
+      maxBufferLength: 40,
+      maxMaxBufferLength: 80,
+      backBufferLength: 120,
+
+      maxBufferHole: 0.5,
+      highBufferWatchdogPeriod: 2,
+
+      enableWorker: true,
+      lowLatencyMode: false,
+
+      capLevelToPlayerSize: true,
+      startLevel: -1
+
+    });
+
     hls.loadSource(url);
     hls.attachMedia(player);
-    hls.on(Hls.Events.MANIFEST_PARSED,function(){
+
+    hls.on(Hls.Events.MANIFEST_PARSED, ()=>{
       player.play();
     });
+
+    /* 🔥 ERROR HANDLER + AUTO SWITCH */
+    hls.on(Hls.Events.ERROR, function(event, data){
+
+      if(data.fatal){
+
+        console.log("❌ error → เปลี่ยน server");
+
+        nextSource();
+
+      }
+
+    });
+
   }else{
     player.src = url;
     player.play();
   }
 }
 
-/* 🔥 FULLSCREEN */
+/* ================= NEXT SERVER ================= */
+function nextSource(){
+
+  currentIndex++;
+
+  if(currentIndex < currentSources.length){
+
+    console.log("🔄 เปลี่ยนลิงก์:", currentIndex);
+    startPlayer();
+
+  }else{
+
+    console.log("❌ ลิงก์หมดแล้ว");
+  }
+}
+
+/* ================= FULLSCREEN ================= */
 function toggleFullscreen(){
   if(!isFull){
     player.classList.add("fullscreen");
@@ -132,7 +198,7 @@ function toggleFullscreen(){
   }
 }
 
-/* 📺 MENU */
+/* ================= MENU ================= */
 function openTVMenu(){
   list.innerHTML = "";
 
@@ -153,7 +219,7 @@ function openTVMenu(){
   });
 }
 
-/* 📺 GROUP + 🔙 */
+/* ================= GROUP ================= */
 function openTVGroup(group){
 
   list.innerHTML="";
@@ -168,13 +234,17 @@ function openTVGroup(group){
   if(!data) return;
 
   data.forEach((ch,i)=>{
+
     const div=document.createElement("div");
     div.className="card";
+
     div.innerHTML=`<img src="${ch.logo}"><div>${ch.name}</div>`;
 
     div.onclick=()=>{
+
+      // 🔥 รองรับ multi server
       play(ch.url);
-      localStorage.setItem("lastTV", i);
+
     };
 
     list.appendChild(div);
@@ -183,20 +253,11 @@ function openTVGroup(group){
   if(data[0]) play(data[0].url);
 }
 
-/* 🏟 LIVE */
-function openLive(){
-  window.location.href="live.html";
-}
+/* ================= PAGE ================= */
+function openLive(){ window.location.href="live.html"; }
+function openMovie(){ window.location.href="037hd.html"; }
+function openSeries(){ window.location.href="https://tiea9999.github.io/tv/myseries.html"; }
 
-/* 🎬 MOVIE */
-function openMovie(){
-   window.location.href="037hd.html";
-}
-
-/* 🎞 SERIES */
-function openSeries(){
-   window.location.href="https://tiea9999.github.io/tv/myseries.html";
-}
 </script>
 
 </body>
