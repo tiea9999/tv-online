@@ -72,7 +72,7 @@ sport:[
       { name:"SPOTV", logo:"https://www.fileinwtv.site/postor/20240418193126SPOTV.jpg", url:"https://night.redfight.info/iptv.php?id=2027" },
       { name:"SPOTV2", logo:"https://www.fileinwtv.site/postor/20240418193135SPOTV2.jpg", url:"https://night.redfight.info/iptv.php?id=2023" },
       { name:"T-Sports7", logo:"https://www.fileinwtv.site/postor/20240418193731tsports7.jpg", url:"https://night.redfight.info/iptv.php?id=435" },
-      { name:"TPF3", logo:"https://www.fileinwtv.site/postor/1763868082_0011fc8de4e840e06ced.jpg", url:"https://night.redfight.info/iptv.php?id=2018" }
+      { name:"TPF3", logo:"https://www.fileinwtv.site/postor/1763868082_0011fc8de4e840e06ced.jpg", url:"https://www.dropbox.com/scl/fi/u1o5jzzxefo6zo8vsqyom/epl3.m3u8?rlkey=rzqyxvzuovvinzyfu3ovmkcd2&dl=1" }
 ],
 
 /* ================== 👶 KIDS ================== */
