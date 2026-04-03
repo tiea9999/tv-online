@@ -735,14 +735,14 @@ let forcedPlayer = null; // null = auto | "html5" | "jw"
 function setDefaultVolumeHTML5(){
     if(video){
         video.muted = false;   // 🔊 เปิดเสียง
-        video.volume = 0.25;   // 🔊 25%
+        video.volume = 0.8;   // 🔊 80%
     }
 }
 
 function setDefaultVolumeJW(){
     if(jwInstance){
         jwInstance.setMute(false);  // 🔊 เปิดเสียง
-        jwInstance.setVolume(25);   // 🔊 25%
+        jwInstance.setVolume(80);   // 🔊 80%
     }
 }
 
@@ -1784,7 +1784,7 @@ if(forcedPlayer === "html5"){
 
         jwInstance = jwplayer("jw-player").setup(config);
 		jwInstance.on('ready', function(){
-    setDefaultVolumeJW();   // 🔊 25%
+    setDefaultVolumeJW();   // 🔊 80%
 });
         return;
     }
@@ -1905,7 +1905,7 @@ xhrSetup: function(xhr,url){
         let playTimeout;
 
         hls.on(Hls.Events.MANIFEST_PARSED, function(){
-            setDefaultVolumeHTML5();   // 🔊 25%
+            setDefaultVolumeHTML5();   // 🔊 80%
 			video.play().catch(()=>{});
 
             playTimeout = setTimeout(()=>{
