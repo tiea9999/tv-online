@@ -87,7 +87,7 @@ kids:[
 documentary:[
       { name:"Discovery", url:"https://love.sikoyo3159.workers.dev/lx-origin/sd-discovery_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418210226Discovery.jpg" },
       { name:"Discovery Asia", url:"https://love.sikoyo3159.workers.dev/lx-origin/sd-expsci_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418210428TrueExploreSci.jpg" },
-      { name:"History", url:"https://love.sikoyo3159.workers.dev/lx-origin/hd-history_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240423163921history.jpg" },
+      { name:"History", url:"https://love.sikoyo3159.workers.dev/vx-origin/hd-history_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240423163921history.jpg" },
       { name:"สำรวจโลก", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-samrujlok_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418211443SamRujLok.jpg"},
       { name:"Animalshow", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-animalshow_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418211432AnimalShow.jpg"},
       { name:"Khongdee", url:"https://love.sikoyo3159.workers.dev/lx-origin/th-khongdee_720/chunks.m3u8", logo:"https://www.fileinwtv.site/postor/20240418211325KhongDeeThailand.jpg"},
