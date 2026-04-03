@@ -1,102 +1,126 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIEA IPTV</title>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-<style>
-body{margin:0;background:#111;color:white;font-family:sans-serif;display:flex;height:100vh}
-.sidebar{width:200px;background:#000}
-.menu-item{padding:15px;cursor:pointer}
-.menu-item:hover{background:#333}
+    <style>
+        body {
+            margin: 0;
+            background: #111;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            height: 100vh
+        }
 
-.main{flex:1;display:flex;flex-direction:column}
+        .sidebar {
+            width: 200px;
+            background: #000
+        }
 
-#player{
-width:100%;
-height:250px;
-background:black;
-}
+        .menu-item {
+            padding: 15px;
+            cursor: pointer
+        }
 
-.fullscreen{
-position:fixed !important;
-top:0;
-left:0;
-width:100% !important;
-height:100% !important;
-z-index:9999;
-}
+        .menu-item:hover {
+            background: #333
+        }
 
-.controls{
-display:flex;
-gap:10px;
-padding:5px;
-background:#000;
-}
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column
+        }
 
-.btn{
-background:#333;
-color:#fff;
-padding:8px 12px;
-border-radius:6px;
-cursor:pointer;
-}
+        #player {
+            width: 100%;
+            height: 250px;
+            background: black;
+        }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
-gap:10px;
-padding:10px;
-overflow:auto;
-}
+        .fullscreen {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 9999;
+        }
 
-.card{
-background:#222;
-padding:10px;
-text-align:center;
-border-radius:10px;
-cursor:pointer;
-}
-.card img{max-height:50px}
+        .controls {
+            display: flex;
+            gap: 10px;
+            padding: 5px;
+            background: #000;
+        }
 
-.back-btn{
-background:#444;
-font-weight:bold;
-}
-</style>
+        .btn {
+            background: #333;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            padding: 10px;
+            overflow: auto;
+        }
+
+        .card {
+            background: #222;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .card img {
+            max-height: 50px
+        }
+
+        .back-btn {
+            background: #444;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="sidebar">
-  <div class="menu-item" onclick="openLive()">🏟 ตารางแข่งขันกีฬา</div>
-  <div class="menu-item" onclick="openTVMenu()">📺 TV</div>
-  <div class="menu-item" onclick="openMovie()">🎬 Movie</div>
-  <div class="menu-item" onclick="openSeries()">🎞 Series</div>
-<div class="menu-item" onclick="openVip()">🎞 Vip</div>
+    <div class="sidebar">
+        <div class="menu-item" onclick="openLive()">🏟 ตารางแข่งขันกีฬา</div>
+        <div class="menu-item" onclick="openTVMenu()">📺 TV</div>
+        <div class="menu-item" onclick="openMovie()">🎬 Movie</div>
+        <div class="menu-item" onclick="openSeries()">🎞 Series</div>
+        <div class="menu-item" onclick="openVip()">🎞 Vip</div>
+    </div>
 
-</div>
+    <div class="main">
 
-<div class="main">
+        <video id="player" controls autoplay playsinline preload="auto"></video>
 
-<video id="player" controls autoplay playsinline preload="auto"></video>
+        <div class="controls">
+            <div class="btn" onclick="toggleFullscreen()">⛶ ขยายจอ</div>
+        </div>
 
-<div class="controls">
-  <div class="btn" onclick="toggleFullscreen()">⛶ ขยายจอ</div>
-</div>
+        <div id="list" class="grid"></div>
 
-<div id="list" class="grid"></div>
+    </div>
 
-</div>
+    <script src="channels.js"></script>
 
-<script src="channels.js"></script>
-
-<script>
-
-const player = document.getElementById("player");
+    <script>
+        const player = document.getElementById("player");
 const list = document.getElementById("list");
 
 let isFull = false;
@@ -106,67 +130,43 @@ let hls = null;
 
 /* ================= PLAY (MULTI SERVER) ================= */
 function play(source){
-
-  // รองรับทั้ง url เดียว และหลายลิงก์
   if(Array.isArray(source)){
     currentSources = source;
   }else{
     currentSources = [source];
   }
-
   currentIndex = 0;
   startPlayer();
 }
 
 /* ================= START ================= */
 function startPlayer(){
-
   let url = currentSources[currentIndex];
-
   if(hls){
     hls.destroy();
     hls = null;
   }
-
   if(Hls.isSupported()){
-
     hls = new Hls({
-
       maxBufferLength: 40,
       maxMaxBufferLength: 80,
       backBufferLength: 120,
-
       maxBufferHole: 0.5,
       highBufferWatchdogPeriod: 2,
-
       enableWorker: true,
       lowLatencyMode: false,
-
       capLevelToPlayerSize: true,
       startLevel: -1
-
     });
-
     hls.loadSource(url);
     hls.attachMedia(player);
-
-    hls.on(Hls.Events.MANIFEST_PARSED, ()=>{
-      player.play();
-    });
-
-    /* 🔥 ERROR HANDLER + AUTO SWITCH */
+    hls.on(Hls.Events.MANIFEST_PARSED, ()=>{ player.play(); });
     hls.on(Hls.Events.ERROR, function(event, data){
-
       if(data.fatal){
-
         console.log("❌ error → เปลี่ยน server");
-
         nextSource();
-
       }
-
     });
-
   }else{
     player.src = url;
     player.play();
@@ -175,16 +175,11 @@ function startPlayer(){
 
 /* ================= NEXT SERVER ================= */
 function nextSource(){
-
   currentIndex++;
-
   if(currentIndex < currentSources.length){
-
     console.log("🔄 เปลี่ยนลิงก์:", currentIndex);
     startPlayer();
-
   }else{
-
     console.log("❌ ลิงก์หมดแล้ว");
   }
 }
@@ -223,9 +218,7 @@ function openTVMenu(){
 
 /* ================= GROUP ================= */
 function openTVGroup(group){
-
   list.innerHTML="";
-
   const backBtn = document.createElement("div");
   backBtn.className="card back-btn";
   backBtn.innerHTML="⬅️ กลับ";
@@ -236,19 +229,10 @@ function openTVGroup(group){
   if(!data) return;
 
   data.forEach((ch,i)=>{
-
     const div=document.createElement("div");
     div.className="card";
-
     div.innerHTML=`<img src="${ch.logo}"><div>${ch.name}</div>`;
-
-    div.onclick=()=>{
-
-      // 🔥 รองรับ multi server
-      play(ch.url);
-
-    };
-
+    div.onclick=()=>{ play(ch.url); };
     list.appendChild(div);
   });
 
@@ -257,11 +241,19 @@ function openTVGroup(group){
 
 /* ================= PAGE ================= */
 function openLive(){ window.location.href="live.html"; }
-function openMovie(){ window.location.href="037hd.html"; }
-function openMovie(){ window.location.href="https://tiea9999.github.io/tv/VIP.html"; }  
+function openMovie(){ window.location.href="037hd.html"; }  
 function openSeries(){ window.location.href="https://tiea9999.github.io/tv/myseries.html"; }
 
-</script>
+function openVip(){
+    const password = prompt("กรุณาใส่รหัส VIP");
+    if(password === "9999"){ // <-- ใส่รหัส VIP ของคุณ
+        window.location.href="https://tiea9999.github.io/tv-online/VIP.html";
+    } else {
+        alert("รหัสไม่ถูกต้อง!");
+    }
+}
+    </script>
 
 </body>
+
 </html>
