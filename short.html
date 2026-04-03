@@ -442,8 +442,8 @@ color:#fff;cursor:pointer;margin-top:8px;
 
 .close-btn{
 position:fixed;      /* ใช้ fixed แทน absolute */
-top:20px;
-right:20px;
+top:50px;
+right:15px;
 background:red;
 color:#fff;
 border:none;
@@ -558,7 +558,7 @@ box-shadow:0 4px 12px rgba(59,130,246,.4);
 <div class="sidebar">
 
 <div class="sidebar-section">
-<h2>TIEA IPTV</h2>
+<h2>หรรมน้อย ออนไลน์</h2>
 </div>
 
 
@@ -630,6 +630,26 @@ style="padding:6px 10px;border:none;border-radius:6px;background:#2196f3;color:#
 </button>
 </div>
 <!-- 🔼 จบปุ่ม -->
+
+<!-- 🔽 แสดงตอนใหม่ -->
+<div id="nowPlayingLabel" style="
+    position:absolute;
+    top:50px;        /* ปรับตามความเหมาะสม */
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,0.7);
+    color:#fff;
+    padding:8px 16px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:500;
+    z-index:1300;
+    display:none;
+">
+    กำลังเล่น...
+</div>
+<!-- 🔼 จบตรงนี้ -->
+
 
 <video id="videoPlayer" controls playsinline autoplay></video>
 <div id="jw-player" style="display:none;"></div>
@@ -704,32 +724,49 @@ let jwInstance=null;
 let isAnimeMode = false;
 let animeData = [];
 let currentAnime = null;
-
+let currentEpisodeIndex = null;      // เก็บ index ตอนปัจจุบัน
+let currentEpisodeList = null;       // เก็บ array ของ episodes ปัจจุบัน
 let currentPage = 1;
 const itemsPerPage = 24;
 
 let currentChannel = null;
 let forcedPlayer = null; // null = auto | "html5" | "jw"
+
 function setDefaultVolumeHTML5(){
     if(video){
+        video.muted = false;   // 🔊 เปิดเสียง
         video.volume = 0.25;   // 🔊 25%
     }
 }
 
 function setDefaultVolumeJW(){
     if(jwInstance){
-        jwInstance.setVolume(25); // 🔊 25% (JW ใช้ 0-100)
+        jwInstance.setMute(false);  // 🔊 เปิดเสียง
+        jwInstance.setVolume(25);   // 🔊 25%
     }
 }
+
+
 function setPlayerLabel(text){
     const label = document.getElementById("player-type-label");
     if(label){
         label.textContent = "ตัวเล่น: " + text;
     }
 }
+
+// 🔹 ฟังก์ชันช่วยแปลงรูปผ่าน proxy
+function proxyImage(url){
+    if(!url) return "https://via.placeholder.com/300x450?text=No+Image";
+    return "https://weathered-sun-2b7b.hssmnoy.workers.dev/?url=" + encodeURI(url);
+}
+
 const grid=document.getElementById("movieGrid");
 const categoryList=document.getElementById("categoryList");
 let video=document.getElementById("videoPlayer");
+video.onended = () => {
+    playNextEpisode();
+};
+
 const overlay=document.getElementById("overlay");
 overlay.addEventListener("click", () => {
     overlay.classList.remove("active");
@@ -751,6 +788,20 @@ closeBtn.addEventListener("click", () => {
 playerContainer.addEventListener("click", e => {
     e.stopPropagation();
 });
+
+// 🔹 ฟังก์ชันโชว์ตอนใหม่ 5 วินาที
+function showNowPlaying(text){
+    const label = document.getElementById("nowPlayingLabel");
+    if(!label) return;
+
+    label.textContent = "กำลังเล่น: " + text;
+    label.style.display = "block";
+
+    setTimeout(()=>{
+        label.style.display = "none";
+    }, 5000); // 5 วินาที
+}
+
 
 /* ================= PLAYLIST CONFIG ================= */
 
