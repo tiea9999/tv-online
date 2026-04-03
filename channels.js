@@ -94,6 +94,6 @@ documentary:[
 },
 
 movie:[],
-series:[]
-
+series:[],
+vip:[]
 };
