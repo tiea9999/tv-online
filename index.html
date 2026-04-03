@@ -2,127 +2,100 @@
 <html lang="th">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIEA IPTV</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-    <style>
-        body {
-            margin: 0;
-            background: #111;
-            color: white;
-            font-family: sans-serif;
-            display: flex;
-            height: 100vh
-        }
+<style>
+body{margin:0;background:#111;color:white;font-family:sans-serif;display:flex;height:100vh}
+.sidebar{width:200px;background:#000}
+.menu-item{padding:15px;cursor:pointer}
+.menu-item:hover{background:#333}
 
-        .sidebar {
-            width: 200px;
-            background: #000
-        }
+.main{flex:1;display:flex;flex-direction:column}
 
-        .menu-item {
-            padding: 15px;
-            cursor: pointer
-        }
+#player{width:100%;height:250px;background:black;}
 
-        .menu-item:hover {
-            background: #333
-        }
+.fullscreen{
+position:fixed !important;
+top:0;left:0;
+width:100% !important;
+height:100% !important;
+z-index:9999;
+}
 
-        .main {
-            flex: 1;
-            display: flex;
-            flex-direction: column
-        }
+.controls{
+display:flex;
+gap:10px;
+padding:5px;
+background:#000;
+}
 
-        #player {
-            width: 100%;
-            height: 250px;
-            background: black;
-        }
+.btn{
+background:#333;
+color:#fff;
+padding:8px 12px;
+border-radius:6px;
+cursor:pointer;
+}
 
-        .fullscreen {
-            position: fixed !important;
-            top: 0;
-            left: 0;
-            width: 100% !important;
-            height: 100% !important;
-            z-index: 9999;
-        }
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+gap:10px;
+padding:10px;
+overflow:auto;
+}
 
-        .controls {
-            display: flex;
-            gap: 10px;
-            padding: 5px;
-            background: #000;
-        }
+.card{
+background:#222;
+padding:10px;
+text-align:center;
+border-radius:10px;
+cursor:pointer;
+}
 
-        .btn {
-            background: #333;
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+.card img{max-height:50px}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 10px;
-            padding: 10px;
-            overflow: auto;
-        }
-
-        .card {
-            background: #222;
-            padding: 10px;
-            text-align: center;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .card img {
-            max-height: 50px
-        }
-
-        .back-btn {
-            background: #444;
-            font-weight: bold;
-        }
-    </style>
+.back-btn{
+background:#444;
+font-weight:bold;
+}
+</style>
 </head>
 
 <body>
 
-    <div class="sidebar">
-        <div class="menu-item" onclick="openLive()">🏟 ตารางแข่งขันกีฬา</div>
-        <div class="menu-item" onclick="openTVMenu()">📺 TV</div>
-        <div class="menu-item" onclick="openMovie()">🎬 Movie</div>
-        <div class="menu-item" onclick="openSeries()">🎞 Series</div>
-        <div class="menu-item" onclick="openหนังสั้นแนวตั้ง()">🎬 หนังสั้นแนวตั้ง/div>
-         <div class="menu-item" onclick="openอนิเมะ()">🎬 อนิเมะ</div>       
-        <div class="menu-item" onclick="openVip()">🎞 Vip</div>
-    </div>
+<div class="sidebar">
+  <div class="menu-item" onclick="openLive()">🏟 ตารางแข่งขันกีฬา</div>
+  <div class="menu-item" onclick="openTVMenu()">📺 TV</div>
+  <div class="menu-item" onclick="openMovie()">🎬 Movie</div>
+  <div class="menu-item" onclick="openSeries()">🎞 Series</div>
+  
+  <div class="menu-item" onclick="openShort()">📱 หนังสั้นแนวตั้ง</div>
+  <div class="menu-item" onclick="openAnime()">🍥 อนิเมะ</div>
+  
+  <div class="menu-item" onclick="openVip()">🔒 Vip</div>
+</div>
 
-    <div class="main">
+<div class="main">
 
-        <video id="player" controls autoplay playsinline preload="auto"></video>
+<video id="player" controls autoplay playsinline preload="auto"></video>
 
-        <div class="controls">
-            <div class="btn" onclick="toggleFullscreen()">⛶ ขยายจอ</div>
-        </div>
+<div class="controls">
+  <div class="btn" onclick="toggleFullscreen()">⛶ ขยายจอ</div>
+</div>
 
-        <div id="list" class="grid"></div>
+<div id="list" class="grid"></div>
 
-    </div>
+</div>
 
-    <script src="channels.js"></script>
+<script src="channels.js"></script>
 
-    <script>
-        const player = document.getElementById("player");
+<script>
+const player = document.getElementById("player");
 const list = document.getElementById("list");
 
 let isFull = false;
@@ -130,13 +103,9 @@ let currentIndex = 0;
 let currentSources = [];
 let hls = null;
 
-/* ================= PLAY (MULTI SERVER) ================= */
+/* ================= PLAY ================= */
 function play(source){
-  if(Array.isArray(source)){
-    currentSources = source;
-  }else{
-    currentSources = [source];
-  }
+  currentSources = Array.isArray(source) ? source : [source];
   currentIndex = 0;
   startPlayer();
 }
@@ -144,57 +113,41 @@ function play(source){
 /* ================= START ================= */
 function startPlayer(){
   let url = currentSources[currentIndex];
+
   if(hls){
     hls.destroy();
     hls = null;
   }
+
   if(Hls.isSupported()){
-    hls = new Hls({
-      maxBufferLength: 40,
-      maxMaxBufferLength: 80,
-      backBufferLength: 120,
-      maxBufferHole: 0.5,
-      highBufferWatchdogPeriod: 2,
-      enableWorker: true,
-      lowLatencyMode: false,
-      capLevelToPlayerSize: true,
-      startLevel: -1
-    });
+    hls = new Hls();
     hls.loadSource(url);
     hls.attachMedia(player);
-    hls.on(Hls.Events.MANIFEST_PARSED, ()=>{ player.play(); });
-    hls.on(Hls.Events.ERROR, function(event, data){
-      if(data.fatal){
-        console.log("❌ error → เปลี่ยน server");
-        nextSource();
-      }
+
+    hls.on(Hls.Events.MANIFEST_PARSED, ()=> player.play());
+
+    hls.on(Hls.Events.ERROR, function(event,data){
+      if(data.fatal) nextSource();
     });
+
   }else{
     player.src = url;
     player.play();
   }
 }
 
-/* ================= NEXT SERVER ================= */
+/* ================= NEXT ================= */
 function nextSource(){
   currentIndex++;
   if(currentIndex < currentSources.length){
-    console.log("🔄 เปลี่ยนลิงก์:", currentIndex);
     startPlayer();
-  }else{
-    console.log("❌ ลิงก์หมดแล้ว");
   }
 }
 
 /* ================= FULLSCREEN ================= */
 function toggleFullscreen(){
-  if(!isFull){
-    player.classList.add("fullscreen");
-    isFull = true;
-  }else{
-    player.classList.remove("fullscreen");
-    isFull = false;
-  }
+  player.classList.toggle("fullscreen");
+  isFull = !isFull;
 }
 
 /* ================= MENU ================= */
@@ -221,41 +174,49 @@ function openTVMenu(){
 /* ================= GROUP ================= */
 function openTVGroup(group){
   list.innerHTML="";
-  const backBtn = document.createElement("div");
-  backBtn.className="card back-btn";
-  backBtn.innerHTML="⬅️ กลับ";
-  backBtn.onclick=openTVMenu;
-  list.appendChild(backBtn);
+
+  const back=document.createElement("div");
+  back.className="card back-btn";
+  back.innerHTML="⬅️ กลับ";
+  back.onclick=openTVMenu;
+  list.appendChild(back);
 
   const data = channels.tv[group];
   if(!data) return;
 
-  data.forEach((ch,i)=>{
+  data.forEach(ch=>{
     const div=document.createElement("div");
     div.className="card";
     div.innerHTML=`<img src="${ch.logo}"><div>${ch.name}</div>`;
-    div.onclick=()=>{ play(ch.url); };
+    div.onclick=()=>play(ch.url);
     list.appendChild(div);
   });
-
-  if(data[0]) play(data[0].url);
 }
 
 /* ================= PAGE ================= */
 function openLive(){ window.location.href="live.html"; }
-function openMovie(){ window.location.href="037hd.html"; }  
+function openMovie(){ window.location.href="037hd.html"; }
 function openSeries(){ window.location.href="myseries.html"; }
 
-function openVip(){
-    const password = prompt("กรุณาใส่รหัส VIP");
-    if(password === "9999"){ // <-- ใส่รหัส VIP ของคุณ
-        window.location.href="https://tiea9999.github.io/tv-online/VIP.html";
-    } else {
-        alert("รหัสไม่ถูกต้อง!");
-    }
+/* 🔥 เพิ่มใหม่ */
+function openShort(){
+  window.location.href="short.html"; // <-- ใส่ลิงก์เอง
 }
-    </script>
+
+function openAnime(){
+  window.location.href="anime.html"; // <-- ใส่ลิงก์เอง
+}
+
+/* VIP */
+function openVip(){
+  const password = prompt("กรุณาใส่รหัส VIP");
+  if(password === "9999"){
+    window.location.href="https://tiea9999.github.io/tv-online/VIP.html";
+  }else{
+    alert("รหัสไม่ถูกต้อง!");
+  }
+}
+</script>
 
 </body>
-
 </html>
