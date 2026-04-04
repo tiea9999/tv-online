@@ -1,214 +1,147 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIEA IPTV</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+body{display:flex;height:100vh;background:#000;color:#fff;overflow:hidden;}
 
-        body {
-            display: flex;
-            height: 100vh;
-            background: #000;
-            color: #fff;
-            overflow: hidden;
-        }
+#menu{
+width:220px;
+background:#111;
+padding:10px;
+overflow-y:auto;
+}
 
-        /* SIDEBAR */
-        #menu {
-            width: 220px;
-            background: #111;
-            padding: 15px;
-            overflow-y: auto;
-        }
+.menu-title{
+padding:10px;
+margin-top:10px;
+background:#e94560;
+cursor:pointer;
+border-radius:6px;
+}
 
-        /* LOGO ใหม่ (ใหญ่ + กลาง) */
-        .logo-box {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+.submenu{display:none;}
+.submenu.open{display:block;}
 
-        .logo-box img {
-            width: 180px;
-            /* 🔥 ขยายใหญ่ */
-            max-width: 100%;
-        }
+.menu-link{
+padding:8px;
+cursor:pointer;
+text-align:center;
+}
+.menu-link:hover{background:#333;}
 
-        /* ปุ่มด้านบน */
-        .top-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
+#main-player{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
 
-        .home-btn,
-        .fullscreen-btn {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+.grid{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+justify-content:center;
+padding:20px;
+}
 
-        .home-btn {
-            background: linear-gradient(90deg, #00c6ff, #0072ff);
-        }
+.card{
+width:110px;
+cursor:pointer;
+text-align:center;
+}
 
-        .fullscreen-btn {
-            background: linear-gradient(90deg, #ff512f, #dd2476);
-        }
-
-        .menu-title {
-            margin-top: 10px;
-            padding: 10px;
-            background: #222;
-            border-radius: 6px;
-        }
-
-        .menu-link {
-            padding: 10px;
-            margin-top: 5px;
-            cursor: pointer;
-            border-radius: 6px;
-        }
-
-        .menu-link:hover {
-            background: #e94560;
-        }
-
-        /* PLAYER */
-        #main-player {
-            flex: 1;
-            position: relative;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #welcome {
-            text-align: center;
-        }
-
-        #welcome img {
-            width: 220px;
-            /* 🔥 โลโก้กลางใหญ่ */
-            margin-bottom: 10px;
-        }
-
-        #iframePlayer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: none;
-        }
-    </style>
+.card img{
+width:100%;
+border-radius:10px;
+}
+</style>
 </head>
 
 <body>
 
-    <div id="menu">
+<div id="menu">
 
-        <!-- LOGO -->
-        <div class="logo-box">
-            <img src="">
-        </div>
+<div class="menu-title" onclick="toggleMenu('tvMenu')">📺 ทีวี</div>
+<div id="tvMenu" class="submenu">
+<div class="menu-link" onclick="go('https://tiea9999.github.io/tv/ball66.html')">BALL66</div>
+</div>
 
-        <!-- ปุ่ม -->
-        <div class="top-buttons">
-            <div class="home-btn" id="homeBtn">🏠 หน้าแรก</div>
-            <div class="fullscreen-btn" id="fullscreenBtn">⛶ เต็มจอ</div>
-        </div>
+<div class="menu-title" onclick="toggleMenu('movieMenu')">🎬 หนัง</div>
+<div id="movieMenu" class="submenu">
+<div class="menu-link" onclick="loadJSON('movie')">โหลดหนัง</div>
+</div>
 
-        <!-- เมนู -->
-    <div class="menu-title">
-        <span>ตารางแข่งขัน</span>
-    </div>
-    
-    <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/live.html" data-type="page">Ball66
-    </div>
-    
-    <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/DKL.html" data-type="page">DKL
-    </div>
-   
-        <div class="menu-title">📺 ทีวี</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL</div>
+<div class="menu-title" onclick="toggleMenu('seriesMenu')">📺 ซีรีส์</div>
+<div id="seriesMenu" class="submenu">
+<div class="menu-link" onclick="loadJSON('series')">โหลดซีรีส์</div>
+</div>
 
-        <div class="menu-title">🎬 หนัง</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/037hd.html">037HD</div>
+</div>
 
-        <div class="menu-title">📺 ซีรีส์</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/goseries4k.html">GOSERIES4K</div>
+<div id="main-player">
+<h1>TIEA IPTV</h1>
+<p>เลือกเมนูด้านซ้าย</p>
+</div>
 
-        <div class="menu-title">🔐 VIP</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">เข้า VIP</div>
+<script>
 
-    </div>
+function toggleMenu(id){
+document.querySelectorAll(".submenu").forEach(m=>m.classList.remove("open"));
+document.getElementById(id).classList.toggle("open");
+}
 
-    <div id="main-player">
+function go(url){
+window.location.href = url;
+}
 
-        <div id="welcome">
-            <img src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&dl=1">
-            <h1> </h1>
-        </div>
+// 🔥 โหลด JSON
+async function loadJSON(type){
+let url = type === "movie" ? "movie.json" : "series.json";
 
-        <iframe id="iframePlayer" allowfullscreen></iframe>
+try{
+const res = await fetch(url);
+const data = await res.json();
 
-    </div>
+let list = type === "movie" ? data.movies : data.series;
 
-    <script>
-        const links=document.querySelectorAll(".menu-link");
-const iframe=document.getElementById("iframePlayer");
-const welcome=document.getElementById("welcome");
-const homeBtn=document.getElementById("homeBtn");
-const fullscreenBtn=document.getElementById("fullscreenBtn");
+showList(list);
 
-links.forEach(link=>{
-  link.addEventListener("click",()=>{
+}catch(e){
+alert("โหลดข้อมูลไม่ได้");
+}
+}
 
-    const url=link.dataset.url;
-    const pass=link.dataset.pass;
+// 🔥 แสดงรายการ
+function showList(list){
 
-    if(pass){
-      const input=prompt("ใส่รหัส VIP");
-      if(input!==pass)return;
-    }
+let html = '<div class="grid">';
 
-    iframe.src=url;
-    iframe.style.display="block";
-    welcome.style.display="none";
-  });
+list.forEach(item=>{
+html += `
+<div class="card" onclick="play('${item.url}')">
+<img src="${item.image}">
+<div>${item.name}</div>
+</div>
+`;
 });
 
-// HOME
-homeBtn.onclick=()=>{
-  iframe.src="";
-  iframe.style.display="none";
-  welcome.style.display="block";
-};
+html += "</div>";
 
-// FULLSCREEN
-fullscreenBtn.onclick=()=>{
-  const el = document.documentElement;
+document.getElementById("main-player").innerHTML = html;
+}
 
-  if(!document.fullscreenElement){
-    el.requestFullscreen();
-  }else{
-    document.exitFullscreen();
-  }
-};
-    </script>
+// 🔥 เล่น
+function play(url){
+window.location.href = "player.html?url=" + encodeURIComponent(url);
+}
+
+</script>
 
 </body>
-
 </html>
