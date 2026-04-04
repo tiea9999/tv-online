@@ -6,4 +6,4 @@ var seriesData = {
       "url": "https://media.vdohls.com/6dUIi-x9Cf_ng/video.m3u8"
     }
   ]
-}
+};
