@@ -1,107 +1,160 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIEA IPTV</title>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-body{display:flex;height:100vh;background:#000;color:#fff;overflow:hidden;}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-#menu{width:220px;background:#111;padding:15px;overflow-y:auto;}
-.menu-link{padding:10px;margin-bottom:5px;cursor:pointer;border-radius:6px;}
-.menu-link:hover{background:#e94560;}
+        body {
+            display: flex;
+            height: 100vh;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+        }
 
-.menu-title{margin-top:10px;padding:10px;background:#222;border-radius:6px;}
+        #menu {
+            width: 220px;
+            background: #111;
+            padding: 15px;
+            overflow-y: auto;
+        }
 
-#main-player{flex:1;position:relative;background:#000;}
+        .menu-link {
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
 
-#welcome{text-align:center;margin-top:100px;}
+        .menu-link:hover {
+            background: #e94560;
+        }
 
-#iframePlayer, #videoPlayer{
-position:absolute;
-width:100%;
-height:100%;
-border:none;
-display:none;
-}
+        .menu-title {
+            margin-top: 10px;
+            padding: 10px;
+            background: #222;
+            border-radius: 6px;
+        }
 
-/* FLOAT PLAYER */
-#floatingPlayer{
-position:fixed;
-top:0;left:0;width:100%;height:100%;
-background:#000;display:none;z-index:9999;
-}
+        #main-player {
+            flex: 1;
+            position: relative;
+            background: #000;
+        }
 
-#playerControls{
-position:absolute;
-top:10px;
-left:50%;
-transform:translateX(-50%);
-display:flex;gap:10px;
-}
+        #welcome {
+            text-align: center;
+            margin-top: 100px;
+        }
 
-#playerControls button{
-background:rgba(0,0,0,0.6);
-color:#fff;border:none;padding:8px;border-radius:6px;
-}
+        #iframePlayer,
+        #videoPlayer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+        }
 
-#floatFrame{width:100%;height:100%;border:none;}
+        /* FLOAT PLAYER */
+        #floatingPlayer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            z-index: 9999;
+        }
 
-/* LOGO */
-#appLogo{
-position:fixed;
-top:10px;
-right:10px;
-width:60px;
-opacity:0.8;
-z-index:9999;
-}
-</style>
+        #playerControls {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        #playerControls button {
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        #floatFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* LOGO */
+        #appLogo {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            opacity: 0.8;
+            z-index: 9999;
+        }
+    </style>
 </head>
 
 <body>
 
-<img id="appLogo" src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a.png?dl=1">
+    <img id="appLogo" src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a.png?dl=1">
 
-<div id="menu">
+    <div id="menu">
 
-<div class="menu-title">📺 ทีวี</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv/iptv.html">DOOBALL66 TV</div>
+        <div class="menu-title">📺 ทีวี</div>
+        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL66TV</div>
 
-<div class="menu-title">🎬 หนัง</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv/037hd.html">037HD</div>
+        <div class="menu-title">🎬 หนัง</div>
+        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/037hd.html">037HD</div>
 
-<div class="menu-title">📺 ซีรีส์</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv/flixmono.html">FLIXMONO</div>
+        <div class="menu-title">📺 ซีรีส์</div>
+        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/flixmono.html">FLIXMONO</div>
 
-<div class="menu-title">🔐 VIP</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv/VIP.html" data-pass="9999">เข้า VIP</div>
+        <div class="menu-title">🔐 VIP</div>
+        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">เข้า VIP</div>
 
-</div>
+    </div>
 
-<div id="main-player">
-  <div id="welcome">
-    <h1>TIEA IPTV</h1>
-  </div>
+    <div id="main-player">
+        <div id="welcome">
+            <h1>TIEA IPTV</h1>
+        </div>
 
-  <iframe id="iframePlayer" allow="autoplay; fullscreen"></iframe>
-  <video id="videoPlayer" controls playsinline></video>
-</div>
+        <iframe id="iframePlayer" allow="autoplay; fullscreen"></iframe>
+        <video id="videoPlayer" controls playsinline></video>
+    </div>
 
-<!-- PLAYER -->
-<div id="floatingPlayer">
-<div id="playerControls">
-  <button id="closePlayer">✕</button>
-</div>
-<iframe id="floatFrame"></iframe>
-</div>
+    <!-- PLAYER -->
+    <div id="floatingPlayer">
+        <div id="playerControls">
+            <button id="closePlayer">✕</button>
+        </div>
+        <iframe id="floatFrame"></iframe>
+    </div>
 
-<script>
-const links=document.querySelectorAll(".menu-link");
+    <script>
+        const links=document.querySelectorAll(".menu-link");
 const iframe=document.getElementById("iframePlayer");
 const video=document.getElementById("videoPlayer");
 const welcome=document.getElementById("welcome");
@@ -158,7 +211,8 @@ document.getElementById("closePlayer").onclick=()=>{
   floatPlayer.style.display="none";
   floatFrame.src="";
 };
-</script>
+    </script>
 
 </body>
+
 </html>
