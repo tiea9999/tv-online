@@ -1,71 +1,166 @@
-<!-- 🔥 เฉพาะ SCRIPT ส่วนสำคัญที่แก้ -->
-<script>
+<!DOCTYPE html>
+<html lang="th">
 
-const movieAPI = "movie.json";
-const seriesAPI = "series.json";
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIEA IPTV</title>
 
-const links = document.querySelectorAll(".menu-link");
-const iframe = document.getElementById("iframePlayer");
-const welcome = document.getElementById("welcome");
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
 
-// 🔥 ฟังก์ชันโหลด JSON
-async function loadJSON(type){
-  let url = type === "movie" ? movieAPI : seriesAPI;
+        body {
+            display: flex;
+            height: 100vh;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+        }
 
-  const res = await fetch(url);
-  const data = await res.json();
+        #menu {
+            width: 220px;
+            background: #111;
+            padding: 10px;
+            overflow-y: auto;
+        }
 
-  showList(type === "movie" ? data.movies : data.series);
+        .menu-title {
+            padding: 10px;
+            margin-top: 10px;
+            background: #e94560;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .submenu {
+            display: none;
+        }
+
+        .submenu.open {
+            display: block;
+        }
+
+        .menu-link {
+            padding: 8px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .menu-link:hover {
+            background: #333;
+        }
+
+        #main-player {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            width: 120px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <div id="menu">
+
+        <div class="menu-title" onclick="toggleMenu('tvMenu')">📺 ทีวี</div>
+        <div id="tvMenu" class="submenu">
+            <div class="menu-link" onclick="go('https://tiea9999.github.io/tv/ball66.html')">BALL66</div>
+        </div>
+
+        <div class="menu-title" onclick="toggleMenu('movieMenu')">🎬 หนัง</div>
+        <div id="movieMenu" class="submenu">
+            <div class="menu-link" onclick="loadJSON('movie')">โหลดรายการหนัง</div>
+        </div>
+
+        <div class="menu-title" onclick="toggleMenu('seriesMenu')">📺 ซีรีส์</div>
+        <div id="seriesMenu" class="submenu">
+            <div class="menu-link" onclick="loadJSON('series')">โหลดรายการซีรีส์</div>
+        </div>
+
+    </div>
+
+    <!-- PLAYER -->
+    <div id="main-player">
+        <h1>TIEA IPTV</h1>
+        <p>เลือกเมนูด้านซ้าย</p>
+    </div>
+
+    <script>
+        function toggleMenu(id){
+document.querySelectorAll(".submenu").forEach(m=>m.classList.remove("open"));
+document.getElementById(id).classList.toggle("open");
 }
 
-// 🔥 แสดงรายการแทน iframe
+function go(url){
+window.location.href = url;
+}
+
+// 🔥 โหลด JSON
+async function loadJSON(type){
+
+let url = type === "movie" ? "movie.json" : "series.json";
+
+const res = await fetch(url);
+const data = await res.json();
+
+let list = type === "movie" ? data.movies : data.series;
+
+showList(list);
+}
+
+// 🔥 แสดงรายการ
 function showList(list){
-  iframe.style.display="none";
-  welcome.style.display="none";
 
-  let html = '<div style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;padding:20px;">';
+let html = '<div class="grid">';
 
-  list.forEach(item=>{
-    html += `
-      <div onclick="playVideo('${item.url}')"
-      style="width:120px;cursor:pointer;text-align:center;">
-        <img src="${item.image}" style="width:100%;border-radius:10px;">
-        <div style="font-size:12px;margin-top:5px;">${item.name}</div>
-      </div>
-    `;
-  });
+list.forEach(item=>{
+html += `
+<div class="card" onclick="play('${item.url}')">
+<img src="${item.image}">
+<div>${item.name}</div>
+</div>
+`;
+});
 
-  html += "</div>";
+html += "</div>";
 
-  document.getElementById("main-player").innerHTML = html;
+document.getElementById("main-player").innerHTML = html;
 }
 
 // 🔥 เล่นวิดีโอ
-function playVideo(url){
-  window.location.href = "player.html?url=" + encodeURIComponent(url);
+function play(url){
+window.location.href = "player.html?url=" + encodeURIComponent(url);
 }
 
-// 🔥 ดักเมนูหนัง/ซีรีส์
-links.forEach(link=>{
-  link.addEventListener("click",(e)=>{
+    </script>
 
-    const menu = link.closest(".submenu");
+</body>
 
-    // 🎬 หนัง
-    if(menu && menu.id === "movieMenu"){
-      e.preventDefault();
-      loadJSON("movie");
-      return;
-    }
-
-    // 📺 ซีรีส์
-    if(menu && menu.id === "seriesMenu"){
-      e.preventDefault();
-      loadJSON("series");
-      return;
-    }
-
-  });
-});
-
-</script>
+</html>
