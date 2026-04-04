@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
@@ -22,7 +22,7 @@
             overflow: hidden;
         }
 
-        /* MENU */
+        /* SIDEBAR */
         #menu {
             width: 220px;
             background: #111;
@@ -30,20 +30,23 @@
             overflow-y: auto;
         }
 
+        /* LOGO ใหม่ (ใหญ่ + กลาง) */
         .logo-box {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .logo-box img {
-            width: 160px;
+            width: 180px;
+            /* 🔥 ขยายใหญ่ */
+            max-width: 100%;
         }
 
-        /* TOP BUTTONS */
+        /* ปุ่มด้านบน */
         .top-buttons {
             display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
         .home-btn,
@@ -57,11 +60,11 @@
         }
 
         .home-btn {
-            background: #0072ff;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
         }
 
         .fullscreen-btn {
-            background: #ff512f;
+            background: linear-gradient(90deg, #ff512f, #dd2476);
         }
 
         .menu-title {
@@ -86,14 +89,20 @@
         #main-player {
             flex: 1;
             position: relative;
+            background: #000;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #000;
         }
 
         #welcome {
             text-align: center;
+        }
+
+        #welcome img {
+            width: 220px;
+            /* 🔥 โลโก้กลางใหญ่ */
+            margin-bottom: 10px;
         }
 
         #iframePlayer {
@@ -103,28 +112,6 @@
             border: none;
             display: none;
         }
-
-        /* MOBILE BACK BTN */
-        #backMenuBtn {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background: red;
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 8px;
-            z-index: 9999;
-            display: none;
-        }
-
-        /* MOBILE */
-        @media(max-width:768px) {
-            #menu {
-                position: absolute;
-                height: 100%;
-                z-index: 1000;
-            }
-        }
     </style>
 </head>
 
@@ -132,15 +119,28 @@
 
     <div id="menu">
 
+        <!-- LOGO -->
         <div class="logo-box">
-            <img src="https://www.dropbox.com/scl/fi/qmxborwldhasptwy7e25v/TIEA-IPTV.png?rlkey=lskyoeb3637zo3eqa3j4ye0uy&dl=1">
+            <img src="">
         </div>
 
+        <!-- ปุ่ม -->
         <div class="top-buttons">
             <div class="home-btn" id="homeBtn">🏠 หน้าแรก</div>
             <div class="fullscreen-btn" id="fullscreenBtn">⛶ เต็มจอ</div>
         </div>
 
+        <!-- เมนู -->
+    <div class="menu-title">
+        <span>ตารางแข่งขัน</span>
+    </div>
+    
+    <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/live.html" data-type="page">Ball66
+    </div>
+    
+    <div class="menu-link" data-url="https://tiea9999.github.io/tv/DKL.html" data-type="page">DKL
+    </div>
+   
         <div class="menu-title">📺 ทีวี</div>
         <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL</div>
 
@@ -158,82 +158,54 @@
     <div id="main-player">
 
         <div id="welcome">
-            <h1>TIEA IPTV</h1>
-            <p>เลือกเมนูเพื่อเริ่มใช้งาน</p>
+            <img src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&dl=1">
+            <h1> </h1>
         </div>
 
-        <iframe id="iframePlayer"></iframe>
+        <iframe id="iframePlayer" allowfullscreen></iframe>
 
     </div>
-
-    <div id="backMenuBtn">☰ เมนู</div>
 
     <script>
         const links=document.querySelectorAll(".menu-link");
 const iframe=document.getElementById("iframePlayer");
 const welcome=document.getElementById("welcome");
-const menu=document.getElementById("menu");
-const backBtn=document.getElementById("backMenuBtn");
+const homeBtn=document.getElementById("homeBtn");
+const fullscreenBtn=document.getElementById("fullscreenBtn");
 
-// MENU CLICK
 links.forEach(link=>{
-link.addEventListener("click",()=>{
+  link.addEventListener("click",()=>{
 
-const url=link.dataset.url;
-const pass=link.dataset.pass;
+    const url=link.dataset.url;
+    const pass=link.dataset.pass;
 
-if(pass){
-const input=prompt("ใส่รหัส VIP");
-if(input!==pass)return;
-}
+    if(pass){
+      const input=prompt("ใส่รหัส VIP");
+      if(input!==pass)return;
+    }
 
-// 🎬 หนัง/ซีรีส์ → เปิดใหม่ (แก้จอดำ)
-if(
-url.includes("037hd") ||
-url.includes("flixmono") ||
-url.includes("movie") ||
-url.includes("series")
-){
-window.open(url,"_blank");
-return;
-}
-
-// 📺 TV
-iframe.src=url;
-iframe.style.display="block";
-welcome.style.display="none";
-
-// 📱 mobile
-if(window.innerWidth<768){
-menu.style.display="none";
-backBtn.style.display="block";
-}
-
-});
+    iframe.src=url;
+    iframe.style.display="block";
+    welcome.style.display="none";
+  });
 });
 
 // HOME
-document.getElementById("homeBtn").onclick=()=>{
-iframe.src="";
-iframe.style.display="none";
-welcome.style.display="block";
-menu.style.display="block";
-backBtn.style.display="none";
+homeBtn.onclick=()=>{
+  iframe.src="";
+  iframe.style.display="none";
+  welcome.style.display="block";
 };
 
 // FULLSCREEN
-document.getElementById("fullscreenBtn").onclick=()=>{
-if(!document.fullscreenElement){
-document.documentElement.requestFullscreen();
-}else{
-document.exitFullscreen();
-}
-};
+fullscreenBtn.onclick=()=>{
+  const el = document.documentElement;
 
-// BACK MENU
-backBtn.onclick=()=>{
-menu.style.display="block";
-backBtn.style.display="none";
+  if(!document.fullscreenElement){
+    el.requestFullscreen();
+  }else{
+    document.exitFullscreen();
+  }
 };
     </script>
 
