@@ -1,0 +1,9 @@
+var seriesData = {
+  series: [
+    {
+      name: "Test Series",
+      image: "https://via.placeholder.com/150",
+      url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+    }
+  ]
+};
