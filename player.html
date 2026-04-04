@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PLAYER</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
@@ -15,26 +14,23 @@ video{width:100%;height:100vh;}
 
 <body>
 
-<video id="video" controls autoplay></video>
+<video id="v" controls autoplay></video>
 
 <script>
-const video = document.getElementById("video");
-const url = new URLSearchParams(location.search).get("url");
+const v=document.getElementById("v");
+const url=new URLSearchParams(location.search).get("url");
 
 if(Hls.isSupported()){
-const hls = new Hls();
-hls.loadSource(url);
-hls.attachMedia(video);
+let h=new Hls({maxBufferLength:30});
+h.loadSource(url);
+h.attachMedia(v);
 }else{
-video.src = url;
+v.src=url;
 }
 
-video.volume = 0.8;
+v.volume=0.8;
 
-// กันหมุน
-setInterval(()=>{
-if(video.paused) video.play();
-},3000);
+setInterval(()=>{ if(v.paused) v.play(); },3000);
 </script>
 
 </body>
