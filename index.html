@@ -5,52 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TIEA IPTV</title>
 
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
 body{display:flex;height:100vh;background:#000;color:#fff;overflow:hidden;}
 
-#menu{width:220px;background:#111;padding:15px;overflow-y:auto;z-index:10;}
+#menu{width:220px;background:#111;padding:15px;overflow-y:auto;}
 .menu-link{padding:10px;margin-bottom:5px;cursor:pointer;border-radius:6px;}
 .menu-link:hover{background:#e94560;}
 
-.menu-title{
-  margin-top:10px;
-  padding:10px;
-  font-weight:bold;
-  background:#222;
-  border-radius:6px;
-}
+.menu-title{margin-top:10px;padding:10px;background:#222;border-radius:6px;}
 
-/* PLAYER */
-#main-player{
-flex:1;
-position:relative;
-display:flex;
-justify-content:center;
-align-items:center;
-background:#000;
-}
+#main-player{flex:1;position:relative;background:#000;}
 
-#welcome{text-align:center;pointer-events:none;}
+#welcome{text-align:center;margin-top:100px;}
 
-#iframePlayer{
+#iframePlayer, #videoPlayer{
 position:absolute;
 width:100%;
 height:100%;
 border:none;
-opacity:0;
-transition:0.3s;
+display:none;
 }
 
 /* FLOAT PLAYER */
 #floatingPlayer{
 position:fixed;
-top:0;left:0;
-width:100%;
-height:100%;
-background:#000;
-display:none;
-z-index:9999;
+top:0;left:0;width:100%;height:100%;
+background:#000;display:none;z-index:9999;
 }
 
 #playerControls{
@@ -58,88 +41,73 @@ position:absolute;
 top:10px;
 left:50%;
 transform:translateX(-50%);
-display:flex;
-gap:10px;
-z-index:10;
+display:flex;gap:10px;
 }
 
 #playerControls button{
 background:rgba(0,0,0,0.6);
-border:none;
-color:#fff;
-padding:8px 12px;
-border-radius:8px;
-cursor:pointer;
+color:#fff;border:none;padding:8px;border-radius:6px;
 }
 
-#playerControls button:hover{
-background:red;
-}
+#floatFrame{width:100%;height:100%;border:none;}
 
-#floatFrame{
-width:100%;
-height:100%;
-border:none;
+/* LOGO */
+#appLogo{
+position:fixed;
+top:10px;
+right:10px;
+width:60px;
+opacity:0.8;
+z-index:9999;
 }
 </style>
 </head>
 
 <body>
 
+<img id="appLogo" src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a.png?dl=1">
+
 <div id="menu">
 
 <div class="menu-title">📺 ทีวี</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">dooball66 TV</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv/iptv.html">3BB TV</div>
 
 <div class="menu-title">🎬 หนัง</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/037hd.html">037HD</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv/037hd.html">037HD</div>
 
 <div class="menu-title">📺 ซีรีส์</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/goseries4k.html">GOSERIES4K</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv/flixmono.html">FLIXMONO</div>
 
 <div class="menu-title">🔐 VIP</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">เข้า VIP</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv/VIP.html" data-pass="9999">เข้า VIP</div>
 
 </div>
 
 <div id="main-player">
   <div id="welcome">
     <h1>TIEA IPTV</h1>
-    <p>เลือกเมนูเพื่อเริ่มใช้งาน</p>
   </div>
 
-  <!-- 🔥 iframe แก้เสียงแล้ว -->
-  <iframe id="iframePlayer"
-  allow="autoplay; fullscreen; encrypted-media"
-  allowfullscreen></iframe>
-
+  <iframe id="iframePlayer" allow="autoplay; fullscreen"></iframe>
+  <video id="videoPlayer" controls playsinline></video>
 </div>
 
 <!-- PLAYER -->
 <div id="floatingPlayer">
-
 <div id="playerControls">
-  <button id="btnBack">⏪</button>
-  <button id="btnForward">⏩</button>
-  <button id="btnReload">🔄</button>
-  <button id="btnFullscreen">⛶</button>
   <button id="closePlayer">✕</button>
 </div>
-
-<iframe id="floatFrame" allowfullscreen></iframe>
-
+<iframe id="floatFrame"></iframe>
 </div>
 
 <script>
 const links=document.querySelectorAll(".menu-link");
 const iframe=document.getElementById("iframePlayer");
+const video=document.getElementById("videoPlayer");
 const welcome=document.getElementById("welcome");
 
 const floatPlayer=document.getElementById("floatingPlayer");
 const floatFrame=document.getElementById("floatFrame");
-
-let historyStack=[];
-let historyIndex=-1;
 
 links.forEach(link=>{
   link.addEventListener("click",()=>{
@@ -147,95 +115,48 @@ links.forEach(link=>{
     const url=link.dataset.url;
     const pass=link.dataset.pass;
 
-    // 🔐 VIP PASSWORD
     if(pass){
-      const input=prompt("กรุณาใส่รหัส VIP");
-      if(input!==pass){
-        alert("รหัสไม่ถูกต้อง");
-        return;
-      }
+      const input=prompt("ใส่รหัส VIP");
+      if(input!==pass)return;
     }
 
-    // 🎬 หนัง/ซีรีส์/VIP → PLAYER เทพ
+    // 🎬 หนัง/ซีรีส์/VIP
     if(url.includes("037hd") || url.includes("flixmono") || url.includes("VIP")){
       floatFrame.src=url;
       floatPlayer.style.display="block";
-
-      historyStack=historyStack.slice(0,historyIndex+1);
-      historyStack.push(url);
-      historyIndex++;
       return;
     }
 
-    // 📺 TV (3BB)
-    let finalUrl = url;
+    // 📺 ถ้าเป็น m3u8 → ใช้ HLS
+    if(url.includes(".m3u8")){
+      iframe.style.display="none";
+      video.style.display="block";
 
-    if(url.includes("iptv") || url.includes("3bb")){
-      finalUrl += (url.includes("?") ? "&" : "?") + "autoplay=1&muted=0";
+      if(Hls.isSupported()){
+        const hls=new Hls({maxBufferLength:10});
+        hls.loadSource(url);
+        hls.attachMedia(video);
+      }else{
+        video.src=url;
+      }
+
+      video.volume=0.8;
+      video.play();
+      return;
     }
 
-    iframe.style.opacity=0;
+    // 📺 fallback iframe (3BB)
+    video.style.display="none";
+    iframe.style.display="block";
 
-    setTimeout(()=>{
-      iframe.src=finalUrl;
-    },100);
-
-    iframe.onload=()=>{
-      iframe.style.opacity=1;
-      welcome.style.display="none";
-
-      // 🔊 พยายามเปิดเสียง
-      try{
-        const vid = iframe.contentWindow.document.querySelector("video");
-        if(vid){
-          vid.muted=false;
-          vid.volume=1;
-          vid.play();
-        }
-      }catch(e){}
-    };
-
+    iframe.src=url;
   });
 });
 
-// 🔊 คลิกครั้งเดียวเปิดเสียง
-document.body.addEventListener("click",()=>{
-  const vids=document.querySelectorAll("video");
-  vids.forEach(v=>{
-    v.muted=false;
-    v.volume=1;
-    v.play().catch(()=>{});
-  });
-},{once:true});
-
-// controls
+// close
 document.getElementById("closePlayer").onclick=()=>{
   floatPlayer.style.display="none";
   floatFrame.src="";
-};
-
-document.getElementById("btnBack").onclick=()=>{
-  if(historyIndex>0){
-    historyIndex--;
-    floatFrame.src=historyStack[historyIndex];
-  }
-};
-
-document.getElementById("btnForward").onclick=()=>{
-  if(historyIndex<historyStack.length-1){
-    historyIndex++;
-    floatFrame.src=historyStack[historyIndex];
-  }
-};
-
-document.getElementById("btnReload").onclick=()=>{
-  floatFrame.src=floatFrame.src;
-};
-
-document.getElementById("btnFullscreen").onclick=()=>{
-  if(floatFrame.requestFullscreen){
-    floatFrame.requestFullscreen();
-  }
 };
 </script>
 
