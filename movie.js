@@ -1,0 +1,9 @@
+var moviesData = {
+  movies: [
+    {
+      name: "Big Buck Bunny",
+      image: "https://peach.blender.org/wp-content/uploads/title_anouncement.jpg",
+      url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
+    }
+  ]
+};
