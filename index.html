@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIEA IPTV PRO</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+body{display:flex;height:100vh;background:#000;color:#fff;}
+
+#menu{width:230px;background:#111;padding:10px;overflow-y:auto;}
+.menu-title{padding:10px;margin-top:10px;background:#e94560;border-radius:6px;cursor:pointer;text-align:center;}
+#search{width:100%;padding:8px;margin-top:10px;border:none;border-radius:6px;}
+
+#main{flex:1;position:relative;}
+
+.grid{display:flex;flex-wrap:wrap;gap:12px;padding:15px;justify-content:center;overflow:auto;height:100%;}
+
+.card{width:110px;cursor:pointer;text-align:center;position:relative;}
+.card img{width:100%;border-radius:10px;}
+
+.star{position:absolute;top:5px;right:5px;background:#000;padding:2px 5px;cursor:pointer;}
+
+#playerBox{position:absolute;top:0;left:0;width:100%;height:100%;display:none;background:#000;z-index:10;}
+video{width:100%;height:100%;}
+
+iframe{width:100%;height:100%;border:none;}
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+<div id="menu">
+<div class="menu-title" onclick="loadTV()">📡 ทีวี</div>
+<div class="menu-title" onclick="loadData('movie')">🎬 หนัง</div>
+<div class="menu-title" onclick="loadData('series')">📺 ซีรีส์</div>
+<div class="menu-title" onclick="loadFav()">⭐ โปรด</div>
+<div class="menu-title" onclick="registerVIP()">💳 สมัคร VIP</div>
+<div class="menu-title" onclick="vipAccess()">🔐 VIP</div>
+
+<input id="search" placeholder="ค้นหา..." oninput="search()">
+</div>
+
+<!-- MAIN -->
+<div id="main">
+<div id="content" class="grid"><h2>เลือกเมนู</h2></div>
+<div id="playerBox"><video id="video" controls autoplay></video></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<!-- โหลดข้อมูล -->
+<script src="https://tiea9999.github.io/tv-online/movie.js"></script>
+<script src="https://tiea9999.github.io/tv-online/series.js"></script>
+<script src="https://tiea9999.github.io/tv-online/vip.js"></script>
+
+<script>
+
+let currentList = [];
+
+const content = document.getElementById("content");
+const playerBox = document.getElementById("playerBox");
+const video = document.getElementById("video");
+
+// 📡 ทีวี (ไม่หาย)
+function loadTV(){
+playerBox.style.display="none";
+content.innerHTML = `<iframe src="https://tiea9999.github.io/tv/ball66.html"></iframe>`;
+}
+
+// 🎬 โหลดหนัง/ซีรีส์
+function loadData(type){
+
+playerBox.style.display="none";
+
+if(type==="movie"){
+currentList = moviesData.movies;
+}else{
+currentList = seriesData.series;
+}
+
+render(currentList);
+}
+
+// 🎯 แสดงรายการ
+function render(list){
+
+let html="";
+
+list.forEach(item=>{
+html+=`
+<div class="card" onclick="play('${item.url}')">
+<img src="${item.image}">
+<div>${item.name}</div>
+<div class="star" onclick="addFav(event,'${item.name}','${item.image}','${item.url}')">⭐</div>
+</div>
+`;
+});
+
+content.innerHTML = html;
+}
+
+// ▶️ เล่น
+function play(url){
+
+content.innerHTML="";
+playerBox.style.display="block";
+
+video.pause();
+video.src="";
+
+if(Hls.isSupported()){
+const hls=new Hls();
+hls.loadSource(url);
+hls.attachMedia(video);
+}else{
+video.src=url;
+}
+
+video.volume=0.8;
+}
+
+// ⭐ โปรด
+function addFav(e,name,img,url){
+e.stopPropagation();
+let fav=JSON.parse(localStorage.getItem("fav")||"[]");
+fav.push({name,image:img,url});
+localStorage.setItem("fav",JSON.stringify(fav));
+alert("เพิ่มโปรดแล้ว");
+}
+
+function loadFav(){
+let fav=JSON.parse(localStorage.getItem("fav")||"[]");
+render(fav);
+}
+
+// 🔍 ค้นหา
+function search(){
+let val=document.getElementById("search").value.toLowerCase();
+let filtered=currentList.filter(i=>i.name.toLowerCase().includes(val));
+render(filtered);
+}
+
+//////////////////////////////////////////////////////
+// 🔐 VIP SYSTEM (วางถูกตำแหน่งแล้ว)
+//////////////////////////////////////////////////////
+
+// สมัคร VIP
+function registerVIP(){
+
+let code = prompt("ใส่รหัสสมัคร VIP");
+
+if(code !== "9999"){
+  alert("รหัสสมัครไม่ถูกต้อง");
+  return;
+}
+
+// อายุ 30 วัน
+let expire = Date.now() + (30 * 24 * 60 * 60 * 1000);
+
+localStorage.setItem("vip_expire", expire);
+
+alert("สมัคร VIP สำเร็จ 30 วัน");
+
+}
+
+// เข้า VIP
+function vipAccess(){
+
+let expire = localStorage.getItem("vip_expire");
+
+if(!expire){
+  alert("❌ ยังไม่ได้สมัคร VIP");
+  return;
+}
+
+if(Date.now() > expire){
+  alert("❌ VIP หมดอายุแล้ว");
+  localStorage.removeItem("vip_expire");
+  return;
+}
+
+// โหลดรายการ VIP
+currentList = vipData.vip;
+render(currentList);
+
+}
+
+</script>
+
+</body>
+</html>
