@@ -1,297 +1,71 @@
-<!DOCTYPE html>
-<html lang="th">
+<!-- 🔥 เฉพาะ SCRIPT ส่วนสำคัญที่แก้ -->
+<script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV</title>
+const movieAPI = "movie.json";
+const seriesAPI = "series.json";
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
+const links = document.querySelectorAll(".menu-link");
+const iframe = document.getElementById("iframePlayer");
+const welcome = document.getElementById("welcome");
 
-        body {
-            display: flex;
-            height: 100vh;
-            background: #000;
-            color: #fff;
-            overflow: hidden;
-        }
+// 🔥 ฟังก์ชันโหลด JSON
+async function loadJSON(type){
+  let url = type === "movie" ? movieAPI : seriesAPI;
 
-        #menu {
-            width: 220px;
-            background: #111;
-            padding: 15px;
-            overflow-y: auto;
-        }
+  const res = await fetch(url);
+  const data = await res.json();
 
-        .logo-box {
-            text-align: center;
-            margin-bottom: 15px;
-        }
+  showList(type === "movie" ? data.movies : data.series);
+}
 
-        .logo-box img {
-            width: 170px;
-        }
+// 🔥 แสดงรายการแทน iframe
+function showList(list){
+  iframe.style.display="none";
+  welcome.style.display="none";
 
-        .top-buttons {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
+  let html = '<div style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;padding:20px;">';
 
-        .home-btn,
-        .fullscreen-btn {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+  list.forEach(item=>{
+    html += `
+      <div onclick="playVideo('${item.url}')"
+      style="width:120px;cursor:pointer;text-align:center;">
+        <img src="${item.image}" style="width:100%;border-radius:10px;">
+        <div style="font-size:12px;margin-top:5px;">${item.name}</div>
+      </div>
+    `;
+  });
 
-        .home-btn {
-            background: #0072ff;
-        }
+  html += "</div>";
 
-        .fullscreen-btn {
-            background: #ff512f;
-        }
+  document.getElementById("main-player").innerHTML = html;
+}
 
-        .menu-title {
-            margin-top: 10px;
-            padding: 10px;
-            background: #222;
-            border-radius: 6px;
-        }
+// 🔥 เล่นวิดีโอ
+function playVideo(url){
+  window.location.href = "player.html?url=" + encodeURIComponent(url);
+}
 
-        .menu-link {
-            padding: 10px;
-            margin-top: 5px;
-            cursor: pointer;
-            border-radius: 6px;
-        }
-
-        .menu-link:hover {
-            background: #e94560;
-        }
-
-        #main-player {
-            flex: 1;
-            position: relative;
-            background: #000;
-        }
-
-        #welcome {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        #iframePlayer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: none;
-        }
-
-        /* ปุ่มมือถือ */
-        #backMenuBtn {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background: red;
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 8px;
-            z-index: 9999;
-            display: none;
-        }
-
-        @media(max-width:768px) {
-            #menu {
-                position: absolute;
-                height: 100%;
-                z-index: 1000;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    <div id="menu">
-
-        <div class="logo-box">
-            <img src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a.png?dl=1">
-        </div>
-
-        <div class="top-buttons">
-            <div class="home-btn" id="homeBtn">🏠 หน้าแรก</div>
-            <div class="fullscreen-btn" id="fullscreenBtn">⛶ เต็มจอ</div>
-        </div>
-
-        <div class="menu-title">📺 ทีวี</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL</div>
-
-        <div class="menu-title">🎬 หนัง</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/037hd.html">037HD</div>
-
-        <div class="menu-title">📺 ซีรีส์</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/flixmono.html">FLIXMONO</div>
-
-        <div class="menu-title">🔐 VIP</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">VIP</div>
-
-    </div>
-
-    <div id="main-player">
-
-        <div id="welcome">
-            <h1>TIEA IPTV</h1>
-            <p>ทดลอง Auto Player</p>
-        </div>
-
-        <iframe id="iframePlayer" allow="autoplay; fullscreen; encrypted-media"></iframe>
-
-    </div>
-
-    <div id="backMenuBtn">☰</div>
-
-    <script>
-        const links=document.querySelectorAll(".menu-link");
-const iframe=document.getElementById("iframePlayer");
-const welcome=document.getElementById("welcome");
-const menu=document.getElementById("menu");
-const backBtn=document.getElementById("backMenuBtn");
-
-// CLICK
+// 🔥 ดักเมนูหนัง/ซีรีส์
 links.forEach(link=>{
-link.addEventListener("click",()=>{
+  link.addEventListener("click",(e)=>{
 
-const url=link.dataset.url;
-const pass=link.dataset.pass;
+    const menu = link.closest(".submenu");
 
-if(pass){
-const input=prompt("ใส่รหัส VIP");
-if(input!==pass)return;
-}
+    // 🎬 หนัง
+    if(menu && menu.id === "movieMenu"){
+      e.preventDefault();
+      loadJSON("movie");
+      return;
+    }
 
-// 🎬 AUTO SERVER SYSTEM
-if(
-url.includes("037hd") ||
-url.includes("flixmono")
-){
+    // 📺 ซีรีส์
+    if(menu && menu.id === "seriesMenu"){
+      e.preventDefault();
+      loadJSON("series");
+      return;
+    }
 
-iframe.src=url;
-iframe.style.display="block";
-welcome.style.display="none";
-
-if(window.innerWidth<768){
-menu.style.display="none";
-backBtn.style.display="block";
-}
-
-iframe.onload=()=>{
-try{
-const doc=iframe.contentWindow.document;
-
-// หา server
-let servers=[...doc.querySelectorAll("button, .server, .play")];
-if(servers.length===0)return;
-
-// เรียงความสำคัญ
-const priority=["MAIN","HD","1080","720","FAST"];
-
-servers.sort((a,b)=>{
-let aText=a.innerText.toUpperCase();
-let bText=b.innerText.toUpperCase();
-
-let aScore=priority.findIndex(p=>aText.includes(p));
-let bScore=priority.findIndex(p=>bText.includes(p));
-
-return (aScore===-1?99:aScore)-(bScore===-1?99:bScore);
+  });
 });
 
-let index=0;
-
-function tryNext(){
-if(index>=servers.length)return;
-
-servers[index].click();
-
-setTimeout(()=>{
-try{
-let video=doc.querySelector("video");
-
-if(video && video.readyState>2){
-console.log("เล่นแล้ว");
-}else{
-index++;
-tryNext();
-}
-}catch(e){
-index++;
-tryNext();
-}
-},5000);
-}
-
-tryNext();
-
-}catch(e){
-console.log("เว็บกัน iframe");
-}
-};
-
-return;
-}
-
-// 📺 TV
-iframe.src=url;
-iframe.style.display="block";
-welcome.style.display="none";
-
-if(window.innerWidth<768){
-menu.style.display="none";
-backBtn.style.display="block";
-}
-
-});
-});
-
-// HOME
-document.getElementById("homeBtn").onclick=()=>{
-iframe.src="";
-iframe.style.display="none";
-welcome.style.display="block";
-menu.style.display="block";
-backBtn.style.display="none";
-};
-
-// FULLSCREEN
-document.getElementById("fullscreenBtn").onclick=()=>{
-if(!document.fullscreenElement){
-document.documentElement.requestFullscreen();
-}else{
-document.exitFullscreen();
-}
-};
-
-// BACK
-backBtn.onclick=()=>{
-menu.style.display="block";
-backBtn.style.display="none";
-};
-    </script>
-
-</body>
-
-</html>
+</script>
