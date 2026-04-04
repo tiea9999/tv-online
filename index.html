@@ -9,119 +9,84 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
 body{display:flex;height:100vh;background:#000;color:#fff;}
 
-#menu{
-width:230px;
-background:#111;
-padding:10px;
-overflow-y:auto;
-}
+#menu{width:230px;background:#111;padding:10px;overflow-y:auto;}
+.menu-title{padding:10px;margin-top:10px;background:#e94560;border-radius:6px;cursor:pointer;text-align:center;}
+#search{width:100%;padding:8px;margin-top:10px;border:none;border-radius:6px;}
 
-.menu-title{
-padding:10px;
-margin-top:10px;
-background:#e94560;
-border-radius:6px;
-cursor:pointer;
-}
+#main{flex:1;position:relative;}
 
-.menu-link{
-padding:8px;
-cursor:pointer;
-text-align:center;
-}
-.menu-link:hover{background:#333;}
+.grid{display:flex;flex-wrap:wrap;gap:12px;padding:15px;justify-content:center;overflow:auto;height:100%;}
 
-#search{
-width:100%;
-padding:8px;
-margin-top:10px;
-border-radius:6px;
-border:none;
-}
+.card{width:110px;cursor:pointer;text-align:center;position:relative;}
+.card img{width:100%;border-radius:10px;}
 
-#main{
-flex:1;
-overflow:auto;
-}
+.star{position:absolute;top:5px;right:5px;background:#000;padding:2px 5px;cursor:pointer;}
 
-.grid{
-display:flex;
-flex-wrap:wrap;
-gap:12px;
-padding:15px;
-justify-content:center;
-}
+#playerBox{position:absolute;top:0;left:0;width:100%;height:100%;display:none;background:#000;z-index:10;}
+video{width:100%;height:100%;}
 
-.card{
-width:110px;
-cursor:pointer;
-text-align:center;
-position:relative;
-}
-
-.card img{
-width:100%;
-border-radius:10px;
-}
-
-.star{
-position:absolute;
-top:5px;
-right:5px;
-background:#000;
-padding:2px 5px;
-cursor:pointer;
-}
+iframe{width:100%;height:100%;border:none;}
 </style>
 </head>
 
 <body>
 
 <div id="menu">
-
-<div class="menu-title" onclick="goTV()">📡 ทีวี</div>
-
-<div class="menu-title" onclick="loadJSON('movie')">🎬 หนัง</div>
-
-<div class="menu-title" onclick="loadJSON('series')">📺 ซีรีส์</div>
-
-<div class="menu-title" onclick="loadFav()">⭐ รายการโปรด</div>
-
-<div class="menu-title" onclick="loadRecent()">⏱ ล่าสุด</div>
+<div class="menu-title" onclick="loadTV()">📡 ทีวี</div>
+<div class="menu-title" onclick="loadData('movie')">🎬 หนัง</div>
+<div class="menu-title" onclick="loadData('series')">📺 ซีรีส์</div>
+<div class="menu-title" onclick="loadFav()">⭐ โปรด</div>
+<div class="menu-title" onclick="vipAccess()">🔐 VIP</div>
 
 <input id="search" placeholder="ค้นหา..." oninput="search()">
-
 </div>
 
-<div id="main"></div>
+<div id="main">
+<div id="content" class="grid"><h2>เลือกเมนู</h2></div>
+<div id="playerBox"><video id="video" controls autoplay></video></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<!-- โหลด JS แทน JSON -->
+<script src="https://tiea9999.github.io/tv-online/movie.js"></script>
+<script src="https://tiea9999.github.io/tv-online/series.js"></script>
 
 <script>
 
 let currentList = [];
 
+const content = document.getElementById("content");
+const playerBox = document.getElementById("playerBox");
+const video = document.getElementById("video");
+
 // TV
-function goTV(){
-location.href = "https://tiea9999.github.io/tv/ball66.html";
+function loadTV(){
+playerBox.style.display="none";
+content.innerHTML = `<iframe src="https://tiea9999.github.io/tv/ball66.html"></iframe>`;
 }
 
-// โหลด JSON
-async function loadJSON(type){
-let url = type === "movie" ? "movie.json" : "series.json";
+// โหลดข้อมูล
+function loadData(type){
 
-const res = await fetch(url);
-const data = await res.json();
+playerBox.style.display="none";
 
-currentList = type === "movie" ? data.movies : data.series;
+if(type==="movie"){
+currentList = moviesData.movies;
+}else{
+currentList = seriesData.series;
+}
 
 render(currentList);
 }
 
 // แสดงรายการ
 function render(list){
-let html = '<div class="grid">';
+
+let html="";
 
 list.forEach(item=>{
-html += `
+html+=`
 <div class="card" onclick="play('${item.url}')">
 <img src="${item.image}">
 <div>${item.name}</div>
@@ -130,62 +95,58 @@ html += `
 `;
 });
 
-html += "</div>";
-
-document.getElementById("main").innerHTML = html;
+content.innerHTML = html;
 }
 
 // เล่น
 function play(url){
 
-// บันทึกล่าสุด
-let rec = JSON.parse(localStorage.getItem("recent")||"[]");
-rec.unshift(url);
-localStorage.setItem("recent",JSON.stringify(rec.slice(0,20)));
+content.innerHTML="";
+playerBox.style.display="block";
 
-location.href = "player.html?url=" + encodeURIComponent(url);
+video.pause();
+video.src="";
+
+if(Hls.isSupported()){
+const hls=new Hls();
+hls.loadSource(url);
+hls.attachMedia(video);
+}else{
+video.src=url;
+}
+
+video.volume=0.8;
 }
 
 // โปรด
 function addFav(e,name,img,url){
 e.stopPropagation();
-
-let fav = JSON.parse(localStorage.getItem("fav")||"[]");
-
+let fav=JSON.parse(localStorage.getItem("fav")||"[]");
 fav.push({name,image:img,url});
-
 localStorage.setItem("fav",JSON.stringify(fav));
-
 alert("เพิ่มโปรดแล้ว");
 }
 
 function loadFav(){
-let fav = JSON.parse(localStorage.getItem("fav")||"[]");
+let fav=JSON.parse(localStorage.getItem("fav")||"[]");
 render(fav);
-}
-
-// ล่าสุด
-function loadRecent(){
-let rec = JSON.parse(localStorage.getItem("recent")||"[]");
-
-let list = rec.map(u=>({
-name:"ล่าสุด",
-image:"https://via.placeholder.com/150",
-url:u
-}));
-
-render(list);
 }
 
 // ค้นหา
 function search(){
-let val = document.getElementById("search").value.toLowerCase();
-
-let filtered = currentList.filter(i =>
-i.name.toLowerCase().includes(val)
-);
-
+let val=document.getElementById("search").value.toLowerCase();
+let filtered=currentList.filter(i=>i.name.toLowerCase().includes(val));
 render(filtered);
+}
+
+// VIP
+function vipAccess(){
+let pass=prompt("ใส่รหัส VIP");
+if(pass==="9999"){
+content.innerHTML="<h2>🎉 VIP ACCESS</h2>";
+}else{
+alert("รหัสไม่ถูกต้อง");
+}
 }
 
 </script>
