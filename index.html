@@ -1,221 +1,242 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TIEA IPTV</title>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
 <style>
-body{margin:0;background:#111;color:white;font-family:sans-serif;display:flex;height:100vh}
-.sidebar{width:200px;background:#000}
-.menu-item{padding:15px;cursor:pointer}
-.menu-item:hover{background:#333}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+body{display:flex;height:100vh;background:#000;color:#fff;overflow:hidden;}
 
-.main{flex:1;display:flex;flex-direction:column}
+#menu{width:220px;background:#111;padding:15px;overflow-y:auto;z-index:10;}
+.menu-link{padding:10px;margin-bottom:5px;cursor:pointer;border-radius:6px;}
+.menu-link:hover{background:#e94560;}
 
-#player{width:100%;height:250px;background:black;}
-
-.fullscreen{
-position:fixed !important;
-top:0;left:0;
-width:100% !important;
-height:100% !important;
-z-index:9999;
+.menu-title{
+  margin-top:10px;
+  padding:10px;
+  font-weight:bold;
+  background:#222;
+  border-radius:6px;
 }
 
-.controls{
+/* PLAYER */
+#main-player{
+flex:1;
+position:relative;
 display:flex;
-gap:10px;
-padding:5px;
+justify-content:center;
+align-items:center;
 background:#000;
 }
 
-.btn{
-background:#333;
+#welcome{text-align:center;pointer-events:none;}
+
+#iframePlayer{
+position:absolute;
+width:100%;
+height:100%;
+border:none;
+opacity:0;
+transition:0.3s;
+}
+
+/* FLOAT PLAYER */
+#floatingPlayer{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:#000;
+display:none;
+z-index:9999;
+}
+
+#playerControls{
+position:absolute;
+top:10px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:10px;
+z-index:10;
+}
+
+#playerControls button{
+background:rgba(0,0,0,0.6);
+border:none;
 color:#fff;
 padding:8px 12px;
-border-radius:6px;
+border-radius:8px;
 cursor:pointer;
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
-gap:10px;
-padding:10px;
-overflow:auto;
+#playerControls button:hover{
+background:red;
 }
 
-.card{
-background:#222;
-padding:10px;
-text-align:center;
-border-radius:10px;
-cursor:pointer;
-}
-
-.card img{max-height:50px}
-
-.back-btn{
-background:#444;
-font-weight:bold;
+#floatFrame{
+width:100%;
+height:100%;
+border:none;
 }
 </style>
 </head>
 
 <body>
 
-<div class="sidebar">
-  <div class="menu-item" onclick="openLive()">🏟 ตารางแข่งขันกีฬา</div>
-  <div class="menu-item" onclick="openTVMenu()">📺 TV</div>
-  <div class="menu-item" onclick="openMovie()">🎬 Movie</div>
-  <div class="menu-item" onclick="openSeries()">🎞 Series</div>
-  
-  <div class="menu-item" onclick="openShort()">📱 หนังสั้นแนวตั้ง</div>
-  <div class="menu-item" onclick="openAnime()">🍥 อนิเมะ</div>
-  
-  <div class="menu-item" onclick="openVip()">🔒 Vip</div>
-</div>
+<div id="menu">
 
-<div class="main">
+<div class="menu-title">📺 ทีวี</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/iptv.html">3BB TV</div>
 
-<video id="player" controls autoplay playsinline preload="auto"></video>
+<div class="menu-title">🎬 หนัง</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/037hd.html">037HD</div>
 
-<div class="controls">
-  <div class="btn" onclick="toggleFullscreen()">⛶ ขยายจอ</div>
-</div>
+<div class="menu-title">📺 ซีรีส์</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/flixmono.html">FLIXMONO</div>
 
-<div id="list" class="grid"></div>
+<div class="menu-title">🔐 VIP</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">เข้า VIP</div>
 
 </div>
 
-<script src="channels.js"></script>
+<div id="main-player">
+  <div id="welcome">
+    <h1>TIEA IPTV</h1>
+    <p>เลือกเมนูเพื่อเริ่มใช้งาน</p>
+  </div>
+
+  <!-- 🔥 iframe แก้เสียงแล้ว -->
+  <iframe id="iframePlayer"
+  allow="autoplay; fullscreen; encrypted-media"
+  allowfullscreen></iframe>
+
+</div>
+
+<!-- PLAYER -->
+<div id="floatingPlayer">
+
+<div id="playerControls">
+  <button id="btnBack">⏪</button>
+  <button id="btnForward">⏩</button>
+  <button id="btnReload">🔄</button>
+  <button id="btnFullscreen">⛶</button>
+  <button id="closePlayer">✕</button>
+</div>
+
+<iframe id="floatFrame" allowfullscreen></iframe>
+
+</div>
 
 <script>
-const player = document.getElementById("player");
-const list = document.getElementById("list");
+const links=document.querySelectorAll(".menu-link");
+const iframe=document.getElementById("iframePlayer");
+const welcome=document.getElementById("welcome");
 
-let isFull = false;
-let currentIndex = 0;
-let currentSources = [];
-let hls = null;
+const floatPlayer=document.getElementById("floatingPlayer");
+const floatFrame=document.getElementById("floatFrame");
 
-/* ================= PLAY ================= */
-function play(source){
-  currentSources = Array.isArray(source) ? source : [source];
-  currentIndex = 0;
-  startPlayer();
-}
+let historyStack=[];
+let historyIndex=-1;
 
-/* ================= START ================= */
-function startPlayer(){
-  let url = currentSources[currentIndex];
+links.forEach(link=>{
+  link.addEventListener("click",()=>{
 
-  if(hls){
-    hls.destroy();
-    hls = null;
-  }
+    const url=link.dataset.url;
+    const pass=link.dataset.pass;
 
-  if(Hls.isSupported()){
-    hls = new Hls();
-    hls.loadSource(url);
-    hls.attachMedia(player);
+    // 🔐 VIP PASSWORD
+    if(pass){
+      const input=prompt("กรุณาใส่รหัส VIP");
+      if(input!==pass){
+        alert("รหัสไม่ถูกต้อง");
+        return;
+      }
+    }
 
-    hls.on(Hls.Events.MANIFEST_PARSED, ()=> player.play());
+    // 🎬 หนัง/ซีรีส์/VIP → PLAYER เทพ
+    if(url.includes("037hd") || url.includes("flixmono") || url.includes("VIP")){
+      floatFrame.src=url;
+      floatPlayer.style.display="block";
 
-    hls.on(Hls.Events.ERROR, function(event,data){
-      if(data.fatal) nextSource();
-    });
+      historyStack=historyStack.slice(0,historyIndex+1);
+      historyStack.push(url);
+      historyIndex++;
+      return;
+    }
 
-  }else{
-    player.src = url;
-    player.play();
-  }
-}
+    // 📺 TV (3BB)
+    let finalUrl = url;
 
-/* ================= NEXT ================= */
-function nextSource(){
-  currentIndex++;
-  if(currentIndex < currentSources.length){
-    startPlayer();
-  }
-}
+    if(url.includes("iptv") || url.includes("3bb")){
+      finalUrl += (url.includes("?") ? "&" : "?") + "autoplay=1&muted=0";
+    }
 
-/* ================= FULLSCREEN ================= */
-function toggleFullscreen(){
-  player.classList.toggle("fullscreen");
-  isFull = !isFull;
-}
+    iframe.style.opacity=0;
 
-/* ================= MENU ================= */
-function openTVMenu(){
-  list.innerHTML = "";
+    setTimeout(()=>{
+      iframe.src=finalUrl;
+    },100);
 
-  const groups = [
-    {name:"Digital", key:"digital"},
-    {name:"Movie", key:"movie"},
-    {name:"Sport", key:"sport"},
-    {name:"Kids", key:"kids"},
-    {name:"Documentary", key:"documentary"}
-  ];
+    iframe.onload=()=>{
+      iframe.style.opacity=1;
+      welcome.style.display="none";
 
-  groups.forEach(g=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.innerHTML=`<div style="padding:20px">${g.name}</div>`;
-    div.onclick=()=>openTVGroup(g.key);
-    list.appendChild(div);
+      // 🔊 พยายามเปิดเสียง
+      try{
+        const vid = iframe.contentWindow.document.querySelector("video");
+        if(vid){
+          vid.muted=false;
+          vid.volume=1;
+          vid.play();
+        }
+      }catch(e){}
+    };
+
   });
-}
+});
 
-/* ================= GROUP ================= */
-function openTVGroup(group){
-  list.innerHTML="";
-
-  const back=document.createElement("div");
-  back.className="card back-btn";
-  back.innerHTML="⬅️ กลับ";
-  back.onclick=openTVMenu;
-  list.appendChild(back);
-
-  const data = channels.tv[group];
-  if(!data) return;
-
-  data.forEach(ch=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.innerHTML=`<img src="${ch.logo}"><div>${ch.name}</div>`;
-    div.onclick=()=>play(ch.url);
-    list.appendChild(div);
+// 🔊 คลิกครั้งเดียวเปิดเสียง
+document.body.addEventListener("click",()=>{
+  const vids=document.querySelectorAll("video");
+  vids.forEach(v=>{
+    v.muted=false;
+    v.volume=1;
+    v.play().catch(()=>{});
   });
-}
+},{once:true});
 
-/* ================= PAGE ================= */
-function openLive(){ window.location.href="live.html"; }
-function openMovie(){ window.location.href="037hd.html"; }
-function openSeries(){ window.location.href="myseries.html"; }
+// controls
+document.getElementById("closePlayer").onclick=()=>{
+  floatPlayer.style.display="none";
+  floatFrame.src="";
+};
 
-/* 🔥 เพิ่มใหม่ */
-function openShort(){
-  window.location.href="short.html"; // <-- ใส่ลิงก์เอง
-}
-
-function openAnime(){
-  window.location.href="animegood.html"; // <-- ใส่ลิงก์เอง
-}
-
-/* VIP */
-function openVip(){
-  const password = prompt("กรุณาใส่รหัส VIP");
-  if(password === "9999"){
-    window.location.href="https://tiea9999.github.io/tv-online/VIP.html";
-  }else{
-    alert("รหัสไม่ถูกต้อง!");
+document.getElementById("btnBack").onclick=()=>{
+  if(historyIndex>0){
+    historyIndex--;
+    floatFrame.src=historyStack[historyIndex];
   }
-}
+};
+
+document.getElementById("btnForward").onclick=()=>{
+  if(historyIndex<historyStack.length-1){
+    historyIndex++;
+    floatFrame.src=historyStack[historyIndex];
+  }
+};
+
+document.getElementById("btnReload").onclick=()=>{
+  floatFrame.src=floatFrame.src;
+};
+
+document.getElementById("btnFullscreen").onclick=()=>{
+  if(floatFrame.requestFullscreen){
+    floatFrame.requestFullscreen();
+  }
+};
 </script>
 
 </body>
