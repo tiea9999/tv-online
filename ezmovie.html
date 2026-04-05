@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV STABLE</title>
+<title>TIEA IPTV</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -11,28 +11,47 @@
 <style>
 body{margin:0;display:flex;background:#000;color:#fff;font-family:Kanit}
 
-#menu{width:220px;background:#111;padding:10px}
+/* MENU */
+#menu{width:220px;background:#111;padding:10px;overflow-y:auto}
 .menu-btn{padding:10px;margin-top:5px;background:#333;border-radius:6px;cursor:pointer}
 .menu-btn:hover{background:#e94560}
 
+/* GRID */
 #content{flex:1;padding:10px;overflow-y:auto}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
-.card{background:#111;border-radius:8px;overflow:hidden;cursor:pointer}
-.card img{width:100%;height:180px;object-fit:cover}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+gap:10px;
+}
+.card{background:#111;border-radius:8px;cursor:pointer;overflow:hidden}
+.card img{width:100%;height:180px;object-fit:cover;background:#000}
 .title{padding:5px;font-size:12px}
 
+/* PLAYER */
 #player{
-position:fixed;top:0;left:0;width:100%;height:100%;
-background:#000;display:none;z-index:999;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:#000;
+display:none;
+z-index:999;
 }
 
 video{width:100%;height:100%}
 
+/* ❌ CLOSE */
 #closeBtn{
-position:absolute;top:15px;right:15px;
-background:red;color:#fff;border:none;
-border-radius:50%;width:40px;height:40px;
-cursor:pointer;font-size:18px;
+position:absolute;
+top:15px;
+right:15px;
+background:red;
+color:#fff;
+border:none;
+border-radius:50%;
+width:40px;height:40px;
+font-size:18px;
+cursor:pointer;
+z-index:1000;
 }
 </style>
 </head>
@@ -76,6 +95,7 @@ const PLAYLISTS = [
 const grid=document.getElementById("grid");
 const video=document.getElementById("video");
 
+/* ===== โหลดรายการ ===== */
 function loadList(i){
 
 grid.innerHTML="กำลังโหลด...";
@@ -90,19 +110,13 @@ data.forEach(item=>{
 
 const img = item.poster || item.image || item.logo || "https://via.placeholder.com/300x450";
 
-// 🔥 รวมลิงค์
-let urls = [];
-
-if(item.servers){
-item.servers.forEach(s=>urls.push(s.url));
-}
-
-if(item.stream) urls.push(item.stream);
-if(item.url) urls.push(item.url);
-if(item.file) urls.push(item.file);
-if(item.link) urls.push(item.link);
-
-urls = [...new Set(urls)];
+// 🔥 หา URL จริง (ตัวสำคัญมาก)
+let url =
+item.stream ||
+item.url ||
+item.file ||
+item.link ||
+(item.servers && item.servers[0] ? item.servers[0].url : null);
 
 const card=document.createElement("div");
 card.className="card";
@@ -113,11 +127,14 @@ card.innerHTML=`
 `;
 
 card.onclick=()=>{
-if(urls.length===0){
-alert("❌ ไม่มีลิงค์");
+
+if(!url){
+alert("❌ ไม่มีลิงค์ในรายการนี้");
 return;
 }
-playStable(urls);
+
+play(url);
+
 };
 
 grid.appendChild(card);
@@ -125,69 +142,36 @@ grid.appendChild(card);
 });
 
 });
+
 }
 
-/* 🔥 PLAYER เสถียร */
-function playStable(urls){
+/* ===== PLAYER ===== */
+function play(url){
 
 document.getElementById("player").style.display="block";
 
-let index = 0;
+if(url.includes(".m3u8")){
 
-function tryPlay(){
-
-let url = urls[index];
-
-video.pause();
-video.src = "";
-
-if(url.includes(".m3u8") && Hls.isSupported()){
-
-const hls = new Hls();
+if(Hls.isSupported()){
+const hls=new Hls();
 hls.loadSource(url);
 hls.attachMedia(video);
-
 hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-video.play().catch(()=>{});
+video.play();
 });
-
-// รอจริง 4 วิ
-setTimeout(()=>{
-if(video.readyState < 2){
-hls.destroy();
-next();
+}else{
+video.src=url;
+video.play();
 }
-},4000);
-
-hls.on(Hls.Events.ERROR,()=>next());
 
 }else{
-
-video.src = url;
-
-video.onloadedmetadata = ()=>{
-video.play().catch(()=>{});
-};
-
-video.onerror = ()=>next();
-
+video.src=url;
+video.play();
 }
 
 }
 
-function next(){
-index++;
-if(index < urls.length){
-tryPlay();
-}else{
-alert("❌ เล่นไม่ได้");
-}
-}
-
-tryPlay();
-}
-
-/* ปิด */
+/* ===== ปิด ===== */
 function closePlayer(){
 video.pause();
 video.src="";
