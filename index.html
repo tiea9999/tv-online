@@ -5,24 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TIEA IPTV PRO</title>
 
-<!-- 🔥 Firebase CDN -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
 body{display:flex;height:100vh;background:#000;color:#fff;}
-
 #menu{width:230px;background:#111;padding:10px;overflow-y:auto;}
 .menu-title{padding:10px;margin-top:10px;background:#e94560;border-radius:6px;cursor:pointer;text-align:center;}
-
 #main{flex:1;position:relative;}
-
 .grid{display:flex;flex-wrap:wrap;gap:12px;padding:15px;justify-content:center;overflow:auto;height:100%;}
-
 .card{width:110px;cursor:pointer;text-align:center;}
 .card img{width:100%;border-radius:10px;}
-
 #playerBox{position:absolute;top:0;left:0;width:100%;height:100%;display:none;background:#000;}
 video{width:100%;height:100%;}
 iframe{width:100%;height:100%;border:none;}
@@ -31,84 +26,78 @@ iframe{width:100%;height:100%;border:none;}
 
 <body>
 
-<!-- MENU -->
 <div id="menu">
 <div class="menu-title" onclick="loadTV()">📡 ทีวี</div>
-<div class="menu-title" onclick="loadData('movie')">🎬 หนัง</div>
-<div class="menu-title" onclick="loadData('series')">📺 ซีรีส์</div>
+<div class="menu-title" onclick="loadMovies()">🎬 หนัง</div>
+<div class="menu-title" onclick="loadSeries()">📺 ซีรีส์</div>
 
 <div class="menu-title" onclick="register()">📝 สมัคร</div>
 <div class="menu-title" onclick="login()">🔐 ล็อกอิน</div>
 <div class="menu-title" onclick="logout()">🚪 ออก</div>
 
-<div class="menu-title" onclick="vipAccess()">🔐 VIP</div>
+<div class="menu-title" onclick="loadVIP()">🔐 VIP</div>
 </div>
 
-<!-- MAIN -->
 <div id="main">
 <div id="content" class="grid"><h2>เลือกเมนู</h2></div>
 <div id="playerBox"><video id="video" controls autoplay></video></div>
 </div>
 
-<!-- HLS -->
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
-<!-- DATA -->
-<script src="https://tiea9999.github.io/tv-online/movie.js"></script>
-<script src="https://tiea9999.github.io/tv-online/series.js"></script>
-<script src="https://tiea9999.github.io/tv-online/vip.js"></script>
 
 <script>
 
-//////////////////////////////////////////////////
-// 🔥 FIREBASE CONFIG (ของคุณ)
-//////////////////////////////////////////////////
+// 🔥 Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyD56tjCIPBM3nctC5P2NzBgLOShcbx1w8A",
-  authDomain: "tiea-iptv.firebaseapp.com",
-  projectId: "tiea-iptv",
-  storageBucket: "tiea-iptv.firebasestorage.app",
-  messagingSenderId: "1031384335454",
-  appId: "1:1031384335454:web:34e41ad2d93705834920cf",
-  measurementId: "G-Z9G1KQJ3HB"
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
 };
 
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
 
-//////////////////////////////////////////////////
+const auth = firebase.auth();
+const db = firebase.firestore();
+
 // 📡 TV
-//////////////////////////////////////////////////
 function loadTV(){
 document.getElementById("playerBox").style.display="none";
 document.getElementById("content").innerHTML =
 `<iframe src="https://tiea9999.github.io/tv/ball66.html"></iframe>`;
 }
 
-//////////////////////////////////////////////////
-// 🎬 DATA
-//////////////////////////////////////////////////
-let currentList = [];
+// 🎬 โหลดแบบ realtime
+function loadMovies(){
+listenData("movies");
+}
 
-function loadData(type){
+function loadSeries(){
+listenData("series");
+}
+
+function loadVIP(){
+
+if(!auth.currentUser){
+alert("❌ ต้องล็อกอินก่อน");
+return;
+}
+
+listenData("vip");
+}
+
+// 🔥 ฟังข้อมูล realtime
+function listenData(collection){
 
 document.getElementById("playerBox").style.display="none";
 
-if(type==="movie"){
-currentList = moviesData.movies;
-}else{
-currentList = seriesData.series;
-}
-
-render(currentList);
-}
-
-function render(list){
+db.collection(collection).onSnapshot(snapshot=>{
 
 let html="";
 
-list.forEach(item=>{
-html+=`
+snapshot.forEach(doc=>{
+let item = doc.data();
+
+html += `
 <div class="card" onclick="play('${item.url}')">
 <img src="${item.image}">
 <div>${item.name}</div>
@@ -117,11 +106,12 @@ html+=`
 });
 
 document.getElementById("content").innerHTML = html;
+
+});
+
 }
 
-//////////////////////////////////////////////////
 // ▶️ PLAYER
-//////////////////////////////////////////////////
 function play(url){
 
 document.getElementById("content").innerHTML="";
@@ -140,12 +130,9 @@ hls.attachMedia(video);
 video.src=url;
 }
 
-video.volume=0.8;
 }
 
-//////////////////////////////////////////////////
-// 👤 AUTH SYSTEM (Firebase)
-//////////////////////////////////////////////////
+// 👤 AUTH
 function register(){
 let email = prompt("Email");
 let pass = prompt("Password");
@@ -167,23 +154,6 @@ auth.signInWithEmailAndPassword(email, pass)
 function logout(){
 auth.signOut();
 alert("ออกแล้ว");
-}
-
-//////////////////////////////////////////////////
-// 🔐 VIP (ล็อกอินก่อน)
-//////////////////////////////////////////////////
-function vipAccess(){
-
-let user = auth.currentUser;
-
-if(!user){
-alert("❌ ต้องล็อกอินก่อน");
-return;
-}
-
-currentList = vipData.vip;
-render(currentList);
-
 }
 
 </script>
