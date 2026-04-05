@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TIEA IPTV PRO</title>
 
-<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
@@ -31,11 +30,9 @@ button{padding:8px 12px;margin:10px;background:#e94560;color:#fff;border:none;bo
 <div class="menu-title" onclick="loadTV()">📡 ทีวี</div>
 <div class="menu-title" onclick="loadMovies()">🎬 หนัง</div>
 <div class="menu-title" onclick="loadSeries()">📺 ซีรีส์</div>
-
 <div class="menu-title" onclick="register()">📝 สมัคร</div>
 <div class="menu-title" onclick="login()">🔐 ล็อกอิน</div>
 <div class="menu-title" onclick="logout()">🚪 ออก</div>
-
 <div class="menu-title" onclick="loadVIP()">🔐 VIP</div>
 </div>
 
@@ -54,7 +51,6 @@ const firebaseConfig = {
   projectId: "YOUR_PROJECT_ID",
 };
 firebase.initializeApp(firebaseConfig);
-
 const auth = firebase.auth();
 const db = firebase.firestore();
 
@@ -68,17 +64,21 @@ document.getElementById("content").innerHTML =
 // 🎬 Movies
 function loadMovies(){ listenData("movies"); }
 
-// 📺 Series แบบ Season + ตอน
+// 🔐 VIP
+function loadVIP(){
+if(!auth.currentUser){ alert("❌ ต้องล็อกอินก่อน"); return; }
+listenData("vip");
+}
+
+// 📺 Series
 function loadSeries(){
-
 document.getElementById("playerBox").style.display="none";
-
 db.collection("series").onSnapshot(snapshot=>{
 let html="";
 snapshot.forEach(doc=>{
 let item = doc.data();
 html += `
-<div class="card" onclick='openSeries(${JSON.stringify(item)})'>
+<div class="card" onclick="openSeriesSafe('${item.name}','${item.image}', ${JSON.stringify(item.episodes)})">
 <img src="${item.image}">
 <div>${item.name}</div>
 </div>
@@ -88,13 +88,7 @@ document.getElementById("content").innerHTML = html;
 });
 }
 
-// 🔐 VIP
-function loadVIP(){
-if(!auth.currentUser){ alert("❌ ต้องล็อกอินก่อน"); return; }
-listenData("vip");
-}
-
-// 🔥 ฟังก์ชัน realtime สำหรับ movies หรือ vip
+// 🔥 ฟังก์ชัน realtime สำหรับ movies / vip
 function listenData(collection){
 document.getElementById("playerBox").style.display="none";
 db.collection(collection).onSnapshot(snapshot=>{
@@ -116,11 +110,9 @@ document.getElementById("content").innerHTML = html;
 function play(url){
 document.getElementById("content").innerHTML="";
 document.getElementById("playerBox").style.display="block";
-
 let video = document.getElementById("video");
 video.pause();
 video.src="";
-
 if(Hls.isSupported()){
 const hls=new Hls();
 hls.loadSource(url);
@@ -153,13 +145,12 @@ auth.signOut();
 alert("ออกแล้ว");
 }
 
-// 🎬 Series: เปิด Season + ตอน
-function openSeries(series){
+// 🎬 Series: เปิดหน้ารายการตอนมือถือใช้งานได้
+function openSeriesSafe(name, image, episodes){
 let html = `<button onclick="loadSeries()">⬅ กลับ</button>`;
-html += `<h2 style='text-align:center;'>${series.name}</h2>`;
-
-// ถ้ามี Season แยกตาม episodes
-series.episodes.forEach((ep,index)=>{
+html += `<h2 style='text-align:center;'>${name}</h2>`;
+html += `<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">`;
+episodes.forEach(ep=>{
 html += `
 <div class="card" onclick="play('${ep.url}')">
 <div style="padding:10px;background:#222;border-radius:10px;">
@@ -168,10 +159,9 @@ ${ep.ep}
 </div>
 `;
 });
-
+html += `</div>`;
 document.getElementById("content").innerHTML = html;
 }
-
 </script>
 
 </body>
