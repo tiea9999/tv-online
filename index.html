@@ -1,182 +1,116 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIEA IPTV</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: sans-serif;
-        }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+body{display:flex;height:100vh;background:#000;color:#fff;overflow:hidden;}
 
-        body {
-            display: flex;
-            height: 100vh;
-            background: #000;
-            color: #fff;
-            overflow: hidden;
-        }
+#menu{width:220px;background:#111;padding:15px;overflow-y:auto;}
+.logo-box{text-align:center;margin-bottom:15px;}
+.logo-box img{width:160px;}
 
-        /* MENU */
-        #menu {
-            width: 220px;
-            background: #111;
-            padding: 15px;
-            overflow-y: auto;
-        }
+.top-buttons{display:flex;gap:8px;margin-bottom:10px;}
+.home-btn,.fullscreen-btn{flex:1;padding:10px;text-align:center;border-radius:8px;cursor:pointer;font-weight:bold;}
+.home-btn{background:#0072ff;}
+.fullscreen-btn{background:#ff512f;}
 
-        .logo-box {
-            text-align: center;
-            margin-bottom: 15px;
-        }
+.menu-title{margin-top:10px;padding:10px;background:#222;border-radius:6px;}
+.menu-link{padding:10px;margin-top:5px;cursor:pointer;border-radius:6px;}
+.menu-link:hover{background:#e94560;}
 
-        .logo-box img {
-            width: 160px;
-        }
+#main-player{flex:1;position:relative;display:flex;justify-content:center;align-items:center;background:#000;}
+#welcome{text-align:center;}
 
-        /* TOP BUTTONS */
-        .top-buttons {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
+#iframePlayer{
+position:absolute;
+width:100%;
+height:100%;
+border:none;
+display:none;
+}
 
-        .home-btn,
-        .fullscreen-btn {
-            flex: 1;
-            padding: 10px;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+#backMenuBtn{
+position:fixed;
+top:10px;
+left:10px;
+background:red;
+color:#fff;
+padding:8px 12px;
+border-radius:8px;
+z-index:9999;
+display:none;
+}
 
-        .home-btn {
-            background: #0072ff;
-        }
-
-        .fullscreen-btn {
-            background: #ff512f;
-        }
-
-        .menu-title {
-            margin-top: 10px;
-            padding: 10px;
-            background: #222;
-            border-radius: 6px;
-        }
-
-        .menu-link {
-            padding: 10px;
-            margin-top: 5px;
-            cursor: pointer;
-            border-radius: 6px;
-        }
-
-        .menu-link:hover {
-            background: #e94560;
-        }
-
-        /* PLAYER */
-        #main-player {
-            flex: 1;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-        }
-
-        #welcome {
-            text-align: center;
-        }
-
-        #iframePlayer {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: none;
-        }
-
-        /* MOBILE BACK BTN */
-        #backMenuBtn {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background: red;
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 8px;
-            z-index: 9999;
-            display: none;
-        }
-
-        /* MOBILE */
-        @media(max-width:768px) {
-            #menu {
-                position: absolute;
-                height: 100%;
-                z-index: 1000;
-            }
-        }
-    </style>
+@media(max-width:768px){
+#menu{position:absolute;height:100%;z-index:1000;}
+}
+</style>
 </head>
 
 <body>
 
-    <div id="menu">
+<div id="menu">
 
-        <div class="logo-box">
-            <img src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a.png?dl=1">
-        </div>
+<div class="logo-box">
+<img src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a.png?dl=1">
+</div>
 
-        <div class="top-buttons">
-            <div class="home-btn" id="homeBtn">🏠 หน้าแรก</div>
-            <div class="fullscreen-btn" id="fullscreenBtn">⛶ เต็มจอ</div>
-        </div>
+<div class="top-buttons">
+<div class="home-btn" id="homeBtn">🏠 หน้าแรก</div>
+<div class="fullscreen-btn" id="fullscreenBtn">⛶ เต็มจอ</div>
+</div>
 
-        <div class="menu-title">📺 ทีวี</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL</div>
+<div class="menu-title">📺 ทีวี</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL</div>
 
-        <div class="menu-title">🎬 หนัง</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ezmovie.html
-">EZMOVIE</div>
+<div class="menu-title">🎬 หนัง</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ezmovie.html">EZMOVIE</div>
 
-        <div class="menu-title">📺 ซีรีส์</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/goseries4k.html">GOSERIES</div>
+<div class="menu-title">📺 ซีรีส์</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/goseries4k.html">GOSERIES</div>
 
-        <div class="menu-title">🔐 VIP</div>
-        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">เข้า VIP</div>
+<div class="menu-title">🔐 VIP</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">เข้า VIP</div>
 
-    </div>
+</div>
 
-    <div id="main-player">
+<div id="main-player">
 
-        <div id="welcome">
-            <h1>TIEA IPTV</h1>
-            <p>เลือกเมนูเพื่อเริ่มใช้งาน</p>
-        </div>
+<div id="welcome">
+<h1>TIEA IPTV</h1>
+<p>เลือกเมนูเพื่อเริ่มใช้งาน</p>
+</div>
 
-        <iframe id="iframePlayer"></iframe>
+<iframe id="iframePlayer"
+sandbox="allow-scripts allow-same-origin allow-forms allow-presentation allow-popups allow-popups-to-escape-sandbox"
+allow="autoplay; fullscreen">
+</iframe>
 
-    </div>
+</div>
 
-    <div id="backMenuBtn">☰ เมนู</div>
+<div id="backMenuBtn">☰ เมนู</div>
 
-    <script>
-        const links=document.querySelectorAll(".menu-link");
+<script>
+const links=document.querySelectorAll(".menu-link");
 const iframe=document.getElementById("iframePlayer");
 const welcome=document.getElementById("welcome");
 const menu=document.getElementById("menu");
 const backBtn=document.getElementById("backMenuBtn");
 
-// MENU CLICK
+// 🔥 BLOCK LINK OPEN NEW TAB
+window.addEventListener("click",function(e){
+    if(e.target.tagName === "A"){
+        e.preventDefault();
+    }
+},true);
+
+// 🔥 BLOCK window.open จาก iframe
+window.open = function(){ return null; };
+
 links.forEach(link=>{
 link.addEventListener("click",()=>{
 
@@ -188,23 +122,10 @@ const input=prompt("ใส่รหัส VIP");
 if(input!==pass)return;
 }
 
-// 🎬 หนัง/ซีรีส์ → เปิดใหม่ (แก้จอดำ)
-if(
-url.includes("037hd") ||
-url.includes("flixmono") ||
-url.includes("movie") ||
-url.includes("series")
-){
-window.open(url,"_blank");
-return;
-}
+iframe.src = url;
+iframe.style.display = "block";
+welcome.style.display = "none";
 
-// 📺 TV
-iframe.src=url;
-iframe.style.display="block";
-welcome.style.display="none";
-
-// 📱 mobile
 if(window.innerWidth<768){
 menu.style.display="none";
 backBtn.style.display="block";
@@ -236,8 +157,8 @@ backBtn.onclick=()=>{
 menu.style.display="block";
 backBtn.style.display="none";
 };
-    </script>
+</script>
 
 </body>
-
 </html>
+
