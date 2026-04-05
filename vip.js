@@ -1,14 +1,5 @@
-var vipData = {
-  vip: [
-    {
-      name: "VIP Movie 1",
-      image: "https://via.placeholder.com/150",
-      url: "https://tiea9999.github.io/tv/VIP.html"
-    },
-    {
-      name: "VIP Movie 2",
-      image: "https://via.placeholder.com/150",
-      url: "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
-    }
-  ]
-};
+{
+  "name": "VIP Movie Example",
+  "image": "https://www.24hd.net/wp-content/uploads/2026/04/Agent-from-Above-2026.webp",
+  "url": "https://media.vdohls.com/6dUIi-x9Cf_ng/video.m3u8"
+}
