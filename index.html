@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TIEA IPTV PRO</title>
 
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
@@ -16,11 +17,11 @@ body{display:flex;height:100vh;background:#000;color:#fff;}
 .menu-title{padding:10px;margin-top:10px;background:#e94560;border-radius:6px;cursor:pointer;text-align:center;}
 #main{flex:1;position:relative;}
 .grid{display:flex;flex-wrap:wrap;gap:12px;padding:15px;justify-content:center;overflow:auto;height:100%;}
-.card{width:110px;cursor:pointer;text-align:center;}
+.card{width:120px;cursor:pointer;text-align:center;}
 .card img{width:100%;border-radius:10px;}
 #playerBox{position:absolute;top:0;left:0;width:100%;height:100%;display:none;background:#000;}
 video{width:100%;height:100%;}
-iframe{width:100%;height:100%;border:none;}
+button{padding:8px 12px;margin:10px;background:#e94560;color:#fff;border:none;border-radius:6px;cursor:pointer;}
 </style>
 </head>
 
@@ -46,14 +47,12 @@ iframe{width:100%;height:100%;border:none;}
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <script>
-
 // 🔥 Firebase
 const firebaseConfig = {
   apiKey: "YOUR_KEY",
   authDomain: "YOUR_DOMAIN",
   projectId: "YOUR_PROJECT_ID",
 };
-
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
@@ -66,37 +65,42 @@ document.getElementById("content").innerHTML =
 `<iframe src="https://tiea9999.github.io/tv/ball66.html"></iframe>`;
 }
 
-// 🎬 โหลดแบบ realtime
-function loadMovies(){
-listenData("movies");
-}
+// 🎬 Movies
+function loadMovies(){ listenData("movies"); }
 
+// 📺 Series แบบ Season + ตอน
 function loadSeries(){
-listenData("series");
-}
-
-function loadVIP(){
-
-if(!auth.currentUser){
-alert("❌ ต้องล็อกอินก่อน");
-return;
-}
-
-listenData("vip");
-}
-
-// 🔥 ฟังข้อมูล realtime
-function listenData(collection){
 
 document.getElementById("playerBox").style.display="none";
 
-db.collection(collection).onSnapshot(snapshot=>{
-
+db.collection("series").onSnapshot(snapshot=>{
 let html="";
-
 snapshot.forEach(doc=>{
 let item = doc.data();
+html += `
+<div class="card" onclick='openSeries(${JSON.stringify(item)})'>
+<img src="${item.image}">
+<div>${item.name}</div>
+</div>
+`;
+});
+document.getElementById("content").innerHTML = html;
+});
+}
 
+// 🔐 VIP
+function loadVIP(){
+if(!auth.currentUser){ alert("❌ ต้องล็อกอินก่อน"); return; }
+listenData("vip");
+}
+
+// 🔥 ฟังก์ชัน realtime สำหรับ movies หรือ vip
+function listenData(collection){
+document.getElementById("playerBox").style.display="none";
+db.collection(collection).onSnapshot(snapshot=>{
+let html="";
+snapshot.forEach(doc=>{
+let item = doc.data();
 html += `
 <div class="card" onclick="play('${item.url}')">
 <img src="${item.image}">
@@ -104,21 +108,16 @@ html += `
 </div>
 `;
 });
-
 document.getElementById("content").innerHTML = html;
-
 });
-
 }
 
 // ▶️ PLAYER
 function play(url){
-
 document.getElementById("content").innerHTML="";
 document.getElementById("playerBox").style.display="block";
 
 let video = document.getElementById("video");
-
 video.pause();
 video.src="";
 
@@ -129,14 +128,13 @@ hls.attachMedia(video);
 }else{
 video.src=url;
 }
-
+video.volume=0.8;
 }
 
 // 👤 AUTH
 function register(){
 let email = prompt("Email");
 let pass = prompt("Password");
-
 auth.createUserWithEmailAndPassword(email, pass)
 .then(()=>alert("สมัครสำเร็จ"))
 .catch(e=>alert(e.message));
@@ -145,7 +143,6 @@ auth.createUserWithEmailAndPassword(email, pass)
 function login(){
 let email = prompt("Email");
 let pass = prompt("Password");
-
 auth.signInWithEmailAndPassword(email, pass)
 .then(()=>alert("ล็อกอินแล้ว"))
 .catch(()=>alert("ผิด"));
@@ -154,6 +151,25 @@ auth.signInWithEmailAndPassword(email, pass)
 function logout(){
 auth.signOut();
 alert("ออกแล้ว");
+}
+
+// 🎬 Series: เปิด Season + ตอน
+function openSeries(series){
+let html = `<button onclick="loadSeries()">⬅ กลับ</button>`;
+html += `<h2 style='text-align:center;'>${series.name}</h2>`;
+
+// ถ้ามี Season แยกตาม episodes
+series.episodes.forEach((ep,index)=>{
+html += `
+<div class="card" onclick="play('${ep.url}')">
+<div style="padding:10px;background:#222;border-radius:10px;">
+${ep.ep}
+</div>
+</div>
+`;
+});
+
+document.getElementById("content").innerHTML = html;
 }
 
 </script>
