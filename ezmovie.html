@@ -1,93 +1,198 @@
-<!-- ไฟล์นี้แก้ให้ "กดแล้วมีเสียงทันที" เรียบร้อยแล้ว -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV</title>
+<title>TIEA IPTV STABLE</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-<script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
-<script>jwplayer.key="XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";</script>
 
 <style>
-body{margin:0;background:#000;color:#fff;font-family:Kanit}
+body{margin:0;display:flex;background:#000;color:#fff;font-family:Kanit}
+
+#menu{width:220px;background:#111;padding:10px}
+.menu-btn{padding:10px;margin-top:5px;background:#333;border-radius:6px;cursor:pointer}
+.menu-btn:hover{background:#e94560}
+
+#content{flex:1;padding:10px;overflow-y:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.card{background:#111;border-radius:8px;overflow:hidden;cursor:pointer}
+.card img{width:100%;height:180px;object-fit:cover}
+.title{padding:5px;font-size:12px}
+
+#player{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:#000;display:none;z-index:999;
+}
+
+video{width:100%;height:100%}
+
+#closeBtn{
+position:absolute;top:15px;right:15px;
+background:red;color:#fff;border:none;
+border-radius:50%;width:40px;height:40px;
+cursor:pointer;font-size:18px;
+}
 </style>
 </head>
+
 <body>
 
-<video id="videoPlayer" controls playsinline autoplay muted style="width:100%;height:100%"></video>
-<div id="jw-player"></div>
+<div id="menu">
+<div class="menu-btn" onclick="loadList(0)">หนังมาใหม่</div>
+<div class="menu-btn" onclick="loadList(1)">หนังไทย</div>
+<div class="menu-btn" onclick="loadList(2)">หนังเอเซีย</div>
+<div class="menu-btn" onclick="loadList(3)">หนังฝรั่ง</div>
+<div class="menu-btn" onclick="loadList(4)">หนังเกาหลี</div>
+<div class="menu-btn" onclick="loadList(5)">หนังญี่ปุ่น</div>
+<div class="menu-btn" onclick="loadList(6)">แอคชั่น</div>
+<div class="menu-btn" onclick="loadList(7)">ดราม่า</div>
+<div class="menu-btn" onclick="loadList(8)">ผจญภัย</div>
+</div>
+
+<div id="content">
+<div class="grid" id="grid"></div>
+</div>
+
+<div id="player">
+<button id="closeBtn" onclick="closePlayer()">✕</button>
+<video id="video" controls playsinline></video>
+</div>
 
 <script>
-let video = document.getElementById("videoPlayer");
-let jwInstance = null;
+const PLAYLISTS = [
+"https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังมาใหม่.json",
+"https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังไทย.json",
+"https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังเอเชีย.json",
+"https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังฝรั่ง.json",
+"https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังเกาหลี.json",
+"https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังญี่ปุ่น.json",
+"https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังแอคชั่นบู๊_action.json",
+"https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังดราม่า_drama.json",
+"https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังผจญภัย_adventure.json"
+];
 
-function forceUnmute(video){
-    if(!video) return;
+const grid=document.getElementById("grid");
+const video=document.getElementById("video");
 
-    video.muted = false;
-    video.volume = 1;
+function loadList(i){
 
-    const p = video.play();
-    if(p !== undefined){
-        p.then(()=>{
-            video.muted = false;
-            video.volume = 1;
-        }).catch(()=>{});
-    }
+grid.innerHTML="กำลังโหลด...";
+
+fetch(PLAYLISTS[i]+"?v="+Date.now())
+.then(r=>r.json())
+.then(data=>{
+
+grid.innerHTML="";
+
+data.forEach(item=>{
+
+const img = item.poster || item.image || item.logo || "https://via.placeholder.com/300x450";
+
+// 🔥 รวมลิงค์
+let urls = [];
+
+if(item.servers){
+item.servers.forEach(s=>urls.push(s.url));
 }
 
-function playMP4(url){
-    video.src = url;
-    video.play().then(()=>{
-        forceUnmute(video);
-    }).catch(()=>{});
+if(item.stream) urls.push(item.stream);
+if(item.url) urls.push(item.url);
+if(item.file) urls.push(item.file);
+if(item.link) urls.push(item.link);
+
+urls = [...new Set(urls)];
+
+const card=document.createElement("div");
+card.className="card";
+
+card.innerHTML=`
+<img src="${img}" onerror="this.src='https://via.placeholder.com/300x450'">
+<div class="title">${item.title}</div>
+`;
+
+card.onclick=()=>{
+if(urls.length===0){
+alert("❌ ไม่มีลิงค์");
+return;
+}
+playStable(urls);
+};
+
+grid.appendChild(card);
+
+});
+
+});
 }
 
-function playHLS(url){
-    if(Hls.isSupported()){
-        const hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(video);
+/* 🔥 PLAYER เสถียร */
+function playStable(urls){
 
-        hls.on(Hls.Events.MANIFEST_PARSED, function(){
-            video.play().then(()=>{
-                forceUnmute(video);
-            }).catch(()=>{});
-        });
-    }else{
-        video.src = url;
-        video.addEventListener("loadedmetadata", ()=>{
-            video.play().then(()=>{
-                forceUnmute(video);
-            }).catch(()=>{});
-        },{once:true});
-    }
-}
+document.getElementById("player").style.display="block";
 
-function playJW(url){
-    jwInstance = jwplayer("jw-player").setup({
-        file: url,
-        width:"100%",
-        height:"100%",
-        autostart:true
-    });
+let index = 0;
 
-    jwInstance.on('ready', function(){
-        jwInstance.setMute(false);
-        jwInstance.setVolume(100);
-    });
-}
+function tryPlay(){
 
-// 🔥 ตัวอย่างทดสอบ
+let url = urls[index];
+
+video.pause();
+video.src = "";
+
+if(url.includes(".m3u8") && Hls.isSupported()){
+
+const hls = new Hls();
+hls.loadSource(url);
+hls.attachMedia(video);
+
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{
+video.play().catch(()=>{});
+});
+
+// รอจริง 4 วิ
 setTimeout(()=>{
-    playHLS("https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8");
-},1000);
+if(video.readyState < 2){
+hls.destroy();
+next();
+}
+},4000);
 
+hls.on(Hls.Events.ERROR,()=>next());
+
+}else{
+
+video.src = url;
+
+video.onloadedmetadata = ()=>{
+video.play().catch(()=>{});
+};
+
+video.onerror = ()=>next();
+
+}
+
+}
+
+function next(){
+index++;
+if(index < urls.length){
+tryPlay();
+}else{
+alert("❌ เล่นไม่ได้");
+}
+}
+
+tryPlay();
+}
+
+/* ปิด */
+function closePlayer(){
+video.pause();
+video.src="";
+document.getElementById("player").style.display="none";
+}
 </script>
 
 </body>
