@@ -3,109 +3,210 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV PRO</title>
-
-<!-- Firebase SDK -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
-  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-  // 🔹 Firebase Config
-  const firebaseConfig = {
-    apiKey: "AIzaSyD56tjCIPBM3nctC5P2NzBgLOShcbx1w8A",
-    authDomain: "tiea-iptv.firebaseapp.com",
-    projectId: "tiea-iptv",
-    storageBucket: "tiea-iptv.firebasestorage.app",
-    messagingSenderId: "1031384335454",
-    appId: "1:1031384335454:web:34e41ad2d93705834920cf",
-    measurementId: "G-Z9G1KQJ3HB"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const db = getFirestore(app);
-
-  window.loadData = async function(type){
-    document.getElementById("playerBox").style.display="none";
-    const querySnapshot = await getDocs(collection(db, type));
-    let html = "";
-
-    querySnapshot.forEach(doc => {
-      const data = doc.data();
-      if(type === "series"){
-        html += `
-          <div class="card" onclick="showEpisodes('${doc.id}')">
-            <img src="${data.image}">
-            <div>${data.name}</div>
-          </div>
-        `;
-      } else {
-        html += `
-          <div class="card" onclick="play('${data.url}')">
-            <img src="${data.image}">
-            <div>${data.name}</div>
-          </div>
-        `;
-      }
-    });
-
-    document.getElementById("content").innerHTML = html;
-  }
-
-  // 🔹 Player
-  window.play = function(url){
-    document.getElementById("content").innerHTML="";
-    document.getElementById("playerBox").style.display="block";
-    let video = document.getElementById("video");
-    video.pause();
-    video.src = url;
-    video.volume = 0.8;
-    video.play();
-  }
-
-  // 🔹 ซีรีย์ Episodes
-  window.showEpisodes = async function(docId){
-    const docRef = await getDocs(collection(db, "series"));
-    const docSnap = docRef.docs.find(d => d.id === docId);
-    const episodes = docSnap.data().episodes;
-    let html = `<h2>${docSnap.data().name}</h2>`;
-    episodes.forEach(ep => {
-      html += `<div class="card" onclick="play('${ep.url}')"><div>${ep.ep}</div></div>`;
-    });
-    document.getElementById("content").innerHTML = html;
-  }
-
-</script>
+<title>TIEA IPTV</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
-body{display:flex;height:100vh;background:#000;color:#fff;}
-#menu{width:230px;background:#111;padding:10px;overflow-y:auto;}
-.menu-title{padding:10px;margin-top:10px;background:#e94560;border-radius:6px;cursor:pointer;text-align:center;}
-#main{flex:1;position:relative;}
-.grid{display:flex;flex-wrap:wrap;gap:12px;padding:15px;justify-content:center;overflow:auto;height:100%;}
-.card{width:110px;cursor:pointer;text-align:center;}
-.card img{width:100%;border-radius:10px;}
-#playerBox{position:absolute;top:0;left:0;width:100%;height:100%;display:none;background:#000;}
-video{width:100%;height:100%;}
-</style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+body{display:flex;height:100vh;background:#000;color:#fff;overflow:hidden;}
 
+#menu{width:220px;background:#111;padding:15px;overflow-y:auto;z-index:10;}
+.menu-link{padding:10px;margin-bottom:5px;cursor:pointer;border-radius:6px;}
+.menu-link:hover{background:#e94560;}
+
+.menu-title{
+  margin-top:10px;
+  padding:10px;
+  font-weight:bold;
+  background:#222;
+  border-radius:6px;
+}
+
+/* PLAYER */
+#main-player{
+flex:1;
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#000;
+}
+
+#welcome{text-align:center;pointer-events:none;}
+
+#iframePlayer{
+position:absolute;
+width:100%;
+height:100%;
+border:none;
+opacity:0;
+transition:0.3s;
+}
+
+/* FLOAT PLAYER */
+#floatingPlayer{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:#000;
+display:none;
+z-index:9999;
+}
+
+#playerControls{
+position:absolute;
+top:10px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:10px;
+z-index:10;
+}
+
+#playerControls button{
+background:rgba(0,0,0,0.6);
+border:none;
+color:#fff;
+padding:8px 12px;
+border-radius:8px;
+cursor:pointer;
+}
+
+#playerControls button:hover{
+background:red;
+}
+
+#floatFrame{
+width:100%;
+height:100%;
+border:none;
+}
+</style>
 </head>
+
 <body>
 
-<!-- MENU -->
 <div id="menu">
-  <div class="menu-title" onclick="loadData('movies')">🎬 หนัง</div>
-  <div class="menu-title" onclick="loadData('series')">📺 ซีรีส์</div>
-  <div class="menu-title" onclick="loadData('vip')">🔐 VIP</div>
+
+<div class="menu-title">📺 ทีวี</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL66</div>
+
+<div class="menu-title">🎬 หนัง</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/037hd.html">24HD</div>
+
+<div class="menu-title">📺 ซีรีส์</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/goseries4k.html">GOSERIES4K</div>
+
+<div class="menu-title">🔐 VIP</div>
+<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">เข้า VIP</div>
+
 </div>
 
-<!-- MAIN -->
-<div id="main">
-  <div id="content" class="grid"><h2>เลือกเมนู</h2></div>
-  <div id="playerBox"><video id="video" controls autoplay></video></div>
+<div id="main-player">
+  <div id="welcome">
+    <h1>TIEA IPTV</h1>
+    <p>เลือกเมนูเพื่อเริ่มใช้งาน</p>
+  </div>
+  <iframe id="iframePlayer"></iframe>
 </div>
+
+<!-- PLAYER -->
+<div id="floatingPlayer">
+
+<div id="playerControls">
+  <button id="btnBack">⏪</button>
+  <button id="btnForward">⏩</button>
+  <button id="btnReload">🔄</button>
+  <button id="btnFullscreen">⛶</button>
+  <button id="closePlayer">✕</button>
+</div>
+
+<iframe id="floatFrame" allowfullscreen></iframe>
+
+</div>
+
+<script>
+const links=document.querySelectorAll(".menu-link");
+const iframe=document.getElementById("iframePlayer");
+const welcome=document.getElementById("welcome");
+
+const floatPlayer=document.getElementById("floatingPlayer");
+const floatFrame=document.getElementById("floatFrame");
+
+let historyStack=[];
+let historyIndex=-1;
+
+links.forEach(link=>{
+  link.addEventListener("click",()=>{
+
+    const url=link.dataset.url;
+    const pass=link.dataset.pass;
+
+    // 🔐 VIP PASSWORD
+    if(pass){
+      const input=prompt("กรุณาใส่รหัส VIP");
+      if(input!==pass){
+        alert("รหัสไม่ถูกต้อง");
+        return;
+      }
+    }
+
+    // 🎬 ใช้ PLAYER เทพ (หนัง/ซีรีส์/VIP)
+    if(url.includes("037hd") || url.includes("flixmono") || url.includes("VIP")){
+      floatFrame.src=url;
+      floatPlayer.style.display="block";
+
+      historyStack=historyStack.slice(0,historyIndex+1);
+      historyStack.push(url);
+      historyIndex++;
+      return;
+    }
+
+    // 📺 ทีวีปกติ
+    iframe.style.opacity=0;
+
+    setTimeout(()=>{
+      iframe.src=url;
+    },100);
+
+    iframe.onload=()=>{
+      iframe.style.opacity=1;
+      welcome.style.display="none";
+    };
+
+  });
+});
+
+// controls
+document.getElementById("closePlayer").onclick=()=>{
+  floatPlayer.style.display="none";
+  floatFrame.src="";
+};
+
+document.getElementById("btnBack").onclick=()=>{
+  if(historyIndex>0){
+    historyIndex--;
+    floatFrame.src=historyStack[historyIndex];
+  }
+};
+
+document.getElementById("btnForward").onclick=()=>{
+  if(historyIndex<historyStack.length-1){
+    historyIndex++;
+    floatFrame.src=historyStack[historyIndex];
+  }
+};
+
+document.getElementById("btnReload").onclick=()=>{
+  floatFrame.src=floatFrame.src;
+};
+
+document.getElementById("btnFullscreen").onclick=()=>{
+  if(floatFrame.requestFullscreen){
+    floatFrame.requestFullscreen();
+  }
+};
+</script>
 
 </body>
 </html>
