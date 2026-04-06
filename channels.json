@@ -15,7 +15,7 @@
                 drm: false
             	},
 				
-				/*
+		
 				{
                 name: "NBT",
                 logo: "https://ais-s.ais-vidnt.com/ais/play/origin/LIVE//channelicon/0001.png",
@@ -24,7 +24,7 @@
                 key: "86ae86a7391c481ea93eecdb740f0a14",
                 drm: true
             	},
-				*/
+			
 				
 				{
                 name: "ThaiPBS",
@@ -33,7 +33,7 @@
               	drm: false
             	},			
 		        
-			 	/*
+			 
 				{
                 name: "ThaiPBS",
                 logo: "https://ais-s.ais-vidnt.com/ais/play/origin/LIVE/channelicon/0014.png",
@@ -50,7 +50,7 @@
                 key: "3d14fd4f9d3149a79b35a7124fccbd67",
                 drm: true
             	},
-				*/
+				
 		
 				{
                 name: "T-SPorts 7",
@@ -101,14 +101,14 @@
                 drm: true
             	},
                           
-			 	/*
+			 	
 		        {
                 name: "GMM 25",
                 logo: "https://ais-s.ais-vidnt.com/ais/play/origin/LIVE/channelicon/0019.png",
                 file: "https://bcovlive-a.akamaihd.net/57d4bf695e80436d9335f4f50adbe438/ap-southeast-1/6415628290001/7e85dc4a59904e45b4fdffebd62e1d82/playlist_ssaiM.m3u8",
                 drm: false
             	},
-				*/
+				
 				
 			 	{
                 name: "GMM 25",
@@ -155,14 +155,14 @@
 				drm: true
 				},
 			
-				/*
+				
             	{
                 name: "ONE31",
                 logo: "https://ais-s.ais-vidnt.com/ais/play/origin/LIVE/channelicon/0012.png",
                 file: "https://bcovlive-a.akamaihd.net/b6603a14ea59440a95e9235e14bc9332/ap-southeast-1/6415628290001/9c3d7fc7d10840a69e48b5939ae886e0/playlist_ssaiM.m3u8",
                 drm: false
             	},
-				*/
+				
 			
             	{
                 name: "Thairath TV",
@@ -173,14 +173,14 @@
 				drm: true
             	},
 
-		        /*
+		        
 				{
                 name: "CH3 HD",
                 logo: "https://ais-s.ais-vidnt.com/ais/play/origin/LIVE/channelicon/LOGO3HD.PNG",
                 file: "https://edge2-gmmz.v2h-cdn.com/ffae/gmmz-ch3.stream/playlist.m3u8",
                 drm: false
             	},
-				*/
+				
 		        
 				{
                 name: "CH3 HD",
@@ -215,7 +215,7 @@
                	drm: false
             	},
 												
-		        /*
+		       
 				{
                 name: "PPTV",
                 logo: "https://ais-s.ais-vidnt.com/ais/play/origin/LIVE/channelicon/PPTV_2024e.jpg",
@@ -224,7 +224,7 @@
                 key: "b8c8a462008a40aa91823e0b02e8dd31",
 				drm: true
             	},
-				*/	
+				
 		
 				{
                 name: "Asian Hits",
