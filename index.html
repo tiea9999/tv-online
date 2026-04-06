@@ -1,217 +1,222 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIEA IPTV</title>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
 
-body{
-  display:flex;
-  height:100vh;
-  background:#000;
-  color:#fff;
-  overflow:hidden;
-}
+        body {
+            display: flex;
+            height: 100vh;
+            background: #000;
+            color: #fff;
+        }
 
-/* MENU */
-#menu{
-  width:230px;
-  background:#0f172a;
-  padding:15px;
-  overflow-y:auto;
-  z-index:10;
-}
+        /* ===== MENU ===== */
+        #menu {
+            width: 230px;
+            background: #111;
+            padding: 10px;
+            overflow-y: auto;
+            transition: 0.3s;
+        }
 
-.menu-title{
-  margin-top:10px;
-  padding:12px;
-  font-weight:bold;
-  background:#1e293b;
-  border-radius:10px;
-  cursor:pointer;
-  display:flex;
-  justify-content:space-between;
-}
+        .menu-title {
+            padding: 10px;
+            margin-top: 5px;
+            background: #222;
+            border-radius: 6px;
+            cursor: pointer;
+        }
 
-.menu-title span{
-  transition:0.3s;
-}
+        .menu-link {
+            padding: 8px;
+            margin-left: 10px;
+            display: none;
+            cursor: pointer;
+        }
 
-.menu-title.active span{
-  transform:rotate(90deg);
-}
+        .menu-link:hover {
+            background: #e94560;
+        }
 
-.menu-link{
-  padding:10px;
-  margin:5px 0 5px 15px;
-  cursor:pointer;
-  border-radius:8px;
-  display:none;
-  background:#020617;
-}
+        /* ===== MOBILE MENU ===== */
+        #menuToggle {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: #e94560;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
 
-.menu-link:hover{
-  background:#e94560;
-}
+        @media(max-width:768px) {
+            #menu {
+                position: fixed;
+                left: -250px;
+                top: 0;
+                height: 100%;
+                z-index: 999;
+            }
 
-/* PLAYER */
-#main-player{
-  flex:1;
-  position:relative;
-}
+            #menu.active {
+                left: 0;
+            }
 
-/* 🔥 Splash Screen */
-#splash{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:99999;
-}
+            #menuToggle {
+                display: block;
+            }
+        }
 
-#splash img{
-  max-width:220px;
-  border-radius:20px;
-  animation:fadeIn 1s ease;
-}
+        /* ===== PLAYER ===== */
+        #main {
+            flex: 1;
+            position: relative;
+        }
 
-@keyframes fadeIn{
-  from{opacity:0; transform:scale(0.8);}
-  to{opacity:1; transform:scale(1);}
-}
+        /* โลโก้ไม่บัง */
+        #welcome {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0.7;
+        }
 
-/* PLAYER FRAME */
-.player-frame{
-  position:absolute;
-  width:100%;
-  height:100%;
-  border:none;
-  opacity:0;
-  transition:0.3s;
-}
+        #welcome img {
+            max-width: 180px;
+        }
 
-.player-frame.active{
-  opacity:1;
-}
-</style>
+        /* ===== FLOAT PLAYER ===== */
+        #floatPlayer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            z-index: 9999;
+        }
+
+        #floatPlayer iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #closeBtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            border: none;
+            color: #fff;
+            padding: 8px 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            z-index: 10;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- 🔥 Splash -->
-<div id="splash">
-  <img src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?dl=1">
-</div>
+    <button id="menuToggle">☰</button>
 
-<div id="menu">
-  <div class="menu-title">📺 ทีวี <span>⯈</span></div>
-  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL</div>
+    <div id="menu">
+        <div class="menu-title">📺 ทีวี</div>
+        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL</div>
 
-  <div class="menu-title">🎬 หนัง <span>⯈</span></div>
-  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ezmovie.html">EZMOVIE</div>
+        <div class="menu-title">🎬 หนัง</div>
+        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ezmovie.html">EZMOVIE</div>
 
-  <div class="menu-title">📺 ซีรีส์ <span>⯈</span></div>
-  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/goseries4k.html">GOSERIES</div>
+        <div class="menu-title">📺 ซีรีส์</div>
+        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/goseries4k.html">GOSERIES</div>
 
-  <div class="menu-title">🔐 VIP <span>⯈</span></div>
-  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">เข้า VIP</div>
-</div>
+        <div class="menu-title">🔐 VIP</div>
+        <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">เข้า VIP</div>
+    </div>
 
-<div id="main-player">
-  <iframe id="frame1" class="player-frame active"></iframe>
-  <iframe id="frame2" class="player-frame"></iframe>
-</div>
+    <div id="main">
+        <div id="welcome">
+            <img src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&dl=1">
+        </div>
+    </div>
 
-<script>
+    <!-- FLOAT PLAYER -->
+    <div id="floatPlayer">
+        <button id="closeBtn">✖</button>
+        <iframe id="playerFrame"></iframe>
+    </div>
+
+    <script>
+        const titles=document.querySelectorAll(".menu-title");
 const links=document.querySelectorAll(".menu-link");
-const titles=document.querySelectorAll(".menu-title");
+const menu=document.getElementById("menu");
+const toggle=document.getElementById("menuToggle");
 
-const frame1=document.getElementById("frame1");
-const frame2=document.getElementById("frame2");
+const floatPlayer=document.getElementById("floatPlayer");
+const playerFrame=document.getElementById("playerFrame");
 
-let currentFrame=1;
+/* ===== toggle menu mobile ===== */
+toggle.onclick=()=>{
+  menu.classList.toggle("active");
+};
 
-/* 🔥 Splash หายอัตโนมัติ */
-setTimeout(()=>{
-  document.getElementById("splash").style.display="none";
-},1500);
-
-/* Accordion */
+/* ===== accordion ===== */
 titles.forEach(title=>{
-  title.addEventListener("click",()=>{
-    titles.forEach(t=>{
-      if(t!==title){
-        t.classList.remove("active");
-        t.querySelector("span").innerText="⯈";
-
-        let next=t.nextElementSibling;
-        while(next && next.classList.contains("menu-link")){
-          next.style.display="none";
-          next=next.nextElementSibling;
-        }
-      }
-    });
-
-    title.classList.toggle("active");
-    title.querySelector("span").innerText =
-      title.classList.contains("active") ? "⯆" : "⯈";
-
+  title.onclick=()=>{
+    links.forEach(l=>l.style.display="none");
     let next=title.nextElementSibling;
     while(next && next.classList.contains("menu-link")){
-      next.style.display =
-        title.classList.contains("active") ? "block" : "none";
+      next.style.display="block";
       next=next.nextElementSibling;
     }
-  });
+  };
 });
 
-/* Frame Switch */
-function getNextFrame(){
-  return currentFrame===1 ? frame2 : frame1;
-}
-
-function switchFrame(){
-  if(currentFrame===1){
-    frame1.classList.remove("active");
-    frame2.classList.add("active");
-    currentFrame=2;
-  }else{
-    frame2.classList.remove("active");
-    frame1.classList.add("active");
-    currentFrame=1;
-  }
-}
-
-/* Click Menu */
+/* ===== click link ===== */
 links.forEach(link=>{
-  link.addEventListener("click",()=>{
+  link.onclick=()=>{
     const url=link.dataset.url;
     const pass=link.dataset.pass;
 
     if(pass){
-      const input=prompt("กรุณาใส่รหัส VIP");
-      if(input!==pass){alert("รหัสไม่ถูกต้อง");return;}
+      const input=prompt("ใส่รหัส VIP");
+      if(input!==pass){alert("รหัสผิด");return;}
     }
 
-    const nextFrame=getNextFrame();
-    nextFrame.src=url;
+    playerFrame.src=url;
+    floatPlayer.style.display="block";
 
-    nextFrame.onload=()=>{
-      switchFrame();
-    };
-  });
+    // ปิดเมนูในมือถือ
+    menu.classList.remove("active");
+  };
 });
-</script>
+
+/* ===== close player ===== */
+document.getElementById("closeBtn").onclick=()=>{
+  floatPlayer.style.display="none";
+  playerFrame.src="";
+};
+
+    </script>
 
 </body>
+
 </html>
 
 
