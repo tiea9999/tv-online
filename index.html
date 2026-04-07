@@ -61,29 +61,29 @@ video, iframe{
 
 <button id="menuToggle">☰</button>
 
+<!-- ✅ เมนู (แก้ถูกต้องแล้ว) -->
 <div id="menu">
-</div>
-<div class="menu-section">
-  <span>ตารางแข่งขัน</span>
-</div>
 
-<div class="menu-link"
-     data-url="https://tiea9999.github.io/tv-online/live.html"
-     data-type="page">Ball66
-</div>   
-<div class="menu-title">📺 ทีวี</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL</div>
+  <!-- ⚽ ตารางแข่งขัน -->
+  <div class="menu-title">⚽ ตารางแข่งขัน</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/live.html">📊 ตารางบอล</div>
 
-<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/3bb.html">3BB IPTV</div>
+  <!-- 📺 ทีวี -->
+  <div class="menu-title">📺 ทีวี</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/3bb.html">3BB IPTV</div>
 
-<div class="menu-title">🎬 หนัง</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ezmovie.html">EZMOVIE</div>
+  <!-- 🎬 หนัง -->
+  <div class="menu-title">🎬 หนัง</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ezmovie.html">EZMOVIE</div>
 
-<div class="menu-title">📺 ซีรีส์</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/goseries4k.html">GOSERIES</div>
+  <!-- 📺 ซีรีส์ -->
+  <div class="menu-title">📺 ซีรีส์</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/goseries4k.html">GOSERIES</div>
 
-<div class="menu-title">🔐 VIP</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">VIP</div>
+  <!-- 🔐 VIP -->
+  <div class="menu-title">🔐 VIP</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">VIP</div>
 
 </div>
 
@@ -141,8 +141,8 @@ links.forEach(link=>{
       if(input!==pass){alert("รหัสผิด");return;}
     }
 
-    // 🔥 ซีรี่ย์ + VIP → เปิดเต็มหน้า (ไม่ใช้ iframe)
-    if(url.includes("goseries4k") || url.includes("VIP")){
+    // 🔥 เปิดหน้าใหม่ (ซีรี่ย์ + VIP + ตารางแข่ง)
+    if(url.includes("goseries4k") || url.includes("VIP") || url.includes("live.html")){
       window.location.href = url;
       return;
     }
@@ -173,7 +173,7 @@ links.forEach(link=>{
       return;
     }
 
-    // 🔥 iframe ปกติ (ทีวี/หนัง)
+    // 🔥 iframe ปกติ
     video.style.display="none";
     iframe.style.display="block";
 
