@@ -9,7 +9,6 @@
     "title": "hd-monobkp",
     "group": "Dooball",
     "logo": "https://api.bananamuffin.org/images/png/hd-monobkp.png",
-    "servers": [
       {
         "name": "Main",
         "url": "https://love.sikoyo3159.workers.dev/lx-origin/hd-monobkp_720/chunks.m3u8"
