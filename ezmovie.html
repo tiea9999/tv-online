@@ -53,6 +53,34 @@ font-size:18px;
 cursor:pointer;
 z-index:1000;
 }
+
+/* 🏠 HOME */
+#homeBtn{
+position:absolute;
+top:15px;
+left:15px;
+background:#2196f3;
+color:#fff;
+border:none;
+border-radius:12px;
+padding:8px 12px;
+cursor:pointer;
+z-index:1000;
+}
+
+/* 🔙 BACK */
+#backBtn{
+position:absolute;
+top:15px;
+left:90px;
+background:#555;
+color:#fff;
+border:none;
+border-radius:12px;
+padding:8px 12px;
+cursor:pointer;
+z-index:1000;
+}
 </style>
 </head>
 
@@ -75,7 +103,11 @@ z-index:1000;
 </div>
 
 <div id="player">
-<button id="closeBtn" onclick="closePlayer()">✕</button>
+
+<button id="homeBtn">🏠 โฮม</button>
+<button id="backBtn">🔙 กลับ</button>
+<button id="closeBtn">✕</button>
+
 <video id="video" controls playsinline></video>
 </div>
 
@@ -95,22 +127,16 @@ const PLAYLISTS = [
 const grid=document.getElementById("grid");
 const video=document.getElementById("video");
 
-/* ===== โหลดรายการ ===== */
+/* โหลดรายการ */
 function loadList(i){
-
 grid.innerHTML="กำลังโหลด...";
-
 fetch(PLAYLISTS[i]+"?v="+Date.now())
 .then(r=>r.json())
 .then(data=>{
-
 grid.innerHTML="";
-
 data.forEach(item=>{
-
 const img = item.poster || item.image || item.logo || "https://via.placeholder.com/300x450";
 
-// 🔥 หา URL จริง (ตัวสำคัญมาก)
 let url =
 item.stream ||
 item.url ||
@@ -122,61 +148,57 @@ const card=document.createElement("div");
 card.className="card";
 
 card.innerHTML=`
-<img src="${img}" onerror="this.src='https://via.placeholder.com/300x450'">
+<img src="${img}">
 <div class="title">${item.title}</div>
 `;
 
 card.onclick=()=>{
-
-if(!url){
-alert("❌ ไม่มีลิงค์ในรายการนี้");
-return;
-}
-
+if(!url){ alert("❌ ไม่มีลิงค์"); return; }
 play(url);
-
 };
 
 grid.appendChild(card);
-
 });
-
 });
-
 }
 
-/* ===== PLAYER ===== */
+/* PLAYER */
 function play(url){
-
 document.getElementById("player").style.display="block";
 
 if(url.includes(".m3u8")){
-
 if(Hls.isSupported()){
 const hls=new Hls();
 hls.loadSource(url);
 hls.attachMedia(video);
-hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-video.play();
-});
+hls.on(Hls.Events.MANIFEST_PARSED,()=>video.play());
 }else{
 video.src=url;
 video.play();
 }
-
 }else{
 video.src=url;
 video.play();
 }
-
 }
 
-/* ===== ปิด ===== */
+/* ปิด */
 function closePlayer(){
 video.pause();
 video.src="";
 document.getElementById("player").style.display="none";
 }
+
+/* 🔴 ปุ่ม */
+document.getElementById("closeBtn").onclick=closePlayer;
+
+document.getElementById("backBtn").onclick=()=>{
+closePlayer();
+};
+
+document.getElementById("homeBtn").onclick=()=>{
+window.location.replace("https://tiea9999.github.io/tv-online/index.html");
+};
 </script>
 
 </body>
