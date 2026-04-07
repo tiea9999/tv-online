@@ -282,7 +282,16 @@ card.innerHTML=`
 <div class="movie-title">${ch.title}</div>
 `;
 
-card.onclick=()=>playStream(ch);
+card.onclick=()=>{
+
+  // 🏠 ปุ่มกลับโฮม
+  if(ch.url === "HOME"){
+    window.location.replace("https://tiea9999.github.io/tv-online/index.html");
+    return;
+  }
+
+  playStream(ch);
+};
 
 grid.appendChild(card);
 });
