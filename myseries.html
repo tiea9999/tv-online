@@ -3,40 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV ANDROID TV</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
 body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
 .menu{display:flex;gap:10px;padding:10px;background:#111;flex-wrap:wrap;}
-.menu button{padding:10px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;}
-.menu button:focus{outline:2px solid #00c853;}
+.menu button{padding:10px;background:#333;color:#fff;border:none;border-radius:6px;}
+.menu button:focus{outline:3px solid #00c853;}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;padding:10px;}
-.card{background:#111;padding:8px;border-radius:10px;cursor:pointer;text-align:center;}
-.card:focus{outline:2px solid #00c853;}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+gap:12px;
+padding:10px;
+}
 
-img{width:100%;height:200px;object-fit:cover;border-radius:8px;}
+.card{
+background:#111;
+padding:8px;
+border-radius:10px;
+text-align:center;
+}
 
-#player{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:none;z-index:999;}
-#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;z-index:998;}
+.card:focus{
+outline:3px solid #00c853;
+transform:scale(1.05);
+}
+
+img{
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:8px;
+}
+
+#player,#overlay{
+position:fixed;
+top:0;left:0;width:100%;height:100%;
+display:none;
+}
+
+#overlay{background:rgba(0,0,0,.8);z-index:998;}
+#player{background:#000;z-index:999;}
 
 video,iframe{width:100%;height:100%;}
 
-.close-btn{
-position:absolute;top:20px;right:20px;
-background:red;color:#fff;border:none;
-border-radius:50%;width:40px;height:40px;
+.btn{
+position:absolute;
+top:20px;
+padding:10px;
+border:none;
+border-radius:8px;
+color:#fff;
+font-size:16px;
 cursor:pointer;
+z-index:1000;
 }
 
-.home-btn{
-position:absolute;top:20px;left:20px;
-background:#ff9800;color:#fff;border:none;
-padding:8px 12px;border-radius:8px;
-cursor:pointer;
-}
+.close{right:20px;background:red;}
+.home{left:20px;background:#ff9800;}
 </style>
 </head>
 
@@ -48,8 +74,8 @@ cursor:pointer;
 <div id="overlay"></div>
 
 <div id="player">
-<button class="home-btn" onclick="goHome()">🏠</button>
-<button class="close-btn" onclick="closePlayer()">✕</button>
+<button class="btn home" onclick="goHome()">🏠</button>
+<button class="btn close" onclick="closePlayer()">✕</button>
 <video id="video" controls autoplay playsinline></video>
 </div>
 
@@ -68,11 +94,12 @@ let grid=document.getElementById("grid");
 let video=document.getElementById("video");
 let hls=null;
 let currentData=[];
+let focusIndex=0;
 
 /* MENU */
 const menu=document.getElementById("menu");
 
-PLAYLISTS.forEach(pl=>{
+PLAYLISTS.forEach((pl,i)=>{
 let btn=document.createElement("button");
 btn.textContent=pl.name;
 btn.tabIndex=0;
@@ -83,13 +110,12 @@ menu.appendChild(btn);
 /* LOAD */
 async function load(url){
 grid.innerHTML="กำลังโหลด...";
-
 try{
 let res=await fetch(url);
 currentData=await res.json();
 render(currentData);
-setFocusFirst();
-}catch(e){
+setFocus(0);
+}catch{
 grid.innerHTML="❌ โหลดไม่สำเร็จ";
 }
 }
@@ -98,7 +124,8 @@ grid.innerHTML="❌ โหลดไม่สำเร็จ";
 function render(data){
 grid.innerHTML="";
 
-data.forEach(item=>{
+data.forEach((item,i)=>{
+
 let div=document.createElement("div");
 div.className="card";
 div.tabIndex=0;
@@ -108,15 +135,15 @@ div.innerHTML=`
 <div>${item.title||item.name}</div>
 `;
 
-div.onclick=()=>handleClick(item);
-div.onkeydown=(e)=>{ if(e.key==="Enter") handleClick(item); };
+div.onclick=()=>clickItem(item);
 
 grid.appendChild(div);
+
 });
 }
 
 /* CLICK */
-function handleClick(item){
+function clickItem(item){
 
 if(item.episodes){
 showEp(item);
@@ -134,121 +161,80 @@ playServers([{url:item.url}]);
 
 }
 
-/* EPISODES */
+/* EP */
 function showEp(item){
 
 grid.innerHTML="";
 
-item.episodes.forEach(ep=>{
+item.episodes.forEach((ep,i)=>{
 let div=document.createElement("div");
 div.className="card";
 div.tabIndex=0;
 div.textContent=ep.name;
 
-div.onclick=()=>playServers(ep.servers || [{url:ep.url}]);
-div.onkeydown=(e)=>{ if(e.key==="Enter") playServers(ep.servers || [{url:ep.url}]); };
+div.onclick=()=>playServers(ep.servers||[{url:ep.url}]);
 
 grid.appendChild(div);
 });
 
-setFocusFirst();
+setFocus(0);
 }
 
-/* RESET */
-function reset(){
-if(hls){hls.destroy();hls=null;}
-video.pause();
-video.src="";
+/* PLAY SERVER (เล่นได้ทุกเว็บ) */
+function playServers(servers){
+
+overlay.style.display="block";
+player.style.display="block";
+
+let url=servers[0].url;
+
+// 🔥 ถ้าไม่ใช่ m3u8 = iframe ทันที
+if(!url.includes(".m3u8") && !url.includes(".mp4") && !url.includes(".txt")){
+player.innerHTML=`
+<button class="btn home" onclick="goHome()">🏠</button>
+<button class="btn close" onclick="closePlayer()">✕</button>
+<iframe src="${url}" allowfullscreen allow="autoplay"></iframe>
+`;
+return;
 }
 
-/* FIX URL */
-function fixUrl(url){
+// 🔥 video player
+play(url);
 
-if(url.includes(".txt")){
-url=url.replace(".txt",".m3u8");
-}
-
-return url;
 }
 
 /* PLAY */
 function play(url){
 
-url=fixUrl(url);
-
-return new Promise((resolve,reject)=>{
+if(url.includes(".txt")){
+url=url.replace(".txt",".m3u8");
+}
 
 video.muted=true;
 
 if(url.includes(".m3u8") && Hls.isSupported()){
-
 hls=new Hls();
 hls.loadSource(url);
 hls.attachMedia(video);
 
 hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-video.play().then(()=>{
-video.muted=false;
-resolve();
+video.play().then(()=>video.muted=false);
 });
-});
-
-hls.on(Hls.Events.ERROR,(e,d)=>{
-if(d.fatal) reject();
-});
-
 return;
 }
 
 video.src=url;
-
 video.onloadeddata=()=>{
-video.play().then(()=>{
-video.muted=false;
-resolve();
-});
+video.play().then(()=>video.muted=false);
 };
-
-video.onerror=reject;
-
-});
-}
-
-/* AUTO SERVER */
-async function playServers(servers){
-
-overlay.style.display="block";
-player.style.display="block";
-
-for(let s of servers){
-
-let url=s.url;
-
-// iframe
-if(!url.includes(".m3u8") && !url.includes(".mp4") && !url.includes(".txt")){
-player.innerHTML=`
-<button class="home-btn" onclick="goHome()">🏠</button>
-<button class="close-btn" onclick="closePlayer()">✕</button>
-<iframe src="${url}" allowfullscreen></iframe>`;
-return;
-}
-
-try{
-await play(url);
-return;
-}catch(e){
-continue;
-}
-
-}
-
-alert("❌ ไม่มี server ใช้ได้");
 
 }
 
 /* CLOSE */
 function closePlayer(){
-reset();
+if(hls){hls.destroy();hls=null;}
+video.pause();
+video.src="";
 overlay.style.display="none";
 player.style.display="none";
 }
@@ -257,28 +243,51 @@ player.style.display="none";
 function goHome(){
 closePlayer();
 render(currentData);
-setFocusFirst();
+setFocus(0);
 }
 
-/* REMOTE CONTROL */
+/* 🔥 REMOTE CONTROL จริง */
 document.addEventListener("keydown",(e)=>{
 
-const focus=document.activeElement;
+let cards=document.querySelectorAll(".card");
 
-if(e.key==="Enter") focus?.click();
+if(e.key==="ArrowRight"){
+focusIndex=Math.min(focusIndex+1,cards.length-1);
+setFocus(focusIndex);
+}
 
-if(e.key==="Escape" || e.key==="Backspace"){
+if(e.key==="ArrowLeft"){
+focusIndex=Math.max(focusIndex-1,0);
+setFocus(focusIndex);
+}
+
+if(e.key==="ArrowDown"){
+focusIndex=Math.min(focusIndex+4,cards.length-1);
+setFocus(focusIndex);
+}
+
+if(e.key==="ArrowUp"){
+focusIndex=Math.max(focusIndex-4,0);
+setFocus(focusIndex);
+}
+
+if(e.key==="Enter"){
+cards[focusIndex]?.click();
+}
+
+if(e.key==="Backspace"||e.key==="Escape"){
 closePlayer();
 }
 
 });
 
-/* AUTO FOCUS */
-function setFocusFirst(){
-setTimeout(()=>{
-let el=document.querySelector(".card, .menu button");
-if(el) el.focus();
-},200);
+/* FOCUS */
+function setFocus(i){
+let cards=document.querySelectorAll(".card");
+if(cards[i]){
+cards[i].focus();
+focusIndex=i;
+}
 }
 
 /* START */
@@ -288,4 +297,3 @@ load(PLAYLISTS[0].url);
 
 </body>
 </html>
-
