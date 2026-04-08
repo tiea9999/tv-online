@@ -3,69 +3,198 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV</title>
+<title>TIEA IPTV PRO</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
+
 <style>
-body{
-    margin:0;
-    font-family:sans-serif;
-    background:#0b0f1a;
-    color:#fff;
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+body{display:flex;height:100vh;background:#000;color:#fff;}
+
+#menu{width:240px;background:#111;padding:10px;overflow-y:auto;}
+.menu-title{padding:10px;background:#222;margin-top:5px;border-radius:6px;cursor:pointer;}
+.menu-link{padding:8px;margin-left:10px;display:none;cursor:pointer;border-radius:6px;}
+.menu-link:hover{background:#e94560;}
+
+#menuToggle{
+  display:none;position:fixed;top:10px;left:10px;
+  background:#e94560;padding:8px;border-radius:6px;z-index:1000;
 }
-header{
-    background:#1f2a44;
-    padding:10px 16px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+
+@media(max-width:768px){
+  #menu{position:fixed;left:-260px;top:0;height:100%;z-index:999;}
+  #menu.active{left:0;}
+  #menuToggle{display:block;}
 }
-header h1{
-    margin:0;
-    font-size:20px;
+
+#main{flex:1;position:relative;}
+
+#welcome{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  opacity:0.6;
 }
-.menu{
-    list-style:none;
-    display:flex;
-    gap:10px;
-    margin:0;
-    padding:0;
+
+#welcome img{max-width:180px;}
+
+#floatPlayer{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  display:none;
+  z-index:9999;
 }
-.menu li a{
-    text-decoration:none;
-    color:#aaa;
-    padding:6px 12px;
-    border-radius:20px;
-    transition:.2s;
-    display:block;
-}
-.menu li a:hover{
-    background:#2e3b5f;
-    color:#fff;
-}
-.container{
-    padding:10px 16px;
+
+video, iframe{
+  width:100%;
+  height:100%;
+  border:none;
 }
 </style>
 </head>
+
 <body>
 
-<header>
-    <h1>TIEA IPTV</h1>
-    <ul class="menu">
-        <li><a href="live.html">TV</a></li>
-        <li><a href="javascript:void(0)" onclick="openMovieSeries()">Movie</a></li>
-        <li><a href="javascript:void(0)" onclick="openMovieSeries()">Series</a></li>
-    </ul>
-</header>
+<button id="menuToggle">☰</button>
 
-<div class="container">
-    <p>ยินดีต้อนรับสู่ TIEA IPTV</p>
-    <p>เลือกเมนูด้านบนเพื่อชมช่อง TV, Movie หรือ Series</p>
+<!-- ✅ เมนู (แก้ถูกต้องแล้ว) -->
+<div id="menu">
+
+  <!-- ⚽ ตารางแข่งขัน -->
+  <div class="menu-title">⚽ ตารางแข่งขัน</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/live.html">📊 ตารางบอล</div>
+
+  <!-- 📺 ทีวี -->
+  <div class="menu-title">📺 ทีวี</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/3bb.html">3BB IPTV</div>
+
+  <!-- 🎬 หนัง -->
+  <div class="menu-title">🎬 หนัง</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ezmovie.html">EZMOVIE</div>
+
+  <!-- 📺 ซีรีส์ -->
+  <div class="menu-title">📺 ซีรีส์</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/flixmono.html">FLIXMONO</div>
+
+  <!-- 🔐 VIP -->
+  <div class="menu-title">🔐 VIP</div>
+  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">VIP</div>
+
+</div>
+
+<div id="main">
+  <div id="welcome">
+    <img src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&dl=1">
+  </div>
+</div>
+
+<div id="floatPlayer">
+  <video id="video" controls autoplay style="display:none"></video>
+  <iframe id="iframe" style="display:none"
+  allow="autoplay; fullscreen; encrypted-media"
+  allowfullscreen></iframe>
 </div>
 
 <script>
-function openMovieSeries(){
-    window.location.href = "https://tiea9999.github.io/tv-online/goseries4k.html";
-}
+
+const links=document.querySelectorAll(".menu-link");
+const titles=document.querySelectorAll(".menu-title");
+
+const menu=document.getElementById("menu");
+const toggle=document.getElementById("menuToggle");
+
+const floatPlayer=document.getElementById("floatPlayer");
+const video=document.getElementById("video");
+const iframe=document.getElementById("iframe");
+
+let player;
+
+/* MENU MOBILE */
+toggle.onclick=()=>menu.classList.toggle("active");
+
+/* ACCORDION */
+titles.forEach(title=>{
+  title.onclick=()=>{
+    links.forEach(l=>l.style.display="none");
+    let next=title.nextElementSibling;
+    while(next && next.classList.contains("menu-link")){
+      next.style.display="block";
+      next=next.nextElementSibling;
+    }
+  };
+});
+
+/* PLAY */
+links.forEach(link=>{
+  link.onclick=async()=>{
+
+    const url=link.dataset.url;
+    const pass=link.dataset.pass;
+
+    if(pass){
+      const input=prompt("ใส่รหัส VIP");
+      if(input!==pass){alert("รหัสผิด");return;}
+    }
+
+    // 🔥 เปิดหน้าใหม่ (ซีรี่ย์ + VIP + ตารางแข่ง)
+    if(url.includes("flixmono") || url.includes("VIP") || url.includes("live.html")){
+      window.location.href = url;
+      return;
+    }
+
+    floatPlayer.style.display="block";
+    menu.style.display="none";
+    toggle.style.display="none";
+
+    // 🔥 DRM
+    if(link.dataset.drm){
+
+      iframe.style.display="none";
+      video.style.display="block";
+
+      if(player){ player.destroy(); }
+
+      player = new shaka.Player(video);
+
+      await player.configure({
+        drm:{ clearKeys:{
+          [link.dataset.keyid]: link.dataset.key
+        }}
+      });
+
+      await player.load(link.dataset.file);
+
+      video.volume=0.8;
+      return;
+    }
+
+    // 🔥 iframe ปกติ
+    video.style.display="none";
+    iframe.style.display="block";
+
+    iframe.src="";
+    setTimeout(()=>{
+      iframe.src=url;
+    },100);
+
+  };
+});
+
+/* BACK */
+window.addEventListener("popstate",()=>{
+  floatPlayer.style.display="none";
+  iframe.src="";
+  video.pause();
+
+  menu.style.display="block";
+  toggle.style.display="block";
+});
+
 </script>
 
 </body>
