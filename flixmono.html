@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV</title>
+<title>หรรมน้อย ออนไลน์</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -401,7 +401,8 @@ left:50%;
 transform:translate(-50%,-50%) scale(.9);
 width:80%;
 max-width:1100px;
-height:75vh;
+aspect-ratio:16/9;
+height:auto;
 background:#000;
 border-radius:16px;
 overflow:hidden;
@@ -470,6 +471,74 @@ z-index:1200;        /* มากกว่า player */
     box-shadow:0 5px 15px rgba(59,130,246,.3);
 }
 
+/* TOP BAR */
+
+.top-bar{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+/* BACK BUTTON MODERN */
+
+.back-btn{
+display:flex;
+align-items:center;
+gap:6px;
+background:linear-gradient(90deg,#ff512f,#dd2476);
+border:none;
+padding:8px 14px;
+border-radius:10px;
+color:#fff;
+font-weight:500;
+cursor:pointer;
+transition:.25s;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.back-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 20px rgba(0,0,0,.4);
+}
+
+/* PAGINATION */
+
+.pagination{
+display:flex;
+gap:20px;
+margin-left:12px;
+margin-top:-20px;
+align-items:center;
+}
+
+.pagination button{
+background:#1e1e1e;
+color:#aaa;
+border:1px solid #333;
+padding:6px 12px;
+border-radius:8px;
+cursor:pointer;
+font-size:14px;
+transition:.2s;
+min-width:34px;
+text-align:center;
+margin-right:6px;
+}
+
+.pagination button:hover{
+background:#333;
+color:#fff;
+}
+
+.pagination button.active{
+
+background:linear-gradient(90deg,#3b82f6,#6366f1);
+color:#fff;
+border:none;
+box-shadow:0 4px 12px rgba(59,130,246,.4);
+
+}
+
 </style>
 
 </head>
@@ -479,7 +548,7 @@ z-index:1200;        /* มากกว่า player */
 <div class="sidebar">
 
 <div class="sidebar-section">
-<h2>TIEA IPTV</h2>
+<h2>หรรมน้อย ออนไลน์</h2>
 </div>
 
 
@@ -495,16 +564,27 @@ z-index:1200;        /* มากกว่า player */
 <div id="mainMenu" style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;"></div>
 
 <hr style="margin:15px 0;">
-<h3>📁 หมวดหมู่</h3>
-<ul id="categoryList"></ul>
+<h3 id="categoryToggle" style="cursor:pointer;">📁 หมวดหมู่ ▸</h3>
+<ul id="categoryList" style="display:none;"></ul>
 </div>
 
 </div>
 <div class="main">
 
-  <div class="main-header">
-    <button id="backHome" class="back-btn">← กลับหน้าหลัก</button>
-  </div>
+<div class="main-header">
+
+<div class="top-bar">
+
+<button id="backHome" class="back-btn">
+<span>←</span>
+<span>หน้าหลัก</span>
+</button>
+
+<div id="paginationTop" class="pagination"></div>
+
+</div>
+
+</div>
 
   <div class="main-content">
     <div class="movie-grid" id="movieGrid"></div>
@@ -615,6 +695,9 @@ let isAnimeMode = false;
 let animeData = [];
 let currentAnime = null;
 
+let currentPage = 1;
+const itemsPerPage = 24;
+
 let currentChannel = null;
 let forcedPlayer = null; // null = auto | "html5" | "jw"
 function setDefaultVolumeHTML5(){
@@ -647,9 +730,12 @@ const playerContainer=document.getElementById("player-container");
 const closeBtn = document.getElementById("closePlayer");
 
 closeBtn.addEventListener("click", () => {
+
+    resetPlayers();   // 🔥 ให้หยุด player ก่อน
+
     overlay.classList.remove("active");
     playerContainer.classList.remove("active");
-    resetPlayers();
+
 });
 
 playerContainer.addEventListener("click", e => {
@@ -661,25 +747,66 @@ playerContainer.addEventListener("click", e => {
 const PLAYLISTS = [
 
 {
-    name: "ซีรีย์ญี่ปุ่น",
+    name: "ซีรี่ย์-2026",
     type: "anime-json",
-    url: "https://raw.githubusercontent.com/nongakka/automovie/refs/heads/main/data/playlist/japanese.json"   // 🔥 เปลี่ยนเป็นไฟล์ของคุณ
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์-2026.json"   
 },
-
 {
-    name: "netflix",
+    name: "ซีรี่ย์-2025",
     type: "anime-json",
-    url: "https://raw.githubusercontent.com/nongakka/automovie/refs/heads/main/data/playlist/netflix.json"   
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์-2025.json"   
+},	
+{
+    name: "ซีรี่ย์จีนพากย์ไทย",
+    type: "anime-json",
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์จีนพากย์ไทย.json" 
 },
-
+{
+    name: "ซีรี่ย์จีนซับไทย",
+    type: "anime-json",
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์จีนซับไทย.json"   
+},
+{
+    name: "ซีรี่ย์เกาหลีพากย์ไทย",
+    type: "anime-json",
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์เกาหลีพากย์ไทย.json"   
+},
+{
+    name: "ซีรี่ย์เกาหลีซับไทย",
+    type: "anime-json",
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์เกาหลีซับไทย.json"   
+},
 {
     name: "ซีรี่ย์ญี่ปุ่น",
     type: "anime-json",
-    url: "https://raw.githubusercontent.com/nongakka/flixmono/refs/heads/main/flixmono_ดูซีรี่ย์ญี่ปุ่น.json"   
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ดูซีรี่ย์ญี่ปุ่น.json"   
 },
+{
+    name: "ซีรี่ย์ฝรั่ง",
+    type: "anime-json",
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ดูซีรี่ย์ฝรั่ง.json"   
+},
+{
+    name: "ดูหนัง",
+    type: "anime-json",
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_movie.json"   
+},	
+{
+    name: "หนัง Action",
+    type: "anime-json",
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_action.json"   
+},
+{
+    name: "หนัง Drama",
+    type: "anime-json",
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_drama.json"   
+},
+{
+    name: "หนัง Adventure",
+    type: "anime-json",
+    url: "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_action-adventure.json"   
+},	
 
-
-	
 ];
 
 function parseM3U(data, playlistName){
@@ -748,6 +875,7 @@ return channels;
 
 async function loadSinglePlaylist(pl){
 
+   currentPage = 1;   // รีเซต pagination
     
     grid.innerHTML = "<p>กำลังโหลด...</p>";
     document.getElementById("backHome").disabled = true;
@@ -799,9 +927,18 @@ else if(pl.type==="json"){
         channels = parseM3U(text, pl.name);
     }
 }
-        allChannels=channels;
-        buildCategories();
-        renderGrid();
+        allChannels = channels;
+
+// 🔥 แสดงจำนวนช่องหลังชื่อ playlist
+const el = document.getElementById("count-"+pl.name);
+if(el){
+    el.textContent = "(" + channels.length + ")";
+}
+
+document.querySelector(".main-content")
+.scrollTo({top:0,behavior:"smooth"});
+buildCategories();
+renderGrid();
 
     }catch(e){
         grid.innerHTML="<p>โหลดไม่สำเร็จ</p>";
@@ -815,6 +952,28 @@ else if(pl.type==="json"){
 function parseJSONPlaylist(data, playlistName){
 
     let channels = [];
+
+// =========================
+// 🔥 แบบที่ 0 : channels (dookeela)
+// =========================
+if(data.channels && Array.isArray(data.channels)){
+
+    data.channels.forEach(ch => {
+
+        if(!ch.streams || ch.streams.length === 0) return;
+
+        channels.push({
+            title: ch.name || "ไม่ทราบชื่อ",
+            group: ch.group || playlistName,
+            logo: ch.logo || "",
+            urls: ch.streams
+        });
+
+    });
+
+    return channels;
+}
+
 
     // =========================
     // 🔥 แบบที่ 1 : มี groups
@@ -862,9 +1021,28 @@ function parseJSONPlaylist(data, playlistName){
 
         return channels;
     }
+// =========================
+// 🔥 แบบที่ 3 : array ธรรมดา (playlist หนัง)
+// =========================
+if(Array.isArray(data)){
+
+    data.forEach(item => {
+
+        channels.push({
+            title: item.title || item.name || "ไม่ทราบชื่อ",
+            group: item.group || playlistName,
+            logo: item.logo || item.image || "",
+            url: item.url || item.stream || ""
+        });
+
+    });
 
     return channels;
 }
+    return channels;
+}
+
+
 
 
 function buildMainMenu(){
@@ -905,29 +1083,8 @@ function buildMainMenu(){
 
 buildMainMenu();
 
-document.getElementById("switchPlayerBtn").onclick = function(){
-
-    if(forcedPlayer === null){
-        forcedPlayer = "html5";
-        this.innerText = "HTML5";
-    }
-    else if(forcedPlayer === "html5"){
-        forcedPlayer = "jw";
-        this.innerText = "JW";
-    }
-    else{
-        forcedPlayer = null;
-        this.innerText = "Auto";
-    }
-
-    if(currentChannel){
-        playStream(currentChannel);
-    }
-
-};
-
 document.getElementById("backHome").addEventListener("click", () => {
-    window.location.href = "https://tiea9999.github.io/tv-online/index.html";
+    window.location.href = "https://nongakka.github.io/doofree/index.html";
 });
 
 /* CATEGORY */
@@ -958,17 +1115,20 @@ groups.forEach((g,i)=>{
 
     if(i===0){
     li.classList.add("active");
-    currentCategory = groups[0];
+    currentCategory = null;   // 🔥 แสดงทุกหมวด
 }
 
     li.onclick=()=>{
-        categoryList.querySelectorAll("li")
-        .forEach(el=>el.classList.remove("active"));
+    categoryList.querySelectorAll("li")
+    .forEach(el=>el.classList.remove("active"));
 
-        li.classList.add("active");
-        currentCategory=g;
-        renderGrid();
-    };
+    li.classList.add("active");
+    currentCategory = g;
+
+    currentPage = 1;   // 🔥 รีเซตหน้า
+
+    renderGrid();
+};
 
     categoryList.appendChild(li);
 
@@ -979,12 +1139,17 @@ groups.forEach((g,i)=>{
 
 
 /* SEARCH */
+
 document.getElementById("searchInput").addEventListener("input", () => {
-    if(isAnimeMode){
-        renderAnimeGrid();
-    }else{
-        renderGrid();
-    }
+
+currentPage = 1;
+
+if(isAnimeMode){
+    renderAnimeGrid();
+}else{
+    renderGrid();
+}
+
 });
 
 /* GRID */
@@ -993,7 +1158,7 @@ function renderGrid(){
     grid.innerHTML="";
     const keyword=document.getElementById("searchInput").value.toLowerCase();
 
-    const filtered=allChannels.filter(c=>{
+    const filtered = allChannels.filter(c=>{
         return (!currentCategory || c.group===currentCategory)
         && c.title.toLowerCase().includes(keyword);
     });
@@ -1006,7 +1171,16 @@ function renderGrid(){
         return;
     }
 
-    filtered.forEach(ch=>{
+    const totalPages = Math.ceil(filtered.length / itemsPerPage);
+
+    if(currentPage > totalPages) currentPage = 1;
+
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+
+    const pageItems = filtered.slice(start, end);
+
+    pageItems.forEach(ch=>{
         const card=document.createElement("div");
         card.className="movie-card";
         card.innerHTML=`
@@ -1017,6 +1191,8 @@ function renderGrid(){
         card.onclick=()=>playStream(ch);
         grid.appendChild(card);
     });
+
+    renderPagination(totalPages);
 }
 
 function renderAnimeGrid(){
@@ -1030,7 +1206,15 @@ function renderAnimeGrid(){
         movie.title.toLowerCase().includes(keyword)
     );
 
-    filtered.forEach(movie => {
+const totalPages = Math.ceil(filtered.length / itemsPerPage);
+if(currentPage > totalPages) currentPage = 1;
+const start = (currentPage - 1) * itemsPerPage;
+const end = start + itemsPerPage;
+
+const pageItems = filtered.slice(start, end);
+
+
+    pageItems.forEach(movie => {
 
         const card = document.createElement("div");
         card.className = "movie-card";
@@ -1063,6 +1247,91 @@ function renderAnimeGrid(){
                 ไม่พบรายการ
             </div>`;
     }
+renderPagination(totalPages);
+
+}
+function renderPagination(totalPages){
+
+const perPage = 20;
+
+let start = Math.floor((currentPage-1)/perPage)*perPage + 1;
+let end = Math.min(start + perPage - 1, totalPages);
+
+const div = document.createElement("div");
+div.id="pagination";
+
+if(start>1){
+
+const prev=document.createElement("button");
+prev.textContent="◀";
+
+prev.onclick=()=>{
+currentPage=start-1;
+
+document.querySelector(".main-content")
+.scrollTo({top:0,behavior:"smooth"});
+
+if(isAnimeMode){
+    renderAnimeGrid();
+}else{
+    renderGrid();
+}
+};
+
+div.appendChild(prev);
+
+}
+
+for(let i=start;i<=end;i++){
+
+const btn=document.createElement("button");
+btn.textContent=i;
+
+if(i===currentPage){
+btn.classList.add("active");
+}
+
+btn.onclick=()=>{
+currentPage=i;
+document.querySelector(".main-content")
+.scrollTo({top:0,behavior:"smooth"});
+if(isAnimeMode){
+    renderAnimeGrid();
+}else{
+    renderGrid();
+}
+};
+
+div.appendChild(btn);
+
+}
+
+if(end<totalPages){
+
+const next=document.createElement("button");
+next.textContent="▶";
+
+next.onclick=()=>{
+currentPage=end+1;
+
+document.querySelector(".main-content")
+.scrollTo({top:0,behavior:"smooth"});
+
+if(isAnimeMode){
+    renderAnimeGrid();
+}else{
+    renderGrid();
+}
+};
+
+div.appendChild(next);
+
+}
+
+const top=document.getElementById("paginationTop");
+top.innerHTML="";
+top.appendChild(div);
+
 }
 
 function renderEpisodes(movie){
@@ -1100,7 +1369,10 @@ function renderEpisodes(movie){
     const backBtn = document.createElement("button");
     backBtn.textContent = "← กลับ";
     backBtn.className = "back-btn";
-    backBtn.onclick = renderAnimeGrid;
+    backBtn.onclick = ()=>{
+    currentPage = 1;   // 🔥 รีเซตหน้า
+    renderAnimeGrid();
+};
 
     grid.prepend(backBtn);
 }
@@ -1122,21 +1394,46 @@ function resetPlayers(){
     }
         
     if(jwInstance){
-    try{ jwInstance.remove(); }catch(e){}
+
+    try{
+        jwInstance.stop();
+        jwInstance.remove();
+    }catch(e){}
+
     jwInstance = null;
 }
-    document.getElementById("jw-player").innerHTML="";
-    const oldVideo = document.getElementById("videoPlayer");
+
+// 🔥 kill JW ทุก instance กันเสียงค้าง
+try{
+    jwplayer().remove();
+}catch(e){}
+
+	
+    const jwDiv = document.getElementById("jw-player");
+
+if(jwDiv){
+    jwDiv.innerHTML = "";
+}
+    
+const oldVideo = document.getElementById("videoPlayer");
 
 if(oldVideo){
 
+    try{
     oldVideo.pause();
+    oldVideo.muted = true;
+}catch(e){}
+
     oldVideo.removeAttribute("src");
+    oldVideo.srcObject = null;
+
+    while(oldVideo.firstChild){
+        oldVideo.removeChild(oldVideo.firstChild);
+    }
+
     oldVideo.load();
 
-    const newVideo = oldVideo.cloneNode(true);
-    oldVideo.parentNode.replaceChild(newVideo, oldVideo);
-    video = newVideo;
+    video = oldVideo;
 
     video.style.display = "block";
     document.getElementById("jw-player").style.display = "none";
@@ -1145,8 +1442,14 @@ if(oldVideo){
     setPlayerLabel(forcedPlayer ? forcedPlayer.toUpperCase() : "Auto");
 
 const iframe = document.getElementById("iframePlayer");
+
 if(iframe){
+
+    iframe.src = "";
+    iframe.removeAttribute("src");
+
     iframe.src = "about:blank";
+
     iframe.style.display = "none";
 }
 
@@ -1156,6 +1459,15 @@ function startJW(channel){
 
     video.style.display="none";
     document.getElementById("jw-player").style.display="block";
+
+    // 🔥 kill player เก่าก่อน
+    if(jwInstance){
+        try{
+            jwInstance.stop(true);
+            jwInstance.remove();
+        }catch(e){}
+        jwInstance = null;
+    }
 
     jwInstance = jwplayer("jw-player").setup({
         file: channel.url,
@@ -1170,34 +1482,22 @@ function startJW(channel){
 
 }
 
-function startJWfallback(channel){
-
-    video.style.display="none";
-    document.getElementById("jw-player").style.display="block";
-
-    jwInstance = jwplayer("jw-player").setup({
-        file: channel.url,
-        width: "100%",
-        height: "100%",
-        autostart: true,
-        primary: "html5"
-    });
-
-    jwInstance.on('ready', function(){
-        setDefaultVolumeJW();
-    });
-
-}
-
-
 /* PLAY */
+
 function playStream(channel){
+
+    resetPlayers();   // 🔥 ย้ายขึ้นมาบรรทัดแรก
+
     currentChannel = channel; 
+
     overlay.classList.add("active");
     playerContainer.classList.add("active");
-    resetPlayers();
 
-    if(!channel.url) return;
+    if(!channel.url && channel.urls){
+    channel.url = channel.urls[0];
+}
+
+if(!channel.url) return;
 
     const url = channel.url.toLowerCase();
 
@@ -1224,8 +1524,10 @@ if(url.includes(".mp4")){
 if(
     !url.includes(".m3u8") &&
     !url.includes(".mp4") &&
-    !url.includes(".mpd")&&
-    !url.includes(".txt")
+    !url.includes(".mpd") &&
+    !url.includes(".txt") &&
+    !url.includes("/qualitys/")&&
+     url.includes(".html")
 ){
 
     setPlayerLabel("Iframe");
@@ -1270,7 +1572,7 @@ if(forcedPlayer === "html5"){
 
             hls = new Hls({
     enableWorker:true,
-    lowLatencyMode:true,
+    lowLatencyMode:false,
 
     // 🔥 บังคับ parse playlist
     manifestLoadingTimeOut: 20000,
@@ -1406,29 +1708,46 @@ if(forcedPlayer === "html5"){
     // =========================
     // 3️⃣ M3U8 → HLS.js
     // =========================
-    if(url.includes(".m3u8") || url.includes(".txt")){
+    if(
+url.includes(".m3u8") ||
+url.includes(".txt") ||
+url.includes("/qualitys/") ||
+url.includes("/frame/") ||
+url.includes("master")
+){
 
 
     video.style.display="block";
     document.getElementById("jw-player").style.display="none";
 
-    // 1️⃣ Safari native
     if(video.canPlayType("application/vnd.apple.mpegurl") && !channel.referer){
 
-        setPlayerLabel("Native HLS");
-        video.src = channel.url;
-        video.load();
-		setDefaultVolumeHTML5();
+    setPlayerLabel("Native HLS");
+
+    video.src = channel.url;
+    video.load();
+    setDefaultVolumeHTML5();
+
+    video.addEventListener("loadedmetadata", function(){
         video.play().catch(()=>{});
+    }, { once:true });
 
-        setTimeout(()=>{
-            if(video.readyState < 2){
-                startJWfallback(channel);
-            }
-        },3000);
+    video.addEventListener("error", function(){
+        startJWfallback(channel);
+    }, { once:true });
 
-        return;   // ✅ สำคัญมาก
-    }
+    // 🔥 ตรวจว่าเล่นจริงหรือไม่
+    setTimeout(()=>{
+
+        if(video.paused || video.currentTime === 0){
+            console.log("Native HLS stuck → fallback JW");
+            startJWfallback(channel);
+        }
+
+    },3000);
+
+    return;
+}
 
     // 2️⃣ HLS.js
     if(typeof Hls !== "undefined" && Hls.isSupported()){
@@ -1440,15 +1759,27 @@ if(forcedPlayer === "html5"){
             hls = null;
         }
 
-        hls = new Hls({
-            enableWorker:true,
-            xhrSetup: function(xhr){
-                if(channel.referer){
-                    xhr.setRequestHeader("Referer", channel.referer);
-                }
-            }
-        });
+     hls = new Hls({
 
+enableWorker:true,
+lowLatencyMode:false,
+
+manifestLoadingTimeOut:20000,
+manifestLoadingMaxRetry:5,
+levelLoadingMaxRetry:5,
+fragLoadingMaxRetry:5,
+
+xhrSetup: function(xhr,url){
+
+    xhr.withCredentials = false;
+
+    if(channel.referer){
+        xhr.setRequestHeader("Referer", channel.referer);
+    }
+
+}
+});  
+        console.log("PLAY HLS:",channel.url);
         hls.loadSource(channel.url);
         hls.attachMedia(video);
 
@@ -1467,12 +1798,39 @@ if(forcedPlayer === "html5"){
         });
 
         hls.on(Hls.Events.ERROR, function(event,data){
-            if(data.fatal){
-                clearTimeout(playTimeout);
-                try{ hls.destroy(); }catch(e){}
-                startJWfallback(channel);
+
+    if(data.fatal){
+
+        console.log("HLS ERROR → switch server");
+
+        // ถ้ามีหลาย server
+        if(channel.urls && channel.urls.length > 1){
+
+            const index = channel.urls.indexOf(channel.url);
+
+            if(index < channel.urls.length - 1){
+
+                channel.url = channel.urls[index + 1];
+
+                console.log("Switch to:", channel.url);
+
+                setTimeout(()=>{
+                    playStream(channel);
+                },500);
+
+                return;
             }
-        });
+        }
+
+        clearTimeout(playTimeout);
+
+        try{ hls.destroy(); }catch(e){}
+
+        startJWfallback(channel);
+
+    }
+
+});
 
         video.addEventListener("playing",()=>{
             clearTimeout(playTimeout);
@@ -1494,36 +1852,48 @@ if(forcedPlayer === "html5"){
 function startJWfallback(channel){
 
     setPlayerLabel("JW (Fallback)");
+
     video.style.display="none";
     document.getElementById("jw-player").style.display="block";
+
+    if(jwInstance){
+        try{
+            jwInstance.stop(true);
+            jwInstance.remove();
+        }catch(e){}
+        jwInstance = null;
+    }
 
     let type = null;
 
     if(channel.url.toLowerCase().includes(".mpd")) type = "dash";
     else if(
-    channel.url.toLowerCase().includes(".m3u8") ||
-    channel.url.toLowerCase().includes(".txt")
-) type = "hls";
+        channel.url.toLowerCase().includes(".m3u8") ||
+        channel.url.toLowerCase().includes(".txt")
+    ) type = "hls";
 
     jwInstance = jwplayer("jw-player").setup({
-    file: channel.url,
-    width: "100%",
-    height: "100%",
-    autostart: true,
-    primary: "html5",
-    type: type,
-    
-});
-	jwInstance.on('ready', function(){
-    setDefaultVolumeJW();   // ✅ 25%
-});
+        file: channel.url,
+        width: "100%",
+        height: "100%",
+        autostart: true,
+        primary: "html5",
+        type: type
+    });
+
+    jwInstance.on('ready', function(){
+        setDefaultVolumeJW();
+    });
 }
 
 /* CLOSE */
 overlay.onclick=()=>{
+
+resetPlayers();
+
 overlay.classList.remove("active");
 playerContainer.classList.remove("active");
-resetPlayers();
+
 };
 
 /* ================= INIT ================= */
@@ -1637,11 +2007,23 @@ function openServerPopup(episode){
 function closeServerPopup(){
     document.getElementById("serverPopup").style.display = "none";
 }
+
+const categoryToggle = document.getElementById("categoryToggle");
+const categoryListEl = document.getElementById("categoryList");
+
+categoryToggle.addEventListener("click", () => {
+
+    if(categoryListEl.style.display === "none"){
+        categoryListEl.style.display = "block";
+        categoryToggle.textContent = "📁 หมวดหมู่ ▾";
+    }else{
+        categoryListEl.style.display = "none";
+        categoryToggle.textContent = "📁 หมวดหมู่ ▸";
+    }
+
+});	
 </script>
 
 </body>
 
 </html>
-
-
-
