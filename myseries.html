@@ -3,58 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV FINAL</title>
+<title>TIEA IPTV FAST</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 
 <style>
 body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;padding:10px;}
+.menu{display:flex;flex-wrap:wrap;gap:10px;padding:10px;background:#111;}
+.menu button{padding:8px 12px;border:none;background:#333;color:#fff;border-radius:6px;cursor:pointer;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;padding:10px;}
 .card{background:#111;padding:10px;border-radius:10px;cursor:pointer;text-align:center;}
-img{width:100%;height:200px;object-fit:cover;border-radius:8px;}
-#player{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:900px;aspect-ratio:16/9;background:#000;display:none;z-index:999;}
+img{width:100%;height:220px;object-fit:cover;border-radius:8px;}
+#player{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:900px;height:60%;background:#000;display:none;z-index:999;}
 #overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:none;z-index:998;}
-video{width:100%;height:100%;}
-.top{display:flex;gap:10px;padding:10px;flex-wrap:wrap;}
-button{padding:8px;border:none;border-radius:6px;background:#2196f3;color:#fff;cursor:pointer;}
+video,iframe{width:100%;height:100%;}
 </style>
 </head>
 
 <body>
 
-<div class="top" id="menu"></div>
+<div class="menu" id="menu"></div>
 <div class="grid" id="grid"></div>
 
 <div id="overlay"></div>
 <div id="player">
-<video id="video" controls autoplay playsinline preload="auto"></video>
+<video id="video" controls autoplay playsinline></video>
 </div>
 
 <script>
 
+const PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
+
 const PLAYLISTS = [
-{ name:"ซีรีย์มาใหม่", url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
-{ name:"ซีรี่ย์จีน", url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
-{ name:"ซีรี่ย์ญี่ปุ่น", url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
-{ name:"ซีรี่ย์เกาหลี", url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
-{ name:"ซีรี่ย์ไทย", url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
-{ name:"ซีรีย์แนวตั้ง", url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"},
+{name:"ซีรีย์มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
+{name:"ซีรี่ย์จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
+{name:"ซีรี่ย์ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
+{name:"ซีรี่ย์เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
+{name:"ซีรี่ย์ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
+{name:"ซีรีย์แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
 ];
 
-let data=[];
-let video=document.getElementById("video");
+let data=[],video=document.getElementById("video");
 let grid=document.getElementById("grid");
-let menu=document.getElementById("menu");
-
 let hls=null;
-let currentEpisodes=[];
-let currentIndex=0;
-
-/* 🔥 Proxy แก้ CORS */
-const proxy="https://cors.isomorphic-git.org/";
 
 /* MENU */
+const menu=document.getElementById("menu");
 PLAYLISTS.forEach(pl=>{
 let btn=document.createElement("button");
 btn.textContent=pl.name;
@@ -62,60 +56,63 @@ btn.onclick=()=>load(pl.url);
 menu.appendChild(btn);
 });
 
-/* LOAD JSON */
+/* LOAD */
 async function load(url){
+grid.innerHTML="กำลังโหลด...";
 let res=await fetch(url);
 data=await res.json();
-renderSeries();
+render();
 }
 
-/* SERIES */
-function renderSeries(){
+/* UI */
+function render(){
 grid.innerHTML="";
 data.forEach(item=>{
 let div=document.createElement("div");
 div.className="card";
 div.innerHTML=`<img src="${item.image}"><div>${item.title}</div>`;
-div.onclick=()=>renderEpisodes(item);
+div.onclick=()=>showEp(item);
 grid.appendChild(div);
 });
 }
 
-/* EPISODES */
-function renderEpisodes(series){
+function showEp(series){
 grid.innerHTML="";
-currentEpisodes=series.episodes;
-
-series.episodes.forEach((ep,i)=>{
+series.episodes.forEach(ep=>{
 let div=document.createElement("div");
 div.className="card";
 div.innerHTML=ep.name;
-div.onclick=()=>{
-currentIndex=i;
-playAuto(ep.servers);
-};
+div.onclick=()=>playFast(ep.servers);
 grid.appendChild(div);
 });
 }
 
 /* RESET */
 function reset(){
-if(hls){try{hls.destroy()}catch(e){}}
+if(hls){hls.destroy();hls=null;}
 video.pause();
 video.src="";
+document.getElementById("player").innerHTML='<video id="video" controls autoplay playsinline></video>';
+video=document.getElementById("video");
 }
 
-/* PLAY */
+/* IFRAME */
+function playIframe(url){
+let player=document.getElementById("player");
+player.innerHTML=`<iframe src="${url}" allowfullscreen allow="autoplay"></iframe>`;
+}
+
+/* PLAY CORE */
 function play(url){
 
-url = proxy + encodeURIComponent(url); // 🔥 ผ่าน proxy
+url = PROXY + encodeURIComponent(url);
 
 return new Promise((resolve,reject)=>{
 
 video.muted=true;
 
-if(url.includes(".m3u8")){
-if(Hls.isSupported()){
+/* HLS */
+if(url.includes(".m3u8") && Hls.isSupported()){
 hls=new Hls();
 hls.loadSource(url);
 hls.attachMedia(video);
@@ -124,78 +121,83 @@ hls.on(Hls.Events.MANIFEST_PARSED,()=>{
 video.play().then(()=>{
 video.muted=false;
 resolve();
-}).catch(reject);
+});
 });
 
 hls.on(Hls.Events.ERROR,(e,d)=>{
-if(d.fatal){hls.destroy();reject();}
+if(d.fatal) reject();
 });
 return;
 }
-}
 
-/* mp4 */
+/* MP4 */
 video.src=url;
 video.onloadeddata=()=>{
 video.play().then(()=>{
 video.muted=false;
 resolve();
-}).catch(reject);
+});
 };
 video.onerror=reject;
 
 });
 }
 
-/* AUTO SERVER */
-async function playAuto(servers){
+/* 🔥 FAST SERVER */
+async function playFast(servers){
 
 reset();
 
-document.getElementById("overlay").style.display="block";
-document.getElementById("player").style.display="block";
+overlay.style.display="block";
+player.style.display="block";
 
-for(let s of servers){
+/* เรียง server: m3u8 มาก่อน */
+servers.sort((a,b)=>{
+return (b.url.includes(".m3u8")?1:0) - (a.url.includes(".m3u8")?1:0);
+});
+
+let index = 0;
+
+async function tryNext(){
+
+if(index >= servers.length){
+alert("❌ ไม่มี server ใช้ได้");
+return;
+}
+
+let s = servers[index++];
+let url = s.url;
+
+/* iframe */
+if(!url.includes(".m3u8") && !url.includes(".mp4")){
+playIframe(url);
+return;
+}
 
 try{
-await play(s.url);
+await play(url);
 
-// เช็คเล่นจริง
-await new Promise(r=>setTimeout(r,1500));
-
-if(video.paused || video.currentTime===0) throw "fail";
-
-return;
+/* เช็ค 2 วิ */
+setTimeout(()=>{
+if(video.currentTime === 0){
+tryNext();
+}
+},2000);
 
 }catch(e){
-console.log("เปลี่ยน server");
+tryNext();
 }
 
 }
 
-alert("❌ เล่นไม่ได้");
+tryNext();
 }
-
-/* NEXT EP */
-video.addEventListener("ended",()=>{
-let next=currentEpisodes[currentIndex+1];
-if(next){
-currentIndex++;
-playAuto(next.servers);
-}
-});
-
-/* SOUND FIX */
-video.addEventListener("click",()=>{
-video.muted=false;
-video.volume=0.8;
-});
 
 /* CLOSE */
-document.getElementById("overlay").onclick=()=>{
+overlay.onclick=()=>{
 reset();
-document.getElementById("overlay").style.display="none";
-document.getElementById("player").style.display="none";
+overlay.style.display="none";
+player.style.display="none";
 };
 
 </script>
