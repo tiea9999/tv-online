@@ -1,85 +1,70 @@
 <!DOCTYPE html>
+
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV (FINAL IFRAME)</title>
+<title>TIEA IPTV TV MODE</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
-.menu{display:flex;gap:10px;padding:10px;background:#111;flex-wrap:wrap;}
-.menu button{padding:8px;background:#333;color:#fff;border:none;border-radius:6px;cursor:pointer;}
-.menu button:focus{outline:2px solid #00c853;}
+body{margin:0;background:#000;color:#fff;font-family:sans-serif;overflow:hidden;}
+
+.menu{
+display:flex;gap:10px;padding:10px;background:#111;
+overflow-x:auto;
+}
+.menu button{
+padding:10px;background:#333;color:#fff;border:none;
+border-radius:8px;cursor:pointer;min-width:120px;
+}
+.menu button:focus{
+outline:3px solid #00c853;
+transform:scale(1.05);
+}
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-gap:10px;
-padding:10px;
+grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+gap:12px;
+padding:12px;
+height:calc(100vh - 70px);
+overflow-y:auto;
 }
 
 .card{
-background:#111;
-padding:8px;
+background:#111;border-radius:12px;
+cursor:pointer;text-align:center;
+transition:.2s;
+}
+.card img{
+width:100%;height:200px;object-fit:cover;
 border-radius:10px;
-cursor:pointer;
-text-align:center;
 }
-.card:focus{outline:2px solid #00c853;}
-
-img{
-width:100%;
-height:200px;
-object-fit:cover;
-border-radius:8px;
+.card:focus{
+outline:3px solid #00c853;
+transform:scale(1.08);
 }
 
-/* PLAYER */
 #player{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#000;
-display:none;
-z-index:999;
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:#000;display:none;z-index:999;
 }
 
-iframe{
-width:100%;
-height:100%;
-border:none;
+video,iframe{width:100%;height:100%;}
+
+.close-btn,.home-btn{
+position:absolute;top:20px;
+border:none;color:#fff;cursor:pointer;
+padding:10px;border-radius:10px;
 }
 
-/* BUTTONS */
-.close-btn{
-position:absolute;
-top:20px;
-right:20px;
-background:red;
-color:#fff;
-border:none;
-border-radius:50%;
-width:40px;
-height:40px;
-cursor:pointer;
-z-index:1000;
-}
+.close-btn{right:20px;background:red;}
+.home-btn{left:20px;background:#ff9800;}
 
-.home-btn{
-position:absolute;
-top:20px;
-left:20px;
-background:#ff9800;
-color:#fff;
-border:none;
-padding:8px 12px;
-border-radius:8px;
-cursor:pointer;
-z-index:1000;
-}
 </style>
+
 </head>
 
 <body>
@@ -87,11 +72,15 @@ z-index:1000;
 <div class="menu" id="menu"></div>
 <div class="grid" id="grid"></div>
 
-<div id="player"></div>
+<div id="player">
+<button class="home-btn" onclick="goHome()">🏠</button>
+<button class="close-btn" onclick="closePlayer()">✕</button>
+<video id="video" controls autoplay playsinline></video>
+</div>
 
 <script>
 
-/* ================= CONFIG ================= */
+const PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
 
 const PLAYLISTS = [
 {name:"ซีรีย์มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
@@ -103,40 +92,37 @@ const PLAYLISTS = [
 ];
 
 let grid=document.getElementById("grid");
+let video=document.getElementById("video");
 let player=document.getElementById("player");
+let hls=null;
 let currentData=[];
 
-/* ================= MENU ================= */
-
+/* MENU */
 const menu=document.getElementById("menu");
-
-PLAYLISTS.forEach(pl=>{
+PLAYLISTS.forEach((pl,i)=>{
 let btn=document.createElement("button");
 btn.textContent=pl.name;
 btn.tabIndex=0;
 
-btn.onclick=()=>load(pl.url);
+btn.onclick=()=>{
+focusIndex=0;
+load(pl.url);
+};
 
 menu.appendChild(btn);
 });
 
-/* ================= LOAD ================= */
-
+/* LOAD */
 async function load(url){
 grid.innerHTML="กำลังโหลด...";
-
-try{
 let res=await fetch(url);
-let data=await res.json();
-currentData=data;
-render(data);
-}catch(e){
-grid.innerHTML="❌ โหลดไม่สำเร็จ";
-}
+currentData=await res.json();
+render(currentData);
+
+setTimeout(()=>setFocus(0),300);
 }
 
-/* ================= RENDER ================= */
-
+/* RENDER */
 function render(data){
 grid.innerHTML="";
 
@@ -152,15 +138,13 @@ div.innerHTML=`
 `;
 
 div.onclick=()=>handleClick(item);
-div.onkeydown=(e)=>{ if(e.key==="Enter") handleClick(item); };
 
 grid.appendChild(div);
 
 });
 }
 
-/* ================= CLICK ================= */
-
+/* CLICK */
 function handleClick(item){
 
 if(item.episodes){
@@ -179,8 +163,7 @@ playServers([{url:item.url}]);
 
 }
 
-/* ================= EPISODES ================= */
-
+/* EP */
 function showEp(item){
 
 grid.innerHTML="";
@@ -192,64 +175,172 @@ div.className="card";
 div.tabIndex=0;
 div.textContent=ep.name;
 
-div.onclick=()=>playServers(ep.servers || [{url:ep.url}]);
-div.onkeydown=(e)=>{ if(e.key==="Enter") playServers(ep.servers || [{url:ep.url}]); };
+div.onclick=()=>playServers(ep.servers||[{url:ep.url}]);
 
 grid.appendChild(div);
 
 });
 
+setTimeout(()=>setFocus(0),200);
+
 }
 
-/* ================= PLAY (IFRAME ONLY) ================= */
+/* RESET */
+function reset(){
+if(hls){hls.destroy();hls=null;}
+video.pause();
+video.src="";
+}
 
-function playServers(servers){
+/* PLAY */
+function play(url){
+
+if(url.includes(".txt")){
+url=url.replace(".txt",".m3u8");
+}
+
+url = PROXY + encodeURIComponent(url);
+
+return new Promise((resolve,reject)=>{
+
+if(url.includes(".m3u8") && Hls.isSupported()){
+
+hls=new Hls();
+hls.loadSource(url);
+hls.attachMedia(video);
+
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{
+video.muted=false;
+video.volume=0.5;
+
+video.play().catch(()=>{
+video.muted=true;
+video.play();
+});
+
+resolve();
+});
+
+hls.on(Hls.Events.ERROR,(e,d)=>{
+if(d.fatal) reject();
+});
+
+return;
+}
+
+video.src=url;
+video.onloadeddata=()=>{
+video.play();
+resolve();
+};
+video.onerror=reject;
+
+});
+}
+
+/* SERVER AUTO */
+async function playServers(servers){
 
 player.style.display="block";
 
-// 🔥 ใช้ iframe 100% (เสถียรสุด)
-let url = servers[0].url;
+for(let s of servers){
 
-player.innerHTML = `
+let url=s.url;
+
+if(!url.includes(".m3u8") && !url.includes(".mp4") && !url.includes(".txt")){
+player.innerHTML=`
 <button class="home-btn" onclick="goHome()">🏠</button>
 <button class="close-btn" onclick="closePlayer()">✕</button>
+<iframe src="${url}" allowfullscreen></iframe>`;
+return;
+}
 
-<iframe 
-src="${url}" 
-allow="autoplay; fullscreen; encrypted-media"
-allowfullscreen>
-</iframe>
-`;
+try{
+await play(url);
+return;
+}catch(e){
+continue;
+}
 
 }
 
-/* ================= CONTROL ================= */
+alert("❌ ไม่มี server ใช้ได้");
 
+}
+
+/* CLOSE */
 function closePlayer(){
+reset();
 player.style.display="none";
-player.innerHTML="";
 }
 
+/* HOME */
 function goHome(){
 closePlayer();
 render(currentData);
+setTimeout(()=>setFocus(0),200);
 }
 
-/* ================= REMOTE SUPPORT ================= */
+/* ================= REMOTE SYSTEM ================= */
+
+let focusIndex = 0;
+
+function getItems(){
+return [...document.querySelectorAll('.card, .menu button')];
+}
+
+function setFocus(i){
+let items=getItems();
+if(items.length===0) return;
+
+if(i<0) i=0;
+if(i>=items.length) i=items.length-1;
+
+focusIndex=i;
+
+items.forEach(el=>el.blur());
+items[focusIndex].focus();
+
+items[focusIndex].scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+}
 
 document.addEventListener("keydown",(e)=>{
 
-if(e.key==="Escape" || e.key==="Backspace"){
+let items=getItems();
+if(items.length===0) return;
+
+let cols=Math.floor(window.innerWidth/180);
+
+switch(e.key){
+
+case "ArrowRight": focusIndex++; break;
+case "ArrowLeft": focusIndex--; break;
+case "ArrowDown": focusIndex+=cols; break;
+case "ArrowUp": focusIndex-=cols; break;
+
+case "Enter":
+items[focusIndex].click();
+return;
+
+case "Escape":
+case "Backspace":
 closePlayer();
+return;
+
 }
+
+setFocus(focusIndex);
 
 });
 
-/* ================= START ================= */
-
+/* START */
 load(PLAYLISTS[0].url);
 
 </script>
 
 </body>
 </html>
+
