@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV FIX TEST</title>
+<title>IPTV ANDROID BOX FIX</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
@@ -16,7 +16,7 @@ font-family:sans-serif;
 overflow:hidden;
 }
 
-/* HOME BUTTON */
+/* HOME */
 #homeBtn{
 position:fixed;
 top:10px;
@@ -27,10 +27,9 @@ background:#00c853;
 color:#fff;
 border:none;
 border-radius:10px;
-font-weight:bold;
 }
 
-/* ROW */
+/* GRID */
 .row-title{
 padding:10px;
 font-weight:bold;
@@ -44,7 +43,6 @@ overflow-x:auto;
 padding:10px;
 }
 
-/* CARD */
 .card,.ep{
 min-width:150px;
 background:#111;
@@ -52,12 +50,11 @@ border-radius:10px;
 padding:8px;
 text-align:center;
 cursor:pointer;
-user-select:none;
-touch-action:manipulation;
 }
 
 .card:focus,.ep:focus{
 outline:2px solid #00ffcc;
+transform:scale(1.05);
 }
 
 img{
@@ -68,7 +65,7 @@ border-radius:8px;
 pointer-events:none;
 }
 
-/* PLAYER */
+/* LAYERS */
 #overlay,#player{
 position:fixed;
 top:0;left:0;
@@ -132,33 +129,53 @@ const SOURCES=[
 {name:"📱 แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
 ];
 
+/* ================= STATE ================= */
 let grid=document.getElementById("grid");
 let overlay=document.getElementById("overlay");
 let video=document.getElementById("video");
 let frame=document.getElementById("frame");
 let hls=null;
 
-/* ================= LOAD ALL FIX ================= */
+/* ================= SAFE FETCH (FIX ANDROID) ================= */
+async function safeFetch(url){
+
+try{
+let ctrl=new AbortController();
+let t=setTimeout(()=>ctrl.abort(),8000);
+
+let res=await fetch(url,{
+signal:ctrl.signal,
+cache:"no-store"
+});
+
+clearTimeout(t);
+
+if(!res.ok) return null;
+
+return await res.json();
+
+}catch(e){
+return null;
+}
+
+}
+
+/* ================= LOAD ALL ================= */
 async function loadAll(){
 
 grid.innerHTML="⚡ LOADING...";
 
 for(let s of SOURCES){
 
-try{
-let res=await fetch(s.url);
-if(!res.ok) continue;
+let data=await safeFetch(s.url);
 
-let data=await res.json();
-if(Array.isArray(data) && data.length){
+if(data && Array.isArray(data) && data.length){
 renderRow(s.name,data);
 }
 
-}catch(e){
-console.log("fail",s.name);
 }
 
-}
+refreshFocus();
 
 }
 
@@ -185,7 +202,7 @@ grid.appendChild(row);
 
 }
 
-/* ================= INPUT FIX (ANDROID + APP24 + MOUSE) ================= */
+/* ================= INPUT ENGINE ================= */
 function getCard(el){
 while(el && !el.classList?.contains("card")){
 el=el.parentElement;
@@ -193,38 +210,34 @@ el=el.parentElement;
 return el;
 }
 
-function handleInput(e){
+function handle(e){
 
 let ep=e.target.closest(".ep");
 if(ep){
-let data=JSON.parse(decodeURIComponent(ep.dataset.ep));
-startPlay(data.servers);
+let d=JSON.parse(decodeURIComponent(ep.dataset.ep));
+startPlay(d.servers);
 return;
 }
 
 let card=getCard(e.target);
 if(!card) return;
 
-try{
 let item=JSON.parse(decodeURIComponent(card.dataset.item));
 openItem(item);
-}catch(e){}
 
 }
 
-/* 🔥 รองรับทุกระบบ */
-document.addEventListener("click",handleInput,true);
-document.addEventListener("touchend",handleInput,true);
-document.addEventListener("mousedown",handleInput,true);
-document.addEventListener("pointerup",handleInput,true);
+/* ALL INPUT */
+document.addEventListener("click",handle,true);
+document.addEventListener("touchend",handle,true);
+document.addEventListener("mousedown",handle,true);
+document.addEventListener("pointerup",handle,true);
 
-/* ================= OPEN ================= */
+/* ================= EP ================= */
 function openItem(item){
 
-if(!item) return;
-
 if(item.episodes && item.episodes.length){
-showEpisodes(item);
+showEP(item);
 return;
 }
 
@@ -232,8 +245,7 @@ startPlay([{url:item.url}]);
 
 }
 
-/* ================= EP ================= */
-function showEpisodes(item){
+function showEP(item){
 
 overlay.style.display="block";
 grid.style.display="none";
@@ -253,7 +265,7 @@ ${ep.name}
 `).join("")}
 </div>
 
-<button class="btn" onclick="closeEP()">Close</button>
+<button class="btn" onclick="goHome()">HOME</button>
 `;
 
 }
@@ -261,20 +273,15 @@ ${ep.name}
 /* ================= PLAY ================= */
 function startPlay(servers){
 
-if(!servers || servers.length===0){
-alert("No server");
-return;
-}
-
 overlay.style.display="none";
 grid.style.display="none";
+
 document.getElementById("player").style.display="block";
 
 playServers(servers);
 
 }
 
-/* ================= SERVER ================= */
 async function playServers(list){
 
 for(let s of list){
@@ -284,11 +291,10 @@ return;
 }catch(e){}
 }
 
-alert("❌ No server");
+alert("❌ no server");
 
 }
 
-/* ================= PLAYER ================= */
 function play(url){
 
 return new Promise((res)=>{
@@ -304,7 +310,6 @@ hls=null;
 if(url.includes(".m3u8") && Hls.isSupported()){
 
 hls=new Hls();
-
 hls.loadSource(url);
 hls.attachMedia(video);
 
@@ -347,26 +352,63 @@ grid.style.display="block";
 
 }
 
-function closeEP(){
+/* ================= HOME (REAL FIX) ================= */
+function goHome(){
+
+closePlayer();
+
 overlay.style.display="none";
-overlay.innerHTML="";
 grid.style.display="block";
+
+refreshFocus();
+
 }
 
-/* ================= HOME BUTTON ================= */
-document.getElementById("homeBtn").onclick=()=>{
-closePlayer();
-overlay.style.display="none";
-grid.style.display="block";
-};
+/* BUTTON */
+document.getElementById("homeBtn").onclick=goHome;
 
-/* ================= BACK LOCK (NO EXIT APP) ================= */
+/* ================= ANDROID REMOTE FIX ================= */
+let focusList=[];
+let focusIndex=0;
+
+function refreshFocus(){
+focusList=[...document.querySelectorAll(".card")];
+}
+
+document.addEventListener("keydown",(e)=>{
+
+if(focusList.length===0) refreshFocus();
+
+if(e.key==="ArrowRight") focusIndex++;
+if(e.key==="ArrowLeft") focusIndex--;
+if(e.key==="ArrowDown") focusIndex+=5;
+if(e.key==="ArrowUp") focusIndex-=5;
+
+if(focusIndex<0) focusIndex=0;
+if(focusIndex>=focusList.length) focusIndex=focusList.length-1;
+
+let el=focusList[focusIndex];
+
+if(el){
+el.focus();
+el.scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+if(e.key==="Enter"){
+el?.click();
+}
+
+if(e.key==="Escape" || e.key==="Backspace"){
+goHome();
+}
+
+});
+
+/* ================= BACK LOCK ================= */
 history.pushState(null,null,location.href);
 
 window.addEventListener("popstate",()=>{
-closePlayer();
-overlay.style.display="none";
-grid.style.display="block";
+goHome();
 history.pushState(null,null,location.href);
 });
 
