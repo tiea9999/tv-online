@@ -1,95 +1,174 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV FINAL PROXY</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIEA IPTV FINAL FOCUS PRO</title>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-<style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
-.menu{display:flex;gap:10px;padding:10px;background:#111;flex-wrap:wrap;}
-.menu button{padding:10px;background:#333;color:#fff;border:none;border-radius:6px;}
-.menu button:focus{outline:2px solid #00c853;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;padding:10px;}
-.card{background:#111;padding:8px;border-radius:10px;text-align:center;}
-.card:focus{outline:2px solid #00c853;}
-img{width:100%;height:200px;object-fit:cover;border-radius:8px;}
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: sans-serif;
+        }
 
-#player{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:none;z-index:999;}
-#overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);display:none;z-index:998;}
+        .menu {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            background: #111;
+        }
 
-video,iframe{width:100%;height:100%;border:none;}
+        .menu button {
+            padding: 10px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+        }
 
-.btn{
-position:absolute;top:20px;
-padding:10px 14px;
-background:#ff9800;color:#fff;
-border:none;border-radius:8px;
-z-index:1000;
-}
-.home{left:20px;}
-.close{right:20px;}
-</style>
+        .row {
+            margin: 10px;
+        }
+
+        .row-items {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+        }
+
+        .row-items::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {
+            min-width: 140px;
+            background: #111;
+            border-radius: 10px;
+            padding: 6px;
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        .card:focus {
+            outline: 3px solid #00c853;
+            transform: scale(1.05);
+        }
+
+        img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        #player,
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        #player {
+            background: #000;
+            z-index: 999;
+        }
+
+        #overlay {
+            background: rgba(0, 0, 0, .9);
+            z-index: 998;
+        }
+
+        video,
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .btn {
+            position: absolute;
+            top: 20px;
+            padding: 10px;
+            background: #ff9800;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        .home {
+            left: 20px;
+        }
+
+        .close {
+            right: 20px;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="menu" id="menu"></div>
-<div class="grid" id="grid"></div>
+    <div class="menu" id="menu"></div>
+    <div id="grid"></div>
 
-<div id="overlay"></div>
+    <div id="overlay"></div>
 
-<div id="player">
-<button class="btn home" onclick="goHome()">🏠</button>
-<button class="btn close" onclick="closePlayer()">✕</button>
-<video id="video" tabindex="0" playsinline></video>
-</div>
+    <div id="player">
+        <button class="btn home" onclick="goHome()">🏠</button>
+        <button class="btn close" onclick="closePlayer()">✕</button>
+        <video id="video" tabindex="0" playsinline></video>
+    </div>
 
-<script>
+    <script>
+        const PROXY="https://iptv.tawatchai250958.workers.dev/?url=";
 
-const PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
-
-const PLAYLISTS = [
-{name:"ซีรีย์มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
-{name:"จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
-{name:"ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
-{name:"เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
-{name:"ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
-{name:"สั้น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
+const PLAYLISTS=[
+{name:"ซีรีย์",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"}
 ];
 
-let grid=document.getElementById("grid");
 let video=document.getElementById("video");
-let hls=null;
-let currentData=[];
+let grid=document.getElementById("grid");
+let hls=null,currentData=[];
+
+let focusIndex=0;
+let cards=[];
 
 const menu=document.getElementById("menu");
 
 PLAYLISTS.forEach(pl=>{
-let btn=document.createElement("button");
-btn.textContent=pl.name;
-btn.tabIndex=0;
-btn.onclick=()=>load(pl.url);
-menu.appendChild(btn);
+let b=document.createElement("button");
+b.textContent=pl.name;
+b.onclick=()=>load(pl.url);
+menu.appendChild(b);
 });
 
 async function load(url){
-grid.innerHTML="กำลังโหลด...";
-try{
+grid.innerHTML="⚡ กำลังโหลด...";
 let res=await fetch(url);
 currentData=await res.json();
 render(currentData);
-setFocus();
-}catch{
-grid.innerHTML="❌ โหลดไม่ได้";
-}
 }
 
 function render(data){
 grid.innerHTML="";
+
+let row=document.createElement("div");
+row.className="row";
+
+let list=document.createElement("div");
+list.className="row-items";
+
 data.forEach(item=>{
+
 let div=document.createElement("div");
 div.className="card";
 div.tabIndex=0;
@@ -99,186 +178,159 @@ div.innerHTML=`
 <div>${item.title||item.name}</div>
 `;
 
-div.onclick=()=>openItem(item);
-div.onkeydown=e=>{if(e.key==="Enter")openItem(item);};
+div.onclick=()=>{
+focusIndex = cards.indexOf(div);
+openItem(item);
+};
 
-grid.appendChild(div);
+div.addEventListener("focus",()=>{
+div.scrollIntoView({behavior:"smooth",inline:"center"});
 });
+
+list.appendChild(div);
+});
+
+row.appendChild(list);
+grid.appendChild(row);
+
+refreshFocus();
 }
 
 function openItem(item){
-
 if(item.episodes){
 grid.innerHTML="";
 item.episodes.forEach(ep=>{
-let div=document.createElement("div");
-div.className="card";
-div.tabIndex=0;
-div.innerHTML=`<div>${ep.name||'EP'}</div>`;
+let d=document.createElement("div");
+d.className="card";
+d.tabIndex=0;
+d.textContent=ep.name||"EP";
 
-div.onclick=()=>startPlay(ep.servers||[{url:ep.url}]);
-div.onkeydown=e=>{if(e.key==="Enter")startPlay(ep.servers||[{url:ep.url}]);};
+d.onclick=()=>{
+focusIndex = cards.indexOf(d);
+startPlay(ep.servers||[{url:ep.url}]);
+};
 
-grid.appendChild(div);
+grid.appendChild(d);
 });
-setFocus();
+refreshFocus();
 return;
 }
-
 startPlay(item.servers||[{url:item.url}]);
 }
 
-function startPlay(servers){
-const overlay=document.getElementById("overlay");
-const player=document.getElementById("player");
-
+function startPlay(list){
 overlay.style.display="block";
 player.style.display="block";
-
-video.src="";
-
-playServers(servers);
-
+playServers(list);
 video.focus();
 }
 
-function reset(){
-if(hls){hls.destroy();hls=null;}
-video.pause();
-video.src="";
-}
-
 function fix(url){
-
-if(url.includes(".txt")){
-url=url.replace(".txt",".m3u8");
-}
-
-// 🔥 ใส่ proxy
-if(url.startsWith("http")){
-url = PROXY + encodeURIComponent(url);
-}
-
-return url;
+if(url.includes(".txt")) url=url.replace(".txt",".m3u8");
+return PROXY+encodeURIComponent(url);
 }
 
 function play(url){
-return new Promise((resolve,reject)=>{
-
+return new Promise((res,rej)=>{
 url=fix(url);
-video.muted=true;
 
-if(url.includes(".m3u8") && Hls.isSupported()){
-if(hls){hls.destroy();}
+if(url.includes(".m3u8")&&Hls.isSupported()){
+if(hls) hls.destroy();
 hls=new Hls();
 hls.loadSource(url);
 hls.attachMedia(video);
-
 hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-video.play().then(()=>{
-video.muted=false;
-resolve();
-}).catch(reject);
+video.play();res();
 });
-
-hls.on(Hls.Events.ERROR,()=>reject());
 return;
 }
 
 video.src=url;
-
-video.onloadeddata=()=>{
-video.play().then(()=>{
-video.muted=false;
-resolve();
-}).catch(reject);
-};
-
-video.onerror=reject;
-
+video.onloadeddata=()=>{video.play();res();};
+video.onerror=rej;
 });
 }
 
 async function playServers(list){
-
-const player=document.getElementById("player");
-
 for(let s of list){
-
-let url=s.url;
-
-// 🔥 iframe fallback
-if(!url.includes(".m3u8") && !url.includes(".mp4") && !url.includes(".txt")){
-player.innerHTML=`
-<button class="btn home" onclick="goHome()">🏠</button>
-<button class="btn close" onclick="closePlayer()">✕</button>
-<iframe src="${url}"></iframe>
-`;
-return;
+try{await play(s.url);return;}catch{}
 }
-
-try{
-await play(url);
-return;
-}catch{}
-}
-
 alert("❌ ไม่มี server");
 }
 
 function closePlayer(){
-reset();
-
-const player=document.getElementById("player");
-
-player.innerHTML=`
-<button class="btn home" onclick="goHome()">🏠</button>
-<button class="btn close" onclick="closePlayer()">✕</button>
-<video id="video" tabindex="0" playsinline></video>
-`;
-
-video=document.getElementById("video");
-
-document.getElementById("overlay").style.display="none";
+if(hls) hls.destroy();
+video.pause();
+video.src="";
+overlay.style.display="none";
 player.style.display="none";
 }
 
 function goHome(){
 closePlayer();
 render(currentData);
-setFocus();
 }
 
+/* 🔥 SMART FOCUS SYSTEM */
+function setSmartFocus(){
+cards = Array.from(document.querySelectorAll(".card"));
+if(cards.length===0) return;
+
+if(focusIndex>=cards.length) focusIndex=0;
+
+cards[focusIndex].focus();
+}
+
+function refreshFocus(){
+setTimeout(setSmartFocus,200);
+}
+
+/* 🔥 รีโมทเทพ */
 document.addEventListener("keydown",e=>{
 
-if(e.key==="Enter"||e.keyCode===13){
-if(video.src){
-video.play().catch(()=>{});
-return;
-}
-document.activeElement?.click();
+if(cards.length===0) return;
+
+if(e.key==="ArrowLeft"||e.keyCode===37) focusIndex--;
+if(e.key==="ArrowRight"||e.keyCode===39) focusIndex++;
+if(e.key==="ArrowUp"||e.keyCode===38) focusIndex-=5;
+if(e.key==="ArrowDown"||e.keyCode===40) focusIndex+=5;
+
+if(focusIndex<0) focusIndex=0;
+if(focusIndex>=cards.length) focusIndex=cards.length-1;
+
+let el=cards[focusIndex];
+
+if(el){
+e.preventDefault();
+el.focus();
+el.scrollIntoView({behavior:"smooth",block:"center",inline:"center"});
 }
 
-if(e.key==="MediaPlayPause"||e.keyCode===179){
-if(video.paused) video.play();
-else video.pause();
+if(e.key==="Enter"||e.keyCode===13||e.keyCode===23){
+cards[focusIndex]?.click();
 }
 
-if(e.key==="Escape"||e.key==="Backspace"){
+if(e.key==="Escape"||e.keyCode===8){
 closePlayer();
 }
 
 });
 
-function setFocus(){
-setTimeout(()=>{
-document.querySelector(".card,.menu button")?.focus();
-},200);
-}
+/* เม้าส์ sync */
+document.addEventListener("mouseover",e=>{
+let c=e.target.closest(".card");
+if(!c) return;
+
+cards = Array.from(document.querySelectorAll(".card"));
+focusIndex = cards.indexOf(c);
+
+c.focus();
+});
 
 load(PLAYLISTS[0].url);
 
-</script>
+    </script>
 
 </body>
+
 </html>
