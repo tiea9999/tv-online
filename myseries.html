@@ -3,79 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ULTRA SMOOTH IPTV</title>
+<title>IPTV NETFLIX PRO MAX</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif}
+body{
+margin:0;background:#000;color:#fff;
+font-family:sans-serif;
+overflow:hidden;
+}
 
-.row-title{padding:10px;font-size:18px;font-weight:bold}
+/* ===== ROW ===== */
+.row-title{
+padding:10px 14px;
+font-size:18px;
+font-weight:bold;
+}
+
+.row{
+margin-bottom:10px;
+}
 
 .row-items{
 display:flex;
 gap:10px;
 overflow-x:auto;
-padding:10px;
+padding:10px 14px;
+scroll-behavior:smooth;
 }
 
-.card{
-min-width:140px;
+/* ===== CARD ===== */
+.card,.ep{
+min-width:150px;
 background:#111;
-border-radius:10px;
-padding:6px;
+border-radius:12px;
+padding:8px;
 text-align:center;
 cursor:pointer;
+user-select:none;
+touch-action:manipulation;
+transition:.2s;
 }
 
-.card:focus{outline:3px solid #00e676;transform:scale(1.05)}
+.card:hover,.ep:hover{
+transform:scale(1.05);
+}
 
-img{width:100%;height:180px;object-fit:cover;border-radius:8px}
+.card:focus,.ep:focus{
+outline:2px solid #00ffcc;
+transform:scale(1.06);
+}
 
+img{
+width:100%;
+height:190px;
+object-fit:cover;
+border-radius:10px;
+pointer-events:none;
+}
+
+/* ===== PLAYER ===== */
 #overlay,#player{
-position:fixed;top:0;left:0;width:100%;height:100%;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
 display:none;
 }
 
-#overlay{background:rgba(0,0,0,.95);z-index:999}
-#player{background:#000;z-index:1000}
-
-video,iframe{width:100%;height:100%;border:none}
-
-.btn{
-position:absolute;top:10px;padding:10px;border:none;
-border-radius:8px;background:#ff9800;color:#fff;z-index:1001;
+#overlay{
+background:rgba(0,0,0,.96);
+z-index:999;
+overflow:auto;
 }
-.home{left:10px}.close{right:10px}
+
+#player{
+background:#000;
+z-index:1000;
+}
+
+video,iframe{
+width:100%;
+height:100%;
+border:none;
+}
+
+/* ===== BTN ===== */
+.btn{
+position:absolute;
+top:10px;
+padding:10px 14px;
+border:none;
+border-radius:8px;
+background:#ff9800;
+color:#fff;
+z-index:1001;
+}
+.home{left:10px}
+.close{right:10px}
+
+/* ===== Netflix feel ===== */
+::-webkit-scrollbar{display:none;}
 </style>
 </head>
 
 <body>
 
 <div id="grid"></div>
+
 <div id="overlay"></div>
 
 <div id="player">
-<button class="btn home" onclick="goHome()">🏠</button>
+<button class="btn home" onclick="goHome()">🏠 Home</button>
 <button class="btn close" onclick="closePlayer()">✕</button>
+
 <video id="video" playsinline></video>
 <iframe id="frame"></iframe>
 </div>
 
 <script>
 
-/* ================= CACHE ================= */
-const cache = new Map();
-
 /* ================= DATA ================= */
 const PLAYLISTS=[
-{name:"ซีรีย์มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
-{name:"จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
-{name:"ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
-{name:"เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
-{name:"ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
-{name:"แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
+{name:"🔥 มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
+{name:"🇨🇳 จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
+{name:"🇯🇵 ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
+{name:"🇰🇷 เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
+{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
+{name:"📱 แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
 ];
+
+const CACHE={};
 
 let grid=document.getElementById("grid");
 let overlay=document.getElementById("overlay");
@@ -83,53 +141,47 @@ let video=document.getElementById("video");
 let frame=document.getElementById("frame");
 
 let hls=null;
+let lastWatch=null;
 
-/* ================= LOAD ULTRA SMOOTH ================= */
+/* ================= CACHE LOAD ================= */
+async function loadJSON(url){
+if(CACHE[url]) return CACHE[url];
+
+let res=await fetch(url);
+let data=await res.json();
+
+CACHE[url]=data;
+return data;
+}
+
+/* ================= LOAD NETFLIX UI ================= */
 async function loadAll(){
 
-grid.innerHTML="⚡ LOADING...";
+grid.innerHTML="⚡ LOADING NETFLIX MODE...";
 
 for(let p of PLAYLISTS){
-
-loadRow(p);
-
+renderRow(p);
 }
 
 }
 
-/* โหลดทีละหมวด (ไม่ block UI) */
-async function loadRow(p){
+/* ================= RENDER ROW ================= */
+async function renderRow(p){
 
 try{
 
-if(cache.has(p.url)){
-renderRow(p.name,cache.get(p.url));
-return;
-}
+let data=await loadJSON(p.url);
 
-let res=await fetch(p.url);
-let data=await res.json();
+let row=document.createElement("div");
 
-cache.set(p.url,data);
+row.className="row";
 
-renderRow(p.name,data);
-
-}catch(e){
-console.log("fail",p.name);
-}
-
-}
-
-/* append ทีละ row */
-function renderRow(title,data){
-
-let div=document.createElement("div");
-
-div.innerHTML=`
-<div class="row-title">${title}</div>
+row.innerHTML=`
+<div class="row-title">${p.name}</div>
 <div class="row-items">
-${data.slice(0,12).map(item=>`
-<div class="card" tabindex="0"
+${data.slice(0,14).map(item=>`
+<div class="card"
+tabindex="0"
 data-item='${encodeURIComponent(JSON.stringify(item))}'>
 <img loading="lazy" src="${item.image||''}">
 <div>${item.title||item.name}</div>
@@ -138,30 +190,46 @@ data-item='${encodeURIComponent(JSON.stringify(item))}'>
 </div>
 `;
 
-grid.appendChild(div);
+grid.appendChild(row);
+
+}catch(e){
+console.log("error",p.name);
+}
 
 }
 
-/* ================= CLICK (ULTRA LIGHT) ================= */
-document.addEventListener("click",(e)=>{
+/* ================= INPUT ENGINE (PRO MAX) ================= */
+function getCard(t){
+while(t && !t.classList?.contains("card")){
+t=t.parentElement;
+}
+return t;
+}
+
+document.addEventListener("pointerup",(e)=>{
 
 let ep=e.target.closest(".ep");
 if(ep){
-let epData=JSON.parse(ep.dataset.ep);
-startPlay(epData.servers);
+let data=JSON.parse(ep.dataset.ep);
+startPlay(data.servers);
 return;
 }
 
-let card=e.target.closest(".card");
-if(card){
+let card=getCard(e.target);
+if(!card) return;
+
+try{
 let item=JSON.parse(decodeURIComponent(card.dataset.item));
 openItem(item);
-}
+}catch(e){}
 
-});
+},true);
 
-/* ================= OPEN ================= */
+/* ================= OPEN ITEM ================= */
 function openItem(item){
+
+/* SAVE LAST WATCH */
+lastWatch=item;
 
 if(item.episodes && item.episodes.length){
 showEpisodes(item);
@@ -172,35 +240,40 @@ startPlay([{url:item.url}]);
 
 }
 
-/* ================= EP UI ================= */
+/* ================= EP UI (NETFLIX STYLE) ================= */
 function showEpisodes(item){
 
 overlay.style.display="block";
 
-let eps=item.episodes.slice().sort((a,b)=>b.ep-a.ep);
+let eps=[...item.episodes].sort((a,b)=>b.ep-a.ep);
 
 overlay.innerHTML=`
-<h2 style="padding:10px">${item.title}</h2>
+<div style="padding:20px">
 
-<div style="display:flex;flex-wrap:wrap;gap:10px;padding:10px">
+<h2>${item.title}</h2>
+
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:10px">
 ${eps.map(ep=>`
-<div class="card ep" tabindex="0"
+<div class="card ep"
+tabindex="0"
 data-ep='${JSON.stringify(ep)}'>
 ${ep.name}
 </div>
 `).join("")}
 </div>
 
-<button class="btn close" onclick="closeEP()">ปิด</button>
+</div>
+
+<button class="btn close" onclick="closeEP()">Close</button>
 `;
 
 }
 
-/* ================= PLAY CORE ================= */
+/* ================= PLAY ENGINE (PRO MAX) ================= */
 function startPlay(servers){
 
 if(!servers || !servers.length){
-alert("ไม่มี server");
+alert("No server");
 return;
 }
 
@@ -211,23 +284,21 @@ playServers(servers);
 
 }
 
-/* retry server */
+/* AUTO SERVER SWITCH */
 async function playServers(list){
 
 for(let s of list){
-
 try{
 await play(s.url);
 return;
 }catch(e){}
+}
+
+alert("All servers failed");
 
 }
 
-alert("เล่นไม่ได้ทุก server");
-
-}
-
-/* play engine */
+/* ================= PLAYER CORE ================= */
 function play(url){
 
 return new Promise((res)=>{
@@ -240,35 +311,45 @@ hls.destroy();
 hls=null;
 }
 
+/* HLS */
 if(url.includes(".m3u8") && Hls.isSupported()){
 
 hls=new Hls({
-maxBufferLength:30,
-enableWorker:true
+maxBufferLength:40,
+lowLatencyMode:true
 });
 
 hls.loadSource(url);
 hls.attachMedia(video);
 
 hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-video.play();
+
+video.play().catch(()=>{});
+
+/* AUTO FULLSCREEN */
+video.requestFullscreen?.();
+
 res();
+
 });
 
 return;
 }
 
+/* MP4 */
 if(url.includes(".mp4")){
 video.src=url;
-video.play();
+video.play().catch(()=>{});
+video.requestFullscreen?.();
 res();
 return;
 }
 
-/* web */
+/* WEB */
 frame.style.display="block";
 video.style.display="none";
 frame.src=url;
+
 res();
 
 });
@@ -288,14 +369,25 @@ document.getElementById("player").style.display="none";
 
 }
 
+/* CLOSE EP */
 function closeEP(){
 overlay.style.display="none";
 overlay.innerHTML="";
 }
 
+/* HOME */
 function goHome(){
 closePlayer();
 }
+
+/* ================= RESUME (PRO MAX FEATURE) ================= */
+setInterval(()=>{
+
+if(video && !video.paused){
+lastWatchProgress=video.currentTime;
+}
+
+},3000);
 
 /* START */
 loadAll();
