@@ -3,19 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV FIX FIXED</title>
+<title>IPTV ENGINE STABLE V2</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
 body{
-margin:0;background:#000;color:#fff;font-family:sans-serif;
+margin:0;
+background:#000;
+color:#fff;
+font-family:sans-serif;
 overflow:hidden;
 }
 
-/* HOME GRID */
-.row-title{padding:10px;font-weight:bold}
-.row-items{display:flex;gap:10px;overflow-x:auto;padding:10px}
+/* ROW */
+.row-title{
+padding:10px;
+font-weight:bold;
+color:#00e5ff;
+}
+
+.row-items{
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding:10px;
+}
 
 /* CARD */
 .card,.ep{
@@ -31,9 +44,9 @@ touch-action:manipulation;
 
 .card:focus,.ep:focus{
 outline:2px solid #00ffcc;
+transform:scale(1.05);
 }
 
-/* IMG */
 img{
 width:100%;
 height:180px;
@@ -42,7 +55,7 @@ border-radius:8px;
 pointer-events:none;
 }
 
-/* OVERLAY + PLAYER */
+/* OVERLAY / PLAYER */
 #overlay,#player{
 position:fixed;
 top:0;left:0;
@@ -50,8 +63,16 @@ width:100%;height:100%;
 display:none;
 }
 
-#overlay{background:rgba(0,0,0,.95);z-index:999;overflow:auto}
-#player{background:#000;z-index:1000}
+#overlay{
+background:rgba(0,0,0,.95);
+z-index:999;
+overflow:auto;
+}
+
+#player{
+background:#000;
+z-index:1000;
+}
 
 video,iframe{
 width:100%;
@@ -59,10 +80,10 @@ height:100%;
 border:none;
 }
 
-/* BTN */
 .btn{
 position:absolute;
 top:10px;
+right:10px;
 padding:10px;
 background:#ff9800;
 border:none;
@@ -70,7 +91,6 @@ border-radius:8px;
 color:#fff;
 z-index:1001;
 }
-.close{right:10px}
 </style>
 </head>
 
@@ -80,22 +100,24 @@ z-index:1001;
 <div id="overlay"></div>
 
 <div id="player">
-<button class="btn close" onclick="closePlayer()">✕</button>
+<button class="btn" onclick="closePlayer()">✕</button>
 <video id="video" playsinline></video>
 <iframe id="frame"></iframe>
 </div>
 
 <script>
 
-const DATA=[
+/* ================= ENGINE CONFIG ================= */
+const SOURCES=[
 {name:"🔥 มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
 {name:"🇨🇳 จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
 {name:"🇯🇵 ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
 {name:"🇰🇷 เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
-{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"}
+{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
+{name:"📱 แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
 ];
 
-const CACHE={};
+const CACHE=new Map();
 
 let grid=document.getElementById("grid");
 let overlay=document.getElementById("overlay");
@@ -103,23 +125,40 @@ let video=document.getElementById("video");
 let frame=document.getElementById("frame");
 let hls=null;
 
-/* ================= LOAD ================= */
+/* ================= SAFE FETCH ENGINE ================= */
+async function getJSON(url){
+if(CACHE.has(url)) return CACHE.get(url);
+
+try{
+let res=await fetch(url,{cache:"force-cache"});
+if(!res.ok) throw new Error("fetch fail");
+
+let data=await res.json();
+CACHE.set(url,data);
+return data;
+
+}catch(e){
+console.log("LOAD FAIL:",url);
+return [];
+}
+}
+
+/* ================= LOAD ALL ROWS ================= */
 async function loadAll(){
 
-grid.innerHTML="⚡ LOADING...";
+grid.innerHTML="⚡ LOADING IPTV ENGINE...";
 
-for(let p of DATA){
-
-let data=await fetch(p.url).then(r=>r.json());
-
-renderRow(p.name,data);
-
+for(let s of SOURCES){
+let data=await getJSON(s.url);
+renderRow(s.name,data);
 }
 
 }
 
-/* ================= ROW ================= */
+/* ================= RENDER ================= */
 function renderRow(title,data){
+
+if(!data || !data.length) return;
 
 let row=document.createElement("div");
 
@@ -130,8 +169,8 @@ ${data.slice(0,12).map(item=>`
 <div class="card"
 tabindex="0"
 data-item='${encodeURIComponent(JSON.stringify(item))}'>
-<img src="${item.image||''}">
-<div>${item.title||item.name}</div>
+<img loading="lazy" src="${item.image||''}">
+<div>${item.title||item.name||""}</div>
 </div>
 `).join("")}
 </div>
@@ -141,48 +180,63 @@ grid.appendChild(row);
 
 }
 
-/* ================= INPUT FIX ================= */
-document.addEventListener("pointerdown",(e)=>{
+/* ================= UNIVERSAL INPUT ENGINE ================= */
+function findCard(el){
+while(el && !el.classList?.contains("card")){
+el=el.parentElement;
+}
+return el;
+}
+
+function handleInput(e){
 
 let ep=e.target.closest(".ep");
 if(ep){
-let epData=JSON.parse(decodeURIComponent(ep.dataset.ep));
-startPlay(epData.servers);
+let data=JSON.parse(decodeURIComponent(ep.dataset.ep));
+startPlay(data.servers);
 return;
 }
 
-let card=e.target.closest(".card");
+let card=findCard(e.target);
 if(!card) return;
 
+try{
 let item=JSON.parse(decodeURIComponent(card.dataset.item));
 openItem(item);
+}catch(e){}
 
-},true);
+}
 
-/* ================= OPEN ================= */
+document.addEventListener("click",handleInput,true);
+document.addEventListener("touchend",handleInput,true);
+document.addEventListener("pointerup",handleInput,true);
+
+/* ================= OPEN ITEM ================= */
 function openItem(item){
 
 if(!item) return;
 
+// EP MODE
 if(item.episodes && item.episodes.length){
 showEpisodes(item);
 return;
 }
 
+// NORMAL PLAY
 startPlay([{url:item.url}]);
 
 }
 
-/* ================= EP ================= */
+/* ================= EP ENGINE FIX ================= */
 function showEpisodes(item){
 
 overlay.style.display="block";
-grid.style.display="none"; // 🔥 FIX สำคัญ (กันค้างโลโก้)
+grid.style.display="none";
 
 let eps=[...item.episodes].sort((a,b)=>b.ep-a.ep);
 
 overlay.innerHTML=`
-<h2 style="padding:10px">${item.title||""}</h2>
+<h2 style="padding:10px;color:#00e5ff">${item.title||""}</h2>
 
 <div style="display:flex;flex-wrap:wrap;gap:10px;padding:10px">
 ${eps.map(ep=>`
@@ -194,29 +248,28 @@ ${ep.name}
 `).join("")}
 </div>
 
-<button class="btn close" onclick="closeEP()">Close</button>
+<button class="btn" onclick="closeEP()">✕ Close</button>
 `;
 
 }
 
-/* ================= PLAY ================= */
+/* ================= PLAYER ENGINE ================= */
 function startPlay(servers){
 
-if(!servers || !servers.length){
+if(!servers || servers.length===0){
 alert("No server");
 return;
 }
 
 overlay.style.display="none";
-grid.style.display="none"; // 🔥 FIX สำคัญ
-
+grid.style.display="none";
 document.getElementById("player").style.display="block";
 
 playServers(servers);
 
 }
 
-/* ================= SERVER ================= */
+/* ================= SERVER SWITCH ================= */
 async function playServers(list){
 
 for(let s of list){
@@ -226,11 +279,11 @@ return;
 }catch(e){}
 }
 
-alert("No server working");
+alert("❌ No server working");
 
 }
 
-/* ================= PLAYER ================= */
+/* ================= PLAY ENGINE ================= */
 function play(url){
 
 return new Promise((res)=>{
@@ -245,7 +298,10 @@ hls=null;
 
 if(url.includes(".m3u8") && Hls.isSupported()){
 
-hls=new Hls();
+hls=new Hls({
+enableWorker:true,
+lowLatencyMode:true
+});
 
 hls.loadSource(url);
 hls.attachMedia(video);
@@ -265,7 +321,7 @@ res();
 return;
 }
 
-/* WEB */
+// fallback web
 frame.style.display="block";
 video.style.display="none";
 frame.src=url;
@@ -296,7 +352,7 @@ overlay.innerHTML="";
 grid.style.display="block";
 }
 
-/* START */
+/* ================= START ================= */
 loadAll();
 
 </script>
