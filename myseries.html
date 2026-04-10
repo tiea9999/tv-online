@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV NETFLIX UI</title>
+<title>PRO IPTV FINAL</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
 body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
 
-.row{margin:15px;}
-.row-title{margin:10px;font-size:18px;font-weight:bold;}
+.row-title{padding:10px;font-weight:bold;font-size:18px}
 
 .row-items{
 display:flex;
@@ -24,31 +23,27 @@ padding:10px;
 min-width:140px;
 background:#111;
 border-radius:10px;
-padding:6px;
+padding:8px;
 text-align:center;
+cursor:pointer;
 }
 
 .card:focus{
-outline:3px solid #00c853;
+outline:3px solid #00e676;
 transform:scale(1.05);
 }
 
-img{
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:8px;
-}
+img{width:100%;height:180px;object-fit:cover;border-radius:8px}
 
-#player,#overlay{
+#overlay,#player{
 position:fixed;
 top:0;left:0;
 width:100%;height:100%;
 display:none;
 }
 
-#player{background:#000;z-index:999;}
-#overlay{background:rgba(0,0,0,.9);z-index:998;}
+#overlay{background:rgba(0,0,0,.95);z-index:999}
+#player{background:#000;z-index:1000}
 
 video,iframe{
 width:100%;
@@ -58,16 +53,24 @@ border:none;
 
 .btn{
 position:absolute;
-top:20px;
+top:10px;
 padding:10px;
-background:#ff9800;
 border:none;
 border-radius:8px;
 color:#fff;
-z-index:1000;
+background:#ff9800;
+z-index:1001;
 }
-.home{left:20px;}
-.close{right:20px;}
+
+.home{left:10px}
+.close{right:10px}
+
+.ep-grid{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+padding:20px;
+}
 </style>
 </head>
 
@@ -80,7 +83,9 @@ z-index:1000;
 <div id="player">
 <button class="btn home" onclick="goHome()">🏠</button>
 <button class="btn close" onclick="closePlayer()">✕</button>
+
 <video id="video" playsinline></video>
+<iframe id="frame"></iframe>
 </div>
 
 <script>
@@ -96,22 +101,22 @@ const PLAYLISTS=[
 {name:"ซีรีย์แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
 ];
 
-let video=document.getElementById("video");
 let grid=document.getElementById("grid");
 let overlay=document.getElementById("overlay");
-let player=document.getElementById("player");
+let video=document.getElementById("video");
+let frame=document.getElementById("frame");
 
 let hls=null;
 let rows=[];
 let focusRow=0;
 let focusCol=0;
 
-/* โหลดทุกหมวดแบบเร็ว */
+/* LOAD */
 async function loadAll(){
 
-grid.innerHTML="⚡ กำลังโหลด...";
+grid.innerHTML="⚡ Loading...";
 
-let allHTML="";
+let html="";
 
 for(let p of PLAYLISTS){
 
@@ -119,17 +124,16 @@ try{
 let res=await fetch(p.url);
 let data=await res.json();
 
-allHTML+=renderRow(p.name,data);
+html+=renderRow(p.name,data);
 
 }catch(e){
-allHTML+=`<div class="row-title">❌ ${p.name}</div>`;
+html+=`<div class="row-title">❌ ${p.name}</div>`;
 }
 
 }
 
-grid.innerHTML=allHTML;
+grid.innerHTML=html;
 
-/* เก็บ rows */
 rows=[...document.querySelectorAll(".row-items")];
 
 setTimeout(()=>{
@@ -137,114 +141,112 @@ rows[0]?.children[0]?.focus();
 },300);
 }
 
-/* render row */
+/* ROW */
 function renderRow(title,data){
 
-let html=`<div class="row-title">${title}</div>`;
-html+=`<div class="row-items">`;
-
-data.slice(0,20).forEach(item=>{
-
-let json = encodeURIComponent(JSON.stringify(item));
-
-html+=`
-<div class="card" tabindex="0" data-item="${json}">
+return `
+<div class="row-title">${title}</div>
+<div class="row-items">
+${data.map(item=>`
+<div class="card" tabindex="0"
+data-item='${encodeURIComponent(JSON.stringify(item))}'>
 <img src="${item.image||''}">
 <div>${item.title||item.name}</div>
 </div>
-`;
-
-});
-
-html+=`</div>`;
-return html;
+`).join("")}
+</div>`;
 }
 
-/* CLICK */
-document.addEventListener("click",e=>{
-let card=e.target.closest(".card");
-if(!card) return;
+/* CLICK (EVENT DELEGATION) */
+document.addEventListener("click",(e)=>{
 
+let ep=e.target.closest(".ep");
+if(ep){
+let data=JSON.parse(ep.dataset.ep);
+startPlay(data.servers);
+return;
+}
+
+let card=e.target.closest(".card");
+if(card && !card.classList.contains("ep")){
 let item=JSON.parse(decodeURIComponent(card.dataset.item));
 openItem(item);
-});
-
-/* ENTER */
-document.addEventListener("keydown",e=>{
-
-if(player.style.display==="block"){
-
-if(e.key==="Escape"||e.key==="Backspace"){
-closePlayer();
-}
-
-return;
-}
-
-/* เลื่อน */
-if(e.key==="ArrowRight") focusCol++;
-if(e.key==="ArrowLeft") focusCol--;
-if(e.key==="ArrowDown"){focusRow++;focusCol=0;}
-if(e.key==="ArrowUp"){focusRow--;focusCol=0;}
-
-if(focusRow<0) focusRow=0;
-if(focusRow>=rows.length) focusRow=rows.length-1;
-
-let row=rows[focusRow];
-let items=row?.children;
-
-if(!items) return;
-
-if(focusCol<0) focusCol=0;
-if(focusCol>=items.length) focusCol=items.length-1;
-
-items[focusCol]?.focus();
-
-/* enter */
-if(e.key==="Enter"){
-items[focusCol]?.click();
 }
 
 });
 
-/* เปิด */
+/* OPEN ITEM */
 function openItem(item){
 
-if(item.episodes){
-startPlay(item.episodes[0].servers||[{url:item.episodes[0].url}]);
+if(item.episodes && item.episodes.length){
+showEpisodes(item);
 return;
 }
 
-startPlay(item.servers||[{url:item.url}]);
+startPlay([{url:item.url}]);
 }
 
-/* เล่น */
-function startPlay(list){
+/* SHOW EPISODES */
+function showEpisodes(item){
+
 overlay.style.display="block";
-player.style.display="block";
-playServers(list);
+
+let eps=[...item.episodes].sort((a,b)=>b.ep-a.ep);
+
+overlay.innerHTML=`
+<h2 style="padding:10px">${item.title}</h2>
+
+<div class="ep-grid">
+${eps.map(ep=>`
+<div class="card ep" tabindex="0"
+data-ep='${JSON.stringify(ep)}'>
+${ep.name}
+</div>
+`).join("")}
+</div>
+
+<button onclick="closeEP()" class="btn close">ปิด</button>
+`;
+
 }
 
-/* fix */
-function fix(url){
-if(url.includes(".txt")) url=url.replace(".txt",".m3u8");
-if(url.includes(".m3u8")||url.includes(".mp4")){
-url = PROXY + encodeURIComponent(url);
-}
-return url;
+/* PLAY */
+function startPlay(servers){
+
+if(!servers || !servers.length){
+alert("❌ ไม่มี server");
+return;
 }
 
-/* play */
-function play(url){
-return new Promise((res,rej)=>{
+overlay.style.display="none";
+document.getElementById("player").style.display="block";
 
-url=fix(url);
+playServers(servers);
+}
+
+/* SERVER PLAY */
+async function playServers(list){
+
+for(let s of list){
+
+let url=s.url||s;
 
 try{
-video.pause();
-video.removeAttribute("src");
-video.load();
+await play(url);
+return;
 }catch(e){}
+}
+
+alert("❌ เล่นไม่ได้ทุก server");
+}
+
+/* CORE PLAY */
+function play(url){
+
+return new Promise((res,rej)=>{
+
+video.style.display="block";
+frame.style.display="none";
 
 if(hls){
 hls.destroy();
@@ -253,75 +255,54 @@ hls=null;
 
 if(url.includes(".m3u8") && Hls.isSupported()){
 hls=new Hls();
-hls.loadSource(url);
+hls.loadSource(PROXY+encodeURIComponent(url));
 hls.attachMedia(video);
-hls.on(Hls.Events.MANIFEST_PARSED,()=>{video.play();res();});
-hls.on(Hls.Events.ERROR,()=>rej());
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{
+video.play();
+res();
+});
 return;
 }
 
 if(url.includes(".mp4")){
-video.src=url;
-video.onloadeddata=()=>{video.play();res();};
-video.onerror=rej;
+video.src=PROXY+encodeURIComponent(url);
+video.play();
+res();
 return;
 }
 
-rej();
+/* web link */
+frame.style.display="block";
+video.style.display="none";
+frame.src=url;
+res();
+
 });
-}
-
-/* server */
-async function playServers(list){
-
-for(let s of list){
-
-let url=s.url||s;
-
-if(url.includes(".m3u8")||url.includes(".mp4")||url.includes(".txt")){
-try{
-await play(url);
-return;
-}catch(e){}
-}
-
-/* fallback */
-player.innerHTML=`
-<button class="btn home" onclick="goHome()">🏠</button>
-<button class="btn close" onclick="closePlayer()">✕</button>
-<iframe src="${url}" allowfullscreen></iframe>
-`;
-return;
 
 }
 
-alert("❌ ไม่มี server");
-}
-
-/* close */
+/* CLOSE */
 function closePlayer(){
 
 if(hls) hls.destroy();
 
 video.pause();
 video.src="";
+frame.src="";
 
+document.getElementById("player").style.display="none";
+}
+
+function closeEP(){
 overlay.style.display="none";
-player.style.display="none";
-
-player.innerHTML=`
-<button class="btn home" onclick="goHome()">🏠</button>
-<button class="btn close" onclick="closePlayer()">✕</button>
-<video id="video" playsinline></video>
-`;
-video=document.getElementById("video");
+overlay.innerHTML="";
 }
 
 function goHome(){
 closePlayer();
 }
 
-/* start */
+/* START */
 loadAll();
 
 </script>
