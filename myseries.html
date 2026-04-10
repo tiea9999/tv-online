@@ -1,7 +1,324 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPTV HOME UX PRO</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+body{
+margin:0;
+background:#000;
+color:#fff;
+font-family:sans-serif;
+overflow:hidden;
+}
+
+/* HOME BUTTON */
+#homeBtn{
+position:fixed;
+top:10px;
+left:10px;
+z-index:9999;
+padding:10px 14px;
+background:#00c853;
+color:#fff;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+#homeBtn:focus{
+outline:2px solid #fff;
+transform:scale(1.05);
+}
+
+/* GRID */
+.row-title{
+padding:10px;
+font-weight:bold;
+}
+
+.row-items{
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding:10px;
+}
+
+/* CARD */
+.card,.ep{
+min-width:150px;
+background:#111;
+border-radius:10px;
+padding:8px;
+text-align:center;
+cursor:pointer;
+user-select:none;
+touch-action:manipulation;
+}
+
+.card:focus,.ep:focus{
+outline:2px solid #00ffcc;
+transform:scale(1.05);
+}
+
+img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:8px;
+pointer-events:none;
+}
+
+/* PLAYER */
+#overlay,#player{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+display:none;
+}
+
+#overlay{background:rgba(0,0,0,.95);z-index:999;overflow:auto}
+#player{background:#000;z-index:1000}
+
+video,iframe{
+width:100%;
+height:100%;
+border:none;
+}
+
+.btn{
+position:absolute;
+top:10px;
+padding:10px;
+border:none;
+border-radius:8px;
+background:#ff9800;
+color:#fff;
+z-index:1001;
+}
+.close{right:10px}
+</style>
+</head>
+
+<body>
+
+<button id="homeBtn" tabindex="0">🏠 HOME</button>
+
+<div id="grid"></div>
+<div id="overlay"></div>
+
+<div id="player">
+<button class="btn close" onclick="closePlayer()">✕</button>
+<video id="video" playsinline></video>
+<iframe id="frame"></iframe>
+</div>
+
+<script>
+
+/* ===== DATA ===== */
+const PLAYLISTS=[
+{name:"🔥 มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
+{name:"🇨🇳 จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
+{name:"🇯🇵 ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
+{name:"🇰🇷 เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
+{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
+{name:"📱 แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
+];
+
+const CACHE={};
+
+let grid=document.getElementById("grid");
+let overlay=document.getElementById("overlay");
+let video=document.getElementById("video");
+let frame=document.getElementById("frame");
+let hls=null;
+
+/* ===== CACHE ===== */
+async function loadJSON(url){
+if(CACHE[url]) return CACHE[url];
+
+let res=await fetch(url);
+let data=await res.json();
+
+CACHE[url]=data;
+return data;
+}
+
+/* ===== LOAD HOME ===== */
+async function loadAll(){
+
+grid.innerHTML="⚡ LOADING...";
+
+for(let p of PLAYLISTS){
+loadRow(p);
+}
+
+}
+
+/* ===== ROW ===== */
+async function loadRow(p){
+
+try{
+
+let data=await loadJSON(p.url);
+
+let row=document.createElement("div");
+
+row.innerHTML=`
+<div class="row-title">${p.name}</div>
+<div class="row-items">
+${data.slice(0,12).map(item=>`
+<div class="card"
+tabindex="0"
+data-item='${encodeURIComponent(JSON.stringify(item))}'>
+<img loading="lazy" src="${item.image||''}">
+<div>${item.title||item.name}</div>
+</div>
+`).join("")}
+</div>
+`;
+
+grid.appendChild(row);
+
+}catch(e){}
+
+}
+
+/* ===== INPUT FIX (ANDROID SAFE) ===== */
+function getCard(t){
+while(t && !t.classList?.contains("card")){
+t=t.parentElement;
+}
+return t;
+}
+
+document.addEventListener("pointerup",(e)=>{
+
+let ep=e.target.closest(".ep");
+if(ep){
+let data=JSON.parse(ep.dataset.ep);
+startPlay(data.servers);
 return;
 }
 
-/* WEB */
+let card=getCard(e.target);
+if(!card) return;
+
+try{
+let item=JSON.parse(decodeURIComponent(card.dataset.item));
+openItem(item);
+}catch(e){}
+
+},true);
+
+/* ===== OPEN ===== */
+function openItem(item){
+
+if(item.episodes && item.episodes.length){
+showEpisodes(item);
+return;
+}
+
+startPlay([{url:item.url}]);
+
+}
+
+/* ===== EP ===== */
+function showEpisodes(item){
+
+overlay.style.display="block";
+
+let eps=[...item.episodes].sort((a,b)=>b.ep-a.ep);
+
+overlay.innerHTML=`
+<h2 style="padding:10px">${item.title}</h2>
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;padding:10px">
+${eps.map(ep=>`
+<div class="card ep" tabindex="0"
+data-ep='${JSON.stringify(ep)}'>
+${ep.name}
+</div>
+`).join("")}
+</div>
+
+<button class="btn close" onclick="closeEP()">Close</button>
+`;
+
+}
+
+/* ===== PLAY ===== */
+function startPlay(servers){
+
+if(!servers || !servers.length){
+alert("No server");
+return;
+}
+
+overlay.style.display="none";
+document.getElementById("player").style.display="block";
+
+playServers(servers);
+
+}
+
+async function playServers(list){
+
+for(let s of list){
+try{
+await play(s.url);
+return;
+}catch(e){}
+}
+
+alert("No server works");
+
+}
+
+function play(url){
+
+return new Promise((res)=>{
+
+video.style.display="block";
+frame.style.display="none";
+
+if(hls){
+hls.destroy();
+hls=null;
+}
+
+if(url.includes(".m3u8") && Hls.isSupported()){
+
+hls=new Hls({
+maxBufferLength:40,
+lowLatencyMode:true
+});
+
+hls.loadSource(url);
+hls.attachMedia(video);
+
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{
+video.play().catch(()=>{});
+video.requestFullscreen?.();
+res();
+});
+
+return;
+}
+
+if(url.includes(".mp4")){
+video.src=url;
+video.play().catch(()=>{});
+video.requestFullscreen?.();
+res();
+return;
+}
+
 frame.style.display="block";
 video.style.display="none";
 frame.src=url;
@@ -12,7 +329,7 @@ res();
 
 }
 
-/* ================= CLOSE ================= */
+/* ===== CLOSE ===== */
 function closePlayer(){
 
 if(hls) hls.destroy();
@@ -25,27 +342,29 @@ document.getElementById("player").style.display="none";
 
 }
 
-/* CLOSE EP */
 function closeEP(){
 overlay.style.display="none";
 overlay.innerHTML="";
 }
 
-/* HOME */
-function goHome(){
+/* ===== HOME BUTTON ===== */
+document.getElementById("homeBtn").onclick=()=>{
 closePlayer();
-}
+overlay.style.display="none";
+grid.style.display="block";
+};
 
-/* ================= RESUME (PRO MAX FEATURE) ================= */
-setInterval(()=>{
+/* ===== BACK FIX (กันเด้งออกแอป) ===== */
+history.pushState(null,null,location.href);
 
-if(video && !video.paused){
-lastWatchProgress=video.currentTime;
-}
+window.addEventListener("popstate",()=>{
+closePlayer();
+overlay.style.display="none";
+grid.style.display="block";
+history.pushState(null,null,location.href);
+});
 
-},3000);
-
-/* START */
+/* ===== START ===== */
 loadAll();
 
 </script>
