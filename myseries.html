@@ -3,51 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV HOME UX PRO</title>
+<title>IPTV FIX FIXED</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
 body{
-margin:0;
-background:#000;
-color:#fff;
-font-family:sans-serif;
+margin:0;background:#000;color:#fff;font-family:sans-serif;
 overflow:hidden;
 }
 
-/* HOME BUTTON */
-#homeBtn{
-position:fixed;
-top:10px;
-left:10px;
-z-index:9999;
-padding:10px 14px;
-background:#00c853;
-color:#fff;
-border:none;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-}
-
-#homeBtn:focus{
-outline:2px solid #fff;
-transform:scale(1.05);
-}
-
-/* GRID */
-.row-title{
-padding:10px;
-font-weight:bold;
-}
-
-.row-items{
-display:flex;
-gap:10px;
-overflow-x:auto;
-padding:10px;
-}
+/* HOME GRID */
+.row-title{padding:10px;font-weight:bold}
+.row-items{display:flex;gap:10px;overflow-x:auto;padding:10px}
 
 /* CARD */
 .card,.ep{
@@ -63,9 +31,9 @@ touch-action:manipulation;
 
 .card:focus,.ep:focus{
 outline:2px solid #00ffcc;
-transform:scale(1.05);
 }
 
+/* IMG */
 img{
 width:100%;
 height:180px;
@@ -74,7 +42,7 @@ border-radius:8px;
 pointer-events:none;
 }
 
-/* PLAYER */
+/* OVERLAY + PLAYER */
 #overlay,#player{
 position:fixed;
 top:0;left:0;
@@ -91,13 +59,14 @@ height:100%;
 border:none;
 }
 
+/* BTN */
 .btn{
 position:absolute;
 top:10px;
 padding:10px;
+background:#ff9800;
 border:none;
 border-radius:8px;
-background:#ff9800;
 color:#fff;
 z-index:1001;
 }
@@ -106,8 +75,6 @@ z-index:1001;
 </head>
 
 <body>
-
-<button id="homeBtn" tabindex="0">🏠 HOME</button>
 
 <div id="grid"></div>
 <div id="overlay"></div>
@@ -120,14 +87,12 @@ z-index:1001;
 
 <script>
 
-/* ===== DATA ===== */
-const PLAYLISTS=[
+const DATA=[
 {name:"🔥 มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
 {name:"🇨🇳 จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
 {name:"🇯🇵 ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
 {name:"🇰🇷 เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
-{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
-{name:"📱 แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
+{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"}
 ];
 
 const CACHE={};
@@ -138,45 +103,34 @@ let video=document.getElementById("video");
 let frame=document.getElementById("frame");
 let hls=null;
 
-/* ===== CACHE ===== */
-async function loadJSON(url){
-if(CACHE[url]) return CACHE[url];
-
-let res=await fetch(url);
-let data=await res.json();
-
-CACHE[url]=data;
-return data;
-}
-
-/* ===== LOAD HOME ===== */
+/* ================= LOAD ================= */
 async function loadAll(){
 
 grid.innerHTML="⚡ LOADING...";
 
-for(let p of PLAYLISTS){
-loadRow(p);
-}
+for(let p of DATA){
+
+let data=await fetch(p.url).then(r=>r.json());
+
+renderRow(p.name,data);
 
 }
 
-/* ===== ROW ===== */
-async function loadRow(p){
+}
 
-try{
-
-let data=await loadJSON(p.url);
+/* ================= ROW ================= */
+function renderRow(title,data){
 
 let row=document.createElement("div");
 
 row.innerHTML=`
-<div class="row-title">${p.name}</div>
+<div class="row-title">${title}</div>
 <div class="row-items">
 ${data.slice(0,12).map(item=>`
 <div class="card"
 tabindex="0"
 data-item='${encodeURIComponent(JSON.stringify(item))}'>
-<img loading="lazy" src="${item.image||''}">
+<img src="${item.image||''}">
 <div>${item.title||item.name}</div>
 </div>
 `).join("")}
@@ -185,39 +139,30 @@ data-item='${encodeURIComponent(JSON.stringify(item))}'>
 
 grid.appendChild(row);
 
-}catch(e){}
-
 }
 
-/* ===== INPUT FIX (ANDROID SAFE) ===== */
-function getCard(t){
-while(t && !t.classList?.contains("card")){
-t=t.parentElement;
-}
-return t;
-}
-
-document.addEventListener("pointerup",(e)=>{
+/* ================= INPUT FIX ================= */
+document.addEventListener("pointerdown",(e)=>{
 
 let ep=e.target.closest(".ep");
 if(ep){
-let data=JSON.parse(ep.dataset.ep);
-startPlay(data.servers);
+let epData=JSON.parse(decodeURIComponent(ep.dataset.ep));
+startPlay(epData.servers);
 return;
 }
 
-let card=getCard(e.target);
+let card=e.target.closest(".card");
 if(!card) return;
 
-try{
 let item=JSON.parse(decodeURIComponent(card.dataset.item));
 openItem(item);
-}catch(e){}
 
 },true);
 
-/* ===== OPEN ===== */
+/* ================= OPEN ================= */
 function openItem(item){
+
+if(!item) return;
 
 if(item.episodes && item.episodes.length){
 showEpisodes(item);
@@ -228,20 +173,22 @@ startPlay([{url:item.url}]);
 
 }
 
-/* ===== EP ===== */
+/* ================= EP ================= */
 function showEpisodes(item){
 
 overlay.style.display="block";
+grid.style.display="none"; // 🔥 FIX สำคัญ (กันค้างโลโก้)
 
 let eps=[...item.episodes].sort((a,b)=>b.ep-a.ep);
 
 overlay.innerHTML=`
-<h2 style="padding:10px">${item.title}</h2>
+<h2 style="padding:10px">${item.title||""}</h2>
 
 <div style="display:flex;flex-wrap:wrap;gap:10px;padding:10px">
 ${eps.map(ep=>`
-<div class="card ep" tabindex="0"
-data-ep='${JSON.stringify(ep)}'>
+<div class="card ep"
+tabindex="0"
+data-ep='${encodeURIComponent(JSON.stringify(ep))}'>
 ${ep.name}
 </div>
 `).join("")}
@@ -252,7 +199,7 @@ ${ep.name}
 
 }
 
-/* ===== PLAY ===== */
+/* ================= PLAY ================= */
 function startPlay(servers){
 
 if(!servers || !servers.length){
@@ -261,12 +208,15 @@ return;
 }
 
 overlay.style.display="none";
+grid.style.display="none"; // 🔥 FIX สำคัญ
+
 document.getElementById("player").style.display="block";
 
 playServers(servers);
 
 }
 
+/* ================= SERVER ================= */
 async function playServers(list){
 
 for(let s of list){
@@ -276,10 +226,11 @@ return;
 }catch(e){}
 }
 
-alert("No server works");
+alert("No server working");
 
 }
 
+/* ================= PLAYER ================= */
 function play(url){
 
 return new Promise((res)=>{
@@ -294,17 +245,13 @@ hls=null;
 
 if(url.includes(".m3u8") && Hls.isSupported()){
 
-hls=new Hls({
-maxBufferLength:40,
-lowLatencyMode:true
-});
+hls=new Hls();
 
 hls.loadSource(url);
 hls.attachMedia(video);
 
 hls.on(Hls.Events.MANIFEST_PARSED,()=>{
 video.play().catch(()=>{});
-video.requestFullscreen?.();
 res();
 });
 
@@ -314,11 +261,11 @@ return;
 if(url.includes(".mp4")){
 video.src=url;
 video.play().catch(()=>{});
-video.requestFullscreen?.();
 res();
 return;
 }
 
+/* WEB */
 frame.style.display="block";
 video.style.display="none";
 frame.src=url;
@@ -329,7 +276,7 @@ res();
 
 }
 
-/* ===== CLOSE ===== */
+/* ================= CLOSE ================= */
 function closePlayer(){
 
 if(hls) hls.destroy();
@@ -339,32 +286,17 @@ video.src="";
 frame.src="";
 
 document.getElementById("player").style.display="none";
+grid.style.display="block";
 
 }
 
 function closeEP(){
 overlay.style.display="none";
 overlay.innerHTML="";
+grid.style.display="block";
 }
 
-/* ===== HOME BUTTON ===== */
-document.getElementById("homeBtn").onclick=()=>{
-closePlayer();
-overlay.style.display="none";
-grid.style.display="block";
-};
-
-/* ===== BACK FIX (กันเด้งออกแอป) ===== */
-history.pushState(null,null,location.href);
-
-window.addEventListener("popstate",()=>{
-closePlayer();
-overlay.style.display="none";
-grid.style.display="block";
-history.pushState(null,null,location.href);
-});
-
-/* ===== START ===== */
+/* START */
 loadAll();
 
 </script>
