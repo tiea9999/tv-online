@@ -162,4 +162,218 @@ console.log("fail",s.name);
 
 }
 
-/* =================
+/* ================= RENDER ================= */
+function renderRow(title,data){
+
+let row=document.createElement("div");
+
+row.innerHTML=`
+<div class="row-title">${title}</div>
+<div class="row-items">
+${data.slice(0,12).map(item=>`
+<div class="card"
+tabindex="0"
+data-item='${encodeURIComponent(JSON.stringify(item))}'>
+<img src="${item.image||''}">
+<div>${item.title||item.name||""}</div>
+</div>
+`).join("")}
+</div>
+`;
+
+grid.appendChild(row);
+
+}
+
+/* ================= INPUT FIX (ANDROID + APP24 + MOUSE) ================= */
+function getCard(el){
+while(el && !el.classList?.contains("card")){
+el=el.parentElement;
+}
+return el;
+}
+
+function handleInput(e){
+
+let ep=e.target.closest(".ep");
+if(ep){
+let data=JSON.parse(decodeURIComponent(ep.dataset.ep));
+startPlay(data.servers);
+return;
+}
+
+let card=getCard(e.target);
+if(!card) return;
+
+try{
+let item=JSON.parse(decodeURIComponent(card.dataset.item));
+openItem(item);
+}catch(e){}
+
+}
+
+/* 🔥 รองรับทุกระบบ */
+document.addEventListener("click",handleInput,true);
+document.addEventListener("touchend",handleInput,true);
+document.addEventListener("mousedown",handleInput,true);
+document.addEventListener("pointerup",handleInput,true);
+
+/* ================= OPEN ================= */
+function openItem(item){
+
+if(!item) return;
+
+if(item.episodes && item.episodes.length){
+showEpisodes(item);
+return;
+}
+
+startPlay([{url:item.url}]);
+
+}
+
+/* ================= EP ================= */
+function showEpisodes(item){
+
+overlay.style.display="block";
+grid.style.display="none";
+
+let eps=[...item.episodes].sort((a,b)=>b.ep-a.ep);
+
+overlay.innerHTML=`
+<h2 style="padding:10px">${item.title||""}</h2>
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;padding:10px">
+${eps.map(ep=>`
+<div class="card ep"
+tabindex="0"
+data-ep='${encodeURIComponent(JSON.stringify(ep))}'>
+${ep.name}
+</div>
+`).join("")}
+</div>
+
+<button class="btn" onclick="closeEP()">Close</button>
+`;
+
+}
+
+/* ================= PLAY ================= */
+function startPlay(servers){
+
+if(!servers || servers.length===0){
+alert("No server");
+return;
+}
+
+overlay.style.display="none";
+grid.style.display="none";
+document.getElementById("player").style.display="block";
+
+playServers(servers);
+
+}
+
+/* ================= SERVER ================= */
+async function playServers(list){
+
+for(let s of list){
+try{
+await play(s.url);
+return;
+}catch(e){}
+}
+
+alert("❌ No server");
+
+}
+
+/* ================= PLAYER ================= */
+function play(url){
+
+return new Promise((res)=>{
+
+video.style.display="block";
+frame.style.display="none";
+
+if(hls){
+hls.destroy();
+hls=null;
+}
+
+if(url.includes(".m3u8") && Hls.isSupported()){
+
+hls=new Hls();
+
+hls.loadSource(url);
+hls.attachMedia(video);
+
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{
+video.play().catch(()=>{});
+res();
+});
+
+return;
+}
+
+if(url.includes(".mp4")){
+video.src=url;
+video.play().catch(()=>{});
+res();
+return;
+}
+
+frame.style.display="block";
+video.style.display="none";
+frame.src=url;
+
+res();
+
+});
+
+}
+
+/* ================= CLOSE ================= */
+function closePlayer(){
+
+if(hls) hls.destroy();
+
+video.pause();
+video.src="";
+frame.src="";
+
+document.getElementById("player").style.display="none";
+grid.style.display="block";
+
+}
+
+function closeEP(){
+overlay.style.display="none";
+overlay.innerHTML="";
+grid.style.display="block";
+}
+
+/* ================= HOME BUTTON ================= */
+document.getElementById("homeBtn").onclick=()=>{
+closePlayer();
+overlay.style.display="none";
+grid.style.display="block";
+};
+
+/* ================= BACK LOCK (NO EXIT APP) ================= */
+history.pushState(null,null,location.href);
+
+window.addEventListener("popstate",()=>{
+closePlayer();
+overlay.style.display="none";
+grid.style.display="block";
+history.pushState(null,null,location.href);
+});
+
+/* START */
+loadAll();
+
+</script>
+
+</body>
+</html>
