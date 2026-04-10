@@ -1,210 +1,265 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV FINAL FIX SERVER</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIEA IPTV NETFLIX UI</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-    <style>
-        body {
-            margin: 0;
-            background: #000;
-            color: #fff;
-            font-family: sans-serif;
-        }
+<style>
+body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
 
-        .row {
-            margin: 10px;
-        }
+.row{margin:15px;}
+.row-title{margin:10px;font-size:18px;font-weight:bold;}
 
-        .row-items {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-        }
+.row-items{
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding:10px;
+}
 
-        .card {
-            min-width: 140px;
-            background: #111;
-            border-radius: 10px;
-            padding: 6px;
-            text-align: center;
-        }
+.card{
+min-width:140px;
+background:#111;
+border-radius:10px;
+padding:6px;
+text-align:center;
+}
 
-        .card:focus {
-            outline: 3px solid #00c853;
-        }
+.card:focus{
+outline:3px solid #00c853;
+transform:scale(1.05);
+}
 
-        img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
+img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:8px;
+}
 
-        #player,
-        #overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
-        }
+#player,#overlay{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+display:none;
+}
 
-        #player {
-            background: #000;
-            z-index: 999;
-        }
+#player{background:#000;z-index:999;}
+#overlay{background:rgba(0,0,0,.9);z-index:998;}
 
-        #overlay {
-            background: rgba(0, 0, 0, .9);
-            z-index: 998;
-        }
+video,iframe{
+width:100%;
+height:100%;
+border:none;
+}
 
-        video,
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .btn {
-            position: absolute;
-            top: 20px;
-            padding: 10px;
-            background: #ff9800;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            z-index: 1000;
-        }
-
-        .home {
-            left: 20px;
-        }
-
-        .close {
-            right: 20px;
-        }
-    </style>
+.btn{
+position:absolute;
+top:20px;
+padding:10px;
+background:#ff9800;
+border:none;
+border-radius:8px;
+color:#fff;
+z-index:1000;
+}
+.home{left:20px;}
+.close{right:20px;}
+</style>
 </head>
 
 <body>
 
-    <div id="grid"></div>
+<div id="grid"></div>
 
-    <div id="overlay"></div>
+<div id="overlay"></div>
 
-    <div id="player">
-        <button class="btn home" onclick="goHome()">🏠</button>
-        <button class="btn close" onclick="closePlayer()">✕</button>
-        <video id="video" playsinline></video>
-    </div>
+<div id="player">
+<button class="btn home" onclick="goHome()">🏠</button>
+<button class="btn close" onclick="closePlayer()">✕</button>
+<video id="video" playsinline></video>
+</div>
 
-    <script>
-        const PROXY="https://iptv.tawatchai250958.workers.dev/?url=";
+<script>
+
+const PROXY="https://iptv.tawatchai250958.workers.dev/?url=";
+
+const PLAYLISTS=[
+{name:"ซีรีย์มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
+{name:"ซีรี่ย์จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
+{name:"ซีรี่ย์ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
+{name:"ซีรี่ย์เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
+{name:"ซีรี่ย์ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
+{name:"ซีรีย์แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
+];
 
 let video=document.getElementById("video");
 let grid=document.getElementById("grid");
-let hls=null,currentData=[];
+let overlay=document.getElementById("overlay");
+let player=document.getElementById("player");
 
-async function load(){
+let hls=null;
+let rows=[];
+let focusRow=0;
+let focusCol=0;
+
+/* โหลดทุกหมวดแบบเร็ว */
+async function loadAll(){
+
 grid.innerHTML="⚡ กำลังโหลด...";
 
-let res=await fetch("https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json");
+let allHTML="";
 
-currentData=await res.json();
-render(currentData);
+for(let p of PLAYLISTS){
+
+try{
+let res=await fetch(p.url);
+let data=await res.json();
+
+allHTML+=renderRow(p.name,data);
+
+}catch(e){
+allHTML+=`<div class="row-title">❌ ${p.name}</div>`;
 }
 
-function render(data){
-grid.innerHTML="";
-let row=document.createElement("div");
-row.className="row";
+}
 
-let list=document.createElement("div");
-list.className="row-items";
+grid.innerHTML=allHTML;
 
-data.forEach(item=>{
-let div=document.createElement("div");
-div.className="card";
-div.tabIndex=0;
+/* เก็บ rows */
+rows=[...document.querySelectorAll(".row-items")];
 
-div.innerHTML=`
+setTimeout(()=>{
+rows[0]?.children[0]?.focus();
+},300);
+}
+
+/* render row */
+function renderRow(title,data){
+
+let html=`<div class="row-title">${title}</div>`;
+html+=`<div class="row-items">`;
+
+data.slice(0,20).forEach(item=>{
+
+let json = encodeURIComponent(JSON.stringify(item));
+
+html+=`
+<div class="card" tabindex="0" data-item="${json}">
 <img src="${item.image||''}">
 <div>${item.title||item.name}</div>
+</div>
 `;
 
-div.onclick=()=>openItem(item);
-list.appendChild(div);
 });
 
-row.appendChild(list);
-grid.appendChild(row);
+html+=`</div>`;
+return html;
 }
 
-function openItem(item){
-if(item.episodes){
-grid.innerHTML="";
-item.episodes.forEach(ep=>{
-let d=document.createElement("div");
-d.className="card";
-d.tabIndex=0;
-d.textContent=ep.name||"EP";
+/* CLICK */
+document.addEventListener("click",e=>{
+let card=e.target.closest(".card");
+if(!card) return;
 
-d.onclick=()=>startPlay(ep.servers||[{url:ep.url}]);
-grid.appendChild(d);
+let item=JSON.parse(decodeURIComponent(card.dataset.item));
+openItem(item);
 });
+
+/* ENTER */
+document.addEventListener("keydown",e=>{
+
+if(player.style.display==="block"){
+
+if(e.key==="Escape"||e.key==="Backspace"){
+closePlayer();
+}
+
 return;
 }
+
+/* เลื่อน */
+if(e.key==="ArrowRight") focusCol++;
+if(e.key==="ArrowLeft") focusCol--;
+if(e.key==="ArrowDown"){focusRow++;focusCol=0;}
+if(e.key==="ArrowUp"){focusRow--;focusCol=0;}
+
+if(focusRow<0) focusRow=0;
+if(focusRow>=rows.length) focusRow=rows.length-1;
+
+let row=rows[focusRow];
+let items=row?.children;
+
+if(!items) return;
+
+if(focusCol<0) focusCol=0;
+if(focusCol>=items.length) focusCol=items.length-1;
+
+items[focusCol]?.focus();
+
+/* enter */
+if(e.key==="Enter"){
+items[focusCol]?.click();
+}
+
+});
+
+/* เปิด */
+function openItem(item){
+
+if(item.episodes){
+startPlay(item.episodes[0].servers||[{url:item.episodes[0].url}]);
+return;
+}
+
 startPlay(item.servers||[{url:item.url}]);
 }
 
+/* เล่น */
 function startPlay(list){
 overlay.style.display="block";
 player.style.display="block";
 playServers(list);
 }
 
+/* fix */
 function fix(url){
-
-if(!url) return "";
-
-if(url.includes(".txt")){
-url=url.replace(".txt",".m3u8");
-}
-
-// 👉 ใส่ proxy เฉพาะไฟล์จริง
+if(url.includes(".txt")) url=url.replace(".txt",".m3u8");
 if(url.includes(".m3u8")||url.includes(".mp4")){
 url = PROXY + encodeURIComponent(url);
 }
-
 return url;
 }
 
+/* play */
 function play(url){
 return new Promise((res,rej)=>{
 
 url=fix(url);
 
-// 👉 HLS
+try{
+video.pause();
+video.removeAttribute("src");
+video.load();
+}catch(e){}
+
+if(hls){
+hls.destroy();
+hls=null;
+}
+
 if(url.includes(".m3u8") && Hls.isSupported()){
-if(hls) hls.destroy();
 hls=new Hls();
 hls.loadSource(url);
 hls.attachMedia(video);
-hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-video.play();res();
-});
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{video.play();res();});
 hls.on(Hls.Events.ERROR,()=>rej());
 return;
 }
 
-// 👉 MP4
 if(url.includes(".mp4")){
 video.src=url;
 video.onloadeddata=()=>{video.play();res();};
@@ -216,46 +271,44 @@ rej();
 });
 }
 
-// 🔥 ตัวจบจริง (แก้ server)
+/* server */
 async function playServers(list){
 
-const player = document.getElementById("player");
-
-// วนทุกลิงก์
 for(let s of list){
 
-let url = s.url || s;
+let url=s.url||s;
 
-// 👉 ถ้าไม่ใช่ไฟล์ → ใช้ iframe
-if(!url.includes(".m3u8") && !url.includes(".mp4") && !url.includes(".txt")){
-    
-    player.innerHTML = `
-    <button class="btn home" onclick="goHome()">🏠</button>
-    <button class="btn close" onclick="closePlayer()">✕</button>
-    <iframe src="${url}" allowfullscreen></iframe>
-    `;
-    return;
-}
-
+if(url.includes(".m3u8")||url.includes(".mp4")||url.includes(".txt")){
 try{
 await play(url);
 return;
 }catch(e){}
+}
+
+/* fallback */
+player.innerHTML=`
+<button class="btn home" onclick="goHome()">🏠</button>
+<button class="btn close" onclick="closePlayer()">✕</button>
+<iframe src="${url}" allowfullscreen></iframe>
+`;
+return;
 
 }
 
-// ❌ ถ้าไม่ได้จริง
-alert("❌ ไม่มี server ใช้ได้จริง");
+alert("❌ ไม่มี server");
 }
 
+/* close */
 function closePlayer(){
+
 if(hls) hls.destroy();
+
 video.pause();
 video.src="";
+
 overlay.style.display="none";
 player.style.display="none";
 
-// reset player UI
 player.innerHTML=`
 <button class="btn home" onclick="goHome()">🏠</button>
 <button class="btn close" onclick="closePlayer()">✕</button>
@@ -266,13 +319,12 @@ video=document.getElementById("video");
 
 function goHome(){
 closePlayer();
-render(currentData);
 }
 
-load();
+/* start */
+loadAll();
 
-    </script>
+</script>
 
 </body>
-
 </html>
