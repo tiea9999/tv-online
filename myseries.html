@@ -1,125 +1,131 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV ANDROID BOX FIX</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV ANDROID BOX FIX</title>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-<style>
-body{
-margin:0;
-background:#000;
-color:#fff;
-font-family:sans-serif;
-overflow:hidden;
-}
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
 
-/* HOME */
-#homeBtn{
-position:fixed;
-top:10px;
-left:10px;
-z-index:9999;
-padding:10px 14px;
-background:#00c853;
-color:#fff;
-border:none;
-border-radius:10px;
-}
+        /* HOME */
+        #homeBtn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 9999;
+            padding: 10px 14px;
+            background: #00c853;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+        }
 
-/* GRID */
-.row-title{
-padding:10px;
-font-weight:bold;
-color:#00e5ff;
-}
+        /* GRID */
+        .row-title {
+            padding: 10px;
+            font-weight: bold;
+            color: #00e5ff;
+        }
 
-.row-items{
-display:flex;
-gap:10px;
-overflow-x:auto;
-padding:10px;
-}
+        .row-items {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px;
+        }
 
-.card,.ep{
-min-width:150px;
-background:#111;
-border-radius:10px;
-padding:8px;
-text-align:center;
-cursor:pointer;
-}
+        .card,
+        .ep {
+            min-width: 150px;
+            background: #111;
+            border-radius: 10px;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
 
-.card:focus,.ep:focus{
-outline:2px solid #00ffcc;
-transform:scale(1.05);
-}
+        .card:focus,
+        .ep:focus {
+            outline: 2px solid #00ffcc;
+            transform: scale(1.05);
+        }
 
-img{
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:8px;
-pointer-events:none;
-}
+        img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            pointer-events: none;
+        }
 
-/* LAYERS */
-#overlay,#player{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-display:none;
-}
+        /* LAYERS */
+        #overlay,
+        #player {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
 
-#overlay{
-background:rgba(0,0,0,.95);
-z-index:999;
-overflow:auto;
-}
+        #overlay {
+            background: rgba(0, 0, 0, .95);
+            z-index: 999;
+            overflow: auto;
+        }
 
-#player{
-background:#000;
-z-index:1000;
-}
+        #player {
+            background: #000;
+            z-index: 1000;
+        }
 
-video,iframe{
-width:100%;
-height:100%;
-border:none;
-}
+        video,
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
-.btn{
-position:absolute;
-top:10px;
-right:10px;
-padding:10px;
-background:#ff9800;
-border:none;
-border-radius:8px;
-color:#fff;
-z-index:1001;
-}
-</style>
+        .btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            background: #ff9800;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            z-index: 1001;
+        }
+    </style>
 </head>
 
 <body>
 
-<button id="homeBtn">🏠 HOME</button>
+    <button id="homeBtn">🏠 HOME</button>
 
-<div id="grid"></div>
-<div id="overlay"></div>
+    <div id="grid"></div>
+    <div id="overlay"></div>
 
-<div id="player">
-<button class="btn" onclick="closePlayer()">✕</button>
-<video id="video" playsinline></video>
-<iframe id="frame"></iframe>
-</div>
+    <div id="player">
+        <button class="btn" onclick="closePlayer()">✕</button>
+        <video id="video" playsinline></video>
+        <iframe id="frame"></iframe>
+    </div>
 
-<script>
-
-/* ================= SOURCES ================= */
+    <script>
+        /* ================= SOURCES ================= */
 const SOURCES=[
 {name:"🔥 มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
 {name:"🇨🇳 จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
@@ -415,7 +421,8 @@ history.pushState(null,null,location.href);
 /* START */
 loadAll();
 
-</script>
+    </script>
 
 </body>
+
 </html>
