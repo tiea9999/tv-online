@@ -1,135 +1,86 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV FINAL FOCUS PRO</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIEA IPTV FINAL FIX</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-    <style>
-        body {
-            margin: 0;
-            background: #000;
-            color: #fff;
-            font-family: sans-serif;
-        }
+<style>
+body { margin:0; background:#000; color:#fff; font-family:sans-serif; }
 
-        .menu {
-            display: flex;
-            gap: 10px;
-            padding: 10px;
-            background: #111;
-        }
+.menu { display:flex; gap:10px; padding:10px; background:#111; }
+.menu button { padding:10px; background:#333; color:#fff; border:none; border-radius:6px; }
 
-        .menu button {
-            padding: 10px;
-            background: #333;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-        }
+.row { margin:10px; }
+.row-items { display:flex; gap:10px; overflow-x:auto; }
+.row-items::-webkit-scrollbar { display:none; }
 
-        .row {
-            margin: 10px;
-        }
+.card {
+    min-width:140px;
+    background:#111;
+    border-radius:10px;
+    padding:6px;
+    flex-shrink:0;
+    text-align:center;
+}
 
-        .row-items {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-        }
+.card:focus {
+    outline:3px solid #00c853;
+    transform:scale(1.05);
+}
 
-        .row-items::-webkit-scrollbar {
-            display: none;
-        }
+img {
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:8px;
+}
 
-        .card {
-            min-width: 140px;
-            background: #111;
-            border-radius: 10px;
-            padding: 6px;
-            flex-shrink: 0;
-            text-align: center;
-        }
+#player,#overlay {
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    display:none;
+}
 
-        .card:focus {
-            outline: 3px solid #00c853;
-            transform: scale(1.05);
-        }
+#player { background:#000; z-index:999; }
+#overlay { background:rgba(0,0,0,.9); z-index:998; }
 
-        img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
+video { width:100%; height:100%; }
 
-        #player,
-        #overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
-        }
+.btn {
+    position:absolute;
+    top:20px;
+    padding:10px;
+    background:#ff9800;
+    border:none;
+    border-radius:8px;
+    z-index:1000;
+}
 
-        #player {
-            background: #000;
-            z-index: 999;
-        }
-
-        #overlay {
-            background: rgba(0, 0, 0, .9);
-            z-index: 998;
-        }
-
-        video,
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .btn {
-            position: absolute;
-            top: 20px;
-            padding: 10px;
-            background: #ff9800;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            z-index: 1000;
-        }
-
-        .home {
-            left: 20px;
-        }
-
-        .close {
-            right: 20px;
-        }
-    </style>
+.home { left:20px; }
+.close { right:20px; }
+</style>
 </head>
 
 <body>
 
-    <div class="menu" id="menu"></div>
-    <div id="grid"></div>
+<div class="menu" id="menu"></div>
+<div id="grid"></div>
 
-    <div id="overlay"></div>
+<div id="overlay"></div>
 
-    <div id="player">
-        <button class="btn home" onclick="goHome()">🏠</button>
-        <button class="btn close" onclick="closePlayer()">✕</button>
-        <video id="video" tabindex="0" playsinline></video>
-    </div>
+<div id="player">
+    <button class="btn home" onclick="goHome()">🏠</button>
+    <button class="btn close" onclick="closePlayer()">✕</button>
+    <video id="video" tabindex="0" playsinline webkit-playsinline controls></video>
+</div>
 
-    <script>
-        const PROXY="https://iptv.tawatchai250958.workers.dev/?url=";
+<script>
+
+const PROXY="https://iptv.tawatchai250958.workers.dev/?url=";
 
 const PLAYLISTS=[
 {name:"ซีรีย์",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"}
@@ -137,8 +88,10 @@ const PLAYLISTS=[
 
 let video=document.getElementById("video");
 let grid=document.getElementById("grid");
-let hls=null,currentData=[];
+let overlay=document.getElementById("overlay");
+let player=document.getElementById("player");
 
+let hls=null,currentData=[];
 let focusIndex=0;
 let cards=[];
 
@@ -225,35 +178,61 @@ playServers(list);
 video.focus();
 }
 
+/* 🔥 ไม่บังคับ proxy */
 function fix(url){
 if(url.includes(".txt")) url=url.replace(".txt",".m3u8");
-return PROXY+encodeURIComponent(url);
+return url;
 }
 
+/* 🔥 player เสถียร */
 function play(url){
 return new Promise((res,rej)=>{
-url=fix(url);
 
-if(url.includes(".m3u8")&&Hls.isSupported()){
-if(hls) hls.destroy();
+if(hls){ hls.destroy(); hls=null; }
+
+video.pause();
+video.src="";
+
+if(url.includes(".m3u8")){
+if(Hls.isSupported()){
 hls=new Hls();
 hls.loadSource(url);
 hls.attachMedia(video);
 hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-video.play();res();
+video.play().then(res).catch(rej);
+});
+hls.on(Hls.Events.ERROR,(e,d)=>{
+if(d.fatal) rej();
 });
 return;
+}else{
+video.src=url;
+}
+}else{
+video.src=url;
 }
 
-video.src=url;
-video.onloadeddata=()=>{video.play();res();};
+video.onloadeddata=()=>{
+video.play().then(res).catch(rej);
+};
+
 video.onerror=rej;
+
 });
 }
 
+/* 🔥 fallback proxy */
 async function playServers(list){
 for(let s of list){
-try{await play(s.url);return;}catch{}
+try{
+await play(fix(s.url));
+return;
+}catch{
+try{
+await play(PROXY + encodeURIComponent(s.url));
+return;
+}catch{}
+}
 }
 alert("❌ ไม่มี server");
 }
@@ -271,13 +250,12 @@ closePlayer();
 render(currentData);
 }
 
-/* 🔥 SMART FOCUS SYSTEM */
+/* 🔥 รีโมทเทพ */
 function setSmartFocus(){
 cards = Array.from(document.querySelectorAll(".card"));
 if(cards.length===0) return;
 
 if(focusIndex>=cards.length) focusIndex=0;
-
 cards[focusIndex].focus();
 }
 
@@ -285,15 +263,14 @@ function refreshFocus(){
 setTimeout(setSmartFocus,200);
 }
 
-/* 🔥 รีโมทเทพ */
 document.addEventListener("keydown",e=>{
 
 if(cards.length===0) return;
 
-if(e.key==="ArrowLeft"||e.keyCode===37) focusIndex--;
-if(e.key==="ArrowRight"||e.keyCode===39) focusIndex++;
-if(e.key==="ArrowUp"||e.keyCode===38) focusIndex-=5;
-if(e.key==="ArrowDown"||e.keyCode===40) focusIndex+=5;
+if(e.key==="ArrowLeft") focusIndex--;
+if(e.key==="ArrowRight") focusIndex++;
+if(e.key==="ArrowUp") focusIndex-=5;
+if(e.key==="ArrowDown") focusIndex+=5;
 
 if(focusIndex<0) focusIndex=0;
 if(focusIndex>=cards.length) focusIndex=cards.length-1;
@@ -306,11 +283,11 @@ el.focus();
 el.scrollIntoView({behavior:"smooth",block:"center",inline:"center"});
 }
 
-if(e.key==="Enter"||e.keyCode===13||e.keyCode===23){
+if(e.key==="Enter"){
 cards[focusIndex]?.click();
 }
 
-if(e.key==="Escape"||e.keyCode===8){
+if(e.key==="Escape"){
 closePlayer();
 }
 
@@ -323,14 +300,12 @@ if(!c) return;
 
 cards = Array.from(document.querySelectorAll(".card"));
 focusIndex = cards.indexOf(c);
-
 c.focus();
 });
 
 load(PLAYLISTS[0].url);
 
-    </script>
+</script>
 
 </body>
-
 </html>
