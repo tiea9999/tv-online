@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV ENGINE STABLE V2</title>
+<title>IPTV FIX TEST</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
@@ -14,6 +14,20 @@ background:#000;
 color:#fff;
 font-family:sans-serif;
 overflow:hidden;
+}
+
+/* HOME BUTTON */
+#homeBtn{
+position:fixed;
+top:10px;
+left:10px;
+z-index:9999;
+padding:10px 14px;
+background:#00c853;
+color:#fff;
+border:none;
+border-radius:10px;
+font-weight:bold;
 }
 
 /* ROW */
@@ -44,7 +58,6 @@ touch-action:manipulation;
 
 .card:focus,.ep:focus{
 outline:2px solid #00ffcc;
-transform:scale(1.05);
 }
 
 img{
@@ -55,7 +68,7 @@ border-radius:8px;
 pointer-events:none;
 }
 
-/* OVERLAY / PLAYER */
+/* PLAYER */
 #overlay,#player{
 position:fixed;
 top:0;left:0;
@@ -96,6 +109,8 @@ z-index:1001;
 
 <body>
 
+<button id="homeBtn">🏠 HOME</button>
+
 <div id="grid"></div>
 <div id="overlay"></div>
 
@@ -107,7 +122,7 @@ z-index:1001;
 
 <script>
 
-/* ================= ENGINE CONFIG ================= */
+/* ================= SOURCES ================= */
 const SOURCES=[
 {name:"🔥 มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
 {name:"🇨🇳 จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
@@ -117,245 +132,34 @@ const SOURCES=[
 {name:"📱 แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
 ];
 
-const CACHE=new Map();
-
 let grid=document.getElementById("grid");
 let overlay=document.getElementById("overlay");
 let video=document.getElementById("video");
 let frame=document.getElementById("frame");
 let hls=null;
 
-/* ================= SAFE FETCH ENGINE ================= */
-async function getJSON(url){
-if(CACHE.has(url)) return CACHE.get(url);
-
-try{
-let res=await fetch(url,{cache:"force-cache"});
-if(!res.ok) throw new Error("fetch fail");
-
-let data=await res.json();
-CACHE.set(url,data);
-return data;
-
-}catch(e){
-console.log("LOAD FAIL:",url);
-return [];
-}
-}
-
-/* ================= LOAD ALL ROWS ================= */
+/* ================= LOAD ALL FIX ================= */
 async function loadAll(){
 
-grid.innerHTML="⚡ LOADING IPTV ENGINE...";
+grid.innerHTML="⚡ LOADING...";
 
 for(let s of SOURCES){
-let data=await getJSON(s.url);
+
+try{
+let res=await fetch(s.url);
+if(!res.ok) continue;
+
+let data=await res.json();
+if(Array.isArray(data) && data.length){
 renderRow(s.name,data);
 }
 
+}catch(e){
+console.log("fail",s.name);
 }
-
-/* ================= RENDER ================= */
-function renderRow(title,data){
-
-if(!data || !data.length) return;
-
-let row=document.createElement("div");
-
-row.innerHTML=`
-<div class="row-title">${title}</div>
-<div class="row-items">
-${data.slice(0,12).map(item=>`
-<div class="card"
-tabindex="0"
-data-item='${encodeURIComponent(JSON.stringify(item))}'>
-<img loading="lazy" src="${item.image||''}">
-<div>${item.title||item.name||""}</div>
-</div>
-`).join("")}
-</div>
-`;
-
-grid.appendChild(row);
 
 }
 
-/* ================= UNIVERSAL INPUT ENGINE ================= */
-function findCard(el){
-while(el && !el.classList?.contains("card")){
-el=el.parentElement;
-}
-return el;
 }
 
-function handleInput(e){
-
-let ep=e.target.closest(".ep");
-if(ep){
-let data=JSON.parse(decodeURIComponent(ep.dataset.ep));
-startPlay(data.servers);
-return;
-}
-
-let card=findCard(e.target);
-if(!card) return;
-
-try{
-let item=JSON.parse(decodeURIComponent(card.dataset.item));
-openItem(item);
-}catch(e){}
-
-}
-
-document.addEventListener("click",handleInput,true);
-document.addEventListener("touchend",handleInput,true);
-document.addEventListener("pointerup",handleInput,true);
-
-/* ================= OPEN ITEM ================= */
-function openItem(item){
-
-if(!item) return;
-
-// EP MODE
-if(item.episodes && item.episodes.length){
-showEpisodes(item);
-return;
-}
-
-// NORMAL PLAY
-startPlay([{url:item.url}]);
-
-}
-
-/* ================= EP ENGINE FIX ================= */
-function showEpisodes(item){
-
-overlay.style.display="block";
-grid.style.display="none";
-
-let eps=[...item.episodes].sort((a,b)=>b.ep-a.ep);
-
-overlay.innerHTML=`
-<h2 style="padding:10px;color:#00e5ff">${item.title||""}</h2>
-
-<div style="display:flex;flex-wrap:wrap;gap:10px;padding:10px">
-${eps.map(ep=>`
-<div class="card ep"
-tabindex="0"
-data-ep='${encodeURIComponent(JSON.stringify(ep))}'>
-${ep.name}
-</div>
-`).join("")}
-</div>
-
-<button class="btn" onclick="closeEP()">✕ Close</button>
-`;
-
-}
-
-/* ================= PLAYER ENGINE ================= */
-function startPlay(servers){
-
-if(!servers || servers.length===0){
-alert("No server");
-return;
-}
-
-overlay.style.display="none";
-grid.style.display="none";
-document.getElementById("player").style.display="block";
-
-playServers(servers);
-
-}
-
-/* ================= SERVER SWITCH ================= */
-async function playServers(list){
-
-for(let s of list){
-try{
-await play(s.url);
-return;
-}catch(e){}
-}
-
-alert("❌ No server working");
-
-}
-
-/* ================= PLAY ENGINE ================= */
-function play(url){
-
-return new Promise((res)=>{
-
-video.style.display="block";
-frame.style.display="none";
-
-if(hls){
-hls.destroy();
-hls=null;
-}
-
-if(url.includes(".m3u8") && Hls.isSupported()){
-
-hls=new Hls({
-enableWorker:true,
-lowLatencyMode:true
-});
-
-hls.loadSource(url);
-hls.attachMedia(video);
-
-hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-video.play().catch(()=>{});
-res();
-});
-
-return;
-}
-
-if(url.includes(".mp4")){
-video.src=url;
-video.play().catch(()=>{});
-res();
-return;
-}
-
-// fallback web
-frame.style.display="block";
-video.style.display="none";
-frame.src=url;
-
-res();
-
-});
-
-}
-
-/* ================= CLOSE ================= */
-function closePlayer(){
-
-if(hls) hls.destroy();
-
-video.pause();
-video.src="";
-frame.src="";
-
-document.getElementById("player").style.display="none";
-grid.style.display="block";
-
-}
-
-function closeEP(){
-overlay.style.display="none";
-overlay.innerHTML="";
-grid.style.display="block";
-}
-
-/* ================= START ================= */
-loadAll();
-
-</script>
-
-</body>
-</html>
+/* =================
