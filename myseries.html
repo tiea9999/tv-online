@@ -3,30 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV ANDROID TV PRO MAX</title>
+<title>IPTV FIX V4 STABLE</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-body{
-margin:0;
-background:#000;
-color:#fff;
-font-family:sans-serif;
-overscroll-behavior:none;
-}
+body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
 
 #homeBtn{
 position:fixed;top:10px;left:10px;
-z-index:9999;
-padding:10px;
-background:#00c853;
-border:none;
-border-radius:10px;
-color:#fff;
+z-index:9999;padding:10px;
+background:#00c853;border:none;
+border-radius:10px;color:#fff;
 }
 
-/* ROW */
 .row-title{
 padding:10px;
 display:flex;
@@ -59,7 +49,6 @@ border-radius:10px;
 padding:8px;
 text-align:center;
 cursor:pointer;
-touch-action:manipulation;
 }
 
 .card:focus{
@@ -76,8 +65,7 @@ pointer-events:none;
 
 /* PLAYER */
 #overlay,#player{
-position:fixed;
-top:0;left:0;
+position:fixed;top:0;left:0;
 width:100%;height:100%;
 display:none;
 }
@@ -85,15 +73,10 @@ display:none;
 #overlay{background:#000;z-index:999;overflow:auto;}
 #player{background:#000;z-index:1000;}
 
-video,iframe{
-width:100%;height:100%;
-border:none;
-}
+video,iframe{width:100%;height:100%;border:none;}
 
 .btn{
-position:absolute;
-top:10px;
-right:10px;
+position:absolute;top:10px;right:10px;
 padding:10px;
 background:#ff9800;
 border:none;
@@ -133,17 +116,16 @@ let video=document.getElementById("video");
 let frame=document.getElementById("frame");
 let hls=null;
 
-/* ================= STATE ================= */
+/* STATE */
 let store={};
 
-/* ================= LOAD ================= */
+/* LOAD */
 async function loadAll(){
 
 grid.innerHTML="⚡ LOADING...";
 
 for(let s of SOURCES){
 
-try{
 let res=await fetch(s.url);
 let data=await res.json();
 
@@ -154,18 +136,16 @@ page:1
 
 renderRow(s.name);
 
-}catch{}
-
 }
 
 }
 
-/* ================= RENDER ROW ================= */
+/* RENDER ROW */
 function renderRow(name){
 
-let block=document.createElement("div");
+let row=document.createElement("div");
 
-block.innerHTML=`
+row.innerHTML=`
 <div class="row-title">
 ${name}
 <button class="seeall" onclick="seeAll('${name}')">ดูทั้งหมด</button>
@@ -174,19 +154,22 @@ ${name}
 <div class="row-items" id="row-${name}"></div>
 `;
 
-grid.appendChild(block);
+grid.appendChild(row);
 
 renderPage(name);
 
 }
 
-/* ================= LOAD 20 / PAGE ================= */
+/* PAGINATION 20 */
 function renderPage(name){
 
 let obj=store[name];
 let row=document.getElementById("row-"+name);
 
-let items=obj.data.slice(0,obj.page*20);
+let start=0;
+let end=obj.page*20;
+
+let items=obj.data.slice(start,end);
 
 row.innerHTML="";
 
@@ -194,13 +177,14 @@ items.forEach(item=>{
 
 let div=document.createElement("div");
 div.className="card";
-
-div.dataset.item=encodeURIComponent(JSON.stringify(item));
+div.tabIndex=0;
 
 div.innerHTML=`
 <img src="${item.image||''}">
 <div>${item.title||item.name||""}</div>
 `;
+
+div.addEventListener("click",()=>openItem(item));
 
 row.appendChild(div);
 
@@ -208,7 +192,7 @@ row.appendChild(div);
 
 }
 
-/* ================= SEE ALL ================= */
+/* SEE ALL */
 function seeAll(name){
 
 store[name].page++;
@@ -216,18 +200,7 @@ renderPage(name);
 
 }
 
-/* ================= GLOBAL CLICK ENGINE ================= */
-document.addEventListener("click",(e)=>{
-
-let el=e.target.closest(".card");
-if(!el) return;
-
-let item=JSON.parse(decodeURIComponent(el.dataset.item));
-openItem(item);
-
-},true);
-
-/* ================= OPEN ================= */
+/* OPEN ITEM */
 function openItem(item){
 
 if(item.episodes && item.episodes.length){
@@ -239,17 +212,15 @@ startPlay([{url:item.url}]);
 
 }
 
-/* ================= EP FIX ================= */
+/* EP FIX (NO INLINE CLICK BUG) */
 function showEP(item){
 
 overlay.style.display="block";
 grid.style.display="none";
 
-overlay.innerHTML=`
-<h2 style="padding:10px">${item.title||""}</h2>
-<div id="epBox" style="display:flex;flex-wrap:wrap;gap:10px;padding:10px"></div>
-<button class="btn" onclick="goHome()">HOME</button>
-`;
+overlay.innerHTML=`<h2 style="padding:10px">${item.title}</h2>
+<div style="display:flex;flex-wrap:wrap;gap:10px;padding:10px" id="epBox"></div>
+<button class="btn" onclick="goHome()">HOME</button>`;
 
 let box=document.getElementById("epBox");
 
@@ -259,26 +230,17 @@ let d=document.createElement("div");
 d.className="card";
 d.textContent=ep.name;
 
-d.dataset.servers=encodeURIComponent(JSON.stringify(ep.servers));
+d.addEventListener("click",()=>{
+startPlay(ep.servers);
+});
 
 box.appendChild(d);
 
 });
 
-box.onclick=(e)=>{
-
-let ep=e.target.closest(".card");
-if(!ep) return;
-
-let servers=JSON.parse(decodeURIComponent(ep.dataset.servers));
-
-startPlay(servers);
-
-};
-
 }
 
-/* ================= PLAY ================= */
+/* PLAY */
 function startPlay(list){
 
 overlay.style.display="none";
@@ -337,7 +299,7 @@ res();
 
 }
 
-/* ================= CLOSE ================= */
+/* CLOSE */
 function closePlayer(){
 
 if(hls) hls.destroy();
@@ -351,20 +313,12 @@ grid.style.display="block";
 
 }
 
-/* ================= HOME ================= */
+/* HOME */
 function goHome(){
 window.location.href="https://tiea9999.github.io/tv-online/index.html";
 }
 
 document.getElementById("homeBtn").onclick=goHome;
-
-/* ================= BACK LOCK ================= */
-history.pushState(null,null,location.href);
-
-window.addEventListener("popstate",()=>{
-goHome();
-history.pushState(null,null,location.href);
-});
 
 /* START */
 loadAll();
