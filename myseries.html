@@ -1,81 +1,145 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV ULTRA SMOOTH</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV ULTRA SMOOTH V3</title>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-<style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: sans-serif;
+        }
 
-#homeBtn{
-position:fixed;top:10px;left:10px;
-z-index:9999;padding:10px;background:#00c853;
-border:none;border-radius:10px;color:#fff;
-}
+        #homeBtn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 9999;
+            padding: 10px;
+            background: #00c853;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+        }
 
-.row-title{padding:10px;color:#00e5ff;font-weight:bold;}
-.row-items{display:flex;gap:10px;overflow-x:auto;padding:10px;}
+        .row-title {
+            padding: 10px;
+            font-weight: bold;
+            color: #00e5ff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.card{
-min-width:150px;background:#111;border-radius:10px;
-padding:8px;text-align:center;cursor:pointer;
-}
+        .seeall {
+            background: #ff9800;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-.card:focus{outline:2px solid #00ffcc;transform:scale(1.05);}
+        .row-items {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px;
+        }
 
-img{
-width:100%;height:180px;
-object-fit:cover;border-radius:8px;
-pointer-events:none;
-}
+        .card {
+            min-width: 150px;
+            background: #111;
+            border-radius: 10px;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
 
-.loadmore{
-background:#e50914;color:#fff;
-padding:10px;margin:10px;border:none;border-radius:8px;
-}
+        .card:focus {
+            outline: 2px solid #00ffcc;
+            transform: scale(1.05);
+        }
 
-/* PLAYER */
-#overlay,#player{
-position:fixed;top:0;left:0;
-width:100%;height:100%;display:none;
-}
+        img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            pointer-events: none;
+        }
 
-#overlay{background:#000;z-index:999;overflow:auto;}
-#player{background:#000;z-index:1000;}
+        /* PLAYER */
+        #overlay,
+        #player {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
 
-video,iframe{width:100%;height:100%;border:none;}
+        #overlay {
+            background: #000;
+            z-index: 999;
+            overflow: auto;
+        }
 
-.btn{
-position:absolute;top:10px;right:10px;
-padding:10px;background:#ff9800;border:none;border-radius:8px;color:#fff;
-}
-</style>
+        #player {
+            background: #000;
+            z-index: 1000;
+        }
+
+        video,
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            background: #ff9800;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
 
-<button id="homeBtn">🏠 HOME</button>
+    <button id="homeBtn">🏠 HOME</button>
 
-<div id="grid"></div>
-<div id="overlay"></div>
+    <div id="grid"></div>
 
-<div id="player">
-<button class="btn" onclick="closePlayer()">✕</button>
-<video id="video" playsinline></video>
-<iframe id="frame"></iframe>
-</div>
+    <div id="overlay"></div>
 
-<script>
+    <div id="player">
+        <button class="btn" onclick="closePlayer()">✕</button>
+        <video id="video" playsinline></video>
+        <iframe id="frame"></iframe>
+    </div>
 
-const SOURCES=[
+    <script>
+        const SOURCES=[
 {name:"🔥 มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
 {name:"🇨🇳 จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
 {name:"🇯🇵 ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
 {name:"🇰🇷 เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
-{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"}
+{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
+{name:"ซีรี่ย์ แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
+
 ];
 
 let grid=document.getElementById("grid");
@@ -89,14 +153,14 @@ let store={};
 /* LOAD */
 async function loadAll(){
 
-grid.innerHTML="⚡ Loading...";
+grid.innerHTML="⚡ LOADING...";
 
 for(let s of SOURCES){
 
 let res=await fetch(s.url);
 let data=await res.json();
 
-store[s.name]={data,index:0};
+store[s.name]={data,index:20,full:false};
 
 renderRow(s.name);
 
@@ -104,36 +168,43 @@ renderRow(s.name);
 
 }
 
-/* RENDER ROW (โหลดทีละ 20) */
+/* ROW */
 function renderRow(name){
 
-let block=document.createElement("div");
+let row=document.createElement("div");
 
-block.innerHTML=`
-<div class="row-title">${name}</div>
-<div class="row-items" id="row-${name}"></div>
-<button class="loadmore" onclick="loadMore('${name}')">โหลดเพิ่ม</button>
+row.innerHTML=`
+<div class="row-title">
+${name}
+<button class="seeall" onclick="seeAll('${name}')">ดูทั้งหมด</button>
+</div>
+
+<div class="row-items" id="row-${name}">
+</div>
 `;
 
-grid.appendChild(block);
+grid.appendChild(row);
 
 loadMore(name);
 
 }
 
-/* LOAD MORE */
+/* LOAD 20 */
 function loadMore(name){
 
 let row=document.getElementById("row-"+name);
 let obj=store[name];
 
-let next=obj.data.slice(obj.index,obj.index+20);
+let next=obj.data.slice(0,obj.index);
+
+row.innerHTML="";
 
 next.forEach(item=>{
 
 let div=document.createElement("div");
 div.className="card";
 div.tabIndex=0;
+
 div.innerHTML=`
 <img src="${item.image||''}">
 <div>${item.title||item.name}</div>
@@ -145,7 +216,13 @@ row.appendChild(div);
 
 });
 
-obj.index+=20;
+}
+
+/* SEE ALL */
+function seeAll(name){
+
+store[name].index=store[name].data.length;
+loadMore(name);
 
 }
 
@@ -169,12 +246,14 @@ grid.style.display="none";
 
 overlay.innerHTML=`
 <h2 style="padding:10px">${item.title}</h2>
+
 <div style="display:flex;flex-wrap:wrap;gap:10px;padding:10px">
 ${item.episodes.map(ep=>`
 <div class="card" onclick='startPlay(${JSON.stringify(ep.servers)})'>
 ${ep.name}
 </div>`).join("")}
 </div>
+
 <button class="btn" onclick="goHome()">HOME</button>
 `;
 
@@ -199,7 +278,7 @@ return;
 }catch{}
 }
 
-alert("❌ server error");
+alert("❌ no server");
 
 }
 
@@ -216,7 +295,10 @@ if(url.includes(".m3u8")){
 hls=new Hls();
 hls.loadSource(url);
 hls.attachMedia(video);
-hls.on(Hls.Events.MANIFEST_PARSED,()=>{video.play();res();});
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{
+video.play();
+res();
+});
 return;
 }
 
@@ -240,6 +322,7 @@ res();
 function closePlayer(){
 
 if(hls) hls.destroy();
+
 video.pause();
 video.src="";
 frame.src="";
@@ -249,17 +332,55 @@ grid.style.display="block";
 
 }
 
-/* HOME */
+/* HOME FIX */
 function goHome(){
 window.location.href="https://tiea9999.github.io/tv-online/index.html";
 }
 
 document.getElementById("homeBtn").onclick=goHome;
 
-/* START */
+/* REMOTE FIX */
+let focusList=[];
+let focusIndex=0;
+
+function refreshFocus(){
+focusList=[...document.querySelectorAll(".card")];
+}
+
+document.addEventListener("keydown",(e)=>{
+
+refreshFocus();
+
+if(!focusList.length) return;
+
+if(e.key==="ArrowRight") focusIndex++;
+if(e.key==="ArrowLeft") focusIndex--;
+if(e.key==="ArrowDown") focusIndex+=5;
+if(e.key==="ArrowUp") focusIndex-=5;
+
+focusIndex=Math.max(0,Math.min(focusIndex,focusList.length-1));
+
+let el=focusList[focusIndex];
+
+if(el){
+el.focus();
+el.scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+if(e.key==="Enter"){
+el?.click();
+}
+
+if(e.key==="Backspace"||e.key==="Escape"){
+closePlayer();
+}
+
+});
+
 loadAll();
 
-</script>
+    </script>
 
 </body>
+
 </html>
