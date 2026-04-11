@@ -3,109 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV TV BOX PRO FIX</title>
+<title>IPTV ULTRA SMOOTH</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif}
+body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
 
-/* SIDEBAR */
-.sidebar{
-position:fixed;width:200px;height:100%;
-background:#111;padding:10px
+#homeBtn{
+position:fixed;top:10px;left:10px;
+z-index:9999;padding:10px;background:#00c853;
+border:none;border-radius:10px;color:#fff;
 }
-.menu{
-padding:10px;background:#222;margin-bottom:5px;border-radius:8px;cursor:pointer
-}
-.menu:hover{background:#00e5ff;color:#000}
 
-.content{margin-left:210px}
-
-/* CARD */
-.row-items{display:flex;gap:10px;overflow-x:auto;padding:10px}
-.grid{display:flex;flex-wrap:wrap;gap:10px;padding:10px}
+.row-title{padding:10px;color:#00e5ff;font-weight:bold;}
+.row-items{display:flex;gap:10px;overflow-x:auto;padding:10px;}
 
 .card{
-min-width:150px;
-background:#111;
-padding:8px;
-border-radius:10px;
-cursor:pointer;
-outline:none;
+min-width:150px;background:#111;border-radius:10px;
+padding:8px;text-align:center;cursor:pointer;
 }
 
-.card.focus{
-transform:scale(1.1);
-outline:3px solid #00ffcc;
-}
+.card:focus{outline:2px solid #00ffcc;transform:scale(1.05);}
 
 img{
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:8px;
+width:100%;height:180px;
+object-fit:cover;border-radius:8px;
+pointer-events:none;
+}
+
+.loadmore{
+background:#e50914;color:#fff;
+padding:10px;margin:10px;border:none;border-radius:8px;
 }
 
 /* PLAYER */
-#player{
-position:fixed;
-top:0;left:0;
-width:100%;
-height:100%;
-background:#000;
-display:none;
-z-index:999;
+#overlay,#player{
+position:fixed;top:0;left:0;
+width:100%;height:100%;display:none;
 }
 
-#playerUI{
-position:absolute;
-bottom:0;
-left:0;
-width:100%;
-display:flex;
-gap:10px;
-justify-content:center;
-align-items:center;
-padding:15px;
-background:rgba(0,0,0,0.7);
-z-index:1001;
-}
+#overlay{background:#000;z-index:999;overflow:auto;}
+#player{background:#000;z-index:1000;}
 
-#playerUI button{
-font-size:18px;
-padding:10px 14px;
-border:none;
-border-radius:8px;
-background:#ff9800;
-color:#fff;
-}
+video,iframe{width:100%;height:100%;border:none;}
 
-video,iframe{
-width:100%;
-height:100%;
+.btn{
+position:absolute;top:10px;right:10px;
+padding:10px;background:#ff9800;border:none;border-radius:8px;color:#fff;
 }
 </style>
 </head>
 
 <body>
 
-<div class="sidebar" id="menu"></div>
-<div class="content" id="content"></div>
+<button id="homeBtn">🏠 HOME</button>
 
-<!-- PLAYER -->
+<div id="grid"></div>
+<div id="overlay"></div>
+
 <div id="player">
-
-<div id="playerUI">
-<button onclick="prevEP()">⏮</button>
-<button onclick="togglePlay()">⏯</button>
-<button onclick="nextEP()">⏭</button>
-<button onclick="closePlayer()">⬅</button>
-</div>
-
-<video id="video" playsinline controls></video>
+<button class="btn" onclick="closePlayer()">✕</button>
+<video id="video" playsinline></video>
 <iframe id="frame"></iframe>
-
 </div>
 
 <script>
@@ -118,137 +78,145 @@ const SOURCES=[
 {name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"}
 ];
 
-let menu=document.getElementById("menu");
-let content=document.getElementById("content");
-
-let player=document.getElementById("player");
+let grid=document.getElementById("grid");
+let overlay=document.getElementById("overlay");
 let video=document.getElementById("video");
 let frame=document.getElementById("frame");
-
 let hls=null;
 
-/* ===== EP SYSTEM ===== */
-let currentEPList=[];
-let currentEPIndex=0;
-let currentKey="";
+let store={};
 
-/* ===== MENU ===== */
-function buildMenu(){
-menu.innerHTML=SOURCES.map((m,i)=>`
-<div class="menu" onclick="loadCategory(${i})">${m.name}</div>
-`).join("");
+/* LOAD */
+async function loadAll(){
+
+grid.innerHTML="⚡ Loading...";
+
+for(let s of SOURCES){
+
+let res=await fetch(s.url);
+let data=await res.json();
+
+store[s.name]={data,index:0};
+
+renderRow(s.name);
+
 }
 
-/* ===== LOAD ===== */
-async function loadCategory(i){
+}
 
-content.innerHTML="LOADING...";
+/* RENDER ROW (โหลดทีละ 20) */
+function renderRow(name){
 
-let data=await fetch(SOURCES[i].url).then(r=>r.json()).catch(()=>[]);
+let block=document.createElement("div");
 
-content.innerHTML=`
-<div class="row-items">
-${data.slice(0,12).map(item=>cardHTML(item)).join("")}
-</div>
+block.innerHTML=`
+<div class="row-title">${name}</div>
+<div class="row-items" id="row-${name}"></div>
+<button class="loadmore" onclick="loadMore('${name}')">โหลดเพิ่ม</button>
 `;
+
+grid.appendChild(block);
+
+loadMore(name);
+
 }
 
-/* ===== FULL CARD ===== */
-function cardHTML(item){
-return `
-<div class="card"
-data-item='${encodeURIComponent(JSON.stringify(item))}'>
+/* LOAD MORE */
+function loadMore(name){
+
+let row=document.getElementById("row-"+name);
+let obj=store[name];
+
+let next=obj.data.slice(obj.index,obj.index+20);
+
+next.forEach(item=>{
+
+let div=document.createElement("div");
+div.className="card";
+div.tabIndex=0;
+div.innerHTML=`
 <img src="${item.image||''}">
-<div>${item.title||item.name||""}</div>
-</div>
+<div>${item.title||item.name}</div>
 `;
+
+div.onclick=()=>openItem(item);
+
+row.appendChild(div);
+
+});
+
+obj.index+=20;
+
 }
 
-/* ===== CLICK FIX (สำคัญ) ===== */
-document.addEventListener("click",e=>{
-
-let ep=e.target.closest(".card.ep");
-if(ep){
-let data=JSON.parse(decodeURIComponent(ep.dataset.ep));
-currentEPIndex=parseInt(ep.dataset.i);
-startPlay(data.servers||[{url:data.url}]);
-player.style.display="block";
-return;
-}
-
-let c=e.target.closest(".card");
-if(!c)return;
-
-let item=JSON.parse(decodeURIComponent(c.dataset.item));
+/* ITEM */
+function openItem(item){
 
 if(item.episodes){
 showEP(item);
-}else{
-startPlay([{url:item.url}]);
-player.style.display="block";
+return;
 }
 
-});
+startPlay([{url:item.url}]);
 
-/* ===== EP LIST ===== */
+}
+
+/* EP */
 function showEP(item){
 
-currentEPList=item.episodes;
-currentKey="ep_"+item.title;
+overlay.style.display="block";
+grid.style.display="none";
 
-currentEPIndex=parseInt(localStorage.getItem(currentKey)||0);
-
-content.innerHTML=`
-<h2>${item.title||""}</h2>
-
-<div class="grid">
-${item.episodes.map((ep,i)=>`
-<div class="card ep"
-data-i="${i}"
-data-ep='${encodeURIComponent(JSON.stringify(ep))}'>
-${ep.name||("EP "+ep.ep)}
+overlay.innerHTML=`
+<h2 style="padding:10px">${item.title}</h2>
+<div style="display:flex;flex-wrap:wrap;gap:10px;padding:10px">
+${item.episodes.map(ep=>`
+<div class="card" onclick='startPlay(${JSON.stringify(ep.servers)})'>
+${ep.name}
+</div>`).join("")}
 </div>
-`).join("")}
-</div>
-
-<button onclick="loadCategory(0)">⬅ กลับ</button>
+<button class="btn" onclick="goHome()">HOME</button>
 `;
+
 }
 
-/* ===== SAVE ===== */
-function saveEP(){
-localStorage.setItem(currentKey,currentEPIndex);
-}
-
-/* ===== PLAYER FIX ===== */
+/* PLAY */
 function startPlay(list){
-player.style.display="block"; // 🔥 ต้องเปิดก่อน
+
+overlay.style.display="none";
+player.style.display="block";
+
 playServers(list);
+
 }
 
 async function playServers(list){
+
 for(let s of list){
-try{await play(s.url);return;}catch(e){}
+try{
+await play(s.url);
+return;
+}catch{}
 }
-alert("❌ เล่นไม่ได้");
+
+alert("❌ server error");
+
 }
 
 function play(url){
-return new Promise(res=>{
 
-if(hls){hls.destroy();hls=null;}
+return new Promise((res)=>{
 
-if(url.includes(".m3u8")&&Hls.isSupported()){
+if(hls){hls.destroy();}
+
 video.style.display="block";
 frame.style.display="none";
 
+if(url.includes(".m3u8")){
 hls=new Hls();
 hls.loadSource(url);
 hls.attachMedia(video);
-hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-video.play();
-res();
-});
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{video.play();res();});
 return;
 }
 
@@ -265,44 +233,31 @@ frame.src=url;
 res();
 
 });
+
 }
 
-/* ===== EP NEXT/PREV ===== */
-function nextEP(){
-if(currentEPIndex<currentEPList.length-1){
-currentEPIndex++;
-saveEP();
-let ep=currentEPList[currentEPIndex];
-startPlay(ep.servers||[{url:ep.url}]);
-}
-}
-
-function prevEP(){
-if(currentEPIndex>0){
-currentEPIndex--;
-saveEP();
-let ep=currentEPList[currentEPIndex];
-startPlay(ep.servers||[{url:ep.url}]);
-}
-}
-
-/* ===== CONTROL ===== */
-function togglePlay(){
-if(video.paused) video.play();
-else video.pause();
-}
-
+/* CLOSE */
 function closePlayer(){
-if(hls)hls.destroy();
+
+if(hls) hls.destroy();
 video.pause();
 video.src="";
 frame.src="";
+
 player.style.display="none";
+grid.style.display="block";
+
 }
 
-/* ===== INIT ===== */
-buildMenu();
-loadCategory(0);
+/* HOME */
+function goHome(){
+window.location.href="https://tiea9999.github.io/tv-online/index.html";
+}
+
+document.getElementById("homeBtn").onclick=goHome;
+
+/* START */
+loadAll();
 
 </script>
 
