@@ -1,265 +1,320 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV Netflix ULTRA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPTV FINAL PRO</title>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-<style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif;overflow:hidden}
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: sans-serif
+        }
 
-/* SIDEBAR */
-.sidebar{
-position:fixed;left:0;top:0;width:200px;height:100%;
-background:#111;padding:10px;display:flex;flex-direction:column;gap:10px;
-}
-.menu{padding:10px;background:#222;border-radius:8px;cursor:pointer;}
-.menu.focus,.menu:hover{background:#00e5ff;color:#000;}
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            width: 200px;
+            height: 100%;
+            background: #111;
+            padding: 10px
+        }
 
-.content{margin-left:210px;}
+        .menu {
+            padding: 10px;
+            background: #222;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            cursor: pointer
+        }
 
-/* CARD */
-.row-items{display:flex;gap:10px;padding:10px;overflow-x:auto;}
-.card{
-min-width:150px;background:#111;border-radius:10px;padding:8px;
-transition:.2s;
-}
-.card.focus{
-transform:scale(1.12);
-box-shadow:0 10px 30px rgba(0,255,200,0.6);
-}
+        .menu:hover {
+            background: #00e5ff;
+            color: #000
+        }
 
-/* PREVIEW */
-.preview{
-position:fixed;
-bottom:50px;
-left:250px;
-background:#111;
-padding:15px;
-border-radius:10px;
-display:none;
-width:300px;
-z-index:999;
-}
-.preview img{
-width:100%;height:160px;object-fit:cover;border-radius:8px;
-}
+        /* CONTENT */
+        .content {
+            margin-left: 210px
+        }
 
-/* PLAYER */
-#player{
-position:fixed;top:0;left:0;width:100%;height:100%;
-background:#000;display:none;z-index:1000;
-}
-video,iframe{width:100%;height:100%;}
+        /* ROW */
+        .row-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px
+        }
 
-.controls{
-position:absolute;bottom:30px;left:50%;
-transform:translateX(-50%);
-display:flex;gap:10px;
-}
+        .row-items {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px
+        }
 
-.btn{
-padding:10px;background:#ff9800;border:none;border-radius:8px;color:#fff;
-}
-</style>
+        .card {
+            min-width: 150px;
+            background: #111;
+            padding: 8px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05)
+        }
+
+        img {
+            width: 100%;
+            height: 180px;
+            border-radius: 8px;
+            object-fit: cover
+        }
+
+        /* GRID */
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px
+        }
+
+        /* PLAYER */
+        #player {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            z-index: 999;
+        }
+
+        #playerUI {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 10px;
+            transition: .3s;
+        }
+
+        #playerUI.hide {
+            opacity: 0
+        }
+
+        #playerUI button {
+            background: #ff9800;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            color: #fff
+        }
+
+        #seek {
+            width: 300px
+        }
+
+        video,
+        iframe {
+            width: 100%;
+            height: 100%
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="sidebar" id="menu"></div>
-<div class="content" id="content"></div>
-<div class="preview" id="preview"></div>
+    <div class="sidebar" id="menu"></div>
+    <div class="content" id="content"></div>
 
-<div id="player">
-<div class="controls">
-<button class="btn" onclick="prevEP()">⏮</button>
-<button class="btn" onclick="togglePlay()">⏯</button>
-<button class="btn" onclick="nextEP()">⏭</button>
-<button class="btn" onclick="closePlayer()">⬅</button>
-<button class="btn" onclick="goMainHome()">🏠</button>
-</div>
-<video id="video"></video>
-<iframe id="frame"></iframe>
-</div>
+    <div id="player">
 
-<script>
+        <div id="playerUI">
 
-/* CONFIG */
+            <button onclick="prevEP()">⏮</button>
+            <button onclick="togglePlay()">⏯</button>
+            <button onclick="nextEP()">⏭</button>
+
+            <input type="range" id="seek" value="0">
+
+            <button onclick="toggleFull()">⛶</button>
+            <button onclick="closePlayer()">⬅</button>
+            <button onclick="goMainHome()">🏠</button>
+
+        </div>
+
+        <video id="video" playsinline></video>
+        <iframe id="frame"></iframe>
+
+    </div>
+
+    <script>
+        /* ===== DATA ===== */
 const SOURCES=[
 {name:"🔥 มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
 {name:"🇨🇳 จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
 {name:"🇯🇵 ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
 {name:"🇰🇷 เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
-{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"}
+{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
+{name:"ซีรี่ย์แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
+
 ];
 
+/* ===== VAR ===== */
 let menu=document.getElementById("menu");
 let content=document.getElementById("content");
-let preview=document.getElementById("preview");
 
 let video=document.getElementById("video");
 let frame=document.getElementById("frame");
 let player=document.getElementById("player");
 let hls=null;
 
-let menuIndex=0,gridIndex=0,gridItems=[];
-let focusArea="menu";
+let currentEPList=[],currentEPIndex=0,currentKey="";
+let fullData=[],currentPage=1,perPage=20;
 
-/* MENU */
+/* ===== MENU ===== */
 function buildMenu(){
 menu.innerHTML=SOURCES.map((m,i)=>`
 <div class="menu" data-i="${i}">${m.name}</div>
 `).join("");
-updateMenuFocus();
 }
 
-function updateMenuFocus(){
-[...menu.children].forEach(el=>el.classList.remove("focus"));
-if(menu.children[menuIndex]){
-menu.children[menuIndex].classList.add("focus");
-}
-}
-
-/* LOAD */
+/* ===== LOAD CATEGORY ===== */
 async function loadCategory(i){
-
-localStorage.setItem("last_category",i);
 
 content.innerHTML="LOADING...";
 let data=await fetch(SOURCES[i].url).then(r=>r.json()).catch(()=>[]);
 
 content.innerHTML=`
+<div class="row-header">
+<div>${SOURCES[i].name}</div>
+<div onclick="openFull('${SOURCES[i].url}')">ดูทั้งหมด ▶</div>
+</div>
+
 <div class="row-items">
-${data.slice(0,40).map(item=>`
-<div class="card"
-data-item='${encodeURIComponent(JSON.stringify(item))}'>
-<img src="${item.image||''}">
-<div>${item.title||item.name||""}</div>
-</div>`).join("")}
+${data.slice(0,12).map(item=>cardHTML(item)).join("")}
 </div>
 `;
-
-setTimeout(setGridFocus,200);
 }
 
-/* FOCUS */
-function setGridFocus(){
-gridItems=[...document.querySelectorAll(".card")];
-
-let saved=localStorage.getItem("last_scroll");
-gridIndex=saved?parseInt(saved):0;
-
-updateGridFocus();
+/* ===== FULL ===== */
+async function openFull(url){
+fullData=await fetch(url).then(r=>r.json()).catch(()=>[]);
+currentPage=1;
+renderPage();
 }
 
-function updateGridFocus(){
-gridItems.forEach(el=>el.classList.remove("focus"));
+function renderPage(){
+let start=(currentPage-1)*perPage;
+let data=fullData.slice(start,start+perPage);
+let total=Math.ceil(fullData.length/perPage);
 
-if(gridItems[gridIndex]){
-let el=gridItems[gridIndex];
-el.classList.add("focus");
-el.scrollIntoView({inline:"center"});
+content.innerHTML=`
+<button onclick="loadCategory(0)">⬅</button>
 
-localStorage.setItem("last_scroll",gridIndex);
+<div class="grid">
+${data.map(item=>cardHTML(item)).join("")}
+</div>
 
-// 🔥 SHOW PREVIEW
-let item=JSON.parse(decodeURIComponent(el.dataset.item));
-preview.style.display="block";
-preview.innerHTML=`
-<img src="${item.image||''}">
-<h3>${item.title||item.name||""}</h3>
+<div>
+<button onclick="prevPage()">⬅</button>
+หน้า ${currentPage}/${total}
+<button onclick="nextPage()">➡</button>
+</div>
 `;
 }
+
+function nextPage(){if(currentPage*perPage<fullData.length){currentPage++;renderPage();}}
+function prevPage(){if(currentPage>1){currentPage--;renderPage();}}
+
+/* ===== CARD ===== */
+function cardHTML(item){
+return `
+<div class="card" data-item='${encodeURIComponent(JSON.stringify(item))}'>
+<img src="${item.image||''}">
+<div>${item.title||item.name||""}</div>
+</div>
+`;
 }
 
-/* CLICK MENU */
-menu.addEventListener("click",e=>{
-let btn=e.target.closest(".menu");
-if(!btn)return;
-
-menuIndex=parseInt(btn.dataset.i);
-updateMenuFocus();
-loadCategory(menuIndex);
-focusArea="grid";
-});
-
-/* CLICK CARD */
+/* ===== CLICK ===== */
 document.addEventListener("click",e=>{
-let card=e.target.closest(".card");
-if(!card)return;
 
-let item=JSON.parse(decodeURIComponent(card.dataset.item));
-if(item.episodes)showEP(item);
-else startPlay([{url:item.url}]);
-});
-
-/* REMOTE */
-document.addEventListener("keydown",e=>{
-
-if(player.style.display==="block"){
-if(e.key==="Escape")closePlayer();
-if(e.key==="Enter")togglePlay();
-if(e.key==="ArrowRight")nextEP();
-if(e.key==="ArrowLeft")prevEP();
+let ep=e.target.closest(".ep");
+if(ep){
+currentEPIndex=parseInt(ep.dataset.i);
+let data=JSON.parse(decodeURIComponent(ep.dataset.ep));
+saveEP();
+startPlay(data.servers||[{url:data.url}]);
 return;
 }
 
-if(focusArea==="menu"){
-if(e.key==="ArrowDown"){menuIndex++;updateMenuFocus();}
-if(e.key==="ArrowUp"){menuIndex--;updateMenuFocus();}
-if(e.key==="Enter"){loadCategory(menuIndex);focusArea="grid";}
-}
-else{
-if(e.key==="ArrowLeft"){focusArea="menu";updateMenuFocus();return;}
+let c=e.target.closest(".card");
+if(!c)return;
 
-if(e.key==="ArrowRight")gridIndex++;
-if(e.key==="ArrowLeft")gridIndex--;
-if(e.key==="ArrowDown")gridIndex+=6;
-if(e.key==="ArrowUp")gridIndex-=6;
+let item=JSON.parse(decodeURIComponent(c.dataset.item));
 
-gridIndex=Math.max(0,Math.min(gridItems.length-1,gridIndex));
-updateGridFocus();
-
-if(e.key==="Enter"){
-let item=JSON.parse(decodeURIComponent(gridItems[gridIndex].dataset.item));
-if(item.episodes)showEP(item);
+if(item.episodes){showEP(item);}
 else startPlay([{url:item.url}]);
-}
-}
 
 });
 
-/* EP */
-let currentEPList=[],currentEPIndex=0;
-
+/* ===== EP ===== */
 function showEP(item){
+
 currentEPList=item.episodes;
+currentKey="ep_"+(item.title||item.name);
+
+let saved=localStorage.getItem(currentKey);
+currentEPIndex=saved?parseInt(saved):0;
 
 content.innerHTML=`
-<div class="row-items">
-${item.episodes.map((ep,i)=>`
-<div class="card ep" data-i="${i}" data-ep='${encodeURIComponent(JSON.stringify(ep))}'>
-${ep.name||("EP "+ep.ep)}
-</div>`).join("")}
-</div>
-`;
+<h2>${item.title}</h2>
 
-setTimeout(setGridFocus,200);
+<div class="grid">
+${item.episodes.map((ep,i)=>`
+<div class="card ep ${i===currentEPIndex?'active':''}"
+data-i="${i}"
+data-ep='${encodeURIComponent(JSON.stringify(ep))}'>
+${ep.name||("EP "+ep.ep)}
+</div>
+`).join("")}
+</div>
+
+<button onclick="loadCategory(0)">⬅</button>
+`;
 }
 
-/* PLAYER */
+/* ===== SAVE EP ===== */
+function saveEP(){
+localStorage.setItem(currentKey,currentEPIndex);
+}
+
+/* ===== PLAYER ===== */
 function startPlay(list){
 player.style.display="block";
 playServers(list);
+showUI();
 }
 
 async function playServers(list){
 for(let s of list){
 try{await play(s.url);return;}catch(e){}
 }
-alert("เล่นไม่ได้");
+alert("❌ เล่นไม่ได้");
 }
 
 function play(url){
@@ -268,7 +323,9 @@ if(hls){hls.destroy();hls=null;}
 
 if(url.includes(".m3u8")&&Hls.isSupported()){
 video.style.display="block";frame.style.display="none";
-hls=new Hls();hls.loadSource(url);hls.attachMedia(video);
+hls=new Hls();
+hls.loadSource(url);
+hls.attachMedia(video);
 hls.on(Hls.Events.MANIFEST_PARSED,()=>{video.play();res();});
 return;
 }
@@ -286,9 +343,12 @@ frame.src=url;res();
 /* AUTO NEXT */
 video.onended=()=>{nextEP();};
 
+/* ===== CONTROL ===== */
+function togglePlay(){video.paused?video.play():video.pause();}
+
 function nextEP(){
 if(currentEPIndex<currentEPList.length-1){
-currentEPIndex++;
+currentEPIndex++;saveEP();
 let ep=currentEPList[currentEPIndex];
 startPlay(ep.servers||[{url:ep.url}]);
 }
@@ -296,34 +356,71 @@ startPlay(ep.servers||[{url:ep.url}]);
 
 function prevEP(){
 if(currentEPIndex>0){
-currentEPIndex--;
+currentEPIndex--;saveEP();
 let ep=currentEPList[currentEPIndex];
 startPlay(ep.servers||[{url:ep.url}]);
 }
 }
 
-/* CONTROL */
-function togglePlay(){video.paused?video.play():video.pause();}
 function closePlayer(){
 if(hls)hls.destroy();
-video.pause();video.src="";frame.src="";
+video.pause();video.src="";
+frame.src="";
 player.style.display="none";
 }
 
-/* HOME */
+function toggleFull(){
+if(!document.fullscreenElement){
+player.requestFullscreen();
+}else{
+document.exitFullscreen();
+}
+}
+
+/* ===== UI AUTO HIDE ===== */
+let ui=document.getElementById("playerUI");
+let seek=document.getElementById("seek");
+let hideTimer;
+
+function showUI(){
+ui.classList.remove("hide");
+clearTimeout(hideTimer);
+hideTimer=setTimeout(()=>ui.classList.add("hide"),3000);
+}
+
+player.addEventListener("mousemove",showUI);
+player.addEventListener("click",showUI);
+
+video.addEventListener("timeupdate",()=>{
+if(video.duration){
+seek.value=(video.currentTime/video.duration)*100;
+}
+});
+
+seek.addEventListener("input",()=>{
+if(video.duration){
+video.currentTime=(seek.value/100)*video.duration;
+}
+});
+
+/* ===== HOME ===== */
 function goMainHome(){
 window.location.href="https://tiea9999.github.io/tv-online/index.html";
 }
 
-/* START */
+/* ===== MENU CLICK ===== */
+menu.addEventListener("click",e=>{
+let m=e.target.closest(".menu");
+if(!m)return;
+loadCategory(parseInt(m.dataset.i));
+});
+
+/* ===== START ===== */
 buildMenu();
+loadCategory(0);
 
-let last=localStorage.getItem("last_category")||0;
-menuIndex=parseInt(last);
-updateMenuFocus();
-loadCategory(menuIndex);
-
-</script>
+    </script>
 
 </body>
+
 </html>
