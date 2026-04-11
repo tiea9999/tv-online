@@ -1,179 +1,173 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPTV FINAL PRO</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPTV FINAL MOBILE PRO</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-    <style>
-        body {
-            margin: 0;
-            background: #000;
-            color: #fff;
-            font-family: sans-serif
-        }
+<style>
+body{margin:0;background:#000;color:#fff;font-family:sans-serif}
 
-        /* SIDEBAR */
-        .sidebar {
-            position: fixed;
-            width: 200px;
-            height: 100%;
-            background: #111;
-            padding: 10px
-        }
+/* SIDEBAR */
+.sidebar{
+position:fixed;width:200px;height:100%;
+background:#111;padding:10px
+}
+.menu{
+padding:10px;background:#222;margin-bottom:5px;border-radius:8px;cursor:pointer
+}
+.menu:hover{background:#00e5ff;color:#000}
 
-        .menu {
-            padding: 10px;
-            background: #222;
-            margin-bottom: 5px;
-            border-radius: 8px;
-            cursor: pointer
-        }
+.content{margin-left:210px}
 
-        .menu:hover {
-            background: #00e5ff;
-            color: #000
-        }
+/* CARD */
+.row-header{
+display:flex;justify-content:space-between;
+padding:10px;
+color:#00e5ff;
+}
 
-        /* CONTENT */
-        .content {
-            margin-left: 210px
-        }
+.row-items{display:flex;gap:10px;overflow-x:auto;padding:10px}
 
-        /* ROW */
-        .row-header {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px
-        }
+.card{
+min-width:150px;
+background:#111;
+padding:8px;
+border-radius:10px;
+cursor:pointer;
+transition:.2s;
+}
 
-        .row-items {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding: 10px
-        }
+.card:hover{transform:scale(1.05)}
 
-        .card {
-            min-width: 150px;
-            background: #111;
-            padding: 8px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: .2s;
-        }
+img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:8px;
+}
 
-        .card:hover {
-            transform: scale(1.05)
-        }
+/* GRID */
+.grid{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+padding:10px;
+}
 
-        img {
-            width: 100%;
-            height: 180px;
-            border-radius: 8px;
-            object-fit: cover
-        }
+/* ===== PLAYER ===== */
+#player{
+position:fixed;
+top:0;left:0;
+width:100%;
+height:100%;
+background:#000;
+display:none;
+z-index:999;
+}
 
-        /* GRID */
-        .grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 10px
-        }
+/* UI */
+#playerUI{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+display:flex;
+gap:10px;
+justify-content:center;
+align-items:center;
+padding:15px;
+background:linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+z-index:1001;
+opacity:1;
+transition:.3s;
+}
 
-        /* PLAYER */
-        #player {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            display: none;
-            z-index: 999;
-        }
+#playerUI.hide{opacity:0}
 
-        #playerUI {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 10px;
-            border-radius: 10px;
-            transition: .3s;
-        }
+/* buttons */
+#playerUI button{
+font-size:20px;
+padding:12px 16px;
+border:none;
+border-radius:10px;
+background:#ff9800;
+color:#fff;
+}
 
-        #playerUI.hide {
-            opacity: 0
-        }
+#seek{
+width:60%;
+}
 
-        #playerUI button {
-            background: #ff9800;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            color: #fff
-        }
+/* floating mobile buttons */
+#floatingControls{
+position:absolute;
+top:20px;
+right:15px;
+display:flex;
+flex-direction:column;
+gap:10px;
+z-index:1002;
+}
 
-        #seek {
-            width: 300px
-        }
+#floatingControls button{
+font-size:18px;
+padding:12px;
+border-radius:50%;
+background:rgba(0,0,0,0.6);
+color:#fff;
+border:none;
+}
 
-        video,
-        iframe {
-            width: 100%;
-            height: 100%
-        }
-    </style>
+/* video */
+video,iframe{
+width:100%;
+height:100%;
+}
+</style>
 </head>
 
 <body>
 
-    <div class="sidebar" id="menu"></div>
-    <div class="content" id="content"></div>
+<div class="sidebar" id="menu"></div>
+<div class="content" id="content"></div>
 
-    <div id="player">
+<!-- PLAYER -->
+<div id="player">
 
-        <div id="playerUI">
+<div id="floatingControls">
+<button onclick="togglePlay()">⏯</button>
+<button onclick="toggleFull()">⛶</button>
+<button onclick="closePlayer()">✕</button>
+</div>
 
-            <button onclick="prevEP()">⏮</button>
-            <button onclick="togglePlay()">⏯</button>
-            <button onclick="nextEP()">⏭</button>
+<div id="playerUI">
 
-            <input type="range" id="seek" value="0">
+<button onclick="prevEP()">⏮</button>
+<button onclick="togglePlay()">⏯</button>
+<button onclick="nextEP()">⏭</button>
 
-            <button onclick="toggleFull()">⛶</button>
-            <button onclick="closePlayer()">⬅</button>
-            <button onclick="goMainHome()">🏠</button>
+<input type="range" id="seek" value="0">
 
-        </div>
+</div>
 
-        <video id="video" playsinline></video>
-        <iframe id="frame"></iframe>
+<video id="video" playsinline controls></video>
+<iframe id="frame"></iframe>
 
-    </div>
+</div>
 
-    <script>
-        /* ===== DATA ===== */
+<script>
+
 const SOURCES=[
 {name:"🔥 มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
 {name:"🇨🇳 จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
 {name:"🇯🇵 ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
 {name:"🇰🇷 เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
-{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"},
-{name:"ซีรี่ย์แนวตั้ง",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"}
-
+{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"}
 ];
 
-/* ===== VAR ===== */
 let menu=document.getElementById("menu");
 let content=document.getElementById("content");
 
@@ -192,7 +186,7 @@ menu.innerHTML=SOURCES.map((m,i)=>`
 `).join("");
 }
 
-/* ===== LOAD CATEGORY ===== */
+/* ===== LOAD ===== */
 async function loadCategory(i){
 
 content.innerHTML="LOADING...";
@@ -210,7 +204,7 @@ ${data.slice(0,12).map(item=>cardHTML(item)).join("")}
 `;
 }
 
-/* ===== FULL ===== */
+/* ===== FULL PAGE ===== */
 async function openFull(url){
 fullData=await fetch(url).then(r=>r.json()).catch(()=>[]);
 currentPage=1;
@@ -223,13 +217,13 @@ let data=fullData.slice(start,start+perPage);
 let total=Math.ceil(fullData.length/perPage);
 
 content.innerHTML=`
-<button onclick="loadCategory(0)">⬅</button>
+<button onclick="loadCategory(0)">⬅ กลับ</button>
 
 <div class="grid">
 ${data.map(item=>cardHTML(item)).join("")}
 </div>
 
-<div>
+<div style="padding:10px">
 <button onclick="prevPage()">⬅</button>
 หน้า ${currentPage}/${total}
 <button onclick="nextPage()">➡</button>
@@ -278,11 +272,10 @@ function showEP(item){
 currentEPList=item.episodes;
 currentKey="ep_"+(item.title||item.name);
 
-let saved=localStorage.getItem(currentKey);
-currentEPIndex=saved?parseInt(saved):0;
+currentEPIndex=parseInt(localStorage.getItem(currentKey)||0);
 
 content.innerHTML=`
-<h2>${item.title}</h2>
+<h2>${item.title||""}</h2>
 
 <div class="grid">
 ${item.episodes.map((ep,i)=>`
@@ -294,11 +287,10 @@ ${ep.name||("EP "+ep.ep)}
 `).join("")}
 </div>
 
-<button onclick="loadCategory(0)">⬅</button>
+<button onclick="loadCategory(0)">⬅ กลับ</button>
 `;
 }
 
-/* ===== SAVE EP ===== */
 function saveEP(){
 localStorage.setItem(currentKey,currentEPIndex);
 }
@@ -340,15 +332,13 @@ frame.src=url;res();
 });
 }
 
-/* AUTO NEXT */
-video.onended=()=>{nextEP();};
-
-/* ===== CONTROL ===== */
-function togglePlay(){video.paused?video.play():video.pause();}
+/* ===== EP CONTROL ===== */
+video.onended=()=>nextEP();
 
 function nextEP(){
 if(currentEPIndex<currentEPList.length-1){
-currentEPIndex++;saveEP();
+currentEPIndex++;
+saveEP();
 let ep=currentEPList[currentEPIndex];
 startPlay(ep.servers||[{url:ep.url}]);
 }
@@ -356,11 +346,15 @@ startPlay(ep.servers||[{url:ep.url}]);
 
 function prevEP(){
 if(currentEPIndex>0){
-currentEPIndex--;saveEP();
+currentEPIndex--;
+saveEP();
 let ep=currentEPList[currentEPIndex];
 startPlay(ep.servers||[{url:ep.url}]);
 }
 }
+
+/* ===== CONTROL ===== */
+function togglePlay(){video.paused?video.play():video.pause();}
 
 function closePlayer(){
 if(hls)hls.destroy();
@@ -377,7 +371,7 @@ document.exitFullscreen();
 }
 }
 
-/* ===== UI AUTO HIDE ===== */
+/* ===== MOBILE UI ===== */
 let ui=document.getElementById("playerUI");
 let seek=document.getElementById("seek");
 let hideTimer;
@@ -385,11 +379,11 @@ let hideTimer;
 function showUI(){
 ui.classList.remove("hide");
 clearTimeout(hideTimer);
-hideTimer=setTimeout(()=>ui.classList.add("hide"),3000);
+hideTimer=setTimeout(()=>ui.classList.add("hide"),4000);
 }
 
-player.addEventListener("mousemove",showUI);
-player.addEventListener("click",showUI);
+player.addEventListener("touchstart",showUI);
+player.addEventListener("touchmove",showUI);
 
 video.addEventListener("timeupdate",()=>{
 if(video.duration){
@@ -398,29 +392,21 @@ seek.value=(video.currentTime/video.duration)*100;
 });
 
 seek.addEventListener("input",()=>{
-if(video.duration){
 video.currentTime=(seek.value/100)*video.duration;
-}
 });
 
-/* ===== HOME ===== */
-function goMainHome(){
-window.location.href="https://tiea9999.github.io/tv-online/index.html";
-}
-
-/* ===== MENU CLICK ===== */
+/* ===== MENU ===== */
 menu.addEventListener("click",e=>{
 let m=e.target.closest(".menu");
 if(!m)return;
 loadCategory(parseInt(m.dataset.i));
 });
 
-/* ===== START ===== */
+/* START */
 buildMenu();
 loadCategory(0);
 
-    </script>
+</script>
 
 </body>
-
 </html>
