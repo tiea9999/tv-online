@@ -3,55 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV ULTRA</title>
+<title>TIEA IPTV (STABLE)</title>
 
 <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
 <script>
-jwplayer.key='XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;padding:10px;}
-.card{background:#222;padding:5px;border-radius:10px;text-align:center;cursor:pointer;}
-.card:focus{outline:2px solid #00c853;}
-img{width:70px;height:70px;}
+body{margin:0;background:#000;color:#fff;font-family:Arial;}
+h2{text-align:center;color:orange;margin:10px;}
 
-#player{
-position:fixed;top:0;left:0;width:100%;height:100%;
-background:#000;display:none;z-index:999;
+#channel-list{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(90px,1fr));
+gap:10px;
+padding:10px;
 }
 
-video,#jw{width:100%;height:100%}
-
-.btn{
-position:absolute;top:10px;
-background:red;color:#fff;border:none;
-padding:6px 10px;z-index:1000;
+.channel{
+background:#222;
+border:2px solid #444;
+border-radius:10px;
+padding:5px;
+text-align:center;
+cursor:pointer;
 }
-.close{right:10px;}
-.home{left:10px;background:orange;}
+.channel.active{background:orange;color:#000;}
+.channel img{width:60px;height:60px;object-fit:contain;}
+
+#player-container{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+max-width:1000px;
+aspect-ratio:16/9;
+background:#000;
+border:2px solid orange;
+border-radius:10px;
+display:none;
+z-index:9999;
+}
+
+#jw-player,#html5-player{
+width:100%!important;
+height:100%!important;
+}
+
+#closeBtn{
+position:absolute;
+top:10px;
+right:10px;
+background:red;
+color:#fff;
+border:none;
+padding:6px 10px;
+cursor:pointer;
+z-index:10001;
+}
+
+.back-home{
+position:fixed;
+top:10px;
+left:10px;
+background:rgba(255,255,255,0.2);
+padding:8px 12px;
+border-radius:20px;
+cursor:pointer;
+z-index:9999;
+}
 </style>
 </head>
 
 <body>
 
-<div class="grid" id="grid"></div>
+<div class="back-home" onclick="location.reload()">⬅ หน้าโฮม</div>
+<h2>TIEA IPTV</h2>
 
-<div id="player">
-<button class="btn home" onclick="goHome()">🏠</button>
-<button class="btn close" onclick="closePlayer()">✕</button>
-
-<div id="jw"></div>
-<video id="v" playsinline muted></video>
+<div id="player-container">
+<div id="jw-player"></div>
+<video id="html5-player" controls autoplay muted playsinline style="display:none;"></video>
+<button id="closeBtn" onclick="closePlayer()">X</button>
 </div>
+
+<div id="channel-list"></div>
 
 <script>
 
-const PROXY="https://iptv.tawatchai250958.workers.dev/?url=";
+const PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
 
+/* ================= CHANNEL ================= */
 const channels = [
 {
 name:"testดูบอล",
@@ -365,80 +410,95 @@ drm:false
             	}  
 ];
 
-let grid=document.getElementById("grid");
-let player=document.getElementById("player");
-let jwDiv=document.getElementById("jw");
-let video=document.getElementById("v");
-let hls=null;
+document.addEventListener("DOMContentLoaded",()=>{
+const list=document.getElementById("channel-list");
 
-/* ================= UI ================= */
-channels.forEach(c=>{
-let d=document.createElement("div");
-d.className="card";
-d.tabIndex=0;
-d.innerHTML=`<img src="${c.logo}"><div>${c.name}</div>`;
+channels.forEach(ch=>{
+let div=document.createElement("div");
+div.className="channel";
 
-d.onclick=()=>playFast(c.url);
-d.onkeydown=e=>{if(e.key==="Enter")playFast(c.url);};
+div.innerHTML=`
+<img src="${ch.logo}">
+<div>${ch.name}</div>
+`;
 
-grid.appendChild(d);
+div.onclick=()=>loadChannel(ch,div);
+list.appendChild(div);
+});
 });
 
-/* ================= PLAY FAST ================= */
-function playFast(url){
+let currentHls=null;
 
-player.style.display="block";
+/* ================= PLAY ================= */
+function loadChannel(ch,el){
 
-/* reset */
-if(hls){hls.destroy();hls=null;}
-try{jwplayer("jw").remove();}catch(e){}
+document.querySelectorAll('.channel').forEach(c=>c.classList.remove('active'));
+el.classList.add('active');
+
+const container=document.getElementById("player-container");
+container.style.display="block";
+
+const jw=document.getElementById("jw-player");
+const video=document.getElementById("html5-player");
+
+if(currentHls){currentHls.destroy(); currentHls=null;}
+try{jwplayer("jw-player").remove();}catch(e){}
+
 video.pause();
 video.src="";
 video.style.display="none";
-jwDiv.style.display="block";
+jw.style.display="block";
 
-/* 🔥 เตรียมลิงก์ */
-let list=[
-url,
-PROXY+encodeURIComponent(url)
-];
+/* 🔥 ลอง 2 แบบ */
+let url = ch.file;
+let proxyUrl = PROXY + encodeURIComponent(url);
 
-let i=0;
+playWithFallback(url, proxyUrl, ch);
+
+}
+
+/* ================= FALLBACK ================= */
+function playWithFallback(url, proxyUrl, ch){
+
+let list = [url, proxyUrl];
+let i = 0;
 
 function next(){
 
-if(i>=list.length){
-playHTML5(url);
+if(i >= list.length){
+useHTML5(url);
 return;
 }
 
-let p=jwplayer("jw").setup({
+let config={
 file:list[i],
-autostart:true,
-mute:true
+autostart:true
+};
+
+if(ch.drm){
+config.drm={
+clearkey:{
+keyId:ch.keyId,
+key:ch.key
+}
+};
+}
+
+let player=jwplayer("jw-player").setup(config);
+
+player.on("error",()=>{
+i++;
+try{jwplayer("jw-player").remove();}catch(e){}
+next();
 });
 
-/* 🔥 เล่นทันที */
-p.on("ready",()=>p.play(true));
-
-/* 🔥 force play */
-setTimeout(()=>p.play(true),500);
-
-/* 🔥 ถ้ายังไม่เล่น ข้ามทันที */
 setTimeout(()=>{
-if(p.getState()!=="playing"){
+if(player.getState()!=="playing"){
 i++;
-try{jwplayer("jw").remove();}catch(e){}
+try{jwplayer("jw-player").remove();}catch(e){}
 next();
 }
-},2500);
-
-/* 🔥 error → next */
-p.on("error",()=>{
-i++;
-try{jwplayer("jw").remove();}catch(e){}
-next();
-});
+},6000);
 
 }
 
@@ -446,41 +506,36 @@ next();
 }
 
 /* ================= HTML5 ================= */
-function playHTML5(url){
+function useHTML5(url){
 
-jwDiv.style.display="none";
+const jw=document.getElementById("jw-player");
+const video=document.getElementById("html5-player");
+
+jw.style.display="none";
 video.style.display="block";
-
-video.muted=true;
 
 if(video.canPlayType('application/vnd.apple.mpegurl')){
 video.src=url;
 video.play();
 }else if(Hls.isSupported()){
-
-hls=new Hls({maxBufferLength:8});
-
-hls.loadSource(url);
-hls.attachMedia(video);
-
-hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-video.play();
-});
-
-}
+currentHls=new Hls();
+currentHls.loadSource(url);
+currentHls.attachMedia(video);
+currentHls.on(Hls.Events.MANIFEST_PARSED,()=>video.play());
 }
 
-/* ================= CONTROL ================= */
+}
+
+/* ================= CLOSE ================= */
 function closePlayer(){
-player.style.display="none";
-if(hls){hls.destroy();hls=null;}
-try{jwplayer("jw").remove();}catch(e){}
-video.pause();
-video.src="";
-}
+document.getElementById("player-container").style.display="none";
 
-function goHome(){
-closePlayer();
+if(currentHls){currentHls.destroy(); currentHls=null;}
+try{jwplayer("jw-player").remove();}catch(e){}
+
+let v=document.getElementById("html5-player");
+v.pause();
+v.src="";
 }
 
 </script>
