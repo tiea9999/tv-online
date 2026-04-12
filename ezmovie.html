@@ -111,6 +111,7 @@
             height: 100%;
             border: none;
             background: #000;
+            object-fit: contain;
         }
 
         .btn {
@@ -120,6 +121,19 @@
             z-index: 1002;
             padding: 10px;
             background: #ff0000;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn2 {
+            position: absolute;
+            top: 10px;
+            right: 60px;
+            z-index: 1002;
+            padding: 10px;
+            background: #ff9800;
             border: none;
             border-radius: 8px;
             color: #fff;
@@ -184,7 +198,8 @@
 
     <div id="player">
         <button class="btn" onclick="closePlayer()">✕</button>
-        <video id="video" playsinline controls autoplay></video>
+        <button class="btn2" onclick="retryCurrent()">↻</button>
+        <video id="video" playsinline webkit-playsinline x5-playsinline controls autoplay muted preload="auto"></video>
         <iframe id="frame" allowfullscreen referrerpolicy="no-referrer"></iframe>
     </div>
 
@@ -193,48 +208,50 @@
 
         const SOURCES = [
             {
-                name: "หนังมาใหม่",
-                type: "anime-json",
-                url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังมาใหม่.json"},
-        
+            name: "หนังมาใหม่",
+            type: "anime-json",
+            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังมาใหม่.json"},
+            
             {
-                name: "หนังไทย",
-                type: "anime-json",
-                url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังไทย.json"},
+            name: "หนังไทย",
+            type: "anime-json",
+            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังไทย.json"},
             {
-                name: "หนังเอเชีย",
-                type: "anime-json",
-                url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังเอเชีย.json"},
+            name: "หนังเอเชีย",
+            type: "anime-json",
+            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังเอเชีย.json"},
             {
-                name: "หนังฝรั่ง",
-                type: "anime-json",
-                url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังฝรั่ง.json"},
-
+            name: "หนังฝรั่ง",
+            type: "anime-json",
+            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังฝรั่ง.json"},
+            
             {
-                name: "หนังเกาหลี",
-                type: "anime-json",
-                url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังเกาหลี.json"},
-
+            name: "หนังเกาหลี",
+            type: "anime-json",
+            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังเกาหลี.json"},
+            
             {
-                name: "หนังญี่ปุ่น",
-                type: "anime-json",
-                url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังญี่ปุ่น.json"},
-
+            name: "หนังญี่ปุ่น",
+            type: "anime-json",
+            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังญี่ปุ่น.json"},
+            
             {
-                name: "หนังแอคชั่นบู๊_action",
-                type: "anime-json",
-                url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังแอคชั่นบู๊_action.json"},
-
+            name: "หนังแอคชั่นบู๊_action",
+            type: "anime-json",
+            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังแอคชั่นบู๊_action.json"},
+            
             {
-                name: "หนังดราม่า_drama",
-                type: "anime-json",
-                url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังดราม่า_drama.json"},
+            name: "หนังดราม่า_drama",
+            type: "anime-json",
+            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังดราม่า_drama.json"},
             {
-                name: "หนังผจญภัย_adventure",
-                type: "anime-json",
-                url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังผจญภัย_adventure.json"},
-
-       ];
+            name: "หนังผจญภัย_adventure",
+            type: "anime-json",
+            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังผจญภัย_adventure.json"},
+ 
+ 
+ 
+        ];
 
         const FALLBACK_IMG =
             "data:image/svg+xml;utf8," +
@@ -259,6 +276,9 @@
             name: "",
             page: 1
         };
+
+        let currentList = [];
+        let currentIndex = 0;
 
         function safeId(text) {
             return String(text).replace(/[^\wก-๙-]/g, "_");
@@ -386,7 +406,6 @@
             if (!row) return;
 
             const items = obj.data.slice(0, 15);
-
             row.innerHTML = "";
 
             if (!items.length) {
@@ -505,8 +524,6 @@
         }
 
         function openItem(item) {
-            console.log("ITEM =", item);
-
             if (Array.isArray(item.episodes) && item.episodes.length) {
                 showEP(item);
                 return;
@@ -558,7 +575,6 @@
                     } else if (single) {
                         startPlay([{ url: single }]);
                     } else {
-                        console.log("EP =", ep);
                         alert("❌ ตอนนี้ไม่มีลิงก์เล่น");
                     }
                 };
@@ -585,13 +601,18 @@
         }
 
         function startPlay(list) {
+            currentList = [...list];
+            currentIndex = 0;
             overlay.style.display = "none";
             player.style.display = "block";
-            playServers([...list]);
+            playServers(currentList);
         }
 
         async function playServers(list) {
+            currentList = [...list];
+
             for (let i = 0; i < list.length; i++) {
+                currentIndex = i;
                 const item = list[i];
                 const url = typeof item === "string" ? item : item.url;
 
@@ -611,11 +632,12 @@
 
         function cleanupPlayers() {
             if (hls) {
-                hls.destroy();
+                try { hls.destroy(); } catch (e) { }
                 hls = null;
             }
 
             video.pause();
+            video.muted = true;
             video.removeAttribute("src");
             video.load();
 
@@ -640,7 +662,17 @@
             cleanupPlayers();
 
             if (isHls(url)) {
-                return playHlsWithFallback(url);
+                try {
+                    await playHlsWithFallback(url);
+                    return;
+                } catch (e) {
+                    try {
+                        await playNativeVideo(PROXY + encodeURIComponent(url));
+                        return;
+                    } catch (_) {
+                        throw e;
+                    }
+                }
             }
 
             if (isVideoFile(url)) {
@@ -661,6 +693,7 @@
 
         function playNativeVideo(url) {
             video.style.display = "block";
+            frame.style.display = "none";
 
             return new Promise((resolve, reject) => {
                 let done = false;
@@ -669,8 +702,14 @@
                     if (done) return;
                     done = true;
                     clear();
-                    video.play().catch(() => {});
-                    resolve();
+
+                    video.muted = false;
+                    const p = video.play();
+                    if (p && typeof p.then === "function") {
+                        p.then(() => resolve()).catch(() => resolve());
+                    } else {
+                        resolve();
+                    }
                 };
 
                 const fail = () => {
@@ -683,19 +722,25 @@
                 const clear = () => {
                     video.removeEventListener("loadedmetadata", ok);
                     video.removeEventListener("canplay", ok);
+                    video.removeEventListener("playing", ok);
                     video.removeEventListener("error", fail);
                 };
 
                 video.addEventListener("loadedmetadata", ok, { once: true });
                 video.addEventListener("canplay", ok, { once: true });
+                video.addEventListener("playing", ok, { once: true });
                 video.addEventListener("error", fail, { once: true });
+
+                video.pause();
+                video.removeAttribute("src");
+                video.load();
 
                 video.src = url;
                 video.load();
 
                 setTimeout(() => {
                     if (!done) fail();
-                }, 8000);
+                }, 10000);
             });
         }
 
@@ -718,6 +763,7 @@
 
         function playOneHls(sourceUrl) {
             video.style.display = "block";
+            frame.style.display = "none";
 
             return new Promise((resolve, reject) => {
                 let settled = false;
@@ -726,8 +772,16 @@
                     if (settled) return;
                     settled = true;
                     clear();
-                    video.play().catch(() => {});
-                    resolve();
+
+                    setTimeout(() => {
+                        video.muted = false;
+                        const p = video.play();
+                        if (p && typeof p.then === "function") {
+                            p.then(() => resolve()).catch(() => resolve());
+                        } else {
+                            resolve();
+                        }
+                    }, 200);
                 };
 
                 const fail = () => {
@@ -740,37 +794,63 @@
                 const clear = () => {
                     video.removeEventListener("loadedmetadata", ok);
                     video.removeEventListener("canplay", ok);
+                    video.removeEventListener("playing", ok);
                     video.removeEventListener("error", fail);
 
                     if (hls) {
                         hls.off(Hls.Events.MANIFEST_PARSED, ok);
+                        hls.off(Hls.Events.LEVEL_LOADED, ok);
                         hls.off(Hls.Events.ERROR, onHlsError);
                     }
                 };
 
                 const onHlsError = (event, data) => {
-                    if (data && data.fatal) fail();
+                    if (!data) return;
+
+                    if (data.fatal) {
+                        if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+                            try { hls.startLoad(); } catch (e) { }
+                        } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+                            try { hls.recoverMediaError(); } catch (e) { }
+                        } else {
+                            fail();
+                        }
+                    }
                 };
+
+                video.pause();
+                video.removeAttribute("src");
+                video.load();
 
                 if (video.canPlayType("application/vnd.apple.mpegurl")) {
                     video.addEventListener("loadedmetadata", ok, { once: true });
                     video.addEventListener("canplay", ok, { once: true });
+                    video.addEventListener("playing", ok, { once: true });
                     video.addEventListener("error", fail, { once: true });
+
                     video.src = sourceUrl;
                     video.load();
                 } else if (Hls.isSupported()) {
                     hls = new Hls({
                         enableWorker: true,
-                        lowLatencyMode: true,
-                        maxBufferLength: 30
+                        lowLatencyMode: false,
+                        backBufferLength: 30,
+                        maxBufferLength: 20,
+                        maxMaxBufferLength: 30,
+                        startLevel: -1,
+                        fragLoadingTimeOut: 20000,
+                        manifestLoadingTimeOut: 20000
                     });
 
                     video.addEventListener("loadedmetadata", ok, { once: true });
                     video.addEventListener("canplay", ok, { once: true });
+                    video.addEventListener("playing", ok, { once: true });
                     video.addEventListener("error", fail, { once: true });
 
                     hls.on(Hls.Events.MANIFEST_PARSED, ok);
+                    hls.on(Hls.Events.LEVEL_LOADED, ok);
                     hls.on(Hls.Events.ERROR, onHlsError);
+
                     hls.loadSource(sourceUrl);
                     hls.attachMedia(video);
                 } else {
@@ -780,7 +860,7 @@
 
                 setTimeout(() => {
                     if (!settled) fail();
-                }, 8000);
+                }, 12000);
             });
         }
 
@@ -814,6 +894,13 @@
             });
         }
 
+        function retryCurrent() {
+            if (!currentList.length) return;
+            const item = currentList[currentIndex];
+            const url = typeof item === "string" ? item : item.url;
+            if (url) play(url).catch(() => { });
+        }
+
         function closePlayer() {
             cleanupPlayers();
             player.style.display = "none";
@@ -835,4 +922,5 @@
     </script>
 
 </body>
+
 </html>
