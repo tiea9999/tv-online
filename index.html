@@ -1,241 +1,305 @@
-<!DOCTYPE html>
-<html lang="th">
+<!DOCTYPE html><html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV TV BOX MODE</title>
+<title>TIEA IPTV</title><style>
+*{box-sizing:border-box}
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+body{
+    margin:0;
+    font-family:sans-serif;
+    background:#0b0f1a;
+    color:#fff;
+    display:flex;
+    min-height:100vh;
+}
 
-<style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
-#homeBtn{position:fixed;top:10px;left:10px;z-index:9999;padding:10px;background:#00c853;border:none;border-radius:10px;color:#fff;}
+/* เมนูซ้าย */
+.sidebar{
+    width:260px;
+    background:#111827;
+    padding:18px 12px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    border-right:1px solid rgba(255,255,255,0.08);
+    overflow-y:auto;
+}
 
-.row-title{padding:10px;display:flex;justify-content:space-between;color:#00e5ff;font-weight:bold;}
-.seeall{background:#ff9800;border:none;padding:6px 10px;border-radius:8px;color:#fff;}
+.menu-btn,.sub-link{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:rgba(255,255,255,0.06);
+    color:#fff;
+    font-size:15px;
+    cursor:pointer;
+    text-align:left;
+    transition:.2s;
+    text-decoration:none;
+    display:block;
+    outline:none;
+}
 
-.row-items{display:flex;gap:10px;overflow-x:auto;padding:10px;}
-.card{min-width:150px;background:#111;border-radius:10px;padding:8px;text-align:center;cursor:pointer;}
-img{width:100%;height:180px;object-fit:cover;border-radius:8px;}
+.menu-btn:hover,.sub-link:hover{
+    background:rgba(0,229,255,0.22);
+}
 
-#overlay,#player{position:fixed;top:0;left:0;width:100%;height:100%;display:none;}
-#overlay{background:#000;z-index:999;overflow:auto;}
-#player{background:#000;z-index:1000;}
+.menu-btn:focus,.sub-link:focus{
+    background:rgba(0,229,255,0.30);
+    box-shadow:0 0 0 2px rgba(0,229,255,0.45);
+}
 
-video,iframe{width:100%;height:100%;border:none;}
-.btn{position:absolute;top:10px;right:10px;padding:10px;background:red;border:none;border-radius:8px;color:#fff;}
-</style>
-</head>
+.menu-btn.active{
+    background:rgba(0,229,255,0.38);
+    box-shadow:0 0 12px rgba(0,229,255,0.25);
+}
 
-<body>
+.sport{border-left:4px solid #00e5ff;}
+.tv{border-left:4px solid #4caf50;}
+.movie{border-left:4px solid #ff9800;}
+.series{border-left:4px solid #9c27b0;}
+.vip{border-left:4px solid #e91e63;}
 
-<button id="homeBtn">🏠 HOME</button>
+.submenu{
+    display:none;
+    flex-direction:column;
+    gap:8px;
+    padding-left:8px;
+}
 
-<div id="grid"></div>
-<div id="overlay"></div>
+.submenu.active{
+    display:flex;
+}
 
-<div id="player">
-<button class="btn" onclick="closePlayer()">✕</button>
-<video id="video" controls autoplay muted playsinline></video>
-<iframe id="frame"></iframe>
+.sub-link{
+    padding:12px;
+    font-size:14px;
+    background:rgba(255,255,255,0.04);
+}
+
+/* ฝั่งขวา */
+.content{
+    flex:1;
+    padding:24px;
+    overflow-y:auto;
+}
+
+/* โลโก้กลาง */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+}
+
+.hero.hidden{
+    display:none;
+}
+
+.hero-logo{
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border-radius:28px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.45);
+    margin-bottom:16px;
+    border:1px solid rgba(255,255,255,0.12);
+}
+
+.hero h1{
+    margin:0;
+    font-size:34px;
+    letter-spacing:1px;
+}
+
+.hero p{
+    margin-top:10px;
+    color:#b8c1d1;
+    font-size:15px;
+}
+
+/* กล่องข้อความขวา */
+.panel{
+    display:none;
+}
+
+.panel.active{
+    display:block;
+}
+
+.panel-card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:22px;
+    max-width:720px;
+    backdrop-filter:blur(10px);
+}
+
+.panel-card h2{
+    margin:0 0 12px;
+}
+
+.panel-card p{
+    margin:0;
+    color:#b8c1d1;
+    line-height:1.5;
+}
+
+/* มือถือ */
+@media (max-width:768px){
+    body{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        border-right:none;
+        border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .content{
+        padding:18px;
+    }
+
+    .hero{
+        min-height:calc(100vh - 140px);
+    }
+}
+</style></head>
+<body><div class="sidebar" id="sidebar"><button class="menu-btn sport" onclick="showMenu('sports',this)" tabindex="0">⚽ ตารางแข่งขัน</button>
+<div id="submenu-sports" class="submenu">
+    <a class="sub-link" href="live.html" tabindex="0">เปิดตารางแข่งขัน</a>
 </div>
 
-<script>
-
-const PROXY="https://iptv.tawatchai250958.workers.dev/?url=";
-
-const SOURCES=[
-{name:"ซีรี่ย์",url:"https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์-2026.json"},
-{name:"หนัง",url:"https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_movie.json"}
-];
-
-let grid=document.getElementById("grid");
-let overlay=document.getElementById("overlay");
-let video=document.getElementById("video");
-let frame=document.getElementById("frame");
-let player=document.getElementById("player");
-
-let hls=null;
-let store={};
-
-/* LOAD */
-async function loadAll(){
-grid.innerHTML="⚡ LOADING...";
-for(let s of SOURCES){
-let data=await fetch(s.url).then(r=>r.json());
-store[s.name]={data,page:1};
-renderRow(s.name);
-}
-}
-
-/* UI */
-function renderRow(name){
-let row=document.createElement("div");
-row.innerHTML=`<div class="row-title">${name}
-<button class="seeall" onclick="seeAll('${name}')">ดูทั้งหมด</button>
+<button class="menu-btn tv" onclick="showMenu('tv',this)" tabindex="0">📺 ทีวี</button>
+<div id="submenu-tv" class="submenu">
+    <a class="sub-link" href="tv.html" tabindex="0">เปิดหน้า TV</a>
 </div>
-<div class="row-items" id="row-${name}"></div>`;
-grid.appendChild(row);
-renderPage(name);
+
+<button class="menu-btn movie" onclick="showMenu('movie',this)" tabindex="0">🎬 หนัง</button>
+<div id="submenu-movie" class="submenu">
+    <a class="sub-link" href="https://tiea9999.github.io/tv-online/goseries4k.html" tabindex="0">เปิดหน้า Movie</a>
+</div>
+
+<button class="menu-btn series" onclick="showMenu('series',this)" tabindex="0">📺 ซีรีส์</button>
+<div id="submenu-series" class="submenu">
+    <a class="sub-link" href="https://tiea9999.github.io/tv-online/goseries4k.html" tabindex="0">เปิดหน้า Series</a>
+</div>
+
+<button class="menu-btn vip" onclick="showMenu('vip',this)" tabindex="0">🔐 VIP</button>
+<div id="submenu-vip" class="submenu">
+    <a class="sub-link" href="javascript:void(0)" tabindex="0">ยังไม่เปิดใช้งาน</a>
+</div>
+
+</div><div class="content"><div id="hero" class="hero">
+    <!-- เปลี่ยนลิงก์โลโก้ตรงนี้ -->
+    <img class="hero-logo" src="https://i.imgur.com/your-logo.png" alt="TIEA IPTV Logo">
+    <h1>TIEA IPTV</h1>
+    <p>เลือกเมนูทางซ้ายเพื่อแสดงลิงก์</p>
+</div>
+
+<div id="panel-sports" class="panel">
+    <div class="panel-card">
+        <h2>⚽ ตารางแข่งขัน</h2>
+        <p>เลือกเมนูนี้แล้ว ลิงก์ตารางแข่งขันจะขึ้นฝั่งซ้ายทันที</p>
+    </div>
+</div>
+
+<div id="panel-tv" class="panel">
+    <div class="panel-card">
+        <h2>📺 ทีวี</h2>
+        <p>เลือกเมนูนี้แล้ว ลิงก์หน้า TV จะขึ้นฝั่งซ้าย และลิงก์ของเมนูอื่นจะหาย</p>
+    </div>
+</div>
+
+<div id="panel-movie" class="panel">
+    <div class="panel-card">
+        <h2>🎬 หนัง</h2>
+        <p>เลือกเมนูนี้แล้ว ลิงก์หนังจะขึ้นฝั่งซ้าย โดยตอนนี้ไปที่หน้า goseries4k</p>
+    </div>
+</div>
+
+<div id="panel-series" class="panel">
+    <div class="panel-card">
+        <h2>📺 ซีรีส์</h2>
+        <p>เลือกเมนูนี้แล้ว ลิงก์ซีรีส์จะขึ้นฝั่งซ้าย โดยตอนนี้ไปที่หน้า goseries4k</p>
+    </div>
+</div>
+
+<div id="panel-vip" class="panel">
+    <div class="panel-card">
+        <h2>🔐 VIP</h2>
+        <p>ส่วนนี้เตรียมไว้สำหรับใส่ลิงก์ VIP ภายหลัง</p>
+    </div>
+</div>
+
+</div><script>
+function showMenu(id, btn){
+    document.getElementById("hero").classList.add("hidden");
+
+    document.querySelectorAll(".menu-btn").forEach(b=>{
+        b.classList.remove("active");
+    });
+
+    document.querySelectorAll(".submenu").forEach(s=>{
+        s.classList.remove("active");
+    });
+
+    document.querySelectorAll(".panel").forEach(p=>{
+        p.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+    document.getElementById("submenu-" + id).classList.add("active");
+    document.getElementById("panel-" + id).classList.add("active");
+
+    const firstSub = document.querySelector("#submenu-" + id + " .sub-link");
+    if(firstSub){
+        firstSub.focus();
+    }
 }
 
-function renderPage(name){
-let obj=store[name];
-let row=document.getElementById("row-"+name);
-let items=obj.data.slice(0,obj.page*20);
-row.innerHTML="";
-items.forEach(item=>{
-let div=document.createElement("div");
-div.className="card";
-div.innerHTML=`<img src="${item.image||''}"><div>${item.title||item.name||""}</div>`;
-div.onclick=()=>openItem(item);
-row.appendChild(div);
-});
-}
+/* รองรับรีโมท / คีย์บอร์ดดีขึ้น */
+document.addEventListener("keydown", function(e){
+    const focusables = Array.from(document.querySelectorAll(".menu-btn, .submenu.active .sub-link"));
+    const currentIndex = focusables.indexOf(document.activeElement);
 
-function seeAll(name){
-store[name].page++;
-renderPage(name);
-}
+    if(e.key === "ArrowDown"){
+        e.preventDefault();
+        const next = focusables[currentIndex + 1] || focusables[0];
+        next.focus();
+    }
 
-function openItem(item){
-if(item.episodes){showEP(item);return;}
-startPlay([{url:item.url}]);
-}
+    if(e.key === "ArrowUp"){
+        e.preventDefault();
+        const prev = focusables[currentIndex - 1] || focusables[focusables.length - 1];
+        prev.focus();
+    }
 
-/* EP */
-function showEP(item){
-overlay.style.display="block";
-grid.style.display="none";
+    if((e.key === "ArrowRight" || e.key === "Enter") && document.activeElement.classList.contains("menu-btn")){
+        e.preventDefault();
+        document.activeElement.click();
+    }
 
-overlay.innerHTML=`<h2 style="padding:10px">${item.title}</h2>
-<div id="epBox" style="display:flex;flex-wrap:wrap;gap:10px;padding:10px"></div>`;
-
-let box=document.getElementById("epBox");
-
-item.episodes.forEach(ep=>{
-let d=document.createElement("div");
-d.className="card";
-d.textContent=ep.name;
-d.onclick=()=>startPlay(ep.servers);
-box.appendChild(d);
-});
-}
-
-/* PLAY */
-function startPlay(list){
-overlay.style.display="none";
-player.style.display="block";
-playServers([...list]);
-}
-
-/* AUTO SWITCH SERVER */
-async function playServers(list){
-
-for(let i=0;i<list.length;i++){
-try{
-await Promise.race([
-play(list[i].url),
-new Promise((_,rej)=>setTimeout(()=>rej(),8000))
-]);
-return;
-}catch(e){}
-}
-
-alert("❌ เล่นไม่ได้ทุก server");
-}
-
-/* =========================
-   TV BOX MODE PLAYER
-========================= */
-async function play(url){
-
-if(hls){hls.destroy();hls=null;}
-
-video.pause();
-video.removeAttribute("src");
-frame.src="";
-
-video.style.display="none";
-frame.style.display="none";
-
-/* ===== HLS ===== */
-if(url.includes(".m3u8") || url.includes(".txt")){
-
-video.style.display="block";
-
-/* 🔥 STABLE TV MODE */
-hls = new Hls({
-  maxBufferLength: 30,
-  maxMaxBufferLength: 60,
-  backBufferLength: 20,
-  liveSyncDuration: 3,
-  enableWorker: true,
-  lowLatencyMode: true
-});
-
-/* 🔥 IMPORTANT: เล่นตรง ไม่ proxy segment */
-hls.loadSource(url);
-hls.attachMedia(video);
-
-return new Promise((res,rej)=>{
-
-hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-
-video.muted = false;
-video.volume = 1;
-
-/* 🔥 force play TV */
-video.play().catch(()=>{});
-
-res();
+    if(e.key === "ArrowLeft"){
+        const activeMenu = document.querySelector(".menu-btn.active");
+        if(activeMenu){
+            activeMenu.focus();
+        }
+    }
 });
 
-/* 🔥 auto recover */
-hls.on(Hls.Events.ERROR,(e,d)=>{
-if(d.fatal){
-if(d.type===Hls.ErrorTypes.NETWORK_ERROR){
-hls.startLoad();
-}else if(d.type===Hls.ErrorTypes.MEDIA_ERROR){
-hls.recoverMediaError();
-}else{
-hls.destroy();
-rej();
-}
-}
+/* โฟกัสปุ่มแรกตอนเปิดหน้า */
+window.addEventListener("load", ()=>{
+    const firstBtn = document.querySelector(".menu-btn");
+    if(firstBtn){
+        firstBtn.focus();
+    }
 });
-
-});
-
-}
-
-/* ===== iframe ===== */
-frame.style.display="block";
-frame.src=url;
-
-return Promise.resolve();
-}
-
-/* CLOSE */
-function closePlayer(){
-if(hls) hls.destroy();
-video.pause();
-video.src="";
-frame.src="";
-player.style.display="none";
-grid.style.display="block";
-}
-
-/* HOME */
-function goHome(){
-window.location.href="https://tiea9999.github.io/tv-online/index.html";
-}
-
-document.getElementById("homeBtn").onclick=goHome;
-
-loadAll();
-
-</script>
-
-</body>
+</script></body>
 </html>
