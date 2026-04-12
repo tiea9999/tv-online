@@ -213,7 +213,7 @@
         <button class="btn" onclick="goHome()">✕</button>
         <button class="btn3" onclick="openExternal()">▶ MX</button>
         <button class="btn4" onclick="copyCurrentLink()">คัดลอก</button>
-        <div id="mxHint">ถ้าภาพไม่ขึ้นในแอพ24 ให้กด ▶ MX</div>
+        <div id="mxHint">ดูผ่านเว็บได้เลย ถ้า Android เล่นไม่ขึ้น ให้กด ▶ MX</div>
         <video id="video" playsinline webkit-playsinline x5-playsinline controls autoplay muted preload="auto"></video>
         <iframe id="frame" allowfullscreen referrerpolicy="no-referrer"></iframe>
     </div>
@@ -222,36 +222,26 @@
         const PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
 
         const SOURCES = [
-{
-name: "EZ 18+",
-type: "json",
-url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังผู้ใหญ่_18_adult.json",
-
-},
-{
-name: "AV-SUBTHAI",
-type: "json",
-url: "https://raw.githubusercontent.com/nongakka/vip/main/playlist.json",
-
-},
-{
-name: "AV-Pung",
-type: "json",
-url: "https://raw.githubusercontent.com/nongakka/doofree/main/M3U/playlist_avpung.json",
-
-},
-{
-name: "JAV24",
-type: "json",
-url: "https://raw.githubusercontent.com/nongakka/doofree/main/M3U/playlist_jav24.json",
-
-},
-
-
-
-
-
-
+            {
+                name: "EZ 18+",
+                type: "json",
+                url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังผู้ใหญ่_18_adult.json",
+            },
+            {
+                name: "AV-SUBTHAI",
+                type: "json",
+                url: "https://raw.githubusercontent.com/nongakka/vip/main/playlist.json",
+            },
+            {
+                name: "AV-Pung",
+                type: "json",
+                url: "https://raw.githubusercontent.com/nongakka/doofree/main/M3U/playlist_avpung.json",
+            },
+            {
+                name: "JAV24",
+                type: "json",
+                url: "https://raw.githubusercontent.com/nongakka/doofree/main/M3U/playlist_jav24.json",
+            },
         ];
 
         const FALLBACK_IMG =
@@ -881,27 +871,21 @@ url: "https://raw.githubusercontent.com/nongakka/doofree/main/M3U/playlist_jav24
             if (!currentList.length) return;
 
             const item = currentList[currentIndex];
-            const url = typeof item === "string" ? item : item.url;
-            if (!url) return;
+            const rawUrl = typeof item === "string" ? item : item.url;
+            if (!rawUrl) return;
 
-            const scheme = url.startsWith("https://") ? "https" : "http";
-            const clean = url.replace(/^https?:\/\//, "");
+            const playUrl = isHls(rawUrl) ? (PROXY + encodeURIComponent(rawUrl)) : rawUrl;
+            const mxUrl = "mxplayer://play?url=" + encodeURIComponent(playUrl);
 
-            const mxPhoneIntent =
-                `intent://${clean}#Intent;scheme=${scheme};package=com.mxtech.videoplayer.ad;type=video/*;end`;
+            const a = document.createElement("a");
+            a.href = mxUrl;
+            a.style.display = "none";
+            document.body.appendChild(a);
+            a.click();
 
-            const mxTvIntent =
-                `intent://${clean}#Intent;scheme=${scheme};package=com.mxtech.videoplayer.television;type=video/*;end`;
-
-            try {
-                window.location.href = mxPhoneIntent;
-
-                setTimeout(() => {
-                    window.location.href = mxTvIntent;
-                }, 1200);
-            } catch (e) {
-                window.location.href = url;
-            }
+            setTimeout(() => {
+                if (a.parentNode) a.parentNode.removeChild(a);
+            }, 1000);
         }
 
         async function copyCurrentLink() {
@@ -942,10 +926,7 @@ url: "https://raw.githubusercontent.com/nongakka/doofree/main/M3U/playlist_jav24
             overlay.innerHTML = "";
             grid.style.display = "block";
             window.scrollTo(0, 0);
-       }
-function goHome(){
-  window.location.href = "https://tiea9999.github.io/tv-online/";
-}
+        }
 
         document.getElementById("homeBtn").onclick = goHome;
 
