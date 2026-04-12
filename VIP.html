@@ -606,7 +606,7 @@
 
         function cleanupPlayers() {
             if (hls) {
-                try { hls.destroy(); } catch (e) { }
+                try { hls.destroy(); } catch (e) {}
                 hls = null;
             }
 
@@ -782,9 +782,9 @@
 
                     if (data.fatal) {
                         if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
-                            try { hls.startLoad(); } catch (e) { }
+                            try { hls.startLoad(); } catch (e) {}
                         } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
-                            try { hls.recoverMediaError(); } catch (e) { }
+                            try { hls.recoverMediaError(); } catch (e) {}
                         } else {
                             fail();
                         }
@@ -874,18 +874,15 @@
             const rawUrl = typeof item === "string" ? item : item.url;
             if (!rawUrl) return;
 
-            const playUrl = isHls(rawUrl) ? (PROXY + encodeURIComponent(rawUrl)) : rawUrl;
-            const mxUrl = "mxplayer://play?url=" + encodeURIComponent(playUrl);
+            const playUrl = isHls(rawUrl)
+                ? (PROXY + encodeURIComponent(rawUrl))
+                : rawUrl;
 
-            const a = document.createElement("a");
-            a.href = mxUrl;
-            a.style.display = "none";
-            document.body.appendChild(a);
-            a.click();
-
-            setTimeout(() => {
-                if (a.parentNode) a.parentNode.removeChild(a);
-            }, 1000);
+            try {
+                window.open(playUrl, "_blank");
+            } catch (e) {
+                prompt("คัดลิงก์นี้ไปเปิดใน MX", playUrl);
+            }
         }
 
         async function copyCurrentLink() {
