@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV PRO FINAL</title>
+    <title>IPTV TV BOX MODE</title>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
@@ -101,7 +101,7 @@
             top: 10px;
             right: 10px;
             padding: 10px;
-            background: #ff0000;
+            background: red;
             border: none;
             border-radius: 8px;
             color: #fff;
@@ -117,9 +117,9 @@
     <div id="overlay"></div>
 
     <div id="player">
-        <button class="btn" onclick="goHome()">✕</button>
-        <video id="video" playsinline controls autoplay muted></video>
-        <iframe id="frame" allowfullscreen></iframe>
+        <button class="btn" onclick="closePlayer()">✕</button>
+        <video id="video" controls autoplay muted playsinline></video>
+        <iframe id="frame"></iframe>
     </div>
 
     <script>
@@ -214,13 +214,12 @@ store[name].page++;
 renderPage(name);
 }
 
-/* OPEN */
 function openItem(item){
 if(item.episodes){showEP(item);return;}
 startPlay([{url:item.url}]);
 }
 
-/* 🔥 EP (ลบปุ่ม HOME ซ้ำออกแล้ว) */
+/* EP */
 function showEP(item){
 overlay.style.display="block";
 grid.style.display="none";
@@ -246,21 +245,25 @@ player.style.display="block";
 playServers([...list]);
 }
 
-/* AUTO SWITCH + TIMEOUT */
+/* AUTO SWITCH SERVER */
 async function playServers(list){
+
 for(let i=0;i<list.length;i++){
 try{
 await Promise.race([
 play(list[i].url),
-new Promise((_,rej)=>setTimeout(()=>rej("timeout"),8000))
+new Promise((_,rej)=>setTimeout(()=>rej(),8000))
 ]);
 return;
 }catch(e){}
 }
+
 alert("❌ เล่นไม่ได้ทุก server");
 }
 
-/* PLAYER */
+/* =========================
+   TV BOX MODE PLAYER
+========================= */
 async function play(url){
 
 if(hls){hls.destroy();hls=null;}
@@ -272,24 +275,71 @@ frame.src="";
 video.style.display="none";
 frame.style.display="none";
 
-const purl = PROXY + encodeURIComponent(url);
+/* ===== HLS ===== */
+if(url.includes(".m3u8") || url.includes(".txt")){
 
-if(url.includes(".txt") || url.includes(".m3u8")){
 video.style.display="block";
 
-hls=new Hls({maxBufferLength:60});
-hls.loadSource(purl);
+/* 🔥 STABLE TV MODE */
+hls = new Hls({
+  maxBufferLength: 30,
+  maxMaxBufferLength: 60,
+  backBufferLength: 20,
+  liveSyncDuration: 3,
+  enableWorker: true,
+  lowLatencyMode: true
+});
+
+/* 🔥 IMPORTANT: เล่นตรง ไม่ proxy segment */
+hls.loadSource(url);
 hls.attachMedia(video);
 
 return new Promise((res,rej)=>{
-hls.on(Hls.Events.MANIFEST_PARSED,()=>{video.play();res();});
-hls.on(Hls.Events.ERROR,(e,d)=>{if(d.fatal){hls.destroy();rej();}});
+
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{
+
+video.muted = false;
+video.volume = 1;
+
+/* 🔥 force play TV */
+video.play().catch(()=>{});
+
+res();
 });
+
+/* 🔥 auto recover */
+hls.on(Hls.Events.ERROR,(e,d)=>{
+if(d.fatal){
+if(d.type===Hls.ErrorTypes.NETWORK_ERROR){
+hls.startLoad();
+}else if(d.type===Hls.ErrorTypes.MEDIA_ERROR){
+hls.recoverMediaError();
+}else{
+hls.destroy();
+rej();
+}
+}
+});
+
+});
+
 }
 
+/* ===== iframe ===== */
 frame.style.display="block";
 frame.src=url;
+
 return Promise.resolve();
+}
+
+/* CLOSE */
+function closePlayer(){
+if(hls) hls.destroy();
+video.pause();
+video.src="";
+frame.src="";
+player.style.display="none";
+grid.style.display="block";
 }
 
 /* HOME */
