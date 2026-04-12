@@ -1,316 +1,285 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPTV FIX V4 STABLE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIEA IPTV PRO FINAL</title>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-<style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: sans-serif;
+        }
 
-#homeBtn{
-position:fixed;top:10px;left:10px;
-z-index:9999;padding:10px;
-background:#00c853;border:none;
-border-radius:10px;color:#fff;
-}
+        #homeBtn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 9999;
+            padding: 10px;
+            background: #00c853;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+        }
 
-.row-title{
-padding:10px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-color:#00e5ff;
-font-weight:bold;
-}
+        .row-title {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            color: #00e5ff;
+            font-weight: bold;
+        }
 
-.seeall{
-background:#ff9800;
-border:none;
-padding:6px 10px;
-border-radius:8px;
-color:#fff;
-cursor:pointer;
-}
+        .seeall {
+            background: #ff9800;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 8px;
+            color: #fff;
+        }
 
-.row-items{
-display:flex;
-gap:10px;
-overflow-x:auto;
-padding:10px;
-}
+        .row-items {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px;
+        }
 
-.card{
-min-width:150px;
-background:#111;
-border-radius:10px;
-padding:8px;
-text-align:center;
-cursor:pointer;
-}
+        .card {
+            min-width: 150px;
+            background: #111;
+            border-radius: 10px;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
 
-.card:focus{
-outline:2px solid #00ffcc;
-}
+        img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
 
-img{
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:8px;
-pointer-events:none;
-}
+        #overlay,
+        #player {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
 
-/* PLAYER */
-#overlay,#player{
-position:fixed;top:0;left:0;
-width:100%;height:100%;
-display:none;
-}
+        #overlay {
+            background: #000;
+            z-index: 999;
+            overflow: auto;
+        }
 
-#overlay{background:#000;z-index:999;overflow:auto;}
-#player{background:#000;z-index:1000;}
+        #player {
+            background: #000;
+            z-index: 1000;
+        }
 
-video,iframe{width:100%;height:100%;border:none;}
+        video,
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
-.btn{
-position:absolute;top:10px;right:10px;
-padding:10px;
-background:#ff9800;
-border:none;
-border-radius:8px;
-color:#fff;
-}
-</style>
+        .btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            background: #ff0000;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
 
-<button id="homeBtn">🏠 HOME</button>
+    <button id="homeBtn">🏠 HOME</button>
 
-<div id="grid"></div>
+    <div id="grid"></div>
+    <div id="overlay"></div>
 
-<div id="overlay"></div>
+    <div id="player">
+        <button class="btn" onclick="goHome()">✕</button>
+        <video id="video" playsinline controls autoplay muted></video>
+        <iframe id="frame" allowfullscreen></iframe>
+    </div>
 
-<div id="player">
-<button class="btn" onclick="closePlayer()">✕</button>
-<video id="video" playsinline></video>
-<iframe id="frame"></iframe>
-</div>
-
-<script>
+    <script>
+        const PROXY="https://iptv.tawatchai250958.workers.dev/?url=";
 
 const SOURCES=[
-{name:"🔥 มาใหม่",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"},
-{name:"🇨🇳 จีน",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"},
-{name:"🇯🇵 ญี่ปุ่น",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"},
-{name:"🇰🇷 เกาหลี",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"},
-{name:"🇹🇭 ไทย",url:"https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"}
+{
+name: "🔥 มาใหม่",
+type: "anime-json",
+url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"
+},
+
+{
+name: "ซีรีย์จีน",
+type: "anime-json",
+url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"
+},
+{
+name: "ซีรีย์เกาหลี",
+type: "anime-json",
+url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"
+},
+{
+name: "ซีรีย์ญี่ปุ่น",
+type: "anime-json",
+url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"
+},
+
+{
+name: "ซีรียไทย",
+type: "anime-json",
+url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"
+}
+
 ];
 
 let grid=document.getElementById("grid");
 let overlay=document.getElementById("overlay");
 let video=document.getElementById("video");
 let frame=document.getElementById("frame");
-let hls=null;
+let player=document.getElementById("player");
 
-/* STATE */
+let hls=null;
 let store={};
 
 /* LOAD */
 async function loadAll(){
-
 grid.innerHTML="⚡ LOADING...";
-
 for(let s of SOURCES){
-
-let res=await fetch(s.url);
-let data=await res.json();
-
-store[s.name]={
-data,
-page:1
-};
-
+let data=await fetch(s.url).then(r=>r.json());
+store[s.name]={data,page:1};
 renderRow(s.name);
-
+}
 }
 
-}
-
-/* RENDER ROW */
+/* UI */
 function renderRow(name){
-
 let row=document.createElement("div");
-
-row.innerHTML=`
-<div class="row-title">
-${name}
+row.innerHTML=`<div class="row-title">${name}
 <button class="seeall" onclick="seeAll('${name}')">ดูทั้งหมด</button>
 </div>
-
-<div class="row-items" id="row-${name}"></div>
-`;
-
+<div class="row-items" id="row-${name}"></div>`;
 grid.appendChild(row);
-
 renderPage(name);
-
 }
 
-/* PAGINATION 20 */
 function renderPage(name){
-
 let obj=store[name];
 let row=document.getElementById("row-"+name);
-
-let start=0;
-let end=obj.page*20;
-
-let items=obj.data.slice(start,end);
-
+let items=obj.data.slice(0,obj.page*20);
 row.innerHTML="";
-
 items.forEach(item=>{
-
 let div=document.createElement("div");
 div.className="card";
-div.tabIndex=0;
-
-div.innerHTML=`
-<img src="${item.image||''}">
-<div>${item.title||item.name||""}</div>
-`;
-
-div.addEventListener("click",()=>openItem(item));
-
+div.innerHTML=`<img src="${item.image||''}"><div>${item.title||item.name||""}</div>`;
+div.onclick=()=>openItem(item);
 row.appendChild(div);
-
 });
-
 }
 
-/* SEE ALL */
 function seeAll(name){
-
 store[name].page++;
 renderPage(name);
-
 }
 
-/* OPEN ITEM */
+/* OPEN */
 function openItem(item){
-
-if(item.episodes && item.episodes.length){
-showEP(item);
-return;
-}
-
+if(item.episodes){showEP(item);return;}
 startPlay([{url:item.url}]);
-
 }
 
-/* EP FIX (NO INLINE CLICK BUG) */
+/* 🔥 EP (ลบปุ่ม HOME ซ้ำออกแล้ว) */
 function showEP(item){
-
 overlay.style.display="block";
 grid.style.display="none";
 
 overlay.innerHTML=`<h2 style="padding:10px">${item.title}</h2>
-<div style="display:flex;flex-wrap:wrap;gap:10px;padding:10px" id="epBox"></div>
-<button class="btn" onclick="goHome()">HOME</button>`;
+<div id="epBox" style="display:flex;flex-wrap:wrap;gap:10px;padding:10px"></div>`;
 
 let box=document.getElementById("epBox");
 
 item.episodes.forEach(ep=>{
-
 let d=document.createElement("div");
 d.className="card";
 d.textContent=ep.name;
-
-d.addEventListener("click",()=>{
-startPlay(ep.servers);
-});
-
+d.onclick=()=>startPlay(ep.servers);
 box.appendChild(d);
-
 });
-
 }
 
 /* PLAY */
 function startPlay(list){
-
 overlay.style.display="none";
 player.style.display="block";
-
-playServers(list);
-
+playServers([...list]);
 }
 
+/* AUTO SWITCH + TIMEOUT */
 async function playServers(list){
-
-for(let s of list){
+for(let i=0;i<list.length;i++){
 try{
-await play(s.url);
+await Promise.race([
+play(list[i].url),
+new Promise((_,rej)=>setTimeout(()=>rej("timeout"),8000))
+]);
 return;
-}catch{}
+}catch(e){}
+}
+alert("❌ เล่นไม่ได้ทุก server");
 }
 
-alert("❌ no server");
+/* PLAYER */
+async function play(url){
 
-}
-
-function play(url){
-
-return new Promise((res)=>{
-
-if(hls) hls.destroy();
-
-video.style.display="block";
-frame.style.display="none";
-
-if(url.includes(".m3u8")){
-hls=new Hls();
-hls.loadSource(url);
-hls.attachMedia(video);
-hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-video.play();
-res();
-});
-return;
-}
-
-if(url.includes(".mp4")){
-video.src=url;
-video.play();
-res();
-return;
-}
-
-video.style.display="none";
-frame.style.display="block";
-frame.src=url;
-res();
-
-});
-
-}
-
-/* CLOSE */
-function closePlayer(){
-
-if(hls) hls.destroy();
+if(hls){hls.destroy();hls=null;}
 
 video.pause();
-video.src="";
+video.removeAttribute("src");
 frame.src="";
 
-player.style.display="none";
-grid.style.display="block";
+video.style.display="none";
+frame.style.display="none";
 
+const purl = PROXY + encodeURIComponent(url);
+
+if(url.includes(".txt") || url.includes(".m3u8")){
+video.style.display="block";
+
+hls=new Hls({maxBufferLength:60});
+hls.loadSource(purl);
+hls.attachMedia(video);
+
+return new Promise((res,rej)=>{
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{video.play();res();});
+hls.on(Hls.Events.ERROR,(e,d)=>{if(d.fatal){hls.destroy();rej();}});
+});
+}
+
+frame.style.display="block";
+frame.src=url;
+return Promise.resolve();
 }
 
 /* HOME */
@@ -320,10 +289,10 @@ window.location.href="https://tiea9999.github.io/tv-online/index.html";
 
 document.getElementById("homeBtn").onclick=goHome;
 
-/* START */
 loadAll();
 
-</script>
+    </script>
 
 </body>
+
 </html>
