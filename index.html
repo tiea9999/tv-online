@@ -1,247 +1,282 @@
-<!DOCTYPE html><html lang="th">
+```html
+<!DOCTYPE html>
+<html lang="th">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV</title><style>
-*{box-sizing:border-box}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIEA IPTV</title>
 
-body{
-    margin:0;
-    font-family:sans-serif;
-    background:#0b0f1a;
-    color:#fff;
-    display:flex;
-    min-height:100vh;
-}
+    <style>
+        * {
+            box-sizing: border-box
+        }
 
-/* เมนูซ้าย */
-.sidebar{
-    width:260px;
-    background:#111827;
-    padding:18px 12px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    border-right:1px solid rgba(255,255,255,0.08);
-    overflow-y:auto;
-}
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background: #0b0f1a;
+            color: #fff;
+            display: flex;
+            min-height: 100vh;
+        }
 
-.menu-btn,.sub-link{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:14px;
-    background:rgba(255,255,255,0.06);
-    color:#fff;
-    font-size:15px;
-    cursor:pointer;
-    text-align:left;
-    transition:.2s;
-    text-decoration:none;
-    display:block;
-    outline:none;
-}
+        /* เมนูซ้าย */
+        .sidebar {
+            width: 260px;
+            background: #111827;
+            padding: 18px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            overflow-y: auto;
+        }
 
-.menu-btn:hover,.sub-link:hover{
-    background:rgba(0,229,255,0.22);
-}
+        .menu-btn,
+        .sub-link {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: left;
+            transition: .2s;
+            text-decoration: none;
+            display: block;
+            outline: none;
+        }
 
-.menu-btn:focus,.sub-link:focus{
-    background:rgba(0,229,255,0.30);
-    box-shadow:0 0 0 2px rgba(0,229,255,0.45);
-}
+        .menu-btn:hover,
+        .sub-link:hover {
+            background: rgba(0, 229, 255, 0.22);
+        }
 
-.menu-btn.active{
-    background:rgba(0,229,255,0.38);
-    box-shadow:0 0 12px rgba(0,229,255,0.25);
-}
+        .menu-btn:focus,
+        .sub-link:focus {
+            background: rgba(0, 229, 255, 0.30);
+            box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.45);
+        }
 
-.sport{border-left:4px solid #00e5ff;}
-.tv{border-left:4px solid #4caf50;}
-.movie{border-left:4px solid #ff9800;}
-.series{border-left:4px solid #9c27b0;}
-.vip{border-left:4px solid #e91e63;}
+        .menu-btn.active {
+            background: rgba(0, 229, 255, 0.38);
+            box-shadow: 0 0 12px rgba(0, 229, 255, 0.25);
+        }
 
-.submenu{
-    display:none;
-    flex-direction:column;
-    gap:8px;
-    padding-left:8px;
-}
+        .sport {
+            border-left: 4px solid #00e5ff;
+        }
 
-.submenu.active{
-    display:flex;
-}
+        .tv {
+            border-left: 4px solid #4caf50;
+        }
 
-.sub-link{
-    padding:12px;
-    font-size:14px;
-    background:rgba(255,255,255,0.04);
-}
+        .movie {
+            border-left: 4px solid #ff9800;
+        }
 
-/* ฝั่งขวา */
-.content{
-    flex:1;
-    padding:24px;
-    overflow-y:auto;
-}
+        .series {
+            border-left: 4px solid #9c27b0;
+        }
 
-/* โลโก้กลาง */
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    text-align:center;
-}
+        .vip {
+            border-left: 4px solid #e91e63;
+        }
 
-.hero.hidden{
-    display:none;
-}
+        .submenu {
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            padding-left: 8px;
+        }
 
-.hero-logo{
-    width:150px;
-    height:150px;
-    object-fit:cover;
-    border-radius:28px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.45);
-    margin-bottom:16px;
-    border:1px solid rgba(255,255,255,0.12);
-}
+        .submenu.active {
+            display: flex;
+        }
 
-.hero h1{
-    margin:0;
-    font-size:34px;
-    letter-spacing:1px;
-}
+        .sub-link {
+            padding: 12px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.04);
+        }
 
-.hero p{
-    margin-top:10px;
-    color:#b8c1d1;
-    font-size:15px;
-}
+        /* ฝั่งขวา */
+        .content {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+        }
 
-/* กล่องข้อความขวา */
-.panel{
-    display:none;
-}
+        /* โลโก้กลาง */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
 
-.panel.active{
-    display:block;
-}
+        .hero.hidden {
+            display: none;
+        }
 
-.panel-card{
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:18px;
-    padding:22px;
-    max-width:720px;
-    backdrop-filter:blur(10px);
-}
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 28px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
 
-.panel-card h2{
-    margin:0 0 12px;
-}
+        .hero h1 {
+            margin: 0;
+            font-size: 34px;
+            letter-spacing: 1px;
+        }
 
-.panel-card p{
-    margin:0;
-    color:#b8c1d1;
-    line-height:1.5;
-}
+        .hero p {
+            margin-top: 10px;
+            color: #b8c1d1;
+            font-size: 15px;
+        }
 
-/* มือถือ */
-@media (max-width:768px){
-    body{
-        flex-direction:column;
-    }
+        /* กล่องข้อความขวา */
+        .panel {
+            display: none;
+        }
 
-    .sidebar{
-        width:100%;
-        border-right:none;
-        border-bottom:1px solid rgba(255,255,255,0.08);
-    }
+        .panel.active {
+            display: block;
+        }
 
-    .content{
-        padding:18px;
-    }
+        .panel-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 22px;
+            max-width: 720px;
+            backdrop-filter: blur(10px);
+        }
 
-    .hero{
-        min-height:calc(100vh - 140px);
-    }
-}
-</style></head>
-<body><div class="sidebar" id="sidebar"><button class="menu-btn sport" onclick="showMenu('sports',this)" tabindex="0">⚽ ตารางแข่งขัน</button>
-<div id="submenu-sports" class="submenu">
-    <a class="sub-link" href="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json" tabindex="0">ตารางการแข่งขัน</a>
-</div>
+        .panel-card h2 {
+            margin: 0 0 12px;
+        }
 
-<button class="menu-btn tv" onclick="showMenu('tv',this)" tabindex="0">📺 ทีวี</button>
-<div id="submenu-tv" class="submenu">
-    <a class="sub-link" href="https://tiea9999.github.io/tv-online/ball66.html" tabindex="0">DOOBALL66</a>
-    <a class="sub-link" href="https://tiea9999.github.io/tv-online/3bb.html" tabindex="0">3BB</a>
-</div>
+        .panel-card p {
+            margin: 0;
+            color: #b8c1d1;
+            line-height: 1.5;
+        }
 
-<button class="menu-btn movie" onclick="showMenu('movie',this)" tabindex="0">🎬 หนัง</button>
-<div id="submenu-movie" class="submenu">
-    
-    <a class="sub-link" href="https://tiea9999.github.io/tv-online/ezmovie.html" tabindex="0">EZMOVIE</a>
-</div>
+        /* มือถือ */
+        @media (max-width:768px) {
+            body {
+                flex-direction: column;
+            }
 
-<button class="menu-btn series" onclick="showMenu('series',this)" tabindex="0">📺 ซีรีส์</button>
-<div id="submenu-series" class="submenu">
-    <a class="sub-link" href="https://tiea9999.github.io/tv-online/goseries4k.html" tabindex="0">GOSERIS</a>
-</div>
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
 
-<button class="menu-btn vip" onclick="showMenu('vip',this)" tabindex="0">🔐 VIP</button>
-<div id="submenu-vip" class="submenu">
-    <a class="sub-link" href="javascript:void(0)" tabindex="0">ยังไม่เปิดใช้งาน</a>
-</div>
+            .content {
+                padding: 18px;
+            }
 
-</div><div class="content"><div id="hero" class="hero">
-    <https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&dl=1>
-    <img src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&raw=1" alt="logo">
-    <h1>TIEA IPTV</h1>
-    <p>เลือกเมนูทางซ้ายเพื่อแสดงลิงก์</p>
-</div>
+            .hero {
+                min-height: calc(100vh - 140px);
+            }
+        }
+    </style>
+</head>
 
-<div id="panel-sports" class="panel">
-    <div class="panel-card">
-        <h2>⚽ ตารางแข่งขัน</h2>
-        <p>เลือกเมนูนี้แล้ว ลิงก์ตารางแข่งขันจะขึ้นฝั่งซ้ายทันที</p>
+<body>
+
+    <div class="sidebar" id="sidebar">
+
+        <button class="menu-btn sport" onclick="showMenu('sports',this)" tabindex="0">⚽ ตารางแข่งขัน</button>
+        <div id="submenu-sports" class="submenu">
+            <a class="sub-link"
+                href="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json"
+                tabindex="0">ตารางการแข่งขัน</a>
+        </div>
+
+        <button class="menu-btn tv" onclick="showMenu('tv',this)" tabindex="0">📺 ทีวี</button>
+        <div id="submenu-tv" class="submenu">
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/ball66.html" tabindex="0">DOOBALL66</a>
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/3bb.html" tabindex="0">3BB</a>
+        </div>
+
+        <button class="menu-btn movie" onclick="showMenu('movie',this)" tabindex="0">🎬 หนัง</button>
+        <div id="submenu-movie" class="submenu">
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/ezmovie.html" tabindex="0">EZMOVIE</a>
+        </div>
+
+        <button class="menu-btn series" onclick="showMenu('series',this)" tabindex="0">📺 ซีรีส์</button>
+        <div id="submenu-series" class="submenu">
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/goseries4k.html" tabindex="0">GOSERIS</a>
+        </div>
+
+        <button class="menu-btn vip" onclick="showVIP(this)" tabindex="0">🔐 VIP</button>
+        <div id="submenu-vip" class="submenu">
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/VIP.html" tabindex="0" id="vipLink">เข้าสู่
+                VIP</a>
+        </div>
+
     </div>
-</div>
 
-<div id="panel-tv" class="panel">
-    <div class="panel-card">
-        <h2>📺 ทีวี</h2>
-        <p>เลือกเมนูนี้แล้ว ลิงก์หน้า TV จะขึ้นฝั่งซ้าย และลิงก์ของเมนูอื่นจะหาย</p>
+    <div class="content">
+        <div id="hero" class="hero">
+            <img class="hero-logo" src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&raw=1" alt="TIEA IPTV Logo">
+            <h1>TIEA IPTV</h1>
+            <p>เลือกเมนูทางซ้ายเพื่อแสดงลิงก์</p>
+        </div>
+
+        <div id="panel-sports" class="panel">
+            <div class="panel-card">
+                <h2>⚽ ตารางแข่งขัน</h2>
+                <p>เลือกเมนูนี้แล้ว ลิงก์ตารางแข่งขันจะขึ้นฝั่งซ้ายทันที</p>
+            </div>
+        </div>
+
+        <div id="panel-tv" class="panel">
+            <div class="panel-card">
+                <h2>📺 ทีวี</h2>
+                <p>เลือกเมนูนี้แล้ว ลิงก์หน้า TV จะขึ้นฝั่งซ้าย</p>
+            </div>
+        </div>
+
+        <div id="panel-movie" class="panel">
+            <div class="panel-card">
+                <h2>🎬 หนัง</h2>
+                <p>เลือกเมนูนี้แล้ว ลิงก์หนังจะขึ้นฝั่งซ้าย</p>
+            </div>
+        </div>
+
+        <div id="panel-series" class="panel">
+            <div class="panel-card">
+                <h2>📺 ซีรีส์</h2>
+                <p>เลือกเมนูนี้แล้ว ลิงก์ซีรีส์จะขึ้นฝั่งซ้าย</p>
+            </div>
+        </div>
+
+        <div id="panel-vip" class="panel">
+            <div class="panel-card">
+                <h2>🔐 VIP</h2>
+                <p>ใส่รหัสผ่าน 9999 เพื่อเข้าใช้งานหน้า VIP</p>
+            </div>
+        </div>
     </div>
-</div>
 
-<div id="panel-movie" class="panel">
-    <div class="panel-card">
-        <h2>🎬 หนัง</h2>
-        <p>เลือกเมนูนี้แล้ว ลิงก์หนังจะขึ้นฝั่งซ้าย โดยตอนนี้ไปที่หน้า goseries4k</p>
-    </div>
-</div>
-
-<div id="panel-series" class="panel">
-    <div class="panel-card">
-        <h2>📺 ซีรีส์</h2>
-        <p>เลือกเมนูนี้แล้ว ลิงก์ซีรีส์จะขึ้นฝั่งซ้าย โดยตอนนี้ไปที่หน้า goseries4k</p>
-    </div>
-</div>
-
-<div id="panel-vip" class="panel">
-    <div class="panel-card">
-        <h2>🔐 VIP</h2>
-        <p>ส่วนนี้เตรียมไว้สำหรับใส่ลิงก์ VIP ภายหลัง</p>
-    </div>
-</div>
-
-</div><script>
-function showMenu(id, btn){
+    <script>
+        function resetPanels(){
     document.getElementById("hero").classList.add("hidden");
 
     document.querySelectorAll(".menu-btn").forEach(b=>{
@@ -255,6 +290,10 @@ function showMenu(id, btn){
     document.querySelectorAll(".panel").forEach(p=>{
         p.classList.remove("active");
     });
+}
+
+function showMenu(id, btn){
+    resetPanels();
 
     btn.classList.add("active");
     document.getElementById("submenu-" + id).classList.add("active");
@@ -266,7 +305,24 @@ function showMenu(id, btn){
     }
 }
 
-/* รองรับรีโมท / คีย์บอร์ดดีขึ้น */
+function showVIP(btn){
+    resetPanels();
+
+    btn.classList.add("active");
+    document.getElementById("panel-vip").classList.add("active");
+
+    const pass = prompt("กรอกรหัสผ่าน VIP");
+    if(pass === "9999"){
+        document.getElementById("submenu-vip").classList.add("active");
+        const vipLink = document.getElementById("vipLink");
+        vipLink.focus();
+        window.location.href = "https://tiea9999.github.io/tv-online/VIP.html";
+    }else if(pass !== null){
+        alert("รหัสผ่านไม่ถูกต้อง");
+    }
+}
+
+/* รองรับรีโมท / คีย์บอร์ด */
 document.addEventListener("keydown", function(e){
     const focusables = Array.from(document.querySelectorAll(".menu-btn, .submenu.active .sub-link"));
     const currentIndex = focusables.indexOf(document.activeElement);
@@ -274,13 +330,13 @@ document.addEventListener("keydown", function(e){
     if(e.key === "ArrowDown"){
         e.preventDefault();
         const next = focusables[currentIndex + 1] || focusables[0];
-        next.focus();
+        if(next) next.focus();
     }
 
     if(e.key === "ArrowUp"){
         e.preventDefault();
         const prev = focusables[currentIndex - 1] || focusables[focusables.length - 1];
-        prev.focus();
+        if(prev) prev.focus();
     }
 
     if((e.key === "ArrowRight" || e.key === "Enter") && document.activeElement.classList.contains("menu-btn")){
@@ -303,5 +359,9 @@ window.addEventListener("load", ()=>{
         firstBtn.focus();
     }
 });
-</script></body>
+    </script>
+
+</body>
+
 </html>
+```
