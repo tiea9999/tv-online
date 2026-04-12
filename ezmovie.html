@@ -114,30 +114,38 @@
             object-fit: contain;
         }
 
-        .btn {
+        .btn,
+        .btn2,
+        .btn3,
+        .btn4 {
             position: absolute;
             top: 10px;
-            right: 10px;
             z-index: 1002;
             padding: 10px;
-            background: #ff0000;
             border: none;
             border-radius: 8px;
             color: #fff;
             cursor: pointer;
         }
 
+        .btn {
+            right: 10px;
+            background: #ff0000;
+        }
+
         .btn2 {
-            position: absolute;
-            top: 10px;
             right: 60px;
-            z-index: 1002;
-            padding: 10px;
             background: #ff9800;
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            cursor: pointer;
+        }
+
+        .btn3 {
+            right: 120px;
+            background: #2196f3;
+        }
+
+        .btn4 {
+            right: 220px;
+            background: #9c27b0;
         }
 
         .status {
@@ -199,6 +207,8 @@
     <div id="player">
         <button class="btn" onclick="closePlayer()">✕</button>
         <button class="btn2" onclick="retryCurrent()">↻</button>
+        <button class="btn3" onclick="openExternal()">▶ ภายนอก</button>
+        <button class="btn4" onclick="copyCurrentLink()">คัดลอก</button>
         <video id="video" playsinline webkit-playsinline x5-playsinline controls autoplay muted preload="auto"></video>
         <iframe id="frame" allowfullscreen referrerpolicy="no-referrer"></iframe>
     </div>
@@ -208,49 +218,10 @@
 
         const SOURCES = [
             {
-            name: "หนังมาใหม่",
-            type: "anime-json",
-            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังมาใหม่.json"},
-            
-            {
-            name: "หนังไทย",
-            type: "anime-json",
-            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังไทย.json"},
-            {
-            name: "หนังเอเชีย",
-            type: "anime-json",
-            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังเอเชีย.json"},
-            {
-            name: "หนังฝรั่ง",
-            type: "anime-json",
-            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังฝรั่ง.json"},
-            
-            {
-            name: "หนังเกาหลี",
-            type: "anime-json",
-            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังเกาหลี.json"},
-            
-            {
-            name: "หนังญี่ปุ่น",
-            type: "anime-json",
-            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังญี่ปุ่น.json"},
-            
-            {
-            name: "หนังแอคชั่นบู๊_action",
-            type: "anime-json",
-            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังแอคชั่นบู๊_action.json"},
-            
-            {
-            name: "หนังดราม่า_drama",
-            type: "anime-json",
-            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังดราม่า_drama.json"},
-            {
-            name: "หนังผจญภัย_adventure",
-            type: "anime-json",
-            url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังผจญภัย_adventure.json"},
- 
- 
- 
+                name: "ซีรีย์ 2026",
+                type: "anime-json",
+                url: "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_%E0%B8%AB%E0%B8%99%E0%B8%B1%E0%B8%87%E0%B8%A1%E0%B8%B2%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88.json"
+            }
         ];
 
         const FALLBACK_IMG =
@@ -302,7 +273,6 @@
 
         function getDirectUrl(item) {
             if (!item || typeof item !== "object") return "";
-
             return (
                 item.url ||
                 item.file ||
@@ -322,11 +292,9 @@
 
         function normalizeServers(servers) {
             if (!Array.isArray(servers)) return [];
-
             return servers
                 .map(s => {
                     if (typeof s === "string") return { url: s };
-
                     if (s && typeof s === "object") {
                         return {
                             url:
@@ -345,7 +313,6 @@
                                 ""
                         };
                     }
-
                     return { url: "" };
                 })
                 .filter(s => s.url);
@@ -353,7 +320,6 @@
 
         async function loadAll() {
             grid.innerHTML = `<div class="status">⚡ LOADING...</div>`;
-
             const rows = [];
 
             for (const s of SOURCES) {
@@ -385,7 +351,6 @@
 
         function renderRow(name) {
             const rowId = safeId(name);
-
             const row = document.createElement("div");
             row.innerHTML = `
                 <div class="row-title">
@@ -476,7 +441,6 @@
             `;
 
             const box = document.getElementById("allBox");
-
             if (!items.length) {
                 box.innerHTML = `<div class="status">ไม่มีข้อมูล</div>`;
                 return;
@@ -508,7 +472,6 @@
         function nextAllPage() {
             const obj = store[allView.name];
             if (!obj) return;
-
             const totalPages = Math.max(1, Math.ceil(obj.data.length / 20));
             if (allView.page < totalPages) {
                 allView.page++;
@@ -567,7 +530,6 @@
                     const servers = normalizeServers(
                         ep.servers || ep.sources || ep.links || ep.files || ep.playlist || []
                     );
-
                     const single = getDirectUrl(ep);
 
                     if (servers.length) {
@@ -594,7 +556,6 @@
             overlay.style.display = "none";
             overlay.innerHTML = "";
             grid.style.display = "block";
-
             allView.active = false;
             allView.name = "";
             allView.page = 1;
@@ -615,7 +576,6 @@
                 currentIndex = i;
                 const item = list[i];
                 const url = typeof item === "string" ? item : item.url;
-
                 if (!url) continue;
 
                 try {
@@ -632,7 +592,7 @@
 
         function cleanupPlayers() {
             if (hls) {
-                try { hls.destroy(); } catch (e) { }
+                try { hls.destroy(); } catch (e) {}
                 hls = null;
             }
 
@@ -702,7 +662,6 @@
                     if (done) return;
                     done = true;
                     clear();
-
                     video.muted = false;
                     const p = video.play();
                     if (p && typeof p.then === "function") {
@@ -809,9 +768,9 @@
 
                     if (data.fatal) {
                         if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
-                            try { hls.startLoad(); } catch (e) { }
+                            try { hls.startLoad(); } catch (e) {}
                         } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
-                            try { hls.recoverMediaError(); } catch (e) { }
+                            try { hls.recoverMediaError(); } catch (e) {}
                         } else {
                             fail();
                         }
@@ -898,7 +857,29 @@
             if (!currentList.length) return;
             const item = currentList[currentIndex];
             const url = typeof item === "string" ? item : item.url;
-            if (url) play(url).catch(() => { });
+            if (url) play(url).catch(() => {});
+        }
+
+        function openExternal() {
+            if (!currentList.length) return;
+            const item = currentList[currentIndex];
+            const url = typeof item === "string" ? item : item.url;
+            if (!url) return;
+            window.location.href = url;
+        }
+
+        async function copyCurrentLink() {
+            if (!currentList.length) return;
+            const item = currentList[currentIndex];
+            const url = typeof item === "string" ? item : item.url;
+            if (!url) return;
+
+            try {
+                await navigator.clipboard.writeText(url);
+                alert("คัดลอกลิงก์แล้ว");
+            } catch (e) {
+                prompt("คัดลอกลิงก์นี้", url);
+            }
         }
 
         function closePlayer() {
@@ -922,5 +903,4 @@
     </script>
 
 </body>
-
 </html>
