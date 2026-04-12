@@ -3,203 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV PRO</title>
+<title>IPTV TV BOX MODE</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
-body{display:flex;height:100vh;background:#000;color:#fff;}
+body{margin:0;background:#000;color:#fff;font-family:sans-serif;}
+#homeBtn{position:fixed;top:10px;left:10px;z-index:9999;padding:10px;background:#00c853;border:none;border-radius:10px;color:#fff;}
 
-#menu{width:240px;background:#111;padding:10px;overflow-y:auto;}
-.menu-title{padding:10px;background:#222;margin-top:5px;border-radius:6px;cursor:pointer;}
-.menu-link{padding:8px;margin-left:10px;display:none;cursor:pointer;border-radius:6px;}
-.menu-link:hover{background:#e94560;}
+.row-title{padding:10px;display:flex;justify-content:space-between;color:#00e5ff;font-weight:bold;}
+.seeall{background:#ff9800;border:none;padding:6px 10px;border-radius:8px;color:#fff;}
 
-#menuToggle{
-  display:none;position:fixed;top:10px;left:10px;
-  background:#e94560;padding:8px;border-radius:6px;z-index:1000;
-}
+.row-items{display:flex;gap:10px;overflow-x:auto;padding:10px;}
+.card{min-width:150px;background:#111;border-radius:10px;padding:8px;text-align:center;cursor:pointer;}
+img{width:100%;height:180px;object-fit:cover;border-radius:8px;}
 
-@media(max-width:768px){
-  #menu{position:fixed;left:-260px;top:0;height:100%;z-index:999;}
-  #menu.active{left:0;}
-  #menuToggle{display:block;}
-}
+#overlay,#player{position:fixed;top:0;left:0;width:100%;height:100%;display:none;}
+#overlay{background:#000;z-index:999;overflow:auto;}
+#player{background:#000;z-index:1000;}
 
-#main{flex:1;position:relative;}
-
-#welcome{
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  opacity:0.6;
-}
-
-#welcome img{max-width:180px;}
-
-#floatPlayer{
-  position:fixed;
-  top:0;left:0;
-  width:100%;
-  height:100%;
-  background:#000;
-  display:none;
-  z-index:9999;
-}
-
-video, iframe{
-  width:100%;
-  height:100%;
-  border:none;
-}
+video,iframe{width:100%;height:100%;border:none;}
+.btn{position:absolute;top:10px;right:10px;padding:10px;background:red;border:none;border-radius:8px;color:#fff;}
 </style>
 </head>
 
 <body>
 
-<button id="menuToggle">☰</button>
+<button id="homeBtn">🏠 HOME</button>
 
-<!-- ✅ เมนู (แก้ถูกต้องแล้ว) -->
-<div id="menu">
+<div id="grid"></div>
+<div id="overlay"></div>
 
-  <!-- ⚽ ตารางแข่งขัน -->
-  <div class="menu-title">⚽ ตารางแข่งขัน</div>
-  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/live.html">📊 ตารางบอล</div>
-
-  <!-- 📺 ทีวี -->
-  <div class="menu-title">📺 ทีวี</div>
-  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ball66.html">DOOBALL</div>
-  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/3bb.html">3BB IPTV</div>
-
-  <!-- 🎬 หนัง -->
-  <div class="menu-title">🎬 หนัง</div>
-  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/ezmovie.html">EZMOVIE</div>
-
-  <!-- 📺 ซีรีส์ -->
-  <div class="menu-title">📺 ซีรีส์</div>
-  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/myseries.html">MYSERIES</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/goseries4k.html">GOSERIES</div>
-<div class="menu-link" data-url="https://tiea9999.github.io/tv-online/flixmono.html">FLIXMONO</div>
-  
-
-  <!-- 🔐 VIP -->
-  <div class="menu-title">🔐 VIP</div>
-  <div class="menu-link" data-url="https://tiea9999.github.io/tv-online/VIP.html" data-pass="9999">VIP</div>
-
-</div>
-
-<div id="main">
-  <div id="welcome">
-    <img src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&dl=1">
-  </div>
-</div>
-
-<div id="floatPlayer">
-  <video id="video" controls autoplay style="display:none"></video>
-  <iframe id="iframe" style="display:none"
-  allow="autoplay; fullscreen; encrypted-media"
-  allowfullscreen></iframe>
+<div id="player">
+<button class="btn" onclick="closePlayer()">✕</button>
+<video id="video" controls autoplay muted playsinline></video>
+<iframe id="frame"></iframe>
 </div>
 
 <script>
 
-const links=document.querySelectorAll(".menu-link");
-const titles=document.querySelectorAll(".menu-title");
+const PROXY="https://iptv.tawatchai250958.workers.dev/?url=";
 
-const menu=document.getElementById("menu");
-const toggle=document.getElementById("menuToggle");
+const SOURCES=[
+{name:"ซีรี่ย์",url:"https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์-2026.json"},
+{name:"หนัง",url:"https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_movie.json"}
+];
 
-const floatPlayer=document.getElementById("floatPlayer");
-const video=document.getElementById("video");
-const iframe=document.getElementById("iframe");
+let grid=document.getElementById("grid");
+let overlay=document.getElementById("overlay");
+let video=document.getElementById("video");
+let frame=document.getElementById("frame");
+let player=document.getElementById("player");
 
-let player;
+let hls=null;
+let store={};
 
-/* MENU MOBILE */
-toggle.onclick=()=>menu.classList.toggle("active");
+/* LOAD */
+async function loadAll(){
+grid.innerHTML="⚡ LOADING...";
+for(let s of SOURCES){
+let data=await fetch(s.url).then(r=>r.json());
+store[s.name]={data,page:1};
+renderRow(s.name);
+}
+}
 
-/* ACCORDION */
-titles.forEach(title=>{
-  title.onclick=()=>{
-    links.forEach(l=>l.style.display="none");
-    let next=title.nextElementSibling;
-    while(next && next.classList.contains("menu-link")){
-      next.style.display="block";
-      next=next.nextElementSibling;
-    }
-  };
+/* UI */
+function renderRow(name){
+let row=document.createElement("div");
+row.innerHTML=`<div class="row-title">${name}
+<button class="seeall" onclick="seeAll('${name}')">ดูทั้งหมด</button>
+</div>
+<div class="row-items" id="row-${name}"></div>`;
+grid.appendChild(row);
+renderPage(name);
+}
+
+function renderPage(name){
+let obj=store[name];
+let row=document.getElementById("row-"+name);
+let items=obj.data.slice(0,obj.page*20);
+row.innerHTML="";
+items.forEach(item=>{
+let div=document.createElement("div");
+div.className="card";
+div.innerHTML=`<img src="${item.image||''}"><div>${item.title||item.name||""}</div>`;
+div.onclick=()=>openItem(item);
+row.appendChild(div);
 });
+}
+
+function seeAll(name){
+store[name].page++;
+renderPage(name);
+}
+
+function openItem(item){
+if(item.episodes){showEP(item);return;}
+startPlay([{url:item.url}]);
+}
+
+/* EP */
+function showEP(item){
+overlay.style.display="block";
+grid.style.display="none";
+
+overlay.innerHTML=`<h2 style="padding:10px">${item.title}</h2>
+<div id="epBox" style="display:flex;flex-wrap:wrap;gap:10px;padding:10px"></div>`;
+
+let box=document.getElementById("epBox");
+
+item.episodes.forEach(ep=>{
+let d=document.createElement("div");
+d.className="card";
+d.textContent=ep.name;
+d.onclick=()=>startPlay(ep.servers);
+box.appendChild(d);
+});
+}
 
 /* PLAY */
-links.forEach(link=>{
-  link.onclick=async()=>{
+function startPlay(list){
+overlay.style.display="none";
+player.style.display="block";
+playServers([...list]);
+}
 
-    const url=link.dataset.url;
-    const pass=link.dataset.pass;
+/* AUTO SWITCH SERVER */
+async function playServers(list){
 
-    if(pass){
-      const input=prompt("ใส่รหัส VIP");
-      if(input!==pass){alert("รหัสผิด");return;}
-    }
+for(let i=0;i<list.length;i++){
+try{
+await Promise.race([
+play(list[i].url),
+new Promise((_,rej)=>setTimeout(()=>rej(),8000))
+]);
+return;
+}catch(e){}
+}
 
-    // 🔥 เปิดหน้าใหม่ (ซีรี่ย์ + VIP + ตารางแข่ง)
-    if(url.includes("goseries4k") || url.includes("VIP") || url.includes("live.html")){
-      window.location.href = url;
-      return;
-    }
+alert("❌ เล่นไม่ได้ทุก server");
+}
 
-    floatPlayer.style.display="block";
-    menu.style.display="none";
-    toggle.style.display="none";
+/* =========================
+   TV BOX MODE PLAYER
+========================= */
+async function play(url){
 
-    // 🔥 DRM
-    if(link.dataset.drm){
+if(hls){hls.destroy();hls=null;}
 
-      iframe.style.display="none";
-      video.style.display="block";
+video.pause();
+video.removeAttribute("src");
+frame.src="";
 
-      if(player){ player.destroy(); }
+video.style.display="none";
+frame.style.display="none";
 
-      player = new shaka.Player(video);
+/* ===== HLS ===== */
+if(url.includes(".m3u8") || url.includes(".txt")){
 
-      await player.configure({
-        drm:{ clearKeys:{
-          [link.dataset.keyid]: link.dataset.key
-        }}
-      });
+video.style.display="block";
 
-      await player.load(link.dataset.file);
-
-      video.volume=0.8;
-      return;
-    }
-
-    // 🔥 iframe ปกติ
-    video.style.display="none";
-    iframe.style.display="block";
-
-    iframe.src="";
-    setTimeout(()=>{
-      iframe.src=url;
-    },100);
-
-  };
+/* 🔥 STABLE TV MODE */
+hls = new Hls({
+  maxBufferLength: 30,
+  maxMaxBufferLength: 60,
+  backBufferLength: 20,
+  liveSyncDuration: 3,
+  enableWorker: true,
+  lowLatencyMode: true
 });
 
-/* BACK */
-window.addEventListener("popstate",()=>{
-  floatPlayer.style.display="none";
-  iframe.src="";
-  video.pause();
+/* 🔥 IMPORTANT: เล่นตรง ไม่ proxy segment */
+hls.loadSource(url);
+hls.attachMedia(video);
 
-  menu.style.display="block";
-  toggle.style.display="block";
+return new Promise((res,rej)=>{
+
+hls.on(Hls.Events.MANIFEST_PARSED,()=>{
+
+video.muted = false;
+video.volume = 1;
+
+/* 🔥 force play TV */
+video.play().catch(()=>{});
+
+res();
 });
+
+/* 🔥 auto recover */
+hls.on(Hls.Events.ERROR,(e,d)=>{
+if(d.fatal){
+if(d.type===Hls.ErrorTypes.NETWORK_ERROR){
+hls.startLoad();
+}else if(d.type===Hls.ErrorTypes.MEDIA_ERROR){
+hls.recoverMediaError();
+}else{
+hls.destroy();
+rej();
+}
+}
+});
+
+});
+
+}
+
+/* ===== iframe ===== */
+frame.style.display="block";
+frame.src=url;
+
+return Promise.resolve();
+}
+
+/* CLOSE */
+function closePlayer(){
+if(hls) hls.destroy();
+video.pause();
+video.src="";
+frame.src="";
+player.style.display="none";
+grid.style.display="block";
+}
+
+/* HOME */
+function goHome(){
+window.location.href="https://tiea9999.github.io/tv-online/index.html";
+}
+
+document.getElementById("homeBtn").onclick=goHome;
+
+loadAll();
 
 </script>
 
 </body>
 </html>
-
