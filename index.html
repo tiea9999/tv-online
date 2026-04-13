@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="th">
 
@@ -9,19 +8,23 @@
 
     <style>
         * {
-            box-sizing: border-box
+            box-sizing: border-box;
         }
 
+        html,
         body {
             margin: 0;
             font-family: sans-serif;
             background: #0b0f1a;
             color: #fff;
-            display: flex;
             min-height: 100vh;
+            overflow: hidden;
         }
 
-        /* เมนูซ้าย */
+        body {
+            display: flex;
+        }
+
         .sidebar {
             width: 260px;
             background: #111827;
@@ -34,7 +37,9 @@
         }
 
         .menu-btn,
-        .sub-link {
+        .sub-link,
+        .vip-input,
+        .vip-btn {
             width: 100%;
             padding: 14px;
             border: none;
@@ -42,23 +47,31 @@
             background: rgba(255, 255, 255, 0.06);
             color: #fff;
             font-size: 15px;
-            cursor: pointer;
             text-align: left;
-            transition: .2s;
             text-decoration: none;
             display: block;
             outline: none;
+            transition: .18s;
+        }
+
+        .menu-btn,
+        .sub-link,
+        .vip-btn {
+            cursor: pointer;
         }
 
         .menu-btn:hover,
-        .sub-link:hover {
+        .sub-link:hover,
+        .vip-btn:hover {
             background: rgba(0, 229, 255, 0.22);
         }
 
         .menu-btn:focus,
-        .sub-link:focus {
+        .sub-link:focus,
+        .vip-input:focus,
+        .vip-btn:focus {
             background: rgba(0, 229, 255, 0.30);
-            box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.45);
+            box-shadow: 0 0 0 2px rgba(0, 229, 255, 0.45), 0 0 16px rgba(0, 229, 255, 0.25);
         }
 
         .menu-btn.active {
@@ -103,16 +116,15 @@
             background: rgba(255, 255, 255, 0.04);
         }
 
-        /* ฝั่งขวา */
         .content {
             flex: 1;
             padding: 24px;
             overflow-y: auto;
+            position: relative;
         }
 
-        /* โลโก้กลาง */
         .hero {
-            min-height: 100vh;
+            min-height: calc(100vh - 48px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -146,7 +158,6 @@
             font-size: 15px;
         }
 
-        /* กล่องข้อความขวา */
         .panel {
             display: none;
         }
@@ -160,7 +171,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 18px;
             padding: 22px;
-            max-width: 720px;
+            max-width: 760px;
             backdrop-filter: blur(10px);
         }
 
@@ -171,13 +182,63 @@
         .panel-card p {
             margin: 0;
             color: #b8c1d1;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
-        /* มือถือ */
-        @media (max-width:768px) {
+        .vip-box {
+            display: none;
+            margin-top: 18px;
+            max-width: 420px;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+        .vip-box.active {
+            display: flex;
+        }
+
+        .vip-input {
+            text-align: center;
+            font-size: 20px;
+            letter-spacing: 4px;
+        }
+
+        .vip-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .vip-btn {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .vip-msg {
+            min-height: 22px;
+            color: #ffb3c7;
+            font-size: 14px;
+        }
+
+        .help-bar {
+            position: absolute;
+            right: 24px;
+            bottom: 18px;
+            left: 24px;
+            color: #90a4c3;
+            font-size: 13px;
+            text-align: center;
+            opacity: 0.95;
+        }
+
+        @media (max-width: 768px) {
             body {
                 flex-direction: column;
+                overflow: auto;
+            }
+
+            html,
+            body {
+                overflow: auto;
             }
 
             .sidebar {
@@ -191,7 +252,16 @@
             }
 
             .hero {
-                min-height: calc(100vh - 140px);
+                min-height: calc(100vh - 180px);
+            }
+
+            .vip-actions {
+                flex-direction: column;
+            }
+
+            .help-bar {
+                position: static;
+                margin-top: 18px;
             }
         }
     </style>
@@ -201,42 +271,40 @@
 
     <div class="sidebar" id="sidebar">
 
-        <button class="menu-btn sport" onclick="showMenu('sports',this)" tabindex="0">⚽ ตารางแข่งขัน</button>
+        <button class="menu-btn sport" data-menu="sports" tabindex="0">⚽ ตารางแข่งขัน</button>
         <div id="submenu-sports" class="submenu">
-            <a class="sub-link"
-                href="https://tiea9999.github.io/tv-online/live.html"
-                tabindex="0">ตารางการแข่งขัน</a>
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/live.html" tabindex="0">ตารางการแข่งขัน</a>
         </div>
 
-        <button class="menu-btn tv" onclick="showMenu('tv',this)" tabindex="0">📺 ทีวี</button>
+        <button class="menu-btn tv" data-menu="tv" tabindex="0">📺 ทีวี</button>
         <div id="submenu-tv" class="submenu">
             <a class="sub-link" href="https://tiea9999.github.io/tv-online/ball66.html" tabindex="0">DOOBALL66</a>
             <a class="sub-link" href="https://tiea9999.github.io/tv-online/3bb.html" tabindex="0">3BB</a>
         </div>
 
-        <button class="menu-btn movie" onclick="showMenu('movie',this)" tabindex="0">🎬 หนัง</button>
+        <button class="menu-btn movie" data-menu="movie" tabindex="0">🎬 หนัง</button>
         <div id="submenu-movie" class="submenu">
             <a class="sub-link" href="https://tiea9999.github.io/tv-online/ezmovie.html" tabindex="0">EZMOVIE</a>
         </div>
 
-        <button class="menu-btn series" onclick="showMenu('series',this)" tabindex="0">📺 ซีรีส์</button>
+        <button class="menu-btn series" data-menu="series" tabindex="0">📺 ซีรีส์</button>
         <div id="submenu-series" class="submenu">
-            <a class="sub-link" href="https://tiea9999.github.io/tv-online/goseries4k.html" tabindex="0">GOSERIS</a>
-            <a class="sub-link" href="https://tiea9999.github.io/tv-online/flixmono.html" tabindex="0">FLIXMONO</a>            
-        
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/goseries4k.html" tabindex="0">GOSERIES</a>
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/flixmono.html" tabindex="0">FLIXMONO</a>
         </div>
 
-        <button class="menu-btn vip" onclick="showVIP(this)" tabindex="0">🔐 VIP</button>
+        <button class="menu-btn vip" data-menu="vip" tabindex="0">🔐 VIP</button>
         <div id="submenu-vip" class="submenu">
-            <a class="sub-link" href="https://tiea9999.github.io/tv-online/VIP.html" tabindex="0" id="vipLink">เข้าสู่
-                VIP</a>
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/VIP.html" tabindex="0" id="vipLink">เข้าสู่ VIP</a>
         </div>
 
     </div>
 
     <div class="content">
         <div id="hero" class="hero">
-            <img class="hero-logo" src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&raw=1" alt="TIEA IPTV Logo">
+            <img class="hero-logo"
+                src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&raw=1"
+                alt="TIEA IPTV Logo">
             <h1>TIEA IPTV</h1>
             <p>เลือกเมนูทางซ้ายเพื่อแสดงลิงก์</p>
         </div>
@@ -244,126 +312,273 @@
         <div id="panel-sports" class="panel">
             <div class="panel-card">
                 <h2>⚽ ตารางแข่งขัน</h2>
-                <p>เลือกเมนูนี้แล้ว ลิงก์ตารางแข่งขันจะขึ้นฝั่งซ้ายทันที</p>
+                <p>กดขวา หรือกด OK เพื่อเปิดเมนูย่อย แล้วเลือกเข้าใช้งานได้ทันที</p>
             </div>
         </div>
 
         <div id="panel-tv" class="panel">
             <div class="panel-card">
                 <h2>📺 ทีวี</h2>
-                <p>เลือกเมนูนี้แล้ว ลิงก์หน้า TV จะขึ้นฝั่งซ้าย</p>
+                <p>เลือกหมวดทีวี แล้วใช้ขึ้นลงเพื่อเลือกรายการ จากนั้นกด OK เพื่อเข้าใช้งาน</p>
             </div>
         </div>
 
         <div id="panel-movie" class="panel">
             <div class="panel-card">
                 <h2>🎬 หนัง</h2>
-                <p>เลือกเมนูนี้แล้ว ลิงก์หนังจะขึ้นฝั่งซ้าย</p>
+                <p>กดขวาเพื่อเข้าเมนูย่อย และกดซ้ายเพื่อกลับมาที่หมวดหลัก</p>
             </div>
         </div>
 
         <div id="panel-series" class="panel">
             <div class="panel-card">
                 <h2>📺 ซีรีส์</h2>
-                <p>เลือกเมนูนี้แล้ว ลิงก์ซีรีส์จะขึ้นฝั่งซ้าย</p>
+                <p>หน้าเวอร์ชันนี้ปรับให้รีโมทเลื่อนและเลือกได้ง่ายขึ้นกว่าของเดิม</p>
             </div>
         </div>
 
         <div id="panel-vip" class="panel">
             <div class="panel-card">
                 <h2>🔐 VIP</h2>
-                <p>ใส่รหัสผ่าน 9999 เพื่อเข้าใช้งานหน้า VIP</p>
+                <p>กรอกรหัสผ่าน 9999 เพื่อเข้าใช้งานหน้า VIP</p>
+
+                <div id="vipBox" class="vip-box">
+                    <input id="vipPassword" class="vip-input" type="password" inputmode="numeric" maxlength="4"
+                        placeholder="ใส่รหัส 4 หลัก" tabindex="0">
+
+                    <div class="vip-actions">
+                        <button id="vipSubmit" class="vip-btn" tabindex="0">ยืนยัน</button>
+                        <button id="vipCancel" class="vip-btn" tabindex="0">ยกเลิก</button>
+                    </div>
+
+                    <div id="vipMsg" class="vip-msg"></div>
+                </div>
             </div>
+        </div>
+
+        <div class="help-bar">
+            รีโมท: ขึ้น/ลง = เลื่อน | ขวา/OK = เปิด | ซ้าย = กลับเมนู | Back/Esc = กลับหน้าแรก
         </div>
     </div>
 
     <script>
-        function resetPanels(){
-    document.getElementById("hero").classList.add("hidden");
+        const hero = document.getElementById("hero");
+        const vipBox = document.getElementById("vipBox");
+        const vipPassword = document.getElementById("vipPassword");
+        const vipSubmit = document.getElementById("vipSubmit");
+        const vipCancel = document.getElementById("vipCancel");
+        const vipMsg = document.getElementById("vipMsg");
 
-    document.querySelectorAll(".menu-btn").forEach(b=>{
-        b.classList.remove("active");
-    });
+        let currentMenu = null;
+        let lastMainFocus = null;
 
-    document.querySelectorAll(".submenu").forEach(s=>{
-        s.classList.remove("active");
-    });
+        function resetPanels(showHero = false) {
+            document.querySelectorAll(".menu-btn").forEach(btn => btn.classList.remove("active"));
+            document.querySelectorAll(".submenu").forEach(menu => menu.classList.remove("active"));
+            document.querySelectorAll(".panel").forEach(panel => panel.classList.remove("active"));
 
-    document.querySelectorAll(".panel").forEach(p=>{
-        p.classList.remove("active");
-    });
-}
+            vipBox.classList.remove("active");
+            vipPassword.value = "";
+            vipMsg.textContent = "";
 
-function showMenu(id, btn){
-    resetPanels();
-
-    btn.classList.add("active");
-    document.getElementById("submenu-" + id).classList.add("active");
-    document.getElementById("panel-" + id).classList.add("active");
-
-    const firstSub = document.querySelector("#submenu-" + id + " .sub-link");
-    if(firstSub){
-        firstSub.focus();
-    }
-}
-
-function showVIP(btn){
-    resetPanels();
-
-    btn.classList.add("active");
-    document.getElementById("panel-vip").classList.add("active");
-
-    const pass = prompt("กรอกรหัสผ่าน VIP");
-    if(pass === "9999"){
-        document.getElementById("submenu-vip").classList.add("active");
-        const vipLink = document.getElementById("vipLink");
-        vipLink.focus();
-        window.location.href = "https://tiea9999.github.io/tv-online/VIP.html";
-    }else if(pass !== null){
-        alert("รหัสผ่านไม่ถูกต้อง");
-    }
-}
-
-/* รองรับรีโมท / คีย์บอร์ด */
-document.addEventListener("keydown", function(e){
-    const focusables = Array.from(document.querySelectorAll(".menu-btn, .submenu.active .sub-link"));
-    const currentIndex = focusables.indexOf(document.activeElement);
-
-    if(e.key === "ArrowDown"){
-        e.preventDefault();
-        const next = focusables[currentIndex + 1] || focusables[0];
-        if(next) next.focus();
-    }
-
-    if(e.key === "ArrowUp"){
-        e.preventDefault();
-        const prev = focusables[currentIndex - 1] || focusables[focusables.length - 1];
-        if(prev) prev.focus();
-    }
-
-    if((e.key === "ArrowRight" || e.key === "Enter") && document.activeElement.classList.contains("menu-btn")){
-        e.preventDefault();
-        document.activeElement.click();
-    }
-
-    if(e.key === "ArrowLeft"){
-        const activeMenu = document.querySelector(".menu-btn.active");
-        if(activeMenu){
-            activeMenu.focus();
+            if (showHero) {
+                hero.classList.remove("hidden");
+                currentMenu = null;
+            } else {
+                hero.classList.add("hidden");
+            }
         }
-    }
-});
 
-/* โฟกัสปุ่มแรกตอนเปิดหน้า */
-window.addEventListener("load", ()=>{
-    const firstBtn = document.querySelector(".menu-btn");
-    if(firstBtn){
-        firstBtn.focus();
-    }
-});
+        function showMenu(id, btn, focusSub = true) {
+            resetPanels(false);
+            currentMenu = id;
+            lastMainFocus = btn;
+
+            btn.classList.add("active");
+
+            const submenu = document.getElementById("submenu-" + id);
+            const panel = document.getElementById("panel-" + id);
+
+            if (submenu) submenu.classList.add("active");
+            if (panel) panel.classList.add("active");
+
+            if (id === "vip") {
+                vipBox.classList.add("active");
+                setTimeout(() => vipPassword.focus(), 50);
+                return;
+            }
+
+            if (focusSub) {
+                const firstSub = submenu ? submenu.querySelector(".sub-link") : null;
+                if (firstSub) {
+                    setTimeout(() => firstSub.focus(), 50);
+                }
+            }
+        }
+
+        function goHome() {
+            resetPanels(true);
+            const firstBtn = document.querySelector(".menu-btn");
+            if (firstBtn) firstBtn.focus();
+        }
+
+        function handleVIP() {
+            const pass = vipPassword.value.trim();
+            if (pass === "9999") {
+                vipMsg.textContent = "";
+                document.getElementById("submenu-vip").classList.add("active");
+                const vipLink = document.getElementById("vipLink");
+                vipLink.focus();
+                window.location.href = "https://tiea9999.github.io/tv-online/VIP.html";
+            } else {
+                vipMsg.textContent = "รหัสผ่านไม่ถูกต้อง";
+                vipPassword.value = "";
+                vipPassword.focus();
+            }
+        }
+
+        function getSidebarItems() {
+            return Array.from(document.querySelectorAll(".menu-btn, .submenu.active .sub-link"));
+        }
+
+        function getMainButtons() {
+            return Array.from(document.querySelectorAll(".menu-btn"));
+        }
+
+        document.querySelectorAll(".menu-btn").forEach(btn => {
+            btn.addEventListener("click", function () {
+                const id = this.dataset.menu;
+                showMenu(id, this, true);
+            });
+        });
+
+        vipSubmit.addEventListener("click", handleVIP);
+
+        vipCancel.addEventListener("click", function () {
+            if (lastMainFocus) {
+                lastMainFocus.focus();
+            } else {
+                goHome();
+            }
+        });
+
+        vipPassword.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                handleVIP();
+            }
+            if (e.key === "Escape" || e.key === "Backspace") {
+                e.preventDefault();
+                if (lastMainFocus) {
+                    lastMainFocus.focus();
+                } else {
+                    goHome();
+                }
+            }
+            if (e.key === "ArrowDown") {
+                e.preventDefault();
+                vipSubmit.focus();
+            }
+            if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                if (lastMainFocus) lastMainFocus.focus();
+            }
+        });
+
+        vipSubmit.addEventListener("keydown", function (e) {
+            if (e.key === "ArrowRight" || e.key === "Enter") {
+                e.preventDefault();
+                handleVIP();
+            }
+        });
+
+        vipCancel.addEventListener("keydown", function (e) {
+            if (e.key === "ArrowRight" || e.key === "Enter") {
+                e.preventDefault();
+                if (lastMainFocus) {
+                    lastMainFocus.focus();
+                } else {
+                    goHome();
+                }
+            }
+        });
+
+        document.addEventListener("keydown", function (e) {
+            const active = document.activeElement;
+            const items = getSidebarItems();
+            const currentIndex = items.indexOf(active);
+
+            if (e.key === "ArrowDown") {
+                if (items.length && !active.classList.contains("vip-input")) {
+                    e.preventDefault();
+                    const next = items[currentIndex + 1] || items[0];
+                    if (next) next.focus();
+                }
+            }
+
+            if (e.key === "ArrowUp") {
+                if (items.length && !active.classList.contains("vip-input")) {
+                    e.preventDefault();
+                    const prev = items[currentIndex - 1] || items[items.length - 1];
+                    if (prev) prev.focus();
+                }
+            }
+
+            if ((e.key === "ArrowRight" || e.key === "Enter" || e.key === "OK") && active) {
+                if (active.classList.contains("menu-btn")) {
+                    e.preventDefault();
+                    active.click();
+                    return;
+                }
+
+                if (active.classList.contains("sub-link")) {
+                    e.preventDefault();
+                    window.location.href = active.href;
+                    return;
+                }
+            }
+
+            if (e.key === "ArrowLeft") {
+                if (active && active.classList.contains("sub-link")) {
+                    e.preventDefault();
+                    const activeMenu = document.querySelector(".menu-btn.active");
+                    if (activeMenu) activeMenu.focus();
+                    return;
+                }
+
+                if (active && (active.id === "vipSubmit" || active.id === "vipCancel")) {
+                    e.preventDefault();
+                    vipPassword.focus();
+                    return;
+                }
+            }
+
+            if (e.key === "Escape" || e.key === "Backspace") {
+                const activeSub = document.querySelector(".submenu.active .sub-link");
+                const activeMenu = document.querySelector(".menu-btn.active");
+
+                if (document.activeElement === vipPassword || document.activeElement === vipSubmit || document.activeElement === vipCancel) {
+                    e.preventDefault();
+                    if (activeMenu) {
+                        activeMenu.focus();
+                    } else {
+                        goHome();
+                    }
+                    return;
+                }
+
+                if (activeSub || activeMenu) {
+                    e.preventDefault();
+                    goHome();
+                }
+            }
+        });
+
+        window.addEventListener("load", function () {
+            goHome();
+        });
     </script>
 
 </body>
 
 </html>
-```
