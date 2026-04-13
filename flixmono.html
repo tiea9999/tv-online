@@ -182,7 +182,7 @@ renderPage(name);
 function renderPage(name){
 let obj=store[name];
 let row=document.getElementById("row-"+name);
-let items=obj.data.slice(0,obj.page*20);
+let items=obj.data.slice(0,obj.page*10);
 row.innerHTML="";
 items.forEach(item=>{
 let div=document.createElement("div");
