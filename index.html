@@ -20,10 +20,6 @@
             min-height: 100vh;
         }
 
-        iframe {
-            background: #000;
-        }
-
         .sidebar {
             width: 260px;
             background: #111827;
@@ -260,7 +256,7 @@
 
         <button class="menu-btn series" onclick="showMenu('series',this)" tabindex="0">📺 ซีรีส์</button>
         <div id="submenu-series" class="submenu">
-            <a class="sub-link" href="https://tiea9999.github.io/tv-online/goseries4k.html" tabindex="0">GOSERIS</a>
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/goseries4k.html" tabindex="0">GOSERIES</a>
             <a class="sub-link" href="https://tiea9999.github.io/tv-online/flixmono.html" tabindex="0">FLIXMONO</a>
         </div>
 
@@ -273,7 +269,9 @@
 
     <div class="content">
         <div id="hero" class="hero">
-            <img class="hero-logo" src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&raw=1" alt="TIEA IPTV Logo">
+            <img class="hero-logo"
+                src="https://www.dropbox.com/scl/fi/nfxxskq5ydbebgvs1lcfi/output_857d150a-0947-4571-a612-402b9466aa4d_512x512_1773067860534.png?rlkey=92c2e2ilfdsm12r7tajb63p5d&raw=1"
+                alt="TIEA IPTV Logo">
             <h1>TIEA IPTV</h1>
             <p>เลือกเมนูทางซ้ายเพื่อแสดงลิงก์</p>
         </div>
@@ -281,28 +279,28 @@
         <div id="panel-sports" class="panel">
             <div class="panel-card">
                 <h2>⚽ ตารางแข่งขัน</h2>
-                <p>เลือกเมนูนี้แล้ว ลิงก์ตารางแข่งขันจะขึ้นฝั่งซ้ายทันที</p>
+                <p>กดขวาหรือ OK เพื่อเปิดเมนูย่อย แล้วกด OK อีกครั้งเพื่อเข้าใช้งาน</p>
             </div>
         </div>
 
         <div id="panel-tv" class="panel">
             <div class="panel-card">
                 <h2>📺 ทีวี</h2>
-                <p>กดเลือกช่องได้เลย ระบบจะเปิดเว็บหรือ MX ให้อัตโนมัติตามชนิดลิงก์</p>
+                <p>เมนูนี้จะพาไปหน้าทีวีโดยตรง ไม่ใช้ MX และไม่ใช้ตัวเล่นซ้อน</p>
             </div>
         </div>
 
         <div id="panel-movie" class="panel">
             <div class="panel-card">
                 <h2>🎬 หนัง</h2>
-                <p>หมวดหนังจะเปิดหน้าเว็บปกติ เพื่อให้ดูได้เสถียรกว่าเดิม</p>
+                <p>เมนูนี้จะเปิดหน้าเว็บหนังตรง ๆ เพื่อให้โปรเจคเตอร์เล่นแบบเดิมที่เสถียรกว่า</p>
             </div>
         </div>
 
         <div id="panel-series" class="panel">
             <div class="panel-card">
                 <h2>📺 ซีรีส์</h2>
-                <p>หมวดซีรีส์จะเปิดหน้าเว็บปกติ เพื่อลดอาการกระพริบและปัญหา player</p>
+                <p>เมนูนี้จะเปิดหน้าซีรีส์ตรง ๆ ไม่โยนเข้า MX</p>
             </div>
         </div>
 
@@ -337,17 +335,9 @@
         let lastMainFocus = null;
 
         function resetPanels(showHero = false) {
-            document.querySelectorAll(".menu-btn").forEach(b => {
-                b.classList.remove("active");
-            });
-
-            document.querySelectorAll(".submenu").forEach(s => {
-                s.classList.remove("active");
-            });
-
-            document.querySelectorAll(".panel").forEach(p => {
-                p.classList.remove("active");
-            });
+            document.querySelectorAll(".menu-btn").forEach(b => b.classList.remove("active"));
+            document.querySelectorAll(".submenu").forEach(s => s.classList.remove("active"));
+            document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
 
             vipBox.classList.remove("active");
             vipPassword.value = "";
@@ -373,9 +363,7 @@
             if (panel) panel.classList.add("active");
 
             const firstSub = document.querySelector("#submenu-" + id + " .sub-link");
-            if (firstSub) {
-                setTimeout(() => firstSub.focus(), 50);
-            }
+            if (firstSub) setTimeout(() => firstSub.focus(), 50);
         }
 
         function showVIP(btn) {
@@ -384,8 +372,8 @@
             btn.classList.add("active");
             lastMainFocus = btn;
 
-            document.getElementById("panel-vip").classList.add("active");
             document.getElementById("submenu-vip").classList.add("active");
+            document.getElementById("panel-vip").classList.add("active");
             vipBox.classList.add("active");
 
             setTimeout(() => vipPassword.focus(), 50);
@@ -400,42 +388,12 @@
         function handleVIP() {
             const pass = vipPassword.value.trim();
             if (pass === "9999") {
-                vipMsg.textContent = "";
-                const vipLink = document.getElementById("vipLink");
-                vipLink.focus();
                 window.location.href = "https://tiea9999.github.io/tv-online/VIP.html";
             } else {
                 vipMsg.textContent = "รหัสผ่านไม่ถูกต้อง";
                 vipPassword.value = "";
                 vipPassword.focus();
             }
-        }
-
-        function openLinkSmart(url) {
-            const lowerUrl = url.toLowerCase();
-
-            if (
-                lowerUrl.includes(".mpd") ||
-                lowerUrl.includes("3bb")
-            ) {
-                setTimeout(() => {
-                    window.location.href = url;
-                }, 100);
-                return;
-            }
-
-            if (
-                lowerUrl.includes(".m3u8") ||
-                lowerUrl.includes(".mp4")
-            ) {
-                const clean = url.replace(/^https?:\/\//i, "");
-                window.location.href = "intent://" + clean + "#Intent;package=com.mxtech.videoplayer.ad;end";
-                return;
-            }
-
-            setTimeout(() => {
-                window.location.href = url;
-            }, 100);
         }
 
         function getFocusableItems() {
@@ -459,13 +417,6 @@
                 e.preventDefault();
                 handleVIP();
             }
-        });
-
-        document.querySelectorAll(".sub-link").forEach(link => {
-            link.addEventListener("click", function (e) {
-                e.preventDefault();
-                openLinkSmart(this.href);
-            });
         });
 
         document.addEventListener("keydown", function (e) {
@@ -494,7 +445,7 @@
 
                 if (active.classList.contains("sub-link")) {
                     e.preventDefault();
-                    openLinkSmart(active.href);
+                    window.location.href = active.href;
                     return;
                 }
 
