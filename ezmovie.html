@@ -498,7 +498,7 @@
             const obj = store[allView.name];
             if (!obj) return;
 
-            const perPage = 20;
+            const perPage = 10;
             const totalItems = obj.data.length;
             const totalPages = Math.max(1, Math.ceil(totalItems / perPage));
             const currentPage = Math.min(allView.page, totalPages);
