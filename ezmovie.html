@@ -175,6 +175,13 @@
             border: 1px solid #222;
         }
 
+        .card:focus,
+        .ep-card:focus,
+        button:focus {
+            outline: 3px solid #00e5ff;
+            outline-offset: 2px;
+        }
+
         .all-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -405,6 +412,11 @@
 
             grid.innerHTML = "";
             rows.forEach(renderRow);
+
+            setTimeout(() => {
+                const homeBtn = document.getElementById("homeBtn");
+                if (homeBtn) homeBtn.focus();
+            }, 300);
         }
 
         function renderRow(name) {
@@ -426,6 +438,7 @@
         function createCard(item, onClick) {
             const div = document.createElement("div");
             div.className = "card";
+            div.tabIndex = 0;
 
             const img = getImage(item);
             const title = getTitle(item);
@@ -442,6 +455,12 @@
             `;
 
             div.onclick = onClick;
+            div.onkeydown = (e) => {
+                if (e.key === "Enter" || e.key === "OK") {
+                    e.preventDefault();
+                    onClick();
+                }
+            };
             return div;
         }
 
@@ -579,6 +598,7 @@
             item.episodes.forEach((ep, index) => {
                 const d = document.createElement("div");
                 d.className = "ep-card";
+                d.tabIndex = 0;
                 d.textContent = ep.name || ep.title || `EP ${index + 1}`;
                 d.onclick = () => {
                     const servers = normalizeServers(
@@ -593,6 +613,12 @@
                         startPlay([{ url: single }]);
                     } else {
                         alert("❌ ตอนนี้ไม่มีลิงก์เล่น");
+                    }
+                };
+                d.onkeydown = (e) => {
+                    if (e.key === "Enter" || e.key === "OK") {
+                        e.preventDefault();
+                        d.click();
                     }
                 };
                 box.appendChild(d);
@@ -955,7 +981,38 @@
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
-        document.getElementById("homeBtn").onclick = goHome;
+        document.getElementById("homeBtn").onclick = () => {
+            cleanupPlayers();
+            window.location.href = "https://tiea9999.github.io/tv-online/index.html";
+        };
+
+        document.addEventListener("keydown", function (e) {
+            const key = e.key;
+
+            if (key === "Escape" || key === "Backspace" || key === "GoBack") {
+                e.preventDefault();
+
+                if (player.style.display === "block") {
+                    goHome();
+                    return;
+                }
+
+                if (overlay.style.display === "block") {
+                    backToListOrGrid();
+                    return;
+                }
+
+                return;
+            }
+
+            if (key === "Enter" || key === "OK") {
+                const el = document.activeElement;
+                if (el && typeof el.click === "function") {
+                    e.preventDefault();
+                    el.click();
+                }
+            }
+        });
 
         loadAll();
     </script>
