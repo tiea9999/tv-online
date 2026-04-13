@@ -20,7 +20,10 @@
             min-height: 100vh;
         }
 
-        /* เมนูซ้าย */
+        iframe {
+            background: #000;
+        }
+
         .sidebar {
             width: 260px;
             background: #111827;
@@ -107,14 +110,12 @@
             background: rgba(255, 255, 255, 0.04);
         }
 
-        /* ฝั่งขวา */
         .content {
             flex: 1;
             padding: 24px;
             overflow-y: auto;
         }
 
-        /* โลโก้กลาง */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -150,7 +151,6 @@
             font-size: 15px;
         }
 
-        /* กล่องข้อความขวา */
         .panel {
             display: none;
         }
@@ -212,7 +212,6 @@
             font-size: 14px;
         }
 
-        /* มือถือ */
         @media (max-width:768px) {
             body {
                 flex-direction: column;
@@ -245,9 +244,7 @@
 
         <button class="menu-btn sport" onclick="showMenu('sports',this)" tabindex="0">⚽ ตารางแข่งขัน</button>
         <div id="submenu-sports" class="submenu">
-            <a class="sub-link"
-                href="https://tiea9999.github.io/tv-online/live.html"
-                tabindex="0">ตารางการแข่งขัน</a>
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/live.html" tabindex="0">ตารางการแข่งขัน</a>
         </div>
 
         <button class="menu-btn tv" onclick="showMenu('tv',this)" tabindex="0">📺 ทีวี</button>
@@ -269,8 +266,7 @@
 
         <button class="menu-btn vip" onclick="showVIP(this)" tabindex="0">🔐 VIP</button>
         <div id="submenu-vip" class="submenu">
-            <a class="sub-link" href="https://tiea9999.github.io/tv-online/VIP.html" tabindex="0" id="vipLink">เข้าสู่
-                VIP</a>
+            <a class="sub-link" href="https://tiea9999.github.io/tv-online/VIP.html" tabindex="0" id="vipLink">เข้าสู่ VIP</a>
         </div>
 
     </div>
@@ -292,21 +288,21 @@
         <div id="panel-tv" class="panel">
             <div class="panel-card">
                 <h2>📺 ทีวี</h2>
-                <p>เลือกเมนูนี้แล้ว ลิงก์หน้า TV จะขึ้นฝั่งซ้าย</p>
+                <p>กดเลือกช่องได้เลย ระบบจะเปิดเว็บหรือ MX ให้อัตโนมัติตามชนิดลิงก์</p>
             </div>
         </div>
 
         <div id="panel-movie" class="panel">
             <div class="panel-card">
                 <h2>🎬 หนัง</h2>
-                <p>เลือกเมนูนี้แล้ว ลิงก์หนังจะขึ้นฝั่งซ้าย</p>
+                <p>หมวดหนังจะเปิดหน้าเว็บปกติ เพื่อให้ดูได้เสถียรกว่าเดิม</p>
             </div>
         </div>
 
         <div id="panel-series" class="panel">
             <div class="panel-card">
                 <h2>📺 ซีรีส์</h2>
-                <p>เลือกเมนูนี้แล้ว ลิงก์ซีรีส์จะขึ้นฝั่งซ้าย</p>
+                <p>หมวดซีรีส์จะเปิดหน้าเว็บปกติ เพื่อลดอาการกระพริบและปัญหา player</p>
             </div>
         </div>
 
@@ -415,9 +411,37 @@
             }
         }
 
+        function openLinkSmart(url) {
+            const lowerUrl = url.toLowerCase();
+
+            if (
+                lowerUrl.includes(".mpd") ||
+                lowerUrl.includes("3bb")
+            ) {
+                setTimeout(() => {
+                    window.location.href = url;
+                }, 100);
+                return;
+            }
+
+            if (
+                lowerUrl.includes(".m3u8") ||
+                lowerUrl.includes(".mp4")
+            ) {
+                const clean = url.replace(/^https?:\/\//i, "");
+                window.location.href = "intent://" + clean + "#Intent;package=com.mxtech.videoplayer.ad;end";
+                return;
+            }
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 100);
+        }
+
         function getFocusableItems() {
-            return Array.from(document.querySelectorAll(".menu-btn, .submenu.active .sub-link, #vipPassword, #vipSubmit, #vipCancel"))
-                .filter(el => el.offsetParent !== null);
+            return Array.from(
+                document.querySelectorAll(".menu-btn, .submenu.active .sub-link, #vipPassword, #vipSubmit, #vipCancel")
+            ).filter(el => el.offsetParent !== null);
         }
 
         vipSubmit.addEventListener("click", handleVIP);
@@ -435,6 +459,13 @@
                 e.preventDefault();
                 handleVIP();
             }
+        });
+
+        document.querySelectorAll(".sub-link").forEach(link => {
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+                openLinkSmart(this.href);
+            });
         });
 
         document.addEventListener("keydown", function (e) {
@@ -463,7 +494,7 @@
 
                 if (active.classList.contains("sub-link")) {
                     e.preventDefault();
-                    window.location.href = active.href;
+                    openLinkSmart(active.href);
                     return;
                 }
 
