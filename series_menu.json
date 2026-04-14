@@ -1,0 +1,51 @@
+{
+  "type": "menu",
+  "title": "ซีรีส์",
+  "items": [
+    {
+      "title": "ซีรีย์ 2026",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์-2026.json"
+    },
+    {
+      "title": "ซีรีย์ 2025",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์-2025.json"
+    },
+    {
+      "title": "ซีรีย์จีนพากย์ไทย",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์จีนพากย์ไทย.json"
+    },
+    {
+      "title": "ซีรีย์จีนซับไทย",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์จีนซับไทย.json"
+    },
+    {
+      "title": "ซีรีย์เกาหลีพากย์ไทย",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์เกาหลีพากย์ไทย.json"
+    },
+    {
+      "title": "ซีรีย์เกาหลีซับไทย",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ซีรี่ย์เกาหลีซับไทย.json"
+    },
+    {
+      "title": "ซีรีย์ญี่ปุ่น",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ดูซีรี่ย์ญี่ปุ่น.json"
+    },
+    {
+      "title": "ซีรีย์ฝรั่ง",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ดูซีรี่ย์ฝรั่ง.json"
+    },
+    {
+      "title": "ซีรีย์ไทย",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/flixmono/main/flixmono_ดูซีรี่ย์ไทย.json"
+    }
+  ]
+}
