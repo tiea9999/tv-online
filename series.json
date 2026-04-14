@@ -5,12 +5,12 @@
     {
       "title": "GoSeries",
       "type": "source",
-      "source": "https://raw.githubusercontent.com/คุณ/.../goseries.json"
+      "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Goseries.json"
     },
     {
       "title": "Flixmono",
       "type": "source",
-      "source": "PUT_FLIXMONO_JSON"
+      "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Flixmono.json"
     }
   ]
 }
