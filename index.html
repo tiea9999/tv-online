@@ -1,295 +1,326 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <title>TIEA IPTV TV MODE</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>TIEA IPTV TV MODE</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: #0b0b0b;
-      color: #fff;
-      font-family: sans-serif;
-      overflow: hidden;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    .app {
-      display: flex;
-      width: 100vw;
-      height: 100vh;
-    }
+        body {
+            margin: 0;
+            background: #0b0b0b;
+            color: #fff;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
 
-    .sidebar {
-      width: 240px;
-      background: #111;
-      border-right: 1px solid #222;
-      padding: 14px 10px;
-      overflow-y: auto;
-      flex-shrink: 0;
-    }
+        .app {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
 
-    .brand {
-      text-align: center;
-      font-size: 22px;
-      font-weight: bold;
-      color: #00e5ff;
-      margin-bottom: 14px;
-    }
+        .sidebar {
+            width: 240px;
+            background: #111;
+            border-right: 1px solid #222;
+            padding: 14px 10px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
 
-    .menu-btn {
-      width: 100%;
-      background: #1a1a1a;
-      border: 0;
-      color: #fff;
-      border-radius: 12px;
-      padding: 14px 12px;
-      margin-bottom: 10px;
-      text-align: left;
-      font-size: 16px;
-      cursor: pointer;
-      outline: none;
-    }
+        .brand {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #00e5ff;
+            margin-bottom: 14px;
+        }
 
-    .menu-btn:focus,
-    .menu-btn.active:focus,
-    .menu-btn.active {
-      background: #00c853;
-      color: #fff;
-      box-shadow: 0 0 0 3px rgba(255,255,255,.18);
-    }
+        .menu-btn {
+            width: 100%;
+            background: #1a1a1a;
+            border: 0;
+            color: #fff;
+            border-radius: 12px;
+            padding: 14px 12px;
+            margin-bottom: 10px;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+        }
 
-    .content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 14px;
-      background: #0b0b0b;
-    }
+        .menu-btn:focus,
+        .menu-btn.active:focus,
+        .menu-btn.active {
+            background: #00c853;
+            color: #fff;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, .18);
+        }
 
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            background: #0b0b0b;
+        }
 
-    .title {
-      font-size: 22px;
-      font-weight: bold;
-      color: #00e5ff;
-    }
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
 
-    .subtext {
-      font-size: 14px;
-      color: #bbb;
-    }
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #00e5ff;
+        }
 
-    .action-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
+        .subtext {
+            font-size: 14px;
+            color: #bbb;
+        }
 
-    .top-btn {
-      background: #1c1c1c;
-      border: 0;
-      color: #fff;
-      border-radius: 12px;
-      padding: 12px 14px;
-      cursor: pointer;
-      font-size: 14px;
-      outline: none;
-    }
+        .action-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
 
-    .top-btn:focus {
-      background: #2196f3;
-      box-shadow: 0 0 0 3px rgba(255,255,255,.18);
-    }
+        .top-btn {
+            background: #1c1c1c;
+            border: 0;
+            color: #fff;
+            border-radius: 12px;
+            padding: 12px 14px;
+            cursor: pointer;
+            font-size: 14px;
+            outline: none;
+        }
 
-    .status-box {
-      display: none;
-      background: rgba(255,255,255,.08);
-      color: #fff;
-      border-radius: 10px;
-      padding: 10px 12px;
-      margin-bottom: 12px;
-      font-size: 14px;
-    }
+        .top-btn:focus {
+            background: #2196f3;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, .18);
+        }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 12px;
-    }
+        .status-box {
+            display: none;
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
 
-    .card {
-      background: #171717;
-      border-radius: 12px;
-      overflow: hidden;
-      cursor: pointer;
-      outline: none;
-      min-height: 210px;
-      display: flex;
-      flex-direction: column;
-    }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+        }
 
-    .card:focus {
-      box-shadow: 0 0 0 4px #00e5ff;
-      transform: scale(1.02);
-    }
+        .card {
+            background: #171717;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            outline: none;
+            min-height: 210px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-    .thumb {
-      width: 100%;
-      height: 150px;
-      background: #000;
-      object-fit: contain;
-    }
+        .card:focus {
+            box-shadow: 0 0 0 4px #00e5ff;
+            transform: scale(1.02);
+        }
 
-    .card-title {
-      padding: 10px 8px 12px;
-      font-size: 14px;
-      text-align: center;
-      line-height: 1.35;
-      flex: 1;
-    }
+        .thumb {
+            width: 100%;
+            height: 150px;
+            background: #000;
+            object-fit: contain;
+        }
 
-    .empty {
-      padding: 30px 10px;
-      text-align: center;
-      color: #aaa;
-    }
+        .card-title {
+            padding: 10px 8px 12px;
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.35;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    #playerWrap {
-      position: fixed;
-      inset: 0;
-      background: #000;
-      z-index: 9999;
-      display: none;
-    }
+        .empty {
+            padding: 30px 10px;
+            text-align: center;
+            color: #aaa;
+        }
 
-    #videoPlayer {
-      width: 100%;
-      height: 100%;
-      background: #000;
-      object-fit: contain;
-    }
+        #playerWrap {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: none;
+        }
 
-    #playerUi {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      right: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      z-index: 10001;
-      pointer-events: none;
-    }
+        #videoPlayer {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            object-fit: contain;
+        }
 
-    #playerLeft,
-    #playerRight {
-      display: flex;
-      gap: 8px;
-      pointer-events: auto;
-      flex-wrap: wrap;
-    }
+        #playerUi {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 10001;
+            pointer-events: none;
+        }
 
-    .player-btn {
-      border: 0;
-      border-radius: 12px;
-      padding: 12px 14px;
-      color: #fff;
-      cursor: pointer;
-      font-size: 14px;
-      outline: none;
-    }
+        #playerLeft,
+        #playerRight {
+            display: flex;
+            gap: 8px;
+            pointer-events: auto;
+            flex-wrap: wrap;
+        }
 
-    .player-btn:focus {
-      box-shadow: 0 0 0 3px rgba(255,255,255,.2);
-    }
+        .player-btn {
+            border: 0;
+            border-radius: 12px;
+            padding: 12px 14px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            outline: none;
+        }
 
-    .home-btn { background: #2196f3; }
-    .close-btn { background: #e53935; }
-    .mx-btn { background: #ff9800; }
+        .player-btn:focus {
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, .2);
+        }
 
-    #playerStatus {
-      position: absolute;
-      left: 12px;
-      right: 12px;
-      bottom: 12px;
-      z-index: 10001;
-      background: rgba(0,0,0,.7);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 14px;
-      text-align: center;
-      display: none;
-    }
+        .home-btn {
+            background: #2196f3;
+        }
 
-    @media (max-width: 900px) {
-      .sidebar { width: 185px; }
-      .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-    }
-  </style>
+        .close-btn {
+            background: #e53935;
+        }
+
+        .mx-btn {
+            background: #ff9800;
+        }
+
+        #playerStatus {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            z-index: 10001;
+            background: rgba(0, 0, 0, .7);
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 185px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="brand">TIEA IPTV</div>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">TIEA IPTV</div>
 
-      <button class="menu-btn active" tabindex="0" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json" data-title="📺 ทีวี">📺 ทีวี</button>
+            <button class="menu-btn active" tabindex="0"
+        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json"
+        data-title="📺 ทีวี">📺 ทีวี</button>
 
-      <button class="menu-btn" tabindex="0" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json" data-title="🎬 หนัง">🎬 หนัง</button>
+            <button class="menu-btn" tabindex="0"
+        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json"https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json
+        data-title="🎬 หนัง">🎬 หนัง</button>
 
-      <button class="menu-btn" tabindex="0" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/series.json" data-title="📺 ซีรีส์">📺 ซีรีส์</button>
+            <button class="menu-btn" tabindex="0"
+        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/series.json"
+        data-title="📺 ซีรีส์">📺 ซีรีส์</button>
 
-      <button class="menu-btn" tabindex="0" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Vip.json" data-title="🔐 VIP">🔐 VIP</button>
+            <button class="menu-btn" tabindex="0"
+        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Vip.json"
+        data-title="🔐 VIP">🔐 VIP</button>
 
-      <button class="menu-btn" tabindex="0" data-link="https://tiea9999.github.io/tv-online/ball66.html">⚽ ตารางแข่งขัน</button>
-    </aside>
+            <button class="menu-btn" tabindex="0"
+        data-link="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/live.html">⚽ ตารางแข่งขัน</button>
+        </aside>
 
-    <main class="content">
-      <div class="topbar">
-        <div>
-          <div id="pageTitle" class="title">📺 ทีวี</div>
-          <div class="subtext">ใช้รีโมทเลื่อนแล้วกด Enter เพื่อเลือก</div>
-        </div>
-        <div class="action-row">
-          <button id="focusFirstBtn" class="top-btn" tabindex="0">โฟกัสรายการแรก</button>
-          <button id="reloadBtn" class="top-btn" tabindex="0">รีโหลด</button>
-          <button id="homeTopBtn" class="top-btn" tabindex="0">หน้าโฮม</button>
-        </div>
-      </div>
+        <main class="content">
+            <div class="topbar">
+                <div>
+                    <div id="pageTitle" class="title">📺 ทีวี</div>
+                    <div class="subtext">ใช้รีโมทเลื่อนแล้วกด Enter เพื่อเลือก</div>
+                </div>
+                <div class="action-row">
+                    <button id="focusFirstBtn" class="top-btn" tabindex="0">โฟกัสรายการแรก</button>
+                    <button id="reloadBtn" class="top-btn" tabindex="0">รีโหลด</button>
+                    <button id="homeTopBtn" class="top-btn" tabindex="0">หน้าโฮม</button>
+                </div>
+            </div>
 
-      <div id="statusBox" class="status-box"></div>
-      <div id="grid" class="grid"></div>
-    </main>
-  </div>
-
-  <div id="playerWrap">
-    <video id="videoPlayer" controls playsinline autoplay muted></video>
-
-    <div id="playerUi">
-      <div id="playerLeft">
-        <button id="playerHomeBtn" class="player-btn home-btn" tabindex="0">🏠 หน้าโฮม</button>
-        <button id="playerCloseBtn" class="player-btn close-btn" tabindex="0">✕ ปิด</button>
-      </div>
-      <div id="playerRight">
-        <button id="playerMxBtn" class="player-btn mx-btn" tabindex="0">▶ MX</button>
-      </div>
+            <div id="statusBox" class="status-box"></div>
+            <div id="grid" class="grid"></div>
+        </main>
     </div>
 
-    <div id="playerStatus"></div>
-  </div>
+    <div id="playerWrap">
+        <video id="videoPlayer" controls playsinline autoplay muted></video>
 
-  <script>
-    const grid = document.getElementById("grid");
+        <div id="playerUi">
+            <div id="playerLeft">
+                <button id="playerHomeBtn" class="player-btn home-btn" tabindex="0">🏠 หน้าโฮม</button>
+                <button id="playerCloseBtn" class="player-btn close-btn" tabindex="0">✕ ปิด</button>
+            </div>
+            <div id="playerRight">
+                <button id="playerMxBtn" class="player-btn mx-btn" tabindex="0">▶ MX</button>
+            </div>
+        </div>
+
+        <div id="playerStatus"></div>
+    </div>
+
+    <script>
+        const grid = document.getElementById("grid");
     const pageTitle = document.getElementById("pageTitle");
     const statusBox = document.getElementById("statusBox");
     const playerWrap = document.getElementById("playerWrap");
@@ -304,6 +335,7 @@
     let currentServerIndex = 0;
     let hls = null;
     let dashPlayer = null;
+    let navigationStack = [];
 
     function setStatus(msg) {
       statusBox.textContent = msg || "";
@@ -344,6 +376,7 @@
 
     function goHome() {
       closePlayer();
+      navigationStack = [];
       pageTitle.textContent = currentTitle;
       const firstMenu = document.querySelector(".menu-btn.active") || menuButtons[0];
       if (firstMenu) firstMenu.focus();
@@ -505,16 +538,18 @@
         list = data.map(item => ({
           title: item.title || item.name || "ไม่มีชื่อ",
           logo: item.logo || item.image || "",
-          url: item.url || item.stream || item.link || "",
+          url: item.url || item.stream || item.link || item.source || "",
           group: item.group || item.category || "",
+          type: item.type || "",
           servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
         }));
       } else if (data.channels && Array.isArray(data.channels)) {
         list = data.channels.map(item => ({
           title: item.title || item.name || "ไม่มีชื่อ",
           logo: item.logo || item.image || "",
-          url: item.url || item.stream || item.link || "",
+          url: item.url || item.stream || item.link || item.source || "",
           group: item.group || item.category || "",
+          type: item.type || "",
           servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
         }));
       } else if (data.groups && Array.isArray(data.groups)) {
@@ -523,12 +558,22 @@
             list.push({
               title: s.title || s.name || "ไม่มีชื่อ",
               logo: s.logo || s.image || g.image || g.logo || "",
-              url: s.url || s.stream || s.link || "",
+              url: s.url || s.stream || s.link || s.source || "",
               group: g.title || g.name || "",
+              type: s.type || "",
               servers: Array.isArray(s.servers) ? s.servers.filter(x => x && x.url) : []
             });
           });
         });
+      } else if (data.items && Array.isArray(data.items)) {
+        list = data.items.map(item => ({
+          title: item.title || item.name || "ไม่มีชื่อ",
+          logo: item.logo || item.image || "",
+          url: item.url || item.stream || item.link || item.source || "",
+          group: item.group || item.category || "",
+          type: item.type || "",
+          servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
+        }));
       }
 
       return list.map(item => {
@@ -536,44 +581,117 @@
           item.url = item.servers[0].url;
         }
         return item;
-      }).filter(item => item.url || item.servers?.length);
+      }).filter(item => item.url || item.servers?.length || item.type === "source");
     }
 
     async function loadSource(sourceUrl) {
-      if (!sourceUrl) return [];
+      if (!sourceUrl) return { mode: "items", data: [] };
 
       const lower = sourceUrl.toLowerCase();
 
       if (lower.endsWith(".m3u8") && !lower.includes(".json")) {
-        return [{
-          title: "Live Stream",
-          logo: "",
-          url: sourceUrl,
-          group: "",
-          servers: [{ name: "Main", url: sourceUrl }]
-        }];
+        return {
+          mode: "items",
+          data: [{
+            title: "Live Stream",
+            logo: "",
+            url: sourceUrl,
+            group: "",
+            servers: [{ name: "Main", url: sourceUrl }]
+          }]
+        };
       }
 
       const res = await fetch(sourceUrl);
+      if (!res.ok) throw new Error("โหลดไฟล์ไม่สำเร็จ: " + res.status);
+
       const text = await res.text();
       const trimmed = text.trim();
 
+      if (!trimmed) return { mode: "items", data: [] };
+
       if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
-        return normalizeJson(JSON.parse(text));
+        const parsed = JSON.parse(text);
+
+        if (
+          parsed &&
+          !Array.isArray(parsed) &&
+          parsed.type === "menu" &&
+          Array.isArray(parsed.items)
+        ) {
+          return {
+            mode: "menu",
+            title: parsed.title || "",
+            data: parsed.items.map(item => ({
+              title: item.title || item.name || "ไม่มีชื่อ",
+              source: item.source || item.url || "",
+              type: item.type || "source",
+              logo: item.logo || item.image || ""
+            }))
+          };
+        }
+
+        return {
+          mode: "items",
+          data: normalizeJson(parsed)
+        };
       }
 
       if (text.includes("#EXTM3U") || text.includes("#EXTINF")) {
-        return parseM3U(text);
+        return {
+          mode: "items",
+          data: parseM3U(text)
+        };
       }
 
-      return [];
+      return { mode: "items", data: [] };
     }
 
-    function renderGrid(list) {
+    function renderGrid(result) {
       grid.innerHTML = "";
+
+      const list = result?.data || [];
 
       if (!list.length) {
         grid.innerHTML = `<div class="empty">ไม่พบรายการ</div>`;
+        return;
+      }
+
+      if (result.mode === "menu") {
+        list.forEach((item, index) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.tabIndex = 0;
+
+          card.innerHTML = `
+            <img class="thumb" src="${item.logo || ""}" onerror="this.style.display='none'">
+            <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
+          `;
+
+          card.onclick = async () => {
+            if (!item.source) return;
+            navigationStack.push({
+              source: currentSource,
+              title: pageTitle.textContent
+            });
+            currentSource = item.source;
+            pageTitle.textContent = item.title || pageTitle.textContent;
+            await loadCurrentSource();
+          };
+
+          card.onkeydown = async (e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              card.click();
+            }
+          };
+
+          grid.appendChild(card);
+
+          if (index === 0) {
+            setTimeout(() => card.focus(), 100);
+          }
+        });
         return;
       }
 
@@ -587,13 +705,32 @@
           <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
         `;
 
-        card.onclick = () => playItem(item, 0);
-        card.onkeydown = (e) => {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            playItem(item, 0);
-          }
-        };
+        if (item.type === "source" && item.url) {
+          card.onclick = async () => {
+            navigationStack.push({
+              source: currentSource,
+              title: pageTitle.textContent
+            });
+            currentSource = item.url;
+            pageTitle.textContent = item.title || pageTitle.textContent;
+            await loadCurrentSource();
+          };
+
+          card.onkeydown = async (e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              card.click();
+            }
+          };
+        } else {
+          card.onclick = () => playItem(item, 0);
+          card.onkeydown = (e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              playItem(item, 0);
+            }
+          };
+        }
 
         item._cardEl = card;
         grid.appendChild(card);
@@ -607,9 +744,9 @@
     async function loadCurrentSource() {
       try {
         setStatus("กำลังโหลดรายการ...");
-        const list = await loadSource(currentSource);
-        currentList = list;
-        renderGrid(list);
+        const result = await loadSource(currentSource);
+        currentList = result;
+        renderGrid(result);
         setStatus("");
       } catch (e) {
         console.error(e);
@@ -622,6 +759,8 @@
       btn.addEventListener("click", async () => {
         menuButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
+
+        navigationStack = [];
 
         if (btn.dataset.link) {
           window.location.href = btn.dataset.link;
@@ -651,8 +790,10 @@
     };
 
     document.getElementById("homeTopBtn").onclick = () => {
+      navigationStack = [];
       const active = document.querySelector(".menu-btn.active") || menuButtons[0];
       if (active) active.focus();
+      pageTitle.textContent = currentTitle;
     };
 
     document.getElementById("playerCloseBtn").onclick = closePlayer;
@@ -672,6 +813,15 @@
       }
 
       if ((e.key === "Escape" || e.key === "Backspace") && !inPlayer) {
+        if (navigationStack.length > 0) {
+          e.preventDefault();
+          const prev = navigationStack.pop();
+          currentSource = prev.source;
+          pageTitle.textContent = prev.title;
+          loadCurrentSource();
+          return;
+        }
+
         const activeEl = document.activeElement;
         const isCard = activeEl && activeEl.classList && activeEl.classList.contains("card");
         if (isCard) {
@@ -683,6 +833,7 @@
     });
 
     loadCurrentSource();
-  </script>
+    </script>
 </body>
+
 </html>
