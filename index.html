@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV</title>
+<title>TIEA IPTV PRO</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
@@ -23,20 +23,11 @@ body{margin:0;background:#0b0b0b;color:#fff;font-family:sans-serif;display:flex}
 <body>
 
 <div class="sidebar">
-<button class="menu-btn active"
-data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
-
-<button class="menu-btn"
-data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
-
-<button class="menu-btn"
-data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Flixmono.json">📺 ซีรีส์</button>
-
-<button class="menu-btn"
-data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Vip.json">🔐 VIP</button>
-
-<button class="menu-btn"
-onclick="location.href='live-old.html'">⚽ ตารางแข่งขัน</button>
+<button class="menu-btn active" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
+<button class="menu-btn" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
+<button class="menu-btn" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Flixmono.json">📺 ซีรีส์</button>
+<button class="menu-btn" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Vip.json">🔐 VIP</button>
+<button class="menu-btn" onclick="location.href='live-old.html'">⚽ ตารางแข่งขัน</button>
 </div>
 
 <div class="content">
@@ -46,26 +37,21 @@ onclick="location.href='live-old.html'">⚽ ตารางแข่งขัน
 <script>
 
 const grid = document.getElementById("grid");
+let historyStack = [];
 
-// ===== MX FIX =====
+// ===== MX =====
 function openMx(url){
     try{
         const u = new URL(url);
-
-        const intent =
-        "intent://" + u.host + u.pathname + u.search +
+        let intent = "intent://" + u.host + u.pathname + u.search +
         "#Intent;scheme=" + u.protocol.replace(":","") +
         ";package=com.mxtech.videoplayer.ad;end";
 
         location.href = intent;
-
         setTimeout(()=>{
             location.href = intent.replace("videoplayer.ad","videoplayer.pro");
         },1000);
-
-    }catch(e){
-        console.log("MX error");
-    }
+    }catch{}
 }
 
 // ===== PLAY =====
@@ -78,15 +64,15 @@ function play(url){
     }
 
     if(url.includes(".m3u8")){
-        document.body.innerHTML = "<video id='v' controls autoplay style='width:100%;height:100%;background:#000'></video>";
-        const v = document.getElementById("v");
+        document.body.innerHTML="<video id='v' controls autoplay style='width:100%;height:100%;background:#000'></video>";
+        let v=document.getElementById("v");
 
         if(Hls.isSupported()){
-            const hls = new Hls();
+            let hls=new Hls();
             hls.loadSource(url);
             hls.attachMedia(v);
         }else{
-            v.src = url;
+            v.src=url;
         }
         return;
     }
@@ -94,45 +80,69 @@ function play(url){
     openMx(url);
 }
 
-// ===== NORMALIZE =====
-function normalize(data){
-    let list = [];
+// ===== PARSE =====
+function parse(data){
+    let list=[];
 
-    if (Array.isArray(data)) {
-        list = data.map(i => ({
-            title: i.title || i.name || "ไม่มีชื่อ",
-            img: i.poster || i.image || i.thumbnail || i.logo || "",
-            url: i.url || i.stream || i.link || i.source || ""
-        }));
-    }
-
-    else if (data.channels) {
-        list = data.channels.map(i => ({
-            title: i.name || i.title || "ไม่มีชื่อ",
-            img: i.logo || i.image || "",
-            url: i.url
-        }));
-    }
-
-    else if (data.groups) {
-        data.groups.forEach(g=>{
-            (g.stations || g.items || []).forEach(i=>{
+    if(Array.isArray(data)){
+        data.forEach(i=>{
+            if(i.episodes){
                 list.push({
-                    title: i.title || i.name || "ไม่มีชื่อ",
-                    img: i.poster || i.image || i.logo || "",
-                    url: i.url || i.stream || i.link
+                    title:i.title,
+                    img:i.poster||i.image,
+                    type:"folder",
+                    items:i.episodes
                 });
+            }else{
+                list.push({
+                    title:i.title||i.name,
+                    img:i.poster||i.image,
+                    url:i.url||i.stream
+                });
+            }
+        });
+    }
+
+    else if(data.channels){
+        data.channels.forEach(i=>{
+            list.push({
+                title:i.name,
+                img:i.logo,
+                url:i.url
             });
         });
     }
 
-    else if (data.type === "menu") {
-        list = data.items.map(i => ({
-            title: i.title,
-            img: i.poster || i.image || "",
-            source: i.source,
-            type: "source"
-        }));
+    else if(data.groups){
+        data.groups.forEach(g=>{
+            (g.items||g.stations||[]).forEach(i=>{
+                if(i.episodes){
+                    list.push({
+                        title:i.title,
+                        img:i.poster,
+                        type:"folder",
+                        items:i.episodes
+                    });
+                }else{
+                    list.push({
+                        title:i.title||i.name,
+                        img:i.poster||i.logo,
+                        url:i.url
+                    });
+                }
+            });
+        });
+    }
+
+    else if(data.type==="menu"){
+        data.items.forEach(i=>{
+            list.push({
+                title:i.title,
+                img:i.poster||i.image,
+                source:i.source,
+                type:"source"
+            });
+        });
     }
 
     return list;
@@ -140,37 +150,39 @@ function normalize(data){
 
 // ===== LOAD =====
 async function load(url){
-    const res = await fetch(url);
-    const data = await res.json();
-
-    const list = normalize(data);
-
+    const res=await fetch(url);
+    const data=await res.json();
+    const list=parse(data);
     render(list);
 }
 
 // ===== RENDER =====
 function render(list){
-    grid.innerHTML = "";
-
-    if(!list.length){
-        grid.innerHTML = "ไม่พบรายการ";
-        return;
-    }
+    grid.innerHTML="";
 
     list.forEach(item=>{
-        const div = document.createElement("div");
-        div.className = "card";
+        let div=document.createElement("div");
+        div.className="card";
 
-        div.innerHTML = `
-        <img src="${item.img||''}" 
-        onerror="this.src='https://via.placeholder.com/300x450?text=No+Image'">
+        div.innerHTML=`
+        <img src="${item.img||''}" onerror="this.src='https://via.placeholder.com/300x450?text=No+Image'">
         <div class="card-title">${item.title}</div>
         `;
 
-        div.onclick = ()=>{
-            if(item.source){
+        div.onclick=()=>{
+            if(item.type==="source"){
+                historyStack.push(list);
                 load(item.source);
-            }else{
+            }
+            else if(item.type==="folder"){
+                historyStack.push(list);
+                render(item.items.map(ep=>({
+                    title:ep.title||ep.name,
+                    img:ep.poster||item.img,
+                    url:ep.url||ep.stream
+                })));
+            }
+            else{
                 play(item.url);
             }
         };
@@ -181,11 +193,12 @@ function render(list){
 
 // ===== MENU =====
 document.querySelectorAll(".menu-btn").forEach(btn=>{
-    btn.onclick = ()=>{
+    btn.onclick=()=>{
         document.querySelectorAll(".menu-btn").forEach(b=>b.classList.remove("active"));
         btn.classList.add("active");
 
         if(btn.dataset.source){
+            historyStack=[];
             load(btn.dataset.source);
         }
     };
