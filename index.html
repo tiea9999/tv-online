@@ -1,234 +1,161 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>TIEA IPTV TV MODE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIEA IPTV NETFLIX UI</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-    <style>
-        * { box-sizing: border-box; }
+<style>
+body{margin:0;background:#000;color:#fff;font-family:sans-serif}
+.sidebar{width:220px;background:#111;position:fixed;height:100%;padding:10px}
+.menu-btn{width:100%;padding:12px;margin-bottom:10px;background:#222;border:0;color:#fff;border-radius:10px;cursor:pointer}
+.content{margin-left:240px;padding:10px}
+.row{display:flex;gap:10px;overflow-x:auto;margin-bottom:20px}
+.card{min-width:140px;background:#171717;border-radius:10px;cursor:pointer}
+.card img{width:100%;height:180px;object-fit:cover}
+.card-title{text-align:center;font-size:13px;padding:6px}
 
-        body {
-            margin: 0;
-            background: #0b0b0b;
-            color: #fff;
-            font-family: sans-serif;
-            overflow: hidden;
+#playerWrap{position:fixed;inset:0;background:#000;display:none}
+#videoPlayer{width:100%;height:100%}
+
+#playerBar{position:absolute;top:10px;left:10px;display:flex;gap:10px}
+.btn{padding:10px;background:#222;border:0;color:#fff;border-radius:10px}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+<button class="menu-btn" onclick="loadData('https://raw.githubusercontent.com/tiea9999/tv-online/main/M3U/Dooball.json')">📺 ทีวี</button>
+<button class="menu-btn" onclick="loadData('https://raw.githubusercontent.com/tiea9999/tv-online/main/Ezmovie.json')">🎬 หนัง</button>
+<button class="menu-btn" onclick="loadData('https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json')">📺 ซีรีส์</button>
+</div>
+
+<div class="content" id="content"></div>
+
+<div id="playerWrap">
+<video id="videoPlayer" controls autoplay></video>
+
+<div id="playerBar">
+<button class="btn" onclick="setPlayer('web')">Web</button>
+<button class="btn" onclick="setPlayer('mx')">MX</button>
+<button class="btn" onclick="setPlayer('vlc')">VLC</button>
+<button class="btn" onclick="closePlayer()">❌</button>
+</div>
+</div>
+
+<script>
+
+let playerMode = "auto"
+let currentList = []
+let currentIndex = -1
+let hls
+
+function setPlayer(mode){
+    playerMode = mode
+}
+
+function openMX(url){
+    location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end"
+}
+
+function openVLC(url){
+    location.href = "intent:" + url + "#Intent;package=org.videolan.vlc;end"
+}
+
+function play(item,index,list){
+    currentList = list
+    currentIndex = index
+
+    const url = item.url || item.link || item.stream
+    const lower = url.toLowerCase()
+
+    document.getElementById("playerWrap").style.display="block"
+
+    if(playerMode==="mx"){openMX(url);return}
+    if(playerMode==="vlc"){openVLC(url);return}
+
+    if(lower.includes(".m3u8")){
+        if(Hls.isSupported()){
+            if(hls)hls.destroy()
+            hls = new Hls()
+            hls.loadSource(url)
+            hls.attachMedia(videoPlayer)
+        }else{
+            videoPlayer.src=url
+        }
+        return
+    }
+
+    if(lower.includes(".mp4")){
+        openMX(url)
+        return
+    }
+
+    openVLC(url)
+}
+
+videoPlayer.onended = ()=>{
+    const next = currentIndex+1
+    if(next < currentList.length){
+        play(currentList[next],next,currentList)
+    }
+}
+
+function closePlayer(){
+    document.getElementById("playerWrap").style.display="none"
+}
+
+function render(list){
+    const content = document.getElementById("content")
+    content.innerHTML=""
+
+    const row = document.createElement("div")
+    row.className="row"
+
+    list.forEach((item,i)=>{
+        const card = document.createElement("div")
+        card.className="card"
+
+        card.innerHTML = `
+        <img src="${item.logo || item.poster || ''}">
+        <div class="card-title">${item.title}</div>
+        `
+
+        card.onclick = ()=>{
+            if(item.episodes){
+                render(item.episodes)
+            }else{
+                play(item,i,list)
+            }
         }
 
-        .app {
-            display: flex;
-            width: 100vw;
-            height: 100vh;
-        }
+        row.appendChild(card)
+    })
 
-        .sidebar {
-            width: 240px;
-            background: #111;
-            border-right: 1px solid #222;
-            padding: 14px 10px;
-            overflow-y: auto;
-            flex-shrink: 0;
-        }
+    content.appendChild(row)
+}
 
-        .brand {
-            text-align: center;
-            font-size: 22px;
-            font-weight: bold;
-            color: #00e5ff;
-            margin-bottom: 14px;
-        }
+async function loadData(url){
+    const res = await fetch(url)
+    const data = await res.json()
 
-        .menu-btn {
-            width: 100%;
-            background: #1a1a1a;
-            border: 0;
-            color: #fff;
-            border-radius: 12px;
-            padding: 14px 12px;
-            margin-bottom: 10px;
-            text-align: left;
-            font-size: 16px;
-            cursor: pointer;
-            outline: none;
-        }
+    let list = []
 
-        .menu-btn:focus,
-        .menu-btn.active:focus,
-        .menu-btn.active {
-            background: #00c853;
-            color: #fff;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, .18);
-        }
+    if(Array.isArray(data)){
+        list = data
+    }else if(data.items){
+        list = data.items
+    }else if(data.channels){
+        list = data.channels
+    }
 
-        .content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 14px;
-            background: #0b0b0b;
-        }
+    render(list)
+}
 
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-        }
+</script>
 
-        .title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #00e5ff;
-        }
-
-        .subtext {
-            font-size: 14px;
-            color: #bbb;
-        }
-
-        .action-row {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .top-btn,
-        .back-btn {
-            background: #1c1c1c;
-            border: 0;
-            color: #fff;
-            border-radius: 12px;
-            padding: 12px 14px;
-            cursor: pointer;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .top-btn:focus,
-        .back-btn:focus {
-            background: #2196f3;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, .18);
-        }
-
-        .status-box {
-            display: none;
-            background: rgba(255, 255, 255, .08);
-            color: #fff;
-            border-radius: 10px;
-            padding: 10px 12px;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        #topExtra {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 12px;
-        }
-
-        .card {
-            background: #171717;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            outline: none;
-            min-height: 210px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .card:focus {
-            box-shadow: 0 0 0 4px #00e5ff;
-            transform: scale(1.02);
-        }
-
-        .thumb {
-            width: 100%;
-            height: 150px;
-            background: #000;
-            object-fit: contain;
-        }
-
-        .card-title {
-            padding: 10px 8px 12px;
-            font-size: 14px;
-            text-align: center;
-            line-height: 1.35;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .empty {
-            padding: 30px 10px;
-            text-align: center;
-            color: #aaa;
-        }
-
-        #playerWrap {
-            position: fixed;
-            inset: 0;
-            background: #000;
-            z-index: 9999;
-            display: none;
-        }
-
-        #videoPlayer {
-            width: 100%;
-            height: 100%;
-            background: #000;
-            object-fit: contain;
-        }
-
-        #playerUi {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            z-index: 10001;
-            pointer-events: none;
-        }
-
-        #playerLeft,
-        #playerRight {
-            display: flex;
-            gap: 8px;
-            pointer-events: auto;
-            flex-wrap: wrap;
-        }
-
-        .player-btn {
-            border: 0;
-            border-radius: 12px;
-            padding: 12px 14px;
-            color: #fff;
-            cursor: pointer;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .player-btn:focus {
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, .2);
-        }
-
-        .home-btn { background: #2196f3; }
-        .close-btn { background: #e53935; }
-        .mx-btn { background: #ff9800; }
+</body>
+</html>
