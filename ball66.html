@@ -13,7 +13,7 @@
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
     <script>
-        jwplayer.key="XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";
+        jwplayer.key = "XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo";
     </script>
 
     <style>
@@ -25,7 +25,6 @@
             overflow-x: hidden;
         }
 
-        /* 🔥 GRID AUTO ไม่ล้น */
         .movie-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -55,6 +54,11 @@
             background: #1b1b1b;
             border-radius: 10px;
             cursor: pointer;
+            outline: none;
+        }
+
+        .movie-card:focus {
+            box-shadow: 0 0 0 3px #00e5ff;
         }
 
         .movie-card img {
@@ -70,7 +74,6 @@
             font-size: 13px;
         }
 
-        /* PLAYER เต็มจอจริง */
         #player-container {
             position: fixed;
             top: 0;
@@ -83,7 +86,6 @@
             overflow: hidden;
         }
 
-        /* ปุ่ม */
         .close-btn {
             position: fixed;
             top: env(safe-area-inset-top, 20px);
@@ -113,12 +115,27 @@
             font-size: 14px;
         }
 
-        /* video ไม่ล้น */
         video,
         #jw-player {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            background: #000;
+        }
+
+        #statusBox {
+            position: fixed;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            z-index: 100000;
+            background: rgba(0, 0, 0, .82);
+            color: #fff;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            text-align: center;
+            display: none;
         }
     </style>
 </head>
@@ -128,178 +145,408 @@
     <div id="movieGrid" class="movie-grid"></div>
 
     <div id="player-container">
-
         <button id="homeBtn" class="home-btn">🏠 หน้าโฮม</button>
         <button id="closePlayerBtn" class="close-btn">✕</button>
 
         <video id="videoPlayer" controls playsinline autoplay muted></video>
         <div id="jw-player" style="display:none;"></div>
-
     </div>
 
+    <div id="statusBox"></div>
+
     <script>
-        let video=document.getElementById("videoPlayer");
-let jwInstance=null;
-let hls=null;
+        let video = document.getElementById("videoPlayer");
+        let jwInstance = null;
+        let hls = null;
+        let dashPlayer = null;
 
-/* 🔊 เสียงดัง */
-function setDefaultVolumeHTML5(){
-video.muted=true;
-video.volume=1.0;
-setTimeout(()=>{video.muted=false},300);
-}
-function setDefaultVolumeJW(){
-if(jwInstance) jwInstance.setVolume(100);
-}
+        /* =========================
+           ใส่ลิงก์ได้ทั้ง JSON / M3U / M3U8 stream
+           ========================= */
+        const SOURCE_URL = "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json";
 
-/* RESET */
-function resetPlayers(){
-if(hls){try{hls.destroy()}catch(e){} hls=null;}
-if(jwInstance){try{jwInstance.stop();jwInstance.remove()}catch(e){} jwInstance=null;}
-video.pause();
-video.src="";
-video.load();
-video.style.display="block";
-document.getElementById("jw-player").style.display="none";
-}
+        function $(id) {
+            return document.getElementById(id);
+        }
 
-/* PLAY */
-function playStream(ch){
+        function setStatus(msg) {
+            const box = $("statusBox");
+            box.textContent = msg || "";
+            box.style.display = msg ? "block" : "none";
+        }
 
-resetPlayers();
-document.getElementById("player-container").style.display="block";
+        function setDefaultVolumeHTML5() {
+            video.muted = true;
+            video.volume = 1.0;
+            setTimeout(() => {
+                video.muted = false;
+            }, 300);
+        }
 
-let url=ch.url||ch.stream;
-if(!url && ch.servers?.length) url=ch.servers[0].url;
-if(!url) return;
+        function setDefaultVolumeJW() {
+            if (jwInstance) jwInstance.setVolume(100);
+        }
 
-const lower=url.toLowerCase();
+        function resetPlayers() {
+            if (hls) {
+                try { hls.destroy(); } catch (e) {}
+                hls = null;
+            }
 
-/* MP4 */
-if(lower.includes(".mp4")){
-video.src=url;
-setDefaultVolumeHTML5();
-video.play().catch(()=>{});
-return;
-}
+            if (dashPlayer) {
+                try { dashPlayer.reset(); } catch (e) {}
+                dashPlayer = null;
+            }
 
-/* HLS */
-if(lower.includes(".m3u8")){
-if(Hls.isSupported()){
-hls=new Hls({manifestLoadingMaxRetry:6});
-hls.loadSource(url);
-hls.attachMedia(video);
-hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-setDefaultVolumeHTML5();
-video.play().catch(()=>{});
-});
-}else{
-video.src=url;
-setDefaultVolumeHTML5();
-video.play().catch(()=>{});
-}
-return;
-}
+            if (jwInstance) {
+                try { jwInstance.stop(); } catch (e) {}
+                try { jwInstance.remove(); } catch (e) {}
+                jwInstance = null;
+            }
 
-/* DASH */
-if(lower.includes(".mpd")){
-const dash=dashjs.MediaPlayer().create();
-dash.initialize(video,url,true);
-setDefaultVolumeHTML5();
-return;
-}
+            try { video.pause(); } catch (e) {}
+            video.removeAttribute("src");
+            video.load();
+            video.style.display = "block";
+            $("jw-player").style.display = "none";
+            setStatus("");
+        }
 
-/* fallback JW */
-startJW(url);
-}
+        function showPlayer() {
+            $("player-container").style.display = "block";
+        }
 
-/* JW */
-function startJW(url){
-video.style.display="none";
-document.getElementById("jw-player").style.display="block";
+        function closePlayer() {
+            resetPlayers();
+            $("player-container").style.display = "none";
+        }
 
-jwInstance=jwplayer("jw-player").setup({
-file:url,
-autostart:true,
-width:"100%",
-height:"100%"
-});
+        function showError(msg) {
+            $("movieGrid").innerHTML = `
+                <div style="padding:20px;color:#ff5252;font-size:16px;">
+                    ${msg}
+                </div>
+            `;
+        }
 
-jwInstance.on('ready',()=>setDefaultVolumeJW());
-}
+        function getPlayableUrl(ch, index = 0) {
+            if (!ch) return "";
 
-/* ปิด */
-function closePlayer(){
-resetPlayers();
-document.getElementById("player-container").style.display="none";
-}
+            if (Array.isArray(ch.servers) && ch.servers.length > 0) {
+                return ch.servers[index]?.url || "";
+            }
 
-/* EVENTS */
-document.getElementById("closePlayerBtn").onclick=(e)=>{
-e.stopPropagation();
-closePlayer();
-};
+            return ch.url || ch.stream || "";
+        }
 
-document.getElementById("homeBtn").onclick=(e)=>{
-e.stopPropagation();
-closePlayer();
-window.location.href="https://tiea9999.github.io/tv-online/index.html";
-};
+        function getServerCount(ch) {
+            if (Array.isArray(ch.servers) && ch.servers.length > 0) return ch.servers.length;
+            return getPlayableUrl(ch) ? 1 : 0;
+        }
 
-document.getElementById("player-container").onclick=()=>{
-closePlayer();
-};
+        function tryNextServer(ch, currentIndex, reason) {
+            const total = getServerCount(ch);
 
-/* LOAD */
-async function load(){
+            if (currentIndex + 1 < total) {
+                setStatus(`${reason} กำลังสลับไป Server ${currentIndex + 2}`);
+                setTimeout(() => {
+                    playStream(ch, currentIndex + 1);
+                }, 500);
+            } else {
+                setStatus("ทุก Server เล่นไม่ได้");
+            }
+        }
 
-const res=await fetch("https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json");
-const data=await res.json();
+        function startJW(url, ch, serverIndex) {
+            video.style.display = "none";
+            $("jw-player").style.display = "block";
 
-const grid=document.getElementById("movieGrid");
-let list=[];
+            jwInstance = jwplayer("jw-player").setup({
+                file: url,
+                autostart: true,
+                width: "100%",
+                height: "100%"
+            });
 
-if(data.groups){
-data.groups.forEach(g=>{
-g.stations.forEach(s=>{
-list.push({
-title:s.name,
-logo:s.image||g.image,
-url:s.url
-});
-});
-});
-}else{
-list=data;
-}
+            jwInstance.on("ready", () => {
+                setDefaultVolumeJW();
+            });
 
-list.forEach(ch=>{
-const card=document.createElement("div");
-card.className="movie-card";
+            jwInstance.on("error", () => {
+                tryNextServer(ch, serverIndex, "JW เล่นไม่ได้");
+            });
+        }
 
-card.innerHTML=`
-<img src="${ch.logo||''}">
-<div class="movie-title">${ch.title}</div>
-`;
+        function playStream(ch, serverIndex = 0) {
+            resetPlayers();
+            showPlayer();
 
-card.onclick=()=>{
+            const url = getPlayableUrl(ch, serverIndex);
+            if (!url) {
+                setStatus("ไม่พบลิงก์สตรีม");
+                return;
+            }
 
-  // 🏠 ปุ่มกลับโฮม
-  if(ch.url === "HOME"){
-    window.location.replace("https://tiea9999.github.io/tv-online/index.html");
-    return;
-  }
+            const total = getServerCount(ch);
+            setStatus(`กำลังเล่น ${ch.title || "ช่อง"} ${total > 1 ? `(Server ${serverIndex + 1}/${total})` : ""}`);
 
-  playStream(ch);
-};
+            const lower = url.toLowerCase();
 
-grid.appendChild(card);
-});
+            if (lower.includes(".mp4")) {
+                video.src = url;
+                setDefaultVolumeHTML5();
+                video.play().catch(() => {
+                    tryNextServer(ch, serverIndex, "MP4 เล่นไม่ได้");
+                });
+                return;
+            }
 
-}
+            if (lower.includes(".m3u8")) {
+                if (Hls.isSupported()) {
+                    hls = new Hls({
+                        enableWorker: true,
+                        lowLatencyMode: true,
+                        manifestLoadingMaxRetry: 3,
+                        levelLoadingMaxRetry: 3,
+                        fragLoadingMaxRetry: 3
+                    });
 
-load();
+                    hls.loadSource(url);
+                    hls.attachMedia(video);
 
+                    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                        setDefaultVolumeHTML5();
+                        video.play().catch(() => {
+                            tryNextServer(ch, serverIndex, "HLS autoplay ไม่สำเร็จ");
+                        });
+                    });
+
+                    hls.on(Hls.Events.ERROR, (event, data) => {
+                        console.log("HLS error:", data);
+
+                        if (data.fatal) {
+                            if (serverIndex + 1 < total) {
+                                tryNextServer(ch, serverIndex, "Main ใช้ไม่ได้ กำลังสลับสำรอง...");
+                            } else {
+                                setStatus("สตรีมเล่นไม่ได้ หรือโดนบล็อกต้นทาง");
+                            }
+                        }
+                    });
+                } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+                    video.src = url;
+                    setDefaultVolumeHTML5();
+                    video.play().catch(() => {
+                        tryNextServer(ch, serverIndex, "Native HLS เล่นไม่ได้");
+                    });
+                } else {
+                    tryNextServer(ch, serverIndex, "อุปกรณ์ไม่รองรับ HLS");
+                }
+                return;
+            }
+
+            if (lower.includes(".mpd")) {
+                try {
+                    dashPlayer = dashjs.MediaPlayer().create();
+                    dashPlayer.initialize(video, url, true);
+                    setDefaultVolumeHTML5();
+                } catch (e) {
+                    tryNextServer(ch, serverIndex, "DASH เล่นไม่ได้");
+                }
+                return;
+            }
+
+            startJW(url, ch, serverIndex);
+        }
+
+        function parseM3U(text) {
+            const lines = text.split(/\r?\n/);
+            const list = [];
+            let current = null;
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                if (line.startsWith("#EXTINF:")) {
+                    const tvgLogoMatch = line.match(/tvg-logo="([^"]*)"/i);
+                    const groupTitleMatch = line.match(/group-title="([^"]*)"/i);
+                    const namePart = line.split(",").pop()?.trim() || "ไม่ทราบชื่อ";
+
+                    current = {
+                        title: namePart,
+                        logo: tvgLogoMatch ? tvgLogoMatch[1] : "",
+                        group: groupTitleMatch ? groupTitleMatch[1] : "",
+                        url: "",
+                        servers: []
+                    };
+                } else if (!line.startsWith("#")) {
+                    if (current) {
+                        current.url = line;
+                        current.servers = [{ name: "Main", url: line }];
+                        list.push(current);
+                        current = null;
+                    } else if (line.startsWith("http")) {
+                        list.push({
+                            title: "Live Stream",
+                            logo: "",
+                            group: "",
+                            url: line,
+                            servers: [{ name: "Main", url: line }]
+                        });
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        function normalizeJson(data) {
+            let list = [];
+
+            if (Array.isArray(data)) {
+                list = data.map(item => ({
+                    title: item.title || item.name || "ไม่ทราบชื่อ",
+                    logo: item.logo || item.image || "",
+                    group: item.group || item.category || "",
+                    url: item.url || item.stream || item.link || "",
+                    servers: Array.isArray(item.servers) ? item.servers.filter(s => s && s.url) : []
+                }));
+            } else if (data.channels && Array.isArray(data.channels)) {
+                list = data.channels.map(item => ({
+                    title: item.title || item.name || "ไม่ทราบชื่อ",
+                    logo: item.logo || item.image || "",
+                    group: item.group || item.category || "",
+                    url: item.url || item.stream || item.link || "",
+                    servers: Array.isArray(item.servers) ? item.servers.filter(s => s && s.url) : []
+                }));
+            } else if (data.groups && Array.isArray(data.groups)) {
+                data.groups.forEach(g => {
+                    (g.stations || []).forEach(s => {
+                        list.push({
+                            title: s.title || s.name || "ไม่ทราบชื่อ",
+                            logo: s.logo || s.image || g.logo || g.image || "",
+                            group: g.title || g.name || "",
+                            url: s.url || s.stream || s.link || "",
+                            servers: Array.isArray(s.servers) ? s.servers.filter(x => x && x.url) : []
+                        });
+                    });
+                });
+            } else if (data.url || data.stream || data.link || data.servers) {
+                list = [{
+                    title: data.title || data.name || "Live Stream",
+                    logo: data.logo || data.image || "",
+                    group: data.group || "",
+                    url: data.url || data.stream || data.link || "",
+                    servers: Array.isArray(data.servers) ? data.servers.filter(s => s && s.url) : []
+                }];
+            }
+
+            return list
+                .map(item => {
+                    if ((!item.url || item.url === "") && item.servers?.length) {
+                        item.url = item.servers[0].url;
+                    }
+                    return item;
+                })
+                .filter(item => item.url || (item.servers && item.servers.length));
+        }
+
+        async function loadSource(sourceUrl) {
+            const lower = sourceUrl.toLowerCase();
+
+            if (lower.endsWith(".m3u8") && !lower.includes(".json") && !lower.includes(".m3u?")) {
+                return [{
+                    title: "Live Stream",
+                    logo: "",
+                    group: "",
+                    url: sourceUrl,
+                    servers: [{ name: "Main", url: sourceUrl }]
+                }];
+            }
+
+            const res = await fetch(sourceUrl);
+            const text = await res.text();
+            const trimmed = text.trim();
+
+            if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
+                return normalizeJson(JSON.parse(text));
+            }
+
+            if (text.includes("#EXTM3U") || text.includes("#EXTINF")) {
+                return parseM3U(text);
+            }
+
+            return [];
+        }
+
+        function renderChannels(list) {
+            const grid = $("movieGrid");
+            grid.innerHTML = "";
+
+            if (!list.length) {
+                showError("ไม่พบรายการช่อง");
+                return;
+            }
+
+            list.forEach(ch => {
+                const card = document.createElement("div");
+                card.className = "movie-card";
+                card.tabIndex = 0;
+
+                const imgHtml = ch.logo
+                    ? `<img src="${ch.logo}" onerror="this.src='';this.style.display='none';">`
+                    : `<img src="" style="display:none;">`;
+
+                card.innerHTML = `
+                    ${imgHtml}
+                    <div class="movie-title">${ch.title || "ไม่มีชื่อ"}</div>
+                `;
+
+                card.onclick = () => playStream(ch, 0);
+
+                card.onkeydown = (e) => {
+                    if (e.key === "Enter" || e.key === "OK") {
+                        e.preventDefault();
+                        playStream(ch, 0);
+                    }
+                };
+
+                grid.appendChild(card);
+            });
+        }
+
+        $("closePlayerBtn").onclick = (e) => {
+            e.stopPropagation();
+            closePlayer();
+        };
+
+        $("homeBtn").onclick = (e) => {
+            e.stopPropagation();
+            closePlayer();
+            window.location.href = "https://tiea9999.github.io/tv-online/index.html";
+        };
+
+        $("player-container").addEventListener("click", function (e) {
+            if (e.target === this) {
+                closePlayer();
+            }
+        });
+
+        async function load() {
+            try {
+                setStatus("กำลังโหลดรายการ...");
+                const list = await loadSource(SOURCE_URL);
+                renderChannels(list);
+                setStatus("");
+                console.log("channels loaded:", list);
+            } catch (err) {
+                console.error(err);
+                showError("โหลดรายการไม่สำเร็จ");
+                setStatus("โหลดรายการไม่สำเร็จ");
+            }
+        }
+
+        load();
     </script>
 
 </body>
