@@ -3,34 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV NETFLIX UI</title>
+<title>TIEA IPTV PRO</title>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif}
-.sidebar{width:220px;background:#111;position:fixed;height:100%;padding:10px}
-.menu-btn{width:100%;padding:12px;margin-bottom:10px;background:#222;border:0;color:#fff;border-radius:10px;cursor:pointer}
-.content{margin-left:240px;padding:10px}
-.row{display:flex;gap:10px;overflow-x:auto;margin-bottom:20px}
-.card{min-width:140px;background:#171717;border-radius:10px;cursor:pointer}
-.card img{width:100%;height:180px;object-fit:cover}
-.card-title{text-align:center;font-size:13px;padding:6px}
+body{
+    margin:0;
+    background:#000;
+    color:#fff;
+    font-family:sans-serif;
+    font-size:18px;
+}
 
-#playerWrap{position:fixed;inset:0;background:#000;display:none}
-#videoPlayer{width:100%;height:100%}
+.sidebar{
+    width:220px;
+    background:#111;
+    position:fixed;
+    height:100%;
+    padding:10px;
+}
 
-#playerBar{position:absolute;top:10px;left:10px;display:flex;gap:10px}
-.btn{padding:10px;background:#222;border:0;color:#fff;border-radius:10px}
+.menu-btn{
+    width:100%;
+    padding:16px;
+    margin-bottom:12px;
+    background:#222;
+    border:0;
+    color:#fff;
+    border-radius:10px;
+    font-size:18px;
+}
+
+.content{
+    margin-left:240px;
+    padding:10px;
+}
+
+.row{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    margin-bottom:20px;
+}
+
+.card{
+    min-width:160px;
+    background:#171717;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.card-title{
+    text-align:center;
+    font-size:16px;
+    padding:8px;
+}
+
+#playerWrap{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:none;
+}
+
+#videoPlayer{
+    width:100%;
+    height:100%;
+}
+
+#playerBar{
+    position:absolute;
+    top:10px;
+    left:10px;
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    padding:12px;
+    background:#222;
+    border:0;
+    color:#fff;
+    border-radius:10px;
+    font-size:16px;
+}
 </style>
 </head>
 
 <body>
 
 <div class="sidebar">
-<button class="menu-btn" onclick="loadData('https://raw.githubusercontent.com/tiea9999/tv-online/main/M3U/Dooball.json')">📺 ทีวี</button>
-<button class="menu-btn" onclick="loadData('https://raw.githubusercontent.com/tiea9999/tv-online/main/Ezmovie.json')">🎬 หนัง</button>
-<button class="menu-btn" onclick="loadData('https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json')">📺 ซีรีส์</button>
+<button class="menu-btn" onclick="loadData(tv)">📺 ทีวี</button>
+<button class="menu-btn" onclick="loadData(movie)">🎬 หนัง</button>
+<button class="menu-btn" onclick="loadData(series)">📺 ซีรีส์</button>
 </div>
 
 <div class="content" id="content"></div>
@@ -48,31 +120,42 @@ body{margin:0;background:#000;color:#fff;font-family:sans-serif}
 
 <script>
 
-let playerMode = "auto"
-let currentList = []
-let currentIndex = -1
+const tv = "https://raw.githubusercontent.com/tiea9999/tv-online/main/M3U/Dooball.json"
+const movie = "https://raw.githubusercontent.com/tiea9999/tv-online/main/Ezmovie.json"
+const series = "https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json"
+
+let playerMode="auto"
+let currentList=[]
+let currentIndex=-1
 let hls
 
-function setPlayer(mode){
-    playerMode = mode
+function setPlayer(m){playerMode=m}
+
+function getUrl(i){
+    if(i.servers && i.servers.length){
+        return i.servers[0].url
+    }
+    return i.url || i.stream || i.link || i.source
 }
 
-function openMX(url){
-    location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end"
+function openMX(u){
+    location.href="intent:"+u+"#Intent;package=com.mxtech.videoplayer.ad;end"
 }
 
-function openVLC(url){
-    location.href = "intent:" + url + "#Intent;package=org.videolan.vlc;end"
+function openVLC(u){
+    location.href="intent:"+u+"#Intent;package=org.videolan.vlc;end"
 }
 
 function play(item,index,list){
-    currentList = list
-    currentIndex = index
+    currentList=list
+    currentIndex=index
 
-    const url = item.url || item.link || item.stream
-    const lower = url.toLowerCase()
+    let url=getUrl(item)
+    if(!url){alert("ไม่มีลิงก์");return}
 
     document.getElementById("playerWrap").style.display="block"
+
+    let lower=url.toLowerCase()
 
     if(playerMode==="mx"){openMX(url);return}
     if(playerMode==="vlc"){openVLC(url);return}
@@ -80,7 +163,7 @@ function play(item,index,list){
     if(lower.includes(".m3u8")){
         if(Hls.isSupported()){
             if(hls)hls.destroy()
-            hls = new Hls()
+            hls=new Hls()
             hls.loadSource(url)
             hls.attachMedia(videoPlayer)
         }else{
@@ -89,7 +172,7 @@ function play(item,index,list){
         return
     }
 
-    if(lower.includes(".mp4")){
+    if(lower.includes(".mp4")||lower.includes(".mkv")){
         openMX(url)
         return
     }
@@ -97,9 +180,9 @@ function play(item,index,list){
     openVLC(url)
 }
 
-videoPlayer.onended = ()=>{
-    const next = currentIndex+1
-    if(next < currentList.length){
+videoPlayer.onended=()=>{
+    let next=currentIndex+1
+    if(next<currentList.length){
         play(currentList[next],next,currentList)
     }
 }
@@ -108,25 +191,62 @@ function closePlayer(){
     document.getElementById("playerWrap").style.display="none"
 }
 
+function parse(data){
+    let list=[]
+
+    if(Array.isArray(data)){
+        data.forEach(i=>{
+
+            if(i.episodes){
+                list.push({
+                    title:i.title,
+                    logo:i.poster,
+                    type:"folder",
+                    items:i.episodes
+                })
+            }else{
+                list.push({
+                    title:i.title || i.name,
+                    logo:i.poster || i.image,
+                    url:i.url || i.stream || i.link || i.source,
+                    servers:i.servers || []
+                })
+            }
+
+        })
+        return list
+    }
+
+    if(data.channels){
+        return data.channels
+    }
+
+    if(data.items){
+        return parse(data.items)
+    }
+
+    return list
+}
+
 function render(list){
-    const content = document.getElementById("content")
+    const content=document.getElementById("content")
     content.innerHTML=""
 
-    const row = document.createElement("div")
+    const row=document.createElement("div")
     row.className="row"
 
     list.forEach((item,i)=>{
-        const card = document.createElement("div")
+        const card=document.createElement("div")
         card.className="card"
 
-        card.innerHTML = `
-        <img src="${item.logo || item.poster || ''}">
+        card.innerHTML=`
+        <img src="${item.logo||''}">
         <div class="card-title">${item.title}</div>
         `
 
-        card.onclick = ()=>{
-            if(item.episodes){
-                render(item.episodes)
+        card.onclick=()=>{
+            if(item.type==="folder"){
+                render(item.items)
             }else{
                 play(item,i,list)
             }
@@ -139,21 +259,12 @@ function render(list){
 }
 
 async function loadData(url){
-    const res = await fetch(url)
-    const data = await res.json()
-
-    let list = []
-
-    if(Array.isArray(data)){
-        list = data
-    }else if(data.items){
-        list = data.items
-    }else if(data.channels){
-        list = data.channels
-    }
-
-    render(list)
+    const res=await fetch(url)
+    const data=await res.json()
+    render(parse(data))
 }
+
+loadData(tv)
 
 </script>
 
