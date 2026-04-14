@@ -2,273 +2,192 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
+<title>Dooball Iframe Stable</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>TIEA IPTV - Dooball TV Mode</title>
-
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-*{box-sizing:border-box}
-body{
+body {
     margin:0;
-    font-family:Arial,sans-serif;
-    background:#101418;
+    font-family: Arial, sans-serif;
+    background:#1c1c1c;
     color:#fff;
-    overflow-x:hidden;
 }
 
-.container{
-    max-width:1200px;
+.container {
+    max-width:1000px;
     margin:auto;
     background:#fff;
     color:#111;
     min-height:100vh;
 }
 
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    padding:10px;
-    background:#111;
+.league {
+    background:#5c6b7a;
     color:#fff;
+    padding:10px;
+    font-weight:bold;
+    position:sticky;
+    top:52px;
+    z-index:10;
+}
+
+.row {
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid #eee;
+    padding:10px;
+    gap:10px;
+}
+
+.time {
+    width:80px;
+    color:#666;
+    font-weight:bold;
+}
+
+.teams {
+    flex:1;
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.team {
+    flex:1;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    min-width:0;
+}
+
+.team.home {
+    justify-content:flex-end;
+    text-align:right;
+}
+
+.team.away {
+    justify-content:flex-start;
+}
+
+.team img {
+    width:20px;
+    height:20px;
+    object-fit:contain;
+}
+
+.team span {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    max-width:140px;
+}
+
+.vs {
+    width:40px;
+    text-align:center;
+    font-weight:bold;
+    color:#999;
+}
+
+.servers {
+    width:120px;
+    text-align:right;
+}
+
+.btn {
+    background:#22c55e;
+    color:#fff;
+    padding:6px 10px;
+    border-radius:6px;
+    font-size:12px;
+    cursor:pointer;
+    border:none;
+}
+
+.topbar{
+    background:#111;
+    padding:10px;
     position:sticky;
     top:0;
     z-index:20;
-    flex-wrap:wrap;
-    box-shadow:0 4px 20px rgba(0,0,0,.35);
-}
-
-.sports,.dates,.top-actions{
     display:flex;
     gap:8px;
     flex-wrap:wrap;
     align-items:center;
 }
 
-.tab,.date,.action-btn,.btn,.server-chip,.player-btn{
-    border:none;
-    cursor:pointer;
-    outline:none;
-    transition:.18s ease;
-    font-family:inherit;
-}
-
-.tab,.date{
-    padding:8px 12px;
-    background:#333;
+.top-btn{
+    background:#2563eb;
     color:#fff;
-    border-radius:8px;
-    font-size:13px;
+    border:none;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
 }
 
-.tab.active,.date.active{
+.home-btn{
+    background:#22c55e;
+}
+
+#dateMenu{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:10px;
+    background:#222;
+    position:sticky;
+    top:52px;
+    z-index:15;
+}
+
+.date-chip{
+    color:#fff;
+    padding:6px 10px;
+    background:#444;
+    border-radius:6px;
+    cursor:pointer;
+    white-space:nowrap;
+    border:none;
+}
+
+.date-chip.active{
     background:#22c55e;
     color:#000;
     font-weight:bold;
 }
 
-.tab:focus,.date:focus,.action-btn:focus,
-.row:focus,.btn:focus,.server-chip:focus,.player-btn:focus,
-.home-btn:focus{
-    box-shadow:0 0 0 3px rgba(0,229,255,.75);
-}
-
-.action-btn{
-    padding:8px 12px;
-    border-radius:8px;
-    background:#2563eb;
-    color:#fff;
-    font-size:13px;
-}
-
-.home-btn{
-    display:inline-block;
-    padding:8px 12px;
-    background:#22c55e;
-    color:#fff;
-    border-radius:8px;
-    font-size:13px;
-    text-decoration:none;
-}
-
-.home-btn:hover{background:#16a34a}
-
-.statusbar{
-    display:none;
-    padding:10px 14px;
-    background:#0f172a;
-    color:#fff;
-    font-size:14px;
-}
-
-.statusbar.show{display:block}
-
-.league{
-    background:#334155;
-    color:#fff;
-    padding:10px 12px;
-    font-weight:bold;
-    font-size:15px;
-    position:sticky;
-    top:62px;
-    z-index:5;
-}
-
-.row{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    border-bottom:1px solid #eee;
-    padding:12px 10px;
-    background:#fff;
-    outline:none;
-}
-
-.row:hover{background:#f8fafc}
-.row.live{
-    background:#fff3f3;
-    border-left:4px solid #ef4444;
-}
-.row.upcoming{background:#f9fafb}
-.row.ended{opacity:.45}
-
-.time{
-    width:110px;
-    color:#555;
-    white-space:nowrap;
-    font-size:14px;
-    font-weight:bold;
-}
-
-.live-badge{
-    color:#ef4444;
-    font-weight:bold;
-}
-
-.teams{
-    flex:1;
-    display:grid;
-    grid-template-columns:1fr 60px 1fr;
-    align-items:center;
-    gap:6px;
-}
-
-.teams.single{
-    grid-template-columns:1fr;
-}
-
-.teams.single .vs,
-.teams.single .team.away{
-    display:none;
-}
-
-.teams.single .team.home{
-    justify-content:center;
-    width:100%;
-    font-weight:normal;
-}
-
-.team{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    min-width:0;
-    font-size:14px;
-}
-
-.team.home{justify-content:flex-end}
-.team.away{justify-content:flex-start}
-
-.team img{
-    width:24px;
-    height:24px;
-    object-fit:contain;
-    flex-shrink:0;
-}
-
-.team-name{
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-}
-
-.vs{
-    text-align:center;
-    font-weight:bold;
-    color:#666;
-}
-
-.servers{
-    width:290px;
-    text-align:right;
-    display:flex;
-    justify-content:flex-end;
-    gap:6px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    background:#22c55e;
-    color:#fff;
-    padding:7px 10px;
-    border-radius:8px;
-    font-size:12px;
-    font-weight:bold;
-}
-
-.btn.more-btn{background:#3b82f6}
-.btn.active{background:#f59e0b;color:#fff}
-
-#overlay{
+#overlay {
     position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.88);
+    top:0;left:0;
+    width:100%;height:100%;
+    background:#000;
     display:none;
     justify-content:center;
     align-items:center;
     z-index:9999;
 }
 
-#playerBox{
-    width:min(94vw, 1100px);
-    position:relative;
-    background:#000;
-    border-radius:14px;
-    overflow:hidden;
-    box-shadow:0 20px 60px rgba(0,0,0,.6);
+#playerBox {
+    width:92%;
+    max-width:1000px;
 }
 
-.playerTopBar{
+#playerFrame {
+    width:100%;
+    height:600px;
+    border:none;
+    background:#000;
+}
+
+.player-head{
+    color:#fff;
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:10px;
-    padding:10px;
-    color:#fff;
-    background:#111;
+    margin-bottom:5px;
     flex-wrap:wrap;
 }
-
-.playerTopLeft,.playerTopRight{
-    display:flex;
-    gap:8px;
-    align-items:center;
-    flex-wrap:wrap;
-}
-
-.player-btn{
-    padding:8px 12px;
-    border-radius:8px;
-    color:#fff;
-    font-size:13px;
-    font-weight:bold;
-}
-
-.player-home{background:#2563eb}
-.player-close{background:#dc2626}
-.player-mx{background:#ea580c}
 
 #serverBar{
     display:flex;
@@ -276,29 +195,21 @@ body{
     flex-wrap:wrap;
 }
 
-.server-chip{
-    padding:7px 10px;
-    border-radius:999px;
+.server-btn{
     background:#374151;
     color:#fff;
-    font-size:12px;
-    font-weight:bold;
+    border:none;
+    padding:6px 10px;
+    border-radius:999px;
+    cursor:pointer;
 }
 
-.server-chip.active{
+.server-btn.active{
     background:#f59e0b;
-    color:#fff;
-}
-
-video{
-    width:100%;
-    background:#000;
-    display:block;
-    aspect-ratio:16/9;
 }
 
 .empty{
-    padding:25px;
+    padding:20px;
     text-align:center;
     color:#555;
 }
@@ -308,123 +219,125 @@ video{
         flex-direction:column;
         align-items:stretch;
     }
-    .time,.servers{width:100%;text-align:left}
-    .servers{justify-content:flex-start}
-    .teams{width:100%}
-    .league{top:110px}
+    .time,.servers{
+        width:100%;
+        text-align:left;
+    }
+    .teams{
+        width:100%;
+    }
+    #playerFrame{
+        height:56vw;
+        min-height:260px;
+    }
+    .league{
+        top:52px;
+    }
 }
 </style>
 </head>
+
 <body>
 
 <div class="topbar">
-    <div class="sports">
-        <button class="tab active" tabindex="0" onclick="setSport('all', this)">ALL</button>
-        <button class="tab" tabindex="0" onclick="setSport('live', this)">🔴 LIVE</button>
-        <button class="tab" tabindex="0" onclick="setSport('football', this)">⚽ Football</button>
-        <button class="tab" tabindex="0" onclick="setSport('basketball', this)">🏀 Basketball</button>
-    </div>
-
-    <div class="dates">
-        <button class="date active" tabindex="0" onclick="setDate(0, this)">วันนี้</button>
-        <button class="date" tabindex="0" onclick="setDate(1, this)">พรุ่งนี้</button>
-        <button class="date" tabindex="0" onclick="setDate(2, this)">วันถัดไป</button>
-    </div>
-
-    <div class="top-actions">
-        <button id="focusFirstBtn" class="action-btn" tabindex="0">โฟกัสรายการแรก</button>
-        <button id="reloadBtn" class="action-btn" tabindex="0">รีโหลด</button>
-        <a href="https://tiea9999.github.io/tv-online/index.html" class="home-btn" tabindex="0">🏠 หน้าหลัก</a>
-    </div>
+    <button class="top-btn home-btn" onclick="goHome()">⬅ กลับหน้าหลัก</button>
+    <button class="top-btn" onclick="load()">รีโหลด</button>
 </div>
 
-<div id="statusBar" class="statusbar"></div>
 <div class="container" id="app"></div>
 
 <div id="overlay">
     <div id="playerBox">
-        <div class="playerTopBar">
-            <div class="playerTopLeft">
-                <button id="playerHomeBtn" class="player-btn player-home" tabindex="0">🏠 หน้าหลัก</button>
-                <button id="playerCloseBtn" class="player-btn player-close" tabindex="0">✕ ปิด</button>
-                <button id="playerMxBtn" class="player-btn player-mx" tabindex="0">▶ MX</button>
-            </div>
-
-            <div class="playerTopRight">
-                <div id="serverBar"></div>
-            </div>
+        <div class="player-head">
+            <div id="serverBar"></div>
+            <button class="top-btn" style="background:#dc2626" onclick="closePlayer()">❌ Close</button>
         </div>
-
-        <video id="player" controls autoplay playsinline></video>
+        <iframe id="playerFrame" allowfullscreen referrerpolicy="no-referrer"></iframe>
     </div>
 </div>
 
 <script>
-let currentSport = "all";
-let currentDateOffset = 0;
-let originalData = null;
-let htmlListGlobal = null;
-
-const PLAYLIST_URL = "https://broken-surf-7347.hssmnoy.workers.dev/?url=https://drive.google.com/uc?id=15Ye3NPw0cjNrJGTu2Q2aoqoApOp8GipC&export=download";
-const HTML_URL = "https://broken-surf-7347.hssmnoy.workers.dev/?url=https://embed-xs.bananacake.org/dooball66v2/schedule.html";
+const PLAYLIST_URL = "https://raw.githubusercontent.com/nongakka/TV/main/playlist/sportsonline.json";
+const HTML_URL = "https://iptv.tawatchai250958.workers.dev/?url=https://embed-xs.bananacake.org/dooball66v2/schedule.html";
 const HOME_URL = "https://tiea9999.github.io/tv-online/index.html";
 
-const logoCache = {};
+let originalData = null;
+let htmlListGlobal = [];
 let currentServers = [];
 let currentIndex = 0;
-let lastFocusedRow = null;
-
-const app = document.getElementById("app");
-const overlay = document.getElementById("overlay");
-const video = document.getElementById("player");
-const statusBar = document.getElementById("statusBar");
-const serverBar = document.getElementById("serverBar");
-
-function setStatus(msg){
-    statusBar.textContent = msg || "";
-    statusBar.classList.toggle("show", !!msg);
-}
+let currentDateFilter = "";
 
 async function load(){
-    try{
-        setStatus("กำลังโหลดตารางแข่งขัน...");
+    try {
+        const app = document.getElementById("app");
+        app.innerHTML = "<div class='empty'>กำลังโหลด...</div>";
+
         const [jsonRes, htmlRes] = await Promise.all([
             fetch(PLAYLIST_URL),
             fetch(HTML_URL)
         ]);
 
-        if(!jsonRes.ok) throw new Error("โหลด playlist ไม่สำเร็จ");
-        if(!htmlRes.ok) throw new Error("โหลด schedule ไม่สำเร็จ");
+        if (!jsonRes.ok) throw new Error("โหลด playlist ไม่สำเร็จ");
+        if (!htmlRes.ok) throw new Error("โหลด schedule ไม่สำเร็จ");
 
         const data = await jsonRes.json();
         const html = await htmlRes.text();
 
-        const htmlList = parseSchedule(html);
+        originalData = normalizePlaylist(data);
+        htmlListGlobal = parseHTMLLogos(html);
 
-        originalData = data;
-        htmlListGlobal = htmlList;
-
-        applyFilter();
-        setStatus("");
-    }catch(err){
-        console.error(err);
-        setStatus("โหลดตารางแข่งขันไม่สำเร็จ");
-        app.innerHTML = `<div class="empty">โหลดตารางแข่งขันไม่สำเร็จ</div>`;
+        renderApp(originalData);
+    } catch (e) {
+        console.error(e);
+        document.getElementById("app").innerHTML =
+            "<div class='empty' style='color:red'>โหลดไม่สำเร็จ</div>";
     }
 }
 
-function parseSchedule(html){
+function normalizePlaylist(data){
+    const result = { groups: [] };
+    if(!data?.groups) return result;
+
+    data.groups.forEach(group => {
+        if(!Array.isArray(group.stations)) return;
+
+        const map = new Map();
+
+        group.stations.forEach(st => {
+            if(!st?.name || !st?.url) return;
+
+            const name = st.name.trim();
+            if(!map.has(name)){
+                map.set(name,{ name, stations:[] });
+            }
+
+            map.get(name).stations.push({
+                url: st.url,
+                referer: st.referer || ""
+            });
+        });
+
+        result.groups.push({
+            name: group.name || "ไม่ทราบลีก",
+            groups: Array.from(map.values())
+        });
+    });
+
+    return result;
+}
+
+function parseHTMLLogos(html){
     const doc = new DOMParser().parseFromString(html, "text/html");
     const list = [];
 
-    doc.querySelectorAll(".match").forEach(el => {
-        const teams = el.querySelectorAll("span");
-        const imgs = el.querySelectorAll("img");
+    doc.querySelectorAll(".match").forEach(row => {
+        const teams = row.querySelectorAll("span");
+        const imgs = row.querySelectorAll("img");
 
         if(teams.length >= 2 && imgs.length >= 2){
             list.push({
-                home: teams[0].innerText.trim(),
-                away: teams[1].innerText.trim(),
+                home: normalize(teams[0].innerText),
+                away: normalize(teams[1].innerText),
                 homeLogo: imgs[0].src,
                 awayLogo: imgs[1].src
             });
@@ -434,466 +347,234 @@ function parseSchedule(html){
     return list;
 }
 
-function parseMatch(name){
-    const t = name.match(/\((\d{2}\/\d{2}\s+\d{2}:\d{2})\)/);
-    let time = t ? t[1] : "";
+function findLogos(home, away){
+    const h = normalize(home);
+    const a = normalize(away);
 
-    let clean = name
-        .replace(/\d{2}\/\d{2}\s+\d{2}:\d{2}/g, "")
-        .replace(/\([^)]*\)/g, "")
-        .replace(/\s+/g, " ")
-        .trim();
+    let best = null;
+    let score = 0;
 
-    clean = clean.replace(/(.+?)\1+/g, "$1");
-
-    let home = "";
-    let away = "TBD";
-
-    if(clean.includes(" vs ")) {
-        [home, away] = clean.split(/ vs /i);
-    } else if(clean.includes(" VS ")) {
-        [home, away] = clean.split(" VS ");
-    } else if(clean.includes(" v ")) {
-        [home, away] = clean.split(" v ");
-    } else {
-        return { home: clean.trim(), away: "TBD", time };
-    }
-
-    return {
-        home: (home || "").trim(),
-        away: (away || "").trim(),
-        time
-    };
-}
-
-function extractDateTime(name){
-    const m = name.match(/\((\d{2}\/\d{2})\s+(\d{2}:\d{2})\)/);
-    if(!m) return null;
-    return {date:m[1], time:m[2]};
-}
-
-function getMatchStatus(name){
-    const dt = extractDateTime(name);
-    if(!dt) return {status:"unknown"};
-
-    const now = new Date();
-    const [day,month] = dt.date.split("/");
-    const [h,m] = dt.time.split(":");
-
-    const matchTime = new Date();
-    matchTime.setFullYear(now.getFullYear());
-    matchTime.setMonth(Number(month)-1);
-    matchTime.setDate(Number(day));
-    matchTime.setHours(Number(h), Number(m), 0, 0);
-
-    const diff = (now - matchTime)/60000;
-
-    if(name.includes("'")) return {status:"live", time:dt.time};
-    if(diff >= 0 && diff <= 120) return {status:"live", time:dt.time};
-    if(diff < 0) return {status:"upcoming", time:dt.time};
-
-    return {status:"ended", time:dt.time};
-}
-
-function normalize(name){
-    return (name || "").toLowerCase().replace(/[^a-z]/g,"");
-}
-
-function similarity(a,b){
-    if(!a || !b) return 0;
-    if(a.includes(b) || b.includes(a)) return 1;
-    let m=0;
-    for(let i=0;i<a.length;i++) if(b.includes(a[i])) m++;
-    return m/Math.max(a.length,b.length);
-}
-
-function findLogos(home,away,list){
-    const key = normalize(home)+normalize(away);
-    if(logoCache[key]) return logoCache[key];
-
-    let best = null, score = 0;
-
-    list.forEach(m=>{
-        const s = similarity(normalize(home),normalize(m.home)) +
-                  similarity(normalize(away),normalize(m.away));
-
+    htmlListGlobal.forEach(m => {
+        const s = similarity(h, m.home) + similarity(a, m.away);
         if(s > score){
             score = s;
             best = m;
         }
     });
 
-    if(score > 1.2 && best){
-        logoCache[key] = {homeLogo:best.homeLogo, awayLogo:best.awayLogo};
-        return logoCache[key];
+    if(best && score > 1.2){
+        return {
+            homeLogo: best.homeLogo,
+            awayLogo: best.awayLogo
+        };
     }
 
-    return null;
+    return {};
 }
 
-function applyFilter(){
-    if(!originalData || !originalData.groups){
-        app.innerHTML = `<div class="empty">ไม่พบข้อมูล</div>`;
-        return;
-    }
-
-    let data = JSON.parse(JSON.stringify(originalData));
-    const now = new Date();
-
-    const today = new Date();
-    const d = String(today.getDate()).padStart(2,'0');
-    const m = String(today.getMonth()+1).padStart(2,'0');
-    const todayStr = `${d}/${m}`;
-
-    if(currentSport === "live"){
-        let allMatches = [];
-
-        data.groups.forEach(l=>{
-            (l.groups || []).forEach(match=>{
-                const dt = extractDateTime(match.name);
-                if(!dt || dt.date !== todayStr) return;
-
-                const [hh, mm] = dt.time.split(":");
-                const matchTime = new Date();
-                matchTime.setHours(Number(hh), Number(mm), 0, 0);
-
-                const diffMin = (now - matchTime) / 60000;
-                const isLive = diffMin >= 0 && diffMin <= 120;
-                const isUpcoming = diffMin < 0;
-
-                if(!isLive && !isUpcoming) return;
-
-                allMatches.push({
-                    league: l.name,
-                    match: match
-                });
-            });
-        });
-
-        allMatches.sort((a,b)=>{
-            const ta = extractDateTime(a.match.name);
-            const tb = extractDateTime(b.match.name);
-            if(!ta || !tb) return 0;
-            return ta.time.localeCompare(tb.time);
-        });
-
-        data.groups = [{
-            name: "🔴 LIVE TODAY",
-            groups: allMatches.map(x => x.match)
-        }];
-    } else {
-        const target = new Date();
-        target.setDate(now.getDate() + currentDateOffset);
-
-        const dd = String(target.getDate()).padStart(2,'0');
-        const mm = String(target.getMonth()+1).padStart(2,'0');
-        const targetStr = `${dd}/${mm}`;
-
-        data.groups.forEach(l=>{
-            l.groups = (l.groups || []).filter(match=>{
-                const dt = extractDateTime(match.name);
-                if(!dt || dt.date !== targetStr) return false;
-                const status = getMatchStatus(match.name);
-                return status.status !== "ended";
-            });
-        });
-
-        if(currentSport !== "all"){
-            data.groups = data.groups.filter(l=>{
-                const n = (l.name || "").toLowerCase();
-
-                if(currentSport === "football"){
-                    return n.includes("league")
-                        || n.includes("liga")
-                        || n.includes("ligue")
-                        || n.includes("premier")
-                        || n.includes("division")
-                        || n.includes("serie")
-                        || n.includes("cup")
-                        || n.includes("fa")
-                        || n.includes("uefa")
-                        || n.includes("champions");
-                }
-
-                if(currentSport === "basketball"){
-                    return n.includes("nba");
-                }
-
-                return true;
-            });
-        }
-
-        data.groups.forEach(l=>{
-            l.groups.sort((a,b)=>{
-                const ta = extractDateTime(a.name);
-                const tb = extractDateTime(b.name);
-                if(!ta || !tb) return 0;
-                return ta.time.localeCompare(tb.time);
-            });
-        });
-    }
-
-    data.groups = data.groups.filter(l => (l.groups || []).length > 0);
-
-    app.innerHTML = "";
-    render(data);
-
-    const firstRow = document.querySelector(".row");
-    if(firstRow) firstRow.focus();
+function normalize(str){
+    return (str || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9ก-๙]/g,"")
+        .trim();
 }
 
-function createServerListAttr(stations){
-    return JSON.stringify(stations || []).replace(/"/g, "&quot;");
+function similarity(a,b){
+    if(!a || !b) return 0;
+    if(a.includes(b) || b.includes(a)) return 1;
+
+    let m = 0;
+    for(let i=0;i<a.length;i++){
+        if(b.includes(a[i])) m++;
+    }
+    return m / Math.max(a.length,b.length);
 }
 
-function render(data){
-    if(!data.groups || !data.groups.length){
-        app.innerHTML = `<div class="empty">ไม่พบการแข่งขัน</div>`;
-        return;
+function parseMatch(name){
+    const time = (name.match(/\d{2}:\d{2}/) || [""])[0];
+
+    let clean = name.replace(/\d{2}:\d{2}/g,"").trim();
+    clean = clean.replace(/^(NBA|NFL|MLB|NHL):\s*/i, "");
+
+    let home = clean;
+    let away = "TBD";
+
+    if(clean.includes(" vs ")){
+        [home, away] = clean.split(" vs ");
+    } else if(clean.includes(" @ ")){
+        const parts = clean.split(" @ ");
+        away = parts[0];
+        home = parts[1];
     }
 
-    data.groups.forEach(l=>{
-        const league = document.createElement("div");
-        league.className = "league";
-        league.textContent = l.name || "ไม่ทราบลีก";
-        app.appendChild(league);
+    home = home.replace(/^(NBA|NFL|MLB|NHL):\s*/i, "").trim();
+    away = away.replace(/^(NBA|NFL|MLB|NHL):\s*/i, "").trim();
 
-        (l.groups || []).forEach(match=>{
-            const {home,away,time} = parseMatch(match.name || "");
-            const safeAway = away || "TBD";
+    return {home, away, time};
+}
+
+function renderApp(data){
+    const app = document.getElementById("app");
+    const dateMenu = new Set();
+
+    let html = `<div id="dateMenu"></div>`;
+
+    data.groups.forEach(league => {
+        dateMenu.add(league.name);
+
+        html += `
+<div class="league-block" data-date="${escapeHtml(league.name)}">
+    <div class="league">${escapeHtml(league.name)}</div>
+    <div class="rows">
+`;
+
+        league.groups.forEach(match => {
+            const {home, away, time} = parseMatch(match.name);
             const isSingle = !away || away === "TBD";
-            const logos = findLogos(home,away,htmlListGlobal || []) || {};
-            const status = getMatchStatus(match.name || "");
+            const logos = findLogos(home, away);
+            const servers = match.stations || [];
 
-            const row = document.createElement("div");
-            row.className = `row ${status.status}`;
-            row.tabIndex = 0;
+            html += `
+<div class="row">
+    <div class="time">${escapeHtml(time || "--:--")}</div>
 
-            row.innerHTML = `
-                <div class="time">
-                    ${status.status==="live"
-                        ? `<span class="live-badge">🔴 ${time}</span>`
-                        : (time || "--:--")}
-                </div>
+    <div class="teams">
+        ${
+            isSingle
+            ? `
+            <div style="width:100%;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                ${escapeHtml(home)}
+            </div>
+            `
+            : `
+            <div class="team home">
+                <span>${escapeHtml(home)}</span>
+                ${logos.homeLogo ? `<img src="${logos.homeLogo}" alt="">` : ""}
+            </div>
 
-                <div class="teams ${isSingle ? 'single' : ''}">
-                    <div class="team home">
-                        <span class="team-name">${home || "-"}</span>
-                        ${logos.homeLogo ? `<img src="${logos.homeLogo}" alt="">` : ""}
-                    </div>
+            <div class="vs">VS</div>
 
-                    ${
-                        (!away || away === "TBD")
-                        ? ""
-                        : `
-                        <div class="vs">VS</div>
-                        <div class="team away">
-                            ${logos.awayLogo ? `<img src="${logos.awayLogo}" alt="">` : ""}
-                            <span class="team-name">${safeAway}</span>
-                        </div>
-                        `
-                    }
-                </div>
+            <div class="team away">
+                ${logos.awayLogo ? `<img src="${logos.awayLogo}" alt="">` : ""}
+                <span>${escapeHtml(away)}</span>
+            </div>
+            `
+        }
+    </div>
 
-                <div class="servers">
-                    <button class="btn more-btn watch-btn" data-list="${createServerListAttr(match.stations)}">▶ ดูสด</button>
-                </div>
-            `;
-
-            const watchBtn = row.querySelector(".watch-btn");
-            watchBtn.tabIndex = 0;
-
-            watchBtn.addEventListener("click", (e)=>{
-                e.stopPropagation();
-                const list = JSON.parse(watchBtn.dataset.list || "[]");
-                openPlayer(list, 0, row);
-            });
-
-            watchBtn.addEventListener("keydown", (e)=>{
-                if(e.key === "Enter"){
-                    e.preventDefault();
-                    watchBtn.click();
-                }
-            });
-
-            row.addEventListener("click", ()=>{
-                const list = JSON.parse(watchBtn.dataset.list || "[]");
-                openPlayer(list, 0, row);
-            });
-
-            row.addEventListener("keydown", (e)=>{
-                if(e.key === "Enter"){
-                    e.preventDefault();
-                    row.click();
-                }
-            });
-
-            app.appendChild(row);
+    <div class="servers">
+        <button class="btn" onclick='openPlayer(${JSON.stringify(servers)})'>▶ ดูสด</button>
+    </div>
+</div>
+`;
         });
+
+        html += `
+    </div>
+</div>
+`;
     });
-}
 
-function play(url){
-    if(!url) return;
+    app.innerHTML = html;
 
-    overlay.style.display = "flex";
+    const menu = document.getElementById("dateMenu");
+    const dates = Array.from(dateMenu);
 
-    if(window.hls){
-        window.hls.destroy();
-        window.hls = null;
+    if (!currentDateFilter && dates.length) {
+        currentDateFilter = dates[0];
     }
 
-    video.pause();
-    video.removeAttribute("src");
-    video.load();
+    menu.innerHTML = dates.map(d => `
+        <button class="date-chip ${d === currentDateFilter ? 'active' : ''}" onclick="filterDate('${escapeJs(d)}')">
+            ${escapeHtml(d)}
+        </button>
+    `).join("");
 
-    if(Hls.isSupported()){
-        const hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(video);
-        window.hls = hls;
-    }else{
-        video.src = url;
-    }
-
-    video.play().catch(()=>{});
-}
-
-function closePlayer(){
-    overlay.style.display = "none";
-    video.pause();
-    video.src = "";
-    video.load();
-
-    if(window.hls){
-        window.hls.destroy();
-        window.hls = null;
-    }
-
-    if(lastFocusedRow){
-        lastFocusedRow.focus();
+    if (currentDateFilter) {
+        filterDate(currentDateFilter, false);
     }
 }
 
-function goHome(){
-    closePlayer();
-    window.location.href = HOME_URL;
-}
-
-function openMx(){
-    if(!currentServers.length) return;
-    const url = currentServers[currentIndex]?.url;
-    if(!url) return;
-    window.location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
-}
-
-function openPlayer(list, index, rowEl){
-    currentServers = list || [];
-    currentIndex = index || 0;
-    lastFocusedRow = rowEl || null;
+function openPlayer(list){
+    currentServers = (list || []).filter(s => s && s.url);
+    currentIndex = 0;
 
     if(!currentServers.length) return;
 
-    play(currentServers[currentIndex].url);
-    renderServerButtons();
-
-    overlay.style.display = "flex";
-    setTimeout(()=>{
-        document.getElementById("playerCloseBtn").focus();
-    }, 80);
+    document.getElementById("overlay").style.display = "flex";
+    loadIframe(currentServers[0].url);
+    renderServers();
 }
 
-function renderServerButtons(){
-    serverBar.innerHTML = "";
+function loadIframe(url){
+    document.getElementById("playerFrame").src = url || "";
+}
 
-    currentServers.forEach((s, i)=>{
+function renderServers(){
+    const bar = document.getElementById("serverBar");
+    bar.innerHTML = "";
+
+    currentServers.forEach((s,i)=>{
         const btn = document.createElement("button");
-        btn.className = "server-chip" + (i===currentIndex ? " active" : "");
-        btn.textContent = s.name || ("S" + (i+1));
-        btn.tabIndex = 0;
-
-        btn.addEventListener("click", ()=>{
-            switchServer(i);
-        });
-
-        btn.addEventListener("keydown", (e)=>{
-            if(e.key === "Enter"){
-                e.preventDefault();
-                switchServer(i);
-            }
-        });
-
-        serverBar.appendChild(btn);
+        btn.className = "server-btn" + (i === currentIndex ? " active" : "");
+        btn.textContent = s.name || ("S" + (i + 1));
+        btn.onclick = () => switchServer(i);
+        bar.appendChild(btn);
     });
 }
 
 function switchServer(i){
+    if(!currentServers[i] || !currentServers[i].url) return;
     currentIndex = i;
-    play(currentServers[i].url);
-    renderServerButtons();
+    loadIframe(currentServers[i].url);
+    renderServers();
 }
 
-function setSport(s, el){
-    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-    el.classList.add("active");
-    currentSport = s;
-    applyFilter();
+function closePlayer(){
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("playerFrame").src = "";
 }
 
-function setDate(o, el){
-    document.querySelectorAll(".date").forEach(d=>d.classList.remove("active"));
-    el.classList.add("active");
-    currentDateOffset = o;
-    applyFilter();
+function filterDate(dateName, rerenderMenu = true){
+    currentDateFilter = dateName;
+
+    document.querySelectorAll(".league-block").forEach(block => {
+        block.style.display = block.dataset.date.includes(dateName) ? "block" : "none";
+    });
+
+    if (rerenderMenu) {
+        document.querySelectorAll(".date-chip").forEach(btn => {
+            btn.classList.toggle("active", btn.textContent.trim() === dateName);
+        });
+    } else {
+        document.querySelectorAll(".date-chip").forEach(btn => {
+            btn.classList.toggle("active", btn.textContent.trim() === dateName);
+        });
+    }
 }
 
-document.getElementById("playerCloseBtn").onclick = closePlayer;
-document.getElementById("playerHomeBtn").onclick = goHome;
-document.getElementById("playerMxBtn").onclick = openMx;
-document.getElementById("reloadBtn").onclick = load;
-document.getElementById("focusFirstBtn").onclick = ()=>{
-    const firstRow = document.querySelector(".row");
-    if(firstRow) firstRow.focus();
-};
+function goHome(){
+    window.location.href = HOME_URL;
+}
 
-overlay.addEventListener("click", (e)=>{
-    if(e.target.id === "overlay"){
-        closePlayer();
-    }
-});
+function escapeHtml(str){
+    return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
 
-document.addEventListener("keydown", (e)=>{
-    const inPlayer = overlay.style.display === "flex";
+function escapeJs(str){
+    return String(str || "").replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+}
 
-    if((e.key === "Escape" || e.key === "Backspace") && inPlayer){
-        e.preventDefault();
-        closePlayer();
-        return;
-    }
-
-    if((e.key === "Escape" || e.key === "Backspace") && !inPlayer){
-        const activeEl = document.activeElement;
-        const isRow = activeEl && activeEl.classList && activeEl.classList.contains("row");
-        const isWatchBtn = activeEl && activeEl.classList && activeEl.classList.contains("watch-btn");
-
-        if(isRow || isWatchBtn){
-            e.preventDefault();
-            const firstTop = document.querySelector(".tab.active") || document.querySelector(".tab");
-            if(firstTop) firstTop.focus();
-        }
-    }
-
-    if(inPlayer && e.key === "ArrowUp"){
-        const activeEl = document.activeElement;
-        if(activeEl === video || activeEl.id === "player"){
-            e.preventDefault();
-            document.getElementById("playerCloseBtn").focus();
-        }
-    }
+document.getElementById("overlay").addEventListener("click", (e) => {
+    if (e.target.id === "overlay") closePlayer();
 });
 
 load();
 </script>
-
 </body>
 </html>
