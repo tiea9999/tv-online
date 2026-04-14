@@ -274,7 +274,7 @@
                 data-title="🎬 หนัง">🎬 หนัง</button>
 
             <button class="menu-btn" tabindex="0"
-                data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/series.json"
+                data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Flixmono.json"
                 data-title="📺 ซีรีส์">📺 ซีรีส์</button>
 
             <button class="menu-btn" tabindex="0"
@@ -282,7 +282,7 @@
                 data-title="🔐 VIP">🔐 VIP</button>
 
             <button class="menu-btn" tabindex="0"
-                data-link="live.html">⚽ ตารางแข่งขัน</button>
+                data-link="live-old.html">⚽ ตารางแข่งขัน</button>
         </aside>
 
         <main class="content">
@@ -535,44 +535,107 @@
             let list = [];
 
             if (Array.isArray(data)) {
-                list = data.map(item => ({
-                    title: item.title || item.name || "ไม่มีชื่อ",
-                    logo: item.logo || item.image || "",
-                    url: item.url || item.stream || item.link || item.source || "",
-                    group: item.group || item.category || "",
-                    type: item.type || "",
-                    servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
-                }));
+                list = data.map(item => {
+                    if (Array.isArray(item.episodes) && item.episodes.length) {
+                        return {
+                            title: item.title || item.name || "ไม่มีชื่อ",
+                            logo: item.poster || item.logo || item.image || "",
+                            type: "folder",
+                            items: item.episodes.map((ep, idx) => ({
+                                title: ep.title || ep.name || `ตอนที่ ${idx + 1}`,
+                                logo: ep.poster || ep.logo || ep.image || item.poster || item.logo || item.image || "",
+                                url: ep.url || ep.stream || ep.link || ep.source || "",
+                                group: item.title || item.name || "",
+                                type: "video",
+                                servers: Array.isArray(ep.servers)
+                                    ? ep.servers.filter(s => s && s.url)
+                                    : []
+                            }))
+                        };
+                    }
+
+                    return {
+                        title: item.title || item.name || "ไม่มีชื่อ",
+                        logo: item.poster || item.logo || item.image || "",
+                        url: item.url || item.stream || item.link || item.source || "",
+                        group: item.group || item.category || "",
+                        type: item.type || "video",
+                        servers: Array.isArray(item.servers)
+                            ? item.servers.filter(x => x && x.url)
+                            : []
+                    };
+                });
             } else if (data.channels && Array.isArray(data.channels)) {
                 list = data.channels.map(item => ({
                     title: item.title || item.name || "ไม่มีชื่อ",
-                    logo: item.logo || item.image || "",
+                    logo: item.poster || item.logo || item.image || "",
                     url: item.url || item.stream || item.link || item.source || "",
                     group: item.group || item.category || "",
-                    type: item.type || "",
-                    servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
+                    type: item.type || "video",
+                    servers: Array.isArray(item.servers)
+                        ? item.servers.filter(x => x && x.url)
+                        : []
                 }));
-            } else if (data.groups && Array.isArray(data.groups)) {
+            } else if (data.groups && Array.isArray(data.groups) && data.groups[0]?.stations) {
                 data.groups.forEach(g => {
                     (g.stations || []).forEach(s => {
                         list.push({
                             title: s.title || s.name || "ไม่มีชื่อ",
-                            logo: s.logo || s.image || g.image || g.logo || "",
+                            logo: s.poster || s.logo || s.image || g.image || g.logo || "",
                             url: s.url || s.stream || s.link || s.source || "",
                             group: g.title || g.name || "",
-                            type: s.type || "",
-                            servers: Array.isArray(s.servers) ? s.servers.filter(x => x && x.url) : []
+                            type: s.type || "video",
+                            servers: Array.isArray(s.servers)
+                                ? s.servers.filter(x => x && x.url)
+                                : []
                         });
+                    });
+                });
+            } else if (data.groups && Array.isArray(data.groups) && data.groups[0]?.items) {
+                data.groups.forEach(g => {
+                    (g.items || []).forEach(item => {
+                        if (Array.isArray(item.episodes) && item.episodes.length) {
+                            list.push({
+                                title: item.title || item.name || "ไม่มีชื่อ",
+                                logo: item.poster || item.logo || item.image || "",
+                                type: "folder",
+                                items: item.episodes.map((ep, idx) => ({
+                                    title: ep.title || ep.name || `ตอนที่ ${idx + 1}`,
+                                    logo: ep.poster || ep.logo || ep.image || item.poster || item.logo || item.image || "",
+                                    url: ep.url || ep.stream || ep.link || ep.source || "",
+                                    group: item.title || item.name || "",
+                                    type: "video",
+                                    servers: Array.isArray(ep.servers)
+                                        ? ep.servers.filter(s => s && s.url)
+                                        : []
+                                }))
+                            });
+                        } else {
+                            list.push({
+                                title: item.title || item.name || "ไม่มีชื่อ",
+                                logo: item.poster || item.logo || item.image || "",
+                                url: item.url || item.stream || item.link || item.source || "",
+                                group: g.title || g.name || "",
+                                type: item.type || "video",
+                                servers: Array.isArray(item.servers)
+                                    ? item.servers.filter(x => x && x.url)
+                                    : []
+                            });
+                        }
                     });
                 });
             } else if (data.items && Array.isArray(data.items)) {
                 list = data.items.map(item => ({
                     title: item.title || item.name || "ไม่มีชื่อ",
-                    logo: item.logo || item.image || "",
+                    logo: item.poster || item.logo || item.image || "",
                     url: item.url || item.stream || item.link || item.source || "",
                     group: item.group || item.category || "",
                     type: item.type || "",
-                    servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
+                    source: item.source || "",
+                    items: item.items || [],
+                    servers: Array.isArray(item.servers)
+                        ? item.servers.filter(x => x && x.url)
+                        : []
                 }));
             }
 
@@ -581,7 +644,14 @@
                     item.url = item.servers[0].url;
                 }
                 return item;
-            }).filter(item => item.url || item.servers?.length || item.type === "source");
+            }).filter(item =>
+                item.url ||
+                item.source ||
+                item.servers?.length ||
+                item.type === "source" ||
+                item.type === "folder" ||
+                (Array.isArray(item.items) && item.items.length)
+            );
         }
 
         async function loadSource(sourceUrl) {
@@ -672,7 +742,8 @@
                         if (!item.source) return;
                         navigationStack.push({
                             source: currentSource,
-                            title: pageTitle.textContent
+                            title: pageTitle.textContent,
+                            inlineData: currentList
                         });
                         currentSource = item.source;
                         pageTitle.textContent = item.title || pageTitle.textContent;
@@ -705,13 +776,37 @@
                     <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
                 `;
 
-                if (item.type === "source" && item.url) {
+                if ((item.type === "folder" || (Array.isArray(item.items) && item.items.length))) {
                     card.onclick = async () => {
                         navigationStack.push({
                             source: currentSource,
-                            title: pageTitle.textContent
+                            title: pageTitle.textContent,
+                            inlineData: currentList
                         });
-                        currentSource = item.url;
+
+                        pageTitle.textContent = item.title || pageTitle.textContent;
+                        currentList = {
+                            mode: "items",
+                            data: item.items
+                        };
+                        renderGrid(currentList);
+                    };
+
+                    card.onkeydown = async (e) => {
+                        if (e.key === "Enter") {
+                            e.preventDefault();
+                            card.click();
+                        }
+                    };
+                } else if (item.type === "source" && (item.url || item.source)) {
+                    card.onclick = async () => {
+                        navigationStack.push({
+                            source: currentSource,
+                            title: pageTitle.textContent,
+                            inlineData: currentList
+                        });
+
+                        currentSource = item.source || item.url;
                         pageTitle.textContent = item.title || pageTitle.textContent;
                         await loadCurrentSource();
                     };
@@ -818,7 +913,13 @@
                     const prev = navigationStack.pop();
                     currentSource = prev.source;
                     pageTitle.textContent = prev.title;
-                    loadCurrentSource();
+
+                    if (prev.inlineData) {
+                        currentList = prev.inlineData;
+                        renderGrid(currentList);
+                    } else {
+                        loadCurrentSource();
+                    }
                     return;
                 }
 
