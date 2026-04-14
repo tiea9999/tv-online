@@ -1,213 +1,735 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV PRO</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>TIEA IPTV TV MODE</title>
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 
-<style>
-body{margin:0;background:#0b0b0b;color:#fff;font-family:sans-serif;display:flex}
-.sidebar{width:220px;background:#111;padding:10px}
-.menu-btn{width:100%;padding:12px;margin-bottom:10px;background:#1a1a1a;border:0;color:#fff;border-radius:10px}
-.menu-btn.active{background:#00c853}
-.content{flex:1;padding:10px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
-.card{background:#171717;border-radius:10px;overflow:hidden;cursor:pointer}
-.card img{width:100%;height:180px;object-fit:cover}
-.card-title{padding:8px;text-align:center;font-size:13px}
-</style>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: #0b0b0b;
+            color: #fff;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+        .app {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 240px;
+            background: #111;
+            border-right: 1px solid #222;
+            padding: 14px 10px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        .brand {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #00e5ff;
+            margin-bottom: 14px;
+        }
+        .menu-btn {
+            width: 100%;
+            background: #1a1a1a;
+            border: 0;
+            color: #fff;
+            border-radius: 12px;
+            padding: 14px 12px;
+            margin-bottom: 10px;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+        }
+        .menu-btn:focus,
+        .menu-btn.active:focus,
+        .menu-btn.active {
+            background: #00c853;
+            color: #fff;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, .18);
+        }
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            background: #0b0b0b;
+        }
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #00e5ff;
+        }
+        .subtext {
+            font-size: 14px;
+            color: #bbb;
+        }
+        .action-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .top-btn {
+            background: #1c1c1c;
+            border: 0;
+            color: #fff;
+            border-radius: 12px;
+            padding: 12px 14px;
+            cursor: pointer;
+            font-size: 14px;
+            outline: none;
+        }
+        .top-btn:focus {
+            background: #2196f3;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, .18);
+        }
+        .status-box {
+            display: none;
+            background: rgba(255, 255, 255, .08);
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+        }
+        .card {
+            background: #171717;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            outline: none;
+            min-height: 210px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .card:focus {
+            box-shadow: 0 0 0 4px #00e5ff;
+            transform: scale(1.02);
+        }
+        .thumb {
+            width: 100%;
+            height: 150px;
+            background: #000;
+            object-fit: contain;
+        }
+        .card-title {
+            padding: 10px 8px 12px;
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.35;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .empty {
+            padding: 30px 10px;
+            text-align: center;
+            color: #aaa;
+        }
+        #playerWrap {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: none;
+        }
+        #videoPlayer {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            object-fit: contain;
+        }
+        #playerUi {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 10001;
+            pointer-events: none;
+        }
+        #playerLeft, #playerRight {
+            display: flex;
+            gap: 8px;
+            pointer-events: auto;
+            flex-wrap: wrap;
+        }
+        .player-btn {
+            border: 0;
+            border-radius: 12px;
+            padding: 12px 14px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            outline: none;
+        }
+        .player-btn:focus { box-shadow: 0 0 0 3px rgba(255, 255, 255, .2); }
+        .home-btn { background: #2196f3; }
+        .close-btn { background: #e53935; }
+        .mx-btn { background: #ff9800; }
+        #playerStatus {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            z-index: 10001;
+            background: rgba(0, 0, 0, .7);
+            border-radius: 12px;
+            padding: 10px 12px;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+        @media (max-width: 900px) {
+            .sidebar { width: 185px; }
+            .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">TIEA IPTV</div>
 
-<div class="sidebar">
-<button class="menu-btn active" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
-<button class="menu-btn" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
-<button class="menu-btn" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Flixmono.json">📺 ซีรีส์</button>
-<button class="menu-btn" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Vip.json">🔐 VIP</button>
-<button class="menu-btn" onclick="location.href='live-old.html'">⚽ ตารางแข่งขัน</button>
-</div>
+            <button class="menu-btn active" tabindex="0"
+                data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json"
+                data-title="📺 ทีวี">📺 ทีวี</button>
 
-<div class="content">
-<div id="grid" class="grid"></div>
-</div>
+            <button class="menu-btn" tabindex="0"
+                data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json"
+                data-title="🎬 หนัง">🎬 หนัง</button>
 
-<script>
+            <button class="menu-btn" tabindex="0"
+                data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Flixmono.json"
+                data-title="📺 ซีรีส์">📺 ซีรีส์</button>
 
-const grid = document.getElementById("grid");
-let historyStack = [];
+            <button class="menu-btn" tabindex="0"
+                data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Vip.json"
+                data-title="🔐 VIP">🔐 VIP</button>
 
-// ===== MX =====
-function openMx(url){
-    try{
-        const u = new URL(url);
-        let intent = "intent://" + u.host + u.pathname + u.search +
-        "#Intent;scheme=" + u.protocol.replace(":","") +
-        ";package=com.mxtech.videoplayer.ad;end";
+            <button class="menu-btn" tabindex="0"
+                data-link="live-old.html">⚽ ตารางแข่งขัน</button>
+        </aside>
 
-        location.href = intent;
-        setTimeout(()=>{
-            location.href = intent.replace("videoplayer.ad","videoplayer.pro");
-        },1000);
-    }catch{}
-}
+        <main class="content">
+            <div class="topbar">
+                <div>
+                    <div id="pageTitle" class="title">📺 ทีวี</div>
+                    <div class="subtext">ใช้รีโมทเลื่อนแล้วกด Enter เพื่อเลือก</div>
+                </div>
+                <div class="action-row">
+                    <button id="focusFirstBtn" class="top-btn" tabindex="0">โฟกัสรายการแรก</button>
+                    <button id="reloadBtn" class="top-btn" tabindex="0">รีโหลด</button>
+                    <button id="homeTopBtn" class="top-btn" tabindex="0">หน้าโฮม</button>
+                </div>
+            </div>
 
-// ===== PLAY =====
-function play(url){
-    if(!url) return;
+            <div id="statusBox" class="status-box"></div>
+            <div id="grid" class="grid"></div>
+        </main>
+    </div>
 
-    if(url.includes("master.txt")){
-        openMx(url);
-        return;
-    }
+    <div id="playerWrap">
+        <video id="videoPlayer" controls playsinline autoplay muted></video>
 
-    if(url.includes(".m3u8")){
-        document.body.innerHTML="<video id='v' controls autoplay style='width:100%;height:100%;background:#000'></video>";
-        let v=document.getElementById("v");
+        <div id="playerUi">
+            <div id="playerLeft">
+                <button id="playerHomeBtn" class="player-btn home-btn" tabindex="0">🏠 หน้าโฮม</button>
+                <button id="playerCloseBtn" class="player-btn close-btn" tabindex="0">✕ ปิด</button>
+            </div>
+            <div id="playerRight">
+                <button id="playerMxBtn" class="player-btn mx-btn" tabindex="0">▶ MX</button>
+            </div>
+        </div>
 
-        if(Hls.isSupported()){
-            let hls=new Hls();
-            hls.loadSource(url);
-            hls.attachMedia(v);
-        }else{
-            v.src=url;
+        <div id="playerStatus"></div>
+    </div>
+
+    <script>
+        const grid = document.getElementById("grid");
+        const pageTitle = document.getElementById("pageTitle");
+        const statusBox = document.getElementById("statusBox");
+        const playerWrap = document.getElementById("playerWrap");
+        const playerStatus = document.getElementById("playerStatus");
+        const video = document.getElementById("videoPlayer");
+        const menuButtons = Array.from(document.querySelectorAll(".menu-btn"));
+
+        let currentSource = menuButtons[0].dataset.source;
+        let currentTitle = menuButtons[0].dataset.title || "📺 ทีวี";
+        let currentList = [];
+        let currentItem = null;
+        let currentServerIndex = 0;
+        let hls = null;
+        let dashPlayer = null;
+        let navigationStack = [];
+
+        function setStatus(msg) {
+            statusBox.textContent = msg || "";
+            statusBox.style.display = msg ? "block" : "none";
         }
-        return;
-    }
 
-    openMx(url);
-}
+        function setPlayerStatus(msg) {
+            playerStatus.textContent = msg || "";
+            playerStatus.style.display = msg ? "block" : "none";
+        }
 
-// ===== PARSE =====
-function parse(data){
-    let list=[];
+        function clearPlayers() {
+            if (hls) {
+                try { hls.destroy(); } catch (e) {}
+                hls = null;
+            }
+            if (dashPlayer) {
+                try { dashPlayer.reset(); } catch (e) {}
+                dashPlayer = null;
+            }
+            try { video.pause(); } catch (e) {}
+            video.removeAttribute("src");
+            video.load();
+            setPlayerStatus("");
+        }
 
-    if(Array.isArray(data)){
-        data.forEach(i=>{
-            if(i.episodes){
-                list.push({
-                    title:i.title,
-                    img:i.poster||i.image,
-                    type:"folder",
-                    items:i.episodes
+        function showPlayer() {
+            playerWrap.style.display = "block";
+        }
+
+        function closePlayer() {
+            clearPlayers();
+            playerWrap.style.display = "none";
+            if (currentItem && currentItem._cardEl) {
+                currentItem._cardEl.focus();
+            }
+        }
+
+        function goHome() {
+            closePlayer();
+            navigationStack = [];
+            pageTitle.textContent = currentTitle;
+            const firstMenu = document.querySelector(".menu-btn.active") || menuButtons[0];
+            if (firstMenu) firstMenu.focus();
+        }
+
+        function getPlayableUrl(item, idx = 0) {
+            if (!item) return "";
+            if (Array.isArray(item.servers) && item.servers.length) {
+                return item.servers[idx]?.url || item.servers[0]?.url || "";
+            }
+            return item.url || item.stream || item.link || item.source || "";
+        }
+
+        function getServerCount(item) {
+            if (Array.isArray(item?.servers) && item.servers.length) return item.servers.length;
+            return getPlayableUrl(item) ? 1 : 0;
+        }
+
+        function openMx(url) {
+            if (!url) return;
+
+            try {
+                const u = new URL(url);
+
+                const adIntent =
+                    "intent://" +
+                    u.host +
+                    u.pathname +
+                    u.search +
+                    "#Intent;scheme=" +
+                    u.protocol.replace(":", "") +
+                    ";package=com.mxtech.videoplayer.ad;end";
+
+                const proIntent =
+                    "intent://" +
+                    u.host +
+                    u.pathname +
+                    u.search +
+                    "#Intent;scheme=" +
+                    u.protocol.replace(":", "") +
+                    ";package=com.mxtech.videoplayer.pro;end";
+
+                window.location.href = adIntent;
+
+                setTimeout(() => {
+                    window.location.href = proIntent;
+                }, 1200);
+            } catch (e) {
+                console.error("MX intent error:", e);
+                setPlayerStatus("เปิด MX ไม่ได้");
+            }
+        }
+
+        function tryNextServer(item, currentIdx, reason) {
+            const total = getServerCount(item);
+            if (currentIdx + 1 < total) {
+                setPlayerStatus(reason + " กำลังสลับ Server " + (currentIdx + 2));
+                setTimeout(() => {
+                    playItem(item, currentIdx + 1);
+                }, 500);
+            } else {
+                setPlayerStatus("ทุก Server เล่นไม่ได้ ลองกด MX");
+            }
+        }
+
+        function playItem(item, serverIndex = 0) {
+            currentItem = item;
+            currentServerIndex = serverIndex;
+
+            clearPlayers();
+            showPlayer();
+
+            const url = getPlayableUrl(item, serverIndex);
+            if (!url) {
+                setPlayerStatus("ไม่พบลิงก์สตรีม");
+                return;
+            }
+
+            const total = getServerCount(item);
+            setPlayerStatus("กำลังเล่น " + (item.title || "รายการ") + (total > 1 ? " (Server " + (serverIndex + 1) + "/" + total + ")" : ""));
+
+            const lower = url.toLowerCase();
+
+            if (lower.includes("master.txt")) {
+                openMx(url);
+                return;
+            }
+
+            if (lower.includes(".mp4")) {
+                video.src = url;
+                video.muted = true;
+                video.volume = 1;
+                video.play().then(() => {
+                    setTimeout(() => { video.muted = false; }, 300);
+                }).catch(() => {
+                    tryNextServer(item, serverIndex, "MP4 เล่นไม่ได้");
                 });
-            }else{
-                list.push({
-                    title:i.title||i.name,
-                    img:i.poster||i.image,
-                    url:i.url||i.stream
+                return;
+            }
+
+            if (lower.includes(".m3u8")) {
+                if (Hls.isSupported()) {
+                    hls = new Hls({
+                        enableWorker: true,
+                        manifestLoadingMaxRetry: 3,
+                        levelLoadingMaxRetry: 3,
+                        fragLoadingMaxRetry: 3
+                    });
+
+                    hls.loadSource(url);
+                    hls.attachMedia(video);
+
+                    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                        video.muted = true;
+                        video.volume = 1;
+                        video.play().then(() => {
+                            setTimeout(() => { video.muted = false; }, 300);
+                        }).catch(() => {
+                            tryNextServer(item, serverIndex, "HLS autoplay ไม่สำเร็จ");
+                        });
+                    });
+
+                    hls.on(Hls.Events.ERROR, (event, data) => {
+                        if (data.fatal) {
+                            tryNextServer(item, serverIndex, "สตรีมหลักเล่นไม่ได้");
+                        }
+                    });
+                } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+                    video.src = url;
+                    video.play().catch(() => {
+                        tryNextServer(item, serverIndex, "Native HLS เล่นไม่ได้");
+                    });
+                } else {
+                    tryNextServer(item, serverIndex, "อุปกรณ์ไม่รองรับ HLS");
+                }
+                return;
+            }
+
+            if (lower.includes(".mpd")) {
+                try {
+                    dashPlayer = dashjs.MediaPlayer().create();
+                    dashPlayer.initialize(video, url, true);
+                } catch (e) {
+                    tryNextServer(item, serverIndex, "DASH เล่นไม่ได้");
+                }
+                return;
+            }
+
+            openMx(url);
+        }
+
+        function parseM3U(text) {
+            const lines = text.split(/\r?\n/);
+            const list = [];
+            let current = null;
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                if (line.startsWith("#EXTINF:")) {
+                    const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
+                    const name = line.split(",").pop()?.trim() || "ไม่ทราบชื่อ";
+
+                    current = {
+                        title: name,
+                        logo: logoMatch ? logoMatch[1] : "",
+                        url: "",
+                        servers: []
+                    };
+                } else if (!line.startsWith("#")) {
+                    if (current) {
+                        current.url = line;
+                        current.servers = [{ name: "Main", url: line }];
+                        list.push(current);
+                        current = null;
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        function normalizeVideoItem(i, fallbackImg = "") {
+            return {
+                title: i.title || i.name || "ไม่มีชื่อ",
+                logo: i.poster || i.image || i.thumbnail || i.logo || fallbackImg || "",
+                url: i.url || i.stream || i.link || i.source || "",
+                servers: Array.isArray(i.servers) ? i.servers.filter(s => s && s.url) : [],
+                type: "video"
+            };
+        }
+
+        function parse(data) {
+            let list = [];
+
+            if (data?.type === "menu" && Array.isArray(data.items)) {
+                return data.items.map(i => ({
+                    title: i.title || i.name || "ไม่มีชื่อ",
+                    logo: i.poster || i.image || i.thumbnail || i.logo || "",
+                    type: "source",
+                    source: i.source || i.url || ""
+                }));
+            }
+
+            if (Array.isArray(data)) {
+                data.forEach(i => {
+                    if (Array.isArray(i.episodes) && i.episodes.length) {
+                        list.push({
+                            title: i.title || i.name || "ไม่มีชื่อ",
+                            logo: i.poster || i.image || i.thumbnail || i.logo || "",
+                            type: "folder",
+                            items: i.episodes.map(ep => normalizeVideoItem(ep, i.poster || i.image || i.thumbnail || i.logo || ""))
+                        });
+                    } else {
+                        list.push(normalizeVideoItem(i));
+                    }
+                });
+                return list;
+            }
+
+            if (data?.channels && Array.isArray(data.channels)) {
+                data.channels.forEach(i => list.push(normalizeVideoItem(i)));
+                return list;
+            }
+
+            if (data?.groups && Array.isArray(data.groups)) {
+                data.groups.forEach(g => {
+                    const arr = g.items || g.stations || [];
+                    arr.forEach(i => {
+                        if (Array.isArray(i.episodes) && i.episodes.length) {
+                            list.push({
+                                title: i.title || i.name || "ไม่มีชื่อ",
+                                logo: i.poster || i.image || i.thumbnail || i.logo || "",
+                                type: "folder",
+                                items: i.episodes.map(ep => normalizeVideoItem(ep, i.poster || i.image || i.thumbnail || i.logo || ""))
+                            });
+                        } else {
+                            const item = normalizeVideoItem(i);
+                            if (item.url || item.servers.length) list.push(item);
+                        }
+                    });
+                });
+                return list;
+            }
+
+            if (data?.items && Array.isArray(data.items)) {
+                data.items.forEach(i => {
+                    if (Array.isArray(i.episodes) && i.episodes.length) {
+                        list.push({
+                            title: i.title || i.name || "ไม่มีชื่อ",
+                            logo: i.poster || i.image || i.thumbnail || i.logo || "",
+                            type: "folder",
+                            items: i.episodes.map(ep => normalizeVideoItem(ep, i.poster || i.image || i.thumbnail || i.logo || ""))
+                        });
+                    } else if (i.source || i.type === "source") {
+                        list.push({
+                            title: i.title || i.name || "ไม่มีชื่อ",
+                            logo: i.poster || i.image || i.thumbnail || i.logo || "",
+                            type: "source",
+                            source: i.source || i.url || ""
+                        });
+                    } else {
+                        list.push(normalizeVideoItem(i));
+                    }
                 });
             }
-        });
-    }
 
-    else if(data.channels){
-        data.channels.forEach(i=>{
-            list.push({
-                title:i.name,
-                img:i.logo,
-                url:i.url
-            });
-        });
-    }
+            return list;
+        }
 
-    else if(data.groups){
-        data.groups.forEach(g=>{
-            (g.items||g.stations||[]).forEach(i=>{
-                if(i.episodes){
-                    list.push({
-                        title:i.title,
-                        img:i.poster,
-                        type:"folder",
-                        items:i.episodes
-                    });
-                }else{
-                    list.push({
-                        title:i.title||i.name,
-                        img:i.poster||i.logo,
-                        url:i.url
-                    });
+        async function load(url) {
+            try {
+                setStatus("กำลังโหลด...");
+                const res = await fetch(url);
+                if (!res.ok) throw new Error("โหลดไม่สำเร็จ");
+
+                const text = await res.text();
+                const trimmed = text.trim();
+
+                if (trimmed.startsWith("#EXTM3U") || trimmed.includes("#EXTINF")) {
+                    currentList = parseM3U(text);
+                    render(currentList);
+                    setStatus("");
+                    return;
+                }
+
+                const data = JSON.parse(text);
+                currentList = parse(data);
+                render(currentList);
+                setStatus("");
+            } catch (e) {
+                console.error(e);
+                grid.innerHTML = `<div class="empty">โหลดไม่สำเร็จ</div>`;
+                setStatus("โหลดไม่สำเร็จ");
+            }
+        }
+
+        function render(list) {
+            grid.innerHTML = "";
+
+            if (navigationStack.length) {
+                const back = document.createElement("button");
+                back.className = "back-btn";
+                back.textContent = "← ย้อนกลับ";
+                back.onclick = () => {
+                    const prev = navigationStack.pop();
+                    pageTitle.textContent = prev.title;
+                    render(prev.list);
+                };
+                grid.appendChild(back);
+            }
+
+            if (!list.length) {
+                grid.innerHTML += `<div class="empty">ไม่พบรายการ</div>`;
+                return;
+            }
+
+            list.forEach((item, index) => {
+                const div = document.createElement("div");
+                div.className = "card";
+                div.tabIndex = 0;
+
+                div.innerHTML = `
+                    <img class="thumb" src="${item.logo || ''}" onerror="this.src='https://via.placeholder.com/300x450?text=No+Image'">
+                    <div class="card-title">${item.title}</div>
+                `;
+
+                div.onclick = () => {
+                    if (item.type === "source") {
+                        navigationStack.push({ list, title: pageTitle.textContent });
+                        pageTitle.textContent = item.title || pageTitle.textContent;
+                        load(item.source);
+                    } else if (item.type === "folder") {
+                        navigationStack.push({ list, title: pageTitle.textContent });
+                        pageTitle.textContent = item.title || pageTitle.textContent;
+                        render(item.items);
+                    } else {
+                        playItem(item, 0);
+                    }
+                };
+
+                div.onkeydown = (e) => {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        div.click();
+                    }
+                };
+
+                item._cardEl = div;
+                grid.appendChild(div);
+
+                if (index === 0 && !navigationStack.length) {
+                    setTimeout(() => div.focus(), 100);
                 }
             });
+        }
+
+        menuButtons.forEach(btn => {
+            btn.onclick = () => {
+                if (btn.dataset.link) {
+                    location.href = btn.dataset.link;
+                    return;
+                }
+
+                if (!btn.dataset.source) return;
+
+                menuButtons.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                navigationStack = [];
+                currentSource = btn.dataset.source;
+                currentTitle = btn.dataset.title || btn.textContent.trim();
+                pageTitle.textContent = currentTitle;
+                load(currentSource);
+            };
         });
-    }
 
-    else if(data.type==="menu"){
-        data.items.forEach(i=>{
-            list.push({
-                title:i.title,
-                img:i.poster||i.image,
-                source:i.source,
-                type:"source"
-            });
-        });
-    }
-
-    return list;
-}
-
-// ===== LOAD =====
-async function load(url){
-    const res=await fetch(url);
-    const data=await res.json();
-    const list=parse(data);
-    render(list);
-}
-
-// ===== RENDER =====
-function render(list){
-    grid.innerHTML="";
-
-    list.forEach(item=>{
-        let div=document.createElement("div");
-        div.className="card";
-
-        div.innerHTML=`
-        <img src="${item.img||''}" onerror="this.src='https://via.placeholder.com/300x450?text=No+Image'">
-        <div class="card-title">${item.title}</div>
-        `;
-
-        div.onclick=()=>{
-            if(item.type==="source"){
-                historyStack.push(list);
-                load(item.source);
-            }
-            else if(item.type==="folder"){
-                historyStack.push(list);
-                render(item.items.map(ep=>({
-                    title:ep.title||ep.name,
-                    img:ep.poster||item.img,
-                    url:ep.url||ep.stream
-                })));
-            }
-            else{
-                play(item.url);
-            }
+        document.getElementById("playerCloseBtn").onclick = closePlayer;
+        document.getElementById("playerHomeBtn").onclick = goHome;
+        document.getElementById("playerMxBtn").onclick = () => {
+            const url = getPlayableUrl(currentItem, currentServerIndex);
+            openMx(url);
         };
 
-        grid.appendChild(div);
-    });
-}
+        document.getElementById("reloadBtn").onclick = () => load(currentSource);
 
-// ===== MENU =====
-document.querySelectorAll(".menu-btn").forEach(btn=>{
-    btn.onclick=()=>{
-        document.querySelectorAll(".menu-btn").forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
+        document.getElementById("focusFirstBtn").onclick = () => {
+            const firstCard = grid.querySelector(".card");
+            if (firstCard) firstCard.focus();
+        };
 
-        if(btn.dataset.source){
-            historyStack=[];
-            load(btn.dataset.source);
-        }
-    };
-});
+        document.getElementById("homeTopBtn").onclick = () => {
+            navigationStack = [];
+            pageTitle.textContent = currentTitle;
+            load(currentSource);
+        };
 
-// ===== INIT =====
-load(document.querySelector(".menu-btn.active").dataset.source);
-
-</script>
-
+        currentSource = document.querySelector(".menu-btn.active").dataset.source;
+        load(currentSource);
+    </script>
 </body>
 </html>
