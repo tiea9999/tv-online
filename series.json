@@ -1,0 +1,16 @@
+{
+  "type": "menu",
+  "title": "ซีรีส์",
+  "items": [
+    {
+      "title": "GoSeries",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/คุณ/.../goseries.json"
+    },
+    {
+      "title": "Flixmono",
+      "type": "source",
+      "source": "PUT_FLIXMONO_JSON"
+    }
+  ]
+}
