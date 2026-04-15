@@ -354,6 +354,7 @@
     let dashPlayer = null;
     let navigationStack = [];
     let playerUiTimer = null;
+    let seriesReturnState = null;
 
     function setStatus(msg) {
       statusBox.textContent = msg || "";
@@ -375,6 +376,44 @@
       const cardTitle = el.querySelector?.(".card-title");
       const text = cardTitle ? cardTitle.textContent.trim() : el.textContent.trim();
       remoteHint.textContent = "โฟกัส: " + text;
+    }
+
+    function saveSeriesReturnState() {
+      try {
+        seriesReturnState = {
+          source: currentSource,
+          title: pageTitle.textContent || currentTitle,
+          list: currentList ? JSON.parse(JSON.stringify(currentList)) : null
+        };
+        sessionStorage.setItem("tiea_series_return_state", JSON.stringify(seriesReturnState));
+      } catch (e) {
+        console.error("saveSeriesReturnState error:", e);
+      }
+    }
+
+    function restoreSeriesReturnState() {
+      try {
+        const raw = sessionStorage.getItem("tiea_series_return_state");
+        if (!raw) return false;
+
+        const state = JSON.parse(raw);
+        if (!state) return false;
+
+        seriesReturnState = state;
+        currentSource = state.source || currentSource;
+        pageTitle.textContent = state.title || pageTitle.textContent;
+
+        if (state.list && state.list.data) {
+          currentList = state.list;
+          renderGrid(currentList);
+          return true;
+        }
+
+        return false;
+      } catch (e) {
+        console.error("restoreSeriesReturnState error:", e);
+        return false;
+      }
     }
 
     document.addEventListener("focusin", (e) => updateRemoteHint(e.target));
@@ -446,7 +485,13 @@
       closePlayer();
       navigationStack = [];
       pageTitle.textContent = currentTitle;
-      loadCurrentSource();
+
+      if (seriesReturnState && pageTitle.textContent.includes("ซีรีส์")) {
+        restoreSeriesReturnState();
+      } else {
+        loadCurrentSource();
+      }
+
       const active = document.querySelector(".menu-btn.active") || menuButtons[0];
       if (active) {
         active.focus();
@@ -505,6 +550,8 @@
       };
 
       if (currentTitle.includes("ซีรีส์") || pageTitle.textContent.includes("ตอนที่")) {
+        saveSeriesReturnState();
+        sessionStorage.setItem("tiea_series_last_url", window.location.href);
         window.location.href = url;
         return;
       }
@@ -1236,7 +1283,17 @@
       }
     });
 
-    loadCurrentSource();
+    (function () {
+      const ref = document.referrer || "";
+      const cameBackFromSeries = ref.includes("ok-hd.com/play/") || ref.includes("top-cdn.com/play/");
+      if (cameBackFromSeries) {
+        restoreSeriesReturnState();
+      }
+    })();
+
+    if (!restoreSeriesReturnState()) {
+      loadCurrentSource();
+    }
   </script>
 </body>
 </html>
