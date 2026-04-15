@@ -100,7 +100,8 @@
             flex-wrap: wrap;
         }
 
-        .top-btn {
+        .top-btn,
+        .back-btn {
             background: #1c1c1c;
             border: 0;
             color: #fff;
@@ -111,7 +112,8 @@
             outline: none;
         }
 
-        .top-btn:focus {
+        .top-btn:focus,
+        .back-btn:focus {
             background: #2196f3;
             box-shadow: 0 0 0 3px rgba(255, 255, 255, .18);
         }
@@ -385,7 +387,7 @@
         function getPlayableUrl(item, idx = 0) {
             if (!item) return "";
             if (Array.isArray(item.servers) && item.servers.length) {
-                return item.servers[idx]?.url || "";
+                return item.servers[idx]?.url || item.servers[0]?.url || "";
             }
             return item.url || item.stream || "";
         }
@@ -534,46 +536,108 @@
         function normalizeJson(data) {
             let list = [];
 
+            // array ตรง
             if (Array.isArray(data)) {
-                list = data.map(item => ({
-                    title: item.title || item.name || "ไม่มีชื่อ",
-                    logo: item.logo || item.image || "",
-                    url: item.url || item.stream || item.link || item.source || "",
-                    group: item.group || item.category || "",
-                    type: item.type || "",
-                    servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
-                }));
-            } else if (data.channels && Array.isArray(data.channels)) {
+                list = data.map(item => {
+                    if (Array.isArray(item.episodes) && item.episodes.length) {
+                        return {
+                            title: item.title || item.name || "ไม่มีชื่อ",
+                            logo: item.poster || item.logo || item.image || "",
+                            type: "folder",
+                            items: item.episodes.map((ep, idx) => ({
+                                title: ep.title || ep.name || `ตอนที่ ${idx + 1}`,
+                                logo: ep.poster || ep.logo || ep.image || item.poster || item.logo || item.image || "",
+                                url: ep.url || ep.stream || ep.link || ep.source || "",
+                                group: item.title || item.name || "",
+                                type: "video",
+                                servers: Array.isArray(ep.servers) ? ep.servers.filter(s => s && s.url) : []
+                            }))
+                        };
+                    }
+
+                    return {
+                        title: item.title || item.name || "ไม่มีชื่อ",
+                        logo: item.logo || item.poster || item.image || "",
+                        url: item.url || item.stream || item.link || item.source || "",
+                        group: item.group || item.category || "",
+                        type: item.type || "video",
+                        servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
+                    };
+                });
+            }
+
+            // channels
+            else if (data.channels && Array.isArray(data.channels)) {
                 list = data.channels.map(item => ({
                     title: item.title || item.name || "ไม่มีชื่อ",
-                    logo: item.logo || item.image || "",
+                    logo: item.logo || item.poster || item.image || "",
                     url: item.url || item.stream || item.link || item.source || "",
                     group: item.group || item.category || "",
-                    type: item.type || "",
+                    type: item.type || "video",
                     servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
                 }));
-            } else if (data.groups && Array.isArray(data.groups)) {
+            }
+
+            // groups
+            else if (data.groups && Array.isArray(data.groups)) {
                 data.groups.forEach(g => {
-                    (g.stations || []).forEach(s => {
-                        list.push({
-                            title: s.title || s.name || "ไม่มีชื่อ",
-                            logo: s.logo || s.image || g.image || g.logo || "",
-                            url: s.url || s.stream || s.link || s.source || "",
-                            group: g.title || g.name || "",
-                            type: s.type || "",
-                            servers: Array.isArray(s.servers) ? s.servers.filter(x => x && x.url) : []
-                        });
+                    (g.items || g.stations || []).forEach(item => {
+                        if (Array.isArray(item.episodes) && item.episodes.length) {
+                            list.push({
+                                title: item.title || item.name || "ไม่มีชื่อ",
+                                logo: item.poster || item.logo || item.image || "",
+                                type: "folder",
+                                items: item.episodes.map((ep, idx) => ({
+                                    title: ep.title || ep.name || `ตอนที่ ${idx + 1}`,
+                                    logo: ep.poster || ep.logo || ep.image || item.poster || item.logo || item.image || "",
+                                    url: ep.url || ep.stream || ep.link || ep.source || "",
+                                    group: item.title || item.name || "",
+                                    type: "video",
+                                    servers: Array.isArray(ep.servers) ? ep.servers.filter(s => s && s.url) : []
+                                }))
+                            });
+                        } else {
+                            list.push({
+                                title: item.title || item.name || "ไม่มีชื่อ",
+                                logo: item.logo || item.poster || item.image || g.image || g.logo || "",
+                                url: item.url || item.stream || item.link || item.source || "",
+                                group: g.title || g.name || "",
+                                type: item.type || "video",
+                                servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
+                            });
+                        }
                     });
                 });
-            } else if (data.items && Array.isArray(data.items)) {
-                list = data.items.map(item => ({
-                    title: item.title || item.name || "ไม่มีชื่อ",
-                    logo: item.logo || item.image || "",
-                    url: item.url || item.stream || item.link || item.source || "",
-                    group: item.group || item.category || "",
-                    type: item.type || "",
-                    servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
-                }));
+            }
+
+            // items ตรง
+            else if (data.items && Array.isArray(data.items)) {
+                list = data.items.map(item => {
+                    if (Array.isArray(item.episodes) && item.episodes.length) {
+                        return {
+                            title: item.title || item.name || "ไม่มีชื่อ",
+                            logo: item.poster || item.logo || item.image || "",
+                            type: "folder",
+                            items: item.episodes.map((ep, idx) => ({
+                                title: ep.title || ep.name || `ตอนที่ ${idx + 1}`,
+                                logo: ep.poster || ep.logo || ep.image || item.poster || item.logo || item.image || "",
+                                url: ep.url || ep.stream || ep.link || ep.source || "",
+                                group: item.title || item.name || "",
+                                type: "video",
+                                servers: Array.isArray(ep.servers) ? ep.servers.filter(s => s && s.url) : []
+                            }))
+                        };
+                    }
+
+                    return {
+                        title: item.title || item.name || "ไม่มีชื่อ",
+                        logo: item.logo || item.poster || item.image || "",
+                        url: item.url || item.stream || item.link || item.source || "",
+                        group: item.group || item.category || "",
+                        type: item.type || "",
+                        servers: Array.isArray(item.servers) ? item.servers.filter(x => x && x.url) : []
+                    };
+                });
             }
 
             return list.map(item => {
@@ -581,7 +645,13 @@
                     item.url = item.servers[0].url;
                 }
                 return item;
-            }).filter(item => item.url || item.servers?.length || item.type === "source");
+            }).filter(item =>
+                item.url ||
+                item.servers?.length ||
+                item.type === "source" ||
+                item.type === "folder" ||
+                (Array.isArray(item.items) && item.items.length)
+            );
         }
 
         async function loadSource(sourceUrl) {
@@ -657,6 +727,7 @@
                 return;
             }
 
+            // mode menu
             if (result.mode === "menu") {
                 list.forEach((item, index) => {
                     const card = document.createElement("div");
@@ -672,7 +743,8 @@
                         if (!item.source) return;
                         navigationStack.push({
                             source: currentSource,
-                            title: pageTitle.textContent
+                            title: pageTitle.textContent,
+                            inlineData: currentList
                         });
                         currentSource = item.source;
                         pageTitle.textContent = item.title || pageTitle.textContent;
@@ -695,6 +767,7 @@
                 return;
             }
 
+            // mode items
             list.forEach((item, index) => {
                 const card = document.createElement("div");
                 card.className = "card";
@@ -705,12 +778,40 @@
                     <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
                 `;
 
-                if (item.type === "source" && item.url) {
+                // โฟลเดอร์ซีรีส์
+                if (item.type === "folder" || (Array.isArray(item.items) && item.items.length)) {
+                    card.onclick = () => {
+                        navigationStack.push({
+                            source: currentSource,
+                            title: pageTitle.textContent,
+                            inlineData: currentList
+                        });
+
+                        pageTitle.textContent = item.title || pageTitle.textContent;
+                        currentList = {
+                            mode: "items",
+                            data: item.items
+                        };
+                        renderGrid(currentList);
+                    };
+
+                    card.onkeydown = (e) => {
+                        if (e.key === "Enter") {
+                            e.preventDefault();
+                            card.click();
+                        }
+                    };
+                }
+
+                // source ย่อย
+                else if (item.type === "source" && item.url) {
                     card.onclick = async () => {
                         navigationStack.push({
                             source: currentSource,
-                            title: pageTitle.textContent
+                            title: pageTitle.textContent,
+                            inlineData: currentList
                         });
+
                         currentSource = item.url;
                         pageTitle.textContent = item.title || pageTitle.textContent;
                         await loadCurrentSource();
@@ -722,7 +823,10 @@
                             card.click();
                         }
                     };
-                } else {
+                }
+
+                // วิดีโอปกติ
+                else {
                     card.onclick = () => playItem(item, 0);
                     card.onkeydown = (e) => {
                         if (e.key === "Enter") {
@@ -818,7 +922,13 @@
                     const prev = navigationStack.pop();
                     currentSource = prev.source;
                     pageTitle.textContent = prev.title;
-                    loadCurrentSource();
+
+                    if (prev.inlineData) {
+                        currentList = prev.inlineData;
+                        renderGrid(currentList);
+                    } else {
+                        loadCurrentSource();
+                    }
                     return;
                 }
 
