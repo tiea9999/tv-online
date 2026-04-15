@@ -2,12 +2,9 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>TIEA IPTV PRO</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TIEA IPTV SIMPLE</title>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-
   <style>
     * { box-sizing: border-box; }
     body {
@@ -15,21 +12,17 @@
       background: #000;
       color: #fff;
       font-family: sans-serif;
-      overflow: hidden;
     }
 
     .app {
       display: flex;
-      width: 100vw;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     .sidebar {
-      width: 220px;
+      width: 190px;
       background: #111;
-      border-right: 1px solid #222;
-      padding: 12px 10px;
-      overflow-y: auto;
+      padding: 10px;
       flex-shrink: 0;
     }
 
@@ -38,38 +31,34 @@
       font-size: 22px;
       font-weight: bold;
       color: #00e5ff;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
-    .menu-btn {
+    .menu-btn, .top-btn, .ep-btn {
       width: 100%;
-      padding: 14px 12px;
-      margin-bottom: 10px;
       border: 0;
-      border-radius: 12px;
+      border-radius: 10px;
       background: #222;
       color: #fff;
-      text-align: left;
-      font-size: 16px;
+      padding: 12px;
+      margin-bottom: 8px;
       cursor: pointer;
-      outline: none;
+      text-align: left;
+      font-size: 15px;
     }
 
-    .menu-btn.active,
-    .menu-btn:focus {
+    .menu-btn.active, .menu-btn:focus, .top-btn:focus, .ep-btn:focus {
       background: #00c853;
+      outline: none;
     }
 
     .main {
       flex: 1;
-      overflow-y: auto;
       padding: 12px;
-      background: #050505;
     }
 
     .topbar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
       gap: 10px;
       flex-wrap: wrap;
@@ -83,8 +72,8 @@
     }
 
     .sub {
+      color: #aaa;
       font-size: 13px;
-      color: #bbb;
     }
 
     .tools {
@@ -93,58 +82,45 @@
       flex-wrap: wrap;
     }
 
-    .tool-btn {
-      border: 0;
-      border-radius: 10px;
-      background: #1f1f1f;
-      color: #fff;
+    .top-btn {
+      width: auto;
+      margin-bottom: 0;
       padding: 10px 12px;
-      cursor: pointer;
-      outline: none;
-    }
-
-    .tool-btn:focus,
-    .tool-btn:hover {
-      background: #2b2b2b;
     }
 
     .status {
       display: none;
-      margin-bottom: 12px;
+      background: rgba(255,255,255,.08);
       padding: 10px 12px;
       border-radius: 10px;
-      background: rgba(255,255,255,.08);
-      color: #fff;
+      margin-bottom: 12px;
       font-size: 14px;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
     }
 
     .card {
       background: #111;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
-      cursor: pointer;
-      outline: none;
       border: 0;
       color: #fff;
       padding: 0;
       text-align: left;
+      cursor: pointer;
     }
 
-    .card:focus,
-    .card:hover {
-      box-shadow: 0 0 0 3px #00e5ff;
-      transform: scale(1.02);
+    .card:focus, .card:hover {
+      outline: 3px solid #00e5ff;
     }
 
     .card img {
       width: 100%;
-      height: 180px;
+      height: 170px;
       object-fit: cover;
       background: #000;
       display: block;
@@ -152,178 +128,76 @@
 
     .card.tv img {
       object-fit: contain;
+      padding: 8px;
+      height: 140px;
       background: #000;
-      padding: 12px;
-    }
-
-    .card-body {
-      padding: 10px;
     }
 
     .card-title {
+      padding: 8px;
       font-size: 14px;
       line-height: 1.35;
-      min-height: 38px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      min-height: 42px;
     }
 
-    .card-badge {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 4px 8px;
-      font-size: 11px;
-      border-radius: 999px;
-      background: #e50914;
-      color: #fff;
+    .eps-wrap {
+      display: none;
     }
 
-    .empty {
-      padding: 30px 10px;
-      text-align: center;
-      color: #aaa;
+    .eps-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #00e5ff;
+      margin-bottom: 10px;
+    }
+
+    .eps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 8px;
     }
 
     #playerWrap {
       position: fixed;
       inset: 0;
       background: #000;
-      z-index: 9999;
       display: none;
+      z-index: 9999;
     }
 
     #videoPlayer {
       width: 100%;
       height: 100%;
       background: #000;
-      object-fit: contain;
     }
 
-    #playerUi {
+    #playerBar {
       position: absolute;
-      top: 14px;
-      left: 14px;
-      right: 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      z-index: 10001;
-      pointer-events: none;
-    }
-
-    #playerLeft,
-    #playerRight {
+      top: 12px;
+      left: 12px;
       display: flex;
       gap: 8px;
-      flex-wrap: wrap;
-      pointer-events: auto;
+      z-index: 10000;
     }
 
     .player-btn {
       border: 0;
-      border-radius: 12px;
-      padding: 12px 14px;
-      color: #fff;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      outline: none;
-    }
-
-    .home-btn { background: #2196f3; }
-    .close-btn { background: #e53935; }
-    .mx-btn { background: #ff9800; }
-    .player-alt-btn { background: #8e24aa; }
-
-    #playerStatus {
-      position: absolute;
-      left: 14px;
-      right: 14px;
-      bottom: 14px;
-      z-index: 10001;
-      background: rgba(0,0,0,.72);
-      border-radius: 12px;
+      border-radius: 10px;
       padding: 10px 12px;
-      font-size: 14px;
-      text-align: center;
-      display: none;
-    }
-
-    #episodeModal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.86);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 10020;
-      padding: 16px;
-    }
-
-    #episodeBox {
-      width: min(980px, 96vw);
-      max-height: 90vh;
-      overflow-y: auto;
-      background: #111;
-      border: 1px solid #2a2a2a;
-      border-radius: 18px;
-      padding: 16px;
-    }
-
-    #episodeHeader {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    #episodeTitle {
-      font-size: 22px;
-      font-weight: bold;
-      color: #00e5ff;
-    }
-
-    #episodeGrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 12px;
-    }
-
-    .ep-card {
-      border: 0;
-      border-radius: 12px;
-      background: #1b1b1b;
       color: #fff;
-      padding: 14px;
       cursor: pointer;
-      text-align: left;
-      outline: none;
-    }
-
-    .ep-card:focus,
-    .ep-card:hover {
-      box-shadow: 0 0 0 3px #00e5ff;
-    }
-
-    .ep-name {
-      font-size: 15px;
       font-weight: bold;
     }
 
-    .ep-sub {
-      margin-top: 8px;
-      font-size: 12px;
-      color: #bbb;
-    }
+    .btn-home { background: #2196f3; }
+    .btn-close { background: #e53935; }
+    .btn-player { background: #8e24aa; }
 
-    @media (max-width: 900px) {
-      .sidebar { width: 180px; }
-      .grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
-      .card img { height: 160px; }
+    @media (max-width: 800px) {
+      .sidebar { width: 150px; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+      .card img { height: 145px; }
+      .card.tv img { height: 120px; }
     }
   </style>
 </head>
@@ -332,101 +206,73 @@
     <aside class="sidebar">
       <div class="brand">TIEA IPTV</div>
 
-      <button class="menu-btn active"
-        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json"
-        data-title="📺 ทีวี">📺 ทีวี</button>
-
-      <button class="menu-btn"
-        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json"
-        data-title="🎬 หนัง">🎬 หนัง</button>
-
-      <button class="menu-btn"
-        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/MySeries.json"
-        data-title="📺 ซีรีส์">📺 ซีรีส์</button>
-
-      <button class="menu-btn"
-        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json"
-        data-title="🎞️ Flixmono">🎞️ Flixmono</button>
-      
-      <button class="menu-btn"
-        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Goseries.json"
-        data-title="🎬 GoSeries">🎬 GoSeries</button>
-
+      <button class="menu-btn active" data-title="📺 ทีวี" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
+      <button class="menu-btn" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
+      <button class="menu-btn" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/MySeries.json">📺 ซีรีส์</button>
+      <button class="menu-btn" data-title="🎞️ Flixmono" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json">🎞️ Flixmono</button>
       <button class="menu-btn" data-link="live.html">⚽ ตารางแข่งขัน</button>
     </aside>
 
     <main class="main">
       <div class="topbar">
         <div>
-          <div class="title" id="pageTitle">📺 ทีวี</div>
-          <div class="sub">ใช้รีโมทหรือเมาส์เลือกได้</div>
+          <div id="pageTitle" class="title">📺 ทีวี</div>
+          <div class="sub">แบบเรียบง่าย ทีวี / หนัง / ซีรีส์</div>
         </div>
         <div class="tools">
-          <button class="tool-btn" id="reloadBtn">รีโหลด</button>
-          <button class="tool-btn" id="homeBtn">หน้าโฮม</button>
+          <button id="reloadBtn" class="top-btn">รีโหลด</button>
+          <button id="backBtn" class="top-btn">ย้อนกลับ</button>
         </div>
       </div>
 
       <div id="statusBox" class="status"></div>
-      <div id="grid" class="grid"></div>
+
+      <div id="listView">
+        <div id="grid" class="grid"></div>
+      </div>
+
+      <div id="epsWrap" class="eps-wrap">
+        <div id="epsTitle" class="eps-title">ตอนทั้งหมด</div>
+        <div id="epsGrid" class="eps-grid"></div>
+      </div>
     </main>
   </div>
 
   <div id="playerWrap">
     <video id="videoPlayer" controls playsinline autoplay muted></video>
-
-    <div id="playerUi">
-      <div id="playerLeft">
-        <button id="playerHomeBtn" class="player-btn home-btn">🏠 หน้าโฮม</button>
-        <button id="playerCloseBtn" class="player-btn close-btn">✕ ปิด</button>
-      </div>
-      <div id="playerRight">
-        <button id="playerExternalBtn" class="player-btn player-alt-btn">▶ PLAYER</button>
-        <button id="playerMxBtn" class="player-btn mx-btn">▶ MX</button>
-      </div>
-    </div>
-
-    <div id="playerStatus"></div>
-  </div>
-
-  <div id="episodeModal">
-    <div id="episodeBox">
-      <div id="episodeHeader">
-        <div id="episodeTitle">ตอนทั้งหมด</div>
-        <button class="tool-btn" id="closeEpisodeBtn">ปิด</button>
-      </div>
-      <div id="episodeGrid"></div>
+    <div id="playerBar">
+      <button id="playerHomeBtn" class="player-btn btn-home">🏠 หน้าโฮม</button>
+      <button id="playerExternalBtn" class="player-btn btn-player">▶ PLAYER</button>
+      <button id="playerCloseBtn" class="player-btn btn-close">✕ ปิด</button>
     </div>
   </div>
 
   <script>
     const grid = document.getElementById("grid");
+    const epsWrap = document.getElementById("epsWrap");
+    const epsGrid = document.getElementById("epsGrid");
+    const epsTitle = document.getElementById("epsTitle");
     const pageTitle = document.getElementById("pageTitle");
     const statusBox = document.getElementById("statusBox");
+    const listView = document.getElementById("listView");
+
     const playerWrap = document.getElementById("playerWrap");
-    const playerStatus = document.getElementById("playerStatus");
     const video = document.getElementById("videoPlayer");
-    const episodeModal = document.getElementById("episodeModal");
-    const episodeTitle = document.getElementById("episodeTitle");
-    const episodeGrid = document.getElementById("episodeGrid");
+
     const menuButtons = Array.from(document.querySelectorAll(".menu-btn"));
 
     let currentSource = menuButtons[0].dataset.source;
-    let currentTitle = menuButtons[0].dataset.title || "📺 ทีวี";
+    let currentTitle = menuButtons[0].dataset.title;
     let currentItem = null;
     let currentServerIndex = 0;
-    let currentList = [];
+    let currentMode = "list";
     let hls = null;
-    let dashPlayer = null;
+    let cache = {};
+    let historyStack = [];
 
     function setStatus(msg) {
       statusBox.textContent = msg || "";
       statusBox.style.display = msg ? "block" : "none";
-    }
-
-    function setPlayerStatus(msg) {
-      playerStatus.textContent = msg || "";
-      playerStatus.style.display = msg ? "block" : "none";
     }
 
     function clearPlayer() {
@@ -434,14 +280,9 @@
         try { hls.destroy(); } catch (e) {}
         hls = null;
       }
-      if (dashPlayer) {
-        try { dashPlayer.reset(); } catch (e) {}
-        dashPlayer = null;
-      }
       try { video.pause(); } catch (e) {}
       video.removeAttribute("src");
       video.load();
-      setPlayerStatus("");
     }
 
     function showPlayer() {
@@ -453,116 +294,94 @@
       playerWrap.style.display = "none";
     }
 
-    function goHome() {
-      closePlayer();
-      closeEpisodeModal();
-    }
-
-    function openMx(url) {
-      if (!url) return;
-      window.location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
-    }
-
     function openExternalPlayer(url) {
       if (!url) return;
-
       try {
         const u = new URL(url);
-        const intent =
+        location.href =
           "intent://" + u.host + u.pathname + u.search +
           "#Intent;scheme=" + u.protocol.replace(":", "") +
           ";action=android.intent.action.VIEW;type=video/*;end";
-
-        window.location.href = intent;
       } catch (e) {
-        window.location.href = url;
-      }
-    }
-
-    function openSystemPlayer(url) {
-      if (!url) return;
-      try {
-        const u = new URL(url);
-        const intent =
-          "intent://" + u.host + u.pathname + u.search +
-          "#Intent;scheme=" + u.protocol.replace(":", "") +
-          ";action=android.intent.action.VIEW;type=video/*;end";
-        window.location.href = intent;
-      } catch (e) {
-        setPlayerStatus("เปิดตัวเล่นในเครื่องไม่ได้");
+        location.href = url;
       }
     }
 
     function getPlayableUrl(item, idx = 0) {
       if (!item) return "";
-
       if (Array.isArray(item.servers) && item.servers.length) {
-        return (
-          item.servers[idx]?.url ||
-          item.servers[0]?.url ||
-          item.servers[idx]?.link ||
-          item.servers[0]?.link ||
-          item.servers[idx]?.file ||
-          item.servers[0]?.file ||
-          ""
-        );
+        return item.servers[idx]?.url || item.servers[idx]?.link || item.servers[0]?.url || item.servers[0]?.link || "";
       }
-
       return item.url || item.link || item.stream || item.source || item.file || "";
     }
 
     function normalizeItems(data) {
       const out = [];
 
-      function pushItem(item, extra = {}) {
+      function pushItem(item, extraType = "") {
         if (!item || typeof item !== "object") return;
 
-        const mapped = {
-          title: item.title || item.name || item.ep_name || item.episode || "ไม่มีชื่อ",
-          image: item.image || item.poster || item.logo || item.thumb || extra.image || "",
-          url: item.url || item.link || item.stream || item.source || item.file || "",
-          group: item.group || item.category || item.genre || extra.group || "",
-          type: item.type || extra.type || "video",
-          servers: Array.isArray(item.servers)
-            ? item.servers.map(s => ({
-                name: s?.name || "",
-                url: s?.url || s?.link || s?.file || ""
-              })).filter(s => s.url)
-            : [],
-          episodes: []
-        };
+        const title = item.title || item.name || item.ep_name || item.episode || "";
+        const image = item.image || item.poster || item.logo || item.thumb || "";
+        const url = item.url || item.link || item.stream || item.source || item.file || "";
 
-        if (Array.isArray(item.episodes) && item.episodes.length) {
-          mapped.type = "series";
-          mapped.episodes = item.episodes.map((ep, idx) => ({
-            title: ep.title || ep.name || ep.ep_name || `EP${idx + 1}`,
-            image: ep.image || ep.poster || item.image || item.poster || item.logo || "",
-            url: ep.url || ep.link || ep.stream || ep.source || ep.file || "",
-            servers: Array.isArray(ep.servers)
-              ? ep.servers.map(s => ({
-                  name: s?.name || "",
-                  url: s?.url || s?.link || s?.file || ""
-                })).filter(s => s.url)
-              : []
-          }));
+        let servers = Array.isArray(item.servers)
+          ? item.servers.map(s => ({
+              name: s?.name || "",
+              url: s?.url || s?.link || s?.file || ""
+            })).filter(s => s.url)
+          : [];
+
+        const episodes = Array.isArray(item.episodes)
+          ? item.episodes.map((ep, i) => ({
+              title: ep.title || ep.name || ep.ep_name || `EP${i + 1}`,
+              image: ep.image || ep.poster || image || "",
+              url: ep.url || ep.link || ep.stream || ep.source || ep.file || "",
+              servers: Array.isArray(ep.servers)
+                ? ep.servers.map(s => ({
+                    name: s?.name || "",
+                    url: s?.url || s?.link || s?.file || ""
+                  })).filter(s => s.url)
+                : []
+            }))
+          : [];
+
+        const lowerTitle = String(title).toLowerCase().trim();
+        const isServerOnlyTitle =
+          lowerTitle === "main" ||
+          lowerTitle === "backup" ||
+          lowerTitle.startsWith("backup ") ||
+          lowerTitle.startsWith("main ") ||
+          lowerTitle.includes("bkp");
+
+        if (isServerOnlyTitle && !episodes.length && !image) {
+          return;
         }
 
-        if (
-          mapped.url ||
-          mapped.servers.length ||
-          mapped.episodes.length ||
-          mapped.type === "source" ||
-          mapped.type === "series"
-        ) {
-          out.push(mapped);
+        let finalUrl = url;
+        if (!finalUrl && servers.length) {
+          finalUrl = servers[0].url;
+        }
+
+        const finalServers = episodes.length ? servers : [];
+
+        if (title && (finalUrl || finalServers.length || episodes.length || extraType === "source")) {
+          out.push({
+            title,
+            image,
+            url: finalUrl,
+            servers: finalServers,
+            episodes,
+            type: extraType || (episodes.length ? "series" : "video")
+          });
         }
       }
 
-      function walk(node, extra = {}) {
+      function walk(node) {
         if (!node) return;
 
         if (Array.isArray(node)) {
-          node.forEach(item => walk(item, extra));
+          node.forEach(walk);
           return;
         }
 
@@ -571,26 +390,25 @@
         if (node.type === "menu" && Array.isArray(node.items)) {
           node.items.forEach(item => {
             pushItem({
-              title: item.title || item.name,
+              title: item.title || item.name || "ไม่มีชื่อ",
               image: item.image || item.poster || item.logo || "",
-              source: item.source || item.url || "",
-              type: item.type || "source"
-            });
+              url: item.source || item.url || ""
+            }, "source");
           });
           return;
         }
 
         if (
-          node.title || node.name || node.url || node.link || node.stream ||
-          node.source || node.file || node.servers || node.episodes
+          node.title || node.name || node.url || node.link ||
+          node.stream || node.source || node.file || node.logo ||
+          node.servers || node.episodes
         ) {
-          pushItem(node, extra);
+          pushItem(node);
         }
 
-        Object.keys(node).forEach(key => {
-          const value = node[key];
+        Object.values(node).forEach(value => {
           if (Array.isArray(value) || (value && typeof value === "object")) {
-            walk(value, extra);
+            walk(value);
           }
         });
       }
@@ -600,34 +418,34 @@
     }
 
     async function loadSource(sourceUrl) {
+      if (cache[sourceUrl]) return cache[sourceUrl];
+
       const lower = sourceUrl.toLowerCase();
 
       if (lower.endsWith(".m3u8") && !lower.includes(".json")) {
-        return [{
+        const direct = [{
           title: "Live Stream",
           image: "",
           url: sourceUrl,
-          servers: [{ name: "main", url: sourceUrl }],
+          servers: [],
+          episodes: [],
           type: "video"
         }];
+        cache[sourceUrl] = direct;
+        return direct;
       }
 
       const res = await fetch(sourceUrl);
-      if (!res.ok) throw new Error("โหลดไฟล์ไม่สำเร็จ: " + res.status);
+      if (!res.ok) throw new Error("โหลดไฟล์ไม่สำเร็จ");
 
       const text = await res.text();
       const trimmed = text.trim();
-
-      if (!trimmed) return [];
+      let result = [];
 
       if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
-        const parsed = JSON.parse(text);
-        return normalizeItems(parsed);
-      }
-
-      if (trimmed.includes("#EXTM3U") || trimmed.includes("#EXTINF")) {
+        result = normalizeItems(JSON.parse(text));
+      } else if (trimmed.includes("#EXTM3U") || trimmed.includes("#EXTINF")) {
         const lines = text.split(/\r?\n/);
-        const list = [];
         let current = null;
 
         for (const raw of lines) {
@@ -636,57 +454,35 @@
 
           if (line.startsWith("#EXTINF:")) {
             const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
-            const groupMatch = line.match(/group-title="([^"]*)"/i);
             const name = line.split(",").pop()?.trim() || "ไม่มีชื่อ";
-
             current = {
               title: name,
               image: logoMatch ? logoMatch[1] : "",
-              group: groupMatch ? groupMatch[1] : "",
               url: "",
               servers: [],
+              episodes: [],
               type: "video"
             };
           } else if (!line.startsWith("#") && current) {
             current.url = line;
-            current.servers = [{ name: "main", url: line }];
-            list.push(current);
+            result.push(current);
             current = null;
           }
         }
-
-        return list;
       }
 
-      return [];
-    }
-
-    async function detectStreamType(url) {
-      try {
-        const res = await fetch(url);
-        const text = await res.text();
-        const trimmed = text.trim();
-
-        if (trimmed.startsWith("#EXTM3U") || trimmed.includes("#EXT-X-STREAM-INF")) {
-          return "hls";
-        }
-
-        if (trimmed.startsWith("<!DOCTYPE html") || trimmed.startsWith("<html")) {
-          return "html";
-        }
-
-        return "unknown";
-      } catch (e) {
-        return "unknown";
-      }
+      cache[sourceUrl] = result;
+      return result;
     }
 
     function renderGrid(list) {
-      currentList = list;
+      currentMode = "list";
+      listView.style.display = "block";
+      epsWrap.style.display = "none";
       grid.innerHTML = "";
 
       if (!list.length) {
-        grid.innerHTML = `<div class="empty">ไม่พบรายการ</div>`;
+        grid.innerHTML = `<div style="color:#aaa;padding:20px;">ไม่พบรายการ</div>`;
         return;
       }
 
@@ -696,101 +492,54 @@
         const card = document.createElement("button");
         card.className = "card" + (isTV ? " tv" : "");
         card.type = "button";
-        card.tabIndex = 0;
 
         card.innerHTML = `
-          <img src="${item.image || ""}" alt="" onerror="this.style.display='none'">
-          <div class="card-body">
-            <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
-            <div class="card-badge">${item.type === "series" ? "ตอนทั้งหมด" : item.type === "source" ? "หมวดย่อย" : "เล่นได้"}</div>
-          </div>
+          ${item.image
+            ? `<img src="${item.image}" alt="" loading="lazy" onerror="this.style.display='none'">`
+            : `<div style="height:${isTV ? 140 : 170}px;background:#000;"></div>`
+          }
+          <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
         `;
 
-        if (item.type === "source") {
-          card.onclick = async () => {
-            currentSource = item.url || item.source || "";
-            pageTitle.textContent = item.title || pageTitle.textContent;
-            setStatus("กำลังโหลดรายการ...");
-            try {
-              const sub = await loadSource(currentSource);
-              renderGrid(sub);
-              setStatus("");
-            } catch (e) {
-              setStatus("โหลดรายการไม่สำเร็จ");
-            }
-          };
-        } else if (item.type === "series" || (Array.isArray(item.episodes) && item.episodes.length)) {
-          card.onclick = () => openEpisodeModal(item);
-        } else {
-          card.onclick = () => playItem(item, 0);
-        }
-
-        card.onkeydown = (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            card.click();
+        card.onclick = async () => {
+          if (item.type === "source") {
+            historyStack.push({ mode: "list", title: currentTitle, source: currentSource });
+            currentSource = item.url;
+            currentTitle = item.title || currentTitle;
+            pageTitle.textContent = currentTitle;
+            await loadCurrentMenu();
+            return;
           }
-        };
 
-        card.onmousedown = (e) => {
-          e.preventDefault();
-          card.click();
+          if (item.episodes && item.episodes.length) {
+            historyStack.push({ mode: "list", title: currentTitle, source: currentSource });
+            showEpisodes(item);
+            return;
+          }
+
+          playItem(item, 0);
         };
 
         grid.appendChild(card);
       });
     }
 
-    function openEpisodeModal(seriesItem) {
-      episodeTitle.textContent = seriesItem.title || "ตอนทั้งหมด";
-      episodeGrid.innerHTML = "";
+    function showEpisodes(seriesItem) {
+      currentMode = "episodes";
+      listView.style.display = "none";
+      epsWrap.style.display = "block";
+      epsTitle.textContent = seriesItem.title || "ตอนทั้งหมด";
+      epsGrid.innerHTML = "";
 
-      const eps = Array.isArray(seriesItem.episodes) ? seriesItem.episodes : [];
+      const eps = Array.isArray(seriesItem.episodes) ? [...seriesItem.episodes].reverse() : [];
 
-      eps.forEach((ep, index) => {
-        const btn = document.createElement("button");
-        btn.className = "ep-card";
-        btn.type = "button";
-        btn.tabIndex = 0;
-
-        const epTitle = ep.title || ep.name || `EP${index + 1}`;
-        btn.innerHTML = `
-          <div class="ep-name">${epTitle}</div>
-          <div class="ep-sub">กดเพื่อเล่น</div>
-        `;
-
-        const playEp = () => {
-          closeEpisodeModal();
-          setTimeout(() => {
-            playItem(ep, 0);
-          }, 50);
-        };
-
-        btn.onclick = playEp;
-        btn.onmousedown = (e) => {
-          e.preventDefault();
-          playEp();
-        };
-        btn.onkeydown = (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            playEp();
-          }
-        };
-
-        episodeGrid.appendChild(btn);
+      eps.forEach((ep, i) => {
+        let btn = document.createElement("button");
+        btn.className = "ep-btn";
+        btn.textContent = ep.title || `EP${i + 1}`;
+        btn.onclick = () => playItem(ep, 0);
+        epsGrid.appendChild(btn);
       });
-
-      episodeModal.style.display = "flex";
-
-      setTimeout(() => {
-        const first = episodeGrid.querySelector(".ep-card");
-        if (first) first.focus();
-      }, 80);
-    }
-
-    function closeEpisodeModal() {
-      episodeModal.style.display = "none";
     }
 
     async function playItem(item, serverIndex = 0) {
@@ -800,120 +549,28 @@
 
       const url = getPlayableUrl(item, serverIndex);
       if (!url) {
-        setPlayerStatus("ไม่พบลิงก์เล่น");
+        setStatus("ไม่พบลิงก์เล่น");
         return;
       }
 
       const lower = url.toLowerCase();
-      const epName = item?.title || item?.name || "";
+      const hasNextServer = Array.isArray(item.servers) && serverIndex + 1 < item.servers.length;
 
-      const isSeries =
-        currentTitle.includes("ซีรีส์") ||
-        currentTitle.includes("Flixmono") ||
-        currentTitle.includes("GoSeries") ||
-        epName.toUpperCase().includes("EP") ||
-        epName.includes("ตอน");
-
-      if (isSeries) {
-        if (
-          lower.includes("ok-hd.com/play/") ||
-          lower.includes("top-cdn.com/play/") ||
-          lower.includes("/play/") ||
-          lower.includes("/embed/")
-        ) {
-          window.location.href = url;
-          return;
+      const nextServer = () => {
+        if (hasNextServer) {
+          playItem(item, serverIndex + 1);
+        } else {
+          openExternalPlayer(url);
         }
+      };
 
-        if (lower.includes(".m3u8")) {
-          showPlayer();
-
-          if (Hls.isSupported()) {
-            hls = new Hls({
-              enableWorker: true,
-              autoStartLoad: true,
-              maxBufferLength: 30,
-              maxMaxBufferLength: 60
-            });
-
-            hls.loadSource(url);
-            hls.attachMedia(video);
-
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              video.muted = true;
-              video.play().then(() => {
-                setTimeout(() => { video.muted = false; }, 400);
-              }).catch(() => openExternalPlayer(url));
-            });
-
-            hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openExternalPlayer(url);
-            });
-          } else {
-            openExternalPlayer(url);
-          }
-          return;
-        }
-
-        if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
-          showPlayer();
-          video.src = url;
-          video.muted = true;
-          video.play().then(() => {
-            setTimeout(() => { video.muted = false; }, 400);
-          }).catch(() => openExternalPlayer(url));
-          return;
-        }
-
-        if (lower.includes(".mpd")) {
-          showPlayer();
-          try {
-            dashPlayer = dashjs.MediaPlayer().create();
-            dashPlayer.initialize(video, url, true);
-          } catch (e) {
-            openExternalPlayer(url);
-          }
-          return;
-        }
-
-        const detectedType = await detectStreamType(url);
-
-        if (detectedType === "hls") {
-          showPlayer();
-
-          if (Hls.isSupported()) {
-            hls = new Hls({
-              enableWorker: true,
-              autoStartLoad: true,
-              maxBufferLength: 30,
-              maxMaxBufferLength: 60
-            });
-
-            hls.loadSource(url);
-            hls.attachMedia(video);
-
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              video.muted = true;
-              video.play().then(() => {
-                setTimeout(() => { video.muted = false; }, 400);
-              }).catch(() => openExternalPlayer(url));
-            });
-
-            hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openExternalPlayer(url);
-            });
-          } else {
-            openExternalPlayer(url);
-          }
-          return;
-        }
-
-        if (detectedType === "html") {
-          window.location.href = url;
-          return;
-        }
-
-        openExternalPlayer(url);
+      if (
+        lower.includes("ok-hd.com/play/") ||
+        lower.includes("top-cdn.com/play/") ||
+        lower.includes("/play/") ||
+        lower.includes("/embed/")
+      ) {
+        location.href = url;
         return;
       }
 
@@ -924,8 +581,8 @@
           hls = new Hls({
             enableWorker: true,
             autoStartLoad: true,
-            maxBufferLength: 30,
-            maxMaxBufferLength: 60
+            maxBufferLength: 20,
+            maxMaxBufferLength: 30
           });
 
           hls.loadSource(url);
@@ -934,21 +591,15 @@
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
             video.muted = true;
             video.play().then(() => {
-              setTimeout(() => { video.muted = false; }, 400);
-            }).catch(() => openSystemPlayer(url));
+              setTimeout(() => { video.muted = false; }, 300);
+            }).catch(() => nextServer());
           });
 
           hls.on(Hls.Events.ERROR, (e, data) => {
-            if (data?.fatal) openSystemPlayer(url);
+            if (data?.fatal) nextServer();
           });
-        } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-          video.src = url;
-          video.muted = true;
-          video.play().then(() => {
-            setTimeout(() => { video.muted = false; }, 400);
-          }).catch(() => openSystemPlayer(url));
         } else {
-          openSystemPlayer(url);
+          nextServer();
         }
         return;
       }
@@ -958,23 +609,49 @@
         video.src = url;
         video.muted = true;
         video.play().then(() => {
-          setTimeout(() => { video.muted = false; }, 400);
-        }).catch(() => openSystemPlayer(url));
+          setTimeout(() => { video.muted = false; }, 300);
+        }).catch(() => nextServer());
         return;
       }
 
-      if (lower.includes(".mpd")) {
-        showPlayer();
-        try {
-          dashPlayer = dashjs.MediaPlayer().create();
-          dashPlayer.initialize(video, url, true);
-        } catch (e) {
-          openSystemPlayer(url);
+      try {
+        const text = await fetch(url).then(r => r.text());
+
+        if (text.includes("#EXTM3U")) {
+          showPlayer();
+
+          if (Hls.isSupported()) {
+            hls = new Hls({
+              enableWorker: true,
+              autoStartLoad: true,
+              maxBufferLength: 20,
+              maxMaxBufferLength: 30
+            });
+
+            hls.loadSource(url);
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              video.muted = true;
+              video.play().then(() => {
+                setTimeout(() => { video.muted = false; }, 300);
+              }).catch(() => nextServer());
+            });
+
+            hls.on(Hls.Events.ERROR, () => nextServer());
+          } else {
+            nextServer();
+          }
+          return;
         }
-        return;
-      }
 
-      openSystemPlayer(url);
+        if (text.startsWith("<!DOCTYPE html") || text.startsWith("<html")) {
+          location.href = url;
+          return;
+        }
+      } catch (e) {}
+
+      nextServer();
     }
 
     async function loadCurrentMenu() {
@@ -982,11 +659,11 @@
         setStatus("กำลังโหลดรายการ...");
         const list = await loadSource(currentSource);
         renderGrid(list);
+        pageTitle.textContent = currentTitle;
         setStatus("");
       } catch (e) {
-        console.error(e);
         setStatus("โหลดรายการไม่สำเร็จ");
-        grid.innerHTML = `<div class="empty">โหลดรายการไม่สำเร็จ</div>`;
+        grid.innerHTML = `<div style="color:#aaa;padding:20px;">โหลดรายการไม่สำเร็จ</div>`;
       }
     }
 
@@ -996,56 +673,53 @@
         btn.classList.add("active");
 
         if (btn.dataset.link) {
-          window.location.href = btn.dataset.link;
+          location.href = btn.dataset.link;
           return;
         }
 
+        historyStack = [];
         currentSource = btn.dataset.source || "";
         currentTitle = btn.dataset.title || btn.textContent.trim();
         pageTitle.textContent = currentTitle;
-        closeEpisodeModal();
+        closePlayer();
         await loadCurrentMenu();
       };
     });
 
     document.getElementById("reloadBtn").onclick = loadCurrentMenu;
-    document.getElementById("homeBtn").onclick = async () => {
-      closeEpisodeModal();
-      await loadCurrentMenu();
+
+    document.getElementById("backBtn").onclick = async () => {
+      closePlayer();
+
+      if (currentMode === "episodes") {
+        epsWrap.style.display = "none";
+        listView.style.display = "block";
+        currentMode = "list";
+        return;
+      }
+
+      const prev = historyStack.pop();
+      if (prev && prev.source) {
+        currentSource = prev.source;
+        currentTitle = prev.title;
+        pageTitle.textContent = currentTitle;
+        await loadCurrentMenu();
+      }
     };
 
-    document.getElementById("playerHomeBtn").onclick = goHome;
+    document.getElementById("playerHomeBtn").onclick = () => {
+      closePlayer();
+      epsWrap.style.display = "none";
+      listView.style.display = "block";
+      currentMode = "list";
+    };
+
     document.getElementById("playerCloseBtn").onclick = closePlayer;
-    document.getElementById("closeEpisodeBtn").onclick = closeEpisodeModal;
 
     document.getElementById("playerExternalBtn").onclick = () => {
       const url = getPlayableUrl(currentItem, currentServerIndex);
       openExternalPlayer(url);
     };
-
-    document.getElementById("playerMxBtn").onclick = () => {
-      const url = getPlayableUrl(currentItem, currentServerIndex);
-      openMx(url);
-    };
-
-    document.addEventListener("keydown", (e) => {
-      if (
-        e.key === "Escape" ||
-        e.key === "Backspace" ||
-        e.keyCode === 10009
-      ) {
-        if (playerWrap.style.display === "block") {
-          e.preventDefault();
-          closePlayer();
-          return;
-        }
-
-        if (episodeModal.style.display === "flex") {
-          e.preventDefault();
-          closeEpisodeModal();
-        }
-      }
-    });
 
     loadCurrentMenu();
   </script>
