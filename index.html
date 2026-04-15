@@ -216,10 +216,6 @@ body{
             data-title="📺 ซีรีส์">📺 ซีรีส์</button>
 
         <button class="menu-btn" tabindex="0"
-            data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Vip.json"
-            data-title="🔐 VIP">🔐 VIP</button>
-
-        <button class="menu-btn" tabindex="0"
             data-link="live-old.html">⚽ ตารางแข่งขัน</button>
     </aside>
 
@@ -327,6 +323,19 @@ function goHome(){
     if(firstMenu) firstMenu.focus();
 }
 
+function openIntentUrl(intentUrl){
+    try{
+        const a = document.createElement("a");
+        a.href = intentUrl;
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+    }catch(e){
+        console.error(e);
+    }
+}
+
 function openMx(url){
     if(!url) return;
     try{
@@ -335,14 +344,7 @@ function openMx(url){
             "intent://" + u.host + u.pathname + u.search +
             "#Intent;scheme=" + u.protocol.replace(":", "") +
             ";package=com.mxtech.videoplayer.ad;end";
-
-        const proIntent =
-            "intent://" + u.host + u.pathname + u.search +
-            "#Intent;scheme=" + u.protocol.replace(":", "") +
-            ";package=com.mxtech.videoplayer.pro;end";
-
-        window.location.href = adIntent;
-        setTimeout(() => { window.location.href = proIntent; }, 1200);
+        openIntentUrl(adIntent);
     }catch(e){
         console.error(e);
         setPlayerStatus("เปิด MX ไม่ได้");
@@ -357,7 +359,7 @@ function openVlc(url){
             "intent://" + u.host + u.pathname + u.search +
             "#Intent;scheme=" + u.protocol.replace(":", "") +
             ";package=org.videolan.vlc;end";
-        window.location.href = vlcIntent;
+        openIntentUrl(vlcIntent);
     }catch(e){
         console.error(e);
         setPlayerStatus("เปิด VLC ไม่ได้");
@@ -383,7 +385,7 @@ function tryNextServer(item, idx, reason){
         setPlayerStatus(reason + " กำลังสลับ Server " + (idx + 2));
         setTimeout(() => playItem(item, idx + 1, currentEpisodeList, currentEpisodeIndex), 500);
     }else{
-        setPlayerStatus("เล่นไม่ได้ ลองกด MX หรือ VLC");
+        setPlayerStatus("เล่นไม่ได้ ลองกด Web / MX / VLC");
     }
 }
 
@@ -430,35 +432,24 @@ function playItem(item, serverIndex = 0, episodeList = [], episodeIndex = -1){
         return;
     }
 
+    // ซีรีส์พวกลิงก์แบบนี้ อย่า auto เด้ง intent
     if(
-        !forceWeb && (
-            lower.includes("master.txt") ||
-            lower.endsWith(".mp4") ||
-            lower.endsWith(".mkv") ||
-            lower.endsWith(".avi") ||
-            lower.endsWith(".mov") ||
-            lower.includes("drive.google.com") ||
-            lower.includes("pixeldrain") ||
-            lower.includes("streamwish") ||
-            lower.includes("filemoon") ||
-            lower.includes("dood") ||
-            lower.includes("vidoza") ||
-            lower.includes("embed") ||
-            lower.includes("watch")
-        )
+        lower.includes("cumpon1.com") ||
+        lower.includes("/api/files/") ||
+        lower.includes("master.txt") ||
+        lower.includes("streamwish") ||
+        lower.includes("filemoon") ||
+        lower.includes("vidoza") ||
+        lower.includes("dood") ||
+        lower.includes("embed") ||
+        lower.includes("watch")
     ){
-        if(
-            lower.includes("streamwish") ||
-            lower.includes("dood") ||
-            lower.includes("filemoon") ||
-            lower.includes("vidoza") ||
-            lower.includes("embed") ||
-            lower.includes("watch")
-        ){
-            openVlc(url);
-        }else{
-            openMx(url);
-        }
+        video.src = url;
+        video.muted = false;
+        video.volume = 1;
+        video.play().catch(() => {
+            setPlayerStatus("ลิงก์นี้เล่นในเว็บไม่ได้ ลองกด MX หรือ VLC ด้านบน");
+        });
         return;
     }
 
@@ -477,10 +468,9 @@ function playItem(item, serverIndex = 0, episodeList = [], episodeIndex = -1){
             hls.attachMedia(video);
 
             hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                video.muted = true;
-                video.play().then(() => {
-                    setTimeout(() => { video.muted = false; }, 300);
-                }).catch(() => {
+                video.muted = false;
+                video.volume = 1;
+                video.play().catch(() => {
                     tryNextServer(item, serverIndex, "HLS เล่นไม่ได้");
                 });
             });
@@ -496,8 +486,23 @@ function playItem(item, serverIndex = 0, episodeList = [], episodeIndex = -1){
                 tryNextServer(item, serverIndex, "เล่นไม่ได้");
             });
         }else{
-            openMx(url);
+            setPlayerStatus("อุปกรณ์นี้ไม่รองรับ HLS");
         }
+        return;
+    }
+
+    if(
+        lower.endsWith(".mp4") ||
+        lower.endsWith(".mkv") ||
+        lower.endsWith(".avi") ||
+        lower.endsWith(".mov")
+    ){
+        video.src = url;
+        video.muted = false;
+        video.volume = 1;
+        video.play().catch(() => {
+            setPlayerStatus("ไฟล์นี้เล่นในเว็บไม่ได้ ลองกด MX ด้านบน");
+        });
         return;
     }
 
@@ -506,12 +511,15 @@ function playItem(item, serverIndex = 0, episodeList = [], episodeIndex = -1){
             dashPlayer = dashjs.MediaPlayer().create();
             dashPlayer.initialize(video, url, true);
         }catch(e){
-            tryNextServer(item, serverIndex, "DASH เล่นไม่ได้");
+            setPlayerStatus("DASH เล่นไม่ได้");
         }
         return;
     }
 
-    openMx(url);
+    video.src = url;
+    video.play().catch(() => {
+        setPlayerStatus("เล่นไม่ได้ ลองกด MX หรือ VLC ด้านบน");
+    });
 }
 
 function parseM3U(text){
@@ -550,8 +558,9 @@ function normalizeVideoItem(i, fallbackImg = ""){
         title: i.title || i.name || "ไม่มีชื่อ",
         logo: i.poster || i.image || i.thumbnail || i.logo || fallbackImg || "",
         url: i.url || i.stream || i.link || i.source || "",
+        source: i.source || "",
         servers: Array.isArray(i.servers) ? i.servers : [],
-        type: "video"
+        type: i.type || "video"
     };
 }
 
@@ -579,9 +588,16 @@ function parse(data){
                         _episodeIndex: epIndex
                     }))
                 });
-            }else{
+            } else if (i.type === "source" && (i.source || i.url)) {
+                list.push({
+                    title: i.title || i.name || "ไม่มีชื่อ",
+                    logo: i.poster || i.image || i.thumbnail || i.logo || "",
+                    type: "source",
+                    source: i.source || i.url || ""
+                });
+            } else {
                 const item = normalizeVideoItem(i);
-                if(item.url || item.servers.length) list.push(item);
+                if(item.url || item.source || item.servers.length) list.push(item);
             }
         });
         return list;
@@ -590,7 +606,7 @@ function parse(data){
     if(data?.channels && Array.isArray(data.channels)){
         data.channels.forEach(i => {
             const item = normalizeVideoItem(i);
-            if(item.url || item.servers.length) list.push(item);
+            if(item.url || item.source || item.servers.length) list.push(item);
         });
         return list;
     }
@@ -609,16 +625,16 @@ function parse(data){
                             _episodeIndex: epIndex
                         }))
                     });
-                }else if(i.type === "source" && (i.source || i.url)){
+                } else if (i.type === "source" && (i.source || i.url)) {
                     list.push({
                         title: i.title || i.name || "ไม่มีชื่อ",
                         logo: i.poster || i.image || i.thumbnail || i.logo || "",
                         type: "source",
                         source: i.source || i.url || ""
                     });
-                }else{
+                } else {
                     const item = normalizeVideoItem(i);
-                    if(item.url || item.servers.length) list.push(item);
+                    if(item.url || item.source || item.servers.length) list.push(item);
                 }
             });
         });
@@ -637,16 +653,16 @@ function parse(data){
                         _episodeIndex: epIndex
                     }))
                 });
-            }else if(i.source || i.type === "source"){
+            } else if (i.source || i.type === "source") {
                 list.push({
                     title: i.title || i.name || "ไม่มีชื่อ",
                     logo: i.poster || i.image || i.thumbnail || i.logo || "",
                     type: "source",
                     source: i.source || i.url || ""
                 });
-            }else{
+            } else {
                 const item = normalizeVideoItem(i);
-                if(item.url || item.servers.length) list.push(item);
+                if(item.url || item.source || item.servers.length) list.push(item);
             }
         });
     }
@@ -719,7 +735,7 @@ function render(list){
             if(item._busy) return;
             item._busy = true;
 
-            if(item.type === "source"){
+            if(item.type === "source" && item.source){
                 navigationStack.push({ list, title: pageTitle.textContent });
                 pageTitle.textContent = item.title || pageTitle.textContent;
                 load(item.source);
