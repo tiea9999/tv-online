@@ -480,9 +480,17 @@
 
     function getPlayableUrl(item, idx = 0) {
       if (!item) return "";
+
       if (Array.isArray(item.servers) && item.servers.length) {
-        return item.servers[idx]?.url || item.servers[0]?.url || "";
+        return (
+          item.servers[idx]?.url ||
+          item.servers[0]?.url ||
+          item.servers[idx]?.link ||
+          item.servers[0]?.link ||
+          ""
+        );
       }
+
       return item.url || item.link || item.stream || item.source || "";
     }
 
@@ -498,7 +506,7 @@
           url: item.url || item.link || item.stream || item.source || "",
           group: item.group || item.category || extra.group || "",
           type: item.type || extra.type || "video",
-          servers: Array.isArray(item.servers) ? item.servers.filter(s => s && s.url) : [],
+          servers: Array.isArray(item.servers) ? item.servers.filter(s => s && (s.url || s.link)) : [],
           episodes: [],
         };
 
@@ -508,7 +516,7 @@
             title: ep.title || ep.name || `EP${idx + 1}`,
             image: ep.image || ep.poster || item.image || item.poster || item.logo || "",
             url: ep.url || ep.link || ep.stream || ep.source || "",
-            servers: Array.isArray(ep.servers) ? ep.servers.filter(s => s && s.url) : [],
+            servers: Array.isArray(ep.servers) ? ep.servers.filter(s => s && (s.url || s.link)) : [],
           }));
         }
 
@@ -620,6 +628,7 @@
         const card = document.createElement("button");
         card.className = "card" + (isTV ? " tv" : "");
         card.type = "button";
+        card.tabIndex = 0;
 
         card.innerHTML = `
           <img src="${item.image || ""}" alt="" onerror="this.style.display='none'">
@@ -648,6 +657,18 @@
           card.onclick = () => playItem(item, 0);
         }
 
+        card.onkeydown = (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            card.click();
+          }
+        };
+
+        card.onmousedown = (e) => {
+          e.preventDefault();
+          card.click();
+        };
+
         grid.appendChild(card);
       });
     }
@@ -656,22 +677,50 @@
       episodeTitle.textContent = seriesItem.title || "ตอนทั้งหมด";
       episodeGrid.innerHTML = "";
 
-      (seriesItem.episodes || []).forEach(ep => {
+      const eps = Array.isArray(seriesItem.episodes) ? seriesItem.episodes : [];
+
+      eps.forEach((ep, index) => {
         const btn = document.createElement("button");
         btn.className = "ep-card";
         btn.type = "button";
+        btn.tabIndex = 0;
+
+        const epTitle = ep.title || ep.name || `EP${index + 1}`;
         btn.innerHTML = `
-          <div class="ep-name">${ep.title || "EP"}</div>
+          <div class="ep-name">${epTitle}</div>
           <div class="ep-sub">กดเพื่อเล่น</div>
         `;
-        btn.onclick = () => {
+
+        const playEp = () => {
           closeEpisodeModal();
-          playItem(ep, 0);
+          setTimeout(() => {
+            playItem(ep, 0);
+          }, 50);
         };
+
+        btn.onclick = playEp;
+
+        btn.onmousedown = (e) => {
+          e.preventDefault();
+          playEp();
+        };
+
+        btn.onkeydown = (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            playEp();
+          }
+        };
+
         episodeGrid.appendChild(btn);
       });
 
       episodeModal.style.display = "flex";
+
+      setTimeout(() => {
+        const first = episodeGrid.querySelector(".ep-card");
+        if (first) first.focus();
+      }, 80);
     }
 
     function closeEpisodeModal() {
@@ -690,10 +739,12 @@
       }
 
       const lower = url.toLowerCase();
+      const epName = item?.title || item?.name || "";
       const isSeries =
         currentTitle.includes("ซีรีส์") ||
         currentTitle.includes("Flixmono") ||
-        (item.title && (item.title.toUpperCase().includes("EP") || item.title.includes("ตอน")));
+        epName.toUpperCase().includes("EP") ||
+        epName.includes("ตอน");
 
       if (isSeries) {
         if (
@@ -723,13 +774,23 @@
             hls.on(Hls.Events.MANIFEST_PARSED, () => {
               video.muted = true;
               video.play()
-                .then(() => setTimeout(() => { video.muted = false; }, 400))
+                .then(() => {
+                  setTimeout(() => { video.muted = false; }, 400);
+                })
                 .catch(() => openWise(url));
             });
 
             hls.on(Hls.Events.ERROR, (e, data) => {
               if (data?.fatal) openWise(url);
             });
+          } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+            video.src = url;
+            video.muted = true;
+            video.play()
+              .then(() => {
+                setTimeout(() => { video.muted = false; }, 400);
+              })
+              .catch(() => openWise(url));
           } else {
             openWise(url);
           }
@@ -741,7 +802,9 @@
           video.src = url;
           video.muted = true;
           video.play()
-            .then(() => setTimeout(() => { video.muted = false; }, 400))
+            .then(() => {
+              setTimeout(() => { video.muted = false; }, 400);
+            })
             .catch(() => openWise(url));
           return;
         }
@@ -778,7 +841,9 @@
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
             video.muted = true;
             video.play()
-              .then(() => setTimeout(() => { video.muted = false; }, 400))
+              .then(() => {
+                setTimeout(() => { video.muted = false; }, 400);
+              })
               .catch(() => openSystemPlayer(url));
           });
 
@@ -789,7 +854,9 @@
           video.src = url;
           video.muted = true;
           video.play()
-            .then(() => setTimeout(() => { video.muted = false; }, 400))
+            .then(() => {
+              setTimeout(() => { video.muted = false; }, 400);
+            })
             .catch(() => openSystemPlayer(url));
         } else {
           openSystemPlayer(url);
@@ -802,7 +869,9 @@
         video.src = url;
         video.muted = true;
         video.play()
-          .then(() => setTimeout(() => { video.muted = false; }, 400))
+          .then(() => {
+            setTimeout(() => { video.muted = false; }, 400);
+          })
           .catch(() => openSystemPlayer(url));
         return;
       }
