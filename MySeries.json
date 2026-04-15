@@ -3,39 +3,39 @@
   "title": "MySeries",
   "items": [
 {
-    name: "ซีรีย์มาใหม่",
+    "name": "ซีรีย์มาใหม่",
      "type": "source",
-    url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"
+     "url": "https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"
     
 },
 {
-    name: "ซีรี่ย์จีน",
+    "name": "ซีรี่ย์จีน",
+    "type": "source",
+    "url": "https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"
+    
+},
+{
+   "name": "ซีรี่ย์ญี่ปุ่น",
+    "type": "source",
+    "url": "https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"
+    
+},
+{
+     "name": "ซีรี่ย์เกาหลี",
      "type": "source",
-    url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"
+     "url": "https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"
     
 },
 {
-    name: "ซีรี่ย์ญี่ปุ่น",
-    "type": "source",
-    url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"
-    
-},
-{
-    name: "ซีรี่ย์เกาหลี",
-    "type": "source",
-    url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"
-    
-},
-{
-    name: "ซีรี่ย์ไทย",
+     "name": "ซีรี่ย์ไทย",
      "type": "source",
-    url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"
+   "url": "https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"
     
 },
 {
-    name: "ซีรีย์แนวตั้ง",
+     "name": "ซีรีย์แนวตั้ง",
     "type": "source",
-    url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"
+    "url": "https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"
     
     }
   ]
