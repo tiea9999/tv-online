@@ -7,11 +7,7 @@
       "type": "source",
       "source": "https://raw.githubusercontent.com/nongakka/ezmovie/main/playlist_หนังผู้ใหญ่_18_adult.json"
     },
-    {
-      "title": "AV-SUBTHAI",
-      "type": "source",
-      "source": "https://raw.githubusercontent.com/nongakka/vip/main/playlist.json"
-    },
+
     {
       "title": "AV-Pung",
       "type": "source",
