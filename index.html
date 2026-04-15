@@ -236,7 +236,7 @@
     .home-btn { background: #2196f3; }
     .close-btn { background: #e53935; }
     .mx-btn { background: #ff9800; }
-    .wise-btn { background: #8e24aa; }
+    .player-alt-btn { background: #8e24aa; }
 
     #playerStatus {
       position: absolute;
@@ -348,6 +348,11 @@
         data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json"
         data-title="🎞️ Flixmono">🎞️ Flixmono</button>
 
+      <!-- ถ้ามี GoSeries JSON ให้เอาลิงก์ raw มาแทนตรง data-source นี้ -->
+      <button class="menu-btn"
+        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/GoSeries.json"
+        data-title="🎬 GoSeries">🎬 GoSeries</button>
+
       <button class="menu-btn" data-link="live.html">⚽ ตารางแข่งขัน</button>
     </aside>
 
@@ -377,7 +382,7 @@
         <button id="playerCloseBtn" class="player-btn close-btn">✕ ปิด</button>
       </div>
       <div id="playerRight">
-        <button id="playerWiseBtn" class="player-btn wise-btn">▶ WISE</button>
+        <button id="playerExternalBtn" class="player-btn player-alt-btn">▶ PLAYER</button>
         <button id="playerMxBtn" class="player-btn mx-btn">▶ MX</button>
       </div>
     </div>
@@ -454,14 +459,25 @@
       closeEpisodeModal();
     }
 
-    function openWise(url) {
-      if (!url) return;
-      window.location.href = "intent:" + url + "#Intent;package=com.wiseplay;end";
-    }
-
     function openMx(url) {
       if (!url) return;
       window.location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
+    }
+
+    function openExternalPlayer(url) {
+      if (!url) return;
+
+      try {
+        const u = new URL(url);
+        const intent =
+          "intent://" + u.host + u.pathname + u.search +
+          "#Intent;scheme=" + u.protocol.replace(":", "") +
+          ";action=android.intent.action.VIEW;type=video/*;end";
+
+        window.location.href = intent;
+      } catch (e) {
+        window.location.href = url;
+      }
     }
 
     function openSystemPlayer(url) {
@@ -487,69 +503,100 @@
           item.servers[0]?.url ||
           item.servers[idx]?.link ||
           item.servers[0]?.link ||
+          item.servers[idx]?.file ||
+          item.servers[0]?.file ||
           ""
         );
       }
 
-      return item.url || item.link || item.stream || item.source || "";
+      return item.url || item.link || item.stream || item.source || item.file || "";
     }
 
     function normalizeItems(data) {
-      let out = [];
+      const out = [];
 
       function pushItem(item, extra = {}) {
-        if (!item) return;
+        if (!item || typeof item !== "object") return;
 
         const mapped = {
-          title: item.title || item.name || item.ep_name || "ไม่มีชื่อ",
-          image: item.image || item.poster || item.logo || extra.image || "",
-          url: item.url || item.link || item.stream || item.source || "",
-          group: item.group || item.category || extra.group || "",
+          title: item.title || item.name || item.ep_name || item.episode || "ไม่มีชื่อ",
+          image: item.image || item.poster || item.logo || item.thumb || extra.image || "",
+          url: item.url || item.link || item.stream || item.source || item.file || "",
+          group: item.group || item.category || item.genre || extra.group || "",
           type: item.type || extra.type || "video",
-          servers: Array.isArray(item.servers) ? item.servers.filter(s => s && (s.url || s.link)) : [],
-          episodes: [],
+          servers: Array.isArray(item.servers)
+            ? item.servers.map(s => ({
+                name: s?.name || "",
+                url: s?.url || s?.link || s?.file || ""
+              })).filter(s => s.url)
+            : [],
+          episodes: []
         };
 
         if (Array.isArray(item.episodes) && item.episodes.length) {
           mapped.type = "series";
           mapped.episodes = item.episodes.map((ep, idx) => ({
-            title: ep.title || ep.name || `EP${idx + 1}`,
+            title: ep.title || ep.name || ep.ep_name || `EP${idx + 1}`,
             image: ep.image || ep.poster || item.image || item.poster || item.logo || "",
-            url: ep.url || ep.link || ep.stream || ep.source || "",
-            servers: Array.isArray(ep.servers) ? ep.servers.filter(s => s && (s.url || s.link)) : [],
+            url: ep.url || ep.link || ep.stream || ep.source || ep.file || "",
+            servers: Array.isArray(ep.servers)
+              ? ep.servers.map(s => ({
+                  name: s?.name || "",
+                  url: s?.url || s?.link || s?.file || ""
+                })).filter(s => s.url)
+              : []
           }));
         }
 
-        if (mapped.url || mapped.servers.length || mapped.episodes.length || mapped.type === "source" || mapped.type === "series") {
+        if (
+          mapped.url ||
+          mapped.servers.length ||
+          mapped.episodes.length ||
+          mapped.type === "source" ||
+          mapped.type === "series"
+        ) {
           out.push(mapped);
         }
       }
 
-      if (Array.isArray(data)) {
-        data.forEach(item => pushItem(item));
-      } else if (data && Array.isArray(data.channels)) {
-        data.channels.forEach(item => pushItem(item));
-      } else if (data && Array.isArray(data.items)) {
-        data.items.forEach(item => pushItem(item));
-      } else if (data && Array.isArray(data.groups)) {
-        data.groups.forEach(group => {
-          const list = group.items || group.stations || [];
-          list.forEach(item => pushItem(item, {
-            group: group.title || group.name || "",
-            image: group.image || group.logo || ""
-          }));
-        });
-      } else if (data && data.type === "menu" && Array.isArray(data.items)) {
-        data.items.forEach(item => {
-          pushItem({
-            title: item.title || item.name,
-            image: item.image || item.logo,
-            source: item.source || item.url,
-            type: "source"
+      function walk(node, extra = {}) {
+        if (!node) return;
+
+        if (Array.isArray(node)) {
+          node.forEach(item => walk(item, extra));
+          return;
+        }
+
+        if (typeof node !== "object") return;
+
+        if (node.type === "menu" && Array.isArray(node.items)) {
+          node.items.forEach(item => {
+            pushItem({
+              title: item.title || item.name,
+              image: item.image || item.poster || item.logo || "",
+              source: item.source || item.url || "",
+              type: item.type || "source"
+            });
           });
+          return;
+        }
+
+        if (
+          node.title || node.name || node.url || node.link || node.stream ||
+          node.source || node.file || node.servers || node.episodes
+        ) {
+          pushItem(node, extra);
+        }
+
+        Object.keys(node).forEach(key => {
+          const value = node[key];
+          if (Array.isArray(value) || (value && typeof value === "object")) {
+            walk(value, extra);
+          }
         });
       }
 
+      walk(data);
       return out;
     }
 
@@ -575,7 +622,8 @@
       if (!trimmed) return [];
 
       if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
-        return normalizeItems(JSON.parse(text));
+        const parsed = JSON.parse(text);
+        return normalizeItems(parsed);
       }
 
       if (trimmed.includes("#EXTM3U") || trimmed.includes("#EXTINF")) {
@@ -607,10 +655,31 @@
             current = null;
           }
         }
+
         return list;
       }
 
       return [];
+    }
+
+    async function detectStreamType(url) {
+      try {
+        const res = await fetch(url);
+        const text = await res.text();
+        const trimmed = text.trim();
+
+        if (trimmed.startsWith("#EXTM3U") || trimmed.includes("#EXT-X-STREAM-INF")) {
+          return "hls";
+        }
+
+        if (trimmed.startsWith("<!DOCTYPE html") || trimmed.startsWith("<html")) {
+          return "html";
+        }
+
+        return "unknown";
+      } catch (e) {
+        return "unknown";
+      }
     }
 
     function renderGrid(list) {
@@ -699,12 +768,10 @@
         };
 
         btn.onclick = playEp;
-
         btn.onmousedown = (e) => {
           e.preventDefault();
           playEp();
         };
-
         btn.onkeydown = (e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
@@ -727,7 +794,7 @@
       episodeModal.style.display = "none";
     }
 
-    function playItem(item, serverIndex = 0) {
+    async function playItem(item, serverIndex = 0) {
       currentItem = item;
       currentServerIndex = serverIndex;
       clearPlayer();
@@ -740,9 +807,11 @@
 
       const lower = url.toLowerCase();
       const epName = item?.title || item?.name || "";
+
       const isSeries =
         currentTitle.includes("ซีรีส์") ||
         currentTitle.includes("Flixmono") ||
+        currentTitle.includes("GoSeries") ||
         epName.toUpperCase().includes("EP") ||
         epName.includes("ตอน");
 
@@ -773,26 +842,16 @@
 
             hls.on(Hls.Events.MANIFEST_PARSED, () => {
               video.muted = true;
-              video.play()
-                .then(() => {
-                  setTimeout(() => { video.muted = false; }, 400);
-                })
-                .catch(() => openWise(url));
+              video.play().then(() => {
+                setTimeout(() => { video.muted = false; }, 400);
+              }).catch(() => openExternalPlayer(url));
             });
 
             hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openWise(url);
+              if (data?.fatal) openExternalPlayer(url);
             });
-          } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-            video.src = url;
-            video.muted = true;
-            video.play()
-              .then(() => {
-                setTimeout(() => { video.muted = false; }, 400);
-              })
-              .catch(() => openWise(url));
           } else {
-            openWise(url);
+            openExternalPlayer(url);
           }
           return;
         }
@@ -801,11 +860,9 @@
           showPlayer();
           video.src = url;
           video.muted = true;
-          video.play()
-            .then(() => {
-              setTimeout(() => { video.muted = false; }, 400);
-            })
-            .catch(() => openWise(url));
+          video.play().then(() => {
+            setTimeout(() => { video.muted = false; }, 400);
+          }).catch(() => openExternalPlayer(url));
           return;
         }
 
@@ -815,12 +872,49 @@
             dashPlayer = dashjs.MediaPlayer().create();
             dashPlayer.initialize(video, url, true);
           } catch (e) {
-            openWise(url);
+            openExternalPlayer(url);
           }
           return;
         }
 
-        openWise(url);
+        const detectedType = await detectStreamType(url);
+
+        if (detectedType === "hls") {
+          showPlayer();
+
+          if (Hls.isSupported()) {
+            hls = new Hls({
+              enableWorker: true,
+              autoStartLoad: true,
+              maxBufferLength: 30,
+              maxMaxBufferLength: 60
+            });
+
+            hls.loadSource(url);
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              video.muted = true;
+              video.play().then(() => {
+                setTimeout(() => { video.muted = false; }, 400);
+              }).catch(() => openExternalPlayer(url));
+            });
+
+            hls.on(Hls.Events.ERROR, (e, data) => {
+              if (data?.fatal) openExternalPlayer(url);
+            });
+          } else {
+            openExternalPlayer(url);
+          }
+          return;
+        }
+
+        if (detectedType === "html") {
+          window.location.href = url;
+          return;
+        }
+
+        openExternalPlayer(url);
         return;
       }
 
@@ -840,11 +934,9 @@
 
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
             video.muted = true;
-            video.play()
-              .then(() => {
-                setTimeout(() => { video.muted = false; }, 400);
-              })
-              .catch(() => openSystemPlayer(url));
+            video.play().then(() => {
+              setTimeout(() => { video.muted = false; }, 400);
+            }).catch(() => openSystemPlayer(url));
           });
 
           hls.on(Hls.Events.ERROR, (e, data) => {
@@ -853,11 +945,9 @@
         } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
           video.src = url;
           video.muted = true;
-          video.play()
-            .then(() => {
-              setTimeout(() => { video.muted = false; }, 400);
-            })
-            .catch(() => openSystemPlayer(url));
+          video.play().then(() => {
+            setTimeout(() => { video.muted = false; }, 400);
+          }).catch(() => openSystemPlayer(url));
         } else {
           openSystemPlayer(url);
         }
@@ -868,11 +958,9 @@
         showPlayer();
         video.src = url;
         video.muted = true;
-        video.play()
-          .then(() => {
-            setTimeout(() => { video.muted = false; }, 400);
-          })
-          .catch(() => openSystemPlayer(url));
+        video.play().then(() => {
+          setTimeout(() => { video.muted = false; }, 400);
+        }).catch(() => openSystemPlayer(url));
         return;
       }
 
@@ -931,9 +1019,9 @@
     document.getElementById("playerCloseBtn").onclick = closePlayer;
     document.getElementById("closeEpisodeBtn").onclick = closeEpisodeModal;
 
-    document.getElementById("playerWiseBtn").onclick = () => {
+    document.getElementById("playerExternalBtn").onclick = () => {
       const url = getPlayableUrl(currentItem, currentServerIndex);
-      openWise(url);
+      openExternalPlayer(url);
     };
 
     document.getElementById("playerMxBtn").onclick = () => {
