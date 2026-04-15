@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
@@ -10,6 +10,7 @@
 
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       background: #0b0b0b;
@@ -56,6 +57,7 @@
       transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
     }
 
+    .menu-btn:hover,
     .menu-btn:focus,
     .menu-btn.active,
     .menu-btn.active:focus {
@@ -109,6 +111,7 @@
       transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
     }
 
+    .top-btn:hover,
     .top-btn:focus {
       background: #2196f3;
       box-shadow: 0 0 0 4px rgba(255,255,255,.22), 0 0 0 8px rgba(33,150,243,.28);
@@ -150,6 +153,7 @@
       transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
     }
 
+    .card:hover,
     .card:focus,
     .card.focused-remote {
       box-shadow: 0 0 0 4px #00e5ff, 0 0 0 8px rgba(255,255,255,.18);
@@ -189,23 +193,12 @@
       display: none;
     }
 
-    #videoPlayer,
-    #seriesFrame {
+    #videoPlayer {
       width: 100%;
       height: 100%;
       background: #000;
       object-fit: contain;
-    }
-
-    #videoPlayer {
-      pointer-events: none;
-      display: none;
-    }
-
-    #seriesFrame {
-      border: 0;
-      display: none;
-      background: #000;
+      pointer-events: auto;
     }
 
     #playerUi {
@@ -218,6 +211,8 @@
       justify-content: space-between;
       align-items: flex-start;
       pointer-events: none;
+      opacity: 1;
+      transition: opacity .25s ease;
     }
 
     #playerLeft,
@@ -239,9 +234,11 @@
       outline: none;
       opacity: 1;
       min-width: 110px;
+      pointer-events: auto;
       transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
     }
 
+    .player-btn:hover,
     .player-btn:focus {
       box-shadow: 0 0 0 4px rgba(255,255,255,.28), 0 0 0 8px rgba(0,229,255,.35);
       transform: scale(1.06);
@@ -265,6 +262,14 @@
       font-weight: bold;
       text-align: center;
       display: none;
+      opacity: 1;
+      transition: opacity .25s ease;
+    }
+
+    #playerWrap.ui-hidden #playerUi,
+    #playerWrap.ui-hidden #playerStatus {
+      opacity: 0;
+      pointer-events: none;
     }
 
     @media (max-width: 900px) {
@@ -298,7 +303,7 @@
       <div class="topbar">
         <div>
           <div id="pageTitle" class="title">📺 ทีวี</div>
-          <div class="subtext">ใช้รีโมทเลื่อนแล้วกด Enter เพื่อเลือก</div>
+          <div class="subtext">ใช้รีโมทหรือเม้าท์เลือกได้</div>
         </div>
         <div class="action-row">
           <button id="focusFirstBtn" class="top-btn" tabindex="0">โฟกัสรายการแรก</button>
@@ -315,7 +320,6 @@
 
   <div id="playerWrap">
     <video id="videoPlayer" playsinline autoplay muted tabindex="-1"></video>
-    <iframe id="seriesFrame" allowfullscreen referrerpolicy="no-referrer"></iframe>
 
     <div id="playerUi">
       <div id="playerLeft">
@@ -339,7 +343,6 @@
     const playerWrap = document.getElementById("playerWrap");
     const playerStatus = document.getElementById("playerStatus");
     const video = document.getElementById("videoPlayer");
-    const seriesFrame = document.getElementById("seriesFrame");
     const menuButtons = Array.from(document.querySelectorAll(".menu-btn"));
 
     let currentSource = menuButtons[0].dataset.source;
@@ -350,6 +353,7 @@
     let hls = null;
     let dashPlayer = null;
     let navigationStack = [];
+    let playerUiTimer = null;
 
     function setStatus(msg) {
       statusBox.textContent = msg || "";
@@ -375,6 +379,20 @@
 
     document.addEventListener("focusin", (e) => updateRemoteHint(e.target));
 
+    function showPlayerUiTemporarily() {
+      playerWrap.classList.remove("ui-hidden");
+
+      if (playerUiTimer) clearTimeout(playerUiTimer);
+
+      if (!(currentTitle.includes("ซีรีส์") || pageTitle.textContent.includes("ตอนที่"))) {
+        playerUiTimer = setTimeout(() => {
+          if (playerWrap.style.display === "block") {
+            playerWrap.classList.add("ui-hidden");
+          }
+        }, 3500);
+      }
+    }
+
     function clearPlayers() {
       if (hls) {
         try { hls.destroy(); } catch (e) {}
@@ -387,24 +405,13 @@
       try { video.pause(); } catch (e) {}
       video.removeAttribute("src");
       video.load();
-      video.style.display = "none";
-
-      seriesFrame.src = "";
-      seriesFrame.style.display = "none";
-
       setPlayerStatus("");
     }
 
-    function showPlayer(mode = "video") {
+    function showPlayer() {
       playerWrap.style.display = "block";
-
-      if (mode === "frame") {
-        video.style.display = "none";
-        seriesFrame.style.display = "block";
-      } else {
-        video.style.display = "block";
-        seriesFrame.style.display = "none";
-      }
+      video.style.display = "block";
+      playerWrap.classList.remove("ui-hidden");
 
       setTimeout(() => {
         const btn = document.getElementById("playerHomeBtn");
@@ -412,12 +419,16 @@
           btn.focus();
           updateRemoteHint(btn);
         }
+        showPlayerUiTemporarily();
       }, 50);
     }
 
     function closePlayer() {
       clearPlayers();
       playerWrap.style.display = "none";
+      playerWrap.classList.remove("ui-hidden");
+      if (playerUiTimer) clearTimeout(playerUiTimer);
+
       if (currentItem && currentItem._cardEl) {
         currentItem._cardEl.focus();
         updateRemoteHint(currentItem._cardEl);
@@ -427,8 +438,8 @@
     function stopPlayer() {
       try { video.pause(); } catch (e) {}
       try { video.currentTime = 0; } catch (e) {}
-      try { seriesFrame.src = "about:blank"; } catch (e) {}
       setPlayerStatus("หยุดเล่นแล้ว");
+      showPlayerUiTemporarily();
     }
 
     function goHome() {
@@ -493,16 +504,13 @@
         openSystemPlayer(url);
       };
 
-      // ซีรีส์ = เปิดผ่านเว็บก่อน + มีปุ่ม MX สำรอง
       if (currentTitle.includes("ซีรีส์") || pageTitle.textContent.includes("ตอนที่")) {
-        showPlayer("frame");
-        seriesFrame.src = url;
-        setPlayerStatus("กำลังเปิดผ่านเว็บ... ถ้าไม่เล่นให้กด MX");
+        window.location.href = url;
         return;
       }
 
       if (lower.includes(".m3u8")) {
-        showPlayer("video");
+        showPlayer();
 
         if (Hls.isSupported()) {
           hls = new Hls({
@@ -544,7 +552,7 @@
         lower.endsWith(".avi") ||
         lower.endsWith(".mov")
       ) {
-        showPlayer("video");
+        showPlayer();
         video.src = url;
         video.muted = true;
         video.play().then(() => {
@@ -554,7 +562,7 @@
       }
 
       if (lower.includes(".mpd")) {
-        showPlayer("video");
+        showPlayer();
         try {
           dashPlayer = dashjs.MediaPlayer().create();
           dashPlayer.initialize(video, url, true);
@@ -802,6 +810,11 @@
             await loadCurrentSource();
           };
 
+          card.onmousedown = (e) => {
+            e.preventDefault();
+            card.click();
+          };
+
           card.onkeydown = (e) => {
             if (e.key === "Enter") {
               e.preventDefault();
@@ -837,10 +850,14 @@
               title: pageTitle.textContent,
               inlineData: currentList
             });
-
             pageTitle.textContent = item.title || pageTitle.textContent;
             currentList = { mode: "items", data: item.items };
             renderGrid(currentList);
+          };
+
+          card.onmousedown = (e) => {
+            e.preventDefault();
+            card.click();
           };
         } else if (item.type === "source" && item.url) {
           card.onclick = async () => {
@@ -849,13 +866,21 @@
               title: pageTitle.textContent,
               inlineData: currentList
             });
-
             currentSource = item.url;
             pageTitle.textContent = item.title || pageTitle.textContent;
             await loadCurrentSource();
           };
+
+          card.onmousedown = (e) => {
+            e.preventDefault();
+            card.click();
+          };
         } else {
           card.onclick = () => playItem(item, 0);
+          card.onmousedown = (e) => {
+            e.preventDefault();
+            playItem(item, 0);
+          };
         }
 
         card.onkeydown = (e) => {
@@ -1030,6 +1055,11 @@
         await loadCurrentSource();
       });
 
+      btn.onmousedown = (e) => {
+        e.preventDefault();
+        btn.click();
+      };
+
       btn.addEventListener("keydown", e => {
         if (e.key === "Enter") {
           e.preventDefault();
@@ -1039,6 +1069,11 @@
     });
 
     document.getElementById("reloadBtn").onclick = loadCurrentSource;
+    document.getElementById("reloadBtn").onmousedown = (e) => {
+      e.preventDefault();
+      loadCurrentSource();
+    };
+
     document.getElementById("focusFirstBtn").onclick = () => {
       const firstCard = grid.querySelector(".card");
       if (firstCard) {
@@ -1046,7 +1081,26 @@
         updateRemoteHint(firstCard);
       }
     };
+    document.getElementById("focusFirstBtn").onmousedown = (e) => {
+      e.preventDefault();
+      const firstCard = grid.querySelector(".card");
+      if (firstCard) {
+        firstCard.focus();
+        updateRemoteHint(firstCard);
+      }
+    };
+
     document.getElementById("homeTopBtn").onclick = () => {
+      navigationStack = [];
+      const active = document.querySelector(".menu-btn.active") || menuButtons[0];
+      if (active) {
+        active.focus();
+        updateRemoteHint(active);
+      }
+      pageTitle.textContent = currentTitle;
+    };
+    document.getElementById("homeTopBtn").onmousedown = (e) => {
+      e.preventDefault();
       navigationStack = [];
       const active = document.querySelector(".menu-btn.active") || menuButtons[0];
       if (active) {
@@ -1057,15 +1111,51 @@
     };
 
     document.getElementById("playerHomeBtn").onclick = goHome;
+    document.getElementById("playerHomeBtn").onmousedown = (e) => {
+      e.preventDefault();
+      goHome();
+    };
+
     document.getElementById("playerStopBtn").onclick = stopPlayer;
+    document.getElementById("playerStopBtn").onmousedown = (e) => {
+      e.preventDefault();
+      stopPlayer();
+    };
+
     document.getElementById("playerCloseBtn").onclick = closePlayer;
+    document.getElementById("playerCloseBtn").onmousedown = (e) => {
+      e.preventDefault();
+      closePlayer();
+    };
+
     document.getElementById("playerMxBtn").onclick = () => {
       const url = getPlayableUrl(currentItem, currentServerIndex);
       openMx(url);
     };
+    document.getElementById("playerMxBtn").onmousedown = (e) => {
+      e.preventDefault();
+      const url = getPlayableUrl(currentItem, currentServerIndex);
+      openMx(url);
+    };
+
+    playerWrap.addEventListener("mousemove", () => {
+      if (playerWrap.style.display === "block") {
+        showPlayerUiTemporarily();
+      }
+    });
+
+    playerWrap.addEventListener("mousedown", () => {
+      if (playerWrap.style.display === "block") {
+        showPlayerUiTemporarily();
+      }
+    });
 
     document.addEventListener("keydown", function (e) {
       const inPlayer = playerWrap.style.display === "block";
+
+      if (inPlayer) {
+        showPlayerUiTemporarily();
+      }
 
       if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
         const moved = focusByDelta(document.activeElement, e.key);
@@ -1149,4 +1239,4 @@
     loadCurrentSource();
   </script>
 </body>
-</html>                    
+</html>
