@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
@@ -10,9 +9,7 @@
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -57,6 +54,15 @@
             font-size: 16px;
             cursor: pointer;
             outline: none;
+            transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+        }
+
+        .menu-btn:focus,
+        .menu-btn.active,
+        .menu-btn.active:focus {
+            background: #00c853;
+            box-shadow: 0 0 0 4px rgba(255,255,255,.22), 0 0 0 8px rgba(0,229,255,.28);
+            transform: scale(1.03);
         }
 
         .content {
@@ -92,8 +98,7 @@
             flex-wrap: wrap;
         }
 
-        .top-btn,
-        .back-btn {
+        .top-btn {
             background: #1c1c1c;
             border: 0;
             color: #fff;
@@ -102,16 +107,29 @@
             cursor: pointer;
             font-size: 14px;
             outline: none;
+            transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+        }
+
+        .top-btn:focus {
+            background: #2196f3;
+            box-shadow: 0 0 0 4px rgba(255,255,255,.22), 0 0 0 8px rgba(33,150,243,.28);
+            transform: scale(1.03);
         }
 
         .status-box {
             display: none;
-            background: rgba(255, 255, 255, .08);
+            background: rgba(255,255,255,.08);
             color: #fff;
             border-radius: 10px;
             padding: 10px 12px;
             margin-bottom: 12px;
-            font-size: 14px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        #remoteHint {
+            display: block;
+            background: rgba(0,229,255,.10);
         }
 
         .grid {
@@ -130,6 +148,14 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+        }
+
+        .card:focus,
+        .card.focused-remote {
+            box-shadow: 0 0 0 4px #00e5ff, 0 0 0 8px rgba(255,255,255,.18);
+            transform: scale(1.03);
+            background: #222;
         }
 
         .thumb {
@@ -173,116 +199,68 @@
 
         #playerUi {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            z-index: 10050;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            z-index: 10001;
             pointer-events: none;
         }
 
         #playerLeft,
         #playerRight {
             display: flex;
-            gap: 8px;
-            pointer-events: auto;
+            gap: 10px;
             flex-wrap: wrap;
+            pointer-events: auto;
         }
 
         .player-btn {
             border: 0;
-            border-radius: 12px;
-            padding: 12px 14px;
+            border-radius: 14px;
+            padding: 14px 18px;
             color: #fff;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
+            font-weight: bold;
             outline: none;
+            opacity: 0.96;
+            transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
         }
 
-        .home-btn {
-            background: #2196f3;
+        .player-btn:focus {
+            box-shadow: 0 0 0 4px rgba(255,255,255,.22), 0 0 0 8px rgba(33,150,243,.28);
+            transform: scale(1.05);
         }
 
-        .close-btn {
-            background: #e53935;
-        }
-
-        .mx-btn {
-            background: #ff9800;
-        }
+        .home-btn { background: #2196f3; }
+        .stop-btn { background: #8e24aa; }
+        .close-btn { background: #e53935; }
+        .mx-btn { background: #ff9800; }
 
         #playerStatus {
             position: absolute;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            z-index: 10001;
-            background: rgba(0, 0, 0, .7);
-            border-radius: 12px;
-            padding: 10px 12px;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
+            z-index: 10051;
+            background: rgba(0,0,0,.72);
+            border-radius: 14px;
+            padding: 12px 14px;
             font-size: 16px;
             font-weight: bold;
             text-align: center;
             display: none;
         }
 
-        /* รีโมท/โฟกัสชัด */
-        .menu-btn,
-        .top-btn,
-        .player-btn,
-        .card {
-            transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-        }
-
-        .menu-btn:focus,
-        .menu-btn.active:focus,
-        .menu-btn.active {
-            background: #00c853;
-            color: #fff;
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, .22), 0 0 0 8px rgba(0, 229, 255, .28);
-        }
-
-        .top-btn:focus,
-        .player-btn:focus {
-            background: #2196f3;
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, .22), 0 0 0 8px rgba(33, 150, 243, .28);
-            transform: scale(1.04);
-        }
-
-        .card:focus {
-            box-shadow: 0 0 0 4px #00e5ff, 0 0 0 8px rgba(255, 255, 255, .18);
-            transform: scale(1.04);
-            background: #222;
-        }
-
-        .card.focused-remote,
-        .menu-btn.focused-remote,
-        .top-btn.focused-remote,
-        .player-btn.focused-remote {
-            box-shadow: 0 0 0 4px #00e5ff, 0 0 0 8px rgba(255, 255, 255, .18);
-            transform: scale(1.04);
-        }
-
-        #statusBox,
-        #remoteHint {
-            font-size: 16px;
-            font-weight: bold;
-        }
-
         @media (max-width: 900px) {
-            .sidebar {
-                width: 185px;
-            }
-
-            .grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            }
+            .sidebar { width: 185px; }
+            .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
         }
     </style>
 </head>
-
 <body>
     <div class="app">
         <aside class="sidebar">
@@ -299,10 +277,6 @@
             <button class="menu-btn" tabindex="0"
                 data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/MySeries.json"
                 data-title="📺 ซีรีส์">📺 ซีรีส์</button>
-
-            <button class="menu-btn" tabindex="0"
-                data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Vip.json"
-                data-title="🔐 VIP">🔐 VIP</button>
 
             <button class="menu-btn" tabindex="0"
                 data-link="live.html">⚽ ตารางแข่งขัน</button>
@@ -322,18 +296,18 @@
             </div>
 
             <div id="statusBox" class="status-box"></div>
-            <div id="remoteHint" class="status-box" style="display:block;background:rgba(0,229,255,.10);">โฟกัส: -</div>
+            <div id="remoteHint" class="status-box">โฟกัส: -</div>
             <div id="grid" class="grid"></div>
         </main>
     </div>
 
     <div id="playerWrap">
-        <video id="videoPlayer" controls playsinline autoplay muted></video>
+        <video id="videoPlayer" playsinline autoplay muted></video>
 
         <div id="playerUi">
             <div id="playerLeft">
                 <button id="playerHomeBtn" class="player-btn home-btn" tabindex="0">🏠 หน้าโฮม</button>
-                <button id="playerStopBtn" class="player-btn close-btn" tabindex="0">⏹ หยุด</button>
+                <button id="playerStopBtn" class="player-btn stop-btn" tabindex="0">⏹ หยุด</button>
                 <button id="playerCloseBtn" class="player-btn close-btn" tabindex="0">✕ ปิด</button>
             </div>
             <div id="playerRight">
@@ -375,34 +349,17 @@
 
         function updateRemoteHint(el) {
             document.querySelectorAll(".focused-remote").forEach(x => x.classList.remove("focused-remote"));
-
             if (!el) {
                 remoteHint.textContent = "โฟกัส: -";
                 return;
             }
-
             el.classList.add("focused-remote");
-
-            let label = "";
-            if (el.classList.contains("menu-btn")) {
-                label = "เมนู: " + el.textContent.trim();
-            } else if (el.classList.contains("top-btn")) {
-                label = "ปุ่มบน: " + el.textContent.trim();
-            } else if (el.classList.contains("player-btn")) {
-                label = "ปุ่ม player: " + el.textContent.trim();
-            } else if (el.classList.contains("card")) {
-                const t = el.querySelector(".card-title");
-                label = "รายการ: " + (t ? t.textContent.trim() : "ไม่มีชื่อ");
-            } else {
-                label = el.textContent ? el.textContent.trim() : "ไม่ทราบตำแหน่ง";
-            }
-
-            remoteHint.textContent = "โฟกัส: " + label;
+            const cardTitle = el.querySelector?.(".card-title");
+            const text = cardTitle ? cardTitle.textContent.trim() : el.textContent.trim();
+            remoteHint.textContent = "โฟกัส: " + text;
         }
 
-        document.addEventListener("focusin", (e) => {
-            updateRemoteHint(e.target);
-        });
+        document.addEventListener("focusin", (e) => updateRemoteHint(e.target));
 
         function clearPlayers() {
             if (hls) {
@@ -421,6 +378,13 @@
 
         function showPlayer() {
             playerWrap.style.display = "block";
+            setTimeout(() => {
+                const btn = document.getElementById("playerHomeBtn");
+                if (btn) {
+                    btn.focus();
+                    updateRemoteHint(btn);
+                }
+            }, 120);
         }
 
         function closePlayer() {
@@ -428,7 +392,14 @@
             playerWrap.style.display = "none";
             if (currentItem && currentItem._cardEl) {
                 currentItem._cardEl.focus();
+                updateRemoteHint(currentItem._cardEl);
             }
+        }
+
+        function stopPlayer() {
+            try { video.pause(); } catch (e) {}
+            try { video.currentTime = 0; } catch (e) {}
+            setPlayerStatus("หยุดเล่นแล้ว");
         }
 
         function goHome() {
@@ -436,14 +407,11 @@
             navigationStack = [];
             pageTitle.textContent = currentTitle;
             loadCurrentSource();
-            const firstMenu = document.querySelector(".menu-btn.active") || menuButtons[0];
-            if (firstMenu) firstMenu.focus();
-        }
-
-        function stopPlayer() {
-            try { video.pause(); } catch (e) {}
-            try { video.currentTime = 0; } catch (e) {}
-            setPlayerStatus("หยุดเล่นแล้ว");
+            const active = document.querySelector(".menu-btn.active") || menuButtons[0];
+            if (active) {
+                active.focus();
+                updateRemoteHint(active);
+            }
         }
 
         function getPlayableUrl(item, idx = 0) {
@@ -455,53 +423,32 @@
         }
 
         function getServerCount(item) {
-            if (Array.isArray(item.servers) && item.servers.length) return item.servers.length;
+            if (Array.isArray(item?.servers) && item.servers.length) return item.servers.length;
             return getPlayableUrl(item) ? 1 : 0;
         }
 
         function openMx(url) {
             if (!url) return;
-            const mxUrl = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
-            window.location.href = mxUrl;
+            window.location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
         }
 
         function openSystemPlayer(url) {
             if (!url) return;
-
             try {
                 const u = new URL(url);
                 const intent =
-                    "intent://" +
-                    u.host +
-                    u.pathname +
-                    u.search +
-                    "#Intent;scheme=" +
-                    u.protocol.replace(":", "") +
+                    "intent://" + u.host + u.pathname + u.search +
+                    "#Intent;scheme=" + u.protocol.replace(":", "") +
                     ";action=android.intent.action.VIEW;type=video/*;end";
-
                 window.location.href = intent;
             } catch (e) {
-                console.error("System player error:", e);
-                setPlayerStatus("เปิดมีเดียเพลเยอร์ในเครื่องไม่ได้");
-            }
-        }
-
-        function tryNextServer(item, currentIdx, reason) {
-            const total = getServerCount(item);
-            if (currentIdx + 1 < total) {
-                setPlayerStatus(reason + " กำลังสลับ Server " + (currentIdx + 2));
-                setTimeout(() => {
-                    playItem(item, currentIdx + 1);
-                }, 500);
-            } else {
-                setPlayerStatus("ทุก Server เล่นไม่ได้ ลองกด MX");
+                setPlayerStatus("เปิดตัวเล่นในเครื่องไม่ได้");
             }
         }
 
         function playItem(item, serverIndex = 0) {
             currentItem = item;
             currentServerIndex = serverIndex;
-
             clearPlayers();
 
             const url = getPlayableUrl(item, serverIndex);
@@ -510,13 +457,10 @@
                 return;
             }
 
-            const total = getServerCount(item);
-            setPlayerStatus("กำลังเล่น " + (item.title || "รายการ") + (total > 1 ? " (Server " + (serverIndex + 1) + "/" + total + ")" : ""));
-
             const lower = url.toLowerCase();
 
             const fallbackToSystem = (reason = "เล่นผ่านเว็บไม่ได้") => {
-                setPlayerStatus(reason + " กำลังเปิดเครื่องเล่นในเครื่อง...");
+                setPlayerStatus(reason + " กำลังเปิดตัวเล่นในเครื่อง...");
                 openSystemPlayer(url);
             };
 
@@ -542,21 +486,15 @@
                     hls.on(Hls.Events.MANIFEST_PARSED, () => {
                         video.muted = false;
                         video.volume = 1;
-                        video.play().catch(() => {
-                            fallbackToSystem("HLS autoplay ไม่สำเร็จ");
-                        });
+                        video.play().catch(() => fallbackToSystem("HLS autoplay ไม่สำเร็จ"));
                     });
 
                     hls.on(Hls.Events.ERROR, (event, data) => {
-                        if (data && data.fatal) {
-                            fallbackToSystem("สตรีมเว็บมีปัญหา");
-                        }
+                        if (data && data.fatal) fallbackToSystem("สตรีมเว็บมีปัญหา");
                     });
                 } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
                     video.src = url;
-                    video.play().catch(() => {
-                        fallbackToSystem("อุปกรณ์ไม่เล่น HLS");
-                    });
+                    video.play().catch(() => fallbackToSystem("อุปกรณ์ไม่เล่น HLS"));
                 } else {
                     fallbackToSystem("อุปกรณ์ไม่รองรับ HLS");
                 }
@@ -573,9 +511,7 @@
                 video.src = url;
                 video.muted = false;
                 video.volume = 1;
-                video.play().catch(() => {
-                    fallbackToSystem("ไฟล์เล่นผ่านเว็บไม่ได้");
-                });
+                video.play().catch(() => fallbackToSystem("ไฟล์เล่นผ่านเว็บไม่ได้"));
                 return;
             }
 
@@ -590,7 +526,7 @@
                 return;
             }
 
-            fallbackToSystem("ลิงก์ชนิดนี้เหมาะกับเครื่องเล่นในเครื่อง");
+            fallbackToSystem("ลิงก์ชนิดนี้เหมาะกับตัวเล่นในเครื่อง");
         }
 
         function parseM3U(text) {
@@ -598,15 +534,14 @@
             const list = [];
             let current = null;
 
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i].trim();
+            for (const raw of lines) {
+                const line = raw.trim();
                 if (!line) continue;
 
                 if (line.startsWith("#EXTINF:")) {
                     const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
                     const groupMatch = line.match(/group-title="([^"]*)"/i);
                     const name = line.split(",").pop()?.trim() || "ไม่ทราบชื่อ";
-
                     current = {
                         title: name,
                         logo: logoMatch ? logoMatch[1] : "",
@@ -614,16 +549,13 @@
                         url: "",
                         servers: []
                     };
-                } else if (!line.startsWith("#")) {
-                    if (current) {
-                        current.url = line;
-                        current.servers = [{ name: "Main", url: line }];
-                        list.push(current);
-                        current = null;
-                    }
+                } else if (!line.startsWith("#") && current) {
+                    current.url = line;
+                    current.servers = [{ name: "Main", url: line }];
+                    list.push(current);
+                    current = null;
                 }
             }
-
             return list;
         }
 
@@ -803,7 +735,6 @@
 
         function renderGrid(result) {
             grid.innerHTML = "";
-
             const list = result?.data || [];
 
             if (!list.length) {
@@ -816,7 +747,6 @@
                     const card = document.createElement("div");
                     card.className = "card";
                     card.tabIndex = 0;
-
                     card.innerHTML = `
                         <img class="thumb" src="${item.logo || ""}" onerror="this.style.display='none'">
                         <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
@@ -834,7 +764,7 @@
                         await loadCurrentSource();
                     };
 
-                    card.onkeydown = async (e) => {
+                    card.onkeydown = (e) => {
                         if (e.key === "Enter") {
                             e.preventDefault();
                             card.click();
@@ -857,7 +787,6 @@
                 const card = document.createElement("div");
                 card.className = "card";
                 card.tabIndex = 0;
-
                 card.innerHTML = `
                     <img class="thumb" src="${item.logo || ""}" onerror="this.style.display='none'">
                     <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
@@ -872,18 +801,8 @@
                         });
 
                         pageTitle.textContent = item.title || pageTitle.textContent;
-                        currentList = {
-                            mode: "items",
-                            data: item.items
-                        };
+                        currentList = { mode: "items", data: item.items };
                         renderGrid(currentList);
-                    };
-
-                    card.onkeydown = (e) => {
-                        if (e.key === "Enter") {
-                            e.preventDefault();
-                            card.click();
-                        }
                     };
                 } else if (item.type === "source" && item.url) {
                     card.onclick = async () => {
@@ -897,22 +816,16 @@
                         pageTitle.textContent = item.title || pageTitle.textContent;
                         await loadCurrentSource();
                     };
-
-                    card.onkeydown = async (e) => {
-                        if (e.key === "Enter") {
-                            e.preventDefault();
-                            card.click();
-                        }
-                    };
                 } else {
                     card.onclick = () => playItem(item, 0);
-                    card.onkeydown = (e) => {
-                        if (e.key === "Enter") {
-                            e.preventDefault();
-                            playItem(item, 0);
-                        }
-                    };
                 }
+
+                card.onkeydown = (e) => {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        card.click();
+                    }
+                };
 
                 item._cardEl = card;
                 grid.appendChild(card);
@@ -953,10 +866,12 @@
                 if (idx !== -1) {
                     if (key === "ArrowRight" && idx < playerBtns.length - 1) {
                         playerBtns[idx + 1].focus();
+                        updateRemoteHint(playerBtns[idx + 1]);
                         return true;
                     }
                     if (key === "ArrowLeft" && idx > 0) {
                         playerBtns[idx - 1].focus();
+                        updateRemoteHint(playerBtns[idx - 1]);
                         return true;
                     }
                 }
@@ -967,22 +882,25 @@
 
             if (currentEl.classList.contains("menu-btn")) {
                 const idx = menuBtns.indexOf(currentEl);
-
                 if (key === "ArrowDown" && idx < menuBtns.length - 1) {
                     menuBtns[idx + 1].focus();
+                    updateRemoteHint(menuBtns[idx + 1]);
                     return true;
                 }
                 if (key === "ArrowUp" && idx > 0) {
                     menuBtns[idx - 1].focus();
+                    updateRemoteHint(menuBtns[idx - 1]);
                     return true;
                 }
                 if (key === "ArrowRight") {
                     if (topBtns[0]) {
                         topBtns[0].focus();
+                        updateRemoteHint(topBtns[0]);
                         return true;
                     }
                     if (cards[0]) {
                         cards[0].focus();
+                        updateRemoteHint(cards[0]);
                         return true;
                     }
                 }
@@ -990,22 +908,25 @@
 
             if (currentEl.classList.contains("top-btn")) {
                 const idx = topBtns.indexOf(currentEl);
-
                 if (key === "ArrowRight" && idx < topBtns.length - 1) {
                     topBtns[idx + 1].focus();
+                    updateRemoteHint(topBtns[idx + 1]);
                     return true;
                 }
                 if (key === "ArrowLeft" && idx > 0) {
                     topBtns[idx - 1].focus();
+                    updateRemoteHint(topBtns[idx - 1]);
                     return true;
                 }
-                if (key === "ArrowLeft" && idx === 0 && menuBtns[0]) {
+                if (key === "ArrowLeft" && idx === 0) {
                     const activeMenu = document.querySelector(".menu-btn.active") || menuBtns[0];
                     activeMenu.focus();
+                    updateRemoteHint(activeMenu);
                     return true;
                 }
                 if (key === "ArrowDown" && cards[0]) {
                     cards[0].focus();
+                    updateRemoteHint(cards[0]);
                     return true;
                 }
             }
@@ -1018,28 +939,34 @@
 
                 if (key === "ArrowRight" && idx < cards.length - 1) {
                     cards[idx + 1].focus();
+                    updateRemoteHint(cards[idx + 1]);
                     return true;
                 }
                 if (key === "ArrowLeft") {
                     if (idx > 0) {
                         cards[idx - 1].focus();
+                        updateRemoteHint(cards[idx - 1]);
                         return true;
                     } else {
                         const activeMenu = document.querySelector(".menu-btn.active") || menuBtns[0];
                         activeMenu.focus();
+                        updateRemoteHint(activeMenu);
                         return true;
                     }
                 }
                 if (key === "ArrowDown" && idx + cols < cards.length) {
                     cards[idx + cols].focus();
+                    updateRemoteHint(cards[idx + cols]);
                     return true;
                 }
                 if (key === "ArrowUp") {
                     if (idx - cols >= 0) {
                         cards[idx - cols].focus();
+                        updateRemoteHint(cards[idx - cols]);
                         return true;
                     } else if (topBtns[0]) {
                         topBtns[0].focus();
+                        updateRemoteHint(topBtns[0]);
                         return true;
                     }
                 }
@@ -1076,7 +1003,6 @@
         });
 
         document.getElementById("reloadBtn").onclick = loadCurrentSource;
-
         document.getElementById("focusFirstBtn").onclick = () => {
             const firstCard = grid.querySelector(".card");
             if (firstCard) {
@@ -1084,7 +1010,6 @@
                 updateRemoteHint(firstCard);
             }
         };
-
         document.getElementById("homeTopBtn").onclick = () => {
             navigationStack = [];
             const active = document.querySelector(".menu-btn.active") || menuButtons[0];
@@ -1095,14 +1020,9 @@
             pageTitle.textContent = currentTitle;
         };
 
-        document.getElementById("playerCloseBtn").onclick = closePlayer;
-        document.getElementById("playerHomeBtn").onclick = () => {
-            closePlayer();
-            navigationStack = [];
-            pageTitle.textContent = currentTitle;
-            loadCurrentSource();
-        };
+        document.getElementById("playerHomeBtn").onclick = goHome;
         document.getElementById("playerStopBtn").onclick = stopPlayer;
+        document.getElementById("playerCloseBtn").onclick = closePlayer;
         document.getElementById("playerMxBtn").onclick = () => {
             const url = getPlayableUrl(currentItem, currentServerIndex);
             openMx(url);
@@ -1111,8 +1031,7 @@
         document.addEventListener("keydown", function (e) {
             const inPlayer = playerWrap.style.display === "block";
 
-            const navKeys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
-            if (navKeys.includes(e.key)) {
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
                 const moved = focusByDelta(document.activeElement, e.key);
                 if (moved) {
                     e.preventDefault();
@@ -1120,13 +1039,44 @@
                 }
             }
 
-            if ((e.key === "Escape" || e.key === "Backspace") && inPlayer) {
-                e.preventDefault();
-                closePlayer();
-                navigationStack = [];
-                pageTitle.textContent = currentTitle;
-                loadCurrentSource();
-                return;
+            if (inPlayer) {
+                if (
+                    e.key === "Escape" ||
+                    e.key === "Backspace" ||
+                    e.key === "BrowserBack" ||
+                    e.key === "GoBack" ||
+                    e.keyCode === 27 ||
+                    e.keyCode === 8
+                ) {
+                    e.preventDefault();
+                    goHome();
+                    return;
+                }
+
+                const playerBtns = Array.from(document.querySelectorAll("#playerWrap .player-btn"));
+                const idx = playerBtns.indexOf(document.activeElement);
+
+                if (playerBtns.length) {
+                    if ((e.key === "ArrowRight" || e.keyCode === 39) && idx < playerBtns.length - 1) {
+                        e.preventDefault();
+                        playerBtns[idx + 1].focus();
+                        updateRemoteHint(playerBtns[idx + 1]);
+                        return;
+                    }
+
+                    if ((e.key === "ArrowLeft" || e.keyCode === 37) && idx > 0) {
+                        e.preventDefault();
+                        playerBtns[idx - 1].focus();
+                        updateRemoteHint(playerBtns[idx - 1]);
+                        return;
+                    }
+
+                    if ((e.key === "Enter" || e.keyCode === 13) && document.activeElement?.classList.contains("player-btn")) {
+                        e.preventDefault();
+                        document.activeElement.click();
+                        return;
+                    }
+                }
             }
 
             if ((e.key === "Escape" || e.key === "Backspace") && !inPlayer) {
@@ -1146,14 +1096,11 @@
                 }
 
                 const activeEl = document.activeElement;
-                const isCard = activeEl && activeEl.classList && activeEl.classList.contains("card");
-                if (isCard) {
+                if (activeEl?.classList?.contains("card")) {
                     e.preventDefault();
                     const activeMenu = document.querySelector(".menu-btn.active") || menuButtons[0];
-                    if (activeMenu) {
-                        activeMenu.focus();
-                        updateRemoteHint(activeMenu);
-                    }
+                    activeMenu.focus();
+                    updateRemoteHint(activeMenu);
                 }
             }
         });
@@ -1161,5 +1108,4 @@
         loadCurrentSource();
     </script>
 </body>
-
 </html>
