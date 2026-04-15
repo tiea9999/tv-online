@@ -4,37 +4,37 @@
   "items": [
 {
     name: "ซีรีย์มาใหม่",
-    type: "anime-json",
+     "type": "source",
     url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/new.json"
     
 },
 {
     name: "ซีรี่ย์จีน",
-    type: "anime-json",
+     "type": "source",
     url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/chinese.json"
     
 },
 {
     name: "ซีรี่ย์ญี่ปุ่น",
-    type: "anime-json",
+    "type": "source",
     url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/japan.json"
     
 },
 {
     name: "ซีรี่ย์เกาหลี",
-    type: "anime-json",
+    "type": "source",
     url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/korea.json"
     
 },
 {
     name: "ซีรี่ย์ไทย",
-    type: "anime-json",
+     "type": "source",
     url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/thai.json"
     
 },
 {
     name: "ซีรีย์แนวตั้ง",
-    type: "anime-json",
+    "type": "source",
     url: "https://raw.githubusercontent.com/nongakka/myseries/main/data/short.json"
     
     }
