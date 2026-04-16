@@ -41,10 +41,7 @@
       position:absolute;top:12px;left:12px;display:flex;gap:8px;z-index:10000;flex-wrap:wrap;
       opacity:1;transition:opacity .25s ease;
     }
-    #playerBar.hide-ui{
-      opacity:0;
-      pointer-events:none;
-    }
+    #playerBar.hide-ui{opacity:0;pointer-events:none}
     .player-btn{border:0;border-radius:10px;padding:10px 12px;color:#fff;cursor:pointer;font-weight:bold}
     .btn-home{background:#2196f3}.btn-close{background:#e53935}.btn-player{background:#009688}.btn-mx{background:#ff9800}
     @media (max-width:800px){
@@ -71,7 +68,7 @@
       <div class="topbar">
         <div>
           <div id="pageTitle" class="title">📺 ทีวี</div>
-          <div class="sub">MySeries และ Flixmono ใช้ player แบบเดียวกัน</div>
+          <div class="sub">AppCreator24 เสถียรสุด: เล่นในเว็บก่อน ค่อยกด PLAYER หรือ MX เอง</div>
         </div>
         <div class="tools">
           <button id="reloadBtn" class="top-btn">รีโหลด</button>
@@ -150,6 +147,7 @@
       }
       try { video.pause(); } catch(e) {}
       video.removeAttribute("src");
+      video.src = "";
       video.load();
     }
 
@@ -369,32 +367,31 @@
       grid.innerHTML = "";
 
       if (!list.length) {
-        grid.innerHTML = `<div class="empty">ไม่พบรายการ</div>`;
+        grid.innerHTML = `<div style="padding:20px;color:#aaa">ไม่พบรายการ</div>`;
         return;
       }
 
       const isTV = currentTitle.includes("ทีวี");
-
       let finalList = list;
 
-      if(isTV){
+      if (isTV) {
         const seen = new Set();
 
         finalList = list.filter(item => {
           const title = String(item.title || "").toLowerCase();
 
-          if(
+          if (
             title.includes("backup") ||
             title.includes("bkp") ||
             title.includes("สำรอง") ||
             title.includes("main") ||
             title.includes("m3u8")
-          ){
+          ) {
             return false;
           }
 
-          const key = title.replace(/[^a-z0-9ก-๙]/gi,"");
-          if(seen.has(key)) return false;
+          const key = title.replace(/[^a-z0-9ก-๙]/gi, "");
+          if (seen.has(key)) return false;
 
           seen.add(key);
           return true;
@@ -411,9 +408,7 @@
             ? `<img src="${item.image}" alt="" loading="lazy" onerror="this.style.display='none'">`
             : `<div style="height:${isTV ? 140 : 170}px;background:#000;"></div>`
           }
-          <div class="card-body">
-            <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
-          </div>
+          <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
         `;
 
         const runOpen = async () => {
@@ -456,7 +451,7 @@
       const eps = Array.isArray(seriesItem.episodes) ? [...seriesItem.episodes].reverse() : [];
 
       if (!eps.length) {
-        epsGrid.innerHTML = `<div class="empty">ไม่พบตอน</div>`;
+        epsGrid.innerHTML = `<div style="padding:20px;color:#aaa">ไม่พบตอน</div>`;
         return;
       }
 
@@ -502,24 +497,12 @@
       }, 100);
     }
 
-    function tryStartVideoWithSound(url, fallbackFn) {
+    function tryStartVideoWithSound(url) {
       video.muted = false;
       video.volume = 1;
-
       const p = video.play();
       if (p && typeof p.then === "function") {
-        p.then(() => {
-        }).catch(() => {
-          video.muted = true;
-          video.play().then(() => {
-            setTimeout(() => {
-              video.muted = false;
-              video.volume = 1;
-            }, 500);
-          }).catch(() => {
-            if (fallbackFn) fallbackFn(url);
-          });
-        });
+        p.catch(() => {});
       }
     }
 
@@ -543,6 +526,64 @@
       }
     }
 
+    function createPlayerHls() {
+      return new Hls({
+        enableWorker: true,
+        autoStartLoad: true,
+        maxBufferLength: 20,
+        maxMaxBufferLength: 30
+      });
+    }
+
+    async function playByWebStyle(url) {
+      const lower = url.toLowerCase();
+
+      if (lower.includes(".m3u8")) {
+        showPlayer();
+
+        if (Hls.isSupported()) {
+          hls = createPlayerHls();
+          hls.loadSource(url);
+          hls.attachMedia(video);
+
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            tryStartVideoWithSound(url);
+          });
+
+          hls.on(Hls.Events.ERROR, () => {});
+        }
+        return true;
+      }
+
+      if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
+        showPlayer();
+        video.src = url;
+        tryStartVideoWithSound(url);
+        return true;
+      }
+
+      const detected = await detectStreamType(url);
+
+      if (detected === "hls") {
+        showPlayer();
+
+        if (Hls.isSupported()) {
+          hls = createPlayerHls();
+          hls.loadSource(url);
+          hls.attachMedia(video);
+
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            tryStartVideoWithSound(url);
+          });
+
+          hls.on(Hls.Events.ERROR, () => {});
+        }
+        return true;
+      }
+
+      return false;
+    }
+
     async function playItem(item, serverIndex = 0) {
       currentItem = item;
       currentServerIndex = serverIndex;
@@ -555,181 +596,28 @@
       }
 
       const lower = url.toLowerCase();
-      const isSeries =
-        currentTitle.includes("ซีรีส์") ||
-        currentTitle.includes("Flixmono") ||
-        (item.title || "").toUpperCase().includes("EP");
-
-      const isMySeries =
-        currentTitle.includes("ซีรีส์") &&
-        !currentTitle.includes("Flixmono");
-
+      const isMovie = currentTitle.includes("หนัง");
+      const isMySeries = currentTitle.includes("ซีรีส์") && !currentTitle.includes("Flixmono");
       const isFlix = currentTitle.includes("Flixmono");
+      const isSeries = isMySeries || isFlix || (item.title || "").toUpperCase().includes("EP");
 
-      // MySeries = ใช้ player แบบเดียวกับ Flix
-      if (isMySeries || isFlix) {
-        if (
-          lower.includes("/play/") ||
-          lower.includes("/embed/") ||
-          lower.includes("ok-hd.com/play/") ||
-          lower.includes("top-cdn.com/play/")
-        ) {
-          location.href = url;
-          return;
-        }
-
-        if (lower.includes(".m3u8")) {
-          showPlayer();
-
-          if (Hls.isSupported()) {
-            hls = new Hls({
-              enableWorker: true,
-              autoStartLoad: true,
-              maxBufferLength: 20,
-              maxMaxBufferLength: 30
-            });
-
-            hls.loadSource(url);
-            hls.attachMedia(video);
-
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              tryStartVideoWithSound(url, openExternalPlayer);
-            });
-
-            hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openExternalPlayer(url);
-            });
-          } else {
-            openExternalPlayer(url);
+      if (isMovie || isSeries) {
+        const played = await playByWebStyle(url);
+        if (!played) {
+          if (
+            lower.includes("/play/") ||
+            lower.includes("/embed/") ||
+            lower.includes("ok-hd.com/play/") ||
+            lower.includes("top-cdn.com/play/")
+          ) {
+            location.href = url;
+            return;
           }
-          return;
+
+          setStatus("ลิงก์นี้เล่นในเว็บไม่ได้ ลองกด PLAYER หรือ MX");
+          currentItem = item;
+          currentServerIndex = serverIndex;
         }
-
-        if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
-          showPlayer();
-          video.src = url;
-          tryStartVideoWithSound(url, openExternalPlayer);
-          return;
-        }
-
-        const detectedSeries = await detectStreamType(url);
-
-        if (detectedSeries === "hls") {
-          showPlayer();
-
-          if (Hls.isSupported()) {
-            hls = new Hls({
-              enableWorker: true,
-              autoStartLoad: true,
-              maxBufferLength: 20,
-              maxMaxBufferLength: 30
-            });
-
-            hls.loadSource(url);
-            hls.attachMedia(video);
-
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              tryStartVideoWithSound(url, openExternalPlayer);
-            });
-
-            hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openExternalPlayer(url);
-            });
-          } else {
-            openExternalPlayer(url);
-          }
-          return;
-        }
-
-        if (detectedSeries === "html") {
-          location.href = url;
-          return;
-        }
-
-        openExternalPlayer(url);
-        return;
-      }
-
-      if (isSeries) {
-        if (
-          lower.includes("/play/") ||
-          lower.includes("/embed/") ||
-          lower.includes("ok-hd.com/play/") ||
-          lower.includes("top-cdn.com/play/")
-        ) {
-          location.href = url;
-          return;
-        }
-
-        if (lower.includes(".m3u8")) {
-          showPlayer();
-
-          if (Hls.isSupported()) {
-            hls = new Hls({
-              enableWorker: true,
-              autoStartLoad: true,
-              maxBufferLength: 20,
-              maxMaxBufferLength: 30
-            });
-
-            hls.loadSource(url);
-            hls.attachMedia(video);
-
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              tryStartVideoWithSound(url, openExternalPlayer);
-            });
-
-            hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openExternalPlayer(url);
-            });
-          } else {
-            openExternalPlayer(url);
-          }
-          return;
-        }
-
-        if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
-          showPlayer();
-          video.src = url;
-          tryStartVideoWithSound(url, openExternalPlayer);
-          return;
-        }
-
-        const detected = await detectStreamType(url);
-
-        if (detected === "hls") {
-          showPlayer();
-
-          if (Hls.isSupported()) {
-            hls = new Hls({
-              enableWorker: true,
-              autoStartLoad: true,
-              maxBufferLength: 20,
-              maxMaxBufferLength: 30
-            });
-
-            hls.loadSource(url);
-            hls.attachMedia(video);
-
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              tryStartVideoWithSound(url, openExternalPlayer);
-            });
-
-            hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openExternalPlayer(url);
-            });
-          } else {
-            openExternalPlayer(url);
-          }
-          return;
-        }
-
-        if (detected === "html") {
-          location.href = url;
-          return;
-        }
-
-        openExternalPlayer(url);
         return;
       }
 
@@ -737,25 +625,15 @@
         showPlayer();
 
         if (Hls.isSupported()) {
-          hls = new Hls({
-            enableWorker: true,
-            autoStartLoad: true,
-            maxBufferLength: 20,
-            maxMaxBufferLength: 30
-          });
-
+          hls = createPlayerHls();
           hls.loadSource(url);
           hls.attachMedia(video);
 
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            tryStartVideoWithSound(url, openExternalPlayer);
+            tryStartVideoWithSound(url);
           });
 
-          hls.on(Hls.Events.ERROR, (e, data) => {
-            if (data?.fatal) openExternalPlayer(url);
-          });
-        } else {
-          openExternalPlayer(url);
+          hls.on(Hls.Events.ERROR, () => {});
         }
         return;
       }
@@ -763,7 +641,7 @@
       if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
         showPlayer();
         video.src = url;
-        tryStartVideoWithSound(url, openExternalPlayer);
+        tryStartVideoWithSound(url);
         return;
       }
 
@@ -776,11 +654,11 @@
         const list = await loadSource(currentSource);
         renderGrid(list);
         pageTitle.textContent = currentTitle;
-        setStatus(`โหลดสำเร็จ: ${list.length} รายการ`);
+        setStatus("");
       } catch (e) {
         console.error(e);
         setStatus("โหลดรายการไม่สำเร็จ\n" + e.message);
-        grid.innerHTML = `<div class="empty">โหลดรายการไม่สำเร็จ</div>`;
+        grid.innerHTML = `<div style="padding:20px;color:#aaa">โหลดรายการไม่สำเร็จ</div>`;
       }
     }
 
@@ -806,7 +684,10 @@
     document.getElementById("reloadBtn").onclick = loadCurrentMenu;
 
     document.getElementById("backBtn").onclick = async () => {
-      closePlayer();
+      if (playerWrap.style.display === "block") {
+        closePlayer();
+        return;
+      }
 
       if (currentMode === "episodes") {
         epsWrap.style.display = "none";
@@ -850,13 +731,28 @@
     });
 
     document.addEventListener("keydown", (e) => {
-      if (playerWrap.style.display !== "block") return;
+      if (
+        e.key === "Escape" ||
+        e.key === "Backspace" ||
+        e.keyCode === 10009
+      ) {
+        if (playerWrap.style.display === "block") {
+          e.preventDefault();
+          closePlayer();
+          return;
+        }
 
-      showPlayerUi();
+        if (currentMode === "episodes") {
+          e.preventDefault();
+          epsWrap.style.display = "none";
+          listView.style.display = "block";
+          currentMode = "list";
+          return;
+        }
+      }
 
-      if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
-        e.preventDefault();
-        closePlayer();
+      if (playerWrap.style.display === "block") {
+        showPlayerUi();
       }
     });
 
