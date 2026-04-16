@@ -3,531 +3,924 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>⚽ ตารางแข่งขัน</title>
+<title>Dooball Final</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
 *{box-sizing:border-box}
 
 html,body{
-  margin:0;
-  padding:0;
-  background:#000;
-  color:#fff;
-  font-family:sans-serif;
-  overflow-x:hidden;
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:100%;
 }
 
 body{
-  padding-top:124px;
+    font-family:Arial,sans-serif;
+    background:#1c1c1c;
+    color:#111;
+    overflow-x:hidden;
 }
 
-#backBtn{
-  position:fixed;
-  top:12px;
-  left:12px;
-  z-index:9999;
-  padding:10px 14px;
-  border:none;
-  border-radius:12px;
-  background:#e53935;
-  color:#fff;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:bold;
-  min-height:44px;
+.container{
+    width:100%;
+    max-width:1400px;
+    margin:auto;
+    background:#fff;
+    min-height:100vh;
 }
 
-#backBtn:focus,
-#backBtn:hover{
-  outline:none;
-  box-shadow:0 0 0 3px #fff;
+/* topbar */
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:12px;
+    background:#111;
+    color:#fff;
+    position:sticky;
+    top:0;
+    z-index:20;
+    flex-wrap:wrap;
 }
 
-.header{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:999;
-  background:#111;
-  border-bottom:1px solid #222;
-  padding:14px 70px 10px 70px;
-}
-
-.header-title{
-  text-align:center;
-  color:#00e5ff;
-  font-size:22px;
-  font-weight:bold;
-  margin-bottom:10px;
-}
-
-.toolbar{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:center;
-}
-
-.toolbar input,
-.toolbar select,
-.toolbar button{
-  border:none;
-  border-radius:10px;
-  min-height:42px;
-  padding:10px 12px;
-  font-size:14px;
-}
-
-.toolbar input,
-.toolbar select{
-  background:#1a1a1a;
-  color:#fff;
-}
-
-.toolbar button{
-  background:#009688;
-  color:#fff;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.toolbar button:hover,
-.toolbar button:focus,
-.toolbar input:focus,
-.toolbar select:focus{
-  outline:none;
-  box-shadow:0 0 0 3px #00e5ff;
-}
-
-.wrap{
-  width:100%;
-  max-width:1800px;
-  margin:0 auto;
-  padding:12px;
-}
-
-.status{
-  padding:14px 12px;
-  text-align:center;
-  color:#bbb;
-  font-size:15px;
-}
-
-.section{
-  margin-bottom:22px;
-}
-
-.section-title{
-  font-size:20px;
-  font-weight:bold;
-  color:#00e5ff;
-  margin-bottom:10px;
-  padding-left:2px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:12px;
-}
-
-.card{
-  background:#111;
-  border:1px solid #222;
-  border-radius:14px;
-  padding:14px;
-  min-height:126px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  transition:transform .2s ease, box-shadow .2s ease;
-}
-
-.card:hover,
-.card:focus-within{
-  transform:translateY(-2px);
-  box-shadow:0 0 0 3px #00e5ff;
-}
-
-.card.big{
-  border-color:#2d5b00;
-  background:linear-gradient(180deg,#121212,#171d12);
-}
-
-.league{
-  font-size:13px;
-  color:#00e5ff;
-  margin-bottom:8px;
-  word-break:break-word;
-}
-
-.match{
-  font-size:16px;
-  font-weight:bold;
-  line-height:1.45;
-  word-break:break-word;
-}
-
-.time{
-  margin-top:12px;
-  font-size:14px;
-  color:#ffeb3b;
-  font-weight:bold;
-}
-
-.meta{
-  margin-top:6px;
-  font-size:13px;
-  color:#aaa;
-}
-
-.empty{
-  background:#111;
-  border-radius:12px;
-  padding:18px;
-  color:#999;
-}
-
-.badge{
-  display:inline-block;
-  margin-top:8px;
-  padding:5px 10px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:bold;
-  background:#e50914;
-  color:#fff;
-}
-
-@media (max-width: 900px){
-  body{padding-top:138px}
-
-  .header{
-    padding:12px 62px 10px 62px;
-  }
-
-  .header-title{
-    font-size:20px;
-  }
-
-  #backBtn{
-    top:10px;
-    left:10px;
-    padding:10px 12px;
-    font-size:13px;
-  }
-
-  .grid{
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  }
-}
-
-@media (max-width: 600px){
-  body{padding-top:176px}
-
-  .header{
-    padding:10px 56px 10px 56px;
-  }
-
-  .header-title{
-    font-size:18px;
-  }
-
-  #backBtn{
-    top:8px;
-    left:8px;
-    min-height:40px;
-    padding:8px 10px;
-  }
-
-  .wrap{
-    padding:8px;
-  }
-
-  .grid{
-    grid-template-columns:1fr;
+.sports,
+.dates{
+    display:flex;
     gap:8px;
-  }
-
-  .card{
-    min-height:auto;
-  }
-
-  .match{
-    font-size:15px;
-  }
+    flex-wrap:wrap;
+    align-items:center;
 }
 
-@media (min-width: 1400px){
-  .wrap{
-    max-width:1900px;
-    padding:18px;
-  }
+.sports .tab,
+.dates .date{
+    padding:10px 14px;
+    background:#333;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:14px;
+    min-height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    user-select:none;
+}
 
-  .grid{
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:16px;
-  }
+.tab.active,
+.date.active{
+    background:#22c55e;
+    color:#fff;
+}
 
-  .card{
-    min-height:140px;
-    padding:16px;
-  }
+.home-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px 14px;
+    background:#22c55e;
+    color:#fff;
+    border-radius:8px;
+    font-size:14px;
+    text-decoration:none;
+    min-height:42px;
+    white-space:nowrap;
+}
 
-  .match{
-    font-size:18px;
-  }
+.home-btn:hover,
+.home-btn:focus{
+    background:#16a34a;
+    outline:none;
+}
 
-  .time{
+/* league */
+.league{
+    background:#5c6b7a;
+    color:#fff;
+    padding:12px;
+    font-weight:bold;
+    font-size:16px;
+    line-height:1.4;
+}
+
+/* row */
+.row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border-bottom:1px solid #eee;
+    padding:12px;
+}
+
+.row.live{
+    background:#fff3f3;
+    border-left:4px solid red;
+}
+
+.row.upcoming{
+    background:#f9fafb;
+}
+
+.row.ended{
+    opacity:.55;
+}
+
+/* time */
+.time{
+    width:120px;
+    color:#555;
+    white-space:nowrap;
+    font-size:14px;
+    flex-shrink:0;
+}
+
+.live{
+    color:red;
+    font-weight:bold;
+}
+
+/* teams */
+.teams{
+    flex:1;
+    display:grid;
+    grid-template-columns:1fr 70px 1fr;
+    align-items:center;
+    gap:8px;
+    min-width:0;
+}
+
+.team{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    min-width:0;
     font-size:15px;
-  }
+    line-height:1.35;
+}
+
+.team.home{
+    justify-content:flex-end;
+    text-align:right;
+}
+
+.team.away{
+    justify-content:flex-start;
+    text-align:left;
+}
+
+.team img{
+    width:24px;
+    height:24px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+.team.home span,
+.team.away span{
+    display:inline-block;
+    word-break:break-word;
+}
+
+.vs{
+    text-align:center;
+    font-weight:bold;
+    color:#111;
+}
+
+/* single */
+.teams.single{
+    grid-template-columns:1fr;
+}
+
+.teams.single .vs,
+.teams.single .team.away{
+    display:none;
+}
+
+.teams.single .team.home{
+    justify-content:center;
+    width:100%;
+    font-weight:normal;
+    text-align:center;
+}
+
+/* servers */
+.servers{
+    width:180px;
+    text-align:right;
+    flex-shrink:0;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:#22c55e;
+    color:#fff;
+    padding:8px 12px;
+    margin:2px;
+    border-radius:6px;
+    font-size:13px;
+    cursor:pointer;
+    min-height:38px;
+    user-select:none;
+    white-space:nowrap;
+}
+
+.btn.active{
+    background:#f59e0b;
+}
+
+.more-btn{
+    background:#3b82f6;
+}
+
+/* overlay */
+#overlay{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    padding:10px;
+}
+
+#playerBox{
+    width:min(1200px, 100%);
+    max-height:100%;
+    position:relative;
+    background:#000;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.playerTopBar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+    padding:10px;
+    color:#fff;
+    background:#111;
+    flex-wrap:wrap;
+}
+
+#serverBar{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+}
+
+#closeBtn{
+    color:#fff;
+    cursor:pointer;
+    font-size:18px;
+    line-height:1;
+    padding:4px 8px;
+    border-radius:6px;
+    background:#222;
+}
+
+#closeBtn:hover,
+#closeBtn:focus{
+    background:#333;
+}
+
+video{
+    width:100%;
+    max-height:calc(100vh - 70px);
+    display:block;
+    background:#000;
+}
+
+/* tablet/mobile */
+@media (max-width: 900px){
+    .container{
+        max-width:100%;
+    }
+
+    .row{
+        padding:10px;
+    }
+
+    .time{
+        width:92px;
+        font-size:13px;
+    }
+
+    .teams{
+        grid-template-columns:1fr 46px 1fr;
+    }
+
+    .team{
+        font-size:14px;
+    }
+
+    .team img{
+        width:22px;
+        height:22px;
+    }
+
+    .servers{
+        width:120px;
+    }
+
+    .btn{
+        font-size:12px;
+        padding:7px 10px;
+        min-height:34px;
+    }
+}
+
+@media (max-width: 700px){
+    .topbar{
+        align-items:stretch;
+    }
+
+    .sports,
+    .dates{
+        width:100%;
+    }
+
+    .row{
+        flex-direction:column;
+        align-items:stretch;
+        gap:8px;
+    }
+
+    .time{
+        width:100%;
+        font-size:13px;
+    }
+
+    .teams{
+        width:100%;
+        grid-template-columns:1fr 40px 1fr;
+    }
+
+    .servers{
+        width:100%;
+        text-align:left;
+    }
+
+    .btn{
+        width:auto;
+    }
+}
+
+@media (max-width: 520px){
+    .league{
+        font-size:15px;
+        padding:10px;
+    }
+
+    .row{
+        padding:10px 8px;
+    }
+
+    .team{
+        font-size:13px;
+        gap:6px;
+    }
+
+    .team img{
+        width:20px;
+        height:20px;
+    }
+
+    .sports .tab,
+    .dates .date,
+    .home-btn{
+        font-size:12px;
+        padding:8px 10px;
+        min-height:38px;
+    }
+
+    .btn{
+        font-size:12px;
+        min-height:34px;
+        padding:7px 10px;
+    }
+
+    #playerBox{
+        border-radius:0;
+    }
+
+    video{
+        max-height:calc(100vh - 84px);
+    }
+}
+
+/* projector / tv */
+@media (min-width: 1400px){
+    .container{
+        max-width:1800px;
+    }
+
+    .league{
+        font-size:18px;
+        padding:14px;
+    }
+
+    .row{
+        padding:14px;
+    }
+
+    .time{
+        width:140px;
+        font-size:16px;
+    }
+
+    .team{
+        font-size:17px;
+    }
+
+    .team img{
+        width:28px;
+        height:28px;
+    }
+
+    .btn{
+        font-size:14px;
+        min-height:42px;
+        padding:9px 14px;
+    }
+
+    .sports .tab,
+    .dates .date,
+    .home-btn{
+        font-size:15px;
+        min-height:44px;
+    }
 }
 </style>
 </head>
 <body>
 
-<button id="backBtn" type="button">⬅ กลับ</button>
+<div class="topbar">
+    <div class="sports">
+        <span class="tab active" onclick="setSport('all', this)">ALL</span>
+        <span class="tab" onclick="setSport('live', this)">🔴 LIVE</span>
+        <span class="tab" onclick="setSport('football', this)">⚽ Football</span>
+        <span class="tab" onclick="setSport('basketball', this)">🏀 Basketball</span>
+    </div>
 
-<div class="header">
-  <div class="header-title">⚽ ตารางแข่งขัน</div>
-  <div class="toolbar">
-    <input id="searchInput" type="text" placeholder="ค้นหาทีม / ลีก">
-    <select id="leagueFilter">
-      <option value="all">ทุกลีก</option>
-    </select>
-    <button id="refreshBtn" type="button">รีเฟรช</button>
-  </div>
+    <div class="dates">
+        <span class="date active" onclick="setDate(0, this)">วันนี้</span>
+        <span class="date" onclick="setDate(1, this)">พรุ่งนี้</span>
+        <span class="date" onclick="setDate(2, this)">วันถัดไป</span>
+    </div>
+
+    <div>
+        <a href="https://tiea9999.github.io/tv-online/index.html" class="home-btn">🏠 หน้าหลัก</a>
+    </div>
 </div>
 
-<div class="wrap">
-  <div id="status" class="status">กำลังโหลด...</div>
-  <div id="content"></div>
+<div id="overlay">
+    <div id="playerBox">
+        <div class="playerTopBar">
+            <div id="serverBar"></div>
+            <span id="closeBtn" tabindex="0">❌</span>
+        </div>
+        <video id="player" controls autoplay playsinline webkit-playsinline></video>
+    </div>
 </div>
+
+<div class="container" id="app"></div>
 
 <script>
-const JSON_URL = "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/config_dooball66.json";
-const AUTO_REFRESH_MS = 180000; // 3 นาที
+let currentSport = "all";
+let currentDateOffset = 0;
+let originalData = null;
+let htmlListGlobal = null;
 
-const statusBox = document.getElementById("status");
-const content = document.getElementById("content");
-const searchInput = document.getElementById("searchInput");
-const leagueFilter = document.getElementById("leagueFilter");
+const PLAYLIST_URL = "https://broken-surf-7347.hssmnoy.workers.dev/?url=https://drive.google.com/uc?id=15Ye3NPw0cjNrJGTu2Q2aoqoApOp8GipC&export=download";
+const HTML_URL = "https://broken-surf-7347.hssmnoy.workers.dev/?url=https://embed-xs.bananacake.org/dooball66v2/schedule.html";
 
-let rawMatches = [];
-let autoRefreshTimer = null;
+const logoCache = {};
 
-function textOf(...vals){
-  for(const v of vals){
-    if(v !== undefined && v !== null && String(v).trim() !== ""){
-      return String(v).trim();
+async function load(){
+    try{
+        const [jsonRes, htmlRes] = await Promise.all([
+            fetch(PLAYLIST_URL),
+            fetch(HTML_URL)
+        ]);
+
+        const data = await jsonRes.json();
+        const html = await htmlRes.text();
+
+        const htmlList = parseSchedule(html);
+
+        originalData = data;
+        htmlListGlobal = htmlList;
+
+        applyFilter();
+    }catch(e){
+        document.getElementById("app").innerHTML = `
+            <div class="league">โหลดข้อมูลไม่สำเร็จ</div>
+            <div class="row"><div class="teams single"><div class="team home">ลองรีเฟรชใหม่อีกครั้ง</div></div></div>
+        `;
+        console.error(e);
     }
-  }
-  return "";
 }
 
-function timeToMinutes(str){
-  const t = String(str || "").trim().match(/(\d{1,2})[:.](\d{2})/);
-  if(!t) return 9999;
-  const h = parseInt(t[1], 10);
-  const m = parseInt(t[2], 10);
-  return (h * 60) + m;
-}
+function parseSchedule(html){
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const list = [];
 
-function normalizeMatches(data){
-  let arr = [];
+    doc.querySelectorAll(".match").forEach(el => {
+        const teams = el.querySelectorAll("span");
+        const imgs = el.querySelectorAll("img");
 
-  if(Array.isArray(data)) arr = data;
-  else if(Array.isArray(data.matches)) arr = data.matches;
-  else if(Array.isArray(data.data)) arr = data.data;
-  else if(Array.isArray(data.events)) arr = data.events;
-  else if(Array.isArray(data.list)) arr = data.list;
-  else if(Array.isArray(data.result)) arr = data.result;
-
-  return arr.map(item => {
-    const league = textOf(item.league, item.league_name, item.country, item.category, item.tournament);
-    const home = textOf(item.home, item.team1, item.homeTeam, item.home_name, item.team_home);
-    const away = textOf(item.away, item.team2, item.awayTeam, item.away_name, item.team_away);
-    const time = textOf(item.time, item.kickoff, item.match_time, item.start, item.start_time);
-    const date = textOf(item.date, item.match_date, item.day);
-    const channel = textOf(item.channel, item.channels, item.tv, item.ch);
-
-    const matchText = `${home} ${away}`.toLowerCase();
-    const leagueText = league.toLowerCase();
-
-    const isBigMatch =
-      /แมนยู|ลิเวอร์พูล|อาร์เซนอล|เชลซี|แมนซิตี้|สเปอร์ส|บาร์เซโลน่า|บาร์ซ่า|เรอัล มาดริด|มาดริด|แอตมาดริด|บาเยิร์น|ดอร์ทมุนด์|อินเตอร์|มิลาน|ยูเวนตุส|เปแอสเช/i.test(`${home} ${away}`) ||
-      /พรีเมียร์ลีก|ลา ลีกา|บุนเดสลีกา|เซเรีย อา|ยูฟ่า|แชมเปียนส์ลีก/i.test(league);
-
-    return {
-      league: league || "ลีกอื่น ๆ",
-      home: home || "-",
-      away: away || "-",
-      time: time || "-",
-      date: date || "",
-      channel: channel || "",
-      isBigMatch,
-      sortTime: timeToMinutes(time),
-      searchText: `${leagueText} ${matchText}`
-    };
-  }).filter(item => item.home !== "-" || item.away !== "-" || item.time !== "-");
-}
-
-function fillLeagueFilter(list){
-  const prev = leagueFilter.value;
-  const leagues = [...new Set(list.map(x => x.league).filter(Boolean))].sort((a,b) => a.localeCompare(b, "th"));
-
-  leagueFilter.innerHTML = `<option value="all">ทุกลีก</option>`;
-  leagues.forEach(name => {
-    const opt = document.createElement("option");
-    opt.value = name;
-    opt.textContent = name;
-    leagueFilter.appendChild(opt);
-  });
-
-  if(leagues.includes(prev)) leagueFilter.value = prev;
-  else leagueFilter.value = "all";
-}
-
-function filterMatches(){
-  const q = searchInput.value.trim().toLowerCase();
-  const league = leagueFilter.value;
-
-  let list = [...rawMatches];
-
-  if(league !== "all"){
-    list = list.filter(item => item.league === league);
-  }
-
-  if(q){
-    list = list.filter(item => item.searchText.includes(q));
-  }
-
-  list.sort((a,b) => a.sortTime - b.sortTime || a.league.localeCompare(b.league, "th"));
-  return list;
-}
-
-function groupByLeague(list){
-  const map = new Map();
-  list.forEach(item => {
-    if(!map.has(item.league)) map.set(item.league, []);
-    map.get(item.league).push(item);
-  });
-  return map;
-}
-
-function render(){
-  const list = filterMatches();
-  content.innerHTML = "";
-
-  if(!rawMatches.length){
-    statusBox.style.display = "block";
-    statusBox.textContent = "ไม่มีข้อมูล";
-    return;
-  }
-
-  if(!list.length){
-    statusBox.style.display = "block";
-    statusBox.textContent = "ไม่พบรายการที่ค้นหา";
-    return;
-  }
-
-  statusBox.style.display = "none";
-
-  const grouped = groupByLeague(list);
-
-  grouped.forEach((matches, leagueName) => {
-    const section = document.createElement("section");
-    section.className = "section";
-
-    const title = document.createElement("div");
-    title.className = "section-title";
-    title.textContent = leagueName;
-    section.appendChild(title);
-
-    const grid = document.createElement("div");
-    grid.className = "grid";
-
-    matches.forEach(item => {
-      const card = document.createElement("div");
-      card.className = "card" + (item.isBigMatch ? " big" : "");
-      card.tabIndex = 0;
-
-      const metaParts = [item.date, item.channel].filter(Boolean);
-
-      card.innerHTML = `
-        <div>
-          <div class="league">${item.league}</div>
-          <div class="match">${item.home} vs ${item.away}</div>
-          ${item.isBigMatch ? `<div class="badge">คู่เด่น</div>` : ``}
-        </div>
-        <div>
-          <div class="time">⏰ ${item.time}</div>
-          ${metaParts.length ? `<div class="meta">${metaParts.join(" • ")}</div>` : ``}
-        </div>
-      `;
-
-      grid.appendChild(card);
+        if(teams.length >= 2 && imgs.length >= 2){
+            list.push({
+                home: teams[0].innerText.trim(),
+                away: teams[1].innerText.trim(),
+                homeLogo: imgs[0].src,
+                awayLogo: imgs[1].src
+            });
+        }
     });
 
-    section.appendChild(grid);
-    content.appendChild(section);
-  });
+    return list;
 }
 
-async function loadMatches(){
-  try{
-    statusBox.style.display = "block";
-    statusBox.textContent = "กำลังโหลด...";
-    content.innerHTML = "";
+function parseMatch(name){
+    const t = name.match(/\((\d{2}\/\d{2}\s+\d{2}:\d{2})\)/);
+    let time = t ? t[1] : "";
 
-    const res = await fetch(JSON_URL + "?t=" + Date.now());
-    if(!res.ok){
-      throw new Error("โหลดไม่สำเร็จ: " + res.status);
-    }
+    let clean = name
+        .replace(/\d{2}\/\d{2}\s+\d{2}:\d{2}/g, "")
+        .replace(/\([^)]*\)/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
 
-    const data = await res.json();
-    rawMatches = normalizeMatches(data);
-    fillLeagueFilter(rawMatches);
-    render();
+    clean = clean.replace(/(.+?)\1+/g, "$1");
 
-    if(rawMatches.length){
-      statusBox.textContent = "";
+    let home = "";
+    let away = "TBD";
+
+    if(clean.includes(" vs ")) {
+        [home, away] = clean.split(" vs ");
+    } else if(clean.includes(" VS ")) {
+        [home, away] = clean.split(" VS ");
+    } else if(clean.includes(" v ")) {
+        [home, away] = clean.split(" v ");
     } else {
-      statusBox.textContent = "ไม่มีข้อมูล";
+        return {
+            home: clean.trim(),
+            away: "TBD",
+            time
+        };
     }
-  }catch(e){
-    console.error(e);
-    rawMatches = [];
-    content.innerHTML = "";
-    statusBox.style.display = "block";
-    statusBox.textContent = "โหลดไม่สำเร็จ";
-  }
+
+    return {
+        home: home.trim(),
+        away: away.trim(),
+        time
+    };
 }
 
-function startAutoRefresh(){
-  if(autoRefreshTimer) clearInterval(autoRefreshTimer);
-  autoRefreshTimer = setInterval(loadMatches, AUTO_REFRESH_MS);
+function extractDateTime(name){
+    const m = name.match(/\((\d{2}\/\d{2})\s+(\d{2}:\d{2})\)/);
+    if(!m) return null;
+    return {date:m[1], time:m[2]};
 }
 
-document.getElementById("backBtn").onclick = () => {
-  history.back();
+function getMatchStatus(name){
+    const dt = extractDateTime(name);
+    if(!dt) return {status:"unknown"};
+
+    const now = new Date();
+    const [day,month] = dt.date.split("/");
+    const [h,m] = dt.time.split(":");
+
+    const matchTime = new Date();
+    matchTime.setDate(day);
+    matchTime.setMonth(month-1);
+    matchTime.setHours(h,m,0,0);
+
+    const diff = (now - matchTime)/60000;
+
+    if(name.includes("'")) return {status:"live", time:dt.time};
+    if(diff>=0 && diff<=120) return {status:"live", time:dt.time};
+    if(diff<0) return {status:"upcoming", time:dt.time};
+
+    return {status:"ended", time:dt.time};
+}
+
+function normalize(name){
+    return name.toLowerCase().replace(/[^a-z]/g,"");
+}
+
+function similarity(a,b){
+    if(a.includes(b)||b.includes(a)) return 1;
+    let m=0;
+    for(let i=0;i<a.length;i++) if(b.includes(a[i])) m++;
+    return m/Math.max(a.length,b.length);
+}
+
+function findLogos(home,away,list){
+    const key=normalize(home)+normalize(away);
+    if(logoCache[key]) return logoCache[key];
+
+    let best=null,score=0;
+
+    list.forEach(m=>{
+        const s = similarity(normalize(home),normalize(m.home)) +
+                  similarity(normalize(away),normalize(m.away));
+
+        if(s>score){score=s;best=m;}
+    });
+
+    if(score>1.2){
+        logoCache[key]={homeLogo:best.homeLogo,awayLogo:best.awayLogo};
+        return logoCache[key];
+    }
+
+    return null;
+}
+
+function applyFilter(){
+    if(!originalData || !originalData.groups){
+        document.getElementById("app").innerHTML = `
+            <div class="league">ไม่มีข้อมูล</div>
+            <div class="row"><div class="teams single"><div class="team home">ไม่พบข้อมูลการแข่งขัน</div></div></div>
+        `;
+        return;
+    }
+
+    let data = JSON.parse(JSON.stringify(originalData));
+    const now = new Date();
+
+    const today = new Date();
+    const d = String(today.getDate()).padStart(2,'0');
+    const m = String(today.getMonth()+1).padStart(2,'0');
+    const todayStr = `${d}/${m}`;
+
+    if(currentSport === "live"){
+        let allMatches = [];
+
+        data.groups.forEach(l=>{
+            l.groups.forEach(match=>{
+                const dt = extractDateTime(match.name);
+                if(!dt || dt.date !== todayStr) return;
+
+                const [hh, mm] = dt.time.split(":");
+                const matchTime = new Date();
+                matchTime.setHours(hh, mm, 0, 0);
+
+                const diffMin = (now - matchTime) / 60000;
+                const isLive = diffMin >= 0 && diffMin <= 120;
+                const isUpcoming = diffMin < 0;
+
+                if(!isLive && !isUpcoming) return;
+
+                allMatches.push({
+                    league: l.name,
+                    match: match
+                });
+            });
+        });
+
+        allMatches.sort((a,b)=>{
+            const ta = extractDateTime(a.match.name);
+            const tb = extractDateTime(b.match.name);
+            return ta.time.localeCompare(tb.time);
+        });
+
+        data.groups = [{
+            name: "🔴 LIVE TODAY",
+            groups: allMatches.map(x => x.match)
+        }];
+    } else {
+        const target = new Date();
+        target.setDate(now.getDate()+currentDateOffset);
+
+        const dd = String(target.getDate()).padStart(2,'0');
+        const mm = String(target.getMonth()+1).padStart(2,'0');
+        const targetStr = `${dd}/${mm}`;
+
+        data.groups.forEach(l=>{
+            l.groups = l.groups.filter(match=>{
+                const dt = extractDateTime(match.name);
+                if(!dt || dt.date !== targetStr) return false;
+
+                const status = getMatchStatus(match.name);
+                return status.status !== "ended";
+            });
+        });
+
+        if(currentSport !== "all"){
+            data.groups = data.groups.filter(l=>{
+                const n = l.name.toLowerCase();
+
+                if(currentSport==="football"){
+                    return n.includes("league") 
+                        || n.includes("liga")
+                        || n.includes("ligue")
+                        || n.includes("premier")
+                        || n.includes("division") 
+                        || n.includes("serie")
+                        || n.includes("cup")
+                        || n.includes("fa")
+                        || n.includes("uefa")
+                        || n.includes("champions");
+                }
+
+                if(currentSport==="basketball"){
+                    return n.includes("nba");
+                }
+
+                return true;
+            });
+        }
+
+        data.groups.forEach(l=>{
+            l.groups.sort((a,b)=>{
+                const ta = extractDateTime(a.name);
+                const tb = extractDateTime(b.name);
+                if(!ta || !tb) return 0;
+                return ta.time.localeCompare(tb.time);
+            });
+        });
+    }
+
+    data.groups = data.groups.filter(l => l.groups.length > 0);
+
+    document.getElementById("app").innerHTML = "";
+    render(data);
+}
+
+function render(data){
+    const app=document.getElementById("app");
+
+    if(!data.groups || !data.groups.length){
+        app.innerHTML = `
+            <div class="league">ไม่มีข้อมูล</div>
+            <div class="row">
+                <div class="teams single">
+                    <div class="team home">ไม่มีรายการแข่งขันในช่วงเวลานี้</div>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
+    data.groups.forEach(l=>{
+        app.innerHTML += `<div class="league">${l.name}</div>`;
+
+        l.groups.forEach(match=>{
+            const {home,away,time}=parseMatch(match.name);
+            const safeAway = away || "TBD";
+            const isSingle = !away || away === "TBD";
+            const logos=findLogos(home,away,htmlListGlobal)||{};
+            const status=getMatchStatus(match.name);
+
+            app.innerHTML += `
+            <div class="row ${status.status}">
+                <div class="time">
+                    ${status.status==="live"
+                        ? `<span class="live">🔴 ${time}</span>`
+                        : time
+                    }
+                </div>
+
+                <div class="teams ${isSingle ? 'single' : ''}">
+                    <div class="team home">
+                        <span>${home}</span>
+                        ${logos.homeLogo?`<img src="${logos.homeLogo}" alt="">`:""}
+                    </div>
+
+                    ${
+                        (!away || away === "TBD")
+                        ? ""
+                        : `
+                            <div class="vs">vs</div>
+                            <div class="team away">
+                                ${logos.awayLogo?`<img src="${logos.awayLogo}" alt="">`:""}
+                                <span>${safeAway}</span>
+                            </div>
+                        `
+                    }
+                </div>
+
+                <div class="servers">
+                    <span class="btn" onclick="openPlayer(JSON.parse(this.dataset.list), 0)"
+                        data-list='${JSON.stringify(match.stations || []).replace(/'/g,"&#39;")}'>
+                        ▶ ดูสด
+                    </span>
+                </div>
+            </div>`;
+        });
+    });
+}
+
+function play(url){
+    const overlay = document.getElementById("overlay");
+    const video = document.getElementById("player");
+
+    overlay.style.display = "flex";
+
+    if(window.hls){
+        window.hls.destroy();
+        window.hls = null;
+    }
+
+    if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        window.hls = hls;
+    } else {
+        video.src = url;
+    }
+}
+
+function closeOverlay(){
+    const overlay = document.getElementById("overlay");
+    const video = document.getElementById("player");
+
+    overlay.style.display = "none";
+    video.pause();
+    video.src = "";
+    video.load();
+
+    if(window.hls){
+        window.hls.destroy();
+        window.hls = null;
+    }
+}
+
+document.getElementById("closeBtn").onclick = closeOverlay;
+
+document.getElementById("overlay").onclick = (e)=>{
+    if(e.target.id === "overlay"){
+        closeOverlay();
+    }
 };
 
-document.getElementById("refreshBtn").onclick = loadMatches;
-searchInput.addEventListener("input", render);
-leagueFilter.addEventListener("change", render);
+function setSport(s,e){
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    e.classList.add("active");
+    currentSport=s;
+    applyFilter();
+}
 
-document.addEventListener("keydown", (e) => {
-  if(e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009){
-    e.preventDefault();
-    history.back();
-  }
+function setDate(o,e){
+    document.querySelectorAll(".date").forEach(d=>d.classList.remove("active"));
+    e.classList.add("active");
+    currentDateOffset=o;
+    applyFilter();
+}
+
+let currentServers = [];
+let currentIndex = 0;
+
+function openPlayer(list, index){
+    currentServers = list || [];
+    currentIndex = index || 0;
+
+    if(!currentServers.length) return;
+
+    play(currentServers[currentIndex].url);
+    renderServerButtons();
+    document.getElementById("overlay").style.display = "flex";
+}
+
+function renderServerButtons(){
+    const bar = document.getElementById("serverBar");
+    bar.innerHTML = "";
+
+    currentServers.forEach((s, i)=>{
+        bar.innerHTML += `
+            <span class="btn ${i===currentIndex?'active':''}" onclick="switchServer(${i})">
+                S${i+1}
+            </span>
+        `;
+    });
+}
+
+function switchServer(i){
+    currentIndex = i;
+    play(currentServers[i].url);
+    renderServerButtons();
+}
+
+document.addEventListener("keydown", (e)=>{
+    if(e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009){
+        if(document.getElementById("overlay").style.display === "flex"){
+            e.preventDefault();
+            closeOverlay();
+        }
+    }
 });
 
-loadMatches();
-startAutoRefresh();
+load();
 </script>
 
 </body>
