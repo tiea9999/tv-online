@@ -2,120 +2,532 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>⚽ ตารางแข่งขัน</title>
 
 <style>
-body{
+*{box-sizing:border-box}
+
+html,body{
   margin:0;
+  padding:0;
   background:#000;
   color:#fff;
   font-family:sans-serif;
+  overflow-x:hidden;
 }
 
-.header{
-  padding:12px;
-  background:#111;
-  color:#00e5ff;
-  font-size:20px;
-  font-weight:bold;
+body{
+  padding-top:124px;
 }
 
 #backBtn{
   position:fixed;
-  top:10px;
-  left:10px;
-  z-index:999;
-  padding:10px 12px;
+  top:12px;
+  left:12px;
+  z-index:9999;
+  padding:10px 14px;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   background:#e53935;
   color:#fff;
   cursor:pointer;
+  font-size:14px;
+  font-weight:bold;
+  min-height:44px;
+}
+
+#backBtn:focus,
+#backBtn:hover{
+  outline:none;
+  box-shadow:0 0 0 3px #fff;
+}
+
+.header{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:999;
+  background:#111;
+  border-bottom:1px solid #222;
+  padding:14px 70px 10px 70px;
+}
+
+.header-title{
+  text-align:center;
+  color:#00e5ff;
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.toolbar{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+}
+
+.toolbar input,
+.toolbar select,
+.toolbar button{
+  border:none;
+  border-radius:10px;
+  min-height:42px;
+  padding:10px 12px;
+  font-size:14px;
+}
+
+.toolbar input,
+.toolbar select{
+  background:#1a1a1a;
+  color:#fff;
+}
+
+.toolbar button{
+  background:#009688;
+  color:#fff;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.toolbar button:hover,
+.toolbar button:focus,
+.toolbar input:focus,
+.toolbar select:focus{
+  outline:none;
+  box-shadow:0 0 0 3px #00e5ff;
+}
+
+.wrap{
+  width:100%;
+  max-width:1800px;
+  margin:0 auto;
+  padding:12px;
+}
+
+.status{
+  padding:14px 12px;
+  text-align:center;
+  color:#bbb;
+  font-size:15px;
+}
+
+.section{
+  margin-bottom:22px;
+}
+
+.section-title{
+  font-size:20px;
+  font-weight:bold;
+  color:#00e5ff;
+  margin-bottom:10px;
+  padding-left:2px;
 }
 
 .grid{
-  padding:12px;
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:10px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:12px;
 }
 
 .card{
   background:#111;
-  padding:10px;
-  border-radius:10px;
+  border:1px solid #222;
+  border-radius:14px;
+  padding:14px;
+  min-height:126px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.card:hover,
+.card:focus-within{
+  transform:translateY(-2px);
+  box-shadow:0 0 0 3px #00e5ff;
+}
+
+.card.big{
+  border-color:#2d5b00;
+  background:linear-gradient(180deg,#121212,#171d12);
+}
+
+.league{
+  font-size:13px;
+  color:#00e5ff;
+  margin-bottom:8px;
+  word-break:break-word;
 }
 
 .match{
-  font-size:14px;
+  font-size:16px;
   font-weight:bold;
+  line-height:1.45;
+  word-break:break-word;
 }
 
 .time{
+  margin-top:12px;
+  font-size:14px;
+  color:#ffeb3b;
+  font-weight:bold;
+}
+
+.meta{
   margin-top:6px;
-  font-size:12px;
+  font-size:13px;
   color:#aaa;
+}
+
+.empty{
+  background:#111;
+  border-radius:12px;
+  padding:18px;
+  color:#999;
+}
+
+.badge{
+  display:inline-block;
+  margin-top:8px;
+  padding:5px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:bold;
+  background:#e50914;
+  color:#fff;
+}
+
+@media (max-width: 900px){
+  body{padding-top:138px}
+
+  .header{
+    padding:12px 62px 10px 62px;
+  }
+
+  .header-title{
+    font-size:20px;
+  }
+
+  #backBtn{
+    top:10px;
+    left:10px;
+    padding:10px 12px;
+    font-size:13px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  }
+}
+
+@media (max-width: 600px){
+  body{padding-top:176px}
+
+  .header{
+    padding:10px 56px 10px 56px;
+  }
+
+  .header-title{
+    font-size:18px;
+  }
+
+  #backBtn{
+    top:8px;
+    left:8px;
+    min-height:40px;
+    padding:8px 10px;
+  }
+
+  .wrap{
+    padding:8px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+  .card{
+    min-height:auto;
+  }
+
+  .match{
+    font-size:15px;
+  }
+}
+
+@media (min-width: 1400px){
+  .wrap{
+    max-width:1900px;
+    padding:18px;
+  }
+
+  .grid{
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:16px;
+  }
+
+  .card{
+    min-height:140px;
+    padding:16px;
+  }
+
+  .match{
+    font-size:18px;
+  }
+
+  .time{
+    font-size:15px;
+  }
 }
 </style>
 </head>
 <body>
 
-<button id="backBtn">⬅ กลับ</button>
+<button id="backBtn" type="button">⬅ กลับ</button>
 
-<div class="header">⚽ ตารางแข่งขัน</div>
-<div id="grid" class="grid"></div>
+<div class="header">
+  <div class="header-title">⚽ ตารางแข่งขัน</div>
+  <div class="toolbar">
+    <input id="searchInput" type="text" placeholder="ค้นหาทีม / ลีก">
+    <select id="leagueFilter">
+      <option value="all">ทุกลีก</option>
+    </select>
+    <button id="refreshBtn" type="button">รีเฟรช</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div id="status" class="status">กำลังโหลด...</div>
+  <div id="content"></div>
+</div>
 
 <script>
-const grid = document.getElementById("grid");
-
-// 🔥 ใส่ JSON ของคุณตรงนี้
 const JSON_URL = "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/config_dooball66.json";
+const AUTO_REFRESH_MS = 180000; // 3 นาที
 
-async function loadMatch(){
-  try{
-    const res = await fetch(JSON_URL);
-    const data = await res.json();
+const statusBox = document.getElementById("status");
+const content = document.getElementById("content");
+const searchInput = document.getElementById("searchInput");
+const leagueFilter = document.getElementById("leagueFilter");
 
-    let list = [];
+let rawMatches = [];
+let autoRefreshTimer = null;
 
-    if(Array.isArray(data)){
-      list = data;
-    }else if(data.matches){
-      list = data.matches;
-    }else if(data.data){
-      list = data.data;
+function textOf(...vals){
+  for(const v of vals){
+    if(v !== undefined && v !== null && String(v).trim() !== ""){
+      return String(v).trim();
     }
+  }
+  return "";
+}
 
-    grid.innerHTML = "";
+function timeToMinutes(str){
+  const t = String(str || "").trim().match(/(\d{1,2})[:.](\d{2})/);
+  if(!t) return 9999;
+  const h = parseInt(t[1], 10);
+  const m = parseInt(t[2], 10);
+  return (h * 60) + m;
+}
 
-    if(!list.length){
-      grid.innerHTML = "ไม่มีข้อมูล";
-      return;
-    }
+function normalizeMatches(data){
+  let arr = [];
 
-    list.forEach(item=>{
-      const div = document.createElement("div");
-      div.className = "card";
+  if(Array.isArray(data)) arr = data;
+  else if(Array.isArray(data.matches)) arr = data.matches;
+  else if(Array.isArray(data.data)) arr = data.data;
+  else if(Array.isArray(data.events)) arr = data.events;
+  else if(Array.isArray(data.list)) arr = data.list;
+  else if(Array.isArray(data.result)) arr = data.result;
 
-      div.innerHTML = `
-        <div class="match">${item.home || item.team1 || ""} vs ${item.away || item.team2 || ""}</div>
-        <div class="time">${item.time || item.kickoff || ""}</div>
+  return arr.map(item => {
+    const league = textOf(item.league, item.league_name, item.country, item.category, item.tournament);
+    const home = textOf(item.home, item.team1, item.homeTeam, item.home_name, item.team_home);
+    const away = textOf(item.away, item.team2, item.awayTeam, item.away_name, item.team_away);
+    const time = textOf(item.time, item.kickoff, item.match_time, item.start, item.start_time);
+    const date = textOf(item.date, item.match_date, item.day);
+    const channel = textOf(item.channel, item.channels, item.tv, item.ch);
+
+    const matchText = `${home} ${away}`.toLowerCase();
+    const leagueText = league.toLowerCase();
+
+    const isBigMatch =
+      /แมนยู|ลิเวอร์พูล|อาร์เซนอล|เชลซี|แมนซิตี้|สเปอร์ส|บาร์เซโลน่า|บาร์ซ่า|เรอัล มาดริด|มาดริด|แอตมาดริด|บาเยิร์น|ดอร์ทมุนด์|อินเตอร์|มิลาน|ยูเวนตุส|เปแอสเช/i.test(`${home} ${away}`) ||
+      /พรีเมียร์ลีก|ลา ลีกา|บุนเดสลีกา|เซเรีย อา|ยูฟ่า|แชมเปียนส์ลีก/i.test(league);
+
+    return {
+      league: league || "ลีกอื่น ๆ",
+      home: home || "-",
+      away: away || "-",
+      time: time || "-",
+      date: date || "",
+      channel: channel || "",
+      isBigMatch,
+      sortTime: timeToMinutes(time),
+      searchText: `${leagueText} ${matchText}`
+    };
+  }).filter(item => item.home !== "-" || item.away !== "-" || item.time !== "-");
+}
+
+function fillLeagueFilter(list){
+  const prev = leagueFilter.value;
+  const leagues = [...new Set(list.map(x => x.league).filter(Boolean))].sort((a,b) => a.localeCompare(b, "th"));
+
+  leagueFilter.innerHTML = `<option value="all">ทุกลีก</option>`;
+  leagues.forEach(name => {
+    const opt = document.createElement("option");
+    opt.value = name;
+    opt.textContent = name;
+    leagueFilter.appendChild(opt);
+  });
+
+  if(leagues.includes(prev)) leagueFilter.value = prev;
+  else leagueFilter.value = "all";
+}
+
+function filterMatches(){
+  const q = searchInput.value.trim().toLowerCase();
+  const league = leagueFilter.value;
+
+  let list = [...rawMatches];
+
+  if(league !== "all"){
+    list = list.filter(item => item.league === league);
+  }
+
+  if(q){
+    list = list.filter(item => item.searchText.includes(q));
+  }
+
+  list.sort((a,b) => a.sortTime - b.sortTime || a.league.localeCompare(b.league, "th"));
+  return list;
+}
+
+function groupByLeague(list){
+  const map = new Map();
+  list.forEach(item => {
+    if(!map.has(item.league)) map.set(item.league, []);
+    map.get(item.league).push(item);
+  });
+  return map;
+}
+
+function render(){
+  const list = filterMatches();
+  content.innerHTML = "";
+
+  if(!rawMatches.length){
+    statusBox.style.display = "block";
+    statusBox.textContent = "ไม่มีข้อมูล";
+    return;
+  }
+
+  if(!list.length){
+    statusBox.style.display = "block";
+    statusBox.textContent = "ไม่พบรายการที่ค้นหา";
+    return;
+  }
+
+  statusBox.style.display = "none";
+
+  const grouped = groupByLeague(list);
+
+  grouped.forEach((matches, leagueName) => {
+    const section = document.createElement("section");
+    section.className = "section";
+
+    const title = document.createElement("div");
+    title.className = "section-title";
+    title.textContent = leagueName;
+    section.appendChild(title);
+
+    const grid = document.createElement("div");
+    grid.className = "grid";
+
+    matches.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card" + (item.isBigMatch ? " big" : "");
+      card.tabIndex = 0;
+
+      const metaParts = [item.date, item.channel].filter(Boolean);
+
+      card.innerHTML = `
+        <div>
+          <div class="league">${item.league}</div>
+          <div class="match">${item.home} vs ${item.away}</div>
+          ${item.isBigMatch ? `<div class="badge">คู่เด่น</div>` : ``}
+        </div>
+        <div>
+          <div class="time">⏰ ${item.time}</div>
+          ${metaParts.length ? `<div class="meta">${metaParts.join(" • ")}</div>` : ``}
+        </div>
       `;
 
-      grid.appendChild(div);
+      grid.appendChild(card);
     });
 
+    section.appendChild(grid);
+    content.appendChild(section);
+  });
+}
+
+async function loadMatches(){
+  try{
+    statusBox.style.display = "block";
+    statusBox.textContent = "กำลังโหลด...";
+    content.innerHTML = "";
+
+    const res = await fetch(JSON_URL + "?t=" + Date.now());
+    if(!res.ok){
+      throw new Error("โหลดไม่สำเร็จ: " + res.status);
+    }
+
+    const data = await res.json();
+    rawMatches = normalizeMatches(data);
+    fillLeagueFilter(rawMatches);
+    render();
+
+    if(rawMatches.length){
+      statusBox.textContent = "";
+    } else {
+      statusBox.textContent = "ไม่มีข้อมูล";
+    }
   }catch(e){
-    grid.innerHTML = "โหลดไม่สำเร็จ";
+    console.error(e);
+    rawMatches = [];
+    content.innerHTML = "";
+    statusBox.style.display = "block";
+    statusBox.textContent = "โหลดไม่สำเร็จ";
   }
 }
 
-document.getElementById("backBtn").onclick = ()=>{
+function startAutoRefresh(){
+  if(autoRefreshTimer) clearInterval(autoRefreshTimer);
+  autoRefreshTimer = setInterval(loadMatches, AUTO_REFRESH_MS);
+}
+
+document.getElementById("backBtn").onclick = () => {
   history.back();
 };
 
-loadMatch();
+document.getElementById("refreshBtn").onclick = loadMatches;
+searchInput.addEventListener("input", render);
+leagueFilter.addEventListener("change", render);
+
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009){
+    e.preventDefault();
+    history.back();
+  }
+});
+
+loadMatches();
+startAutoRefresh();
 </script>
 
 </body>
