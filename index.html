@@ -19,7 +19,14 @@
     }
 
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:radial-gradient(circle at top,#0d1523 0%,#05070b 40%,#030406 100%);color:var(--text);font-family:Arial,sans-serif;overflow-x:hidden}
+    html,body{
+      margin:0;
+      padding:0;
+      background:radial-gradient(circle at top,#0d1523 0%,#05070b 40%,#030406 100%);
+      color:var(--text);
+      font-family:Arial,sans-serif;
+      overflow-x:hidden
+    }
     body{min-height:100vh}
     .app{display:flex;min-height:100vh}
 
@@ -80,12 +87,6 @@
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
     }
     .menu-btn:hover,.top-btn:hover,.ep-btn:hover{transform:translateY(-1px)}
-    .menu-btn.active,.menu-btn:focus,.top-btn:focus,.ep-btn:focus{
-      background:linear-gradient(180deg,#00d26a,#00b352);
-      outline:none;
-      color:#fff;
-      box-shadow:0 0 18px rgba(0,200,83,.28);
-    }
 
     .main{
       flex:1;
@@ -177,9 +178,8 @@
       box-shadow:var(--shadow);
       transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
-    .card:hover,.card:focus{
+    .card:hover{
       transform:translateY(-3px) scale(1.01);
-      outline:none;
       border-color:rgba(0,229,255,.28);
       box-shadow:0 10px 30px rgba(0,0,0,.42), var(--glow);
     }
@@ -287,6 +287,37 @@
     .btn-close{background:#e53935}
     .btn-player{background:#009688}
     .btn-mx{background:#ff9800}
+
+    /* ===== FOCUS สำหรับรีโมท (ชัดสุด) ===== */
+    .menu-btn.active,
+    .menu-btn:focus,
+    .top-btn:focus,
+    .ep-btn:focus,
+    .card:focus,
+    .player-btn:focus{
+      outline:4px solid #ffd54f !important;
+      outline-offset:2px;
+      box-shadow:
+        0 0 0 4px rgba(255,213,79,.45),
+        0 0 22px rgba(255,213,79,.35),
+        0 0 40px rgba(255,213,79,.25) !important;
+      z-index:5;
+    }
+
+    .menu-btn:focus,
+    .top-btn:focus,
+    .ep-btn:focus,
+    .card:focus{
+      transform:scale(1.05);
+    }
+
+    .card:focus,
+    .menu-btn:focus,
+    .top-btn:focus,
+    .ep-btn:focus,
+    .player-btn:focus{
+      position:relative;
+    }
 
     @media (max-width:900px){
       .sidebar{width:170px;transform:translateX(-136px)}
@@ -1072,6 +1103,17 @@
       }
 
       if (playerWrap.style.display === "block") showPlayerUi();
+
+      setTimeout(() => {
+        const el = document.activeElement;
+        if (el && el.scrollIntoView) {
+          el.scrollIntoView({
+            block: "center",
+            inline: "center",
+            behavior: "smooth"
+          });
+        }
+      }, 50);
     });
 
     loadCurrentMenu();
