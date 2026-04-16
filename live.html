@@ -1,927 +1,854 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Dooball Final</title>
-
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
-<style>
-*{box-sizing:border-box}
-
-html,body{
-    margin:0;
-    padding:0;
-    width:100%;
-    min-height:100%;
-}
-
-body{
-    font-family:Arial,sans-serif;
-    background:#1c1c1c;
-    color:#111;
-    overflow-x:hidden;
-}
-
-.container{
-    width:100%;
-    max-width:1400px;
-    margin:auto;
-    background:#fff;
-    min-height:100vh;
-}
-
-/* topbar */
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    padding:12px;
-    background:#111;
-    color:#fff;
-    position:sticky;
-    top:0;
-    z-index:20;
-    flex-wrap:wrap;
-}
-
-.sports,
-.dates{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    align-items:center;
-}
-
-.sports .tab,
-.dates .date{
-    padding:10px 14px;
-    background:#333;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:14px;
-    min-height:42px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    user-select:none;
-}
-
-.tab.active,
-.date.active{
-    background:#22c55e;
-    color:#fff;
-}
-
-.home-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:10px 14px;
-    background:#22c55e;
-    color:#fff;
-    border-radius:8px;
-    font-size:14px;
-    text-decoration:none;
-    min-height:42px;
-    white-space:nowrap;
-}
-
-.home-btn:hover,
-.home-btn:focus{
-    background:#16a34a;
-    outline:none;
-}
-
-/* league */
-.league{
-    background:#5c6b7a;
-    color:#fff;
-    padding:12px;
-    font-weight:bold;
-    font-size:16px;
-    line-height:1.4;
-}
-
-/* row */
-.row{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    border-bottom:1px solid #eee;
-    padding:12px;
-}
-
-.row.live{
-    background:#fff3f3;
-    border-left:4px solid red;
-}
-
-.row.upcoming{
-    background:#f9fafb;
-}
-
-.row.ended{
-    opacity:.55;
-}
-
-/* time */
-.time{
-    width:120px;
-    color:#555;
-    white-space:nowrap;
-    font-size:14px;
-    flex-shrink:0;
-}
-
-.live{
-    color:red;
-    font-weight:bold;
-}
-
-/* teams */
-.teams{
-    flex:1;
-    display:grid;
-    grid-template-columns:1fr 70px 1fr;
-    align-items:center;
-    gap:8px;
-    min-width:0;
-}
-
-.team{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    min-width:0;
-    font-size:15px;
-    line-height:1.35;
-}
-
-.team.home{
-    justify-content:flex-end;
-    text-align:right;
-}
-
-.team.away{
-    justify-content:flex-start;
-    text-align:left;
-}
-
-.team img{
-    width:24px;
-    height:24px;
-    object-fit:contain;
-    flex-shrink:0;
-}
-
-.team.home span,
-.team.away span{
-    display:inline-block;
-    word-break:break-word;
-}
-
-.vs{
-    text-align:center;
-    font-weight:bold;
-    color:#111;
-}
-
-/* single */
-.teams.single{
-    grid-template-columns:1fr;
-}
-
-.teams.single .vs,
-.teams.single .team.away{
-    display:none;
-}
-
-.teams.single .team.home{
-    justify-content:center;
-    width:100%;
-    font-weight:normal;
-    text-align:center;
-}
-
-/* servers */
-.servers{
-    width:180px;
-    text-align:right;
-    flex-shrink:0;
-}
-
-.btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    background:#22c55e;
-    color:#fff;
-    padding:8px 12px;
-    margin:2px;
-    border-radius:6px;
-    font-size:13px;
-    cursor:pointer;
-    min-height:38px;
-    user-select:none;
-    white-space:nowrap;
-}
-
-.btn.active{
-    background:#f59e0b;
-}
-
-.more-btn{
-    background:#3b82f6;
-}
-
-/* overlay */
-#overlay{
-    position:fixed;
-    inset:0;
-    background:#000;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
-    padding:10px;
-}
-
-#playerBox{
-    width:min(1200px, 100%);
-    max-height:100%;
-    position:relative;
-    background:#000;
-    border-radius:10px;
-    overflow:hidden;
-}
-
-.playerTopBar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:8px;
-    padding:10px;
-    color:#fff;
-    background:#111;
-    flex-wrap:wrap;
-}
-
-#serverBar{
-    display:flex;
-    gap:6px;
-    flex-wrap:wrap;
-}
-
-#closeBtn{
-    color:#fff;
-    cursor:pointer;
-    font-size:18px;
-    line-height:1;
-    padding:4px 8px;
-    border-radius:6px;
-    background:#222;
-}
-
-#closeBtn:hover,
-#closeBtn:focus{
-    background:#333;
-}
-
-video{
-    width:100%;
-    max-height:calc(100vh - 70px);
-    display:block;
-    background:#000;
-}
-
-/* tablet/mobile */
-@media (max-width: 900px){
-    .container{
-        max-width:100%;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TIEA IPTV SIMPLE</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#000;color:#fff;font-family:sans-serif}
+    .app{display:flex;min-height:100vh}
+    .sidebar{width:190px;background:#111;padding:10px;flex-shrink:0}
+    .brand{text-align:center;font-size:22px;font-weight:bold;color:#00e5ff;margin-bottom:12px}
+    .menu-btn,.top-btn,.ep-btn{
+      width:100%;border:0;border-radius:10px;background:#222;color:#fff;
+      padding:12px;margin-bottom:8px;cursor:pointer;text-align:left;font-size:15px
     }
-
-    .row{
-        padding:10px;
+    .menu-btn.active,.menu-btn:focus,.top-btn:focus,.ep-btn:focus{background:#00c853;outline:none}
+    .main{flex:1;padding:12px}
+    .topbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+    .title{font-size:22px;font-weight:bold;color:#00e5ff}
+    .sub{color:#aaa;font-size:13px}
+    .tools{display:flex;gap:8px;flex-wrap:wrap}
+    .top-btn{width:auto;margin-bottom:0;padding:10px 12px}
+    .status{display:none;background:rgba(255,255,255,.08);padding:10px 12px;border-radius:10px;margin-bottom:12px;font-size:14px;white-space:pre-wrap}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+    .card{
+      background:#111;border-radius:10px;overflow:hidden;border:0;color:#fff;
+      padding:0;text-align:left;cursor:pointer
     }
-
-    .time{
-        width:92px;
-        font-size:13px;
+    .card:focus,.card:hover{outline:3px solid #00e5ff}
+    .card img{width:100%;height:170px;object-fit:cover;background:#000;display:block}
+    .card.tv img{object-fit:contain;padding:8px;height:140px;background:#000}
+    .card-title{padding:8px;font-size:14px;line-height:1.35;min-height:42px}
+    .eps-wrap{display:none}
+    .eps-title{font-size:20px;font-weight:bold;color:#00e5ff;margin-bottom:10px}
+    .eps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+    #playerWrap{position:fixed;inset:0;background:#000;display:none;z-index:9999}
+    #videoPlayer{width:100%;height:100%;background:#000}
+    #playerBar{
+      position:absolute;top:12px;left:12px;display:flex;gap:8px;z-index:10000;flex-wrap:wrap;
+      opacity:1;transition:opacity .25s ease;
     }
-
-    .teams{
-        grid-template-columns:1fr 46px 1fr;
+    #playerBar.hide-ui{
+      opacity:0;
+      pointer-events:none;
     }
-
-    .team{
-        font-size:14px;
+    .player-btn{border:0;border-radius:10px;padding:10px 12px;color:#fff;cursor:pointer;font-weight:bold}
+    .btn-home{background:#2196f3}.btn-close{background:#e53935}.btn-player{background:#009688}.btn-mx{background:#ff9800}
+    @media (max-width:800px){
+      .sidebar{width:150px}
+      .grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+      .card img{height:145px}
+      .card.tv img{height:120px}
     }
-
-    .team img{
-        width:22px;
-        height:22px;
-    }
-
-    .servers{
-        width:120px;
-    }
-
-    .btn{
-        font-size:12px;
-        padding:7px 10px;
-        min-height:34px;
-    }
-}
-
-@media (max-width: 700px){
-    .topbar{
-        align-items:stretch;
-    }
-
-    .sports,
-    .dates{
-        width:100%;
-    }
-
-    .row{
-        flex-direction:column;
-        align-items:stretch;
-        gap:8px;
-    }
-
-    .time{
-        width:100%;
-        font-size:13px;
-    }
-
-    .teams{
-        width:100%;
-        grid-template-columns:1fr 40px 1fr;
-    }
-
-    .servers{
-        width:100%;
-        text-align:left;
-    }
-
-    .btn{
-        width:auto;
-    }
-}
-
-@media (max-width: 520px){
-    .league{
-        font-size:15px;
-        padding:10px;
-    }
-
-    .row{
-        padding:10px 8px;
-    }
-
-    .team{
-        font-size:13px;
-        gap:6px;
-    }
-
-    .team img{
-        width:20px;
-        height:20px;
-    }
-
-    .sports .tab,
-    .dates .date,
-    .home-btn{
-        font-size:12px;
-        padding:8px 10px;
-        min-height:38px;
-    }
-
-    .btn{
-        font-size:12px;
-        min-height:34px;
-        padding:7px 10px;
-    }
-
-    #playerBox{
-        border-radius:0;
-    }
-
-    video{
-        max-height:calc(100vh - 84px);
-    }
-}
-
-/* projector / tv */
-@media (min-width: 1400px){
-    .container{
-        max-width:1800px;
-    }
-
-    .league{
-        font-size:18px;
-        padding:14px;
-    }
-
-    .row{
-        padding:14px;
-    }
-
-    .time{
-        width:140px;
-        font-size:16px;
-    }
-
-    .team{
-        font-size:17px;
-    }
-
-    .team img{
-        width:28px;
-        height:28px;
-    }
-
-    .btn{
-        font-size:14px;
-        min-height:42px;
-        padding:9px 14px;
-    }
-
-    .sports .tab,
-    .dates .date,
-    .home-btn{
-        font-size:15px;
-        min-height:44px;
-    }
-}
-</style>
+  </style>
 </head>
 <body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">TIEA IPTV</div>
 
-<div class="topbar">
-    <div class="sports">
-        <span class="tab active" onclick="setSport('all', this)">ALL</span>
-        <span class="tab" onclick="setSport('live', this)">🔴 LIVE</span>
-        <span class="tab" onclick="setSport('football', this)">⚽ Football</span>
-        <span class="tab" onclick="setSport('basketball', this)">🏀 Basketball</span>
-    </div>
+      <button class="menu-btn active" data-title="📺 ทีวี" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
+      <button class="menu-btn" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
+      <button class="menu-btn" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/MySeries.json">📺 ซีรีส์</button>
+      <button class="menu-btn" data-title="🎞️ Flixmono" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json">🎞️ Flixmono</button>
+      <button class="menu-btn" data-link="live.html">⚽ ตารางแข่งขัน</button>
+    </aside>
 
-    <div class="dates">
-        <span class="date active" onclick="setDate(0, this)">วันนี้</span>
-        <span class="date" onclick="setDate(1, this)">พรุ่งนี้</span>
-        <span class="date" onclick="setDate(2, this)">วันถัดไป</span>
-    </div>
-
-    <div>
-        <a href="https://tiea9999.github.io/tv-online/index.html" class="home-btn">🏠 หน้าหลัก</a>
-    </div>
-</div>
-
-<div id="overlay">
-    <div id="playerBox">
-        <div class="playerTopBar">
-            <div id="serverBar"></div>
-            <span id="closeBtn" tabindex="0">❌</span>
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <div id="pageTitle" class="title">📺 ทีวี</div>
+          <div class="sub">หนังเปิด player เครื่องก่อน ลดโอกาสเด้ง</div>
         </div>
-        <video id="player" controls autoplay playsinline webkit-playsinline></video>
+        <div class="tools">
+          <button id="reloadBtn" class="top-btn">รีโหลด</button>
+          <button id="backBtn" class="top-btn">ย้อนกลับ</button>
+        </div>
+      </div>
+
+      <div id="statusBox" class="status"></div>
+
+      <div id="listView">
+        <div id="grid" class="grid"></div>
+      </div>
+
+      <div id="epsWrap" class="eps-wrap">
+        <div id="epsTitle" class="eps-title">ตอนทั้งหมด</div>
+        <div id="epsGrid" class="eps-grid"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="playerWrap">
+    <video id="videoPlayer" controls playsinline webkit-playsinline autoplay></video>
+    <div id="playerBar">
+      <button id="playerHomeBtn" class="player-btn btn-home">🏠 หน้าโฮม</button>
+      <button id="playerExternalBtn" class="player-btn btn-player">▶ PLAYER</button>
+      <button id="playerMxBtn" class="player-btn btn-mx">▶ MX</button>
+      <button id="playerCloseBtn" class="player-btn btn-close">✕ ปิด</button>
     </div>
-</div>
+  </div>
 
-<div class="container" id="app"></div>
+  <script>
+    const grid = document.getElementById("grid");
+    const epsWrap = document.getElementById("epsWrap");
+    const epsGrid = document.getElementById("epsGrid");
+    const epsTitle = document.getElementById("epsTitle");
+    const pageTitle = document.getElementById("pageTitle");
+    const statusBox = document.getElementById("statusBox");
+    const listView = document.getElementById("listView");
+    const playerWrap = document.getElementById("playerWrap");
+    const playerBar = document.getElementById("playerBar");
+    const video = document.getElementById("videoPlayer");
+    const menuButtons = Array.from(document.querySelectorAll(".menu-btn"));
 
-<script>
-let currentSport = "all";
-let currentDateOffset = 0;
-let originalData = null;
-let htmlListGlobal = null;
+    let currentSource = menuButtons[0].dataset.source;
+    let currentTitle = menuButtons[0].dataset.title;
+    let currentItem = null;
+    let currentServerIndex = 0;
+    let currentMode = "list";
+    let hls = null;
+    let cache = {};
+    let historyStack = [];
+    let playerUiTimer = null;
 
-const PLAYLIST_URL = "https://broken-surf-7347.hssmnoy.workers.dev/?url=https://drive.google.com/uc?id=15Ye3NPw0cjNrJGTu2Q2aoqoApOp8GipC&export=download";
-const HTML_URL = "https://broken-surf-7347.hssmnoy.workers.dev/?url=https://embed-xs.bananacake.org/dooball66v2/schedule.html";
+    video.setAttribute("playsinline", "true");
+    video.setAttribute("webkit-playsinline", "true");
 
-const logoCache = {};
+    window.addEventListener("error", (e) => {
+      console.error("JS ERROR:", e.message);
+    });
 
-async function load(){
-    try{
-        const [jsonRes, htmlRes] = await Promise.all([
-            fetch(PLAYLIST_URL),
-            fetch(HTML_URL)
-        ]);
+    window.addEventListener("unhandledrejection", (e) => {
+      console.error("PROMISE ERROR:", e.reason);
+    });
 
-        const data = await jsonRes.json();
-        const html = await htmlRes.text();
+    document.addEventListener("visibilitychange", () => {
+      try {
+        if (!hls) return;
+        if (document.visibilityState === "hidden") hls.stopLoad();
+        else hls.startLoad();
+      } catch(e) {}
+    });
 
-        const htmlList = parseSchedule(html);
+    video.addEventListener("loadedmetadata", () => {
+      video.muted = false;
+      video.volume = 1;
+    });
 
-        originalData = data;
-        htmlListGlobal = htmlList;
+    video.addEventListener("canplay", () => {
+      video.muted = false;
+      video.volume = 1;
+    });
 
-        applyFilter();
-    }catch(e){
-        document.getElementById("app").innerHTML = `
-            <div class="league">โหลดข้อมูลไม่สำเร็จ</div>
-            <div class="row"><div class="teams single"><div class="team home">ลองรีเฟรชใหม่อีกครั้ง</div></div></div>
-        `;
-        console.error(e);
+    function setStatus(msg) {
+      statusBox.textContent = msg || "";
+      statusBox.style.display = msg ? "block" : "none";
     }
-}
 
-function parseSchedule(html){
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const list = [];
-
-    doc.querySelectorAll(".match").forEach(el => {
-        const teams = el.querySelectorAll("span");
-        const imgs = el.querySelectorAll("img");
-
-        if(teams.length >= 2 && imgs.length >= 2){
-            list.push({
-                home: teams[0].innerText.trim(),
-                away: teams[1].innerText.trim(),
-                homeLogo: imgs[0].src,
-                awayLogo: imgs[1].src
-            });
+    function clearPlayer() {
+      try {
+        if (hls) {
+          hls.stopLoad();
+          hls.detachMedia();
+          hls.destroy();
+          hls = null;
         }
-    });
+      } catch(e) {}
 
-    return list;
-}
-
-function parseMatch(name){
-    const t = name.match(/\((\d{2}\/\d{2}\s+\d{2}:\d{2})\)/);
-    let time = t ? t[1] : "";
-
-    let clean = name
-        .replace(/\d{2}\/\d{2}\s+\d{2}:\d{2}/g, "")
-        .replace(/\([^)]*\)/g, "")
-        .replace(/\s+/g, " ")
-        .trim();
-
-    clean = clean.replace(/(.+?)\1+/g, "$1");
-
-    let home = "";
-    let away = "TBD";
-
-    if(clean.includes(" vs ")) {
-        [home, away] = clean.split(" vs ");
-    } else if(clean.includes(" VS ")) {
-        [home, away] = clean.split(" VS ");
-    } else if(clean.includes(" v ")) {
-        [home, away] = clean.split(" v ");
-    } else {
-        return {
-            home: clean.trim(),
-            away: "TBD",
-            time
-        };
+      try { video.pause(); } catch(e) {}
+      try {
+        video.removeAttribute("src");
+        video.src = "";
+        video.load();
+      } catch(e) {}
     }
 
-    return {
-        home: home.trim(),
-        away: away.trim(),
-        time
-    };
-}
-
-function extractDateTime(name){
-    const m = name.match(/\((\d{2}\/\d{2})\s+(\d{2}:\d{2})\)/);
-    if(!m) return null;
-    return {date:m[1], time:m[2]};
-}
-
-function getMatchStatus(name){
-    const dt = extractDateTime(name);
-    if(!dt) return {status:"unknown"};
-
-    const now = new Date();
-    const [day,month] = dt.date.split("/");
-    const [h,m] = dt.time.split(":");
-
-    const matchTime = new Date();
-    matchTime.setDate(day);
-    matchTime.setMonth(month-1);
-    matchTime.setHours(h,m,0,0);
-
-    const diff = (now - matchTime)/60000;
-
-    if(name.includes("'")) return {status:"live", time:dt.time};
-    if(diff>=0 && diff<=120) return {status:"live", time:dt.time};
-    if(diff<0) return {status:"upcoming", time:dt.time};
-
-    return {status:"ended", time:dt.time};
-}
-
-function normalize(name){
-    return name.toLowerCase().replace(/[^a-z]/g,"");
-}
-
-function similarity(a,b){
-    if(a.includes(b)||b.includes(a)) return 1;
-    let m=0;
-    for(let i=0;i<a.length;i++) if(b.includes(a[i])) m++;
-    return m/Math.max(a.length,b.length);
-}
-
-function findLogos(home,away,list){
-    const key=normalize(home)+normalize(away);
-    if(logoCache[key]) return logoCache[key];
-
-    let best=null,score=0;
-
-    list.forEach(m=>{
-        const s = similarity(normalize(home),normalize(m.home)) +
-                  similarity(normalize(away),normalize(m.away));
-
-        if(s>score){score=s;best=m;}
-    });
-
-    if(score>1.2){
-        logoCache[key]={homeLogo:best.homeLogo,awayLogo:best.awayLogo};
-        return logoCache[key];
+    function showPlayerUi() {
+      playerBar.classList.remove("hide-ui");
+      if (playerUiTimer) clearTimeout(playerUiTimer);
+      playerUiTimer = setTimeout(() => {
+        if (playerWrap.style.display === "block") {
+          playerBar.classList.add("hide-ui");
+        }
+      }, 2500);
     }
 
-    return null;
-}
-
-function applyFilter(){
-    if(!originalData || !originalData.groups){
-        document.getElementById("app").innerHTML = `
-            <div class="league">ไม่มีข้อมูล</div>
-            <div class="row"><div class="teams single"><div class="team home">ไม่พบข้อมูลการแข่งขัน</div></div></div>
-        `;
-        return;
+    function showPlayer() {
+      playerWrap.style.display = "block";
+      showPlayerUi();
     }
 
-    let data = JSON.parse(JSON.stringify(originalData));
-    const now = new Date();
+    function closePlayer() {
+      if (playerUiTimer) {
+        clearTimeout(playerUiTimer);
+        playerUiTimer = null;
+      }
+      clearPlayer();
+      playerWrap.style.display = "none";
+      playerBar.classList.remove("hide-ui");
+    }
 
-    const today = new Date();
-    const d = String(today.getDate()).padStart(2,'0');
-    const m = String(today.getMonth()+1).padStart(2,'0');
-    const todayStr = `${d}/${m}`;
+    function openExternalPlayer(url) {
+      if (!url) return;
+      try {
+        const u = new URL(url);
+        location.href =
+          "intent://" + u.host + u.pathname + u.search +
+          "#Intent;scheme=" + u.protocol.replace(":", "") +
+          ";action=android.intent.action.VIEW;type=video/*;end";
+      } catch (e) {
+        location.href = url;
+      }
+    }
 
-    if(currentSport === "live"){
-        let allMatches = [];
+    function openMx(url) {
+      if (!url) return;
+      location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
+    }
 
-        data.groups.forEach(l=>{
-            l.groups.forEach(match=>{
-                const dt = extractDateTime(match.name);
-                if(!dt || dt.date !== todayStr) return;
+    function mapServers(arr) {
+      if (!Array.isArray(arr)) return [];
+      return arr.map(s => ({
+        name: s?.name || "",
+        url: s?.url || s?.link || s?.file || s?.source || ""
+      })).filter(s => s.url);
+    }
 
-                const [hh, mm] = dt.time.split(":");
-                const matchTime = new Date();
-                matchTime.setHours(hh, mm, 0, 0);
+    function getPlayableUrl(item, idx = 0) {
+      if (!item) return "";
+      if (Array.isArray(item.servers) && item.servers.length) {
+        return item.servers[idx]?.url || item.servers[0]?.url || "";
+      }
+      return item.url || item.link || item.stream || item.source || item.file || "";
+    }
 
-                const diffMin = (now - matchTime) / 60000;
-                const isLive = diffMin >= 0 && diffMin <= 120;
-                const isUpcoming = diffMin < 0;
+    function normalizeItems(data) {
+      const out = [];
+      const seen = new Set();
 
-                if(!isLive && !isUpcoming) return;
+      function add(obj) {
+        const key = `${obj.type}|${obj.title}|${obj.url || ""}|${obj.episodes?.length || 0}`.toLowerCase();
+        if (!seen.has(key)) {
+          seen.add(key);
+          out.push(obj);
+        }
+      }
 
-                allMatches.push({
-                    league: l.name,
-                    match: match
-                });
+      function badTitle(title = "") {
+        const t = String(title).toLowerCase().trim();
+        return t === "main" || t === "backup" || t === "m3u8" || t === "master";
+      }
+
+      function walk(node, inheritedImage = "") {
+        if (!node) return;
+
+        if (Array.isArray(node)) {
+          node.forEach(x => walk(x, inheritedImage));
+          return;
+        }
+
+        if (typeof node !== "object") return;
+
+        const img = node.image || node.poster || node.logo || node.thumb || inheritedImage || "";
+
+        if (node.type === "menu" && Array.isArray(node.items)) {
+          node.items.forEach(item => {
+            add({
+              title: item.title || item.name || "ไม่มีชื่อ",
+              image: item.image || item.poster || item.logo || "",
+              url: item.source || item.url || item.link || "",
+              servers: [],
+              episodes: [],
+              type: "source"
             });
-        });
+          });
+          return;
+        }
 
-        allMatches.sort((a,b)=>{
-            const ta = extractDateTime(a.match.name);
-            const tb = extractDateTime(b.match.name);
-            return ta.time.localeCompare(tb.time);
-        });
+        if (Array.isArray(node.episodes) && node.episodes.length) {
+          add({
+            title: node.title || node.name || "ไม่มีชื่อ",
+            image: img,
+            url: node.url || node.link || node.source || "",
+            servers: [],
+            type: "series",
+            episodes: node.episodes.map((ep, i) => ({
+              title: ep.title || ep.name || ep.ep_name || `EP${i + 1}`,
+              image: ep.image || ep.poster || img || "",
+              url: ep.url || ep.link || ep.source || ep.stream || ep.file || "",
+              servers: mapServers(ep.servers)
+            }))
+          });
+          return;
+        }
 
-        data.groups = [{
-            name: "🔴 LIVE TODAY",
-            groups: allMatches.map(x => x.match)
+        const title = node.title || node.name || node.ep_name || node.episode || "";
+        const url = node.url || node.link || node.stream || node.source || node.file || "";
+        const servers = mapServers(node.servers);
+
+        if (title && !badTitle(title) && (url || servers.length)) {
+          add({
+            title,
+            image: img,
+            url: url || servers[0]?.url || "",
+            servers: [],
+            episodes: [],
+            type: "video"
+          });
+        }
+
+        Object.values(node).forEach(v => {
+          if (Array.isArray(v) || (v && typeof v === "object")) {
+            walk(v, img);
+          }
+        });
+      }
+
+      walk(data);
+      return out;
+    }
+
+    async function loadSource(sourceUrl) {
+      if (cache[sourceUrl]) return cache[sourceUrl];
+
+      const lower = sourceUrl.toLowerCase();
+
+      if (lower.endsWith(".m3u8") && !lower.includes(".json")) {
+        const direct = [{
+          title: "Live Stream",
+          image: "",
+          url: sourceUrl,
+          servers: [],
+          episodes: [],
+          type: "video"
         }];
-    } else {
-        const target = new Date();
-        target.setDate(now.getDate()+currentDateOffset);
+        cache[sourceUrl] = direct;
+        return direct;
+      }
 
-        const dd = String(target.getDate()).padStart(2,'0');
-        const mm = String(target.getMonth()+1).padStart(2,'0');
-        const targetStr = `${dd}/${mm}`;
+      const res = await fetch(sourceUrl);
+      if (!res.ok) {
+        throw new Error("โหลดไฟล์ไม่สำเร็จ: " + res.status);
+      }
 
-        data.groups.forEach(l=>{
-            l.groups = l.groups.filter(match=>{
-                const dt = extractDateTime(match.name);
-                if(!dt || dt.date !== targetStr) return false;
+      const text = await res.text();
+      const trimmed = text.trim();
 
-                const status = getMatchStatus(match.name);
-                return status.status !== "ended";
-            });
-        });
+      if (!trimmed) return [];
 
-        if(currentSport !== "all"){
-            data.groups = data.groups.filter(l=>{
-                const n = l.name.toLowerCase();
+      let result = [];
 
-                if(currentSport==="football"){
-                    return n.includes("league") 
-                        || n.includes("liga")
-                        || n.includes("ligue")
-                        || n.includes("premier")
-                        || n.includes("division") 
-                        || n.includes("serie")
-                        || n.includes("cup")
-                        || n.includes("fa")
-                        || n.includes("uefa")
-                        || n.includes("champions");
-                }
+      if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
+        const json = JSON.parse(text);
+        result = normalizeItems(json);
+      } else if (trimmed.includes("#EXTM3U") || trimmed.includes("#EXTINF")) {
+        const lines = text.split(/\r?\n/);
+        let current = null;
 
-                if(currentSport==="basketball"){
-                    return n.includes("nba");
-                }
+        for (const raw of lines) {
+          const line = raw.trim();
+          if (!line) continue;
 
-                return true;
-            });
+          if (line.startsWith("#EXTINF:")) {
+            const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
+            const name = line.split(",").pop()?.trim() || "ไม่มีชื่อ";
+            current = {
+              title: name,
+              image: logoMatch ? logoMatch[1] : "",
+              url: "",
+              servers: [],
+              episodes: [],
+              type: "video"
+            };
+          } else if (!line.startsWith("#") && current) {
+            current.url = line;
+            result.push(current);
+            current = null;
+          }
         }
+      }
 
-        data.groups.forEach(l=>{
-            l.groups.sort((a,b)=>{
-                const ta = extractDateTime(a.name);
-                const tb = extractDateTime(b.name);
-                if(!ta || !tb) return 0;
-                return ta.time.localeCompare(tb.time);
-            });
-        });
+      cache[sourceUrl] = result;
+      return result;
     }
 
-    data.groups = data.groups.filter(l => l.groups.length > 0);
+    function renderGrid(list) {
+      currentMode = "list";
+      listView.style.display = "block";
+      epsWrap.style.display = "none";
+      grid.innerHTML = "";
 
-    document.getElementById("app").innerHTML = "";
-    render(data);
-}
-
-function render(data){
-    const app=document.getElementById("app");
-
-    if(!data.groups || !data.groups.length){
-        app.innerHTML = `
-            <div class="league">ไม่มีข้อมูล</div>
-            <div class="row">
-                <div class="teams single">
-                    <div class="team home">ไม่มีรายการแข่งขันในช่วงเวลานี้</div>
-                </div>
-            </div>
-        `;
+      if (!list.length) {
+        grid.innerHTML = `<div class="empty">ไม่พบรายการ</div>`;
         return;
-    }
+      }
 
-    data.groups.forEach(l=>{
-        app.innerHTML += `<div class="league">${l.name}</div>`;
+      const isTV = currentTitle.includes("ทีวี");
 
-        l.groups.forEach(match=>{
-            const {home,away,time}=parseMatch(match.name);
-            const safeAway = away || "TBD";
-            const isSingle = !away || away === "TBD";
-            const logos=findLogos(home,away,htmlListGlobal)||{};
-            const status=getMatchStatus(match.name);
+      list.forEach(item => {
+        const card = document.createElement("button");
+        card.className = "card" + (isTV ? " tv" : "");
+        card.type = "button";
 
-            app.innerHTML += `
-            <div class="row ${status.status}">
-                <div class="time">
-                    ${status.status==="live"
-                        ? `<span class="live">🔴 ${time}</span>`
-                        : time
-                    }
-                </div>
-
-                <div class="teams ${isSingle ? 'single' : ''}">
-                    <div class="team home">
-                        <span>${home}</span>
-                        ${logos.homeLogo?`<img src="${logos.homeLogo}" alt="">`:""}
-                    </div>
-
-                    ${
-                        (!away || away === "TBD")
-                        ? ""
-                        : `
-                            <div class="vs">vs</div>
-                            <div class="team away">
-                                ${logos.awayLogo?`<img src="${logos.awayLogo}" alt="">`:""}
-                                <span>${safeAway}</span>
-                            </div>
-                        `
-                    }
-                </div>
-
-                <div class="servers">
-                    <span class="btn" onclick="openPlayer(JSON.parse(this.dataset.list), 0)"
-                        data-list='${JSON.stringify(match.stations || []).replace(/'/g,"&#39;")}'>
-                        ▶ ดูสด
-                    </span>
-                </div>
-            </div>`;
-        });
-    });
-}
-
-function play(url){
-    const overlay = document.getElementById("overlay");
-    const video = document.getElementById("player");
-
-    overlay.style.display = "flex";
-
-    if(window.hls){
-        window.hls.destroy();
-        window.hls = null;
-    }
-
-    if (Hls.isSupported()) {
-        const hls = new Hls();
-        hls.loadSource(url);
-        hls.attachMedia(video);
-        window.hls = hls;
-    } else {
-        video.src = url;
-    }
-}
-
-function closeOverlay(){
-    const overlay = document.getElementById("overlay");
-    const video = document.getElementById("player");
-
-    overlay.style.display = "none";
-    video.pause();
-    video.src = "";
-    video.load();
-
-    if(window.hls){
-        window.hls.destroy();
-        window.hls = null;
-    }
-}
-
-document.getElementById("closeBtn").onclick = closeOverlay;
-
-document.getElementById("overlay").onclick = (e)=>{
-    if(e.target.id === "overlay"){
-        closeOverlay();
-    }
-};
-
-function setSport(s,e){
-    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-    e.classList.add("active");
-    currentSport=s;
-    applyFilter();
-}
-
-function setDate(o,e){
-    document.querySelectorAll(".date").forEach(d=>d.classList.remove("active"));
-    e.classList.add("active");
-    currentDateOffset=o;
-    applyFilter();
-}
-
-let currentServers = [];
-let currentIndex = 0;
-
-function openPlayer(list, index){
-    currentServers = list || [];
-    currentIndex = index || 0;
-
-    if(!currentServers.length) return;
-
-    play(currentServers[currentIndex].url);
-    renderServerButtons();
-    document.getElementById("overlay").style.display = "flex";
-}
-
-function renderServerButtons(){
-    const bar = document.getElementById("serverBar");
-    bar.innerHTML = "";
-
-    currentServers.forEach((s, i)=>{
-        bar.innerHTML += `
-            <span class="btn ${i===currentIndex?'active':''}" onclick="switchServer(${i})">
-                S${i+1}
-            </span>
+        card.innerHTML = `
+          ${item.image
+            ? `<img src="${item.image}" alt="" loading="lazy" onerror="this.style.display='none'">`
+            : `<div style="height:${isTV ? 140 : 170}px;background:#000;"></div>`
+          }
+          <div class="card-body">
+            <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
+          </div>
         `;
-    });
-}
 
-function switchServer(i){
-    currentIndex = i;
-    play(currentServers[i].url);
-    renderServerButtons();
-}
+        const runOpen = async () => {
+          if (item.type === "source") {
+            historyStack.push({ title: currentTitle, source: currentSource, mode: currentMode });
+            currentSource = item.url;
+            currentTitle = item.title || currentTitle;
+            pageTitle.textContent = currentTitle;
+            await loadCurrentMenu();
+            return;
+          }
 
-document.addEventListener("keydown", (e)=>{
-    if(e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009){
-        if(document.getElementById("overlay").style.display === "flex"){
-            e.preventDefault();
-            closeOverlay();
-        }
+          if (item.type === "series" && item.episodes && item.episodes.length) {
+            historyStack.push({ title: currentTitle, source: currentSource, mode: currentMode });
+            showEpisodes(item);
+            return;
+          }
+
+          playItem(item, 0);
+        };
+
+        card.onclick = runOpen;
+        card.onmousedown = (e) => {
+          e.preventDefault();
+          runOpen();
+        };
+        card.ontouchstart = () => runOpen();
+
+        grid.appendChild(card);
+      });
     }
-});
 
-load();
-</script>
+    function showEpisodes(seriesItem) {
+      currentMode = "episodes";
+      listView.style.display = "none";
+      epsWrap.style.display = "block";
+      epsTitle.textContent = seriesItem.title || "ตอนทั้งหมด";
+      epsGrid.innerHTML = "";
 
+      const eps = Array.isArray(seriesItem.episodes) ? [...seriesItem.episodes].reverse() : [];
+
+      if (!eps.length) {
+        epsGrid.innerHTML = `<div class="empty">ไม่พบตอน</div>`;
+        return;
+      }
+
+      eps.forEach((ep, i) => {
+        const btn = document.createElement("button");
+        btn.className = "ep-btn";
+        btn.type = "button";
+        btn.textContent = ep.title || `EP${i + 1}`;
+
+        const runPlay = () => playItem(ep, 0);
+
+        btn.onclick = runPlay;
+        btn.onmousedown = (e) => {
+          e.preventDefault();
+          runPlay();
+        };
+        btn.ontouchstart = (e) => {
+          e.preventDefault();
+          runPlay();
+        };
+        btn.onkeydown = (e) => {
+          if (e.key === "Enter" || e.key === " " || e.keyCode === 13 || e.keyCode === 32 || e.keyCode === 23) {
+            e.preventDefault();
+            runPlay();
+          }
+        };
+        btn.onkeyup = (e) => {
+          if (e.key === "Enter" || e.key === " " || e.keyCode === 13 || e.keyCode === 32 || e.keyCode === 23) {
+            e.preventDefault();
+            runPlay();
+          }
+        };
+
+        epsGrid.appendChild(btn);
+      });
+
+      setTimeout(() => {
+        const firstBtn = epsGrid.querySelector(".ep-btn");
+        if (firstBtn) {
+          firstBtn.focus();
+          firstBtn.scrollIntoView({ block: "center" });
+        }
+      }, 100);
+    }
+
+    function tryStartVideoWithSound(url, fallbackFn) {
+      video.muted = false;
+      video.volume = 1;
+
+      const p = video.play();
+      if (p && typeof p.then === "function") {
+        p.then(() => {
+        }).catch(() => {
+          video.muted = true;
+          video.play().then(() => {
+            setTimeout(() => {
+              video.muted = false;
+              video.volume = 1;
+            }, 500);
+          }).catch(() => {
+            if (fallbackFn) fallbackFn(url);
+          });
+        });
+      }
+    }
+
+    async function detectStreamType(url) {
+      try {
+        const res = await fetch(url);
+        const text = await res.text();
+        const trimmed = text.trim();
+
+        if (trimmed.startsWith("#EXTM3U") || trimmed.includes("#EXT-X-STREAM-INF")) {
+          return "hls";
+        }
+
+        if (trimmed.startsWith("<!DOCTYPE html") || trimmed.startsWith("<html")) {
+          return "html";
+        }
+
+        return "unknown";
+      } catch (e) {
+        return "unknown";
+      }
+    }
+
+    function createHls() {
+      return new Hls({
+        enableWorker: true,
+        autoStartLoad: true,
+        maxBufferLength: 10,
+        maxMaxBufferLength: 15,
+        backBufferLength: 5,
+        liveSyncDurationCount: 3,
+        capLevelToPlayerSize: true
+      });
+    }
+
+    async function playItem(item, serverIndex = 0) {
+      currentItem = item;
+      currentServerIndex = serverIndex;
+      clearPlayer();
+
+      const url = getPlayableUrl(item, serverIndex);
+      if (!url) {
+        setStatus("ไม่พบลิงก์เล่น");
+        return;
+      }
+
+      const lower = url.toLowerCase();
+      const isSeries =
+        currentTitle.includes("ซีรีส์") ||
+        currentTitle.includes("Flixmono") ||
+        (item.title || "").toUpperCase().includes("EP");
+
+      const isMySeries =
+        currentTitle.includes("ซีรีส์") &&
+        !currentTitle.includes("Flixmono");
+
+      const isFlix = currentTitle.includes("Flixmono");
+      const isMovie = currentTitle.includes("หนัง");
+
+      // หนัง = เปิด player เครื่องก่อน ลดเด้ง
+      if (isMovie) {
+        openExternalPlayer(url);
+        return;
+      }
+
+      // MySeries + Flix = ใช้ player เดิม
+      if (isMySeries || isFlix) {
+        if (
+          lower.includes("/play/") ||
+          lower.includes("/embed/") ||
+          lower.includes("ok-hd.com/play/") ||
+          lower.includes("top-cdn.com/play/")
+        ) {
+          location.href = url;
+          return;
+        }
+
+        if (lower.includes(".m3u8")) {
+          showPlayer();
+
+          if (Hls.isSupported()) {
+            hls = createHls();
+            hls.loadSource(url);
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              tryStartVideoWithSound(url, openExternalPlayer);
+            });
+
+            hls.on(Hls.Events.ERROR, (e, data) => {
+              if (data?.fatal) openExternalPlayer(url);
+            });
+          } else {
+            openExternalPlayer(url);
+          }
+          return;
+        }
+
+        if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
+          showPlayer();
+          video.src = url;
+          tryStartVideoWithSound(url, openExternalPlayer);
+          return;
+        }
+
+        const detectedSeries = await detectStreamType(url);
+
+        if (detectedSeries === "hls") {
+          showPlayer();
+
+          if (Hls.isSupported()) {
+            hls = createHls();
+            hls.loadSource(url);
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              tryStartVideoWithSound(url, openExternalPlayer);
+            });
+
+            hls.on(Hls.Events.ERROR, (e, data) => {
+              if (data?.fatal) openExternalPlayer(url);
+            });
+          } else {
+            openExternalPlayer(url);
+          }
+          return;
+        }
+
+        if (detectedSeries === "html") {
+          location.href = url;
+          return;
+        }
+
+        openExternalPlayer(url);
+        return;
+      }
+
+      if (isSeries) {
+        if (
+          lower.includes("/play/") ||
+          lower.includes("/embed/") ||
+          lower.includes("ok-hd.com/play/") ||
+          lower.includes("top-cdn.com/play/")
+        ) {
+          location.href = url;
+          return;
+        }
+
+        if (lower.includes(".m3u8")) {
+          showPlayer();
+
+          if (Hls.isSupported()) {
+            hls = createHls();
+            hls.loadSource(url);
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              tryStartVideoWithSound(url, openExternalPlayer);
+            });
+
+            hls.on(Hls.Events.ERROR, (e, data) => {
+              if (data?.fatal) openExternalPlayer(url);
+            });
+          } else {
+            openExternalPlayer(url);
+          }
+          return;
+        }
+
+        if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
+          showPlayer();
+          video.src = url;
+          tryStartVideoWithSound(url, openExternalPlayer);
+          return;
+        }
+
+        const detected = await detectStreamType(url);
+
+        if (detected === "hls") {
+          showPlayer();
+
+          if (Hls.isSupported()) {
+            hls = createHls();
+            hls.loadSource(url);
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              tryStartVideoWithSound(url, openExternalPlayer);
+            });
+
+            hls.on(Hls.Events.ERROR, (e, data) => {
+              if (data?.fatal) openExternalPlayer(url);
+            });
+          } else {
+            openExternalPlayer(url);
+          }
+          return;
+        }
+
+        if (detected === "html") {
+          location.href = url;
+          return;
+        }
+
+        openExternalPlayer(url);
+        return;
+      }
+
+      // ทีวี
+      if (lower.includes(".m3u8")) {
+        showPlayer();
+
+        if (Hls.isSupported()) {
+          hls = createHls();
+          hls.loadSource(url);
+          hls.attachMedia(video);
+
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            tryStartVideoWithSound(url, openExternalPlayer);
+          });
+
+          hls.on(Hls.Events.ERROR, (e, data) => {
+            if (data?.fatal) openExternalPlayer(url);
+          });
+        } else {
+          openExternalPlayer(url);
+        }
+        return;
+      }
+
+      if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
+        showPlayer();
+        video.src = url;
+        tryStartVideoWithSound(url, openExternalPlayer);
+        return;
+      }
+
+      location.href = url;
+    }
+
+    async function loadCurrentMenu() {
+      try {
+        setStatus("กำลังโหลดรายการ...");
+        const list = await loadSource(currentSource);
+        renderGrid(list);
+        pageTitle.textContent = currentTitle;
+        setStatus(`โหลดสำเร็จ: ${list.length} รายการ`);
+      } catch (e) {
+        console.error(e);
+        setStatus("โหลดรายการไม่สำเร็จ\n" + e.message);
+        grid.innerHTML = `<div class="empty">โหลดรายการไม่สำเร็จ</div>`;
+      }
+    }
+
+    menuButtons.forEach(btn => {
+      btn.onclick = async () => {
+        menuButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        if (btn.dataset.link) {
+          location.href = btn.dataset.link;
+          return;
+        }
+
+        historyStack = [];
+        currentSource = btn.dataset.source || "";
+        currentTitle = btn.dataset.title || btn.textContent.trim();
+        pageTitle.textContent = currentTitle;
+        closePlayer();
+        await loadCurrentMenu();
+      };
+    });
+
+    document.getElementById("reloadBtn").onclick = loadCurrentMenu;
+
+    document.getElementById("backBtn").onclick = async () => {
+      closePlayer();
+
+      if (currentMode === "episodes") {
+        epsWrap.style.display = "none";
+        listView.style.display = "block";
+        currentMode = "list";
+        return;
+      }
+
+      const prev = historyStack.pop();
+      if (prev && prev.source) {
+        currentSource = prev.source;
+        currentTitle = prev.title;
+        pageTitle.textContent = currentTitle;
+        await loadCurrentMenu();
+      }
+    };
+
+    document.getElementById("playerHomeBtn").onclick = () => {
+      closePlayer();
+      epsWrap.style.display = "none";
+      listView.style.display = "block";
+      currentMode = "list";
+    };
+
+    document.getElementById("playerCloseBtn").onclick = closePlayer;
+
+    document.getElementById("playerExternalBtn").onclick = () => {
+      const url = getPlayableUrl(currentItem, currentServerIndex);
+      openExternalPlayer(url);
+    };
+
+    document.getElementById("playerMxBtn").onclick = () => {
+      const url = getPlayableUrl(currentItem, currentServerIndex);
+      openMx(url);
+    };
+
+    ["mousemove", "mousedown", "touchstart"].forEach(evt => {
+      playerWrap.addEventListener(evt, () => {
+        if (playerWrap.style.display === "block") showPlayerUi();
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (playerWrap.style.display !== "block") return;
+
+      showPlayerUi();
+
+      if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
+        e.preventDefault();
+        closePlayer();
+      }
+    });
+
+    loadCurrentMenu();
+  </script>
 </body>
 </html>
