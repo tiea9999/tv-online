@@ -1,854 +1,246 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TIEA IPTV SIMPLE</title>
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-  <style>
-    *{box-sizing:border-box}
-    body{margin:0;background:#000;color:#fff;font-family:sans-serif}
-    .app{display:flex;min-height:100vh}
-    .sidebar{width:190px;background:#111;padding:10px;flex-shrink:0}
-    .brand{text-align:center;font-size:22px;font-weight:bold;color:#00e5ff;margin-bottom:12px}
-    .menu-btn,.top-btn,.ep-btn{
-      width:100%;border:0;border-radius:10px;background:#222;color:#fff;
-      padding:12px;margin-bottom:8px;cursor:pointer;text-align:left;font-size:15px
-    }
-    .menu-btn.active,.menu-btn:focus,.top-btn:focus,.ep-btn:focus{background:#00c853;outline:none}
-    .main{flex:1;padding:12px}
-    .topbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-    .title{font-size:22px;font-weight:bold;color:#00e5ff}
-    .sub{color:#aaa;font-size:13px}
-    .tools{display:flex;gap:8px;flex-wrap:wrap}
-    .top-btn{width:auto;margin-bottom:0;padding:10px 12px}
-    .status{display:none;background:rgba(255,255,255,.08);padding:10px 12px;border-radius:10px;margin-bottom:12px;font-size:14px;white-space:pre-wrap}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
-    .card{
-      background:#111;border-radius:10px;overflow:hidden;border:0;color:#fff;
-      padding:0;text-align:left;cursor:pointer
-    }
-    .card:focus,.card:hover{outline:3px solid #00e5ff}
-    .card img{width:100%;height:170px;object-fit:cover;background:#000;display:block}
-    .card.tv img{object-fit:contain;padding:8px;height:140px;background:#000}
-    .card-title{padding:8px;font-size:14px;line-height:1.35;min-height:42px}
-    .eps-wrap{display:none}
-    .eps-title{font-size:20px;font-weight:bold;color:#00e5ff;margin-bottom:10px}
-    .eps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
-    #playerWrap{position:fixed;inset:0;background:#000;display:none;z-index:9999}
-    #videoPlayer{width:100%;height:100%;background:#000}
-    #playerBar{
-      position:absolute;top:12px;left:12px;display:flex;gap:8px;z-index:10000;flex-wrap:wrap;
-      opacity:1;transition:opacity .25s ease;
-    }
-    #playerBar.hide-ui{
-      opacity:0;
-      pointer-events:none;
-    }
-    .player-btn{border:0;border-radius:10px;padding:10px 12px;color:#fff;cursor:pointer;font-weight:bold}
-    .btn-home{background:#2196f3}.btn-close{background:#e53935}.btn-player{background:#009688}.btn-mx{background:#ff9800}
-    @media (max-width:800px){
-      .sidebar{width:150px}
-      .grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
-      .card img{height:145px}
-      .card.tv img{height:120px}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIEA IPTV SIMPLE</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#000;color:#fff;font-family:sans-serif}
+
+.app{display:flex;min-height:100vh}
+.sidebar{width:180px;background:#111;padding:10px}
+.brand{text-align:center;font-size:22px;color:#00e5ff;margin-bottom:10px}
+
+.menu-btn{
+width:100%;padding:12px;margin-bottom:8px;border:0;border-radius:10px;
+background:#222;color:#fff;text-align:left;font-size:15px;cursor:pointer
+}
+.menu-btn.active{background:#00c853}
+
+.main{flex:1;padding:10px}
+.title{font-size:22px;color:#00e5ff;margin-bottom:10px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.card{
+background:#111;border-radius:10px;overflow:hidden;border:0;color:#fff;
+cursor:pointer
+}
+.card img{width:100%;height:150px;object-fit:cover;background:#000}
+.card.tv img{object-fit:contain;padding:8px}
+.card-title{padding:8px;font-size:14px}
+
+#playerWrap{position:fixed;inset:0;background:#000;display:none;z-index:9999}
+#videoPlayer{width:100%;height:100%}
+#playerBar{position:absolute;top:10px;left:10px;display:flex;gap:8px}
+
+.player-btn{
+border:0;border-radius:10px;padding:10px;color:#fff;font-weight:bold
+}
+.btn-home{background:#2196f3}
+.btn-close{background:#e53935}
+.btn-player{background:#009688}
+.btn-mx{background:#ff9800}
+
+@media(max-width:800px){
+.sidebar{width:140px}
+}
+</style>
 </head>
+
 <body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="brand">TIEA IPTV</div>
-
-      <button class="menu-btn active" data-title="📺 ทีวี" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
-      <button class="menu-btn" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
-      <button class="menu-btn" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/GoSeries.json">📺 ซีรีส์</button>
-      <button class="menu-btn" data-title="🎞️ Flixmono" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json">🎞️ Flixmono</button>
-      <button class="menu-btn" data-link="live.html">⚽ ตารางแข่งขัน</button>
-    </aside>
-
-    <main class="main">
-      <div class="topbar">
-        <div>
-          <div id="pageTitle" class="title">📺 ทีวี</div>
-          <div class="sub">หนังเปิด player เครื่องก่อน ลดโอกาสเด้ง</div>
-        </div>
-        <div class="tools">
-          <button id="reloadBtn" class="top-btn">รีโหลด</button>
-          <button id="backBtn" class="top-btn">ย้อนกลับ</button>
-        </div>
-      </div>
-
-      <div id="statusBox" class="status"></div>
-
-      <div id="listView">
-        <div id="grid" class="grid"></div>
-      </div>
-
-      <div id="epsWrap" class="eps-wrap">
-        <div id="epsTitle" class="eps-title">ตอนทั้งหมด</div>
-        <div id="epsGrid" class="eps-grid"></div>
-      </div>
-    </main>
-  </div>
-
-  <div id="playerWrap">
-    <video id="videoPlayer" controls playsinline webkit-playsinline autoplay></video>
-    <div id="playerBar">
-      <button id="playerHomeBtn" class="player-btn btn-home">🏠 หน้าโฮม</button>
-      <button id="playerExternalBtn" class="player-btn btn-player">▶ PLAYER</button>
-      <button id="playerMxBtn" class="player-btn btn-mx">▶ MX</button>
-      <button id="playerCloseBtn" class="player-btn btn-close">✕ ปิด</button>
-    </div>
-  </div>
-
-  <script>
-    const grid = document.getElementById("grid");
-    const epsWrap = document.getElementById("epsWrap");
-    const epsGrid = document.getElementById("epsGrid");
-    const epsTitle = document.getElementById("epsTitle");
-    const pageTitle = document.getElementById("pageTitle");
-    const statusBox = document.getElementById("statusBox");
-    const listView = document.getElementById("listView");
-    const playerWrap = document.getElementById("playerWrap");
-    const playerBar = document.getElementById("playerBar");
-    const video = document.getElementById("videoPlayer");
-    const menuButtons = Array.from(document.querySelectorAll(".menu-btn"));
-
-    let currentSource = menuButtons[0].dataset.source;
-    let currentTitle = menuButtons[0].dataset.title;
-    let currentItem = null;
-    let currentServerIndex = 0;
-    let currentMode = "list";
-    let hls = null;
-    let cache = {};
-    let historyStack = [];
-    let playerUiTimer = null;
-
-    video.setAttribute("playsinline", "true");
-    video.setAttribute("webkit-playsinline", "true");
-
-    window.addEventListener("error", (e) => {
-      console.error("JS ERROR:", e.message);
-    });
-
-    window.addEventListener("unhandledrejection", (e) => {
-      console.error("PROMISE ERROR:", e.reason);
-    });
-
-    document.addEventListener("visibilitychange", () => {
-      try {
-        if (!hls) return;
-        if (document.visibilityState === "hidden") hls.stopLoad();
-        else hls.startLoad();
-      } catch(e) {}
-    });
-
-    video.addEventListener("loadedmetadata", () => {
-      video.muted = false;
-      video.volume = 1;
-    });
-
-    video.addEventListener("canplay", () => {
-      video.muted = false;
-      video.volume = 1;
-    });
-
-    function setStatus(msg) {
-      statusBox.textContent = msg || "";
-      statusBox.style.display = msg ? "block" : "none";
-    }
-
-    function clearPlayer() {
-      try {
-        if (hls) {
-          hls.stopLoad();
-          hls.detachMedia();
-          hls.destroy();
-          hls = null;
-        }
-      } catch(e) {}
-
-      try { video.pause(); } catch(e) {}
-      try {
-        video.removeAttribute("src");
-        video.src = "";
-        video.load();
-      } catch(e) {}
-    }
-
-    function showPlayerUi() {
-      playerBar.classList.remove("hide-ui");
-      if (playerUiTimer) clearTimeout(playerUiTimer);
-      playerUiTimer = setTimeout(() => {
-        if (playerWrap.style.display === "block") {
-          playerBar.classList.add("hide-ui");
-        }
-      }, 2500);
-    }
-
-    function showPlayer() {
-      playerWrap.style.display = "block";
-      showPlayerUi();
-    }
-
-    function closePlayer() {
-      if (playerUiTimer) {
-        clearTimeout(playerUiTimer);
-        playerUiTimer = null;
-      }
-      clearPlayer();
-      playerWrap.style.display = "none";
-      playerBar.classList.remove("hide-ui");
-    }
-
-    function openExternalPlayer(url) {
-      if (!url) return;
-      try {
-        const u = new URL(url);
-        location.href =
-          "intent://" + u.host + u.pathname + u.search +
-          "#Intent;scheme=" + u.protocol.replace(":", "") +
-          ";action=android.intent.action.VIEW;type=video/*;end";
-      } catch (e) {
-        location.href = url;
-      }
-    }
-
-    function openMx(url) {
-      if (!url) return;
-      location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
-    }
-
-    function mapServers(arr) {
-      if (!Array.isArray(arr)) return [];
-      return arr.map(s => ({
-        name: s?.name || "",
-        url: s?.url || s?.link || s?.file || s?.source || ""
-      })).filter(s => s.url);
-    }
-
-    function getPlayableUrl(item, idx = 0) {
-      if (!item) return "";
-      if (Array.isArray(item.servers) && item.servers.length) {
-        return item.servers[idx]?.url || item.servers[0]?.url || "";
-      }
-      return item.url || item.link || item.stream || item.source || item.file || "";
-    }
-
-    function normalizeItems(data) {
-      const out = [];
-      const seen = new Set();
-
-      function add(obj) {
-        const key = `${obj.type}|${obj.title}|${obj.url || ""}|${obj.episodes?.length || 0}`.toLowerCase();
-        if (!seen.has(key)) {
-          seen.add(key);
-          out.push(obj);
-        }
-      }
-
-      function badTitle(title = "") {
-        const t = String(title).toLowerCase().trim();
-        return t === "main" || t === "backup" || t === "m3u8" || t === "master";
-      }
-
-      function walk(node, inheritedImage = "") {
-        if (!node) return;
-
-        if (Array.isArray(node)) {
-          node.forEach(x => walk(x, inheritedImage));
-          return;
-        }
-
-        if (typeof node !== "object") return;
-
-        const img = node.image || node.poster || node.logo || node.thumb || inheritedImage || "";
-
-        if (node.type === "menu" && Array.isArray(node.items)) {
-          node.items.forEach(item => {
-            add({
-              title: item.title || item.name || "ไม่มีชื่อ",
-              image: item.image || item.poster || item.logo || "",
-              url: item.source || item.url || item.link || "",
-              servers: [],
-              episodes: [],
-              type: "source"
-            });
-          });
-          return;
-        }
-
-        if (Array.isArray(node.episodes) && node.episodes.length) {
-          add({
-            title: node.title || node.name || "ไม่มีชื่อ",
-            image: img,
-            url: node.url || node.link || node.source || "",
-            servers: [],
-            type: "series",
-            episodes: node.episodes.map((ep, i) => ({
-              title: ep.title || ep.name || ep.ep_name || `EP${i + 1}`,
-              image: ep.image || ep.poster || img || "",
-              url: ep.url || ep.link || ep.source || ep.stream || ep.file || "",
-              servers: mapServers(ep.servers)
-            }))
-          });
-          return;
-        }
-
-        const title = node.title || node.name || node.ep_name || node.episode || "";
-        const url = node.url || node.link || node.stream || node.source || node.file || "";
-        const servers = mapServers(node.servers);
-
-        if (title && !badTitle(title) && (url || servers.length)) {
-          add({
-            title,
-            image: img,
-            url: url || servers[0]?.url || "",
-            servers: [],
-            episodes: [],
-            type: "video"
-          });
-        }
-
-        Object.values(node).forEach(v => {
-          if (Array.isArray(v) || (v && typeof v === "object")) {
-            walk(v, img);
-          }
-        });
-      }
-
-      walk(data);
-      return out;
-    }
-
-    async function loadSource(sourceUrl) {
-      if (cache[sourceUrl]) return cache[sourceUrl];
-
-      const lower = sourceUrl.toLowerCase();
-
-      if (lower.endsWith(".m3u8") && !lower.includes(".json")) {
-        const direct = [{
-          title: "Live Stream",
-          image: "",
-          url: sourceUrl,
-          servers: [],
-          episodes: [],
-          type: "video"
-        }];
-        cache[sourceUrl] = direct;
-        return direct;
-      }
-
-      const res = await fetch(sourceUrl);
-      if (!res.ok) {
-        throw new Error("โหลดไฟล์ไม่สำเร็จ: " + res.status);
-      }
-
-      const text = await res.text();
-      const trimmed = text.trim();
-
-      if (!trimmed) return [];
-
-      let result = [];
-
-      if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
-        const json = JSON.parse(text);
-        result = normalizeItems(json);
-      } else if (trimmed.includes("#EXTM3U") || trimmed.includes("#EXTINF")) {
-        const lines = text.split(/\r?\n/);
-        let current = null;
-
-        for (const raw of lines) {
-          const line = raw.trim();
-          if (!line) continue;
-
-          if (line.startsWith("#EXTINF:")) {
-            const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
-            const name = line.split(",").pop()?.trim() || "ไม่มีชื่อ";
-            current = {
-              title: name,
-              image: logoMatch ? logoMatch[1] : "",
-              url: "",
-              servers: [],
-              episodes: [],
-              type: "video"
-            };
-          } else if (!line.startsWith("#") && current) {
-            current.url = line;
-            result.push(current);
-            current = null;
-          }
-        }
-      }
-
-      cache[sourceUrl] = result;
-      return result;
-    }
-
-    function renderGrid(list) {
-      currentMode = "list";
-      listView.style.display = "block";
-      epsWrap.style.display = "none";
-      grid.innerHTML = "";
-
-      if (!list.length) {
-        grid.innerHTML = `<div class="empty">ไม่พบรายการ</div>`;
-        return;
-      }
-
-      const isTV = currentTitle.includes("ทีวี");
-
-      list.forEach(item => {
-        const card = document.createElement("button");
-        card.className = "card" + (isTV ? " tv" : "");
-        card.type = "button";
-
-        card.innerHTML = `
-          ${item.image
-            ? `<img src="${item.image}" alt="" loading="lazy" onerror="this.style.display='none'">`
-            : `<div style="height:${isTV ? 140 : 170}px;background:#000;"></div>`
-          }
-          <div class="card-body">
-            <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
-          </div>
-        `;
-
-        const runOpen = async () => {
-          if (item.type === "source") {
-            historyStack.push({ title: currentTitle, source: currentSource, mode: currentMode });
-            currentSource = item.url;
-            currentTitle = item.title || currentTitle;
-            pageTitle.textContent = currentTitle;
-            await loadCurrentMenu();
-            return;
-          }
-
-          if (item.type === "series" && item.episodes && item.episodes.length) {
-            historyStack.push({ title: currentTitle, source: currentSource, mode: currentMode });
-            showEpisodes(item);
-            return;
-          }
-
-          playItem(item, 0);
-        };
-
-        card.onclick = runOpen;
-        card.onmousedown = (e) => {
-          e.preventDefault();
-          runOpen();
-        };
-        card.ontouchstart = () => runOpen();
-
-        grid.appendChild(card);
-      });
-    }
-
-    function showEpisodes(seriesItem) {
-      currentMode = "episodes";
-      listView.style.display = "none";
-      epsWrap.style.display = "block";
-      epsTitle.textContent = seriesItem.title || "ตอนทั้งหมด";
-      epsGrid.innerHTML = "";
-
-      const eps = Array.isArray(seriesItem.episodes) ? [...seriesItem.episodes].reverse() : [];
-
-      if (!eps.length) {
-        epsGrid.innerHTML = `<div class="empty">ไม่พบตอน</div>`;
-        return;
-      }
-
-      eps.forEach((ep, i) => {
-        const btn = document.createElement("button");
-        btn.className = "ep-btn";
-        btn.type = "button";
-        btn.textContent = ep.title || `EP${i + 1}`;
-
-        const runPlay = () => playItem(ep, 0);
-
-        btn.onclick = runPlay;
-        btn.onmousedown = (e) => {
-          e.preventDefault();
-          runPlay();
-        };
-        btn.ontouchstart = (e) => {
-          e.preventDefault();
-          runPlay();
-        };
-        btn.onkeydown = (e) => {
-          if (e.key === "Enter" || e.key === " " || e.keyCode === 13 || e.keyCode === 32 || e.keyCode === 23) {
-            e.preventDefault();
-            runPlay();
-          }
-        };
-        btn.onkeyup = (e) => {
-          if (e.key === "Enter" || e.key === " " || e.keyCode === 13 || e.keyCode === 32 || e.keyCode === 23) {
-            e.preventDefault();
-            runPlay();
-          }
-        };
-
-        epsGrid.appendChild(btn);
-      });
-
-      setTimeout(() => {
-        const firstBtn = epsGrid.querySelector(".ep-btn");
-        if (firstBtn) {
-          firstBtn.focus();
-          firstBtn.scrollIntoView({ block: "center" });
-        }
-      }, 100);
-    }
-
-    function tryStartVideoWithSound(url, fallbackFn) {
-      video.muted = false;
-      video.volume = 1;
-
-      const p = video.play();
-      if (p && typeof p.then === "function") {
-        p.then(() => {
-        }).catch(() => {
-          video.muted = true;
-          video.play().then(() => {
-            setTimeout(() => {
-              video.muted = false;
-              video.volume = 1;
-            }, 500);
-          }).catch(() => {
-            if (fallbackFn) fallbackFn(url);
-          });
-        });
-      }
-    }
-
-    async function detectStreamType(url) {
-      try {
-        const res = await fetch(url);
-        const text = await res.text();
-        const trimmed = text.trim();
-
-        if (trimmed.startsWith("#EXTM3U") || trimmed.includes("#EXT-X-STREAM-INF")) {
-          return "hls";
-        }
-
-        if (trimmed.startsWith("<!DOCTYPE html") || trimmed.startsWith("<html")) {
-          return "html";
-        }
-
-        return "unknown";
-      } catch (e) {
-        return "unknown";
-      }
-    }
-
-    function createHls() {
-      return new Hls({
-        enableWorker: true,
-        autoStartLoad: true,
-        maxBufferLength: 10,
-        maxMaxBufferLength: 15,
-        backBufferLength: 5,
-        liveSyncDurationCount: 3,
-        capLevelToPlayerSize: true
-      });
-    }
-
-    async function playItem(item, serverIndex = 0) {
-      currentItem = item;
-      currentServerIndex = serverIndex;
-      clearPlayer();
-
-      const url = getPlayableUrl(item, serverIndex);
-      if (!url) {
-        setStatus("ไม่พบลิงก์เล่น");
-        return;
-      }
-
-      const lower = url.toLowerCase();
-      const isSeries =
-        currentTitle.includes("ซีรีส์") ||
-        currentTitle.includes("Flixmono") ||
-        (item.title || "").toUpperCase().includes("EP");
-
-      const isMySeries =
-        currentTitle.includes("ซีรีส์") &&
-        !currentTitle.includes("Flixmono");
-
-      const isFlix = currentTitle.includes("Flixmono");
-      const isMovie = currentTitle.includes("หนัง");
-
-      // หนัง = เปิด player เครื่องก่อน ลดเด้ง
-      if (isMovie) {
-        openExternalPlayer(url);
-        return;
-      }
-
-      // MySeries + Flix = ใช้ player เดิม
-      if (isMySeries || isFlix) {
-        if (
-          lower.includes("/play/") ||
-          lower.includes("/embed/") ||
-          lower.includes("ok-hd.com/play/") ||
-          lower.includes("top-cdn.com/play/")
-        ) {
-          location.href = url;
-          return;
-        }
-
-        if (lower.includes(".m3u8")) {
-          showPlayer();
-
-          if (Hls.isSupported()) {
-            hls = createHls();
-            hls.loadSource(url);
-            hls.attachMedia(video);
-
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              tryStartVideoWithSound(url, openExternalPlayer);
-            });
-
-            hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openExternalPlayer(url);
-            });
-          } else {
-            openExternalPlayer(url);
-          }
-          return;
-        }
-
-        if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
-          showPlayer();
-          video.src = url;
-          tryStartVideoWithSound(url, openExternalPlayer);
-          return;
-        }
-
-        const detectedSeries = await detectStreamType(url);
-
-        if (detectedSeries === "hls") {
-          showPlayer();
-
-          if (Hls.isSupported()) {
-            hls = createHls();
-            hls.loadSource(url);
-            hls.attachMedia(video);
-
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              tryStartVideoWithSound(url, openExternalPlayer);
-            });
-
-            hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openExternalPlayer(url);
-            });
-          } else {
-            openExternalPlayer(url);
-          }
-          return;
-        }
-
-        if (detectedSeries === "html") {
-          location.href = url;
-          return;
-        }
-
-        openExternalPlayer(url);
-        return;
-      }
-
-      if (isSeries) {
-        if (
-          lower.includes("/play/") ||
-          lower.includes("/embed/") ||
-          lower.includes("ok-hd.com/play/") ||
-          lower.includes("top-cdn.com/play/")
-        ) {
-          location.href = url;
-          return;
-        }
-
-        if (lower.includes(".m3u8")) {
-          showPlayer();
-
-          if (Hls.isSupported()) {
-            hls = createHls();
-            hls.loadSource(url);
-            hls.attachMedia(video);
-
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              tryStartVideoWithSound(url, openExternalPlayer);
-            });
-
-            hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openExternalPlayer(url);
-            });
-          } else {
-            openExternalPlayer(url);
-          }
-          return;
-        }
-
-        if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
-          showPlayer();
-          video.src = url;
-          tryStartVideoWithSound(url, openExternalPlayer);
-          return;
-        }
-
-        const detected = await detectStreamType(url);
-
-        if (detected === "hls") {
-          showPlayer();
-
-          if (Hls.isSupported()) {
-            hls = createHls();
-            hls.loadSource(url);
-            hls.attachMedia(video);
-
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              tryStartVideoWithSound(url, openExternalPlayer);
-            });
-
-            hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openExternalPlayer(url);
-            });
-          } else {
-            openExternalPlayer(url);
-          }
-          return;
-        }
-
-        if (detected === "html") {
-          location.href = url;
-          return;
-        }
-
-        openExternalPlayer(url);
-        return;
-      }
-
-      // ทีวี
-      if (lower.includes(".m3u8")) {
-        showPlayer();
-
-        if (Hls.isSupported()) {
-          hls = createHls();
-          hls.loadSource(url);
-          hls.attachMedia(video);
-
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            tryStartVideoWithSound(url, openExternalPlayer);
-          });
-
-          hls.on(Hls.Events.ERROR, (e, data) => {
-            if (data?.fatal) openExternalPlayer(url);
-          });
-        } else {
-          openExternalPlayer(url);
-        }
-        return;
-      }
-
-      if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
-        showPlayer();
-        video.src = url;
-        tryStartVideoWithSound(url, openExternalPlayer);
-        return;
-      }
-
-      location.href = url;
-    }
-
-    async function loadCurrentMenu() {
-      try {
-        setStatus("กำลังโหลดรายการ...");
-        const list = await loadSource(currentSource);
-        renderGrid(list);
-        pageTitle.textContent = currentTitle;
-        setStatus(`โหลดสำเร็จ: ${list.length} รายการ`);
-      } catch (e) {
-        console.error(e);
-        setStatus("โหลดรายการไม่สำเร็จ\n" + e.message);
-        grid.innerHTML = `<div class="empty">โหลดรายการไม่สำเร็จ</div>`;
-      }
-    }
-
-    menuButtons.forEach(btn => {
-      btn.onclick = async () => {
-        menuButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        if (btn.dataset.link) {
-          location.href = btn.dataset.link;
-          return;
-        }
-
-        historyStack = [];
-        currentSource = btn.dataset.source || "";
-        currentTitle = btn.dataset.title || btn.textContent.trim();
-        pageTitle.textContent = currentTitle;
-        closePlayer();
-        await loadCurrentMenu();
-      };
-    });
-
-    document.getElementById("reloadBtn").onclick = loadCurrentMenu;
-
-    document.getElementById("backBtn").onclick = async () => {
-      closePlayer();
-
-      if (currentMode === "episodes") {
-        epsWrap.style.display = "none";
-        listView.style.display = "block";
-        currentMode = "list";
-        return;
-      }
-
-      const prev = historyStack.pop();
-      if (prev && prev.source) {
-        currentSource = prev.source;
-        currentTitle = prev.title;
-        pageTitle.textContent = currentTitle;
-        await loadCurrentMenu();
-      }
-    };
-
-    document.getElementById("playerHomeBtn").onclick = () => {
-      closePlayer();
-      epsWrap.style.display = "none";
-      listView.style.display = "block";
-      currentMode = "list";
-    };
-
-    document.getElementById("playerCloseBtn").onclick = closePlayer;
-
-    document.getElementById("playerExternalBtn").onclick = () => {
-      const url = getPlayableUrl(currentItem, currentServerIndex);
-      openExternalPlayer(url);
-    };
-
-    document.getElementById("playerMxBtn").onclick = () => {
-      const url = getPlayableUrl(currentItem, currentServerIndex);
-      openMx(url);
-    };
-
-    ["mousemove", "mousedown", "touchstart"].forEach(evt => {
-      playerWrap.addEventListener(evt, () => {
-        if (playerWrap.style.display === "block") showPlayerUi();
-      });
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (playerWrap.style.display !== "block") return;
-
-      showPlayerUi();
-
-      if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
-        e.preventDefault();
-        closePlayer();
-      }
-    });
-
-    loadCurrentMenu();
-  </script>
+
+<div class="app">
+
+<!-- 🔥 MENU -->
+<aside class="sidebar">
+<div class="brand">TIEA IPTV</div>
+
+<button class="menu-btn active"
+data-title="📺 ทีวี"
+data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">
+📺 ทีวี
+</button>
+
+<button class="menu-btn"
+data-title="🎬 หนัง"
+data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">
+🎬 หนัง
+</button>
+
+<button class="menu-btn"
+data-title="📺 ซีรีส์"
+data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/MySeries.json">
+📺 ซีรีส์
+</button>
+
+<button class="menu-btn"
+data-title="🎞️ Flixmono"
+data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json">
+🎞️ Flixmono
+</button>
+
+<!-- ✅ FIX ตาราง -->
+<button class="menu-btn"
+onclick="window.location.href='https://tiea9999.github.io/tv-online/live.html'">
+⚽ ตารางแข่งขัน
+</button>
+
+</aside>
+
+<!-- 🔥 CONTENT -->
+<main class="main">
+<div id="pageTitle" class="title">📺 ทีวี</div>
+<div id="grid" class="grid"></div>
+</main>
+
+</div>
+
+<!-- 🔥 PLAYER -->
+<div id="playerWrap">
+<video id="videoPlayer" controls autoplay playsinline></video>
+
+<div id="playerBar">
+<button class="player-btn btn-home" onclick="closePlayer()">🏠</button>
+<button class="player-btn btn-player" onclick="openExternal()">▶</button>
+<button class="player-btn btn-mx" onclick="openMx()">MX</button>
+<button class="player-btn btn-close" onclick="closePlayer()">✕</button>
+</div>
+</div>
+
+<script>
+
+const grid = document.getElementById("grid");
+const video = document.getElementById("videoPlayer");
+const playerWrap = document.getElementById("playerWrap");
+
+let currentSource = document.querySelector(".menu-btn").dataset.source;
+let currentTitle = "📺 ทีวี";
+let currentUrl = "";
+let hls = null;
+
+// โหลดข้อมูล
+async function loadMenu(){
+grid.innerHTML = "กำลังโหลด...";
+try{
+const res = await fetch(currentSource);
+const data = await res.json();
+
+const list = Array.isArray(data) ? data : (data.channels || data.items || []);
+
+render(list);
+
+}catch(e){
+grid.innerHTML = "โหลดไม่สำเร็จ";
+}
+}
+
+// render
+function render(list){
+grid.innerHTML = "";
+
+list.forEach(item=>{
+const card = document.createElement("div");
+card.className = "card";
+
+card.innerHTML = `
+<img src="${item.logo || item.image || ''}" onerror="this.style.display='none'">
+<div class="card-title">${item.name || item.title}</div>
+`;
+
+card.onclick = ()=>{
+const url = item.url || item.link || item.stream;
+
+if(currentTitle.includes("หนัง")){
+openExternalPlayer(url); // 🔥 หนังไม่เล่นเว็บ
+}else{
+play(url);
+}
+};
+
+grid.appendChild(card);
+});
+}
+
+// play
+function play(url){
+currentUrl = url;
+playerWrap.style.display = "block";
+
+if(hls){
+hls.destroy();
+hls = null;
+}
+
+if(url.includes(".m3u8")){
+if(Hls.isSupported()){
+hls = new Hls({
+maxBufferLength:10,
+maxMaxBufferLength:15
+});
+hls.loadSource(url);
+hls.attachMedia(video);
+}else{
+video.src = url;
+}
+}else{
+video.src = url;
+}
+}
+
+// ปิด
+function closePlayer(){
+playerWrap.style.display = "none";
+video.pause();
+video.src = "";
+if(hls){hls.destroy();hls=null;}
+}
+
+// external
+function openExternal(){
+openExternalPlayer(currentUrl);
+}
+
+function openExternalPlayer(url){
+try{
+const u = new URL(url);
+location.href =
+"intent://" + u.host + u.pathname + u.search +
+"#Intent;scheme=" + u.protocol.replace(":","") +
+";action=android.intent.action.VIEW;type=video/*;end";
+
+setTimeout(()=>openMx(url),1000);
+}catch(e){
+openMx(url);
+}
+}
+
+// mx
+function openMx(){
+location.href = "intent:" + currentUrl + "#Intent;package=com.mxtech.videoplayer.ad;end";
+}
+
+// menu click
+document.querySelectorAll(".menu-btn").forEach(btn=>{
+btn.onclick = async ()=>{
+if(btn.dataset.source){
+document.querySelectorAll(".menu-btn").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+
+currentSource = btn.dataset.source;
+currentTitle = btn.dataset.title;
+document.getElementById("pageTitle").innerText = currentTitle;
+
+await loadMenu();
+}
+};
+});
+
+loadMenu();
+
+</script>
 </body>
 </html>
