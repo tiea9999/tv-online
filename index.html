@@ -9,7 +9,6 @@
     :root{
       --bg:#05070b;
       --panel:#0c1016;
-      --panel-2:#121824;
       --line:rgba(255,255,255,.07);
       --text:#ffffff;
       --muted:#95a1b3;
@@ -17,13 +16,11 @@
       --green:#00c853;
       --shadow:0 10px 30px rgba(0,0,0,.35);
       --glow:0 0 18px rgba(0,229,255,.22);
-      --radius:14px;
     }
 
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:radial-gradient(circle at top,#0d1523 0%,#05070b 40%,#030406 100%);color:var(--text);font-family:Arial,sans-serif;overflow-x:hidden}
     body{min-height:100vh}
-
     .app{display:flex;min-height:100vh}
 
     .sidebar{
@@ -43,8 +40,7 @@
       border-right:1px solid var(--line);
       box-shadow:var(--shadow);
     }
-    .sidebar:hover,
-    .sidebar.show{transform:translateX(0)}
+    .sidebar:hover,.sidebar.show{transform:translateX(0)}
 
     .sidebar-handle{
       position:fixed;
@@ -98,12 +94,28 @@
     }
 
     .hero{
-      background:linear-gradient(135deg,rgba(0,229,255,.12),rgba(0,200,83,.10),rgba(255,255,255,.03));
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at top right,rgba(0,229,255,.18),transparent 30%),
+        radial-gradient(circle at bottom left,rgba(0,200,83,.16),transparent 28%),
+        linear-gradient(135deg,rgba(14,21,35,.96),rgba(9,13,20,.98));
       border:1px solid var(--line);
-      border-radius:18px;
-      padding:16px;
+      border-radius:20px;
+      padding:18px;
       margin-bottom:14px;
       box-shadow:var(--shadow);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto -50px -50px auto;
+      width:180px;
+      height:180px;
+      background:url("https://dl.dropboxusercontent.com/scl/fi/k77ovxc35qm0girjo43mt/logo.png?rlkey=1x7w8nk1fl6gptnt9jiaugt54") center/contain no-repeat;
+      opacity:.12;
+      pointer-events:none;
+      filter:drop-shadow(0 0 20px rgba(0,229,255,.25));
     }
 
     .topbar{
@@ -165,8 +177,7 @@
       box-shadow:var(--shadow);
       transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
-    .card:hover,
-    .card:focus{
+    .card:hover,.card:focus{
       transform:translateY(-3px) scale(1.01);
       outline:none;
       border-color:rgba(0,229,255,.28);
@@ -305,7 +316,9 @@
       <button class="menu-btn active" data-title="📺 ทีวี" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
       <button class="menu-btn" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
       <button class="menu-btn" data-title="🎞️ Flixmono" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json">📺 ซีรีส์</button>
-      <button class="menu-btn" data-title="📺 Goseries" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Goseries.json">📺 Goseries</button>
+      <button class="menu-btn"
+        data-title="📺 Goseries"
+        data-sources='["https://raw.githubusercontent.com/tiea9999/tv-online/main/Goseries.json","https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Goseries.json","https://raw.githubusercontent.com/tiea9999/tv-online/main/GoSeries.json","https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/GoSeries.json"]'>📺 Goseries</button>
       <button class="menu-btn" data-title="🎞️ VIP" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Vip.json">🎞️ VIP</button>
     </aside>
 
@@ -314,7 +327,7 @@
         <div class="topbar">
           <div>
             <div id="pageTitle" class="title">📺 ทีวี</div>
-            <div class="sub">ดีไซน์ใหม่แบบโปร • เมนูซ่อนอัตโนมัติ • ซีรีย์ไม่มีรูปใช้โลโก้ TIEA IPTV</div>
+            <div class="sub">ดีไซน์ใหม่แบบโปร • หนัง ซีรีย์ VIP ไม่มีรูปใช้โลโก้ TIEA IPTV • Goseries มีลิงก์สำรองอัตโนมัติ</div>
           </div>
           <div class="tools">
             <button id="reloadBtn" class="top-btn">รีโหลด</button>
@@ -363,10 +376,11 @@
     const sidebarHandle = document.getElementById("sidebarHandle");
 
     const menuButtons = Array.from(document.querySelectorAll(".menu-btn"));
-    const sourceButtons = Array.from(document.querySelectorAll(".menu-btn[data-source]"));
+    const sourceButtons = Array.from(document.querySelectorAll(".menu-btn[data-source], .menu-btn[data-sources]"));
 
-    let currentSource = sourceButtons[0].dataset.source;
-    let currentTitle = sourceButtons[0].dataset.title;
+    let currentSource = sourceButtons[0].dataset.source || "";
+    let currentSources = getButtonSources(sourceButtons[0]);
+    let currentTitle = sourceButtons[0].dataset.title || "📺 ทีวี";
     let currentItem = null;
     let currentServerIndex = 0;
     let currentMode = "list";
@@ -374,6 +388,17 @@
     let cache = {};
     let historyStack = [];
     let playerUiTimer = null;
+
+    function getButtonSources(btn){
+      if (!btn) return [];
+      if (btn.dataset.sources) {
+        try {
+          const arr = JSON.parse(btn.dataset.sources);
+          if (Array.isArray(arr)) return arr.filter(Boolean);
+        } catch (e) {}
+      }
+      return btn.dataset.source ? [btn.dataset.source] : [];
+    }
 
     video.setAttribute("playsinline", "true");
     video.setAttribute("webkit-playsinline", "true");
@@ -402,7 +427,7 @@
     }
 
     function focusFirstMenu() {
-      const firstMenu = document.querySelector('.sidebar .menu-btn[data-source]');
+      const firstMenu = document.querySelector('.sidebar .menu-btn[data-source], .sidebar .menu-btn[data-sources]');
       if (firstMenu) setTimeout(() => firstMenu.focus(), 50);
     }
 
@@ -631,6 +656,22 @@
       return result;
     }
 
+    async function loadFromSources(sources){
+      let lastError = null;
+      for (const src of sources) {
+        try {
+          const list = await loadSource(src);
+          if (Array.isArray(list)) {
+            currentSource = src;
+            return list;
+          }
+        } catch (e) {
+          lastError = e;
+        }
+      }
+      throw lastError || new Error("โหลดรายการไม่สำเร็จ");
+    }
+
     function renderGrid(list) {
       currentMode = "list";
       listView.style.display = "block";
@@ -675,7 +716,12 @@
           currentTitle.includes("Goseries") ||
           currentTitle.includes("ซีรีส์");
 
-        const imgSrc = item.image || (isSeriesCard ? SERIES_FALLBACK_IMAGE : "");
+        const isMovieCard =
+          currentTitle.includes("หนัง") ||
+          currentTitle.includes("VIP");
+
+        const useFallbackImage = isSeriesCard || isMovieCard;
+        const imgSrc = item.image || (useFallbackImage ? SERIES_FALLBACK_IMAGE : "");
         const fallback = SERIES_FALLBACK_IMAGE.replace(/'/g, "\\'");
 
         card.innerHTML = `
@@ -688,8 +734,9 @@
 
         const runOpen = async () => {
           if (item.type === "source") {
-            historyStack.push({ title: currentTitle, source: currentSource, mode: currentMode });
+            historyStack.push({ title: currentTitle, source: currentSource, sources: currentSources, mode: currentMode });
             currentSource = item.url;
+            currentSources = [item.url];
             currentTitle = item.title || currentTitle;
             pageTitle.textContent = currentTitle;
             await loadCurrentMenu();
@@ -697,7 +744,7 @@
           }
 
           if (item.type === "series" && item.episodes && item.episodes.length) {
-            historyStack.push({ title: currentTitle, source: currentSource, mode: currentMode });
+            historyStack.push({ title: currentTitle, source: currentSource, sources: currentSources, mode: currentMode });
             showEpisodes(item);
             hideSidebar();
             return;
@@ -907,13 +954,13 @@
     async function loadCurrentMenu() {
       try {
         setStatus("กำลังโหลดรายการ...");
-        const list = await loadSource(currentSource);
+        const list = await loadFromSources(currentSources.length ? currentSources : [currentSource]);
         renderGrid(list);
         pageTitle.textContent = currentTitle;
         setStatus("");
       } catch (e) {
         console.error(e);
-        setStatus("โหลดรายการไม่สำเร็จ\n" + e.message);
+        setStatus("โหลดรายการไม่สำเร็จ\n" + (e?.message || ""));
         grid.innerHTML = `<div class="empty">โหลดรายการไม่สำเร็จ</div>`;
       }
     }
@@ -929,7 +976,8 @@
         }
 
         historyStack = [];
-        currentSource = btn.dataset.source || "";
+        currentSources = getButtonSources(btn);
+        currentSource = currentSources[0] || "";
         currentTitle = btn.dataset.title || btn.textContent.trim();
         pageTitle.textContent = currentTitle;
         closePlayer();
@@ -955,8 +1003,9 @@
       }
 
       const prev = historyStack.pop();
-      if (prev && prev.source) {
-        currentSource = prev.source;
+      if (prev && (prev.source || prev.sources)) {
+        currentSource = prev.source || "";
+        currentSources = prev.sources || (prev.source ? [prev.source] : []);
         currentTitle = prev.title;
         pageTitle.textContent = currentTitle;
         await loadCurrentMenu();
