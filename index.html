@@ -176,7 +176,10 @@
       cursor:pointer;
       position:relative;
       box-shadow:var(--shadow);
-      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
     }
     .card:hover{
       transform:translateY(-3px) scale(1.01);
@@ -190,6 +193,7 @@
       background:linear-gradient(to top,rgba(0,0,0,.66),transparent 52%);
       pointer-events:none;
       z-index:1;
+      transition:background .22s ease;
     }
     .card img{
       width:100%;
@@ -202,6 +206,10 @@
         linear-gradient(135deg,#101826,#05070b);
       display:block;
       filter:drop-shadow(0 0 14px rgba(0,229,255,.18));
+      transform:translateY(0) scale(1);
+      transition:
+        transform .22s ease,
+        filter .22s ease;
     }
     .card.tv img{
       object-fit:contain;
@@ -218,6 +226,27 @@
       min-height:48px;
       color:#f5f8ff;
       text-shadow:0 1px 2px rgba(0,0,0,.5);
+      transition:background .22s ease, color .22s ease;
+    }
+
+    .card:hover img,
+    .card:focus img{
+      transform:translateY(-12px) scale(1.08);
+      filter:
+        drop-shadow(0 0 18px rgba(255,213,79,.55))
+        drop-shadow(0 10px 18px rgba(0,0,0,.35))
+        brightness(1.12)
+        contrast(1.08);
+    }
+
+    .card:hover .card-title,
+    .card:focus .card-title{
+      background:linear-gradient(to top, rgba(255,213,79,.22), rgba(255,213,79,.08));
+      color:#fff;
+    }
+
+    .card:focus::before{
+      background:linear-gradient(to top, rgba(255,213,79,.22), rgba(0,0,0,.18) 55%, transparent);
     }
 
     .eps-wrap{display:none}
@@ -288,12 +317,10 @@
     .btn-player{background:#009688}
     .btn-mx{background:#ff9800}
 
-    /* ===== FOCUS สำหรับรีโมท (ชัดสุด) ===== */
     .menu-btn.active,
     .menu-btn:focus,
     .top-btn:focus,
     .ep-btn:focus,
-    .card:focus,
     .player-btn:focus{
       outline:4px solid #ffd54f !important;
       outline-offset:2px;
@@ -304,18 +331,24 @@
       z-index:5;
     }
 
-    .menu-btn:focus,
-    .top-btn:focus,
-    .ep-btn:focus,
     .card:focus{
-      transform:scale(1.05);
+      outline:5px solid #ffd54f !important;
+      outline-offset:3px;
+      border-color:#ffd54f !important;
+      transform:scale(1.08);
+      box-shadow:
+        0 0 0 5px rgba(255,213,79,.55),
+        0 0 28px rgba(255,213,79,.45),
+        0 0 50px rgba(255,213,79,.30),
+        0 12px 30px rgba(0,0,0,.50) !important;
+      z-index:20;
+      position:relative;
     }
 
-    .card:focus,
     .menu-btn:focus,
     .top-btn:focus,
-    .ep-btn:focus,
-    .player-btn:focus{
+    .ep-btn:focus{
+      transform:scale(1.05);
       position:relative;
     }
 
@@ -358,7 +391,7 @@
         <div class="topbar">
           <div>
             <div id="pageTitle" class="title">📺 ทีวี</div>
-            <div class="sub">ดีไซน์ใหม่แบบโปร • หนัง ซีรีย์ VIP ไม่มีรูปใช้โลโก้ TIEA IPTV • Goseries มีลิงก์สำรองอัตโนมัติ</div>
+            <div class="sub">ดีไซน์ใหม่แบบโปร • โลโก้ลอยขึ้นเมื่อชี้ • หนัง ซีรีย์ VIP ไม่มีรูปใช้โลโก้ TIEA IPTV</div>
           </div>
           <div class="tools">
             <button id="reloadBtn" class="top-btn">รีโหลด</button>
