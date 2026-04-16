@@ -2,26 +2,26 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>TIEA IPTV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TIEA IPTV SIMPLE</title>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
     *{box-sizing:border-box}
-    body{margin:0;background:#000;color:#fff;font-family:Arial,sans-serif}
+    body{margin:0;background:#000;color:#fff;font-family:sans-serif}
     .app{display:flex;min-height:100vh}
     .sidebar{width:190px;background:#111;padding:10px;flex-shrink:0}
     .brand{text-align:center;font-size:22px;font-weight:bold;color:#00e5ff;margin-bottom:12px}
-    .menu-btn,.tool-btn,.ep-btn{
+    .menu-btn,.top-btn,.ep-btn{
       width:100%;border:0;border-radius:10px;background:#222;color:#fff;
       padding:12px;margin-bottom:8px;cursor:pointer;text-align:left;font-size:15px
     }
-    .menu-btn.active,.menu-btn:focus,.tool-btn:focus,.ep-btn:focus{background:#00c853;outline:none}
+    .menu-btn.active,.menu-btn:focus,.top-btn:focus,.ep-btn:focus{background:#00c853;outline:none}
     .main{flex:1;padding:12px}
     .topbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}
     .title{font-size:22px;font-weight:bold;color:#00e5ff}
     .sub{color:#aaa;font-size:13px}
     .tools{display:flex;gap:8px;flex-wrap:wrap}
-    .tool-btn{width:auto;margin-bottom:0;padding:10px 12px;background:#1d1d1d}
+    .top-btn{width:auto;margin-bottom:0;padding:10px 12px}
     .status{display:none;background:rgba(255,255,255,.08);padding:10px 12px;border-radius:10px;margin-bottom:12px;font-size:14px;white-space:pre-wrap}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
     .card{
@@ -29,55 +29,28 @@
       padding:0;text-align:left;cursor:pointer
     }
     .card:focus,.card:hover{outline:3px solid #00e5ff}
-    .card img{width:100%;height:180px;object-fit:cover;background:#000;display:block}
-    .card.tv img{object-fit:contain;padding:8px;height:140px}
-    .card-title{padding:8px;font-size:14px;line-height:1.35;min-height:44px}
-    .badge{margin:0 8px 8px;display:inline-block;background:#e50914;color:#fff;font-size:11px;padding:4px 8px;border-radius:999px}
-
-    .episodes-wrap{display:none}
-    .episodes-title{font-size:20px;font-weight:bold;color:#00e5ff;margin-bottom:10px}
-    .episodes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
-
+    .card img{width:100%;height:170px;object-fit:cover;background:#000;display:block}
+    .card.tv img{object-fit:contain;padding:8px;height:140px;background:#000}
+    .card-title{padding:8px;font-size:14px;line-height:1.35;min-height:42px}
+    .eps-wrap{display:none}
+    .eps-title{font-size:20px;font-weight:bold;color:#00e5ff;margin-bottom:10px}
+    .eps-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
     #playerWrap{position:fixed;inset:0;background:#000;display:none;z-index:9999}
     #videoPlayer{width:100%;height:100%;background:#000}
     #playerBar{
       position:absolute;top:12px;left:12px;display:flex;gap:8px;z-index:10000;flex-wrap:wrap;
-      opacity:1;transition:opacity .25s ease
+      opacity:1;transition:opacity .25s ease;
     }
-    #playerBar.hide-ui{opacity:0;pointer-events:none}
+    #playerBar.hide-ui{
+      opacity:0;
+      pointer-events:none;
+    }
     .player-btn{border:0;border-radius:10px;padding:10px 12px;color:#fff;cursor:pointer;font-weight:bold}
     .btn-home{background:#2196f3}.btn-close{background:#e53935}.btn-player{background:#009688}.btn-mx{background:#ff9800}
-
-    #webFrameWrap{
-      display:none;
-      position:fixed;
-      inset:0;
-      background:#000;
-      z-index:10000;
-    }
-    #webFrameBar{
-      position:absolute;
-      top:10px;
-      left:10px;
-      right:10px;
-      display:flex;
-      gap:8px;
-      z-index:10001;
-      flex-wrap:wrap;
-    }
-    #webFrame{
-      width:100%;
-      height:100%;
-      border:0;
-      background:#000;
-      padding-top:56px;
-    }
-
     @media (max-width:800px){
-      .sidebar{width:148px}
+      .sidebar{width:150px}
       .grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
-      .episodes-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
-      .card img{height:150px}
+      .card img{height:145px}
       .card.tv img{height:120px}
     }
   </style>
@@ -87,31 +60,22 @@
     <aside class="sidebar">
       <div class="brand">TIEA IPTV</div>
 
-      <button class="menu-btn active" data-title="📺 ทีวี"
-        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
-
-      <button class="menu-btn" data-title="🎬 หนัง"
-        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
-
-      <button class="menu-btn" data-title="📺 ซีรีส์"
-        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/MySeries.json">📺 ซีรีส์</button>
-
-      <button class="menu-btn" data-title="🎞️ Flixmono"
-        data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json">🎞️ Flixmono</button>
-
-      <button class="menu-btn" type="button"
-        onclick="window.location.href='https://tiea9999.github.io/tv-online/live.html'">⚽ ตารางแข่งขัน</button>
+      <button class="menu-btn active" data-title="📺 ทีวี" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
+      <button class="menu-btn" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
+      <button class="menu-btn" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/MySeries.json">📺 ซีรีส์</button>
+      <button class="menu-btn" data-title="🎞️ Flixmono" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json">🎞️ Flixmono</button>
+      <button class="menu-btn" data-link="live.html">⚽ ตารางแข่งขัน</button>
     </aside>
 
     <main class="main">
       <div class="topbar">
         <div>
           <div id="pageTitle" class="title">📺 ทีวี</div>
-          <div class="sub">ทีวีตัด backup ออก • MySeries เปิดในแอพ • Flix เล่นในเว็บ</div>
+          <div class="sub">MySeries และ Flixmono ใช้ player แบบเดียวกัน</div>
         </div>
         <div class="tools">
-          <button id="reloadBtn" class="tool-btn">รีโหลด</button>
-          <button id="backBtn" class="tool-btn">ย้อนกลับ</button>
+          <button id="reloadBtn" class="top-btn">รีโหลด</button>
+          <button id="backBtn" class="top-btn">ย้อนกลับ</button>
         </div>
       </div>
 
@@ -121,15 +85,15 @@
         <div id="grid" class="grid"></div>
       </div>
 
-      <div id="episodesView" class="episodes-wrap">
-        <div id="episodesTitle" class="episodes-title">ตอนทั้งหมด</div>
-        <div id="episodesGrid" class="episodes-grid"></div>
+      <div id="epsWrap" class="eps-wrap">
+        <div id="epsTitle" class="eps-title">ตอนทั้งหมด</div>
+        <div id="epsGrid" class="eps-grid"></div>
       </div>
     </main>
   </div>
 
   <div id="playerWrap">
-    <video id="videoPlayer" controls autoplay playsinline webkit-playsinline></video>
+    <video id="videoPlayer" controls playsinline webkit-playsinline autoplay></video>
     <div id="playerBar">
       <button id="playerHomeBtn" class="player-btn btn-home">🏠 หน้าโฮม</button>
       <button id="playerExternalBtn" class="player-btn btn-player">▶ PLAYER</button>
@@ -138,88 +102,74 @@
     </div>
   </div>
 
-  <div id="webFrameWrap">
-    <div id="webFrameBar">
-      <button id="webHomeBtn" class="player-btn btn-home">🏠 หน้าโฮม</button>
-      <button id="webCloseBtn" class="player-btn btn-close">✕ ปิด</button>
-    </div>
-    <iframe
-      id="webFrame"
-      src="about:blank"
-      allowfullscreen
-      referrerpolicy="no-referrer">
-    </iframe>
-  </div>
-
   <script>
     const grid = document.getElementById("grid");
+    const epsWrap = document.getElementById("epsWrap");
+    const epsGrid = document.getElementById("epsGrid");
+    const epsTitle = document.getElementById("epsTitle");
     const pageTitle = document.getElementById("pageTitle");
     const statusBox = document.getElementById("statusBox");
+    const listView = document.getElementById("listView");
     const playerWrap = document.getElementById("playerWrap");
     const playerBar = document.getElementById("playerBar");
     const video = document.getElementById("videoPlayer");
-    const episodesView = document.getElementById("episodesView");
-    const episodesTitle = document.getElementById("episodesTitle");
-    const episodesGrid = document.getElementById("episodesGrid");
-    const listView = document.getElementById("listView");
-    const webFrameWrap = document.getElementById("webFrameWrap");
-    const webFrame = document.getElementById("webFrame");
-    const menuButtons = Array.from(document.querySelectorAll(".menu-btn[data-source]"));
+    const menuButtons = Array.from(document.querySelectorAll(".menu-btn"));
 
     let currentSource = menuButtons[0].dataset.source;
     let currentTitle = menuButtons[0].dataset.title;
     let currentItem = null;
     let currentServerIndex = 0;
+    let currentMode = "list";
     let hls = null;
     let cache = {};
     let historyStack = [];
     let playerUiTimer = null;
-    let tvFallbackTimer = null;
 
-    function setStatus(msg){
+    video.setAttribute("playsinline", "true");
+    video.setAttribute("webkit-playsinline", "true");
+
+    video.addEventListener("loadedmetadata", () => {
+      video.muted = false;
+      video.volume = 1;
+    });
+
+    video.addEventListener("canplay", () => {
+      video.muted = false;
+      video.volume = 1;
+    });
+
+    function setStatus(msg) {
       statusBox.textContent = msg || "";
       statusBox.style.display = msg ? "block" : "none";
     }
 
-    function showPlayerUi(){
+    function clearPlayer() {
+      if (hls) {
+        try { hls.destroy(); } catch(e) {}
+        hls = null;
+      }
+      try { video.pause(); } catch(e) {}
+      video.removeAttribute("src");
+      video.load();
+    }
+
+    function showPlayerUi() {
       playerBar.classList.remove("hide-ui");
-      if(playerUiTimer) clearTimeout(playerUiTimer);
+      if (playerUiTimer) clearTimeout(playerUiTimer);
       playerUiTimer = setTimeout(() => {
-        if(playerWrap.style.display === "block"){
+        if (playerWrap.style.display === "block") {
           playerBar.classList.add("hide-ui");
         }
       }, 2500);
     }
 
-    function clearPlayer(){
-      try{
-        if(tvFallbackTimer){
-          clearTimeout(tvFallbackTimer);
-          tvFallbackTimer = null;
-        }
-        if(hls){
-          hls.stopLoad();
-          hls.detachMedia();
-          hls.destroy();
-          hls = null;
-        }
-      }catch(e){}
-      try{ video.pause(); }catch(e){}
-      try{
-        video.removeAttribute("src");
-        video.src = "";
-        video.load();
-      }catch(e){}
-    }
-
-    function showPlayer(){
-      closeWebFrame();
+    function showPlayer() {
       playerWrap.style.display = "block";
       showPlayerUi();
     }
 
-    function closePlayer(){
-      if(playerUiTimer){
+    function closePlayer() {
+      if (playerUiTimer) {
         clearTimeout(playerUiTimer);
         playerUiTimer = null;
       }
@@ -228,105 +178,75 @@
       playerBar.classList.remove("hide-ui");
     }
 
-    function openWebFrame(url){
-      if(!url) return;
-      closePlayer();
-      webFrame.src = url;
-      webFrameWrap.style.display = "block";
-    }
-
-    function closeWebFrame(){
-      webFrame.src = "about:blank";
-      webFrameWrap.style.display = "none";
-    }
-
-    function openMx(url){
-      if(!url) return;
-      window.location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
-    }
-
-    function openBestAndroidPlayer(url){
-      if(!url) return;
-      try{
+    function openExternalPlayer(url) {
+      if (!url) return;
+      try {
         const u = new URL(url);
-        window.location.href =
+        location.href =
           "intent://" + u.host + u.pathname + u.search +
-          "#Intent;scheme=" + u.protocol.replace(":","") +
+          "#Intent;scheme=" + u.protocol.replace(":", "") +
           ";action=android.intent.action.VIEW;type=video/*;end";
-
-        setTimeout(() => {
-          openMx(url);
-        }, 1200);
-      }catch(e){
-        openMx(url);
+      } catch (e) {
+        location.href = url;
       }
     }
 
-    function getPlayableUrl(item, idx = 0){
-      if(!item) return "";
-      if(item.url) return item.url;
-      if(Array.isArray(item.servers) && item.servers.length){
+    function openMx(url) {
+      if (!url) return;
+      location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
+    }
+
+    function mapServers(arr) {
+      if (!Array.isArray(arr)) return [];
+      return arr.map(s => ({
+        name: s?.name || "",
+        url: s?.url || s?.link || s?.file || s?.source || ""
+      })).filter(s => s.url);
+    }
+
+    function getPlayableUrl(item, idx = 0) {
+      if (!item) return "";
+      if (Array.isArray(item.servers) && item.servers.length) {
         return item.servers[idx]?.url || item.servers[0]?.url || "";
       }
-      return item.link || item.stream || item.source || item.file || "";
+      return item.url || item.link || item.stream || item.source || item.file || "";
     }
 
-    function mapSingleServer(arr){
-      if(!Array.isArray(arr)) return [];
-      const first = arr.find(s => s && (s.url || s.link || s.file || s.source));
-      if(!first) return [];
-      return [{
-        name: first.name || "main",
-        url: first.url || first.link || first.file || first.source || ""
-      }].filter(s => s.url);
-    }
-
-    function mapEpisodeList(arr, fallbackImage = ""){
-      if(!Array.isArray(arr)) return [];
-      return arr.map((ep, i) => ({
-        title: ep.title || ep.name || ep.ep_name || `EP${i + 1}`,
-        image: ep.image || ep.poster || fallbackImage || "",
-        url: ep.url || ep.link || ep.source || ep.stream || ep.file || "",
-        servers: mapSingleServer(ep.servers)
-      })).filter(ep => ep.url || ep.servers.length);
-    }
-
-    function normalizeItems(data){
+    function normalizeItems(data) {
       const out = [];
       const seen = new Set();
 
-      function add(obj){
-        const key = `${obj.type}|${obj.title}|${obj.url || ""}|${obj.source || ""}`.toLowerCase();
-        if(!seen.has(key)){
+      function add(obj) {
+        const key = `${obj.type}|${obj.title}|${obj.url || ""}|${obj.episodes?.length || 0}`.toLowerCase();
+        if (!seen.has(key)) {
           seen.add(key);
           out.push(obj);
         }
       }
 
-      function badTitle(title = ""){
+      function badTitle(title = "") {
         const t = String(title).toLowerCase().trim();
         return t === "main" || t === "backup" || t === "m3u8" || t === "master";
       }
 
-      function walk(node, inheritedImage = ""){
-        if(!node) return;
+      function walk(node, inheritedImage = "") {
+        if (!node) return;
 
-        if(Array.isArray(node)){
+        if (Array.isArray(node)) {
           node.forEach(x => walk(x, inheritedImage));
           return;
         }
 
-        if(typeof node !== "object") return;
+        if (typeof node !== "object") return;
 
         const img = node.image || node.poster || node.logo || node.thumb || inheritedImage || "";
 
-        if(node.type === "menu" && Array.isArray(node.items)){
+        if (node.type === "menu" && Array.isArray(node.items)) {
           node.items.forEach(item => {
             add({
               title: item.title || item.name || "ไม่มีชื่อ",
               image: item.image || item.poster || item.logo || "",
               url: item.source || item.url || item.link || "",
-              source: item.source || item.url || item.link || "",
               servers: [],
               episodes: [],
               type: "source"
@@ -335,38 +255,40 @@
           return;
         }
 
-        if(Array.isArray(node.episodes) && node.episodes.length){
+        if (Array.isArray(node.episodes) && node.episodes.length) {
           add({
             title: node.title || node.name || "ไม่มีชื่อ",
             image: img,
-            url: "",
-            source: "",
+            url: node.url || node.link || node.source || "",
             servers: [],
-            episodes: mapEpisodeList(node.episodes, img),
-            type: "series"
+            type: "series",
+            episodes: node.episodes.map((ep, i) => ({
+              title: ep.title || ep.name || ep.ep_name || `EP${i + 1}`,
+              image: ep.image || ep.poster || img || "",
+              url: ep.url || ep.link || ep.source || ep.stream || ep.file || "",
+              servers: mapServers(ep.servers)
+            }))
           });
           return;
         }
 
         const title = node.title || node.name || node.ep_name || node.episode || "";
         const url = node.url || node.link || node.stream || node.source || node.file || "";
-        const source = node.source || "";
-        const servers = mapSingleServer(node.servers);
+        const servers = mapServers(node.servers);
 
-        if(title && !badTitle(title) && (url || source || servers.length)){
+        if (title && !badTitle(title) && (url || servers.length)) {
           add({
             title,
             image: img,
             url: url || servers[0]?.url || "",
-            source,
-            servers,
+            servers: [],
             episodes: [],
-            type: source && !url && !servers.length ? "source" : "video"
+            type: "video"
           });
         }
 
         Object.values(node).forEach(v => {
-          if(Array.isArray(v) || (v && typeof v === "object")){
+          if (Array.isArray(v) || (v && typeof v === "object")) {
             walk(v, img);
           }
         });
@@ -376,18 +298,17 @@
       return out;
     }
 
-    async function loadSource(sourceUrl){
-      if(cache[sourceUrl]) return cache[sourceUrl];
+    async function loadSource(sourceUrl) {
+      if (cache[sourceUrl]) return cache[sourceUrl];
 
       const lower = sourceUrl.toLowerCase();
 
-      if(lower.endsWith(".m3u8") && !lower.includes(".json")){
+      if (lower.endsWith(".m3u8") && !lower.includes(".json")) {
         const direct = [{
           title: "Live Stream",
           image: "",
           url: sourceUrl,
-          source: "",
-          servers: [{name:"main", url:sourceUrl}],
+          servers: [],
           episodes: [],
           type: "video"
         }];
@@ -396,62 +317,42 @@
       }
 
       const res = await fetch(sourceUrl);
-      if(!res.ok) throw new Error("โหลดไฟล์ไม่สำเร็จ: " + res.status);
+      if (!res.ok) {
+        throw new Error("โหลดไฟล์ไม่สำเร็จ: " + res.status);
+      }
 
       const text = await res.text();
       const trimmed = text.trim();
-      if(!trimmed) return [];
+
+      if (!trimmed) return [];
 
       let result = [];
 
-      if(trimmed.startsWith("{") || trimmed.startsWith("[")){
-        result = normalizeItems(JSON.parse(text));
-      } else if(trimmed.includes("#EXTM3U") || trimmed.includes("#EXTINF")) {
+      if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
+        const json = JSON.parse(text);
+        result = normalizeItems(json);
+      } else if (trimmed.includes("#EXTM3U") || trimmed.includes("#EXTINF")) {
         const lines = text.split(/\r?\n/);
         let current = null;
-        const tvSeen = new Set();
 
-        for(const raw of lines){
+        for (const raw of lines) {
           const line = raw.trim();
-          if(!line) continue;
+          if (!line) continue;
 
-          if(line.startsWith("#EXTINF:")){
+          if (line.startsWith("#EXTINF:")) {
             const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
             const name = line.split(",").pop()?.trim() || "ไม่มีชื่อ";
             current = {
               title: name,
               image: logoMatch ? logoMatch[1] : "",
               url: "",
-              source: "",
               servers: [],
               episodes: [],
               type: "video"
             };
-          } else if(!line.startsWith("#") && current){
-            const rawKey = current.title.toLowerCase().trim();
-            const cleanKey = rawKey
-              .replace(/backup/gi, "")
-              .replace(/bkp/gi, "")
-              .replace(/สำรอง/gi, "")
-              .replace(/[^a-z0-9ก-๙]/gi, "")
-              .trim();
-
-            const isBackup =
-              rawKey.includes("backup") ||
-              rawKey.includes("bkp") ||
-              rawKey.includes("สำรอง") ||
-              rawKey === "main" ||
-              rawKey === "m3u8" ||
-              rawKey.endsWith("-bkp") ||
-              rawKey.endsWith("_bkp") ||
-              rawKey.endsWith(" bkp");
-
-            if(!isBackup && cleanKey && !tvSeen.has(cleanKey)){
-              current.url = line;
-              current.servers = [{name:"main", url:line}];
-              result.push(current);
-              tvSeen.add(cleanKey);
-            }
+          } else if (!line.startsWith("#") && current) {
+            current.url = line;
+            result.push(current);
             current = null;
           }
         }
@@ -461,16 +362,75 @@
       return result;
     }
 
-    function showEpisodes(seriesItem){
+    function renderGrid(list) {
+      currentMode = "list";
+      listView.style.display = "block";
+      epsWrap.style.display = "none";
+      grid.innerHTML = "";
+
+      if (!list.length) {
+        grid.innerHTML = `<div class="empty">ไม่พบรายการ</div>`;
+        return;
+      }
+
+      const isTV = currentTitle.includes("ทีวี");
+
+      list.forEach(item => {
+        const card = document.createElement("button");
+        card.className = "card" + (isTV ? " tv" : "");
+        card.type = "button";
+
+        card.innerHTML = `
+          ${item.image
+            ? `<img src="${item.image}" alt="" loading="lazy" onerror="this.style.display='none'">`
+            : `<div style="height:${isTV ? 140 : 170}px;background:#000;"></div>`
+          }
+          <div class="card-body">
+            <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
+          </div>
+        `;
+
+        const runOpen = async () => {
+          if (item.type === "source") {
+            historyStack.push({ title: currentTitle, source: currentSource, mode: currentMode });
+            currentSource = item.url;
+            currentTitle = item.title || currentTitle;
+            pageTitle.textContent = currentTitle;
+            await loadCurrentMenu();
+            return;
+          }
+
+          if (item.type === "series" && item.episodes && item.episodes.length) {
+            historyStack.push({ title: currentTitle, source: currentSource, mode: currentMode });
+            showEpisodes(item);
+            return;
+          }
+
+          playItem(item, 0);
+        };
+
+        card.onclick = runOpen;
+        card.onmousedown = (e) => {
+          e.preventDefault();
+          runOpen();
+        };
+        card.ontouchstart = () => runOpen();
+
+        grid.appendChild(card);
+      });
+    }
+
+    function showEpisodes(seriesItem) {
+      currentMode = "episodes";
       listView.style.display = "none";
-      episodesView.style.display = "block";
-      episodesTitle.textContent = seriesItem.title || "ตอนทั้งหมด";
-      episodesGrid.innerHTML = "";
+      epsWrap.style.display = "block";
+      epsTitle.textContent = seriesItem.title || "ตอนทั้งหมด";
+      epsGrid.innerHTML = "";
 
-      const eps = Array.isArray(seriesItem.episodes) ? seriesItem.episodes : [];
+      const eps = Array.isArray(seriesItem.episodes) ? [...seriesItem.episodes].reverse() : [];
 
-      if(!eps.length){
-        episodesGrid.innerHTML = `<div style="padding:20px;color:#aaa">ไม่พบตอน</div>`;
+      if (!eps.length) {
+        epsGrid.innerHTML = `<div class="empty">ไม่พบตอน</div>`;
         return;
       }
 
@@ -491,245 +451,130 @@
           e.preventDefault();
           runPlay();
         };
-
-        episodesGrid.appendChild(btn);
-      });
-    }
-
-    function renderGrid(list){
-      listView.style.display = "block";
-      episodesView.style.display = "none";
-      grid.innerHTML = "";
-
-      if(!list.length){
-        grid.innerHTML = `<div style="padding:20px;color:#aaa">ไม่พบรายการ</div>`;
-        return;
-      }
-
-      const isTV = currentTitle.includes("ทีวี");
-
-      let finalList = list;
-
-      if(isTV){
-        const seen = new Set();
-
-        finalList = list
-          .filter(item => {
-            const rawTitle = String(item.title || "").trim();
-            const title = rawTitle.toLowerCase();
-
-            if (
-              title.includes("backup") ||
-              title.includes("bkp") ||
-              title.includes("สำรอง") ||
-              title === "main" ||
-              title === "m3u8" ||
-              title.endsWith("-bkp") ||
-              title.endsWith("_bkp") ||
-              title.endsWith(" bkp")
-            ) {
-              return false;
-            }
-
-            const cleanKey = title
-              .replace(/backup/gi, "")
-              .replace(/bkp/gi, "")
-              .replace(/สำรอง/gi, "")
-              .replace(/[^a-z0-9ก-๙]/gi, "")
-              .trim();
-
-            if(!cleanKey) return false;
-            if(seen.has(cleanKey)) return false;
-
-            seen.add(cleanKey);
-            return true;
-          })
-          .map(item => ({
-            ...item,
-            servers: item.servers?.length ? [item.servers[0]] : []
-          }));
-      }
-
-      finalList.forEach(item => {
-        const card = document.createElement("button");
-        card.className = "card" + (isTV ? " tv" : "");
-        card.type = "button";
-
-        card.innerHTML = `
-          ${item.image
-            ? `<img src="${item.image}" alt="" loading="lazy" onerror="this.style.display='none'">`
-            : `<div style="height:${isTV ? 140 : 180}px;background:#000;"></div>`
+        btn.onkeydown = (e) => {
+          if (e.key === "Enter" || e.key === " " || e.keyCode === 13 || e.keyCode === 32 || e.keyCode === 23) {
+            e.preventDefault();
+            runPlay();
           }
-          <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
-          <div class="badge">${
-            item.type === "source" ? "หมวดย่อย" :
-            item.type === "series" ? "ตอนทั้งหมด" :
-            "เล่น"
-          }</div>
-        `;
-
-        const runOpen = async () => {
-          if(item.type === "source"){
-            historyStack.push({ kind:"menu", title: currentTitle, source: currentSource });
-            currentSource = item.source || item.url;
-            currentTitle = item.title || currentTitle;
-            pageTitle.textContent = currentTitle;
-            await loadCurrentMenu();
-            return;
+        };
+        btn.onkeyup = (e) => {
+          if (e.key === "Enter" || e.key === " " || e.keyCode === 13 || e.keyCode === 32 || e.keyCode === 23) {
+            e.preventDefault();
+            runPlay();
           }
-
-          if(item.type === "series"){
-            historyStack.push({ kind:"episodes" });
-            showEpisodes(item);
-            return;
-          }
-
-          playItem(item, 0);
         };
 
-        card.onclick = runOpen;
-        card.onmousedown = (e) => {
-          e.preventDefault();
-          runOpen();
-        };
-        card.ontouchstart = () => runOpen();
-
-        grid.appendChild(card);
+        epsGrid.appendChild(btn);
       });
+
+      setTimeout(() => {
+        const firstBtn = epsGrid.querySelector(".ep-btn");
+        if (firstBtn) {
+          firstBtn.focus();
+          firstBtn.scrollIntoView({ block: "center" });
+        }
+      }, 100);
     }
 
-    function tryStartVideoWithSound(url, fallbackFn){
+    function tryStartVideoWithSound(url, fallbackFn) {
       video.muted = false;
       video.volume = 1;
 
       const p = video.play();
-      if(p && typeof p.then === "function"){
-        p.then(() => {}).catch(() => {
+      if (p && typeof p.then === "function") {
+        p.then(() => {
+        }).catch(() => {
           video.muted = true;
           video.play().then(() => {
             setTimeout(() => {
               video.muted = false;
               video.volume = 1;
-            }, 400);
+            }, 500);
           }).catch(() => {
-            if(fallbackFn) fallbackFn(url);
+            if (fallbackFn) fallbackFn(url);
           });
         });
       }
     }
 
-    function createHls(){
-      return new Hls({
-        enableWorker: true,
-        autoStartLoad: true,
-        maxBufferLength: 8,
-        maxMaxBufferLength: 12,
-        backBufferLength: 4,
-        capLevelToPlayerSize: true
-      });
+    async function detectStreamType(url) {
+      try {
+        const res = await fetch(url);
+        const text = await res.text();
+        const trimmed = text.trim();
+
+        if (trimmed.startsWith("#EXTM3U") || trimmed.includes("#EXT-X-STREAM-INF")) {
+          return "hls";
+        }
+
+        if (trimmed.startsWith("<!DOCTYPE html") || trimmed.startsWith("<html")) {
+          return "html";
+        }
+
+        return "unknown";
+      } catch (e) {
+        return "unknown";
+      }
     }
 
-    async function playTv(url){
-      if(!url) return;
-      showPlayer();
-
-      if(url.toLowerCase().includes(".m3u8") && Hls.isSupported()){
-        hls = createHls();
-        hls.loadSource(url);
-        hls.attachMedia(video);
-
-        hls.on(Hls.Events.MANIFEST_PARSED, () => {
-          tryStartVideoWithSound(url, openBestAndroidPlayer);
-
-          tvFallbackTimer = setTimeout(() => {
-            if(video.readyState < 2 || video.paused){
-              openBestAndroidPlayer(url);
-            }
-          }, 3500);
-        });
-
-        hls.on(Hls.Events.ERROR, (e, data) => {
-          if(data?.fatal){
-            openBestAndroidPlayer(url);
-          }
-        });
-        return;
-      }
-
-      if(url.match(/\.(mp4|mkv|avi|mov)(\?.*)?$/i)){
-        video.src = url;
-        tryStartVideoWithSound(url, openBestAndroidPlayer);
-        tvFallbackTimer = setTimeout(() => {
-          if(video.readyState < 2 || video.paused){
-            openBestAndroidPlayer(url);
-          }
-        }, 3000);
-        return;
-      }
-
-      openBestAndroidPlayer(url);
-    }
-
-    async function playItem(item, serverIndex = 0){
+    async function playItem(item, serverIndex = 0) {
       currentItem = item;
       currentServerIndex = serverIndex;
       clearPlayer();
 
       const url = getPlayableUrl(item, serverIndex);
-      if(!url){
+      if (!url) {
         setStatus("ไม่พบลิงก์เล่น");
         return;
       }
 
-      const isTV = currentTitle.includes("ทีวี");
-      const isMovie = currentTitle.includes("หนัง");
+      const lower = url.toLowerCase();
+      const isSeries =
+        currentTitle.includes("ซีรีส์") ||
+        currentTitle.includes("Flixmono") ||
+        (item.title || "").toUpperCase().includes("EP");
+
+      const isMySeries =
+        currentTitle.includes("ซีรีส์") &&
+        !currentTitle.includes("Flixmono");
+
       const isFlix = currentTitle.includes("Flixmono");
-      const isMySeries = currentTitle.includes("ซีรีส์");
 
-      if(isTV){
-        await playTv(url);
-        return;
-      }
-
-      if(isMovie){
-        openBestAndroidPlayer(url);
-        return;
-      }
-
-      if(isMySeries){
-        const lower = url.toLowerCase();
-
-        if(
-          lower.includes(".m3u8") ||
-          lower.match(/\.(mp4|mkv|avi|mov)$/)
-        ){
-          openBestAndroidPlayer(url);
-        }else{
-          openWebFrame(url);
+      // MySeries = ใช้ player แบบเดียวกับ Flix
+      if (isMySeries || isFlix) {
+        if (
+          lower.includes("/play/") ||
+          lower.includes("/embed/") ||
+          lower.includes("ok-hd.com/play/") ||
+          lower.includes("top-cdn.com/play/")
+        ) {
+          location.href = url;
+          return;
         }
-        return;
-      }
-
-      if(isFlix){
-        const lower = url.toLowerCase();
 
         if (lower.includes(".m3u8")) {
           showPlayer();
 
           if (Hls.isSupported()) {
-            hls = createHls();
+            hls = new Hls({
+              enableWorker: true,
+              autoStartLoad: true,
+              maxBufferLength: 20,
+              maxMaxBufferLength: 30
+            });
+
             hls.loadSource(url);
             hls.attachMedia(video);
 
             hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              tryStartVideoWithSound(url, openBestAndroidPlayer);
+              tryStartVideoWithSound(url, openExternalPlayer);
             });
 
             hls.on(Hls.Events.ERROR, (e, data) => {
-              if (data?.fatal) openBestAndroidPlayer(url);
+              if (data?.fatal) openExternalPlayer(url);
             });
           } else {
-            openBestAndroidPlayer(url);
+            openExternalPlayer(url);
           }
           return;
         }
@@ -737,28 +582,179 @@
         if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
           showPlayer();
           video.src = url;
-          tryStartVideoWithSound(url, openBestAndroidPlayer);
+          tryStartVideoWithSound(url, openExternalPlayer);
           return;
         }
 
-        window.location.href = url;
+        const detectedSeries = await detectStreamType(url);
+
+        if (detectedSeries === "hls") {
+          showPlayer();
+
+          if (Hls.isSupported()) {
+            hls = new Hls({
+              enableWorker: true,
+              autoStartLoad: true,
+              maxBufferLength: 20,
+              maxMaxBufferLength: 30
+            });
+
+            hls.loadSource(url);
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              tryStartVideoWithSound(url, openExternalPlayer);
+            });
+
+            hls.on(Hls.Events.ERROR, (e, data) => {
+              if (data?.fatal) openExternalPlayer(url);
+            });
+          } else {
+            openExternalPlayer(url);
+          }
+          return;
+        }
+
+        if (detectedSeries === "html") {
+          location.href = url;
+          return;
+        }
+
+        openExternalPlayer(url);
         return;
       }
 
-      openBestAndroidPlayer(url);
+      if (isSeries) {
+        if (
+          lower.includes("/play/") ||
+          lower.includes("/embed/") ||
+          lower.includes("ok-hd.com/play/") ||
+          lower.includes("top-cdn.com/play/")
+        ) {
+          location.href = url;
+          return;
+        }
+
+        if (lower.includes(".m3u8")) {
+          showPlayer();
+
+          if (Hls.isSupported()) {
+            hls = new Hls({
+              enableWorker: true,
+              autoStartLoad: true,
+              maxBufferLength: 20,
+              maxMaxBufferLength: 30
+            });
+
+            hls.loadSource(url);
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              tryStartVideoWithSound(url, openExternalPlayer);
+            });
+
+            hls.on(Hls.Events.ERROR, (e, data) => {
+              if (data?.fatal) openExternalPlayer(url);
+            });
+          } else {
+            openExternalPlayer(url);
+          }
+          return;
+        }
+
+        if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
+          showPlayer();
+          video.src = url;
+          tryStartVideoWithSound(url, openExternalPlayer);
+          return;
+        }
+
+        const detected = await detectStreamType(url);
+
+        if (detected === "hls") {
+          showPlayer();
+
+          if (Hls.isSupported()) {
+            hls = new Hls({
+              enableWorker: true,
+              autoStartLoad: true,
+              maxBufferLength: 20,
+              maxMaxBufferLength: 30
+            });
+
+            hls.loadSource(url);
+            hls.attachMedia(video);
+
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              tryStartVideoWithSound(url, openExternalPlayer);
+            });
+
+            hls.on(Hls.Events.ERROR, (e, data) => {
+              if (data?.fatal) openExternalPlayer(url);
+            });
+          } else {
+            openExternalPlayer(url);
+          }
+          return;
+        }
+
+        if (detected === "html") {
+          location.href = url;
+          return;
+        }
+
+        openExternalPlayer(url);
+        return;
+      }
+
+      if (lower.includes(".m3u8")) {
+        showPlayer();
+
+        if (Hls.isSupported()) {
+          hls = new Hls({
+            enableWorker: true,
+            autoStartLoad: true,
+            maxBufferLength: 20,
+            maxMaxBufferLength: 30
+          });
+
+          hls.loadSource(url);
+          hls.attachMedia(video);
+
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            tryStartVideoWithSound(url, openExternalPlayer);
+          });
+
+          hls.on(Hls.Events.ERROR, (e, data) => {
+            if (data?.fatal) openExternalPlayer(url);
+          });
+        } else {
+          openExternalPlayer(url);
+        }
+        return;
+      }
+
+      if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
+        showPlayer();
+        video.src = url;
+        tryStartVideoWithSound(url, openExternalPlayer);
+        return;
+      }
+
+      location.href = url;
     }
 
-    async function loadCurrentMenu(){
-      try{
+    async function loadCurrentMenu() {
+      try {
         setStatus("กำลังโหลดรายการ...");
         const list = await loadSource(currentSource);
         renderGrid(list);
         pageTitle.textContent = currentTitle;
         setStatus(`โหลดสำเร็จ: ${list.length} รายการ`);
-      }catch(e){
+      } catch (e) {
         console.error(e);
         setStatus("โหลดรายการไม่สำเร็จ\n" + e.message);
-        grid.innerHTML = `<div style="padding:20px;color:#aaa">โหลดรายการไม่สำเร็จ</div>`;
+        grid.innerHTML = `<div class="empty">โหลดรายการไม่สำเร็จ</div>`;
       }
     }
 
@@ -766,12 +762,17 @@
       btn.onclick = async () => {
         menuButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
+
+        if (btn.dataset.link) {
+          location.href = btn.dataset.link;
+          return;
+        }
+
         historyStack = [];
         currentSource = btn.dataset.source || "";
         currentTitle = btn.dataset.title || btn.textContent.trim();
         pageTitle.textContent = currentTitle;
         closePlayer();
-        closeWebFrame();
         await loadCurrentMenu();
       };
     });
@@ -781,21 +782,15 @@
     document.getElementById("backBtn").onclick = async () => {
       closePlayer();
 
-      if(webFrameWrap.style.display === "block"){
-        closeWebFrame();
+      if (currentMode === "episodes") {
+        epsWrap.style.display = "none";
+        listView.style.display = "block";
+        currentMode = "list";
         return;
       }
 
       const prev = historyStack.pop();
-      if(!prev) return;
-
-      if(prev.kind === "episodes"){
-        episodesView.style.display = "none";
-        listView.style.display = "block";
-        return;
-      }
-
-      if(prev.kind === "menu" && prev.source){
+      if (prev && prev.source) {
         currentSource = prev.source;
         currentTitle = prev.title;
         pageTitle.textContent = currentTitle;
@@ -803,12 +798,18 @@
       }
     };
 
-    document.getElementById("playerHomeBtn").onclick = closePlayer;
+    document.getElementById("playerHomeBtn").onclick = () => {
+      closePlayer();
+      epsWrap.style.display = "none";
+      listView.style.display = "block";
+      currentMode = "list";
+    };
+
     document.getElementById("playerCloseBtn").onclick = closePlayer;
 
     document.getElementById("playerExternalBtn").onclick = () => {
       const url = getPlayableUrl(currentItem, currentServerIndex);
-      openBestAndroidPlayer(url);
+      openExternalPlayer(url);
     };
 
     document.getElementById("playerMxBtn").onclick = () => {
@@ -816,27 +817,18 @@
       openMx(url);
     };
 
-    document.getElementById("webHomeBtn").onclick = closeWebFrame;
-    document.getElementById("webCloseBtn").onclick = closeWebFrame;
-
     ["mousemove", "mousedown", "touchstart"].forEach(evt => {
       playerWrap.addEventListener(evt, () => {
-        if(playerWrap.style.display === "block") showPlayerUi();
+        if (playerWrap.style.display === "block") showPlayerUi();
       });
     });
 
     document.addEventListener("keydown", (e) => {
-      if(webFrameWrap.style.display === "block"){
-        if(e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009){
-          e.preventDefault();
-          closeWebFrame();
-          return;
-        }
-      }
+      if (playerWrap.style.display !== "block") return;
 
-      if(playerWrap.style.display !== "block") return;
       showPlayerUi();
-      if(e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009){
+
+      if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
         e.preventDefault();
         closePlayer();
       }
