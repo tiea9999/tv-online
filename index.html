@@ -62,7 +62,7 @@
 
       <button class="menu-btn active" data-title="📺 ทีวี" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
       <button class="menu-btn" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
-      <button class="menu-btn" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Goseries.json">📺 ซีรีส์</button>
+      <button class="menu-btn" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/MySeries.json">📺 ซีรีส์</button>
       <button class="menu-btn" data-title="🎞️ Flixmono" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json">🎞️ Flixmono</button>
       <button class="menu-btn" data-link="live.html">⚽ ตารางแข่งขัน</button>
     </aside>
@@ -71,7 +71,7 @@
       <div class="topbar">
         <div>
           <div id="pageTitle" class="title">📺 ทีวี</div>
-          <div class="sub">MySeries และ Flixmono ใช้ player แบบเดียวกัน</div>
+          <div class="sub">หนังเปิด player เครื่องก่อน ลดโอกาสเด้ง</div>
         </div>
         <div class="tools">
           <button id="reloadBtn" class="top-btn">รีโหลด</button>
@@ -128,6 +128,22 @@
     video.setAttribute("playsinline", "true");
     video.setAttribute("webkit-playsinline", "true");
 
+    window.addEventListener("error", (e) => {
+      console.error("JS ERROR:", e.message);
+    });
+
+    window.addEventListener("unhandledrejection", (e) => {
+      console.error("PROMISE ERROR:", e.reason);
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      try {
+        if (!hls) return;
+        if (document.visibilityState === "hidden") hls.stopLoad();
+        else hls.startLoad();
+      } catch(e) {}
+    });
+
     video.addEventListener("loadedmetadata", () => {
       video.muted = false;
       video.volume = 1;
@@ -144,13 +160,21 @@
     }
 
     function clearPlayer() {
-      if (hls) {
-        try { hls.destroy(); } catch(e) {}
-        hls = null;
-      }
+      try {
+        if (hls) {
+          hls.stopLoad();
+          hls.detachMedia();
+          hls.destroy();
+          hls = null;
+        }
+      } catch(e) {}
+
       try { video.pause(); } catch(e) {}
-      video.removeAttribute("src");
-      video.load();
+      try {
+        video.removeAttribute("src");
+        video.src = "";
+        video.load();
+      } catch(e) {}
     }
 
     function showPlayerUi() {
@@ -517,6 +541,18 @@
       }
     }
 
+    function createHls() {
+      return new Hls({
+        enableWorker: true,
+        autoStartLoad: true,
+        maxBufferLength: 10,
+        maxMaxBufferLength: 15,
+        backBufferLength: 5,
+        liveSyncDurationCount: 3,
+        capLevelToPlayerSize: true
+      });
+    }
+
     async function playItem(item, serverIndex = 0) {
       currentItem = item;
       currentServerIndex = serverIndex;
@@ -539,8 +575,15 @@
         !currentTitle.includes("Flixmono");
 
       const isFlix = currentTitle.includes("Flixmono");
+      const isMovie = currentTitle.includes("หนัง");
 
-      // MySeries = ใช้ player แบบเดียวกับ Flix
+      // หนัง = เปิด player เครื่องก่อน ลดเด้ง
+      if (isMovie) {
+        openExternalPlayer(url);
+        return;
+      }
+
+      // MySeries + Flix = ใช้ player เดิม
       if (isMySeries || isFlix) {
         if (
           lower.includes("/play/") ||
@@ -556,13 +599,7 @@
           showPlayer();
 
           if (Hls.isSupported()) {
-            hls = new Hls({
-              enableWorker: true,
-              autoStartLoad: true,
-              maxBufferLength: 20,
-              maxMaxBufferLength: 30
-            });
-
+            hls = createHls();
             hls.loadSource(url);
             hls.attachMedia(video);
 
@@ -592,13 +629,7 @@
           showPlayer();
 
           if (Hls.isSupported()) {
-            hls = new Hls({
-              enableWorker: true,
-              autoStartLoad: true,
-              maxBufferLength: 20,
-              maxMaxBufferLength: 30
-            });
-
+            hls = createHls();
             hls.loadSource(url);
             hls.attachMedia(video);
 
@@ -639,13 +670,7 @@
           showPlayer();
 
           if (Hls.isSupported()) {
-            hls = new Hls({
-              enableWorker: true,
-              autoStartLoad: true,
-              maxBufferLength: 20,
-              maxMaxBufferLength: 30
-            });
-
+            hls = createHls();
             hls.loadSource(url);
             hls.attachMedia(video);
 
@@ -675,13 +700,7 @@
           showPlayer();
 
           if (Hls.isSupported()) {
-            hls = new Hls({
-              enableWorker: true,
-              autoStartLoad: true,
-              maxBufferLength: 20,
-              maxMaxBufferLength: 30
-            });
-
+            hls = createHls();
             hls.loadSource(url);
             hls.attachMedia(video);
 
@@ -707,17 +726,12 @@
         return;
       }
 
+      // ทีวี
       if (lower.includes(".m3u8")) {
         showPlayer();
 
         if (Hls.isSupported()) {
-          hls = new Hls({
-            enableWorker: true,
-            autoStartLoad: true,
-            maxBufferLength: 20,
-            maxMaxBufferLength: 30
-          });
-
+          hls = createHls();
           hls.loadSource(url);
           hls.attachMedia(video);
 
