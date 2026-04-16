@@ -15,9 +15,7 @@ html,body{
   font-family:Arial,sans-serif;
   overflow-x:hidden;
 }
-body{
-  min-height:100vh;
-}
+body{min-height:100vh}
 
 .topbar{
   position:sticky;
@@ -32,19 +30,16 @@ body{
   border-bottom:1px solid #222;
   flex-wrap:wrap;
 }
-
 .title{
   font-size:22px;
   font-weight:bold;
   color:#00e5ff;
 }
-
 .actions{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
 }
-
 .btn-top{
   display:inline-flex;
   align-items:center;
@@ -60,20 +55,8 @@ body{
   font-size:14px;
   font-weight:bold;
 }
-
-.btn-top.red{
-  background:#e53935;
-}
-
-.btn-top.gray{
-  background:#333;
-}
-
-.btn-top:focus,
-.btn-top:hover{
-  outline:none;
-  box-shadow:0 0 0 3px rgba(255,255,255,.25);
-}
+.btn-top.gray{background:#333}
+.btn-top.red{background:#e53935}
 
 .filterbar{
   padding:10px 12px;
@@ -83,7 +66,6 @@ body{
   gap:8px;
   flex-wrap:wrap;
 }
-
 .tab{
   min-height:40px;
   padding:8px 12px;
@@ -94,10 +76,7 @@ body{
   cursor:pointer;
   font-size:13px;
 }
-
-.tab.active{
-  background:#22c55e;
-}
+.tab.active{background:#22c55e}
 
 .container{
   width:100%;
@@ -105,14 +84,12 @@ body{
   margin:0 auto;
   padding:12px;
 }
-
 .status{
   padding:20px 12px;
   text-align:center;
   color:#bbb;
   font-size:15px;
 }
-
 .league{
   margin-top:14px;
   background:#4b5b6b;
@@ -122,7 +99,6 @@ body{
   font-weight:bold;
   font-size:16px;
 }
-
 .row{
   display:flex;
   align-items:center;
@@ -132,20 +108,12 @@ body{
   color:#111;
   border-bottom:1px solid #eee;
 }
-
-.row:last-child{
-  border-radius:0 0 10px 10px;
-}
-
+.row:last-child{border-radius:0 0 10px 10px}
 .row.live{
   background:#fff2f2;
   border-left:4px solid #e53935;
 }
-
-.row.upcoming{
-  background:#f8fafc;
-}
-
+.row.upcoming{background:#f8fafc}
 .time{
   width:120px;
   flex-shrink:0;
@@ -153,12 +121,10 @@ body{
   color:#555;
   white-space:nowrap;
 }
-
 .time.live-text{
   color:#e53935;
   font-weight:bold;
 }
-
 .match{
   flex:1;
   min-width:0;
@@ -167,7 +133,6 @@ body{
   gap:8px;
   align-items:center;
 }
-
 .team{
   display:flex;
   align-items:center;
@@ -175,39 +140,30 @@ body{
   min-width:0;
   font-size:15px;
 }
-
 .team.home{
   justify-content:flex-end;
   text-align:right;
 }
-
 .team.away{
   justify-content:flex-start;
   text-align:left;
 }
-
 .team img{
   width:24px;
   height:24px;
   object-fit:contain;
   flex-shrink:0;
 }
-
-.team span{
-  word-break:break-word;
-}
-
+.team span{word-break:break-word}
 .vs{
   text-align:center;
   font-weight:bold;
 }
-
 .servers{
   width:190px;
   flex-shrink:0;
   text-align:right;
 }
-
 .btn-watch{
   display:inline-flex;
   align-items:center;
@@ -223,103 +179,28 @@ body{
   font-size:13px;
   font-weight:bold;
 }
+.btn-watch.server{background:#f59e0b}
 
-.btn-watch.server{
-  background:#f59e0b;
+@media (max-width:900px){
+  .row{gap:8px;padding:10px}
+  .time{width:95px;font-size:13px}
+  .match{grid-template-columns:1fr 40px 1fr}
+  .team{font-size:14px}
+  .servers{width:120px}
+  .btn-watch{font-size:12px;min-height:36px;padding:7px 10px}
 }
-
-.empty{
-  background:#fff;
-  color:#666;
-  padding:16px;
-  border-radius:0 0 10px 10px;
+@media (max-width:700px){
+  .row{flex-direction:column;align-items:stretch}
+  .time{width:100%}
+  .match{width:100%;grid-template-columns:1fr 34px 1fr}
+  .servers{width:100%;text-align:left}
 }
-
-@media (max-width: 900px){
-  .title{font-size:20px}
-  .row{
-    gap:8px;
-    padding:10px;
-  }
-  .time{
-    width:95px;
-    font-size:13px;
-  }
-  .match{
-    grid-template-columns:1fr 40px 1fr;
-  }
-  .team{
-    font-size:14px;
-  }
-  .servers{
-    width:120px;
-  }
-  .btn-watch{
-    font-size:12px;
-    min-height:36px;
-    padding:7px 10px;
-  }
-}
-
-@media (max-width: 700px){
-  .row{
-    flex-direction:column;
-    align-items:stretch;
-  }
-  .time{
-    width:100%;
-  }
-  .match{
-    width:100%;
-    grid-template-columns:1fr 34px 1fr;
-  }
-  .servers{
-    width:100%;
-    text-align:left;
-  }
-}
-
-@media (max-width: 520px){
-  .topbar{
-    padding:10px;
-  }
-  .title{
-    font-size:18px;
-  }
-  .btn-top{
-    min-height:38px;
-    padding:8px 10px;
-    font-size:12px;
-  }
-  .league{
-    font-size:15px;
-    padding:10px;
-  }
-  .team{
-    font-size:13px;
-  }
-  .team img{
-    width:20px;
-    height:20px;
-  }
-}
-
-@media (min-width: 1400px){
-  .container{
-    max-width:1800px;
-  }
-  .league{
-    font-size:18px;
-  }
-  .row{
-    padding:14px;
-  }
-  .team{
-    font-size:17px;
-  }
-  .btn-watch{
-    font-size:14px;
-  }
+@media (max-width:520px){
+  .title{font-size:18px}
+  .btn-top{min-height:38px;padding:8px 10px;font-size:12px}
+  .league{font-size:15px;padding:10px}
+  .team{font-size:13px}
+  .team img{width:20px;height:20px}
 }
 </style>
 </head>
@@ -330,19 +211,19 @@ body{
   <div class="actions">
     <button class="btn-top gray" type="button" onclick="history.back()">⬅ กลับ</button>
     <button class="btn-top red" type="button" onclick="reloadData()">รีโหลด</button>
-    <a class="btn-top" href="https://tiea9999.github.io/tv-online/index.html">🏠 หน้าหลัก</a>
+    <a class="btn-top" href="index.html">🏠 หน้าหลัก</a>
   </div>
 </div>
 
 <div class="filterbar">
-  <button class="tab active" onclick="setSport('all', this)">ทั้งหมด</button>
-  <button class="tab" onclick="setSport('live', this)">🔴 LIVE</button>
-  <button class="tab" onclick="setSport('football', this)">⚽ Football</button>
-  <button class="tab" onclick="setSport('basketball', this)">🏀 Basketball</button>
+  <button class="tab active" data-group="sport" onclick="setSport('all', this)">ทั้งหมด</button>
+  <button class="tab" data-group="sport" onclick="setSport('live', this)">🔴 LIVE</button>
+  <button class="tab" data-group="sport" onclick="setSport('football', this)">⚽ Football</button>
+  <button class="tab" data-group="sport" onclick="setSport('basketball', this)">🏀 Basketball</button>
 
-  <button class="tab active" onclick="setDate(0, this, 'date')">วันนี้</button>
-  <button class="tab" onclick="setDate(1, this, 'date')">พรุ่งนี้</button>
-  <button class="tab" onclick="setDate(2, this, 'date')">วันถัดไป</button>
+  <button class="tab active" data-group="date" onclick="setDate(0, this)">วันนี้</button>
+  <button class="tab" data-group="date" onclick="setDate(1, this)">พรุ่งนี้</button>
+  <button class="tab" data-group="date" onclick="setDate(2, this)">วันถัดไป</button>
 </div>
 
 <div class="container">
@@ -354,12 +235,8 @@ body{
 let currentSport = "all";
 let currentDateOffset = 0;
 let originalData = null;
-let htmlListGlobal = [];
 
 const PLAYLIST_URL = "https://broken-surf-7347.hssmnoy.workers.dev/?url=https://drive.google.com/uc?id=15Ye3NPw0cjNrJGTu2Q2aoqoApOp8GipC&export=download";
-const HTML_URL = "https://broken-surf-7347.hssmnoy.workers.dev/?url=https://embed-xs.bananacake.org/dooball66v2/schedule.html";
-
-const logoCache = {};
 
 async function reloadData(){
   document.getElementById("status").style.display = "block";
@@ -370,17 +247,9 @@ async function reloadData(){
 
 async function load(){
   try{
-    const [jsonRes, htmlRes] = await Promise.all([
-      fetch(PLAYLIST_URL + "&t=" + Date.now()),
-      fetch(HTML_URL + "&t=" + Date.now())
-    ]);
-
-    const data = await jsonRes.json();
-    const html = await htmlRes.text();
-
+    const res = await fetch(PLAYLIST_URL + "&t=" + Date.now());
+    const data = await res.json();
     originalData = normalizeDataShape(data);
-    htmlListGlobal = parseSchedule(html);
-
     applyFilter();
   }catch(e){
     console.error(e);
@@ -395,27 +264,6 @@ function normalizeDataShape(data){
   if (data && Array.isArray(data.data)) return { groups: data.data };
   if (data && Array.isArray(data.result)) return { groups: data.result };
   return { groups: [] };
-}
-
-function parseSchedule(html){
-  const doc = new DOMParser().parseFromString(html, "text/html");
-  const list = [];
-
-  doc.querySelectorAll(".match").forEach(el => {
-    const teams = el.querySelectorAll("span");
-    const imgs = el.querySelectorAll("img");
-
-    if(teams.length >= 2 && imgs.length >= 2){
-      list.push({
-        home: teams[0].innerText.trim(),
-        away: teams[1].innerText.trim(),
-        homeLogo: imgs[0].src,
-        awayLogo: imgs[1].src
-      });
-    }
-  });
-
-  return list;
 }
 
 function parseMatch(name){
@@ -464,7 +312,6 @@ function getMatchStatus(name){
   const now = new Date();
   const [day,month] = dt.date.split("/");
   const [h,m] = dt.time.split(":");
-
   const matchTime = new Date(now.getFullYear(), Number(month)-1, Number(day), Number(h), Number(m), 0, 0);
   const diff = (now - matchTime)/60000;
 
@@ -472,42 +319,6 @@ function getMatchStatus(name){
   if(diff >= 0 && diff <= 120) return {status:"live", time:dt.time};
   if(diff < 0) return {status:"upcoming", time:dt.time};
   return {status:"ended", time:dt.time};
-}
-
-function normalize(name){
-  return String(name || "").toLowerCase().replace(/[^a-z0-9ก-๙]/g,"");
-}
-
-function similarity(a,b){
-  if(!a || !b) return 0;
-  if(a.includes(b) || b.includes(a)) return 1;
-  let m = 0;
-  for(let i=0;i<a.length;i++) if(b.includes(a[i])) m++;
-  return m/Math.max(a.length,b.length);
-}
-
-function findLogos(home,away,list){
-  const key = normalize(home) + normalize(away);
-  if(logoCache[key]) return logoCache[key];
-
-  let best = null, score = 0;
-
-  (list || []).forEach(m=>{
-    const s = similarity(normalize(home),normalize(m.home)) +
-              similarity(normalize(away),normalize(m.away));
-
-    if(s > score){
-      score = s;
-      best = m;
-    }
-  });
-
-  if(score > 1.2 && best){
-    logoCache[key] = {homeLogo:best.homeLogo, awayLogo:best.awayLogo};
-    return logoCache[key];
-  }
-
-  return null;
 }
 
 function applyFilter(){
@@ -636,8 +447,6 @@ function applyFilter(){
 
     l.groups.forEach(match=>{
       const {home,away,time} = parseMatch(match.name);
-      const isSingle = !away || away === "TBD";
-      const logos = findLogos(home,away,htmlListGlobal) || {};
       const matchStatus = getMatchStatus(match.name);
 
       const stationButtons = Array.isArray(match.stations) && match.stations.length
@@ -654,20 +463,10 @@ function applyFilter(){
             ${matchStatus.status === 'live' ? '🔴 ' : ''}${time || '-'}
           </div>
 
-          <div class="match ${isSingle ? 'single' : ''}">
-            <div class="team home">
-              <span>${home || '-'}</span>
-              ${logos.homeLogo ? `<img src="${logos.homeLogo}" alt="">` : ""}
-            </div>
-
-            ${isSingle ? "" : `<div class="vs">vs</div>`}
-
-            ${isSingle ? "" : `
-              <div class="team away">
-                ${logos.awayLogo ? `<img src="${logos.awayLogo}" alt="">` : ""}
-                <span>${away || '-'}</span>
-              </div>
-            `}
+          <div class="match">
+            <div class="team home"><span>${home || '-'}</span></div>
+            <div class="vs">vs</div>
+            <div class="team away"><span>${away || '-'}</span></div>
           </div>
 
           <div class="servers">
@@ -686,7 +485,6 @@ function openMx(url){
 
 function openExternalPlayer(url){
   if(!url) return;
-
   try{
     const u = new URL(url);
     window.location.href =
@@ -708,20 +506,14 @@ function openPlayerByUrl(url){
 }
 
 function setSport(s, el){
-  document.querySelectorAll(".filterbar .tab").forEach(btn=>{
-    if(btn.textContent.includes("วันนี้") || btn.textContent.includes("พรุ่งนี้") || btn.textContent.includes("วันถัดไป")) return;
-  });
-
-  const sportTabs = Array.from(document.querySelectorAll(".filterbar .tab")).slice(0,4);
-  sportTabs.forEach(t => t.classList.remove("active"));
+  document.querySelectorAll('.tab[data-group="sport"]').forEach(btn => btn.classList.remove("active"));
   el.classList.add("active");
   currentSport = s;
   applyFilter();
 }
 
 function setDate(offset, el){
-  const dateTabs = Array.from(document.querySelectorAll(".filterbar .tab")).slice(4);
-  dateTabs.forEach(t => t.classList.remove("active"));
+  document.querySelectorAll('.tab[data-group="date"]').forEach(btn => btn.classList.remove("active"));
   el.classList.add("active");
   currentDateOffset = offset;
   applyFilter();
