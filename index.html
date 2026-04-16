@@ -64,7 +64,7 @@
       <button class="menu-btn" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
       <button class="menu-btn" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/MySeries.json">📺 ซีรีส์</button>
       <button class="menu-btn" data-title="🎞️ Flixmono" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json">🎞️ Flixmono</button>
-      <button class="menu-btn" data-link="live66.html">⚽ ตารางแข่งขัน</button>
+      <button class="menu-btn" data-link="live.html">⚽ ตารางแข่งขัน</button>
     </aside>
 
     <main class="main">
@@ -375,7 +375,33 @@
 
       const isTV = currentTitle.includes("ทีวี");
 
-      list.forEach(item => {
+      let finalList = list;
+
+      if(isTV){
+        const seen = new Set();
+
+        finalList = list.filter(item => {
+          const title = String(item.title || "").toLowerCase();
+
+          if(
+            title.includes("backup") ||
+            title.includes("bkp") ||
+            title.includes("สำรอง") ||
+            title.includes("main") ||
+            title.includes("m3u8")
+          ){
+            return false;
+          }
+
+          const key = title.replace(/[^a-z0-9ก-๙]/gi,"");
+          if(seen.has(key)) return false;
+
+          seen.add(key);
+          return true;
+        });
+      }
+
+      finalList.forEach(item => {
         const card = document.createElement("button");
         card.className = "card" + (isTV ? " tv" : "");
         card.type = "button";
