@@ -35,7 +35,7 @@
       position:fixed;
       top:0;left:0;height:100vh;
       z-index:2000;
-      transform:translateX(-150px);
+      transform:translateX(-168px);
       transition:transform .25s ease;
       overflow-y:auto;
       border-right:1px solid var(--line);
@@ -84,7 +84,7 @@
     .main{
       flex:1;
       padding:16px;
-      margin-left:64px;
+      margin-left:96px;
     }
 
     .hero{
@@ -155,7 +155,7 @@
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
       gap:14px;
-      padding-left:8px;
+      padding-left:24px;
     }
 
     .card{
@@ -332,9 +332,12 @@
     }
 
     @media (max-width:900px){
-      .sidebar{width:170px;transform:translateX(-130px)}
-      .main{margin-left:56px;padding:12px}
-      .grid{grid-template-columns:repeat(auto-fill,minmax(128px,1fr))}
+      .sidebar{width:170px;transform:translateX(-140px)}
+      .main{margin-left:76px;padding:12px}
+      .grid{
+        grid-template-columns:repeat(auto-fill,minmax(128px,1fr));
+        padding-left:16px;
+      }
       .card img{height:165px}
       .card.tv img{height:130px}
     }
@@ -342,7 +345,7 @@
     @media (max-width:600px){
       .title{font-size:22px}
       .sub{font-size:12px}
-      .grid{grid-template-columns:repeat(auto-fill,minmax(116px,1fr));gap:10px}
+      .grid{grid-template-columns:repeat(auto-fill,minmax(116px,1fr));gap:10px;padding-left:10px}
       .card img{height:150px;padding:16px}
       .card-title{font-size:13px}
       .eps-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
@@ -370,7 +373,7 @@
         <div class="topbar">
           <div>
             <div id="pageTitle" class="title">📺 ทีวี</div>
-            <div class="sub">ดีไซน์ใหม่แบบโปร • โลโก้ลอยขึ้นเมื่อชี้ • หนัง ซีรีย์ VIP ไม่มีรูปใช้โลโก้ TIEA IPTV</div>
+            <div class="sub">ดีไซน์ใหม่แบบโปร • ปิด player แล้วย้อนกลับหน้าเดิม • เมนูไม่บังรายการฝั่งซ้าย</div>
           </div>
           <div class="tools">
             <button id="reloadBtn" class="top-btn">รีโหลด</button>
@@ -477,9 +480,7 @@
     sidebarHandle.addEventListener("mouseenter", showSidebar);
     sidebarHandle.addEventListener("click", showSidebar);
     sidebar.addEventListener("mouseleave", () => {
-      if (currentMode === "list" && playerWrap.style.display !== "block") {
-        hideSidebar();
-      }
+      if (currentMode === "list" && playerWrap.style.display !== "block") hideSidebar();
     });
 
     function clearPlayer() {
@@ -511,9 +512,22 @@
         clearTimeout(playerUiTimer);
         playerUiTimer = null;
       }
+
       clearPlayer();
       playerWrap.style.display = "none";
       playerBar.classList.remove("hide-ui");
+
+      if (currentMode === "episodes") {
+        listView.style.display = "none";
+        epsWrap.style.display = "block";
+        setTimeout(() => {
+          const firstBtn = epsGrid.querySelector(".ep-btn");
+          if (firstBtn) firstBtn.focus();
+        }, 80);
+        return;
+      }
+
+      listView.style.display = "block";
 
       if (focusMenu) {
         showSidebar();
@@ -1032,7 +1046,7 @@
 
     document.getElementById("backBtn").onclick = async () => {
       if (playerWrap.style.display === "block") {
-        closePlayer(true);
+        closePlayer(false);
         return;
       }
 
@@ -1040,8 +1054,6 @@
         epsWrap.style.display = "none";
         listView.style.display = "block";
         currentMode = "list";
-        showSidebar();
-        focusFirstMenu();
         return;
       }
 
@@ -1052,16 +1064,11 @@
         currentTitle = prev.title;
         pageTitle.textContent = currentTitle;
         await loadCurrentMenu();
-        showSidebar();
-        focusFirstMenu();
-      } else {
-        showSidebar();
-        focusFirstMenu();
       }
     };
 
     document.getElementById("playerHomeBtn").onclick = () => {
-      closePlayer();
+      closePlayer(false);
       epsWrap.style.display = "none";
       listView.style.display = "block";
       currentMode = "list";
@@ -1069,7 +1076,7 @@
       focusFirstMenu();
     };
 
-    document.getElementById("playerCloseBtn").onclick = () => closePlayer(true);
+    document.getElementById("playerCloseBtn").onclick = () => closePlayer(false);
 
     document.getElementById("playerExternalBtn").onclick = () => {
       const url = getPlayableUrl(currentItem, currentServerIndex);
@@ -1099,7 +1106,7 @@
       if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
         if (playerWrap.style.display === "block") {
           e.preventDefault();
-          closePlayer(true);
+          closePlayer(false);
           return;
         }
 
@@ -1108,8 +1115,6 @@
           epsWrap.style.display = "none";
           listView.style.display = "block";
           currentMode = "list";
-          showSidebar();
-          focusFirstMenu();
           return;
         }
       }
