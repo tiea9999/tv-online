@@ -377,7 +377,7 @@
         <div class="topbar">
           <div>
             <div id="pageTitle" class="title">📺 ทีวี</div>
-            <div class="sub">auto backup + auto PLAYER • ปิด player เว็บกลับหน้าเดิม • เมนูไม่บังรายการ</div>
+            <div class="sub">AUTO SMART MODE: ทีวีเปิด PLAYER ทันที • หนัง/ซีรีย์เล่นเว็บก่อน</div>
           </div>
           <div class="tools">
             <button id="reloadBtn" class="top-btn">รีโหลด</button>
@@ -456,10 +456,6 @@
       scrollY: 0
     };
 
-    let autoVideoCheckTimer = null;
-    let autoExternalOpened = false;
-    let autoFailTimer = null;
-
     function getButtonSources(btn){
       if (!btn) return [];
       if (btn.dataset.sources) {
@@ -473,45 +469,6 @@
 
     video.setAttribute("playsinline", "true");
     video.setAttribute("webkit-playsinline", "true");
-
-    video.addEventListener("loadedmetadata", () => {
-      video.muted = false;
-      video.volume = 1;
-    });
-
-    video.addEventListener("canplay", () => {
-      video.muted = false;
-      video.volume = 1;
-    });
-
-    video.addEventListener("playing", () => {
-      if (autoVideoCheckTimer) {
-        clearTimeout(autoVideoCheckTimer);
-        autoVideoCheckTimer = null;
-      }
-      if (autoFailTimer) {
-        clearTimeout(autoFailTimer);
-        autoFailTimer = null;
-      }
-      setStatus("");
-    });
-
-    video.addEventListener("loadeddata", () => {
-      if (video.videoWidth > 0 && video.videoHeight > 0) {
-        if (autoVideoCheckTimer) {
-          clearTimeout(autoVideoCheckTimer);
-          autoVideoCheckTimer = null;
-        }
-        if (autoFailTimer) {
-          clearTimeout(autoFailTimer);
-          autoFailTimer = null;
-        }
-      }
-    });
-
-    video.addEventListener("error", () => {
-      tryNextBackupOrExternal(currentItem, currentServerIndex, "ตัวเล่นในเว็บเปิดไม่สำเร็จ");
-    });
 
     function setStatus(msg) {
       statusBox.textContent = msg || "";
@@ -535,7 +492,6 @@
       try {
         const raw = sessionStorage.getItem("tiea_last_view");
         if (!raw) return;
-
         const saved = JSON.parse(raw);
         if (!saved) return;
 
@@ -567,23 +523,7 @@
       if (currentMode === "list" && playerWrap.style.display !== "block") hideSidebar();
     });
 
-    function clearAutoChecks() {
-      if (autoVideoCheckTimer) {
-        clearTimeout(autoVideoCheckTimer);
-        autoVideoCheckTimer = null;
-      }
-
-      if (autoFailTimer) {
-        clearTimeout(autoFailTimer);
-        autoFailTimer = null;
-      }
-
-      autoExternalOpened = false;
-    }
-
     function clearPlayer() {
-      clearAutoChecks();
-
       if (hls) {
         try { hls.destroy(); } catch(e) {}
         hls = null;
@@ -648,17 +588,6 @@
       }
     }
 
-    function autoOpenExternalPlayer(url, reason = "") {
-      if (!url || autoExternalOpened) return;
-      autoExternalOpened = true;
-
-      setStatus(reason ? `กำลังเปิด PLAYER อัตโนมัติ\n${reason}` : "กำลังเปิด PLAYER อัตโนมัติ");
-
-      setTimeout(() => {
-        openExternalPlayer(url);
-      }, 300);
-    }
-
     function openMx(url) {
       if (!url) return;
       location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
@@ -678,19 +607,6 @@
         return item.servers[idx]?.url || item.servers[0]?.url || "";
       }
       return item.url || item.link || item.stream || item.source || item.file || "";
-    }
-
-    function getAllPlayableUrls(item) {
-      if (!item) return [];
-
-      if (Array.isArray(item.servers) && item.servers.length) {
-        return item.servers
-          .map(s => s?.url || s?.link || s?.file || s?.source || "")
-          .filter(Boolean);
-      }
-
-      const single = item.url || item.link || item.stream || item.source || item.file || "";
-      return single ? [single] : [];
     }
 
     function normalizeItems(data) {
@@ -874,10 +790,9 @@
 
           if (
             title.includes("backup") ||
-            title.includes("bkp") ||
             title.includes("สำรอง") ||
             title.includes("main") ||
-            title.includes("m3u8")
+            title === "m3u8"
           ) return false;
 
           const key = title.replace(/[^a-z0-9ก-๙]/gi, "");
@@ -1002,33 +917,13 @@
       }, 100);
     }
 
-    function tryStartVideoWithSound() {
-      video.muted = false;
-      video.volume = 1;
-      const p = video.play();
-      if (p && typeof p.then === "function") p.catch(() => {});
-    }
-
-    function startAutoVideoCheck(item, serverIndex, url) {
-      if (autoVideoCheckTimer) {
-        clearTimeout(autoVideoCheckTimer);
-        autoVideoCheckTimer = null;
-      }
-
-      autoVideoCheckTimer = setTimeout(() => {
-        const hasMetadata = video.readyState >= 1;
-        const notProgressing = (video.currentTime || 0) < 0.2;
-        const badSize = !video.videoWidth || !video.videoHeight;
-
-        if (hasMetadata && badSize) {
-          tryNextBackupOrExternal(item, serverIndex, "ตรวจพบภาพไม่ขึ้น");
-          return;
-        }
-
-        if (notProgressing) {
-          tryNextBackupOrExternal(item, serverIndex, "วิดีโอไม่เริ่มเล่น");
-        }
-      }, 4500);
+    function createPlayerHls() {
+      return new Hls({
+        enableWorker: true,
+        autoStartLoad: true,
+        maxBufferLength: 20,
+        maxMaxBufferLength: 30
+      });
     }
 
     async function detectStreamType(url) {
@@ -1045,30 +940,7 @@
       }
     }
 
-    function createPlayerHls() {
-      return new Hls({
-        enableWorker: true,
-        autoStartLoad: true,
-        maxBufferLength: 20,
-        maxMaxBufferLength: 30
-      });
-    }
-
-    function tryNextBackupOrExternal(item, currentIndex, reason = "") {
-      const urls = getAllPlayableUrls(item);
-      const nextIndex = currentIndex + 1;
-
-      if (nextIndex < urls.length) {
-        setStatus(`กำลังลอง Server ${nextIndex + 1}/${urls.length}${reason ? "\n" + reason : ""}`);
-        playItem(item, nextIndex, true);
-        return;
-      }
-
-      const finalUrl = urls[currentIndex] || urls[0] || "";
-      autoOpenExternalPlayer(finalUrl, reason || "ลองครบทุก server แล้ว");
-    }
-
-    async function playByWebStyle(url, item = currentItem, serverIndex = currentServerIndex) {
+    async function playByWebStyle(url) {
       const lower = url.toLowerCase();
 
       if (lower.includes(".m3u8")) {
@@ -1076,8 +948,11 @@
 
         if (video.canPlayType("application/vnd.apple.mpegurl")) {
           video.src = url;
-          tryStartVideoWithSound();
-          startAutoVideoCheck(item, serverIndex, url);
+          video.play().catch(() => {
+            setStatus("เล่นในเว็บไม่ได้ กำลังเปิด PLAYER...");
+            saveViewState();
+            openExternalPlayer(url);
+          });
           return true;
         }
 
@@ -1087,80 +962,43 @@
           hls.attachMedia(video);
 
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            tryStartVideoWithSound();
-            startAutoVideoCheck(item, serverIndex, url);
-
-            if (autoFailTimer) clearTimeout(autoFailTimer);
-            autoFailTimer = setTimeout(() => {
-              const notReady = video.readyState < 2 || video.paused || video.currentTime === 0;
-              if (notReady) {
-                tryNextBackupOrExternal(item, serverIndex, "สตรีมไม่เริ่มทำงาน");
-              }
-            }, 4500);
+            video.play().catch(() => {
+              setStatus("เล่นในเว็บไม่ได้ กำลังเปิด PLAYER...");
+              saveViewState();
+              openExternalPlayer(url);
+            });
           });
 
           hls.on(Hls.Events.ERROR, (event, data) => {
             if (data && data.fatal) {
-              tryNextBackupOrExternal(item, serverIndex, "สตรีมในเว็บไม่เสถียร");
+              setStatus("สตรีมมีปัญหา กำลังเปิด PLAYER...");
+              saveViewState();
+              openExternalPlayer(url);
             }
           });
-
           return true;
         }
 
-        tryNextBackupOrExternal(item, serverIndex, "อุปกรณ์ไม่รองรับ HLS ในเว็บ");
+        setStatus("อุปกรณ์ไม่รองรับ HLS กำลังเปิด PLAYER...");
+        saveViewState();
+        openExternalPlayer(url);
         return true;
       }
 
       if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
         showPlayer();
         video.src = url;
-        tryStartVideoWithSound();
-        startAutoVideoCheck(item, serverIndex, url);
+        video.play().catch(() => {
+          setStatus("เล่นในเว็บไม่ได้ กำลังเปิด PLAYER...");
+          saveViewState();
+          openExternalPlayer(url);
+        });
         return true;
       }
 
       const detected = await detectStreamType(url);
-
       if (detected === "hls") {
-        showPlayer();
-
-        if (video.canPlayType("application/vnd.apple.mpegurl")) {
-          video.src = url;
-          tryStartVideoWithSound();
-          startAutoVideoCheck(item, serverIndex, url);
-          return true;
-        }
-
-        if (Hls.isSupported()) {
-          hls = createPlayerHls();
-          hls.loadSource(url);
-          hls.attachMedia(video);
-
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            tryStartVideoWithSound();
-            startAutoVideoCheck(item, serverIndex, url);
-
-            if (autoFailTimer) clearTimeout(autoFailTimer);
-            autoFailTimer = setTimeout(() => {
-              const notReady = video.readyState < 2 || video.paused || video.currentTime === 0;
-              if (notReady) {
-                tryNextBackupOrExternal(item, serverIndex, "วิดีโอไม่เริ่มเล่น");
-              }
-            }, 4500);
-          });
-
-          hls.on(Hls.Events.ERROR, (event, data) => {
-            if (data && data.fatal) {
-              tryNextBackupOrExternal(item, serverIndex, "ตรวจพบปัญหาระหว่างเล่นในเว็บ");
-            }
-          });
-
-          return true;
-        }
-
-        tryNextBackupOrExternal(item, serverIndex, "อุปกรณ์ไม่รองรับ HLS");
-        return true;
+        return playByWebStyle(url);
       }
 
       return false;
@@ -1178,37 +1016,47 @@
       }
 
       const lower = url.toLowerCase();
+      const isTV = currentTitle.includes("ทีวี");
       const isMovie = currentTitle.includes("หนัง");
       const isSeries =
         currentTitle.includes("Flixmono") ||
         currentTitle.includes("Goseries") ||
         currentTitle.includes("ซีรีส์") ||
+        currentTitle.includes("VIP") ||
         (item.title || "").toUpperCase().includes("EP");
 
-      if (isMovie || isSeries) {
-        const played = await playByWebStyle(url, item, serverIndex);
-        if (!played) {
-          if (
-            lower.includes("/play/") ||
-            lower.includes("/embed/") ||
-            lower.includes("ok-hd.com/play/") ||
-            lower.includes("top-cdn.com/play/")
-          ) {
-            location.href = url;
-            return;
-          }
-
-          setStatus("ลิงก์นี้เล่นในเว็บไม่ได้ ลองกด PLAYER หรือ MX");
-          currentItem = item;
-          currentServerIndex = serverIndex;
-        }
+      if (isTV) {
+        saveViewState();
+        setStatus("กำลังเปิด PLAYER สำหรับทีวี...");
+        openExternalPlayer(url);
         return;
       }
 
-      const played = await playByWebStyle(url, item, serverIndex);
-      if (!played) {
-        tryNextBackupOrExternal(item, serverIndex, isAutoRetry ? "กำลังลอง backup ถัดไป" : "ลิงก์หลักไม่รองรับ");
+      if (isMovie || isSeries) {
+        const played = await playByWebStyle(url);
+        if (played) return;
+
+        if (
+          lower.includes("/play/") ||
+          lower.includes("/embed/") ||
+          lower.includes("ok-hd.com/play/") ||
+          lower.includes("top-cdn.com/play/")
+        ) {
+          location.href = url;
+          return;
+        }
+
+        saveViewState();
+        setStatus("เล่นในเว็บไม่ได้ กำลังเปิด PLAYER...");
+        openExternalPlayer(url);
+        return;
       }
+
+      const played = await playByWebStyle(url);
+      if (played) return;
+
+      saveViewState();
+      openExternalPlayer(url);
     }
 
     async function loadCurrentMenu() {
