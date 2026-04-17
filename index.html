@@ -359,8 +359,6 @@
     <aside class="sidebar" id="sidebar">
       <div class="brand">TIEA IPTV</div>
       <button class="menu-btn" data-link="live.html">⚽ ตารางแข่งขัน</button>
-      <button class="menu-btn" data-link="iptv.html">⚽ 3bb</button>
-
       <button class="menu-btn active" data-title="📺 ทีวี" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
       <button class="menu-btn" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Ezmovie.json">🎬 หนัง</button>
       <button class="menu-btn" data-title="🎞️ Flixmono" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/main/Flixmono.json">📺 ซีรีส์</button>
@@ -375,7 +373,7 @@
         <div class="topbar">
           <div>
             <div id="pageTitle" class="title">📺 ทีวี</div>
-            <div class="sub">ดีไซน์ใหม่แบบโปร • ปิด player แล้วย้อนกลับหน้าเดิม • เมนูไม่บังรายการฝั่งซ้าย</div>
+            <div class="sub">ลดเด้งออกจากแอพให้มากที่สุด • ปิด player เว็บกลับหน้าเดิม • เมนูไม่บังรายการ</div>
           </div>
           <div class="tools">
             <button id="reloadBtn" class="top-btn">รีโหลด</button>
@@ -437,6 +435,14 @@
     let historyStack = [];
     let playerUiTimer = null;
 
+    let lastViewState = {
+      mode: "list",
+      title: "",
+      source: "",
+      sources: [],
+      scrollY: 0
+    };
+
     function getButtonSources(btn){
       if (!btn) return [];
       if (btn.dataset.sources) {
@@ -464,6 +470,36 @@
     function setStatus(msg) {
       statusBox.textContent = msg || "";
       statusBox.style.display = msg ? "block" : "none";
+    }
+
+    function saveViewState() {
+      lastViewState = {
+        mode: currentMode,
+        title: currentTitle,
+        source: currentSource,
+        sources: Array.isArray(currentSources) ? [...currentSources] : [],
+        scrollY: window.scrollY || 0
+      };
+      try {
+        sessionStorage.setItem("tiea_last_view", JSON.stringify(lastViewState));
+      } catch (e) {}
+    }
+
+    function restoreViewStateFromSession() {
+      try {
+        const raw = sessionStorage.getItem("tiea_last_view");
+        if (!raw) return;
+
+        const saved = JSON.parse(raw);
+        if (!saved) return;
+
+        if (saved.title) currentTitle = saved.title;
+        if (saved.source) currentSource = saved.source;
+        if (Array.isArray(saved.sources) && saved.sources.length) currentSources = saved.sources;
+
+        lastViewState = saved;
+        pageTitle.textContent = currentTitle || "TIEA IPTV";
+      } catch (e) {}
     }
 
     function showSidebar() {
@@ -1081,11 +1117,13 @@
     document.getElementById("playerCloseBtn").onclick = () => closePlayer(false);
 
     document.getElementById("playerExternalBtn").onclick = () => {
+      saveViewState();
       const url = getPlayableUrl(currentItem, currentServerIndex);
       openExternalPlayer(url);
     };
 
     document.getElementById("playerMxBtn").onclick = () => {
+      saveViewState();
       const url = getPlayableUrl(currentItem, currentServerIndex);
       openMx(url);
     };
@@ -1135,7 +1173,20 @@
       }, 50);
     });
 
+    restoreViewStateFromSession();
     loadCurrentMenu();
+
+    window.addEventListener("pageshow", async () => {
+      restoreViewStateFromSession();
+
+      if (!grid.innerHTML.trim()) {
+        await loadCurrentMenu();
+      }
+
+      setTimeout(() => {
+        window.scrollTo(0, lastViewState.scrollY || 0);
+      }, 120);
+    });
   </script>
 </body>
 </html>
