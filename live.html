@@ -2,531 +2,145 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>⚽ ตารางแข่งขัน</title>
 
-<style>
-*{box-sizing:border-box}
-html,body{
-  margin:0;
-  padding:0;
-  background:#111;
-  color:#fff;
-  font-family:Arial,sans-serif;
-  overflow-x:hidden;
-}
-body{min-height:100vh}
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:100;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:12px;
+<style>
+body{
+  margin:0;
   background:#000;
-  border-bottom:1px solid #222;
-  flex-wrap:wrap;
+  color:#fff;
+  font-family:sans-serif;
 }
-.title{
+
+.header{
+  padding:14px;
   font-size:22px;
   font-weight:bold;
   color:#00e5ff;
 }
-.actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.btn-top{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:42px;
-  padding:10px 14px;
-  border:none;
-  border-radius:10px;
-  background:#22c55e;
-  color:#fff;
-  text-decoration:none;
-  cursor:pointer;
-  font-size:14px;
-  font-weight:bold;
-}
-.btn-top.gray{background:#333}
-.btn-top.red{background:#e53935}
 
-.filterbar{
-  padding:10px 12px;
-  background:#181818;
-  border-bottom:1px solid #222;
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.tab{
-  min-height:40px;
-  padding:8px 12px;
-  border:none;
-  border-radius:8px;
-  background:#2a2a2a;
-  color:#fff;
+.match{
+  border-bottom:1px solid #333;
+  padding:12px;
   cursor:pointer;
-  font-size:13px;
 }
-.tab.active{background:#22c55e}
 
-.container{
-  width:100%;
-  max-width:1500px;
-  margin:0 auto;
-  padding:12px;
+.match:hover{
+  background:#111;
 }
-.status{
-  padding:20px 12px;
-  text-align:center;
-  color:#bbb;
-  font-size:15px;
-}
-.league{
-  margin-top:14px;
-  background:#4b5b6b;
-  color:#fff;
-  padding:12px;
-  border-radius:10px 10px 0 0;
-  font-weight:bold;
+
+.team{
   font-size:16px;
 }
-.row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px;
-  background:#fff;
-  color:#111;
-  border-bottom:1px solid #eee;
-}
-.row:last-child{border-radius:0 0 10px 10px}
-.row.live{
-  background:#fff2f2;
-  border-left:4px solid #e53935;
-}
-.row.upcoming{background:#f8fafc}
+
 .time{
-  width:120px;
-  flex-shrink:0;
-  font-size:14px;
-  color:#555;
-  white-space:nowrap;
+  color:#aaa;
+  font-size:13px;
 }
-.time.live-text{
-  color:#e53935;
-  font-weight:bold;
+
+#playerWrap{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:none;
+  z-index:9999;
 }
-.match{
-  flex:1;
-  min-width:0;
-  display:grid;
-  grid-template-columns:1fr 50px 1fr;
-  gap:8px;
-  align-items:center;
+
+#video{
+  width:100%;
+  height:100%;
 }
-.team{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  min-width:0;
-  font-size:15px;
-}
-.team.home{
-  justify-content:flex-end;
-  text-align:right;
-}
-.team.away{
-  justify-content:flex-start;
-  text-align:left;
-}
-.team img{
-  width:24px;
-  height:24px;
-  object-fit:contain;
-  flex-shrink:0;
-}
-.team span{word-break:break-word}
-.vs{
-  text-align:center;
-  font-weight:bold;
-}
-.servers{
-  width:190px;
-  flex-shrink:0;
-  text-align:right;
-}
-.btn-watch{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:40px;
-  padding:8px 12px;
-  margin:2px;
+
+.btn{
+  position:absolute;
+  top:10px;
+  left:10px;
+  padding:10px;
+  background:#e53935;
   border:none;
-  border-radius:8px;
-  background:#22c55e;
   color:#fff;
   cursor:pointer;
-  font-size:13px;
-  font-weight:bold;
-}
-.btn-watch.server{background:#f59e0b}
-
-@media (max-width:900px){
-  .row{gap:8px;padding:10px}
-  .time{width:95px;font-size:13px}
-  .match{grid-template-columns:1fr 40px 1fr}
-  .team{font-size:14px}
-  .servers{width:120px}
-  .btn-watch{font-size:12px;min-height:36px;padding:7px 10px}
-}
-@media (max-width:700px){
-  .row{flex-direction:column;align-items:stretch}
-  .time{width:100%}
-  .match{width:100%;grid-template-columns:1fr 34px 1fr}
-  .servers{width:100%;text-align:left}
-}
-@media (max-width:520px){
-  .title{font-size:18px}
-  .btn-top{min-height:38px;padding:8px 10px;font-size:12px}
-  .league{font-size:15px;padding:10px}
-  .team{font-size:13px}
-  .team img{width:20px;height:20px}
 }
 </style>
 </head>
+
 <body>
 
-<div class="topbar">
-  <div class="title">⚽ ตารางแข่งขัน</div>
-  <div class="actions">
-    <button class="btn-top gray" type="button" onclick="history.back()">⬅ กลับ</button>
-    <button class="btn-top red" type="button" onclick="reloadData()">รีโหลด</button>
-    <a class="btn-top" href="index.html">🏠 หน้าหลัก</a>
-  </div>
-</div>
+<div class="header">⚽ ตารางแข่งขัน</div>
+<div id="list"></div>
 
-<div class="filterbar">
-  <button class="tab active" data-group="sport" onclick="setSport('all', this)">ทั้งหมด</button>
-  <button class="tab" data-group="sport" onclick="setSport('live', this)">🔴 LIVE</button>
-  <button class="tab" data-group="sport" onclick="setSport('football', this)">⚽ Football</button>
-  <button class="tab" data-group="sport" onclick="setSport('basketball', this)">🏀 Basketball</button>
-
-  <button class="tab active" data-group="date" onclick="setDate(0, this)">วันนี้</button>
-  <button class="tab" data-group="date" onclick="setDate(1, this)">พรุ่งนี้</button>
-  <button class="tab" data-group="date" onclick="setDate(2, this)">วันถัดไป</button>
-</div>
-
-<div class="container">
-  <div id="status" class="status">กำลังโหลด...</div>
-  <div id="app"></div>
+<div id="playerWrap">
+  <video id="video" controls autoplay></video>
+  <button class="btn" onclick="closePlayer()">✕ ปิด</button>
 </div>
 
 <script>
-let currentSport = "all";
-let currentDateOffset = 0;
-let originalData = null;
+const API = "https://iptv.tawatchai250958.workers.dev/";
 
-const PLAYLIST_URL = "https://broken-surf-7347.hssmnoy.workers.dev/?url=https://drive.google.com/uc?id=15Ye3NPw0cjNrJGTu2Q2aoqoApOp8GipC&export=download";
+const list = document.getElementById("list");
+const video = document.getElementById("video");
+const playerWrap = document.getElementById("playerWrap");
 
-async function reloadData(){
-  document.getElementById("status").style.display = "block";
-  document.getElementById("status").textContent = "กำลังโหลด...";
-  document.getElementById("app").innerHTML = "";
-  await load();
-}
+let hls;
 
-async function load(){
+async function loadMatch(){
+  list.innerHTML = "กำลังโหลด...";
+
   try{
-    const res = await fetch(PLAYLIST_URL + "&t=" + Date.now());
+    const res = await fetch(API);
     const data = await res.json();
-    originalData = normalizeDataShape(data);
-    applyFilter();
-  }catch(e){
-    console.error(e);
-    document.getElementById("status").style.display = "block";
-    document.getElementById("status").textContent = "โหลดข้อมูลไม่สำเร็จ";
-    document.getElementById("app").innerHTML = "";
-  }
-}
 
-function normalizeDataShape(data){
-  if (data && Array.isArray(data.groups)) return data;
-  if (data && Array.isArray(data.data)) return { groups: data.data };
-  if (data && Array.isArray(data.result)) return { groups: data.result };
-  return { groups: [] };
-}
+    list.innerHTML = "";
 
-function parseMatch(name){
-  const raw = String(name || "");
-  const t = raw.match(/\((\d{2}\/\d{2}\s+\d{2}:\d{2})\)/);
-  let time = t ? t[1] : "";
+    data.forEach(match=>{
+      const div = document.createElement("div");
+      div.className = "match";
 
-  let clean = raw
-    .replace(/\d{2}\/\d{2}\s+\d{2}:\d{2}/g, "")
-    .replace(/\([^)]*\)/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  clean = clean.replace(/(.+?)\1+/g, "$1");
-
-  let home = "";
-  let away = "TBD";
-
-  if(clean.includes(" vs ")) {
-    [home, away] = clean.split(" vs ");
-  } else if(clean.includes(" VS ")) {
-    [home, away] = clean.split(" VS ");
-  } else if(clean.includes(" v ")) {
-    [home, away] = clean.split(" v ");
-  } else {
-    return { home: clean.trim(), away: "TBD", time };
-  }
-
-  return {
-    home: home.trim(),
-    away: away.trim(),
-    time
-  };
-}
-
-function extractDateTime(name){
-  const m = String(name || "").match(/\((\d{2}\/\d{2})\s+(\d{2}:\d{2})\)/);
-  if(!m) return null;
-  return {date:m[1], time:m[2]};
-}
-
-function getMatchStatus(name){
-  const dt = extractDateTime(name);
-  if(!dt) return {status:"unknown"};
-
-  const now = new Date();
-  const [day,month] = dt.date.split("/");
-  const [h,m] = dt.time.split(":");
-  const matchTime = new Date(now.getFullYear(), Number(month)-1, Number(day), Number(h), Number(m), 0, 0);
-  const diff = (now - matchTime)/60000;
-
-  if(String(name).includes("'")) return {status:"live", time:dt.time};
-  if(diff >= 0 && diff <= 120) return {status:"live", time:dt.time};
-  if(diff < 0) return {status:"upcoming", time:dt.time};
-  return {status:"ended", time:dt.time};
-}
-
-function applyFilter(){
-  const app = document.getElementById("app");
-  const status = document.getElementById("status");
-
-  if(!originalData || !Array.isArray(originalData.groups)){
-    status.style.display = "block";
-    status.textContent = "ไม่มีข้อมูล";
-    app.innerHTML = "";
-    return;
-  }
-
-  const now = new Date();
-  let data = JSON.parse(JSON.stringify(originalData));
-
-  const target = new Date();
-  target.setDate(now.getDate() + currentDateOffset);
-  const dd = String(target.getDate()).padStart(2,'0');
-  const mm = String(target.getMonth()+1).padStart(2,'0');
-  const targetStr = `${dd}/${mm}`;
-
-  if(currentSport === "live"){
-    const today = new Date();
-    const td = String(today.getDate()).padStart(2,'0');
-    const tm = String(today.getMonth()+1).padStart(2,'0');
-    const todayStr = `${td}/${tm}`;
-
-    let allMatches = [];
-
-    data.groups.forEach(l=>{
-      const groupMatches = Array.isArray(l.groups) ? l.groups : [];
-      groupMatches.forEach(match=>{
-        const dt = extractDateTime(match.name);
-        if(!dt || dt.date !== todayStr) return;
-
-        const [hh, mm] = dt.time.split(":");
-        const matchTime = new Date();
-        matchTime.setHours(hh, mm, 0, 0);
-
-        const diffMin = (now - matchTime) / 60000;
-        const isLive = diffMin >= 0 && diffMin <= 120;
-        const isUpcoming = diffMin < 0;
-
-        if(!isLive && !isUpcoming) return;
-
-        allMatches.push({
-          league: l.name || "ลีกอื่น ๆ",
-          match
-        });
-      });
-    });
-
-    allMatches.sort((a,b)=>{
-      const ta = extractDateTime(a.match.name);
-      const tb = extractDateTime(b.match.name);
-      if(!ta || !tb) return 0;
-      return ta.time.localeCompare(tb.time);
-    });
-
-    data.groups = [{
-      name: "🔴 LIVE TODAY",
-      groups: allMatches.map(x => x.match)
-    }];
-  } else {
-    data.groups.forEach(l=>{
-      const groupMatches = Array.isArray(l.groups) ? l.groups : [];
-      l.groups = groupMatches.filter(match=>{
-        const dt = extractDateTime(match.name);
-        if(!dt || dt.date !== targetStr) return false;
-
-        const statusMatch = getMatchStatus(match.name);
-        return statusMatch.status !== "ended";
-      });
-    });
-
-    if(currentSport !== "all"){
-      data.groups = data.groups.filter(l=>{
-        const n = String(l.name || "").toLowerCase();
-
-        if(currentSport === "football"){
-          return n.includes("league")
-            || n.includes("liga")
-            || n.includes("ligue")
-            || n.includes("premier")
-            || n.includes("division")
-            || n.includes("serie")
-            || n.includes("cup")
-            || n.includes("fa")
-            || n.includes("uefa")
-            || n.includes("champions");
-        }
-
-        if(currentSport === "basketball"){
-          return n.includes("nba");
-        }
-
-        return true;
-      });
-    }
-
-    data.groups.forEach(l=>{
-      l.groups.sort((a,b)=>{
-        const ta = extractDateTime(a.name);
-        const tb = extractDateTime(b.name);
-        if(!ta || !tb) return 0;
-        return ta.time.localeCompare(tb.time);
-      });
-    });
-  }
-
-  data.groups = data.groups.filter(l => Array.isArray(l.groups) && l.groups.length > 0);
-
-  if(!data.groups.length){
-    status.style.display = "block";
-    status.textContent = "ไม่มีรายการแข่งขันในช่วงเวลานี้";
-    app.innerHTML = "";
-    return;
-  }
-
-  status.style.display = "none";
-  app.innerHTML = "";
-
-  data.groups.forEach(l=>{
-    app.innerHTML += `<div class="league">${l.name || "ลีกอื่น ๆ"}</div>`;
-
-    l.groups.forEach(match=>{
-      const {home,away,time} = parseMatch(match.name);
-      const matchStatus = getMatchStatus(match.name);
-
-      const stationButtons = Array.isArray(match.stations) && match.stations.length
-        ? match.stations.map((s, i) => `
-            <button class="btn-watch ${i > 0 ? 'server' : ''}" onclick='openPlayerByUrl("${String(s.url || "").replace(/"/g, '&quot;')}")'>
-              ${i === 0 ? '▶ ดูสด' : 'S' + (i+1)}
-            </button>
-          `).join("")
-        : `<span style="color:#999;font-size:13px">ไม่มีลิงก์</span>`;
-
-      app.innerHTML += `
-        <div class="row ${matchStatus.status}">
-          <div class="time ${matchStatus.status === 'live' ? 'live-text' : ''}">
-            ${matchStatus.status === 'live' ? '🔴 ' : ''}${time || '-'}
-          </div>
-
-          <div class="match">
-            <div class="team home"><span>${home || '-'}</span></div>
-            <div class="vs">vs</div>
-            <div class="team away"><span>${away || '-'}</span></div>
-          </div>
-
-          <div class="servers">
-            ${stationButtons}
-          </div>
-        </div>
+      div.innerHTML = `
+        <div class="team">${match.home} vs ${match.away}</div>
+        <div class="time">${match.time || ""}</div>
       `;
+
+      div.onclick = ()=> play(match.link);
+
+      list.appendChild(div);
     });
-  });
-}
 
-function openMx(url){
-  if(!url) return;
-  window.location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
-}
-
-function openExternalPlayer(url){
-  if(!url) return;
-  try{
-    const u = new URL(url);
-    window.location.href =
-      "intent://" + u.host + u.pathname + u.search +
-      "#Intent;scheme=" + u.protocol.replace(":","") +
-      ";action=android.intent.action.VIEW;type=video/*;end";
-
-    setTimeout(() => {
-      openMx(url);
-    }, 1200);
   }catch(e){
-    openMx(url);
+    list.innerHTML = "โหลดไม่สำเร็จ";
   }
 }
 
-function openPlayerByUrl(url){
-  if(!url) return;
-  openExternalPlayer(url);
-}
+function play(url){
+  playerWrap.style.display = "block";
 
-function setSport(s, el){
-  document.querySelectorAll('.tab[data-group="sport"]').forEach(btn => btn.classList.remove("active"));
-  el.classList.add("active");
-  currentSport = s;
-  applyFilter();
-}
-
-function setDate(offset, el){
-  document.querySelectorAll('.tab[data-group="date"]').forEach(btn => btn.classList.remove("active"));
-  el.classList.add("active");
-  currentDateOffset = offset;
-  applyFilter();
-}
-
-document.addEventListener("keydown", (e)=>{
-  if(e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009){
-    e.preventDefault();
-    history.back();
+  if(hls){
+    hls.destroy();
+    hls = null;
   }
-});
 
-load();
+  if(Hls.isSupported() && url.includes(".m3u8")){
+    hls = new Hls();
+    hls.loadSource(url);
+    hls.attachMedia(video);
+  }else{
+    video.src = url;
+  }
+}
+
+function closePlayer(){
+  if(hls){
+    hls.destroy();
+    hls = null;
+  }
+  video.pause();
+  playerWrap.style.display = "none";
+}
+
+loadMatch();
 </script>
 
 </body>
