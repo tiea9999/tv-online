@@ -1,30 +1,58 @@
 [
   {
-    "title": "This Palace Maid Isn't Very Calm (2026) นางกำนัลตัวแสบแห่งวังหลวง EP.1-25",
+    "title": "This Palace Maid Isn't Very Calm (2026) นางกำนัลตัวแสบแห่งวังหลวง",
     "image": "https://www.24hd.net/wp-content/uploads/2026/04/This-Palace-Maid-Isn-t-Very-Calm-2026.webp",
     "episodes": [
-      { "title": "EP1", "url": "https://media.vdohls.com/V6f-H0wzzb_AF/video.m3u8" },
-      { "title": "EP2", "url": "https://media.vdohls.com/MJWla-kfIU_ka/video.m3u8" },
-      { "title": "EP3", "url": "https://media.vdohls.com/M2Jcm_efgC-i1/video.m3u8" },
-      { "title": "EP4", "url": "https://media.vdohls.com/84jF-Z1I4_iu8/video.m3u8" },
-      { "title": "EP5", "url": "https://media.vdohls.com/QKL_mBRx-iNsr/video.m3u8" },
-      { "title": "EP6", "url": "https://media.vdohls.com/F-Q8WAR_pikBR/video.m3u8" },
-      { "title": "EP7", "url": "https://media.vdohls.com/KJu_moEi4-HeG/video.m3u8" },
-      { "title": "EP8", "url": "https://media.vdohls.com/r_iWkG-cWV05k/playlist.m3u8" },
-      { "title": "EP9", "url": "https://media.vdohls.com/Kz2qk_jac-ild/video.m3u8" }
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/V6f-H0wzzb_AF/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/MJWla-kfIU_ka/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/M2Jcm_efgC-i1/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/84jF-Z1I4_iu8/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/QKL_mBRx-iNsr/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/F-Q8WAR_pikBR/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/KJu_moEi4-HeG/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/r_iWkG-cWV05k/playlist.m3u8"}]},
+      { "title": "EP9", "servers":[{"name":"Main","url":"https://media.vdohls.com/Kz2qk_jac-ild/video.m3u8"}]}
     ]
   },
 
   {
-    "title": "The Moment I Met You (2026) ลิขิตรักซ่อนคำลวง EP.1-38",
+    "title": "The Moment I Met You (2026) ลิขิตรักซ่อนคำลวง",
     "image": "https://www.24hd.net/wp-content/uploads/2026/04/The-Moment-I-Met-You-2026.webp",
     "episodes": [
-      { "title": "EP1", "url": "https://media.vdohls.com/VSGfX_1yDp-Dz/video.m3u8" },
-      { "title": "EP2", "url": "https://media.vdohls.com/t-FjQIwjXf_9L/playlist.m3u8" },
-      { "title": "EP3", "url": "https://media.vdohls.com/t4Qjim0_gI-Bs/video.m3u8" },
-      { "title": "EP4", "url": "https://media.vdohls.com/Xle_TXsj-6Kpt/video.m3u8" },
-      { "title": "EP5", "url": "https://media.vdohls.com/eu-4h3JG_1vKE/video.m3u8" },
-      { "title": "EP6", "url": "https://media.vdohls.com/k_a4vqLjw9-si/video.m3u8" },
-      { "title": "EP7", "url": "https://media.vdohls.com/l-Xp0PBpvy_aK/video.m3u8" },
-      { "title": "EP8", "url": "https://media.vdohls.com/2_NYr-3iYK4pa/video.m3u8" },
-      { "title": "EP
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/VSGfX_1yDp-Dz/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/t-FjQIwjXf_9L/playlist.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/t4Qjim0_gI-Bs/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/Xle_TXsj-6Kpt/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/eu-4h3JG_1vKE/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/k_a4vqLjw9-si/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/l-Xp0PBpvy_aK/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/2_NYr-3iYK4pa/video.m3u8"}]},
+      { "title": "EP9", "servers":[{"name":"Main","url":"https://media.vdohls.com/k_GAcJ-Uc0LQu/video.m3u8"}]}
+    ]
+  },
+
+  {
+    "title": "Pursuit of Jade (2026) ล่าหยก (จบ)",
+    "image": "https://www.24hd.net/wp-content/uploads/2026/03/Pursuit-of-jude.jpg.webp",
+    "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/R97UQlg_W-JKm/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/1_HFuRgeD-bt2/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/hwQY_lDZrA-r5/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/InsFARG_HI-v5/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/G_DIeR-eXOMcI/video.m3u8"}]},
+
+      { "title": "EP29", "servers":[{"name":"Main","url":"https://media.vdohls.com/l_T2dx9G-68tE/video.m3u8"}]},
+      { "title": "EP30", "servers":[{"name":"Main","url":"https://media.vdohls.com/qpfdF_PImn-qz/video.m3u8"}]},
+      { "title": "EP31", "servers":[{"name":"Main","url":"https://media.vdohls.com/Sf-10tgos3_6H/video.m3u8"}]},
+      { "title": "EP32", "servers":[{"name":"Main","url":"https://media.vdohls.com/9J1_n8vs-l1Yj/video.m3u8"}]},
+      { "title": "EP33", "servers":[{"name":"Main","url":"https://media.vdohls.com/7I_7eZJ-MANip/video.m3u8"}]},
+      { "title": "EP34", "servers":[{"name":"Main","url":"https://media.vdohls.com/U-WVvH3G_oVrY/video.m3u8"}]},
+      { "title": "EP35", "servers":[{"name":"Main","url":"https://media.vdohls.com/s6kNO1_OZ-YS1/video.m3u8"}]},
+      { "title": "EP36", "servers":[{"name":"Main","url":"https://media.vdohls.com/I1ZzV-E_X6Is2/video.m3u8"}]},
+      { "title": "EP37", "servers":[{"name":"Main","url":"https://media.vdohls.com/80_CLblT-i1Ob/video.m3u8"}]},
+      { "title": "EP38", "servers":[{"name":"Main","url":"https://media.vdohls.com/X-ubw0yG_uBIA/video.m3u8"}]},
+      { "title": "EP39", "servers":[{"name":"Main","url":"https://media.vdohls.com/pje-RCL_R9Tr8/video.m3u8"}]},
+      { "title": "EP40", "servers":[{"name":"Main","url":"https://media.vdohls.com/j6b-bHg4W_s6D/video.m3u8"}]}
+    ]
+  }
+]
