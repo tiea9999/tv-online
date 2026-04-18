@@ -1,0 +1,240 @@
+แบบมาตรฐาน
+[
+  {
+    "title": "Pursuit of Jade (2026)",
+    "image": "https://...jpg",
+    "category": "ซีรีย์จีน",
+    "type": "series",
+
+    "status": "completed",
+    "latest_ep": 40,
+    "total_ep": 40,
+
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          { "name": "Main", "url": "..." }
+        ]
+      }
+    ]
+  },
+
+  {
+    "title": "The Moment I Met You (2026)",
+    "image": "https://...jpg",
+    "category": "ซีรีย์จีน",
+    "type": "series",
+
+    "status": "ongoing",
+    "latest_ep": 9,
+    "total_ep": 38,
+    "update_day": "พฤหัส",
+
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          { "name": "Main", "url": "..." }
+        ]
+      }
+    ]
+  },
+
+  {
+    "title": "Outcome (2026)",
+    "image": "https://...jpg",
+    "category": "หนังใหม่2026",
+    "type": "movie",
+
+    "status": "movie",
+
+    "servers": [
+      { "name": "Main", "url": "..." }
+    ]
+  }
+]
+
+
+
+
+
+แบบโคตรเทพ
+
+{
+  "title": "The Moment I Met You (2026)",
+  "image": "poster.jpg",
+  "category": "ซีรีย์จีน",
+  "type": "series",
+
+  "status": "ongoing",
+  "latest_ep": 9,
+  "total_ep": 38,
+  "update_day": "พฤหัส",
+
+  "rating": 8.4,
+  "year": 2026,
+  "new": true,
+
+  "episodes": []
+}
+
+[
+  {
+    "title": "Pursuit of Jade (2026)",
+    "category": "ซีรีย์จีน",
+    "type": "series",
+    "status": "completed",
+    "latest_ep": 40,
+    "total_ep": 40,
+    "episodes": []
+  },
+  {
+    "title": "The Moment I Met You (2026)",
+    "category": "ซีรีย์จีน",
+    "type": "series",
+    "status": "ongoing",
+    "latest_ep": 9,
+    "total_ep": 38,
+    "update_day": "พฤหัส",
+    "episodes": []
+  }
+]
+
+
+
+
+[
+  {
+    "title": "Pursuit of Jade (2026)",
+    "category": "ซีรีย์จีน",
+    "type": "series",
+    "status": "completed",
+    "latest_ep": 40,
+    "total_ep": 40,
+    "episodes": []
+  },
+  {
+    "title": "The Moment I Met You (2026)",
+    "category": "ซีรีย์จีน",
+    "type": "series",
+    "status": "ongoing",
+    "latest_ep": 9,
+    "total_ep": 38,
+    "update_day": "พฤหัส",
+    "episodes": []
+  }
+]
+
+
+
+{
+  "title": "The Moment I Met You (2026)",
+  "image": "โปสเตอร์.jpg",
+  "category": "ซีรีย์จีน",
+  "type": "series",
+  "status": "ongoing",
+  "latest_ep": 9,
+  "total_ep": 38,
+  "update_day": "พฤหัส",
+  "episodes": [
+    { "title": "EP1", "url": "..." },
+    { "title": "EP2", "url": "..." }
+  ]
+}
+
+
+
+เมนูด้านบน (เหมือนรูปคุณ)
+
+<div id="menu">
+  <button onclick="showCategory('หนังใหม่2026')">หนังใหม่2026</button>
+  <button onclick="showCategory('ซีรีย์เกาหลี')">ซีรีย์เกาหลี</button>
+  <button onclick="showCategory('ซีรีย์จีน')">ซีรีย์จีน</button>
+  <button onclick="showCategory('หนังไทย')">หนังไทย</button>
+  <button onclick="showCategory('NETFLIX')">NETFLIX</button>
+</div>
+
+
+
+
+
+
+วิธีที่ง่ายสุดคือใส่ข้อมูลเพิ่มในแต่ละเรื่อง เช่น
+
+{
+  "title": "The Moment I Met You (2026)",
+  "image": "โปสเตอร์.jpg",
+  "category": "ซีรีย์จีน",
+  "type": "series",
+  "status": "ongoing",
+  "latest_ep": 9,
+  "total_ep": 38,
+  "update_day": "พฤหัส",
+  "episodes": [
+    { "title": "EP1", "url": "..." },
+    { "title": "EP2", "url": "..." }
+  ]
+}
+
+
+จุดสังเกตที่คุณควรใส่มีแค่นี้ก็พอ
+status
+ongoing = ยังไม่จบ
+completed = จบแล้ว
+latest_ep
+ตอนล่าสุดที่คุณอัปไว้
+total_ep
+จำนวนตอนทั้งหมด ถ้ารู้
+update_day
+วันอัปเดต ถ้ารู้
+แล้วเวลาแสดงหน้าเว็บ ให้โชว์แบบนี้
+เรื่องที่ยังไม่จบ: EP ล่าสุด 9/38 • กำลังอัปเดต
+เรื่องจบแล้ว: จบแล้ว 40 ตอน
+ตัวอย่างแยกให้เห็นชัด
+
+[
+  {
+    "title": "Pursuit of Jade (2026)",
+    "category": "ซีรีย์จีน",
+    "type": "series",
+    "status": "completed",
+    "latest_ep": 40,
+    "total_ep": 40,
+    "episodes": []
+  },
+  {
+    "title": "The Moment I Met You (2026)",
+    "category": "ซีรีย์จีน",
+    "type": "series",
+    "status": "ongoing",
+    "latest_ep": 9,
+    "total_ep": 38,
+    "update_day": "พฤหัส",
+    "episodes": []
+  }
+]
+
+
+
+วิธีที่คุณจะรู้ว่าเรื่องไหนต้องอัปต่อไป คือดูจาก 3 อย่างนี้
+status เป็น ongoing
+latest_ep < total_ep
+หรือยังไม่ได้เปลี่ยนเป็น completed
+ถ้าไม่รู้จำนวนตอนทั้งหมดจริง ๆ ก็ใช้แบบนี้ได้
+{
+  "status": "ongoing",
+  "latest_ep": 9,
+  "total_ep": null
+}
+
+{
+  "status": "ongoing",
+  "latest_ep": 9,
+  "note": "อัปเดตทุกสัปดาห์"
+}
+
+สรุปคือ หน้าเดียวไม่งง ถ้าคุณบังคับให้ทุกเรื่องมีฟิลด์พวกนี้เสมอ:
+status
+latest_ep
+total_ep
