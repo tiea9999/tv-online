@@ -1,0 +1,35 @@
+{
+  "site": "TIEA IPTV",
+  "type": "tv",
+  "updated": "2026-04-18",
+  "items": [
+    {
+      "title": "MONO29",
+      "image": "https://example.com/mono29.png",
+      "type": "tv",
+      "category": "ทีวี",
+      "subcategory": "ทีวีดิจิตอล",
+      "status": "live",
+      "servers": [
+        {
+          "name": "Main",
+          "url": "https://example.com/live/mono29.m3u8"
+        }
+      ]
+    },
+    {
+      "title": "T Sports 7",
+      "image": "https://example.com/tsports7.png",
+      "type": "tv",
+      "category": "กีฬา",
+      "subcategory": "กีฬาไทย",
+      "status": "live",
+      "servers": [
+        {
+          "name": "Main",
+          "url": "https://example.com/live/tsports7.m3u8"
+        }
+      ]
+    }
+  ]
+}
