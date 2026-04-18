@@ -60,6 +60,7 @@
     .main {
       flex: 1;
       padding: 12px;
+      overflow: auto;
     }
 
     .topbar {
@@ -232,14 +233,14 @@
       <button class="menu-btn active" data-title="📺 ทีวี" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
       <button class="menu-btn" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/movie24hd.json">🎬 หนัง</button>
       <button class="menu-btn" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/series24hd.json">📺 ซีรีส์</button>
-      <button class="menu-btn" data-link="live.html">⚽ ตารางแข่งขัน</button>
+      <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/live.html">⚽ ตารางแข่งขัน</button>
     </aside>
 
     <main class="main">
       <div class="topbar">
         <div>
           <div id="pageTitle" class="title">📺 ทีวี</div>
-          <div class="sub">24HD movie + series + tv • หนังกันกระตุกด้วย external player อัตโนมัติ</div>
+          <div class="sub">ทีวีและซีรีส์เล่นในเว็บ • หนังลองเล่นในเว็บก่อนแล้วค่อยเด้ง PLAYER</div>
         </div>
         <div class="tools">
           <button id="reloadBtn" class="top-btn">รีโหลด</button>
@@ -292,10 +293,11 @@
     let cache = {};
     let historyStack = [];
     let playerUiTimer = null;
+    let movieFallbackTimer = null;
 
     const HOME_URL = "https://tiea9999.github.io/tv-online";
     const ANTI_BUFFER_MODE = true;
-    const MOVIE_FORCE_EXTERNAL = true;
+    const MOVIE_FORCE_EXTERNAL = false;
 
     video.setAttribute("playsinline", "true");
     video.setAttribute("webkit-playsinline", "true");
@@ -304,20 +306,20 @@
       return currentTitle.includes("หนัง") || item?.type === "movie";
     }
 
-    function isSeriesItem(item) {
-      return currentTitle.includes("ซีรีส์") || item?.type === "series" || item?.type === "episode";
-    }
-
-    function isTvItem(item) {
-      return currentTitle.includes("ทีวี") || item?.type === "tv";
-    }
-
     function setStatus(msg) {
       statusBox.textContent = msg || "";
       statusBox.style.display = msg ? "block" : "none";
     }
 
+    function clearMovieFallbackTimer() {
+      if (movieFallbackTimer) {
+        clearTimeout(movieFallbackTimer);
+        movieFallbackTimer = null;
+      }
+    }
+
     function clearPlayer() {
+      clearMovieFallbackTimer();
       if (hls) {
         try { hls.destroy(); } catch (e) {}
         hls = null;
@@ -366,11 +368,6 @@
       }
     }
 
-    function smartExternalOpen(url) {
-      if (!url) return;
-      openExternalPlayer(url);
-    }
-
     function openMx(url) {
       if (!url) return;
       location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
@@ -392,10 +389,14 @@
       return item.url || item.link || item.stream || item.source || item.file || "";
     }
 
+    function getThumb(item) {
+      return item?.image || item?.poster || item?.thumb || item?.logo || item?.cover || "";
+    }
+
     function buildEntry(node, inheritedImage = "") {
       if (!node || typeof node !== "object") return null;
 
-      const img = node.image || node.poster || node.logo || node.thumb || inheritedImage || "";
+      const img = getThumb(node) || inheritedImage || "";
       const title = node.title || node.name || node.ep_name || node.episode || "ไม่มีชื่อ";
       const url = node.url || node.link || node.stream || node.source || node.file || "";
       const servers = mapServers(node.servers);
@@ -416,7 +417,7 @@
           language: node.language || "",
           episodes: node.episodes.map((ep, i) => ({
             title: ep.title || ep.name || ep.ep_name || `EP${i + 1}`,
-            image: ep.image || ep.poster || img || "",
+            image: getThumb(ep) || img || "",
             url: ep.url || ep.link || ep.source || ep.stream || ep.file || "",
             servers: mapServers(ep.servers),
             type: "episode"
@@ -488,7 +489,7 @@
           return;
         }
 
-        const img = node.image || node.poster || node.logo || node.thumb || inheritedImage || "";
+        const img = getThumb(node) || inheritedImage || "";
         Object.values(node).forEach(v => {
           if (Array.isArray(v) || (v && typeof v === "object")) {
             walk(v, img);
@@ -518,7 +519,7 @@
         return direct;
       }
 
-      const res = await fetch(sourceUrl);
+      const res = await fetch(sourceUrl, { cache: "no-store" });
       if (!res.ok) throw new Error("โหลดไฟล์ไม่สำเร็จ: " + res.status);
 
       const text = await res.text();
@@ -529,7 +530,14 @@
 
       if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
         const json = JSON.parse(text);
-        result = normalizeItems(json);
+
+        if (Array.isArray(json)) {
+          result = normalizeItems(json);
+        } else if (Array.isArray(json.items)) {
+          result = normalizeItems(json.items);
+        } else {
+          result = normalizeItems([json]);
+        }
       } else if (trimmed.includes("#EXTM3U") || trimmed.includes("#EXTINF")) {
         const lines = text.split(/\r?\n/);
         let current = null;
@@ -587,8 +595,8 @@
         }
 
         card.innerHTML = `
-          ${item.image
-            ? `<img src="${item.image}" alt="" loading="lazy" onerror="this.style.display='none'">`
+          ${getThumb(item)
+            ? `<img src="${getThumb(item)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x450?text=NO+IMAGE'">`
             : `<div style="height:${isTV ? 140 : 170}px;background:#000;"></div>`
           }
           <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
@@ -695,36 +703,30 @@
         autoStartLoad: true,
         startPosition: -1,
         lowLatencyMode: false,
-        maxBufferLength: isMovie ? 180 : 60,
-        maxMaxBufferLength: isMovie ? 240 : 120,
-        backBufferLength: isMovie ? 180 : 90,
+        maxBufferLength: isMovie ? 60 : 40,
+        maxMaxBufferLength: isMovie ? 120 : 80,
+        backBufferLength: isMovie ? 90 : 60,
         maxBufferHole: 1,
-        manifestLoadingMaxRetry: 8,
-        levelLoadingMaxRetry: 8,
-        fragLoadingMaxRetry: 10,
+        manifestLoadingMaxRetry: 6,
+        levelLoadingMaxRetry: 6,
+        fragLoadingMaxRetry: 8,
         liveSyncDurationCount: 3,
         liveMaxLatencyDurationCount: 10
       });
     }
 
-    function applyAntiBufferProfile(hlsInstance, item) {
-      if (!hlsInstance || !ANTI_BUFFER_MODE) return;
+    function startMovieFallback(url) {
+      clearMovieFallbackTimer();
+      movieFallbackTimer = setTimeout(() => {
+        openExternalPlayer(url);
+      }, 3500);
+    }
 
-      hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
-        try {
-          const levels = hlsInstance.levels || [];
-          if (!levels.length) return;
-
-          if (isMovieItem(item)) {
-            const safeIndex = Math.max(0, Math.min(1, levels.length - 1));
-            hlsInstance.currentLevel = safeIndex;
-            hlsInstance.nextLevel = safeIndex;
-            hlsInstance.loadLevel = safeIndex;
-          }
-        } catch (e) {
-          console.log("applyAntiBufferProfile error:", e);
-        }
-      });
+    function attachPlaybackSuccessHandlers() {
+      const ok = () => clearMovieFallbackTimer();
+      video.addEventListener("playing", ok, { once: true });
+      video.addEventListener("loadeddata", ok, { once: true });
+      video.addEventListener("canplay", ok, { once: true });
     }
 
     async function playItem(item, serverIndex = 0) {
@@ -741,76 +743,50 @@
       const lower = url.toLowerCase();
       const movieMode = isMovieItem(item);
 
-      if (ANTI_BUFFER_MODE && MOVIE_FORCE_EXTERNAL && movieMode) {
-        smartExternalOpen(url);
-        return;
-      }
-
       if (lower.includes(".m3u8")) {
         showPlayer();
+        if (movieMode) {
+          startMovieFallback(url);
+          attachPlaybackSuccessHandlers();
+        }
 
         if (Hls.isSupported()) {
           hls = createStableHls(movieMode);
           hls.loadSource(url);
           hls.attachMedia(video);
 
-          applyAntiBufferProfile(hls, item);
-
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            tryStartVideoWithSound(() => smartExternalOpen(url));
+            tryStartVideoWithSound(() => openExternalPlayer(url));
           });
 
           hls.on(Hls.Events.ERROR, (e, data) => {
-            console.log("HLS error:", data);
-
             if (data?.fatal) {
               if (Array.isArray(item.servers) && item.servers.length > serverIndex + 1) {
                 playItem(item, serverIndex + 1);
               } else {
-                smartExternalOpen(url);
+                openExternalPlayer(url);
               }
             }
           });
-
-          let stalledTimer = null;
-
-          video.addEventListener("waiting", () => {
-            if (!ANTI_BUFFER_MODE) return;
-            if (stalledTimer) clearTimeout(stalledTimer);
-
-            stalledTimer = setTimeout(() => {
-              if (movieMode) {
-                smartExternalOpen(url);
-              }
-            }, 5000);
-          }, { once: false });
-
-          video.addEventListener("playing", () => {
-            if (stalledTimer) {
-              clearTimeout(stalledTimer);
-              stalledTimer = null;
-            }
-          }, { once: false });
-
         } else {
-          smartExternalOpen(url);
+          video.src = url;
+          tryStartVideoWithSound(() => openExternalPlayer(url));
         }
         return;
       }
 
       if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
-        if (movieMode && ANTI_BUFFER_MODE) {
-          smartExternalOpen(url);
-          return;
-        }
-
         showPlayer();
+        if (movieMode) {
+          startMovieFallback(url);
+          attachPlaybackSuccessHandlers();
+        }
         video.src = url;
-        tryStartVideoWithSound(() => smartExternalOpen(url));
+        tryStartVideoWithSound(() => openExternalPlayer(url));
         return;
       }
 
-      smartExternalOpen(url);
+      openExternalPlayer(url);
     }
 
     async function loadCurrentMenu() {
@@ -819,7 +795,7 @@
         const list = await loadSource(currentSource);
         renderGrid(list);
         pageTitle.textContent = currentTitle;
-        setStatus(`โหลดสำเร็จ: ${list.length} รายการ`);
+        setStatus("");
       } catch (e) {
         console.error(e);
         setStatus("โหลดรายการไม่สำเร็จ\n" + e.message);
