@@ -1,0 +1,41 @@
+{
+  "site": "TIEA IPTV",
+  "type": "movie",
+  "updated": "2026-04-18",
+  "items": [
+    {
+      "title": "Outcome (2026)",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/Outcome-2026.webp",
+      "type": "movie",
+      "category": "หนังใหม่2026",
+      "subcategory": "หนังฝรั่ง",
+      "status": "movie",
+      "year": 2026,
+      "rating": 0,
+      "language": "ซับไทย",
+      "servers": [
+        {
+          "name": "Main",
+          "url": "https://media.vdohls.com/Q-hK5zQM_Disl/playlist.m3u8"
+        }
+      ]
+    },
+    {
+      "title": "Soul-Guiding Lantern 2 (2026) โคมไฟดูดวิญญาณ 2",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/Soul-Guiding-Lantern-2-2026.webp",
+      "type": "movie",
+      "category": "หนังใหม่2026",
+      "subcategory": "หนังจีน",
+      "status": "movie",
+      "year": 2026,
+      "rating": 0,
+      "language": "ซับไทย",
+      "servers": [
+        {
+          "name": "Main",
+          "url": "https://media.vdohls.com/Q8g4Q_aN-I8iM/video.m3u8"
+        }
+      ]
+    }
+  ]
+}
