@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TIEA ตารางบอลเทพ</title>
+  <title>TIEA LIVE</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -157,6 +158,47 @@
       background: #111;
       border-radius: 12px;
     }
+
+    #playerWrap {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: none;
+      z-index: 9999;
+    }
+    #videoPlayer {
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+    #playerBar {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      gap: 8px;
+      z-index: 10000;
+      flex-wrap: wrap;
+      opacity: 1;
+      transition: opacity .25s ease;
+    }
+    #playerBar.hide-ui {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .player-btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn-player-home { background: #2196f3; }
+    .btn-player-close { background: #e53935; }
+    .btn-player-open { background: #009688; }
+    .btn-player-mx { background: #ff9800; }
+
     @media (max-width: 700px) {
       .match {
         grid-template-columns: 1fr;
@@ -185,6 +227,16 @@
     <div id="content"></div>
   </div>
 
+  <div id="playerWrap">
+    <video id="videoPlayer" controls playsinline webkit-playsinline autoplay></video>
+    <div id="playerBar">
+      <button id="playerHomeBtn" class="player-btn btn-player-home">🏠 หน้าโฮม</button>
+      <button id="playerExternalBtn" class="player-btn btn-player-open">▶ PLAYER</button>
+      <button id="playerMxBtn" class="player-btn btn-player-mx">▶ MX</button>
+      <button id="playerCloseBtn" class="player-btn btn-player-close">✕ ปิด</button>
+    </div>
+  </div>
+
   <script>
     const HOME_URL = "https://tiea9999.github.io/tv";
     const SOURCE_URL = "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Dooball66%20Pro%20V4.3.json";
@@ -192,13 +244,23 @@
     const statusBox = document.getElementById("statusBox");
     const dayBar = document.getElementById("dayBar");
     const content = document.getElementById("content");
+    const playerWrap = document.getElementById("playerWrap");
+    const playerBar = document.getElementById("playerBar");
+    const video = document.getElementById("videoPlayer");
 
     let allMatches = [];
     let selectedDate = "";
     let tickTimer = null;
+    let playerUiTimer = null;
+    let hls = null;
+    let currentUrl = "";
 
     document.getElementById("homeBtn").onclick = () => location.href = HOME_URL;
     document.getElementById("reloadBtn").onclick = () => loadSchedule();
+    document.getElementById("playerHomeBtn").onclick = () => location.href = HOME_URL;
+    document.getElementById("playerCloseBtn").onclick = closePlayer;
+    document.getElementById("playerExternalBtn").onclick = () => openExternalPlayer(currentUrl);
+    document.getElementById("playerMxBtn").onclick = () => openMx(currentUrl);
 
     function setStatus(msg) {
       statusBox.textContent = msg || "";
@@ -350,23 +412,124 @@
       return map;
     }
 
-    function openStation(match) {
-      if (!match.stations.length) return;
+    function pickPrimaryStation(stations) {
+      if (!Array.isArray(stations) || !stations.length) return null;
 
-      if (match.stations.length === 1) {
-        location.href = match.stations[0].url;
+      const primary =
+        stations.find(s =>
+          String(s.name || "").includes("หลัก") ||
+          String(s.info || "").includes("หลัก")
+        ) || stations[0];
+
+      return primary;
+    }
+
+    function showPlayerUi() {
+      playerBar.classList.remove("hide-ui");
+      if (playerUiTimer) clearTimeout(playerUiTimer);
+      playerUiTimer = setTimeout(() => {
+        if (playerWrap.style.display === "block") {
+          playerBar.classList.add("hide-ui");
+        }
+      }, 2500);
+    }
+
+    function clearPlayer() {
+      if (hls) {
+        try { hls.destroy(); } catch (e) {}
+        hls = null;
+      }
+      try { video.pause(); } catch (e) {}
+      video.removeAttribute("src");
+      video.src = "";
+      video.load();
+    }
+
+    function closePlayer() {
+      clearPlayer();
+      playerWrap.style.display = "none";
+      playerBar.classList.remove("hide-ui");
+      currentUrl = "";
+    }
+
+    function openExternalPlayer(url) {
+      if (!url) return;
+      try {
+        const u = new URL(url);
+        location.href =
+          "intent://" + u.host + u.pathname + u.search +
+          "#Intent;scheme=" + u.protocol.replace(":", "") +
+          ";action=android.intent.action.VIEW;type=video/*;end";
+      } catch (e) {
+        location.href = url;
+      }
+    }
+
+    function openMx(url) {
+      if (!url) return;
+      location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
+    }
+
+    function tryPlay(url) {
+      currentUrl = url;
+      playerWrap.style.display = "block";
+      showPlayerUi();
+      clearPlayer();
+
+      const lower = String(url).toLowerCase();
+
+      if (lower.includes(".m3u8")) {
+        if (Hls.isSupported()) {
+          hls = new Hls({
+            enableWorker: true,
+            autoStartLoad: true,
+            maxBufferLength: 30,
+            maxMaxBufferLength: 60,
+            fragLoadingMaxRetry: 6
+          });
+
+          hls.loadSource(url);
+          hls.attachMedia(video);
+
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            const p = video.play();
+            if (p && typeof p.then === "function") {
+              p.catch(() => openExternalPlayer(url));
+            }
+          });
+
+          hls.on(Hls.Events.ERROR, (e, data) => {
+            if (data?.fatal) {
+              openExternalPlayer(url);
+            }
+          });
+          return;
+        }
+
+        if (video.canPlayType("application/vnd.apple.mpegurl")) {
+          video.src = url;
+          video.play().catch(() => openExternalPlayer(url));
+          return;
+        }
+
+        openExternalPlayer(url);
         return;
       }
 
-      const list = match.stations
-        .map((s, i) => `${i + 1}. ${s.name} ${s.info ? "• " + s.info : ""}`)
-        .join("\n");
-
-      const pick = prompt(`เลือกช่องถ่ายทอดสด\n${list}\n\nใส่เลข 1-${match.stations.length}`, "1");
-      const idx = Number(pick) - 1;
-      if (idx >= 0 && idx < match.stations.length) {
-        location.href = match.stations[idx].url;
+      if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
+        video.src = url;
+        video.play().catch(() => openExternalPlayer(url));
+        return;
       }
+
+      openExternalPlayer(url);
+    }
+
+    function openStation(match) {
+      if (!match.stations.length) return;
+      const primary = pickPrimaryStation(match.stations);
+      if (!primary) return;
+      tryPlay(primary.url);
     }
 
     function renderMatches() {
@@ -455,7 +618,7 @@
         content.innerHTML = "";
         dayBar.innerHTML = "";
 
-        const res = await fetch(SOURCE_URL, { cache: "no-store" });
+        const res = await fetch("https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Dooball66%20Pro%20V4.3.json", { cache: "no-store" });
         if (!res.ok) throw new Error("โหลดไฟล์ไม่สำเร็จ: " + res.status);
 
         const data = await res.json();
@@ -486,10 +649,25 @@
       }
     }
 
+    ["mousemove", "mousedown", "touchstart"].forEach(evt => {
+      playerWrap.addEventListener(evt, () => {
+        if (playerWrap.style.display === "block") showPlayerUi();
+      });
+    });
+
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
-        e.preventDefault();
-        location.href = HOME_URL;
+      if (playerWrap.style.display === "block") {
+        showPlayerUi();
+        if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
+          e.preventDefault();
+          closePlayer();
+          return;
+        }
+      } else {
+        if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
+          e.preventDefault();
+          location.href = HOME_URL;
+        }
       }
     });
 
