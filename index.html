@@ -13,16 +13,19 @@
       color: #fff;
       font-family: sans-serif;
     }
+
     .app {
       display: flex;
       min-height: 100vh;
     }
+
     .sidebar {
       width: 190px;
       background: #111;
       padding: 10px;
       flex-shrink: 0;
     }
+
     .brand {
       text-align: center;
       font-size: 22px;
@@ -30,7 +33,10 @@
       color: #00e5ff;
       margin-bottom: 12px;
     }
-    .menu-btn, .top-btn, .ep-btn {
+
+    .menu-btn,
+    .top-btn,
+    .ep-btn {
       width: 100%;
       border: 0;
       border-radius: 10px;
@@ -42,6 +48,7 @@
       text-align: left;
       font-size: 15px;
     }
+
     .menu-btn.active,
     .menu-btn:focus,
     .top-btn:focus,
@@ -49,10 +56,12 @@
       background: #00c853;
       outline: none;
     }
+
     .main {
       flex: 1;
       padding: 12px;
     }
+
     .topbar {
       display: flex;
       justify-content: space-between;
@@ -60,25 +69,30 @@
       flex-wrap: wrap;
       margin-bottom: 12px;
     }
+
     .title {
       font-size: 22px;
       font-weight: bold;
       color: #00e5ff;
     }
+
     .sub {
       color: #aaa;
       font-size: 13px;
     }
+
     .tools {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
+
     .top-btn {
       width: auto;
       margin-bottom: 0;
       padding: 10px 12px;
     }
+
     .status {
       display: none;
       background: rgba(255,255,255,.08);
@@ -88,11 +102,13 @@
       font-size: 14px;
       white-space: pre-wrap;
     }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 10px;
     }
+
     .card {
       background: #111;
       border-radius: 10px;
@@ -103,10 +119,12 @@
       text-align: left;
       cursor: pointer;
     }
+
     .card:focus,
     .card:hover {
       outline: 3px solid #00e5ff;
     }
+
     .card img {
       width: 100%;
       height: 170px;
@@ -114,38 +132,45 @@
       background: #000;
       display: block;
     }
+
     .card.tv img {
       object-fit: contain;
       padding: 8px;
       height: 140px;
       background: #000;
     }
+
     .card-title {
       padding: 8px 8px 4px;
       font-size: 14px;
       line-height: 1.35;
       min-height: 42px;
     }
+
     .card-meta {
       padding: 0 8px 8px;
       font-size: 12px;
       color: #aaa;
       line-height: 1.35;
     }
+
     .eps-wrap {
       display: none;
     }
+
     .eps-title {
       font-size: 20px;
       font-weight: bold;
       color: #00e5ff;
       margin-bottom: 10px;
     }
+
     .eps-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
       gap: 8px;
     }
+
     #playerWrap {
       position: fixed;
       inset: 0;
@@ -153,11 +178,13 @@
       display: none;
       z-index: 9999;
     }
+
     #videoPlayer {
       width: 100%;
       height: 100%;
       background: #000;
     }
+
     #playerBar {
       position: absolute;
       top: 12px;
@@ -169,10 +196,12 @@
       opacity: 1;
       transition: opacity .25s ease;
     }
+
     #playerBar.hide-ui {
       opacity: 0;
       pointer-events: none;
     }
+
     .player-btn {
       border: 0;
       border-radius: 10px;
@@ -181,6 +210,7 @@
       cursor: pointer;
       font-weight: bold;
     }
+
     .btn-home { background: #2196f3; }
     .btn-close { background: #e53935; }
     .btn-player { background: #009688; }
@@ -209,7 +239,7 @@
       <div class="topbar">
         <div>
           <div id="pageTitle" class="title">📺 ทีวี</div>
-          <div class="sub">24HD movie + series + tv พร้อม player เสถียรขึ้น</div>
+          <div class="sub">24HD movie + series + tv • หนังกันกระตุกด้วย external player อัตโนมัติ</div>
         </div>
         <div class="tools">
           <button id="reloadBtn" class="top-btn">รีโหลด</button>
@@ -263,8 +293,24 @@
     let historyStack = [];
     let playerUiTimer = null;
 
+    const HOME_URL = "https://tiea9999.github.io/tv";
+    const ANTI_BUFFER_MODE = true;
+    const MOVIE_FORCE_EXTERNAL = true;
+
     video.setAttribute("playsinline", "true");
     video.setAttribute("webkit-playsinline", "true");
+
+    function isMovieItem(item) {
+      return currentTitle.includes("หนัง") || item?.type === "movie";
+    }
+
+    function isSeriesItem(item) {
+      return currentTitle.includes("ซีรีส์") || item?.type === "series" || item?.type === "episode";
+    }
+
+    function isTvItem(item) {
+      return currentTitle.includes("ทีวี") || item?.type === "tv";
+    }
 
     function setStatus(msg) {
       statusBox.textContent = msg || "";
@@ -318,6 +364,11 @@
       } catch (e) {
         location.href = url;
       }
+    }
+
+    function smartExternalOpen(url) {
+      if (!url) return;
+      openExternalPlayer(url);
     }
 
     function openMx(url) {
@@ -638,19 +689,41 @@
       }
     }
 
-    function createStableHls() {
+    function createStableHls(isMovie = false) {
       return new Hls({
         enableWorker: true,
         autoStartLoad: true,
         startPosition: -1,
-        maxBufferLength: 60,
-        maxMaxBufferLength: 120,
-        backBufferLength: 90,
-        maxBufferHole: 0.8,
         lowLatencyMode: false,
-        manifestLoadingMaxRetry: 6,
-        levelLoadingMaxRetry: 6,
-        fragLoadingMaxRetry: 8
+        maxBufferLength: isMovie ? 180 : 60,
+        maxMaxBufferLength: isMovie ? 240 : 120,
+        backBufferLength: isMovie ? 180 : 90,
+        maxBufferHole: 1,
+        manifestLoadingMaxRetry: 8,
+        levelLoadingMaxRetry: 8,
+        fragLoadingMaxRetry: 10,
+        liveSyncDurationCount: 3,
+        liveMaxLatencyDurationCount: 10
+      });
+    }
+
+    function applyAntiBufferProfile(hlsInstance, item) {
+      if (!hlsInstance || !ANTI_BUFFER_MODE) return;
+
+      hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
+        try {
+          const levels = hlsInstance.levels || [];
+          if (!levels.length) return;
+
+          if (isMovieItem(item)) {
+            const safeIndex = Math.max(0, Math.min(1, levels.length - 1));
+            hlsInstance.currentLevel = safeIndex;
+            hlsInstance.nextLevel = safeIndex;
+            hlsInstance.loadLevel = safeIndex;
+          }
+        } catch (e) {
+          console.log("applyAntiBufferProfile error:", e);
+        }
       });
     }
 
@@ -666,42 +739,78 @@
       }
 
       const lower = url.toLowerCase();
+      const movieMode = isMovieItem(item);
+
+      if (ANTI_BUFFER_MODE && MOVIE_FORCE_EXTERNAL && movieMode) {
+        smartExternalOpen(url);
+        return;
+      }
 
       if (lower.includes(".m3u8")) {
         showPlayer();
 
         if (Hls.isSupported()) {
-          hls = createStableHls();
+          hls = createStableHls(movieMode);
           hls.loadSource(url);
           hls.attachMedia(video);
 
+          applyAntiBufferProfile(hls, item);
+
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            tryStartVideoWithSound(() => openExternalPlayer(url));
+            tryStartVideoWithSound(() => smartExternalOpen(url));
           });
 
           hls.on(Hls.Events.ERROR, (e, data) => {
+            console.log("HLS error:", data);
+
             if (data?.fatal) {
               if (Array.isArray(item.servers) && item.servers.length > serverIndex + 1) {
                 playItem(item, serverIndex + 1);
               } else {
-                openExternalPlayer(url);
+                smartExternalOpen(url);
               }
             }
           });
+
+          let stalledTimer = null;
+
+          video.addEventListener("waiting", () => {
+            if (!ANTI_BUFFER_MODE) return;
+            if (stalledTimer) clearTimeout(stalledTimer);
+
+            stalledTimer = setTimeout(() => {
+              if (movieMode) {
+                smartExternalOpen(url);
+              }
+            }, 5000);
+          }, { once: false });
+
+          video.addEventListener("playing", () => {
+            if (stalledTimer) {
+              clearTimeout(stalledTimer);
+              stalledTimer = null;
+            }
+          }, { once: false });
+
         } else {
-          openExternalPlayer(url);
+          smartExternalOpen(url);
         }
         return;
       }
 
       if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
+        if (movieMode && ANTI_BUFFER_MODE) {
+          smartExternalOpen(url);
+          return;
+        }
+
         showPlayer();
         video.src = url;
-        tryStartVideoWithSound(() => openExternalPlayer(url));
+        tryStartVideoWithSound(() => smartExternalOpen(url));
         return;
       }
 
-      openExternalPlayer(url);
+      smartExternalOpen(url);
     }
 
     async function loadCurrentMenu() {
@@ -759,10 +868,7 @@
     };
 
     document.getElementById("playerHomeBtn").onclick = () => {
-      closePlayer();
-      epsWrap.style.display = "none";
-      listView.style.display = "block";
-      currentMode = "list";
+      location.href = HOME_URL;
     };
 
     document.getElementById("playerCloseBtn").onclick = closePlayer;
@@ -784,13 +890,19 @@
     });
 
     document.addEventListener("keydown", (e) => {
-      if (playerWrap.style.display !== "block") return;
+      if (playerWrap.style.display === "block") {
+        showPlayerUi();
 
-      showPlayerUi();
-
-      if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
-        e.preventDefault();
-        closePlayer();
+        if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
+          e.preventDefault();
+          closePlayer();
+          return;
+        }
+      } else {
+        if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
+          e.preventDefault();
+          location.href = HOME_URL;
+        }
       }
     });
 
