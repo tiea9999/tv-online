@@ -1,4 +1,5 @@
-แบบมาตรฐาน
+แแบบมาตรฐานบมาตรฐานแบบมาตรฐานบมาตรฐานแบบมาตรฐานบมาตรฐานแบบมาตรฐานบมาตรฐานนแบบมาตรฐานบมาตรฐานแบบมาตรฐานบมาตรฐานแบบมาตรฐานบมาตรฐาน
+แบบมาตรฐานบบมาตรฐานบบมาตรฐานบบมาตรฐาน
 [
   {
     "title": "Pursuit of Jade (2026)",
@@ -234,7 +235,39 @@ latest_ep < total_ep
   "note": "อัปเดตทุกสัปดาห์"
 }
 
-สรุปคือ หน้าเดียวไม่งง ถ้าคุณบังคับให้ทุกเรื่องมีฟิลด์พวกนี้เสมอ:
+สรุปคือ หน้าเดียวไม่งง ถ้าคุณบังคับให้ทุกเรืตัวอย่างจริงจากรูปที่คุณส่งตัวอย่างจริงจากรูปที่คุณส่งตัวอย่างจริงจากรูปที่คุณส่ง่องมีฟิลด์พวกนี้เสมอ:
 status
 latest_ep
-total_ep
+total_ep[
+  {
+    "title": "Tom Clancy's Jack Ryan Ghost War (2026)",
+    "image": "poster1.jpg",
+    "url": "play1.m3u8",
+    "type": "movie",
+    "category": "หนังใหม่2026"
+  },
+  {
+    "title": "The Palace Maid Isn't Very Calm (2026)",
+    "image": "poster2.jpg",
+    "episodes": [
+      { "title": "EP1", "url": "ep1.m3u8" }
+    ],
+    "type": "series",
+    "category": "ซีรีย์จีน"
+  },
+  {
+    "title": "The Moment I Met You (2026)",
+    "image": "poster3.jpg",
+    "episodes": [
+      { "title": "EP1", "url": "ep1.m3u8" }
+    ],
+    "type": "series",
+    "category": "ซีรีย์จีน"
+  }
+]
+
+
+
+
+
+
