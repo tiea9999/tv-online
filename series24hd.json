@@ -395,7 +395,28 @@
       { "title": "EP38", "servers":[{"name":"Main","url":"https://media.vdohls.com/X-ubw0yG_uBIA/video.m3u8"}]},
       { "title": "EP39", "servers":[{"name":"Main","url":"https://media.vdohls.com/pje-RCL_R9Tr8/video.m3u8"}]},
       { "title": "EP40", "servers":[{"name":"Main","url":"https://media.vdohls.com/j6b-bHg4W_s6D/video.m3u8"}]}
-    
+      ]
+    },
+    {
+      "title": "Agent from Above (2026) สายลับฟ้าส่ง EP.1-8",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/Agent-from-Above-2026.webp",
+      "type": "series",
+      "category": "ซีรีย์จีน",
+      "subcategory":"พากย์ไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 38,
+      "year": 2026,
+      "language": "พากย์ไทย",
+    "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/6dUIi-x9Cf_ng/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/cTh60_Xj-Sk7V/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/YGK_uqu-jkXnt/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/H_Vlah4c-Oeri/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/rok3o-55g_2EJ/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/RzUL19_F8-94P/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/khtTZ-uTY_FUn/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/uN-2_pcfwFnM6/video.m3u8"}]}    
     
     
     ]
