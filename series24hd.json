@@ -543,7 +543,36 @@
       { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/mlAU-9W_NfOCU/video.m3u8"}]},
       { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/CtFIX-ek_9q9v/video.m3u8"}]},
       { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/ZbTZ9a-jj_Zts/video.m3u8"}]} 
-    
+        ]
+    },
+    {
+      "title": "Oh My Venus (2015) ไม่อ้วนเอาเท่าไหร่ EP.1-16จบ",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/Oh-My-Venus-2015.webp",
+      "type": "series",
+      "category": "ซีรีย์เกาหลี",
+      "subcategory":"ซับไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 16,
+      "year": 2015,
+      "language": "ซับไทย",
+      "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/5Hbw-O7_gt5TR/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/CwDv_s3PI-Dpk/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/o-p_lK9EDI4et/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/sa5_D-qs2atwK/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/TO-H8NF9qI_V6/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/Aets-0QDrI_Xa/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/xqv-magJtW_zM/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/124_DhB-dQcCX/video.m3u8"}]},
+      { "title": "EP9", "servers":[{"name":"Main","url":"https://media.vdohls.com/sB_L-QXPCmZQV/video.m3u8"}]},
+      { "title": "EP10", "servers":[{"name":"Main","url":"https://media.vdohls.com/1_M6RU1Sq-t5p/video.m3u8"}]},
+      { "title": "EP11", "servers":[{"name":"Main","url":"https://media.vdohls.com/u_dOVGd-XConn/video.m3u8"}]},
+      { "title": "EP12", "servers":[{"name":"Main","url":"https://media.vdohls.com/InqSuj8_z-sBY/video.m3u8"}]},
+      { "title": "EP13", "servers":[{"name":"Main","url":"https://media.vdohls.com/uKqctd_oq-eCY/video.m3u8"}]},
+      { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/kjCys_t-QnUWe/video.m3u8"}]},
+      { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/avgf-Nx_zmWXY/video.m3u8"}]},
+      { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/O_XL-lL6Zivcw/video.m3u8"}]}  
     ]
       }     
      ]
