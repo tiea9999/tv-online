@@ -192,16 +192,16 @@
         { "title": "EP8", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/rWm_i-S3X88j3/video.m3u8" }] },
         { "title": "EP9", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/C5iRrsO_Lo-uD/video.m3u8" }] },
         { "title": "EP10", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/T7hhNE-NBS_Kf/video.m3u8" }] },
-        { "title": "EP11", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/6i_W3rss-Ekml/video.m3u8" }] },
-        { "title": "EP12", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Rh_K-jH6CzyXF/video.m3u8" }] },
-        { "title": "EP13", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/QU_2CTj-YXKP4/video.m3u8" }] },
-        { "title": "EP14", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/B_sjb7cZb-eBY/video.m3u8" }] },
-        { "title": "EP15", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/j0nQ-WEqv_DOI/video.m3u8" }] },
-        { "title": "EP16", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/2_kV-CYPYYuUi/video.m3u8" }] },
-        { "title": "EP17", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/EaG4gylF_8-QI/video.m3u8" }] },
-        { "title": "EP18", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/EaG4gylF_8-QI/video.m3u8" }] },
-        { "title": "EP19", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/mOxYCS-T_SctO/video.m3u8" }] },
-        { "title": "EP20", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/2-lHwvRQ_NIV6/video.m3u8" }] }
+        { "title": "EP11", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/6i_W3rss-Ekml/video.m3u8" }]},
+        { "title": "EP12", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Rh_K-jH6CzyXF/video.m3u8" }]},
+        { "title": "EP13", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/QU_2CTj-YXKP4/video.m3u8" }]},
+        { "title": "EP14", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/B_sjb7cZb-eBY/video.m3u8" }]},
+        { "title": "EP15", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/j0nQ-WEqv_DOI/video.m3u8" }]},
+        { "title": "EP16", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/2_kV-CYPYYuUi/video.m3u8" }]},
+        { "title": "EP17", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/EaG4gylF_8-QI/video.m3u8" }]},
+        { "title": "EP18", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/EaG4gylF_8-QI/video.m3u8" }]},
+        { "title": "EP19", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/mOxYCS-T_SctO/video.m3u8" }]},
+        { "title": "EP20", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/2-lHwvRQ_NIV6/video.m3u8" }]}
 
   ]
   },
@@ -234,7 +234,9 @@
       { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/htg_V46f3-18V/video.m3u8"}]},
       { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/yoBZ-YLxQB_7a/video.m3u8"}]},
       { "title": "EP17", "servers":[{"name":"Main","url":"https://media.vdohls.com/Y-T_FBNRNy7yn/video.m3u8"}]},
-      { "title": "EP18", "servers":[{"name":"Main","url":"https://media.vdohls.com/z3-ZEES_60XwJ/video.m3u8"}]}     
-
-  ]
-}
+      { "title": "EP18", "servers":[{"name":"Main","url":"https://media.vdohls.com/z3-ZEES_60XwJ/video.m3u8"
+      }
+      ]
+      }     
+     ]
+    }
