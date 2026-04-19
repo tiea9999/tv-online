@@ -274,7 +274,36 @@
       { "title": "EP18", "servers":[{"name":"Main","url":"https://media.vdohls.com/UA-yqpKrD_b8M/video.m3u8"}]},
       { "title": "EP19", "servers":[{"name":"Main","url":"https://media.vdohls.com/J-36L7oLD_EAY/video.m3u8"}]},
       { "title": "EP20", "servers":[{"name":"Main","url":"https://media.vdohls.com/PsyOfV8-FF_2k/video.m3u8"}]}  
-
+      ]
+    },
+    {
+      "title": "Sunsets Secrets Regrets (2026) ความลับใต้ตะวันลับ EP.1-28",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/Sunsets-Secrets-Regrets-2026.webp",
+      "type": "series",
+      "category": "ซีรีย์จีน",
+      "subcategory":"ซับไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 28,
+      "year": 2026,
+      "language": "พากย์ไทย",
+    "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/VnJnqrY-o_JLi/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/XD_wnRRCRj-Py/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/HQz_fZbX-X5aM/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/V6eR8u_BnN-Ec/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/HeHB-Lnln_BAA/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/qVYGM3X-0_WO4/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/qomkTeA_5-Ng6/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/bNiC-p0UrR_Sh/video.m3u8"}]},
+      { "title": "EP9", "servers":[{"name":"Main","url":"https://media.vdohls.com/fTlPJI_jeR-Uu/video.m3u8"}]},
+      { "title": "EP10", "servers":[{"name":"Main","url":"https://media.vdohls.com/uwy_sSZ-zSDLu/video.m3u8"}]},
+      { "title": "EP11", "servers":[{"name":"Main","url":"https://media.vdohls.com/zu4i_Sq-dhrz6/video.m3u8"}]},
+      { "title": "EP12", "servers":[{"name":"Main","url":"https://media.vdohls.com/tMx8C-6_tBQt3/video.m3u8"}]},
+      { "title": "EP13", "servers":[{"name":"Main","url":"https://media.vdohls.com/zGx-Zpt_1WepQ/video.m3u8"}]},
+      { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/Nu9ger-j_rfqy/video.m3u8"}]},
+      { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/5RzL-yEb2f_uK/video.m3u8"}]},
+      { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/hVmjx-Lx_1HCJ/video.m3u8"}]}
     
       ]
       }     
