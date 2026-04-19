@@ -202,7 +202,44 @@
         { "title": "EP18", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/EaG4gylF_8-QI/video.m3u8" }]},
         { "title": "EP19", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/mOxYCS-T_SctO/video.m3u8" }]},
         { "title": "EP20", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/2-lHwvRQ_NIV6/video.m3u8" }]}
-
+      ]
+    },
+  {
+      "title": "Veil of Shadows (2026) บันทึกเกล็ดจันทร์ EP.1-29",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/Veil-of-Shadows-2026.webp",
+      "type": "series",
+      "category": "ซีรีย์จีน",
+      "subcategory": ":"พากย์ไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 38,
+      "year": 2026,
+      "language": "ซับไทย",
+    "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/R_hA3O-uF7LHr/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/bNWHKT_iJN-NS/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/k5s5A_4-DrAEK/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/2EBkq-f_oKCzF/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/p8LX-F3_YHbZP/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/U1_q4F-9vzNJR/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/GzH_aLZ-yqZRY/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/y_i8cu-aw7G4u/video.m3u8"}]},
+      { "title": "EP9", "servers":[{"name":"Main","url":"https://media.vdohls.com/lcisGt-I_dWam/video.m3u8"}]},
+      { "title": "EP10", "servers":[{"name":"Main","url":"https://media.vdohls.com/d39lE0y-y_EGi/video.m3u8"}]},
+      { "title": "EP11", "servers":[{"name":"Main","url":"https://media.vdohls.com/AFYo_6nHSk-J4/video.m3u8"}]},
+      { "title": "EP12", "servers":[{"name":"Main","url":"https://media.vdohls.com/9H4x-3_0bwkA3/video.m3u8"}]},
+      { "title": "EP13", "servers":[{"name":"Main","url":"https://media.vdohls.com/5qiz7_tb-oTUZ/video.m3u8"}]},
+      { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/dz_5IUi-5Tsaq/video.m3u8"}]},
+      { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/4hymo-6flP_NC/video.m3u8"}]},
+      { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/bN_XPq7k3-eVl/video.m3u8"}]},
+      { "title": "EP17", "servers":[{"name":"Main","url":"https://media.vdohls.com/KgQ86dm_o2-bh/video.m3u8"}]},
+      { "title": "EP18", "servers":[{"name":"Main","url":"https://media.vdohls.com/DT_yQ-HhsoLnt/video.m3u8"}]},
+      { "title": "EP19", "servers":[{"name":"Main","url":"https://media.vdohls.com/oG_uN3O108-hH/video.m3u8"}]},
+      { "title": "EP20", "servers":[{"name":"Main","url":"https://media.vdohls.com/2dq-ou_LHJ5dy/video.m3u8"}]},
+      { "title": "EP21", "servers":[{"name":"Main","url":"https://media.vdohls.com/AmQkq8d-jv_s8/video.m3u8"}]},
+      { "title": "EP22", "servers":[{"name":"Main","url":"https://media.vdohls.com/qIxP-r_6KDubt/video.m3u8"}]},
+      { "title": "EP23", "servers":[{"name":"Main","url":"https://media.vdohls.com/o_V-Ld6rb3VKk/video.m3u8"}]},
+      { "title": "EP24", "servers":[{"name":"Main","url":"https://media.vdohls.com/Gz8SK-q_xJu22/video.m3u8"}]}
   
       ]
       }     
