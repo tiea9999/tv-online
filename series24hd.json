@@ -417,7 +417,35 @@
       { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/RzUL19_F8-94P/video.m3u8"}]},
       { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/khtTZ-uTY_FUn/video.m3u8"}]},
       { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/uN-2_pcfwFnM6/video.m3u8"}]}    
-    
+       ]
+    },
+    {
+      "title": "The Silent Rift (2026) EP.1-16",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/The-Silent-Rift-2026.webp",
+      "type": "series",
+      "category": "ซีรีย์จีน",
+      "subcategory":"ซับไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 38,
+      "year": 2026,
+      "language": "ซับไทย",
+    "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/cH-Km_XPkUvhb/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/sWikDEv-qQ_oD/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/2Al-UnP2F_qWd/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/yc_YMGn-wQgnC/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/m4-SlU_o3ZoS2/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/NyP9W1Df_2-XB/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/ID-M3V_J9qRnv/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/L-2ehL2_8zOsn/video.m3u8"}]},
+      { "title": "EP9", "servers":[{"name":"Main","url":"https://media.vdohls.com/y-rIrUMW_RRZT/video.m3u8"}]},
+      { "title": "EP10", "servers":[{"name":"Main","url":"https://media.vdohls.com/c9K6VHQ_z-BGQ/video.m3u8"}]},
+      { "title": "EP11", "servers":[{"name":"Main","url":"https://media.vdohls.com/8V-lBv0Q78_bd/video.m3u8"}]},
+      { "title": "EP12", "servers":[{"name":"Main","url":"https://media.vdohls.com/tR-pxps8As_Ql/video.m3u8"}]},
+      { "title": "EP13", "servers":[{"name":"Main","url":"https://media.vdohls.com/QzKblK_r-qnIM/video.m3u8"}]},
+      { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/iN_2b-wXiQS8r/video.m3u8"}]},
+      { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/pwiQMb-kM_8mw/video.m3u8"}]}   
     
     ]
       }     
