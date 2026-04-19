@@ -203,6 +203,42 @@
         { "title": "EP19", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/mOxYCS-T_SctO/video.m3u8" }] },
         { "title": "EP20", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/2-lHwvRQ_NIV6/video.m3u8" }] }
 
+  ]
+  },
+    {
+      "title": "Echoes of a Thousand Moons (2026) EP.1-40",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/Echoes-of-a-Thousand-Moons-2026.webp",
+      "type": "series",
+      "category": "ซีรีย์จีน",
+      "subcategory": ":"ซับไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 40,
+      "year": 2026,
+      "language": "ซับไทย",
+    "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/z-5_qiT91txpX/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/aVW00_M-VAk45/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/2Nb_hEStGs-O9/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/k8zxp_vE-kqxa/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/pm_MC2DSt-jjc/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/GmLR_FE-RXyEe/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/v5ayX-Dek_JQ3/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/bE-8ncWC_oID2/video.m3u8"}]},
+      { "title": "EP9", "servers":[{"name":"Main","url":"https://media.vdohls.com/a-GKi_SzqXpfe/video.m3u8"}]},
+      { "title": "EP10", "servers":[{"name":"Main","url":"https://media.vdohls.com/YYM-Ns_CIZvqQ/video.m3u8"}]},
+      { "title": "EP11", "servers":[{"name":"Main","url":"https://media.vdohls.com/lQrtOKn-S_8gE/video.m3u8"}]},
+      { "title": "EP12", "servers":[{"name":"Main","url":"https://media.vdohls.com/3i-J9JMvi_K7t/video.m3u8"}]},
+      { "title": "EP13", "servers":[{"name":"Main","url":"https://media.vdohls.com/U-UFfhx_W8xHq/video.m3u8"}]},
+      { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/3BE-1t_MpyYWt/video.m3u8"}]},
+      { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/htg_V46f3-18V/video.m3u8"}]},
+      { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/yoBZ-YLxQB_7a/video.m3u8"}]},
+      { "title": "EP17", "servers":[{"name":"Main","url":"https://media.vdohls.com/Y-T_FBNRNy7yn/video.m3u8"}]},
+      { "title": "EP18", "servers":[{"name":"Main","url":"https://media.vdohls.com/z3-ZEES_60XwJ/video.m3u8"}]}     
+
+      
+      
+      
       
       ]
     }
