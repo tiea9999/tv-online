@@ -11,7 +11,7 @@
       { "title": "test", 
         "image": "https://www.serie-days.com/wp-content/uploads/2026/04/Perfect-Crown-2026-240x300.jpg",
         "type":"series",
-        "episodes"::[
+        "episodes":[
       {  "title": "ep1",
          "url":"https://main.24playerhd.com/m3u8/9ade3cd71cc3c3af4aae2748/9ade3cd71cc3c3af4aae2748438.m3u8"},
       ]
