@@ -4,16 +4,18 @@
   "updated": "2026-04-18",
   "items": [
     {
-      "title": "test",
-      "image": "",
-      "type": "menu",
-    "items": [
-      { "title": "test", 
-        "image": "https://www.serie-days.com/wp-content/uploads/2026/04/Perfect-Crown-2026-240x300.jpg",
-        "type":"series",
-        "episodes":[
-      {  "title": "ep1",
-         "url":"https://main.24playerhd.com/m3u8/9ade3cd71cc3c3af4aae2748/9ade3cd71cc3c3af4aae2748438.m3u8"},
+      "title": "ดูซีรี่ย์ Perfect Crown (2026) รักนี้มงลง",
+      "image": "https://www.serie-days.com/wp-content/uploads/2026/04/Perfect-Crown-2026-240x300.jpg",
+      "type": "series",
+      "category": "ซีรีย์เกาหลี",
+      "subcategory":"ซับไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 38,
+      "year": 2026,
+      "language": "พากย์ไทย ",
+    "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://main.24playerhd.com/m3u8/9ade3cd71cc3c3af4aae2748/9ade3cd71cc3c3af4aae2748438.m3u8"}]}
       ]
     },
     
