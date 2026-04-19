@@ -513,7 +513,36 @@
       { "title": "EP12", "servers":[{"name":"Main","url":"https://media.vdohls.com/Tz-8IHQ_IQEcT/video.m3u8"}]},
       { "title": "EP13", "servers":[{"name":"Main","url":"https://media.vdohls.com/Lrq-QcbCHc_m4/video.m3u8"}]},
       { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/6_yJufIs-dY4R/video.m3u8"}]}
-    
+         ]
+    },
+    {
+      "title": "One the Woman (2021) ยอดหญิงยืนหนึ่ง EP.1-16",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/One-the-Woman-2021.webp",
+      "type": "series",
+      "category": "ซีรีย์เกาหลี",
+      "subcategory":"พากย์ไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 38,
+      "year": 2021,
+      "language": "ซับไทย",
+      "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/D3_qdFt-0ogf3/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/Syetufm_3-eXf/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/l-UvsPRpqZ_Ek/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/gMuO-cn_ON2fy/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/5_gYP3uN-BaMt/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/EBo-Qja_2xyoK/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/BI5YOyV-D_Plo/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/z-mM3DBX0_ipv/video.m3u8"}]},
+      { "title": "EP9", "servers":[{"name":"Main","url":"https://media.vdohls.com/FD-u_OVCtRoSV/video.m3u8"}]},
+      { "title": "EP10", "servers":[{"name":"Main","url":"https://media.vdohls.com/Nfka-nzy_wbGE/video.m3u8"}]},
+      { "title": "EP11", "servers":[{"name":"Main","url":"https://media.vdohls.com/CenLM-5V_sPFN/video.m3u8"}]},
+      { "title": "EP12", "servers":[{"name":"Main","url":"https://media.vdohls.com/vr-tt9_3ScEvp/video.m3u8"}]},
+      { "title": "EP13", "servers":[{"name":"Main","url":"https://media.vdohls.com/z_Zf5-eYOcenx/video.m3u8"}]},
+      { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/mlAU-9W_NfOCU/video.m3u8"}]},
+      { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/CtFIX-ek_9q9v/video.m3u8"}]},
+      { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/ZbTZ9a-jj_Zts/video.m3u8"}]} 
     
     ]
       }     
