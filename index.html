@@ -274,11 +274,14 @@
   <div class="app">
     <aside class="sidebar">
       <div class="brand">TIEA IPTV</div>
-
+      <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/live.html">⚽ ตารางแข่งขัน</button>
       <button class="menu-btn active" data-kind="tv" data-title="📺 ทีวี" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
+      <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/3bb.html">📡 3BB IPTV</button>
       <button class="menu-btn" data-kind="movie" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/movie24hd.json">🎬 หนัง</button>
       <button class="menu-btn" data-kind="series" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/series24hd.json">📺 ซีรีส์</button>
-      <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/live.html">⚽ ตารางแข่งขัน</button>
+     
+
+      <button class="menu-btn" id="vipBtn">🔒 VIP</button>
     </aside>
 
     <main class="main" id="mainArea">
@@ -850,13 +853,13 @@
 
       grid.className = "grid";
       const isTV = currentKind === "tv";
-      const quickList = list.slice(0, currentKind === "movie" ? 30 : 60);
+      const quickList = list;
 
       quickList.forEach(item => {
         const runOpen = async () => {
           if (item.type === "source") {
             historyStack.push({ title: currentTitle, source: currentSource, kind: currentKind, mode: currentMode });
-            currentSource = item.url;
+            currentSource = item.url || item.source || item.link || "";
             currentTitle = item.title || currentTitle;
             pageTitle.textContent = currentTitle;
             await loadCurrentMenu();
@@ -1064,6 +1067,15 @@
         epsGrid.querySelector(".ep-btn");
       if (target) target.focus();
     }
+
+    document.getElementById("vipBtn").onclick = () => {
+      const pass = prompt("กรอกรหัส VIP");
+      if (pass === "1234") {
+        location.href = "https://tiea9999.github.io/tv-online/VIP.html";
+      } else if (pass !== null) {
+        alert("รหัสไม่ถูกต้อง");
+      }
+    };
 
     menuButtons.forEach(btn => {
       btn.onclick = async () => {
