@@ -15,7 +15,7 @@
       "year": 2026,
       "language": "พากย์ไทย ",
     "episodes": [
-      { "title": "EP1", "servers":[{"name":"Main","url":"https://main.24playerhd.com/newplaylist/e58a30c4d1e0b1d9a94d8bad/e58a30c4d1e0b1d9a94d8bad.m3u8"}]}
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://series-cdn.team-indy.net:8443/vod/OFBKYEgB0z/video.mp4/playlist.m3u8"}]}
       ]
     },
     
