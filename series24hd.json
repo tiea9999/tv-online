@@ -304,7 +304,43 @@
       { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/Nu9ger-j_rfqy/video.m3u8"}]},
       { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/5RzL-yEb2f_uK/video.m3u8"}]},
       { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/hVmjx-Lx_1HCJ/video.m3u8"}]}
-    
+ 
+      ]
+    },
+    {
+      "title": "Bone Ritual (2026) EP.1-24",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/Bone-Ritual-2026.webp",
+      "type": "series",
+      "category": "ซีรีย์จีน",
+      "subcategory":"ซับไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 24,
+      "year": 2026,
+      "language": "ซับไทย",
+    "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/wDWb7USu_1-Qd/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/XcOIC1Q-Q_lLu/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/h-V_ZzLPw2qEe/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/0z-UiA6_hAvZa/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/xfw8-b_Jax8KJ/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/VNFb29_2G-jDR/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/nq_Jpnh-EqkuO/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/A_L-xrw2VYxKs/video.m3u8"}]},
+      { "title": "EP9", "servers":[{"name":"Main","url":"https://media.vdohls.com/u_KgZG7-1zYvy/video.m3u8"}]},
+      { "title": "EP10", "servers":[{"name":"Main","url":"https://media.vdohls.com/6AwuD-VU_5bVN/video.m3u8"}]},
+      { "title": "EP11", "servers":[{"name":"Main","url":"https://media.vdohls.com/acKo-fw_eeeiA/video.m3u8"}]},
+      { "title": "EP12", "servers":[{"name":"Main","url":"https://media.vdohls.com/Mt6ZcLk9_t-nj/video.m3u8"}]},
+      { "title": "EP13", "servers":[{"name":"Main","url":"https://media.vdohls.com/yL-HT_SY9OVkA/video.m3u8"}]},
+      { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/5_CeE-nvU7jV7/video.m3u8"}]},
+      { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/b_I-R9kt32sHw/video.m3u8"}]},
+      { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/iKT1nm_n-tLtf/video.m3u8"}]},
+      { "title": "EP17", "servers":[{"name":"Main","url":"https://media.vdohls.com/4oXQI1_qX-CUQ/video.m3u8"}]},
+      { "title": "EP18", "servers":[{"name":"Main","url":"https://media.vdohls.com/RXO6uf_go-f5T/video.m3u8"}]},
+      { "title": "EP19", "servers":[{"name":"Main","url":"https://media.vdohls.com/5_SjD-WQ25vez/video.m3u8"}]},
+      { "title": "EP20", "servers":[{"name":"Main","url":"https://media.vdohls.com/qPzRMP-umY_OJ/video.m3u8"}]},
+      { "title": "EP21", "servers":[{"name":"Main","url":"https://media.vdohls.com/h-k_UWOKJPN01/video.m3u8"}]},
+      { "title": "EP22", "servers":[{"name":"Main","url":"https://media.vdohls.com/PQAQeBI_5B-Oj/video.m3u8"}]}   
       ]
       }     
      ]
