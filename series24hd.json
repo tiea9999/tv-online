@@ -234,8 +234,8 @@
       { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/htg_V46f3-18V/video.m3u8"}]},
       { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/yoBZ-YLxQB_7a/video.m3u8"}]},
       { "title": "EP17", "servers":[{"name":"Main","url":"https://media.vdohls.com/Y-T_FBNRNy7yn/video.m3u8"}]},
-      { "title": "EP18", "servers":[{"name":"Main","url":"https://media.vdohls.com/z3-ZEES_60XwJ/video.m3u8"
-      }
+      { "title": "EP18", "servers":[{"name":"Main","url":"https://media.vdohls.com/z3-ZEES_60XwJ/video.m3u8"}]}
+  
       ]
       }     
      ]
