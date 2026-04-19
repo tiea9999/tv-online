@@ -98,7 +98,7 @@
       "language": "ซับไทย",
       "episodes": [
         { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/D8fO-fjR_YJsO/video.m3u8" }] },
-        { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/PJPItVF-RW_XS/video.m3u8" }] }
+        { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/PJPItVF-RW_XS/video.m3u8" }] },
       { "title": "EP3", "servers":[{"name":"Main","url":"https://ghlsf.miruplayer.com/media/sv1/2PLyXBglYBywgqDNo9Oi/720a.m3u8"}]}
     ]
     },
