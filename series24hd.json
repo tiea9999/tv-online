@@ -98,8 +98,7 @@
       "language": "ซับไทย",
       "episodes": [
         { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/D8fO-fjR_YJsO/video.m3u8" }]},
-        { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/PJPItVF-RW_XS/video.m3u8" }]},
-      { "title": "EP3", "servers":[{"name":"Main","url":"https://main.24playerhd.com/m3u8/4156b853e03c3020121752b8/4156b853e03c3020121752b8438.m3u8"}]}
+        { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/PJPItVF-RW_XS/video.m3u8" }]}
     ]
     },
     {
