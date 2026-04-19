@@ -446,6 +446,44 @@
       { "title": "EP13", "servers":[{"name":"Main","url":"https://media.vdohls.com/QzKblK_r-qnIM/video.m3u8"}]},
       { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/iN_2b-wXiQS8r/video.m3u8"}]},
       { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/pwiQMb-kM_8mw/video.m3u8"}]}   
+      ]
+    },
+    {
+      "title": "The Dark Romance (2026) EP.1-22จบแล้ว",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/The-Dark-Romance-2026.webp",
+      "type": "series",
+      "category": "ซีรีย์จีน",
+      "subcategory":"ซับไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 38,
+      "year": 2026,
+      "language": "ซับไทย",
+    "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/TLuzvD_H-3C0B/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/M_hkKRt-NvoVq/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/J_xiFJ4Xk-eFA/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/paOAmh_mS-SFc/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/X4I1C_A94D-j8/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/VY2_NYyRI-CFM/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/MYBsR_0no-eAJ/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/YtxPn-yqd4_qI/video.m3u8"}]},
+      { "title": "EP9", "servers":[{"name":"Main","url":"https://media.vdohls.com/LhoYfw-OTw_Bq/video.m3u8"}]},
+      { "title": "EP10", "servers":[{"name":"Main","url":"https://media.vdohls.com/CuoM-4lh_0LUM/video.m3u8"}]},
+      { "title": "EP11", "servers":[{"name":"Main","url":"https://media.vdohls.com/1eku8a-3_CS02/video.m3u8"}]},
+      { "title": "EP12", "servers":[{"name":"Main","url":"https://media.vdohls.com/jqhUc3_9oW-VR/video.m3u8"}]},
+      { "title": "EP13", "servers":[{"name":"Main","url":"https://media.vdohls.com/ljW_SusQs-z1j/video.m3u8"}]},
+      { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/PJXxB-GNK_wC9/video.m3u8"}]},
+      { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/b-Q11BOJ9_ps3/video.m3u8"}]},
+      { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/hATb1ZC_zX-P9/video.m3u8"}]},
+      { "title": "EP17", "servers":[{"name":"Main","url":"https://media.vdohls.com/5Y-7z_dbNADSU/video.m3u8"}]},
+      { "title": "EP18", "servers":[{"name":"Main","url":"https://media.vdohls.com/Dtx-9a_sxVJ9G/video.m3u8"}]},
+      { "title": "EP19", "servers":[{"name":"Main","url":"https://media.vdohls.com/h6a2ub_0-AMlJ/video.m3u8"}]},
+      { "title": "EP20", "servers":[{"name":"Main","url":"https://media.vdohls.com/ZicB0U_QF6-Y5/video.m3u8"}]},
+      { "title": "EP21", "servers":[{"name":"Main","url":"https://media.vdohls.com/Qd-c5y6XY_5ny/video.m3u8"}]},
+      { "title": "EP22", "servers":[{"name":"Main","url":"https://media.vdohls.com/f3jniTq_k-Lv3/video.m3u8"}]}    
+
+    
     
     ]
       }     
