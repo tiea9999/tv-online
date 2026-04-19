@@ -240,7 +240,42 @@
       { "title": "EP22", "servers":[{"name":"Main","url":"https://media.vdohls.com/qIxP-r_6KDubt/video.m3u8"}]},
       { "title": "EP23", "servers":[{"name":"Main","url":"https://media.vdohls.com/o_V-Ld6rb3VKk/video.m3u8"}]},
       { "title": "EP24", "servers":[{"name":"Main","url":"https://media.vdohls.com/Gz8SK-q_xJu22/video.m3u8"}]}
-  
+      ]
+    },
+    {
+      "title": "Sharp Downpour (2026) EP.1-20",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/Sharp-Downpour-2026.webp",
+      "type": "series",
+      "category": "ซีรีย์จีน",
+      "subcategory":"ซับไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": จบแล้ว,
+      "year": 2026,
+      "language": "ซับไทย",
+    "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/1Sebq-fMbu_Pi/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/L-vi4qjoy_zmE/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/3_qB-IMg1SgmF/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/aKhg_2jg-HSsW/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/Y_i-nzO6fS4dA/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/L-oXc7F_Q8GCY/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/rwct_dqaS-D2w/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/aN_FEiCwL0-3H/video.m3u8"}]},
+      { "title": "EP9", "servers":[{"name":"Main","url":"https://media.vdohls.com/cDIRig_p-Bmfd/video.m3u8"}]},
+      { "title": "EP10", "servers":[{"name":"Main","url":"https://media.vdohls.com/eY-xTSSygd_Fa/video.m3u8"}]},
+      { "title": "EP11", "servers":[{"name":"Main","url":"https://media.vdohls.com/35C03_AKSt-mj/video.m3u8"}]},
+      { "title": "EP12", "servers":[{"name":"Main","url":"https://media.vdohls.com/zueKD-Jo_rRBX/video.m3u8"}]},
+      { "title": "EP13", "servers":[{"name":"Main","url":"https://media.vdohls.com/Qw-2EUKA_zqOu/video.m3u8"}]},
+      { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/U-q9KTkQ_uaVO/video.m3u8"}]},
+      { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/ACsmy-3Fr2_SR/playlist.m3u8"}]},
+      { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/0K_VSQCa7-8w9/video.m3u8"}]},
+      { "title": "EP17", "servers":[{"name":"Main","url":"https://media.vdohls.com/s-Lec4gk_YZ95/video.m3u8"}]},
+      { "title": "EP18", "servers":[{"name":"Main","url":"https://media.vdohls.com/UA-yqpKrD_b8M/video.m3u8"}]},
+      { "title": "EP19", "servers":[{"name":"Main","url":"https://media.vdohls.com/J-36L7oLD_EAY/video.m3u8"}]},
+      { "title": "EP20", "servers":[{"name":"Main","url":"https://media.vdohls.com/PsyOfV8-FF_2k/video.m3u8"}]}  
+
+    
       ]
       }     
      ]
