@@ -3,7 +3,21 @@
   "type": "series",
   "updated": "2026-04-18",
   "items": [
-   {
+    {
+      "title": "test",
+      "image": "",
+      "type": "menu",
+    "items": [
+      { "title": "test", 
+        "image": "https://www.serie-days.com/wp-content/uploads/2026/04/Perfect-Crown-2026-240x300.jpg",
+        "type":"series",
+        "episodes"::[
+      {  "title": "ep1",
+         "url":"https://main.24playerhd.com/m3u8/9ade3cd71cc3c3af4aae2748/9ade3cd71cc3c3af4aae2748438.m3u8"},
+      ]
+    },
+    
+    {
       "title": "This Palace Maid Isn't Very Calm (2026) นางกำนัลตัวแสบแห่งวังหลวง",
       "image": "https://www.24hd.net/wp-content/uploads/2026/04/This-Palace-Maid-Isn-t-Very-Calm-2026.webp",
       "type": "series",
