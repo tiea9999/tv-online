@@ -35,7 +35,7 @@
       "category": "ซีรีย์จีน",
       "subcategory": "ซับไทย",
       "status": "ongoing",
-      "latest_ep": 9,
+      "latest_ep": 1,
       "total_ep": 38,
       "year": 2026,
       "language": "ซับไทย",
@@ -58,7 +58,7 @@
       "category": "ซีรีย์จีน",
       "subcategory": "ซับไทย",
       "status": "ongoing",
-      "latest_ep": 6,
+      "latest_ep": 1,
       "total_ep": 24,
       "year": 2026,
       "language": "ซับไทย",
@@ -78,7 +78,7 @@
       "category": "ซีรีย์เกาหลี",
       "subcategory": "ซับไทย",
       "status": "ongoing",
-      "latest_ep": 2,
+      "latest_ep": ,
       "total_ep": 8,
       "year": 2026,
       "language": "ซับไทย",
@@ -94,7 +94,7 @@
       "category": "ซีรีย์เกาหลี",
       "subcategory": "ซับไทย",
       "status": "ongoing",
-      "latest_ep": 2,
+      "latest_ep": 1,
       "total_ep": 12,
       "year": 2026,
       "language": "ซับไทย",
@@ -111,7 +111,7 @@
       "category": "ซีรีย์จีน",
       "subcategory": "ซับไทย",
       "status": "ongoing",
-      "latest_ep": 18,
+      "latest_ep": 1,
       "total_ep": 40,
       "year": 2026,
       "language": "ซับไทย",
@@ -143,7 +143,7 @@
       "category": "ซีรีย์เกาหลี",
       "subcategory": "ซับไทย",
       "status": "ongoing",
-      "latest_ep": 4,
+      "latest_ep": 1,
       "total_ep": 10,
       "year": 2026,
       "language": "ซับไทย",
@@ -161,7 +161,7 @@
       "category": "ซีรีย์ฝรั่ง",
       "subcategory": "พากย์ไทย",
       "status": "ongoing",
-      "latest_ep": 5,
+      "latest_ep": 1,
       "total_ep": 5,
       "year": 2026,
       "language": "ซับไทย",
@@ -354,7 +354,7 @@
       "subcategory":"ซับไทย",
       "status": "ongoing",
       "latest_ep": 1,
-      "total_ep": 38,
+      "total_ep": 40,
       "year": 2026,
       "language": "พากย์ไทย",
     "episodes": [
@@ -408,7 +408,7 @@
       "subcategory":"พากย์ไทย",
       "status": "ongoing",
       "latest_ep": 1,
-      "total_ep": 38,
+      "total_ep": 8,
       "year": 2026,
       "language": "พากย์ไทย",
     "episodes": [
@@ -430,7 +430,7 @@
       "subcategory":"ซับไทย",
       "status": "ongoing",
       "latest_ep": 1,
-      "total_ep": 38,
+      "total_ep": 16,
       "year": 2026,
       "language": "ซับไทย",
     "episodes": [
@@ -459,7 +459,7 @@
       "subcategory":"ซับไทย",
       "status": "ongoing",
       "latest_ep": 1,
-      "total_ep": 38,
+      "total_ep": 22,
       "year": 2026,
       "language": "ซับไทย",
     "episodes": [
@@ -523,7 +523,7 @@
       "subcategory":"พากย์ไทย",
       "status": "ongoing",
       "latest_ep": 1,
-      "total_ep": 38,
+      "total_ep": 16,
       "year": 2021,
       "language": "ซับไทย",
       "episodes": [
@@ -584,7 +584,7 @@
       "subcategory":"ซับไทย",
       "status": "ongoing",
       "latest_ep": 1,
-      "total_ep": 38,
+      "total_ep": 8,
       "year": 2023,
       "language": "ซับไทย",
       "episodes": [
@@ -596,7 +596,28 @@
       { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/v-YXlQG_3DD1z/video.m3u8"}]},
       { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/v-YXlQG_3DD1z/video.m3u8"}]},
       { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/Rslcj-Hk_agEZ/video.m3u8"}]}
-      
+   
+      ]
+    },
+    {
+      "title": "Bloodhounds Season 2 (2026) บลัดฮาวด์ ซีซั่น 2 EP.1-7",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/Bloodhounds-Season-2-2026-e1775207420230.webp",
+      "type": "series",
+      "category": "ซีรีย์เกาหลี",
+      "subcategory":"ซับไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 7,
+      "year": 2026,
+      "language": "พากย์ไทย",
+      "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/Ti-Xyr7W8_EGw/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/S-zNe_tokimt3/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/AXOEYR-R_Xm7A/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/T_eMKWQZi-1n7/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/F_aJlfg-RvLME/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/3prDP5_E1b-SD/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/KH4S5-sBS7_bU/video.m3u8"}]}   
       
       
       ]
