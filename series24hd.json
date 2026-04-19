@@ -573,7 +573,33 @@
       { "title": "EP14", "servers":[{"name":"Main","url":"https://media.vdohls.com/kjCys_t-QnUWe/video.m3u8"}]},
       { "title": "EP15", "servers":[{"name":"Main","url":"https://media.vdohls.com/avgf-Nx_zmWXY/video.m3u8"}]},
       { "title": "EP16", "servers":[{"name":"Main","url":"https://media.vdohls.com/O_XL-lL6Zivcw/video.m3u8"}]}  
-    ]
+
+      ]
+    },
+    {
+      "title": "Big Bet Season 2 (2023) EP.1-8",
+      "image": "https://www.24hd.net/wp-content/uploads/2026/04/Big-Bet-Season-2-2023-e1775441309835.webp",
+      "type": "series",
+      "category": "ซีรีย์เกาหลี",
+      "subcategory":"ซับไทย",
+      "status": "ongoing",
+      "latest_ep": 1,
+      "total_ep": 38,
+      "year": 2023,
+      "language": "ซับไทย",
+      "episodes": [
+      { "title": "EP1", "servers":[{"name":"Main","url":"https://media.vdohls.com/3NGrcLdf-N_V3/video.m3u8"}]},
+      { "title": "EP2", "servers":[{"name":"Main","url":"https://media.vdohls.com/td_rQdpR-FFhX/video.m3u8"}]},
+      { "title": "EP3", "servers":[{"name":"Main","url":"https://media.vdohls.com/QxpNk_NWfw-kk/video.m3u8"}]},
+      { "title": "EP4", "servers":[{"name":"Main","url":"https://media.vdohls.com/QxpNk_NWfw-kk/video.m3u8"}]},
+      { "title": "EP5", "servers":[{"name":"Main","url":"https://media.vdohls.com/7Ly2PUn-EC_Wr/video.m3u8"}]},
+      { "title": "EP6", "servers":[{"name":"Main","url":"https://media.vdohls.com/v-YXlQG_3DD1z/video.m3u8"}]},
+      { "title": "EP7", "servers":[{"name":"Main","url":"https://media.vdohls.com/v-YXlQG_3DD1z/video.m3u8"}]},
+      { "title": "EP8", "servers":[{"name":"Main","url":"https://media.vdohls.com/Rslcj-Hk_agEZ/video.m3u8"}]}
+      
+      
+      
+      ]
       }     
      ]
     }
