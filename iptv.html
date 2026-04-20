@@ -38,7 +38,7 @@ body {margin:0; padding:0; background:#000; color:#fff; font-family:Arial,sans-s
 <body>
 
 <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-<h2 style="color:orange; text-align:center;">หรรมน้อย IPTV</h2>
+<h2 style="color:orange; text-align:center;">TIEA IPTV</h2>
 
 <div id="player-container">
     <div id="jw-player"></div>
@@ -55,10 +55,46 @@ const channels = [
 {
 name:"testดูบอล",
 logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfTCJkOFkgdOh3Ov8BDxjk8DqG6R6nHH7_1A&s",
-file:"https://love.sikoyo3159.workers.dev/lx-origin/th-hbo_720/chunks.m3u8",
+file:"https://five22rd.com/monomax5/tracks-v1a1/mono.ts.m3u8",
 drm:false
 },
-	/*
+{
+name:"testดูบอล",
+logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfTCJkOFkgdOh3Ov8BDxjk8DqG6R6nHH7_1A&s",
+file:"https://five22rd.com/monomax4/index.m3u8",
+drm:false
+},
+{
+name:"testดูบอล",
+logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfTCJkOFkgdOh3Ov8BDxjk8DqG6R6nHH7_1A&s",
+file:"https://five22rd.com/monoMax2/index.m3u8",
+drm:false
+},
+{
+name:"testดูบอล",
+logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfTCJkOFkgdOh3Ov8BDxjk8DqG6R6nHH7_1A&s",
+file:"https://five22rd.com/monomax3/index.m3u8",
+drm:false
+},		
+{
+name:"testดูบอล",
+logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfTCJkOFkgdOh3Ov8BDxjk8DqG6R6nHH7_1A&s",
+file:"https://five22rd.com/bein1th/tracks-v1a1/mono.ts.m3u8",
+drm:false
+},
+{
+name:"testดูบอล",
+logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfTCJkOFkgdOh3Ov8BDxjk8DqG6R6nHH7_1A&s",
+file:"https://five22rd.com/bein2th/tracks-v1a1/mono.ts.m3u8",
+drm:false
+},
+{
+name:"testดูบอล",
+logo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfTCJkOFkgdOh3Ov8BDxjk8DqG6R6nHH7_1A&s",
+file:"https://five22rd.com/bein3th/tracks-v1a1/mono.ts.m3u8",
+drm:false
+},
+	
 	{
                 name: "TV5HD",
                 logo: "https://ais-s.ais-vidnt.com/ais/play/origin/LIVE/channelicon/ch5new.logo.png",
@@ -430,7 +466,7 @@ function closePlayer(){
     const html5Video=document.getElementById("html5-player"); html5Video.pause(); html5Video.src="";
 }
 
-function goHome(){ window.location.href="https://tiea9999.github.io/tv-online/index.html"; }
+function goHome(){ window.location.href="https://tiea9999.github.io/tv/index.html"; }
 
 function toggleMaximize(){
     const container=document.getElementById("player-container");
@@ -457,5 +493,3 @@ function dragElement(elmnt){
 
 </body>
 </html>
-
-
