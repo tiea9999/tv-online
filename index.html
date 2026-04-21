@@ -440,27 +440,20 @@
       <div class="group-title">ทีวีออนไลน์</div>
       <button class="menu-btn focusable" data-source="tv-main">📺 ทีวีออนไลน์</button>
       <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/iptv.html">📡 IPTV เดิม</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/inwhd.html">🌟 GOD TV</button>
       <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/sport.html">🏆 SPORT TV</button>
       <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/ball66.html">⚽ DOOBALL66</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/DKL.html">📺 DKL</button>
       <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/3bb.html">📶 3BB TV</button>
 
       <div class="group-title">หนัง</div>
-      <button class="menu-btn focusable" data-source="movie-main">🎬 หนังทั้งหมด</button>
       <button class="menu-btn focusable" data-source="movie-24hd">🎬 หนัง 24HD</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/037hd.html">🎥 037HD</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/hdx.html">🎞️ LK-HDX</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/24hd.html">🍿 24-HDS</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/7hd.html">📽️ 7HD</button>
 
       <div class="group-title">ซีรีส์</div>
-      <button class="menu-btn focusable" data-source="series-main">📚 ซีรีส์ทั้งหมด</button>
       <button class="menu-btn focusable" data-source="series-24hd">📺 ซีรีส์ 24HD</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/VIP.html">💎 VIP</button>
+      <button class="menu-btn focusable" data-source="myseries-only">📚 MySeries</button>
 
-      <div class="group-title">ระบบ</div>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/index.html">🏠 HOME จริง</button>
+      <div class="group-title">LIVE / VIP</div>
+      <button class="menu-btn focusable" data-action="live-page">📅 LIVE</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/VIP.html">💎 VIP</button>
     </aside>
 
     <main class="main">
@@ -522,25 +515,19 @@
         { title:'IPTV ไทย', type:'m3u', source: RAW + 'M3U/Vip.json' },
         { title:'DOOBALL Menu', type:'json', source: RAW + 'M3U/Dooball.json' }
       ],
-      'movie-main': [
-        { title:'EZ Movie', type:'json', source: RAW + 'Ezmovie.json' },
-        { title:'Flixmono', type:'json', source: RAW + 'Flixmono.json' }
-      ],
       'movie-24hd': [
         { title:'Movie 24HD', type:'json', source: RAW + 'movie24hd.json' }
       ],
-      'series-main': [
-        { title:'MySeriesHD', type:'json', source: RAW + 'MySeries.json' },
-        { title:'GoSeries', type:'json', source: RAW + 'goseries_menu.json' },
-        { title:'Flixmono Series', type:'json', source: RAW + 'Flixmono.json' }
-      ],
       'series-24hd': [
         { title:'Series 24HD', type:'json', source: RAW + 'series24hd.json' }
+      ],
+      'myseries-only': [
+        { title:'MySeriesHD', type:'json', source: RAW + 'MySeries.json' }
       ]
     };
 
     const SAMPLE_TV = [
-      { title:'MONOMAX 01', image:'https://www.fileinwtv.site/postor/20250830165328Mono1.jpg', url:'https://love.sayob28681.workers.dev/lx-origin/th-monomax01_720/chunks.m3u8', group:'ทีวี', type:'tv' },
+      { title:'MONOMAX 01', image:'', url:'https://monomax-sz.thaicdn.com/mono29hd/mono29hd.stream/playlist.m3u8', group:'ทีวี', type:'tv' },
       { title:'MONOMAX 02', image:'', url:'https://monomax-sz.thaicdn.com/mono_plus/mono_plus.stream/playlist.m3u8', group:'ทีวี', type:'tv' },
       { title:'SPORT DEMO', image:'', url:'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8', group:'กีฬา', type:'tv' }
     ];
@@ -555,8 +542,6 @@
       detailStack: [],
       currentUrl: '',
       currentTitle: '',
-      originalUrl: '',
-      webPlayableUrl: '',
       hls: null,
       dash: null,
       firstInteractDone: false
@@ -661,49 +646,91 @@
 
     function flattenJson(data, parentTitle='') {
       const out = [];
-      if (Array.isArray(data)) {
-        data.forEach((item, idx) => {
-          out.push(...flattenJson(item, parentTitle || `หมวด ${idx+1}`));
-        });
-        return out;
+
+      function makeGroup(node, fallback='รายการ') {
+        const parts = [];
+        const cat = node && node.category ? String(node.category).trim() : '';
+        const sub = node && node.subcategory ? String(node.subcategory).trim() : '';
+        const typ = node && node.type ? String(node.type).trim() : '';
+
+        if (cat) parts.push(cat);
+        if (sub && sub !== cat) parts.push(sub);
+
+        if (!parts.length && parentTitle) parts.push(parentTitle);
+        if (!parts.length && typ && !['movie','series','episode','menu'].includes(typ)) parts.push(typ);
+        if (!parts.length) parts.push(fallback);
+
+        return parts.join(' • ');
       }
 
-      if (!data || typeof data !== 'object') return out;
+      function walk(node, inheritedGroup='') {
+        if (Array.isArray(node)) {
+          node.forEach((item, idx) => walk(item, inheritedGroup || `หมวด ${idx+1}`));
+          return;
+        }
 
-      if (data.type === 'menu' && Array.isArray(data.items)) {
-        data.items.forEach(item => {
-          out.push({
-            title: normalizeTitle(item),
-            image: normalizeImage(item),
-            kind: 'submenu',
-            source: item.source || item.url || item.link || '',
-            group: parentTitle || 'เมนู'
+        if (!node || typeof node !== 'object') return;
+
+        if (node.type === 'menu' && Array.isArray(node.items)) {
+          node.items.forEach(item => {
+            out.push({
+              title: normalizeTitle(item),
+              image: normalizeImage(item),
+              kind: 'submenu',
+              source: item.source || item.url || item.link || '',
+              group: makeGroup(item, inheritedGroup || parentTitle || 'เมนู')
+            });
           });
-        });
-        return out;
+          return;
+        }
+
+        const items = Array.isArray(node.items) ? node.items : Array.isArray(node.data) ? node.data : [];
+        if (items.length) {
+          const nextGroup = makeGroup(node, inheritedGroup || parentTitle || 'รายการ');
+          items.forEach(item => walk(item, nextGroup));
+          return;
+        }
+
+        const title = normalizeTitle(node, parentTitle || 'ไม่มีชื่อ');
+        const image = normalizeImage(node);
+        const servers = normalizeServers(node);
+        const episodes = normalizeEpisodes(node);
+        const subSource = node.source && isJsonLike(node.source) ? node.source : '';
+        const group = makeGroup(node, inheritedGroup || parentTitle || 'รายการ');
+
+        if (episodes.length) {
+          out.push({
+            title,
+            image,
+            kind:'series',
+            episodes,
+            group,
+            raw:node
+          });
+        } else if (servers.length) {
+          out.push({
+            title,
+            image,
+            kind:'playable',
+            servers,
+            group,
+            raw:node
+          });
+        } else if (subSource) {
+          out.push({
+            title,
+            image,
+            kind:'submenu',
+            source: subSource,
+            group
+          });
+        }
       }
 
-      const items = Array.isArray(data.items) ? data.items : Array.isArray(data.data) ? data.data : [];
-      if (items.length) {
-        items.forEach(item => out.push(...flattenJson(item, parentTitle || data.title || data.name || 'รายการ')));
-        return out;
-      }
-
-      const title = normalizeTitle(data, parentTitle || 'ไม่มีชื่อ');
-      const image = normalizeImage(data);
-      const servers = normalizeServers(data);
-      const episodes = normalizeEpisodes(data);
-      const subSource = data.source && isJsonLike(data.source) ? data.source : '';
-
-      if (episodes.length) {
-        out.push({ title, image, kind:'series', episodes, group: parentTitle || 'ซีรีส์', raw:data });
-      } else if (servers.length) {
-        out.push({ title, image, kind:'playable', servers, group: parentTitle || 'หนัง/ทีวี', raw:data });
-      } else if (subSource) {
-        out.push({ title, image, kind:'submenu', source: subSource, group: parentTitle || 'เมนู' });
-      }
+      walk(data, parentTitle);
       return out;
     }
+
 
     function makeCard(item, idx, modalMode=false) {
       const image = item.image ? `<img class="thumb" src="${escapeHtml(item.image)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML='<div class=\'thumb fallback\'>📺</div>'">` : `<div class="thumb fallback">📺</div>`;
@@ -732,7 +759,7 @@
       content.innerHTML = `
         <div class="hero">
           <div class="hero-title">TIEA IPTV ULTRA FINAL NETFLIX + AUTO FIX</div>
-          <div class="hero-sub">เวอร์ชันนี้เน้นใช้งานกับ Android TV / Smart TV / กล่อง / โปรเจคเตอร์ • มีปุ่ม HOME / X / MX / PLAYER • รองรับ JSON, M3U, HLS, DASH • เพิ่มเมนูหนัง 24HD / ซีรีส์ 24HD และระบบ AUTO FIX ลิงก์เสีย</div>
+          <div class="hero-sub">เวอร์ชันนี้เน้นใช้งานกับ Android TV / Smart TV / กล่อง / โปรเจคเตอร์ • เหลือเฉพาะ ทีวีออนไลน์ / IPTV เดิม / SPORT TV / DOOBALL66 / 3BB / หนัง 24HD / ซีรีส์ 24HD / MySeries / LIVE / VIP พร้อมระบบ AUTO FIX</div>
           <div class="inline-note">หมายเหตุ: ถ้าแหล่งบางตัว CORS / 403 / DRM จะอาจต้องกด MX หรือ PLAYER ภายนอก</div>
         </div>
         ${rows.map((row, rowIdx) => `
@@ -844,7 +871,9 @@
         if (!map.has(key)) map.set(key, []);
         map.get(key).push(item);
       });
-      return Array.from(map.entries()).map(([title, arr]) => ({ title, items: arr }));
+      return Array.from(map.entries())
+        .sort((a, b) => a[0].localeCompare(b[0], 'th'))
+        .map(([title, arr]) => ({ title, items: arr }));
     }
 
     async function openSubmenu(title, sourceUrl) {
@@ -952,7 +981,7 @@
 
       const timer = setTimeout(() => {
         if (video.readyState < 2 || video.currentTime === 0) tryNext();
-      }, 1800);
+      }, 2800);
 
       const clearTimer = () => clearTimeout(timer);
       video.addEventListener('playing', clearTimer, { once:true });
@@ -972,8 +1001,6 @@
       const candidates = skipProxyBuild ? [url] : buildPlayCandidates(url);
       const currentUrl = candidates[0] || url;
 
-      state.originalUrl = url;
-      state.webPlayableUrl = currentUrl;
       state.currentUrl = currentUrl;
       state.currentTitle = title;
       playerTitle.textContent = title;
@@ -1039,7 +1066,7 @@
     }
 
     function openExternalPlayer(mode='intent') {
-      const url = state.originalUrl || state.currentUrl;
+      const url = state.currentUrl;
       if (!url) return;
       if (mode === 'mx') {
         window.location.href = 'intent:' + url + '#Intent;package=com.mxtech.videoplayer.ad;type=video/*;end';
@@ -1112,11 +1139,11 @@
 
     function boot() {
       state.rows = [
-        { title:'ทีวีแนะนำ', items: SAMPLE_TV },
-        { title:'หนังและซีรีส์', items: [
-          { title:'EZ Movie', image:'', kind:'submenu', source: RAW + 'Ezmovie.json', group:'หนัง' },
-          { title:'MySeriesHD', image:'', kind:'submenu', source: RAW + 'MySeries.json', group:'ซีรีส์' },
-          { title:'GoSeries', image:'', kind:'submenu', source: RAW + 'goseries_menu.json', group:'ซีรีส์' }
+        { title:'ทีวีออนไลน์', items: SAMPLE_TV },
+        { title:'รายการหลัก', items: [
+          { title:'หนัง 24HD', image:'', kind:'submenu', source: RAW + 'movie24hd.json', group:'หนัง' },
+          { title:'ซีรีส์ 24HD', image:'', kind:'submenu', source: RAW + 'series24hd.json', group:'ซีรีส์' },
+          { title:'MySeriesHD', image:'', kind:'submenu', source: RAW + 'MySeries.json', group:'ซีรีส์' }
         ] }
       ];
       renderHome();
@@ -1128,5 +1155,3 @@
   </script>
 </body>
 </html>
-
-
