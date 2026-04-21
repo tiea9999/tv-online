@@ -274,11 +274,14 @@
   <div class="app">
     <aside class="sidebar">
       <div class="brand">TIEA IPTV</div>
-
+      <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/live.html">⚽ ตารางแข่งขัน</button>
       <button class="menu-btn active" data-kind="tv" data-title="📺 ทีวี" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
+      <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/3bb.html">📡 3BB IPTV</button>
       <button class="menu-btn" data-kind="movie" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/movie24hd.json">🎬 หนัง</button>
       <button class="menu-btn" data-kind="series" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/series24hd.json">📺 ซีรีส์</button>
-      <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/live.html">⚽ ตารางแข่งขัน</button>
+     
+
+      <button class="menu-btn" id="vipBtn">🔒 VIP</button>
     </aside>
 
     <main class="main" id="mainArea">
@@ -331,7 +334,6 @@
     const menuButtons = Array.from(document.querySelectorAll(".menu-btn"));
 
     const HOME_URL = "https://tiea9999.github.io/tv-online";
-    const PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
     const RETURN_STATE_KEY = "tiea_ultra_return_state_v1";
     const INITIAL_LIMIT = 18;
 
@@ -504,15 +506,6 @@
         return item.servers[idx]?.url || item.servers[0]?.url || "";
       }
       return item.url || item.link || item.stream || item.source || item.file || "";
-    }
-
-    function buildPlayCandidates(url) {
-      if (!url) return [];
-      const list = [url];
-      if (/^https?:/i.test(url) && !url.includes("iptv.tawatchai250958.workers.dev")) {
-        list.push(PROXY + encodeURIComponent(url));
-      }
-      return [...new Set(list)];
     }
 
     function normalizeMovieOrSeries(jsonItems) {
@@ -860,13 +853,13 @@
 
       grid.className = "grid";
       const isTV = currentKind === "tv";
-      const quickList = list.slice(0, currentKind === "movie" ? 30 : 60);
+      const quickList = list;
 
       quickList.forEach(item => {
         const runOpen = async () => {
           if (item.type === "source") {
             historyStack.push({ title: currentTitle, source: currentSource, kind: currentKind, mode: currentMode });
-            currentSource = item.url;
+            currentSource = item.url || item.source || item.link || "";
             currentTitle = item.title || currentTitle;
             pageTitle.textContent = currentTitle;
             await loadCurrentMenu();
@@ -981,7 +974,7 @@
       clearMovieFallbackTimer();
       movieFallbackTimer = setTimeout(() => {
         openExternalPlayer(url);
-      }, 1800);
+      }, 2500);
     }
 
     function attachPlaybackSuccessHandlers() {
@@ -996,24 +989,20 @@
       currentServerIndex = serverIndex;
       clearPlayer();
 
-      const directUrl = getPlayableUrl(item, serverIndex);
-      if (!directUrl) {
+      const url = getPlayableUrl(item, serverIndex);
+      if (!url) {
         setStatus("ไม่พบลิงก์เล่น");
         return;
       }
 
-      const candidates = buildPlayCandidates(directUrl);
-      const url = candidates[0] || directUrl;
-      const proxyUrl = candidates[1] || "";
       const lower = url.toLowerCase();
       const movieMode = isMovieItem(item);
-      const isAndroid = /Android/i.test(navigator.userAgent);
 
       if (lower.includes(".m3u8")) {
         showPlayer();
 
-        if (movieMode || isAndroid) {
-          startMovieFallback(directUrl);
+        if (movieMode) {
+          startMovieFallback(url);
           attachPlaybackSuccessHandlers();
         }
 
@@ -1023,79 +1012,37 @@
           hls.attachMedia(video);
 
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            tryStartVideoWithSound(() => openExternalPlayer(directUrl));
+            tryStartVideoWithSound(() => openExternalPlayer(url));
           });
 
           hls.on(Hls.Events.ERROR, (e, data) => {
             if (data?.fatal) {
-              if (proxyUrl && url !== proxyUrl) {
-                clearPlayer();
-                showPlayer();
-
-                if (movieMode || isAndroid) {
-                  startMovieFallback(directUrl);
-                  attachPlaybackSuccessHandlers();
-                }
-
-                hls = createStableHls(movieMode);
-                hls.loadSource(proxyUrl);
-                hls.attachMedia(video);
-
-                hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                  tryStartVideoWithSound(() => openExternalPlayer(directUrl));
-                });
-
-                hls.on(Hls.Events.ERROR, (e2, data2) => {
-                  if (data2?.fatal) {
-                    if (Array.isArray(item.servers) && item.servers.length > serverIndex + 1) {
-                      playItem(item, serverIndex + 1);
-                    } else {
-                      openExternalPlayer(directUrl);
-                    }
-                  }
-                });
-              } else if (Array.isArray(item.servers) && item.servers.length > serverIndex + 1) {
+              if (Array.isArray(item.servers) && item.servers.length > serverIndex + 1) {
                 playItem(item, serverIndex + 1);
               } else {
-                openExternalPlayer(directUrl);
+                openExternalPlayer(url);
               }
             }
           });
         } else {
           video.src = url;
-          tryStartVideoWithSound(() => openExternalPlayer(directUrl));
-        }
-
-        if (isAndroid) {
-          setTimeout(() => {
-            if (playerWrap.style.display === "block" && (video.currentTime === 0 || video.readyState < 2)) {
-              openExternalPlayer(directUrl);
-            }
-          }, 2000);
+          tryStartVideoWithSound(() => openExternalPlayer(url));
         }
         return;
       }
 
       if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
         showPlayer();
-        if (movieMode || isAndroid) {
-          startMovieFallback(directUrl);
+        if (movieMode) {
+          startMovieFallback(url);
           attachPlaybackSuccessHandlers();
         }
         video.src = url;
-        tryStartVideoWithSound(() => openExternalPlayer(directUrl));
-
-        if (isAndroid) {
-          setTimeout(() => {
-            if (playerWrap.style.display === "block" && (video.currentTime === 0 || video.readyState < 2)) {
-              openExternalPlayer(directUrl);
-            }
-          }, 2000);
-        }
+        tryStartVideoWithSound(() => openExternalPlayer(url));
         return;
       }
 
-      openExternalPlayer(directUrl);
+      openExternalPlayer(url);
     }
 
     async function loadCurrentMenu() {
@@ -1120,6 +1067,15 @@
         epsGrid.querySelector(".ep-btn");
       if (target) target.focus();
     }
+
+    document.getElementById("vipBtn").onclick = () => {
+      const pass = prompt("กรอกรหัส VIP");
+      if (pass === "1234") {
+        location.href = "https://tiea9999.github.io/tv-online/VIP.html";
+      } else if (pass !== null) {
+        alert("รหัสไม่ถูกต้อง");
+      }
+    };
 
     menuButtons.forEach(btn => {
       btn.onclick = async () => {
