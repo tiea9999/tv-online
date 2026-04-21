@@ -240,6 +240,38 @@
       line-height: 1.35;
       min-height: 22px;
     }
+
+    .sample-card {
+      min-height: 100%;
+    }
+    .sample-card .sample-art {
+      height: 185px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, rgba(0,208,255,.18), rgba(0,0,0,.08) 55%), linear-gradient(180deg,#113842,#0d0f1d);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .sample-card .sample-icon {
+      font-size: 54px;
+      filter: drop-shadow(0 3px 8px rgba(255,255,255,.08));
+    }
+    .sample-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 10px 12px;
+    }
+    .sample-tag {
+      font-size: 11px;
+      font-weight: 800;
+      color: #dffcff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(76,255,226,.45);
+      background: rgba(0,208,255,.16);
+      line-height: 1;
+    }
     .eps-wrap { display: none; }
     .eps-title {
       font-size: 22px;
@@ -429,6 +461,28 @@
     const RETURN_STATE_KEY = 'tiea_ultra_return_state_v3';
     const INITIAL_LIMIT = 18;
     const IMAGE_FALLBACK = 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="420" height="600"><rect width="100%" height="100%" fill="#111"/><text x="50%" y="50%" fill="#56e7ff" font-size="28" font-family="Arial" dominant-baseline="middle" text-anchor="middle">TIEA IPTV</text></svg>`);
+
+
+    const SAMPLE_TV = {
+      sections: [
+        {
+          title: 'ทีวีแนะนำ',
+          items: [
+            { title: 'MONOMAX 01', kind: 'play', group: 'ทีวี', source: 'https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json', match: 'monomax 01' },
+            { title: 'MONOMAX 02', kind: 'play', group: 'ทีวี', source: 'https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json', match: 'monomax 02' },
+            { title: 'SPORT DEMO', kind: 'play', group: 'กีฬา', source: 'https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json', match: 'sport' }
+          ]
+        },
+        {
+          title: 'หนังและซีรีส์',
+          items: [
+            { title: 'EZ Movie', kind: 'menu', targetKind: 'movie', targetTitle: '🎬 หนัง 24HD', targetSource: 'https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/movie24hd.json', group: 'หนัง', tag2: 'เมนูย่อย' },
+            { title: 'MySeriesHD', kind: 'menu', targetKind: 'series', targetTitle: '📺 MySeries', targetSource: 'https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/MySeries.json', group: 'ซีรีส์', tag2: 'เมนูย่อย' },
+            { title: 'GoSeries', kind: 'menu', targetKind: 'series', targetTitle: '📺 ซีรีส์ 24HD', targetSource: 'https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/series24hd.json', group: 'ซีรีส์', tag2: 'เมนูย่อย' }
+          ]
+        }
+      ]
+    };
 
     let currentSource = document.querySelector('.menu-btn[data-source].active')?.dataset.source || '';
     let currentTitle = document.querySelector('.menu-btn[data-source].active')?.dataset.title || '📺 ทีวีออนไลน์';
@@ -878,6 +932,85 @@
       return card;
     }
 
+
+    function isHomeTvView() {
+      return currentKind === 'tv' && String(currentTitle || '').includes('ทีวีออนไลน์');
+    }
+
+    async function findSamplePlayable(sample) {
+      try {
+        const list = await loadSource(sample.source, 'tv');
+        const found = list.find(item => String(item.title || '').toLowerCase().includes(String(sample.match || '').toLowerCase()));
+        return found || list[0] || null;
+      } catch (e) {
+        console.error(e);
+        return null;
+      }
+    }
+
+    function createSampleCard(item) {
+      const card = document.createElement('button');
+      card.className = 'card sample-card';
+      card.type = 'button';
+      card.tabIndex = 0;
+      const tags = [item.group, item.tag2].filter(Boolean).map(tag => `<span class="sample-tag">${sanitize(tag)}</span>`).join('');
+      card.innerHTML = `
+        <div class="sample-art"><div class="sample-icon">📺</div></div>
+        <div class="card-title">${sanitize(item.title || 'SAMPLE TV')}</div>
+        <div class="sample-tags">${tags}</div>
+      `;
+      const run = async () => {
+        if (item.kind === 'menu') {
+          currentSource = item.targetSource;
+          currentTitle = item.targetTitle;
+          currentKind = item.targetKind;
+          currentSeries = null;
+          currentMode = 'list';
+          sectionExpandState = {};
+          historyStack = [];
+          const activeBtn = menuButtons.find(btn => btn.dataset.source === currentSource && btn.dataset.kind === currentKind);
+          setActiveMenu(activeBtn || null);
+          await loadCurrentMenu();
+          return;
+        }
+        const playable = await findSamplePlayable(item);
+        if (playable) {
+          playItem(playable, 0);
+        } else {
+          setStatus('❌ SAMPLE_TV ยังไม่พบลิงก์เล่น');
+        }
+      };
+      card.onclick = run;
+      card.onmousedown = e => { e.preventDefault(); run(); };
+      card.ontouchstart = e => { e.preventDefault(); run(); };
+      card.onkeydown = e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          run();
+        }
+      };
+      return card;
+    }
+
+    function renderSampleTvShowcase() {
+      SAMPLE_TV.sections.forEach(sectionData => {
+        const section = document.createElement('div');
+        section.className = 'section';
+        const head = document.createElement('div');
+        head.className = 'section-head';
+        const title = document.createElement('div');
+        title.className = 'section-title';
+        title.textContent = sectionData.title;
+        head.appendChild(title);
+        section.appendChild(head);
+        const sectionGrid = document.createElement('div');
+        sectionGrid.className = 'grid';
+        sectionData.items.forEach(item => sectionGrid.appendChild(createSampleCard(item)));
+        section.appendChild(sectionGrid);
+        grid.appendChild(section);
+      });
+    }
+
     function sortCategories(keys) {
       return keys.sort((a, b) => {
         const oa = categoryOrder(a);
@@ -963,6 +1096,7 @@
       }
 
       grid.className = '';
+      if (isHomeTvView()) renderSampleTvShowcase();
       groupedEntries(list).forEach(([cat, items]) => {
         const section = document.createElement('div');
         section.className = 'section';
@@ -1055,8 +1189,11 @@
       playItem(item, 0);
     }
 
-    function attachPlaybackSuccessHandlers() {
-      const ok = () => clearMovieFallbackTimer();
+    function attachPlaybackSuccessHandlers(onSuccess) {
+      const ok = () => {
+        clearMovieFallbackTimer();
+        if (typeof onSuccess === 'function') onSuccess();
+      };
       video.addEventListener('playing', ok, { once: true });
       video.addEventListener('loadeddata', ok, { once: true });
       video.addEventListener('canplay', ok, { once: true });
@@ -1068,15 +1205,32 @@
         autoStartLoad: true,
         startPosition: -1,
         lowLatencyMode: false,
-        maxBufferLength: isMovie ? 45 : 30,
-        maxMaxBufferLength: isMovie ? 80 : 60,
-        backBufferLength: isMovie ? 60 : 40,
-        maxBufferHole: 1,
-        manifestLoadingMaxRetry: 5,
-        levelLoadingMaxRetry: 5,
-        fragLoadingMaxRetry: 6,
-        liveSyncDurationCount: 3,
-        liveMaxLatencyDurationCount: 10
+        progressive: true,
+        backBufferLength: 10,
+        maxBufferLength: isMovie ? 18 : 12,
+        maxMaxBufferLength: isMovie ? 24 : 16,
+        maxBufferHole: 0.5,
+        highBufferWatchdogPeriod: 2,
+        nudgeOffset: 0.1,
+        nudgeMaxRetry: 2,
+        liveSyncDurationCount: 2,
+        liveMaxLatencyDurationCount: 4,
+        maxLiveSyncPlaybackRate: 1.0,
+        abrEwmaFastLive: 2.0,
+        abrEwmaSlowLive: 5.0,
+        abrEwmaFastVoD: 2.0,
+        abrEwmaSlowVoD: 5.0,
+        abrBandWidthFactor: 0.7,
+        abrBandWidthUpFactor: 0.5,
+        capLevelToPlayerSize: true,
+        startLevel: 0,
+        testBandwidth: false,
+        manifestLoadingMaxRetry: 2,
+        levelLoadingMaxRetry: 2,
+        fragLoadingMaxRetry: 2,
+        manifestLoadingRetryDelay: 400,
+        levelLoadingRetryDelay: 500,
+        fragLoadingRetryDelay: 600
       });
     }
 
@@ -1099,11 +1253,11 @@
       }
     }
 
-    function startMovieFallback(url) {
+    function startMovieFallback(handler) {
       clearMovieFallbackTimer();
       movieFallbackTimer = setTimeout(() => {
-        openExternalPlayer(url);
-      }, 2200);
+        if (typeof handler === 'function') handler();
+      }, 2600);
     }
 
     function showIframe(url) {
@@ -1131,73 +1285,141 @@
       }
 
       const candidates = buildPlayCandidates(directUrl);
-      currentPlayCandidates = candidates;
-      const playUrl = candidates[0] || directUrl;
+      currentPlayCandidates = candidates.map(c => c.url);
       const isAndroid = /Android/i.test(navigator.userAgent);
       const movieMode = isMovieItem(item);
+      let attemptIndex = 0;
+      let switchedToExternal = false;
+
       playerNote.textContent = item.title || 'กำลังเล่น';
       updateNextServerButton();
+      showPlayer();
 
-      try {
-        if (isProbablyIframe(playUrl)) {
-          showIframe(playUrl);
+      const goExternal = () => {
+        if (switchedToExternal) return;
+        switchedToExternal = true;
+        clearMovieFallbackTimer();
+        try {
+          openMx(directUrl);
+        } catch (e) {
+          openExternalPlayer(directUrl);
+        }
+      };
+
+      const playCandidate = (candidateIndex) => {
+        attemptIndex = candidateIndex;
+        const candidate = candidates[candidateIndex];
+        if (!candidate?.url) {
+          goExternal();
           return;
         }
 
-        showPlayer();
-        attachPlaybackSuccessHandlers();
-        if (movieMode || isAndroid) startMovieFallback(directUrl);
+        const playUrl = candidate.url;
+        const isProxyMode = candidate.mode === 'proxy';
 
-        if (isHlsUrl(playUrl)) {
-          if (Hls.isSupported()) {
-            hls = createStableHls(movieMode);
-            hls.loadSource(playUrl);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, () => tryStartVideoWithSound(() => openExternalPlayer(directUrl)));
-            hls.on(Hls.Events.ERROR, (event, data) => {
-              if (data?.fatal) {
+        clearPlayer();
+        showPlayer();
+        playerNote.textContent = (item.title || 'กำลังเล่น') + (isProxyMode ? ' • Proxy fallback' : ' • Direct');
+
+        const fallbackNext = () => {
+          clearMovieFallbackTimer();
+          if (switchedToExternal) return;
+          if (attemptIndex + 1 < candidates.length) {
+            playCandidate(attemptIndex + 1);
+          } else {
+            goExternal();
+          }
+        };
+
+        attachPlaybackSuccessHandlers(() => {
+          playerNote.textContent = item.title || 'กำลังเล่น';
+        });
+
+        if (movieMode || isAndroid) startMovieFallback(fallbackNext);
+
+        try {
+          if (isProbablyIframe(playUrl)) {
+            clearMovieFallbackTimer();
+            if (!isProxyMode) {
+              showIframe(playUrl);
+            } else {
+              fallbackNext();
+            }
+            return;
+          }
+
+          if (isHlsUrl(playUrl)) {
+            if (Hls.isSupported()) {
+              hls = createStableHls(movieMode);
+              hls.loadSource(playUrl);
+              hls.attachMedia(video);
+              hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                tryStartVideoWithSound(fallbackNext);
+              });
+              hls.on(Hls.Events.ERROR, (event, data) => {
+                if (!data?.fatal) return;
                 try {
-                  if (data.type === Hls.ErrorTypes.NETWORK_ERROR) hls.startLoad();
-                  else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) hls.recoverMediaError();
-                  else openExternalPlayer(directUrl);
-                } catch (e) {
-                  openExternalPlayer(directUrl);
+                  if (data.type === Hls.ErrorTypes.MEDIA_ERROR && !isProxyMode) {
+                    hls.recoverMediaError();
+                    return;
+                  }
+                } catch (e) {}
+                fallbackNext();
+              });
+              return;
+            }
+            video.src = playUrl;
+            video.preload = 'auto';
+            video.addEventListener('error', fallbackNext, { once: true });
+            tryStartVideoWithSound(fallbackNext);
+            return;
+          }
+
+          if (isDashUrl(playUrl)) {
+            dash = dashjs.MediaPlayer().create();
+            dash.updateSettings({
+              streaming: {
+                abr: { autoSwitchBitrate: { video: true, audio: true } },
+                buffer: {
+                  fastSwitchEnabled: false,
+                  bufferToKeep: 6,
+                  stableBufferTime: 8,
+                  bufferTimeAtTopQuality: 10,
+                  bufferTimeAtTopQualityLongForm: 12
                 }
               }
             });
+            dash.initialize(video, playUrl, true);
+            video.muted = true;
+            video.play().then(() => {
+              setTimeout(() => {
+                video.muted = false;
+                video.volume = 1;
+              }, 300);
+            }).catch(fallbackNext);
+            video.addEventListener('error', fallbackNext, { once: true });
             return;
           }
+
           video.src = playUrl;
-          tryStartVideoWithSound(() => openExternalPlayer(directUrl));
-          return;
+          video.preload = 'auto';
+          video.playsInline = true;
+          video.addEventListener('error', fallbackNext, { once: true });
+          tryStartVideoWithSound(fallbackNext);
+        } catch (e) {
+          console.error(e);
+          fallbackNext();
         }
+      };
 
-        if (isDashUrl(playUrl)) {
-          dash = dashjs.MediaPlayer().create();
-          dash.initialize(video, playUrl, true);
-          video.muted = true;
-          video.play().then(() => {
-            setTimeout(() => {
-              video.muted = false;
-              video.volume = 1;
-            }, 300);
-          }).catch(() => openExternalPlayer(directUrl));
-          return;
-        }
-
-        video.src = playUrl;
-        tryStartVideoWithSound(() => openExternalPlayer(directUrl));
-      } catch (e) {
-        console.error(e);
-        openExternalPlayer(directUrl);
-      }
+      playCandidate(0);
     }
 
     async function loadCurrentMenu() {
       setStatus('กำลังโหลด...');
       pageTitle.textContent = currentTitle;
       pageSub.textContent = currentKind === 'tv'
-        ? 'ทีวีออนไลน์ + รีโมท + PLAYER/MX'
+        ? 'ทีวีออนไลน์ + SAMPLE_TV + รีโมท + PLAYER/MX'
         : currentKind === 'movie'
           ? 'หนัง 24HD + เล่นในกล่อง/โปรเจคเตอร์'
           : 'ซีรีส์ + แยกหมวด + กดเข้าไปถึงเห็นตอน';
@@ -1384,4 +1606,3 @@
   </script>
 </body>
 </html>
-
