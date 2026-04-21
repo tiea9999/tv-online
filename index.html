@@ -555,6 +555,8 @@
       detailStack: [],
       currentUrl: '',
       currentTitle: '',
+      originalUrl: '',
+      webPlayableUrl: '',
       hls: null,
       dash: null,
       firstInteractDone: false
@@ -950,7 +952,7 @@
 
       const timer = setTimeout(() => {
         if (video.readyState < 2 || video.currentTime === 0) tryNext();
-      }, 2800);
+      }, 1800);
 
       const clearTimer = () => clearTimeout(timer);
       video.addEventListener('playing', clearTimer, { once:true });
@@ -970,6 +972,8 @@
       const candidates = skipProxyBuild ? [url] : buildPlayCandidates(url);
       const currentUrl = candidates[0] || url;
 
+      state.originalUrl = url;
+      state.webPlayableUrl = currentUrl;
       state.currentUrl = currentUrl;
       state.currentTitle = title;
       playerTitle.textContent = title;
@@ -1035,7 +1039,7 @@
     }
 
     function openExternalPlayer(mode='intent') {
-      const url = state.currentUrl;
+      const url = state.originalUrl || state.currentUrl;
       if (!url) return;
       if (mode === 'mx') {
         window.location.href = 'intent:' + url + '#Intent;package=com.mxtech.videoplayer.ad;type=video/*;end';
@@ -1124,4 +1128,5 @@
   </script>
 </body>
 </html>
+
 
