@@ -439,20 +439,16 @@
 
       <div class="group-title">ทีวีออนไลน์</div>
       <button class="menu-btn focusable" data-source="tv-main">📺 ทีวีออนไลน์</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/iptv.html">📡 IPTV เดิม</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/inwhd.html">🌟 GOD TV</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/sport.html">🏆 SPORT TV</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/ball66.html">⚽ DOOBALL66</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/DKL.html">📺 DKL</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/3bb.html">📶 3BB TV</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/iptv.html">📡 IPTV เดิม</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/inwhd.html">🌟 GOD TV</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/sport.html">🏆 SPORT TV</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/ball66.html">⚽ DOOBALL66</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/3bb.html">📶 3BB TV</button>
 
       <div class="group-title">หนัง</div>
       <button class="menu-btn focusable" data-source="movie-main">🎬 หนังทั้งหมด</button>
       <button class="menu-btn focusable" data-source="movie-24hd">🎬 หนัง 24HD</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/037hd.html">🎥 037HD</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/hdx.html">🎞️ LK-HDX</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/24hd.html">🍿 24-HDS</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/7hd.html">📽️ 7HD</button>
+
 
       <div class="group-title">ซีรีส์</div>
       <button class="menu-btn focusable" data-source="series-main">📚 ซีรีส์ทั้งหมด</button>
@@ -540,9 +536,9 @@
     };
 
     const SAMPLE_TV = [
-      { title:'MONOMAX 01', image:'', url:'https://monomax-sz.thaicdn.com/mono29hd/mono29hd.stream/playlist.m3u8', group:'ทีวี', type:'tv' },
-      { title:'MONOMAX 02', image:'', url:'https://monomax-sz.thaicdn.com/mono_plus/mono_plus.stream/playlist.m3u8', group:'ทีวี', type:'tv' },
-      { title:'SPORT DEMO', image:'', url:'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8', group:'กีฬา', type:'tv' }
+      { title:'MONOMAX 01', image:'https://www.fileinwtv.site/postor/20250830165328Mono1.jpg', url:'https://love.sayob28681.workers.dev/lx-origin/th-monomax01_720/chunks.m3u8', group:'ทีวี', type:'tv' },
+      { title:'MONOMAX 02', image:'https://www.fileinwtv.site/postor/20250830165343Mono2.jpg', url:'https://love.sayob28681.workers.dev/lx-origin/th-monomax02_720/chunks.m3u8', group:'ทีวี', type:'tv' },
+      { title:'SPORT DEMO', image:'https://cms.dmpcdn.com/livetv/2025/10/27/ebbad850-b303-11f0-b265-23dfa726a2d7_webp_original.webp', url:'https://love.sayob28681.workers.dev/vx-origin/epl-3_720/chunks.m3u8', group:'กีฬา', type:'tv' }
     ];
 
     const state = {
@@ -1098,9 +1094,93 @@
       if (active) active.classList.add('active');
     }
 
+    function isVisibleFocusable(el) {
+      if (!el) return false;
+      if (el.disabled) return false;
+      if (el.classList.contains('hidden')) return false;
+      const style = window.getComputedStyle(el);
+      if (style.display === 'none' || style.visibility === 'hidden') return false;
+      const rect = el.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0;
+    }
+
+    function getActiveFocusableElements() {
+      const pool = Array.from(document.querySelectorAll('.focusable, .menu-btn, .card, .top-btn, .player-btn, .page-btn, .episode-btn, .server-btn'));
+      const uniq = [];
+      const seen = new Set();
+      for (const el of pool) {
+        if (!seen.has(el) && isVisibleFocusable(el)) {
+          seen.add(el);
+          uniq.push(el);
+        }
+      }
+      if (playerPanel.classList.contains('show')) {
+        return uniq.filter(el => playerPanel.contains(el));
+      }
+      if (modal.classList.contains('show')) {
+        return uniq.filter(el => modal.contains(el));
+      }
+      return uniq.filter(el => !playerPanel.contains(el) && !modal.contains(el));
+    }
+
     function focusFirst(root=document) {
-      const el = root.querySelector('.focusable');
+      const list = getActiveFocusableElements().filter(el => root === document || root.contains(el));
+      const el = list[0];
       if (el) el.focus();
+    }
+
+    function moveFocusByDirection(direction) {
+      const items = getActiveFocusableElements();
+      if (!items.length) return false;
+
+      const current = document.activeElement && items.includes(document.activeElement)
+        ? document.activeElement
+        : items[0];
+
+      const currentRect = current.getBoundingClientRect();
+      const currentCx = currentRect.left + currentRect.width / 2;
+      const currentCy = currentRect.top + currentRect.height / 2;
+
+      let best = null;
+      let bestScore = Infinity;
+
+      for (const el of items) {
+        if (el === current) continue;
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = cx - currentCx;
+        const dy = cy - currentCy;
+
+        if (direction === 'left' && dx >= -8) continue;
+        if (direction === 'right' && dx <= 8) continue;
+        if (direction === 'up' && dy >= -8) continue;
+        if (direction === 'down' && dy <= 8) continue;
+
+        const primary = (direction === 'left' || direction === 'right') ? Math.abs(dx) : Math.abs(dy);
+        const secondary = (direction === 'left' || direction === 'right') ? Math.abs(dy) : Math.abs(dx);
+        const score = primary * 1000 + secondary;
+
+        if (score < bestScore) {
+          bestScore = score;
+          best = el;
+        }
+      }
+
+      if (!best) {
+        const index = items.indexOf(current);
+        if (direction === 'left' || direction === 'up') best = items[Math.max(0, index - 1)];
+        if (direction === 'right' || direction === 'down') best = items[Math.min(items.length - 1, index + 1)];
+      }
+
+      if (best) {
+        best.focus();
+        if (typeof best.scrollIntoView === 'function') {
+          best.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        }
+        return true;
+      }
+      return false;
     }
 
     function setupEvents() {
@@ -1137,13 +1217,51 @@
           if (playerPanel.classList.contains('show')) {
             e.preventDefault();
             closePlayer();
+            setTimeout(() => focusFirst(document), 50);
             return;
           }
           if (modal.classList.contains('show')) {
             e.preventDefault();
             closeModal();
+            setTimeout(() => focusFirst(document), 50);
             return;
           }
+        }
+
+        if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          moveFocusByDirection('left');
+          return;
+        }
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          moveFocusByDirection('right');
+          return;
+        }
+        if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          moveFocusByDirection('up');
+          return;
+        }
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          moveFocusByDirection('down');
+          return;
+        }
+
+        if (e.key === 'Enter' || e.key === 'OK' || e.key === 'NumpadEnter') {
+          const active = document.activeElement;
+          if (active && typeof active.click === 'function') {
+            e.preventDefault();
+            active.click();
+          }
+        }
+      });
+
+      document.addEventListener('focusin', e => {
+        const el = e.target;
+        if (el && typeof el.scrollIntoView === 'function' && isVisibleFocusable(el)) {
+          el.scrollIntoView({ block:'nearest', inline:'nearest' });
         }
       });
 
@@ -1154,9 +1272,9 @@
       state.rows = [
         { title:'ทีวีแนะนำ', items: SAMPLE_TV },
         { title:'หนังและซีรีส์', items: [
-          { title:'EZ Movie', image:'', kind:'submenu', source: RAW + 'Ezmovie.json', group:'หนัง' },
-          { title:'MySeriesHD', image:'', kind:'submenu', source: RAW + 'MySeries.json', group:'ซีรีส์' },
-          { title:'GoSeries', image:'', kind:'submenu', source: RAW + 'goseries_menu.json', group:'ซีรีส์' }
+          { title:'24HD Movie', image:'', kind:'submenu', source: RAW + 'movie24hd.json', group:'หนัง' },
+          { title:'Series24HD', image:'', kind:'submenu', source: RAW + 'Series24hd.json', group:'ซีรีส์' },
+          { title:'MySeries', image:'', kind:'submenu', source: RAW + 'myseries_menu.json', group:'ซีรีส์' }
         ] }
       ];
       renderHome();
@@ -1168,3 +1286,4 @@
   </script>
 </body>
 </html>
+
