@@ -439,25 +439,20 @@
 
       <div class="group-title">ทีวีออนไลน์</div>
       <button class="menu-btn focusable" data-source="tv-main">📺 ทีวีออนไลน์</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/iptv.html">📡 IPTV เดิม</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/inwhd.html">🌟 GOD TV</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/sport.html">🏆 SPORT TV</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/ball66.html">⚽ DOOBALL66</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/DKL.html">📺 DKL</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/3bb.html">📶 3BB TV</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/iptv.html">📡 IPTV เดิม</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/sport.html">🏆 SPORT TV</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/ball66.html">⚽ DOOBALL66</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/DKL.html">📺 DKL</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/3bb.html">📶 3BB TV</button>
 
       <div class="group-title">หนัง</div>
       <button class="menu-btn focusable" data-source="movie-main">🎬 หนังทั้งหมด</button>
-      <button class="menu-btn focusable" data-source="movie-24hd">🎬 หนัง 24HD</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/037hd.html">🎥 037HD</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/hdx.html">🎞️ LK-HDX</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/24hd.html">🍿 24-HDS</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/7hd.html">📽️ 7HD</button>
+
 
       <div class="group-title">ซีรีส์</div>
       <button class="menu-btn focusable" data-source="series-main">📚 ซีรีส์ทั้งหมด</button>
       <button class="menu-btn focusable" data-source="series-24hd">📺 ซีรีส์ 24HD</button>
-      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv/VIP.html">💎 VIP</button>
+      <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/VIP.html">💎 VIP</button>
 
       <div class="group-title">ระบบ</div>
       <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/index.html">🏠 HOME จริง</button>
@@ -540,9 +535,9 @@
     };
 
     const SAMPLE_TV = [
-      { title:'MONOMAX 01', image:'', url:'https://monomax-sz.thaicdn.com/mono29hd/mono29hd.stream/playlist.m3u8', group:'ทีวี', type:'tv' },
-      { title:'MONOMAX 02', image:'', url:'https://monomax-sz.thaicdn.com/mono_plus/mono_plus.stream/playlist.m3u8', group:'ทีวี', type:'tv' },
-      { title:'SPORT DEMO', image:'', url:'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8', group:'กีฬา', type:'tv' }
+      { title:'MONOMAX 01', image:'https://www.fileinwtv.site/postor/20250830165328Mono1.jpg', url:'https://love.sayob28681.workers.dev/lx-origin/th-monomax01_720/chunks.m3u8', group:'ทีวี', type:'tv' },
+      { title:'MONOMAX 02', image:'https://www.fileinwtv.site/postor/20250830165343Mono2.jpg', url:'https://love.sayob28681.workers.dev/lx-origin/th-monomax01_720/chunks.m3u8', group:'ทีวี', type:'tv' },
+      { title:'SPORT DEMO', image:'https://cms.dmpcdn.com/livetv/2025/10/27/ebbad850-b303-11f0-b265-23dfa726a2d7_webp_original.webp', url:'https://love.sayob28681.workers.dev/vx-origin/epl-3_720/chunks.m3u8', group:'กีฬา', type:'tv' }
     ];
 
     const state = {
@@ -555,7 +550,6 @@
       detailStack: [],
       currentUrl: '',
       currentTitle: '',
-      currentExternalUrl: '',
       hls: null,
       dash: null,
       firstInteractDone: false
@@ -777,16 +771,16 @@
           <div class="inline-note">หมายเหตุ: ถ้าแหล่งบางตัว CORS / 403 / DRM จะอาจต้องกด MX หรือ PLAYER ภายนอก</div>
         </div>
         ${rows.map((row, rowIdx) => `
-          <div class="section">
+          <div class="section" data-section-index="${rowIdx}">
             <div class="section-head">
               <div class="section-title">${escapeHtml(row.title)}</div>
               <div class="section-tools">
                 <div class="badge">โชว์ ${Math.min(15, row.items.length)} / ${row.items.length}</div>
-                <button class="see-all-btn focusable" data-row-index="${rowIdx}">ดูทั้งหมด</button>
+                <button class="see-all-btn focusable" data-row-index="${rowIdx}" data-nav-role="see-all" data-section-index="${rowIdx}">ดูทั้งหมด</button>
               </div>
             </div>
             <div class="grid">
-              ${row.items.slice(0, 15).map((item, i) => makeCard(item, i)).join('')}
+              ${row.items.slice(0, 15).map((item, i) => makeCard(item, i).replace('<button class=\"card focusable\"', `<button class=\"card focusable\" data-nav-role=\"card\" data-section-index=\"${rowIdx}\" data-card-index=\"${i}\"`)).join('')}
             </div>
           </div>
         `).join('')}
@@ -968,81 +962,43 @@
       try { video.pause(); video.removeAttribute('src'); video.load(); } catch(e){}
     }
 
-    function isProxyUrl(url='') {
-      return /iptv\.tawatchai250958\.workers\.dev/i.test(url);
-    }
-
-    function unwrapProxyUrl(url='') {
-      try {
-        const u = new URL(url);
-        if (isProxyUrl(url)) {
-          const real = u.searchParams.get('url');
-          if (real) return decodeURIComponent(real);
-        }
-      } catch (e) {}
-      return url;
-    }
-
-    function shouldUseProxy(url='') {
-      const raw = unwrapProxyUrl(url).toLowerCase();
-      if (!/^https?:/i.test(raw)) return false;
-      if (isProxyUrl(raw)) return false;
-      const skipDomains = [
-        'thaicdn.com',
-        'mux.dev',
-        'media.vdohls.com',
-        'googlevideo.com',
-        'cloudfront.net',
-        'akamaized.net',
-        'fastly.net'
-      ];
-      return !skipDomains.some(domain => raw.includes(domain));
-    }
-
     function buildPlayCandidates(url) {
-      const clean = unwrapProxyUrl(url || '');
       const list = [];
-      if (!clean) return list;
-      list.push(clean);
-      if (shouldUseProxy(clean)) {
-        list.push(PROXY + encodeURIComponent(clean));
+      if (!url) return list;
+      list.push(url);
+      if (/^https?:/i.test(url) && !url.includes('iptv.tawatchai250958.workers.dev')) {
+        list.push(PROXY + encodeURIComponent(url));
       }
       return [...new Set(list)];
     }
 
     function attachAutoFallback(candidates, title) {
       let switched = false;
-      const tryNext = (reason='') => {
+      const tryNext = () => {
         if (switched) return;
         switched = true;
         const next = candidates[1];
         if (next) {
-          setStatus('ลิงก์หลักไม่ขึ้น • ลอง proxy fallback: ' + title + (reason ? ' • ' + reason : ''));
+          setStatus('ลิงก์หลักไม่ขึ้น • กำลังลอง proxy ให้: ' + title);
           playUrl(next, title, true);
         } else {
-          setStatus('เล่นผ่านเว็บไม่ขึ้น • ยังไม่เปิด PLAYER อัตโนมัติ ให้กด MX / PLAYER เอง');
+          setStatus('เล่นผ่านเว็บไม่ขึ้น • กำลังเปิด PLAYER ภายนอก');
+          openExternalPlayer('intent');
         }
       };
 
       const timer = setTimeout(() => {
-        if (video.readyState < 2 || video.currentTime === 0) tryNext('timeout');
-      }, 2600);
+        if (video.readyState < 2 || video.currentTime === 0) tryNext();
+      }, 2800);
 
       const clearTimer = () => clearTimeout(timer);
       video.addEventListener('playing', clearTimer, { once:true });
       video.addEventListener('loadeddata', clearTimer, { once:true });
       video.addEventListener('canplay', clearTimer, { once:true });
-      video.addEventListener('timeupdate', clearTimer, { once:true });
 
       return tryNext;
     }
 
-    function canUseIntentScheme() {
-      const ua = navigator.userAgent || '';
-      const isAndroid = /Android/i.test(ua);
-      const looksLikeWebView = /wv|Version\/\d+\.\d+ Chrome\/\d+/i.test(ua) || /AppCreator|AppCreator24/i.test(ua);
-      return isAndroid && !looksLikeWebView;
-    }
 
     async function playUrl(url, title='กำลังเล่น', skipProxyBuild=false) {
       if (!url) {
@@ -1050,12 +1006,10 @@
         return;
       }
 
-      const rawUrl = unwrapProxyUrl(url);
-      const candidates = skipProxyBuild ? [url] : buildPlayCandidates(rawUrl);
-      const currentUrl = candidates[0] || rawUrl;
+      const candidates = skipProxyBuild ? [url] : buildPlayCandidates(url);
+      const currentUrl = candidates[0] || url;
 
       state.currentUrl = currentUrl;
-      state.currentExternalUrl = rawUrl;
       state.currentTitle = title;
       playerTitle.textContent = title;
       playerPanel.classList.add('show');
@@ -1065,50 +1019,34 @@
       try {
         video.muted = true;
         video.volume = 0.8;
-        video.playsInline = true;
-        video.setAttribute('playsinline', 'playsinline');
-        video.setAttribute('webkit-playsinline', 'webkit-playsinline');
 
         const fallbackToNext = attachAutoFallback(candidates, title);
 
         if (/\.mpd($|\?)/i.test(currentUrl)) {
           state.dash = dashjs.MediaPlayer().create();
           state.dash.initialize(video, currentUrl, true);
-          video.addEventListener('error', () => fallbackToNext('video error'), { once:true });
-        } else if (/\.m3u8($|\?)/i.test(currentUrl)) {
-          if (Hls.isSupported()) {
-            state.hls = new Hls({
-              enableWorker: false,
-              lowLatencyMode: false,
-              backBufferLength: 20,
-              maxBufferLength: 12,
-              maxMaxBufferLength: 20,
-              liveSyncDurationCount: 3,
-              fragLoadingRetry: 3,
-              levelLoadingRetryDelay: 600,
-              manifestLoadingRetryDelay: 600,
-              fragLoadingTimeOut: 10000,
-              manifestLoadingTimeOut: 10000,
-              startLevel: -1,
-              capLevelToPlayerSize: true
-            });
-            state.hls.loadSource(currentUrl);
-            state.hls.attachMedia(video);
-            state.hls.on(Hls.Events.MANIFEST_PARSED, async () => {
-              try { await video.play(); } catch(e){}
-            });
-            state.hls.on(Hls.Events.ERROR, (event, data) => {
-              if (data && data.fatal) fallbackToNext(data.details || 'hls fatal');
-            });
-          } else {
-            video.src = currentUrl;
-            await video.play().catch(() => {});
-            video.addEventListener('error', () => fallbackToNext('native hls error'), { once:true });
-          }
+          video.addEventListener('error', fallbackToNext, { once:true });
+        } else if (Hls.isSupported() && /\.m3u8($|\?)/i.test(currentUrl)) {
+          state.hls = new Hls({
+            enableWorker: true,
+            lowLatencyMode: false,
+            backBufferLength: 90,
+            fragLoadingRetry: 6,
+            manifestLoadingRetryDelay: 500,
+            levelLoadingRetryDelay: 500
+          });
+          state.hls.loadSource(currentUrl);
+          state.hls.attachMedia(video);
+          state.hls.on(Hls.Events.MANIFEST_PARSED, async () => {
+            try { await video.play(); } catch(e){}
+          });
+          state.hls.on(Hls.Events.ERROR, (event, data) => {
+            if (data && data.fatal) fallbackToNext();
+          });
         } else {
           video.src = currentUrl;
           await video.play().catch(() => {});
-          video.addEventListener('error', () => fallbackToNext('video error'), { once:true });
+          video.addEventListener('error', fallbackToNext, { once:true });
         }
 
         setTimeout(async () => {
@@ -1116,7 +1054,7 @@
             video.muted = false;
             await video.play();
           } catch(e) {}
-        }, 900);
+        }, 1200);
 
         setTimeout(() => focusFirst(playerPanel), 120);
       } catch (e) {
@@ -1125,7 +1063,7 @@
           setStatus('เล่นผ่านเว็บไม่สำเร็จ • กำลังลอง proxy');
           return playUrl(candidates[1], title, true);
         }
-        setStatus('เล่นผ่านเว็บไม่สำเร็จ • กด MX หรือ PLAYER เองได้');
+        setStatus('เล่นผ่านเว็บไม่สำเร็จ • ลองกด MX หรือ PLAYER');
       }
     }
 
@@ -1136,20 +1074,12 @@
     }
 
     function openExternalPlayer(mode='intent') {
-      const url = state.currentExternalUrl || unwrapProxyUrl(state.currentUrl) || state.currentUrl;
+      const url = state.currentUrl;
       if (!url) return;
-      if (!canUseIntentScheme()) {
-        setStatus('เครื่องนี้ไม่รองรับ intent ในหน้าเว็บนี้ • ให้เปิดผ่านเว็บก่อน หรือใช้ลิงก์ตรงในแอปภายนอก');
-        return;
-      }
-      try {
-        if (mode === 'mx') {
-          window.location.href = 'intent:' + url + '#Intent;package=com.mxtech.videoplayer.ad;type=video/*;end';
-        } else {
-          window.location.href = 'intent:' + url + '#Intent;type=video/*;end';
-        }
-      } catch (e) {
-        setStatus('เปิด PLAYER ภายนอกไม่ได้บนเครื่องนี้');
+      if (mode === 'mx') {
+        window.location.href = 'intent:' + url + '#Intent;package=com.mxtech.videoplayer.ad;type=video/*;end';
+      } else {
+        window.location.href = 'intent:' + url + '#Intent;type=video/*;end';
       }
     }
 
@@ -1198,13 +1128,48 @@
       if (el) el.focus();
     }
 
+    function getHomeNavTarget(current, direction) {
+      if (!current || playerPanel.classList.contains('show') || modal.classList.contains('show')) return null;
+      const role = current.dataset.navRole || '';
+      const sectionIndex = current.dataset.sectionIndex;
+
+      if (role === 'see-all' && direction === 'down') {
+        return document.querySelector(`.card[data-section-index="${sectionIndex}"][data-card-index="0"]`);
+      }
+      if (role === 'card') {
+        const cardIndex = Number(current.dataset.cardIndex || 0);
+        if (direction === 'up' && cardIndex >= 0 && cardIndex < 5) {
+          return document.querySelector(`.see-all-btn[data-section-index="${sectionIndex}"]`);
+        }
+      }
+
+      if (current.classList.contains('menu-btn') && direction === 'right') {
+        return document.querySelector('.see-all-btn, .top-btn, .card');
+      }
+      if ((current.classList.contains('top-btn') || current.id === 'liveBtn') && direction === 'down') {
+        return document.querySelector('.see-all-btn, .card');
+      }
+      if (role === 'see-all' && direction === 'left') {
+        return document.querySelector('.menu-btn.active') || document.querySelector('.menu-btn');
+      }
+      return null;
+    }
+
     function moveFocusByDirection(direction) {
+
       const items = getActiveFocusableElements();
       if (!items.length) return false;
 
       const current = document.activeElement && items.includes(document.activeElement)
         ? document.activeElement
         : items[0];
+
+      const forced = getHomeNavTarget(current, direction);
+      if (forced && isVisibleFocusable(forced)) {
+        forced.focus();
+        forced.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        return true;
+      }
 
       const currentRect = current.getBoundingClientRect();
       const currentCx = currentRect.left + currentRect.width / 2;
@@ -1281,107 +1246,8 @@
         };
       });
 
-      function keyNameFromEvent(e) {
-        const code = e.keyCode || e.which || 0;
-        const key = e.key || '';
-        if (key === 'ArrowLeft' || code === 21) return 'left';
-        if (key === 'ArrowRight' || code === 22) return 'right';
-        if (key === 'ArrowUp' || code === 19) return 'up';
-        if (key === 'ArrowDown' || code === 20) return 'down';
-        if (key === 'Enter' || key === 'OK' || key === 'NumpadEnter' || code === 23 || code === 66) return 'enter';
-        if (key === 'Escape' || key === 'Backspace' || key === 'GoBack' || code === 4 || code === 27 || code === 8) return 'back';
-        return '';
-      }
-
-      function getMainSidebarEls() {
-        return Array.from(document.querySelectorAll('#sidebar .menu-btn')).filter(isVisibleFocusable);
-      }
-
-      function getMainTopbarEls() {
-        return Array.from(document.querySelectorAll('.topbar .focusable')).filter(isVisibleFocusable);
-      }
-
-      function getMainContentEls() {
-        return Array.from(content.querySelectorAll('.focusable, .card, .see-all-btn, .episode-btn, .server-btn')).filter(isVisibleFocusable);
-      }
-
-      function findClosestByY(list, fromEl) {
-        if (!list.length) return null;
-        const rect = fromEl.getBoundingClientRect();
-        const cy = rect.top + rect.height / 2;
-        let best = list[0], score = Infinity;
-        list.forEach(el => {
-          const r = el.getBoundingClientRect();
-          const ey = r.top + r.height / 2;
-          const s = Math.abs(ey - cy);
-          if (s < score) {
-            score = s;
-            best = el;
-          }
-        });
-        return best;
-      }
-
-      function moveMainFocus(direction) {
-        const current = document.activeElement;
-        const sidebarEls = getMainSidebarEls();
-        const topbarEls = getMainTopbarEls();
-        const contentEls = getMainContentEls();
-
-        if (!current || !isVisibleFocusable(current)) {
-          const first = sidebarEls[0] || topbarEls[0] || contentEls[0];
-          if (first) first.focus();
-          return true;
-        }
-
-        if (sidebarEls.includes(current)) {
-          const idx = sidebarEls.indexOf(current);
-          if (direction === 'up' && idx > 0) { sidebarEls[idx - 1].focus(); return true; }
-          if (direction === 'down' && idx < sidebarEls.length - 1) { sidebarEls[idx + 1].focus(); return true; }
-          if (direction === 'right') {
-            const target = findClosestByY(topbarEls, current) || findClosestByY(contentEls, current);
-            if (target) { target.focus(); return true; }
-          }
-        }
-
-        if (topbarEls.includes(current)) {
-          const idx = topbarEls.indexOf(current);
-          if (direction === 'left') {
-            if (idx > 0) { topbarEls[idx - 1].focus(); return true; }
-            const target = findClosestByY(sidebarEls, current);
-            if (target) { target.focus(); return true; }
-          }
-          if (direction === 'right' && idx < topbarEls.length - 1) { topbarEls[idx + 1].focus(); return true; }
-          if (direction === 'down') {
-            const target = findClosestByY(contentEls, current) || findClosestByY(sidebarEls, current);
-            if (target) { target.focus(); return true; }
-          }
-        }
-
-        if (contentEls.includes(current)) {
-          if (direction === 'left') {
-            const rect = current.getBoundingClientRect();
-            if (rect.left < 280) {
-              const target = findClosestByY(sidebarEls, current);
-              if (target) { target.focus(); return true; }
-            }
-          }
-          if (direction === 'up') {
-            const rect = current.getBoundingClientRect();
-            if (rect.top < 145) {
-              const target = findClosestByY(topbarEls, current) || findClosestByY(sidebarEls, current);
-              if (target) { target.focus(); return true; }
-            }
-          }
-        }
-
-        return moveFocusByDirection(direction);
-      }
-
       document.addEventListener('keydown', e => {
-        const action = keyNameFromEvent(e);
-
-        if (action === 'back') {
+        if (e.key === 'Escape' || e.key === 'Backspace') {
           if (playerPanel.classList.contains('show')) {
             e.preventDefault();
             closePlayer();
@@ -1394,20 +1260,30 @@
             setTimeout(() => focusFirst(document), 50);
             return;
           }
-          return;
         }
 
-        if (action === 'left' || action === 'right' || action === 'up' || action === 'down') {
+        if (e.key === 'ArrowLeft') {
           e.preventDefault();
-          if (playerPanel.classList.contains('show') || modal.classList.contains('show')) {
-            moveFocusByDirection(action);
-          } else {
-            moveMainFocus(action);
-          }
+          moveFocusByDirection('left');
+          return;
+        }
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          moveFocusByDirection('right');
+          return;
+        }
+        if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          moveFocusByDirection('up');
+          return;
+        }
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          moveFocusByDirection('down');
           return;
         }
 
-        if (action === 'enter') {
+        if (e.key === 'Enter' || e.key === 'OK' || e.key === 'NumpadEnter') {
           const active = document.activeElement;
           if (active && typeof active.click === 'function') {
             e.preventDefault();
@@ -1430,8 +1306,8 @@
       state.rows = [
         { title:'ทีวีแนะนำ', items: SAMPLE_TV },
         { title:'หนังและซีรีส์', items: [
-          { title:'EZ Movie', image:'', kind:'submenu', source: RAW + 'Ezmovie.json', group:'หนัง' },
-          { title:'MySeriesHD', image:'', kind:'submenu', source: RAW + 'MySeries.json', group:'ซีรีส์' },
+          { title:' Movie24hd', image:'', kind:'submenu', source: RAW + 'movie24hd.json', group:'หนัง' },
+          { title:'Series24HD', image:'', kind:'submenu', source: RAW + 'series24hd.json', group:'ซีรีส์' },
           { title:'GoSeries', image:'', kind:'submenu', source: RAW + 'goseries_menu.json', group:'ซีรีส์' }
         ] }
       ];
