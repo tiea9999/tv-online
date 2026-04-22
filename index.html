@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TIEA IPTV ULTRA SPEED REMOTE</title>
+  <title>TIEA IPTV ULTRA SPEED REMOTE + MYSERIES</title>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
     * { box-sizing: border-box; }
@@ -279,8 +279,7 @@
       <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/3bb.html">📡 3BB IPTV</button>
       <button class="menu-btn" data-kind="movie" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/movie24hd.json">🎬 หนัง</button>
       <button class="menu-btn" data-kind="series" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/series24hd.json">📺 ซีรีส์</button>
-     
-
+      <button class="menu-btn" data-kind="series" data-title="📺 MySeries" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/MySeries.json">📺 MySeries</button>
       <button class="menu-btn" id="vipBtn">🔒 VIP</button>
     </aside>
 
@@ -288,7 +287,7 @@
       <div class="topbar">
         <div>
           <div id="pageTitle" class="title">📺 ทีวี</div>
-          <div class="sub">โหลดไว + รีโมทเทพ + ซีรีส์แยกหมวด + หนังเล่นในเว็บก่อน</div>
+          <div class="sub">โหลดไว + รีโมทเทพ + ซีรีส์แยกหมวด + หนังเล่นในเว็บก่อน + รองรับ MySeries</div>
         </div>
         <div class="tools">
           <button id="reloadBtn" class="top-btn">รีโหลด</button>
@@ -336,6 +335,7 @@
     const HOME_URL = "https://tiea9999.github.io/tv-online";
     const RETURN_STATE_KEY = "tiea_ultra_return_state_v1";
     const INITIAL_LIMIT = 18;
+    const WORKER_PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
 
     let currentSource = document.querySelector('.menu-btn[data-source].active')?.dataset.source || "";
     let currentTitle = document.querySelector('.menu-btn[data-source].active')?.dataset.title || "📺 ทีวี";
@@ -362,6 +362,17 @@
 
     function isSeriesMenu() {
       return currentKind === "series";
+    }
+
+    function useProxyFirstForItem(item) {
+      if (!item) return false;
+      return currentKind === "movie" || currentKind === "series" || item?.type === "movie" || item?.type === "series" || Array.isArray(item?.episodes);
+    }
+
+    function toProxyUrl(url) {
+      if (!url) return "";
+      if (url.includes("iptv.tawatchai250958.workers.dev/?url=")) return url;
+      return WORKER_PROXY + encodeURIComponent(url);
     }
 
     function clearMovieFallbackTimer() {
@@ -508,6 +519,15 @@
       return item.url || item.link || item.stream || item.source || item.file || "";
     }
 
+    function buildPlayCandidates(item, serverIndex = 0) {
+      const direct = getPlayableUrl(item, serverIndex);
+      if (!direct) return [];
+      const proxy = toProxyUrl(direct);
+      const preferProxy = useProxyFirstForItem(item);
+      const ordered = preferProxy ? [proxy, direct] : [direct, proxy];
+      return [...new Set(ordered.filter(Boolean))];
+    }
+
     function normalizeMovieOrSeries(jsonItems) {
       const out = [];
       const seen = new Set();
@@ -541,7 +561,7 @@
             url,
             servers: [],
             type: "series",
-            category: node.category || "",
+            category: node.category || node.group || "",
             subcategory: node.subcategory || "",
             status: node.status || "",
             latest_ep: node.latest_ep || node.episodes.length,
@@ -571,7 +591,7 @@
             url: url || servers[0]?.url || "",
             servers,
             type: node.type || "video",
-            category: node.category || "",
+            category: node.category || node.group || "",
             subcategory: node.subcategory || "",
             status: node.status || "",
             year: node.year || "",
@@ -751,11 +771,14 @@
 
     function categoryOrder(cat) {
       const text = String(cat || "");
+      if (text.includes("ซีรี่ย์มาใหม่")) return 0;
       if (text.includes("จีน")) return 1;
-      if (text.includes("เกาหลี")) return 2;
-      if (text.includes("ญี่ปุ่น")) return 3;
+      if (text.includes("ญี่ปุ่น")) return 2;
+      if (text.includes("เกาหลี")) return 3;
       if (text.includes("ไทย")) return 4;
-      if (text.includes("ฝรั่ง")) return 5;
+      if (text.includes("หนัง")) return 5;
+      if (text.includes("ละครสั้น")) return 6;
+      if (text.includes("ฝรั่ง")) return 7;
       return 99;
     }
 
@@ -792,19 +815,15 @@
         moreBtn.className = "more-btn";
         moreBtn.type = "button";
 
-        const expanded = !!sectionExpandState[cat];
         const items = groups[cat];
-        const visibleItems = expanded ? items : items.slice(0, INITIAL_LIMIT);
-
-        moreBtn.textContent = expanded ? "ดูน้อยลง" : `ดูทั้งหมด (${items.length})`;
-        moreBtn.style.display = items.length > INITIAL_LIMIT ? "block" : "none";
 
         const sectionGrid = document.createElement("div");
         sectionGrid.className = "grid";
 
         function drawItems() {
           sectionGrid.innerHTML = "";
-          const currentVisible = sectionExpandState[cat] ? items : items.slice(0, INITIAL_LIMIT);
+          const expanded = !!sectionExpandState[cat];
+          const currentVisible = expanded ? items : items.slice(0, INITIAL_LIMIT);
 
           currentVisible.forEach(item => {
             const runOpen = async () => {
@@ -814,7 +833,8 @@
             sectionGrid.appendChild(createCard(item, false, runOpen));
           });
 
-          moreBtn.textContent = sectionExpandState[cat] ? "ดูน้อยลง" : `ดูทั้งหมด (${items.length})`;
+          moreBtn.textContent = expanded ? "ดูน้อยลง" : `ดูทั้งหมด (${items.length})`;
+          moreBtn.style.display = items.length > INITIAL_LIMIT ? "block" : "none";
         }
 
         moreBtn.onclick = () => {
@@ -872,7 +892,7 @@
             return;
           }
 
-          playItem(item, 0);
+          playItem(item, 0, 0);
         };
 
         grid.appendChild(createCard(item, isTV, runOpen));
@@ -908,7 +928,7 @@
         btn.type = "button";
         btn.textContent = ep.title || `EP${i + 1}`;
 
-        const runPlay = () => playItem(ep, 0);
+        const runPlay = () => playItem(ep, 0, 0);
 
         btn.onclick = runPlay;
         btn.onmousedown = (e) => { e.preventDefault(); runPlay(); };
@@ -954,19 +974,25 @@
 
     function createStableHls(isMovie = false) {
       return new Hls({
-        enableWorker: true,
+        enableWorker: false,
         autoStartLoad: true,
         startPosition: -1,
         lowLatencyMode: false,
-        maxBufferLength: isMovie ? 45 : 35,
-        maxMaxBufferLength: isMovie ? 90 : 70,
-        backBufferLength: isMovie ? 60 : 45,
-        maxBufferHole: 1,
-        manifestLoadingMaxRetry: 5,
-        levelLoadingMaxRetry: 5,
-        fragLoadingMaxRetry: 6,
+        maxBufferLength: isMovie ? 18 : 12,
+        maxMaxBufferLength: isMovie ? 28 : 18,
+        backBufferLength: isMovie ? 18 : 12,
+        maxBufferHole: 0.5,
+        manifestLoadingMaxRetry: 2,
+        levelLoadingMaxRetry: 2,
+        fragLoadingMaxRetry: 3,
+        manifestLoadingRetryDelay: 500,
+        levelLoadingRetryDelay: 500,
+        fragLoadingRetryDelay: 500,
         liveSyncDurationCount: 3,
-        liveMaxLatencyDurationCount: 10
+        liveMaxLatencyDurationCount: 8,
+        capLevelToPlayerSize: true,
+        testBandwidth: false,
+        startFragPrefetch: false
       });
     }
 
@@ -984,25 +1010,40 @@
       video.addEventListener("canplay", ok, { once: true });
     }
 
-    async function playItem(item, serverIndex = 0) {
+    async function playItem(item, serverIndex = 0, candidateIndex = 0) {
       currentItem = item;
       currentServerIndex = serverIndex;
       clearPlayer();
 
-      const url = getPlayableUrl(item, serverIndex);
+      const candidates = buildPlayCandidates(item, serverIndex);
+      const url = candidates[candidateIndex] || "";
       if (!url) {
         setStatus("ไม่พบลิงก์เล่น");
         return;
       }
 
       const lower = url.toLowerCase();
-      const movieMode = isMovieItem(item);
+      const movieMode = isMovieItem(item) || currentKind === "series";
+
+      function tryNextCandidateOrServer() {
+        if (candidateIndex + 1 < candidates.length) {
+          playItem(item, serverIndex, candidateIndex + 1);
+          return;
+        }
+
+        if (Array.isArray(item.servers) && item.servers.length > serverIndex + 1) {
+          playItem(item, serverIndex + 1, 0);
+          return;
+        }
+
+        openExternalPlayer(getPlayableUrl(item, serverIndex));
+      }
 
       if (lower.includes(".m3u8")) {
         showPlayer();
 
         if (movieMode) {
-          startMovieFallback(url);
+          startMovieFallback(getPlayableUrl(item, serverIndex));
           attachPlaybackSuccessHandlers();
         }
 
@@ -1012,21 +1053,17 @@
           hls.attachMedia(video);
 
           hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            tryStartVideoWithSound(() => openExternalPlayer(url));
+            tryStartVideoWithSound(() => tryNextCandidateOrServer());
           });
 
           hls.on(Hls.Events.ERROR, (e, data) => {
             if (data?.fatal) {
-              if (Array.isArray(item.servers) && item.servers.length > serverIndex + 1) {
-                playItem(item, serverIndex + 1);
-              } else {
-                openExternalPlayer(url);
-              }
+              tryNextCandidateOrServer();
             }
           });
         } else {
           video.src = url;
-          tryStartVideoWithSound(() => openExternalPlayer(url));
+          tryStartVideoWithSound(() => tryNextCandidateOrServer());
         }
         return;
       }
@@ -1034,15 +1071,15 @@
       if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
         showPlayer();
         if (movieMode) {
-          startMovieFallback(url);
+          startMovieFallback(getPlayableUrl(item, serverIndex));
           attachPlaybackSuccessHandlers();
         }
         video.src = url;
-        tryStartVideoWithSound(() => openExternalPlayer(url));
+        tryStartVideoWithSound(() => tryNextCandidateOrServer());
         return;
       }
 
-      openExternalPlayer(url);
+      openExternalPlayer(getPlayableUrl(item, serverIndex));
     }
 
     async function loadCurrentMenu() {
