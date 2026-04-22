@@ -287,7 +287,7 @@
       <div class="topbar">
         <div>
           <div id="pageTitle" class="title">📺 ทีวี</div>
-          <div class="sub">โหลดไว + รีโมทเทพ + ซีรีส์แยกหมวด + หนังเล่นในเว็บก่อน + รองรับ MySeries</div>
+          <div class="sub">โหลดไว + รีโมทเทพ + ซีรีส์แยกหมวด + หนังเล่นในเว็บก่อน + รองรับ MySeries + groups[]</div>
         </div>
         <div class="tools">
           <button id="reloadBtn" class="top-btn">รีโหลด</button>
@@ -326,7 +326,6 @@
     const pageTitle = document.getElementById("pageTitle");
     const statusBox = document.getElementById("statusBox");
     const listView = document.getElementById("listView");
-    const mainArea = document.getElementById("mainArea");
     const playerWrap = document.getElementById("playerWrap");
     const playerBar = document.getElementById("playerBar");
     const video = document.getElementById("videoPlayer");
@@ -528,6 +527,14 @@
       return [...new Set(ordered.filter(Boolean))];
     }
 
+    function normalizeGroups(node) {
+      if (Array.isArray(node?.groups) && node.groups.length) {
+        return node.groups.filter(Boolean).map(x => String(x).trim()).filter(Boolean);
+      }
+      const fallback = node?.category || node?.group || "";
+      return fallback ? [String(fallback).trim()] : [];
+    }
+
     function normalizeMovieOrSeries(jsonItems) {
       const out = [];
       const seen = new Set();
@@ -553,6 +560,7 @@
         const title = node.title || node.name || node.ep_name || node.episode || "ไม่มีชื่อ";
         const url = node.url || node.link || node.stream || node.source || node.file || "";
         const servers = mapServers(node.servers);
+        const groups = normalizeGroups(node);
 
         if (Array.isArray(node.episodes) && node.episodes.length) {
           add({
@@ -561,7 +569,8 @@
             url,
             servers: [],
             type: "series",
-            category: node.category || node.group || "",
+            category: groups[0] || "",
+            groups,
             subcategory: node.subcategory || "",
             status: node.status || "",
             latest_ep: node.latest_ep || node.episodes.length,
@@ -591,7 +600,8 @@
             url: url || servers[0]?.url || "",
             servers,
             type: node.type || "video",
-            category: node.category || node.group || "",
+            category: groups[0] || "",
+            groups,
             subcategory: node.subcategory || "",
             status: node.status || "",
             year: node.year || "",
@@ -631,6 +641,7 @@
               servers: [{ name: s?.name || "Main", url }],
               type: "video",
               category: groupName,
+              groups: [groupName],
               language: s?.info || ""
             });
           });
@@ -647,6 +658,7 @@
                 servers: [{ name: s?.name || "Main", url }],
                 type: "video",
                 category: groupName,
+                groups: [groupName],
                 language: s?.info || ""
               });
             });
@@ -670,6 +682,7 @@
           const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
           const groupMatch = line.match(/group-title="([^"]*)"/i);
           const name = line.split(",").pop()?.trim() || "ไม่มีชื่อ";
+          const groupName = groupMatch ? groupMatch[1] : "";
           current = {
             title: name,
             image: logoMatch ? logoMatch[1] : "",
@@ -677,7 +690,8 @@
             servers: [],
             episodes: [],
             type: "video",
-            category: groupMatch ? groupMatch[1] : ""
+            category: groupName,
+            groups: groupName ? [groupName] : []
           };
         } else if (!line.startsWith("#") && current) {
           current.url = line;
@@ -702,7 +716,9 @@
           url: sourceUrl,
           servers: [{ name: "Main", url: sourceUrl }],
           episodes: [],
-          type: "video"
+          type: "video",
+          category: "",
+          groups: []
         }];
         cache[cacheKey] = direct;
         return direct;
@@ -788,9 +804,15 @@
 
       const groups = {};
       list.forEach(item => {
-        const cat = item.category || "อื่นๆ";
-        if (!groups[cat]) groups[cat] = [];
-        groups[cat].push(item);
+        const cats = Array.isArray(item.groups) && item.groups.length
+          ? item.groups.filter(Boolean)
+          : [item.category || "อื่นๆ"];
+
+        cats.forEach(cat => {
+          if (!groups[cat]) groups[cat] = [];
+          const exists = groups[cat].some(x => x.title === item.title);
+          if (!exists) groups[cat].push(item);
+        });
       });
 
       const sortedCats = Object.keys(groups).sort((a, b) => {
