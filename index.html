@@ -2,1381 +2,1193 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>TIEA IPTV PRO UI FULL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TIEA IPTV ULTRA SPEED REMOTE</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
-    *{box-sizing:border-box}
-    :root{
-      --bg:#070707;
-      --panel:#111;
-      --panel2:#181818;
-      --line:#2a2a2a;
-      --text:#fff;
-      --muted:#9fd9e5;
-      --accent:#00d0ff;
-      --green:#00b96b;
-      --danger:#a02828;
-      --focus:0 0 0 3px rgba(0,208,255,.95),0 0 22px rgba(0,208,255,.45);
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: sans-serif;
+      overflow: hidden;
     }
-    html,body{
-      margin:0;
-      width:100%;
-      height:100%;
-      background:var(--bg);
-      color:var(--text);
-      font-family:Arial,Helvetica,sans-serif;
-      overflow:hidden;
+
+    .app {
+      display: flex;
+      min-height: 100vh;
+      height: 100vh;
     }
-    body{
-      background:
-        radial-gradient(circle at top right, rgba(0,208,255,.09), transparent 25%),
-        radial-gradient(circle at top left, rgba(0,255,149,.05), transparent 18%),
-        var(--bg);
+
+    .sidebar {
+      width: 190px;
+      background: #111;
+      padding: 10px;
+      flex-shrink: 0;
+      overflow-y: auto;
+      border-right: 1px solid #1f1f1f;
     }
-    .app{
-      display:flex;
-      width:100vw;
-      height:100vh;
+
+    .brand {
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      color: #00e5ff;
+      margin-bottom: 12px;
     }
-    .sidebar{
-      width:235px;
-      min-width:235px;
-      background:linear-gradient(180deg,#111,#0b0b0b);
-      border-right:1px solid var(--line);
-      overflow-y:auto;
-      padding:14px 10px 90px;
+
+    .menu-btn,
+    .top-btn,
+    .ep-btn,
+    .more-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 10px;
+      background: #222;
+      color: #fff;
+      padding: 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 15px;
     }
-    .brand{
-      text-align:center;
-      font-weight:900;
-      font-size:26px;
-      color:var(--accent);
-      letter-spacing:1px;
-      margin:4px 0 14px;
-      text-shadow:0 0 18px rgba(0,208,255,.28);
+
+    .menu-btn.active,
+    .menu-btn:focus,
+    .top-btn:focus,
+    .ep-btn:focus,
+    .more-btn:focus,
+    .card:focus,
+    .player-btn:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px #00e5ff inset, 0 0 12px rgba(0,229,255,.55);
     }
-    .subbrand{
-      color:#9befff;
-      font-size:12px;
-      margin-top:2px;
+
+    .menu-btn.active {
+      background: #00c853;
     }
-    .group-title{
-      color:#9fd4e0;
-      font-size:12px;
-      margin:18px 8px 8px;
-      opacity:.9;
+
+    .main {
+      flex: 1;
+      padding: 12px;
+      overflow: auto;
+      scroll-behavior: smooth;
     }
-    .focusable,.menu-btn,.top-btn,.card,.see-all-btn,.page-btn,.player-btn,.episode-btn,.server-btn{
-      outline:none;
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(0,0,0,.92);
+      padding-bottom: 10px;
     }
-    .menu-btn{
-      display:block;
-      width:100%;
-      text-align:left;
-      background:var(--panel2);
-      border:1px solid #202020;
-      color:#fff;
-      padding:12px;
-      border-radius:14px;
-      margin:7px 0;
-      font-size:15px;
-      font-weight:700;
-      cursor:pointer;
+
+    .title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #00e5ff;
     }
-    .menu-btn.active{
-      border-color:rgba(0,208,255,.8);
-      background:linear-gradient(180deg,#10222a,#131313);
+
+    .sub {
+      color: #aaa;
+      font-size: 13px;
     }
-    .menu-btn:focus,.card:focus,.top-btn:focus,.player-btn:focus,.page-btn:focus,.episode-btn:focus,.server-btn:focus,.see-all-btn:focus{
-      box-shadow:var(--focus);
-      border-color:var(--accent);
+
+    .tools {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
-    .main{
-      flex:1;
-      min-width:0;
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      overflow:hidden;
+
+    .top-btn {
+      width: auto;
+      margin-bottom: 0;
+      padding: 10px 12px;
     }
-    .topbar{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 14px;
-      border-bottom:1px solid var(--line);
-      background:rgba(11,11,11,.96);
-      flex-wrap:wrap;
+
+    .status {
+      display: none;
+      background: rgba(255,255,255,.08);
+      padding: 10px 12px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      white-space: pre-wrap;
     }
-    .top-btn{
-      border:1px solid #2b2b2b;
-      background:#171717;
-      color:#fff;
-      border-radius:12px;
-      padding:11px 14px;
-      font-size:14px;
-      font-weight:700;
-      cursor:pointer;
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+      gap: 10px;
     }
-    .top-btn.home{background:linear-gradient(180deg,#01aa63,#00874f)}
-    .top-btn.reload{background:linear-gradient(180deg,#14698b,#0f4c64)}
-    .top-btn.live{background:linear-gradient(180deg,#5a2f8f,#43226d)}
-    .status{
-      flex:1;
-      min-width:240px;
-      padding:10px 12px;
-      border-radius:12px;
-      background:#101010;
-      border:1px solid #222;
-      color:#c7f7ff;
-      font-size:13px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
+
+    .section {
+      margin-bottom: 20px;
     }
-    .content{
-      flex:1;
-      min-height:0;
-      overflow-y:auto;
-      padding:14px;
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 10px;
     }
-    .hero{
-      border:1px solid #222;
-      background:linear-gradient(135deg, rgba(0,208,255,.12), rgba(0,0,0,.05) 35%), linear-gradient(180deg,#171717,#0e0e0e);
-      border-radius:20px;
-      padding:18px;
-      margin-bottom:14px;
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #00e5ff;
+      padding: 8px 10px;
+      background: rgba(255,255,255,.06);
+      border-radius: 10px;
+      flex: 1;
     }
-    .hero-title{
-      font-size:26px;
-      font-weight:900;
-      color:#fff;
-      margin-bottom:6px;
+
+    .more-btn {
+      width: auto;
+      margin: 0;
+      padding: 8px 12px;
+      font-size: 13px;
+      background: #333;
     }
-    .hero-sub{
-      color:#a8edf7;
-      font-size:14px;
-      line-height:1.45;
+
+    .card {
+      background: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 0;
+      color: #fff;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      display: block;
     }
-    .inline-note{
-      color:#bdbdbd;
-      font-size:13px;
-      margin-top:10px;
+
+    .card img {
+      width: 100%;
+      height: 175px;
+      object-fit: cover;
+      background: #000;
+      display: block;
     }
-    .section{margin-bottom:22px}
-    .section-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin:0 0 10px;
+
+    .card.tv img {
+      object-fit: contain;
+      padding: 8px;
+      height: 140px;
+      background: #000;
     }
-    .section-title{
-      font-size:20px;
-      font-weight:800;
-      color:#fff;
+
+    .card-title {
+      padding: 8px 8px 4px;
+      font-size: 14px;
+      line-height: 1.35;
+      min-height: 42px;
+      word-break: break-word;
     }
-    .section-tools{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      flex-wrap:wrap;
+
+    .card-meta {
+      padding: 0 8px 8px;
+      font-size: 12px;
+      color: #aaa;
+      line-height: 1.35;
     }
-    .badge{
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      background:#121212;
-      border:1px solid #262626;
-      color:#9deeff;
+
+    .eps-wrap {
+      display: none;
     }
-    .see-all-btn,.page-btn{
-      border:1px solid #2d2d2d;
-      background:#171717;
-      color:#fff;
-      padding:8px 12px;
-      border-radius:12px;
-      font-weight:700;
-      cursor:pointer;
+
+    .eps-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #00e5ff;
+      margin-bottom: 10px;
     }
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
-      gap:12px;
+
+    .eps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 8px;
     }
-    .card{
-      position:relative;
-      border:1px solid #242424;
-      border-radius:18px;
-      background:linear-gradient(180deg,#171717,#0e0e0e);
-      overflow:hidden;
-      cursor:pointer;
-      padding:0;
-      text-align:left;
-      color:inherit;
-      min-height:240px;
+
+    #playerWrap {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: none;
+      z-index: 9999;
     }
-    .thumb{
-      width:100%;
-      height:160px;
-      object-fit:cover;
-      display:block;
-      background:#111;
+
+    #videoPlayer {
+      width: 100%;
+      height: 100%;
+      background: #000;
     }
-    .thumb.fallback{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:40px;
-      color:#00d0ff;
-      background:linear-gradient(135deg,#0c2730,#111);
+
+    #playerBar {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      gap: 8px;
+      z-index: 10000;
+      flex-wrap: wrap;
+      opacity: 1;
+      transition: opacity .25s ease;
     }
-    .card-body{padding:12px}
-    .card-title{
-      font-size:15px;
-      font-weight:800;
-      line-height:1.35;
-      min-height:40px;
-      display:-webkit-box;
-      -webkit-line-clamp:2;
-      -webkit-box-orient:vertical;
-      overflow:hidden;
+
+    #playerBar.hide-ui {
+      opacity: 0;
+      pointer-events: none;
     }
-    .card-meta{
-      margin-top:8px;
-      font-size:12px;
-      color:#9cdce6;
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
+
+    .player-btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
     }
-    .tag{
-      padding:4px 8px;
-      border-radius:999px;
-      border:1px solid #24444d;
-      background:rgba(0,208,255,.09);
-    }
-    .detail-box{
-      padding:14px;
-      border:1px solid #242424;
-      border-radius:18px;
-      background:linear-gradient(180deg,#141414,#0d0d0d);
-      margin-bottom:14px;
-    }
-    .detail-title{
-      font-size:22px;
-      font-weight:900;
-      margin-bottom:6px;
-    }
-    .detail-sub{
-      color:#a9edf7;
-      font-size:14px;
-      line-height:1.5;
-    }
-    .episode-list,.server-list{
-      display:grid;
-      grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-      gap:10px;
-      margin-top:14px;
-    }
-    .episode-btn,.server-btn{
-      border:1px solid #2a2a2a;
-      background:#161616;
-      color:#fff;
-      padding:12px;
-      border-radius:14px;
-      font-weight:700;
-      cursor:pointer;
-      text-align:left;
-    }
-    .player-panel{
-      position:fixed;
-      inset:0;
-      display:none;
-      background:rgba(0,0,0,.96);
-      z-index:9999;
-      flex-direction:column;
-    }
-    .player-panel.show{display:flex}
-    .player-top{
-      display:flex;
-      gap:10px;
-      padding:12px;
-      border-bottom:1px solid #222;
-      align-items:center;
-      flex-wrap:wrap;
-      background:rgba(10,10,10,.98);
-    }
-    .player-title{
-      flex:1;
-      min-width:180px;
-      font-weight:800;
-      color:#fff;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .player-btn{
-      border:1px solid #2d2d2d;
-      background:#171717;
-      color:#fff;
-      border-radius:12px;
-      padding:10px 14px;
-      font-size:14px;
-      font-weight:700;
-      cursor:pointer;
-    }
-    .player-btn.close{background:linear-gradient(180deg,#7b2020,#601919)}
-    .player-btn.home{background:linear-gradient(180deg,#00a760,#008450)}
-    .player-btn.mx{background:linear-gradient(180deg,#1164a5,#0b4a7c)}
-    .player-wrap{
-      flex:1;
-      min-height:0;
-      display:flex;
-      flex-direction:column;
-      padding:12px;
-      gap:10px;
-    }
-    .video-shell{
-      flex:1;
-      min-height:220px;
-      background:#000;
-      border:1px solid #222;
-      border-radius:18px;
-      overflow:hidden;
-      position:relative;
-    }
-    video{
-      width:100%;
-      height:100%;
-      background:#000;
-      outline:none;
-    }
-    #video{tabindex:-1}
-    .player-hint{
-      font-size:13px;
-      color:#b8ecf7;
-      border:1px solid #1e3b41;
-      background:#0d171a;
-      border-radius:12px;
-      padding:10px 12px;
-    }
-    .modal{
-      position:fixed;
-      inset:0;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      background:rgba(0,0,0,.86);
-      z-index:9998;
-      padding:20px;
-    }
-    .modal.show{display:flex}
-    .modal-box{
-      width:min(1200px,100%);
-      max-height:92vh;
-      background:linear-gradient(180deg,#151515,#0c0c0c);
-      border:1px solid #2a2a2a;
-      border-radius:22px;
-      display:flex;
-      flex-direction:column;
-      overflow:hidden;
-    }
-    .modal-head{
-      padding:12px 14px;
-      border-bottom:1px solid #222;
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-    .modal-title{
-      font-size:20px;
-      font-weight:900;
-      flex:1;
-    }
-    .modal-body{
-      padding:14px;
-      overflow:auto;
-    }
-    .modal-foot{
-      padding:10px 14px 14px;
-      border-top:1px solid #222;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .pages{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-    @media (max-width:860px){
-      .sidebar{width:190px;min-width:190px}
-      .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
-      .thumb{height:140px}
+
+    .btn-home { background: #2196f3; }
+    .btn-close { background: #e53935; }
+    .btn-player { background: #009688; }
+    .btn-mx { background: #ff9800; }
+
+    @media (max-width: 800px) {
+      .sidebar { width: 150px; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+      .card img { height: 145px; }
+      .card.tv img { height: 120px; }
     }
   </style>
 </head>
 <body>
-<div class="app">
-  <aside class="sidebar">
-    <div class="brand">TIEA IPTV<div class="subbrand">PRO UI FULL</div></div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">TIEA IPTV</div>
+      <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/live.html">⚽ ตารางแข่งขัน</button>
+      <button class="menu-btn active" data-kind="tv" data-title="📺 ทีวี" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json">📺 ทีวี</button>
+      <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/3bb.html">📡 3BB IPTV</button>
+      <button class="menu-btn" data-kind="movie" data-title="🎬 หนัง" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/movie24hd.json">🎬 หนัง</button>
+      <button class="menu-btn" data-kind="series" data-title="📺 ซีรีส์" data-source="https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/series24hd.json">📺 ซีรีส์</button>
+     
 
-    <div class="group-title">เมนูหลัก</div>
-    <button class="menu-btn focusable active" data-action="home">🏠 หน้าแรก</button>
-    <button class="menu-btn focusable" data-action="home-tv">📺 ทีวีออนไลน์</button>
-    <button class="menu-btn focusable" data-action="live-page">📅 ตารางแข่งขัน</button>
+      <button class="menu-btn" id="vipBtn">🔒 VIP</button>
+    </aside>
 
-    <div class="group-title">ทีวีออนไลน์</div>
-    <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/ball66.html">⚽ DOOBALL66</button>
-    <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/3bb.html">📶 3BB TV</button>
-
-    <div class="group-title">หนัง</div>
-    <button class="menu-btn focusable" data-source="movie-main">🎬 หนังทั้งหมด</button>
-    <button class="menu-btn focusable" data-source="movie-24hd">🎬 หนัง 24HD</button>
-
-    <div class="group-title">ซีรีส์</div>
-    <button class="menu-btn focusable" data-source="series-main">📚 ซีรีส์ทั้งหมด</button>
-    <button class="menu-btn focusable" data-source="series-24hd">📺 ซีรีส์ 24HD</button>
-    <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/VIP.html">💎 VIP</button>
-
-    <div class="group-title">ระบบ</div>
-    <button class="menu-btn focusable" data-link="https://tiea9999.github.io/tv-online/index.html">🏠 HOME จริง</button>
-  </aside>
-
-  <main class="main">
-    <div class="topbar">
-      <button class="top-btn home focusable" id="homeBtn">🏠 HOME</button>
-      <button class="top-btn reload focusable" id="reloadBtn">⟳ โหลดใหม่</button>
-      <button class="top-btn live focusable" id="liveBtn">📅 live.html</button>
-      <div class="status" id="statusText">พร้อมใช้งาน • Dooball66 และ 3BB TV ใช้ลิงก์ตรง • หนัง/ซีรีส์ยังอยู่ • รีโมทลูกศรคุม UI</div>
-    </div>
-    <div class="content" id="content"></div>
-  </main>
-</div>
-
-<div class="player-panel" id="playerPanel">
-  <div class="player-top">
-    <button class="player-btn close focusable" id="closePlayerBtn">✕ ปิด</button>
-    <button class="player-btn home focusable" id="playerHomeBtn">🏠 หน้าโฮม</button>
-    <div class="player-title" id="playerTitle">กำลังเล่น</div>
-    <button class="player-btn mx focusable" id="mxBtn">▶ MX</button>
-    <button class="player-btn focusable" id="extBtn">▶ PLAYER</button>
-  </div>
-  <div class="player-wrap">
-    <div class="video-shell">
-      <video id="video" controls playsinline webkit-playsinline autoplay tabindex="-1"></video>
-    </div>
-    <div class="player-hint">เล่นในเว็บก่อนเสมอ • ถ้าไม่ขึ้นค่อยกด MX หรือ PLAYER เอง</div>
-  </div>
-</div>
-
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <div class="modal-title" id="modalTitle">ดูทั้งหมด</div>
-      <button class="player-btn close focusable" id="closeModalBtn">✕ ปิด</button>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-    <div class="modal-foot">
-      <div class="badge" id="modalCount">ทั้งหมด 0 รายการ</div>
-      <div class="pages">
-        <button class="page-btn focusable" id="prevPageBtn">◀ ก่อนหน้า</button>
-        <div class="badge" id="pageInfo">หน้า 1 / 1</div>
-        <button class="page-btn focusable" id="nextPageBtn">ถัดไป ▶</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-<script>
-const HOME_URL = 'https://tiea9999.github.io/tv-online/index.html';
-const LIVE_URL = 'https://tiea9999.github.io/tv-online/live.html';
-const RAW = 'https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/';
-const PROXY = 'https://iptv.tawatchai250958.workers.dev/?url=';
-const HOME_SHOW_LIMIT = 15;
-
-const DIRECT_ONLY_PATTERNS = [
-  /thaicdn\./i,/mux\./i,/vdohls\./i,/akamaized\./i,/cloudfront\./i,/googlevideo\./i,
-  /\.mp4($|\?)/i,/youtube\./i,/youtu\.be/i,/vimeo\./i,/dailymotion\./i
-];
-
-const SOURCES = {
-  'movie-main': [
-    { title:'EZ Movie', type:'json', source: RAW + 'Ezmovie.json' },
-    { title:'Flixmono', type:'json', source: RAW + 'Flixmono.json' }
-  ],
-  'movie-24hd': [
-    { title:'Movie 24HD', type:'json', source: RAW + 'movie24hd.json' }
-  ],
-  'series-main': [
-    { title:'MySeriesHD', type:'json', source: RAW + 'MySeries.json' },
-    { title:'GoSeries', type:'json', source: RAW + 'goseries_menu.json' },
-    { title:'Flixmono Series', type:'json', source: RAW + 'Flixmono.json' }
-  ],
-  'series-24hd': [
-    { title:'Series 24HD', type:'json', source: RAW + 'series24hd.json' }
-  ]
-};
-
-const TV_ITEMS = [
-  { title:'DOOBALL66', kind:'external', link:'https://tiea9999.github.io/tv/ball66.html', group:'ทีวีออนไลน์', image:'' },
-  { title:'3BB TV', kind:'external', link:'https://tiea9999.github.io/tv/3bb.html', group:'ทีวีออนไลน์', image:'' }
-];
-
-const state = {
-  rows: [],
-  modalItems: [],
-  modalTitle: '',
-  page: 1,
-  perPage: 20,
-  currentUrl: '',
-  currentTitle: '',
-  hls: null,
-  dash: null,
-  modalReturnSelector: ''
-};
-
-const content = document.getElementById('content');
-const statusText = document.getElementById('statusText');
-const modal = document.getElementById('modal');
-const modalBody = document.getElementById('modalBody');
-const modalTitle = document.getElementById('modalTitle');
-const modalCount = document.getElementById('modalCount');
-const pageInfo = document.getElementById('pageInfo');
-const playerPanel = document.getElementById('playerPanel');
-const playerTitle = document.getElementById('playerTitle');
-const video = document.getElementById('video');
-
-function setStatus(msg){ statusText.textContent = msg; }
-function escapeHtml(str=''){ return String(str).replace(/[&<>'"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[s])); }
-function normalizeImage(item){ return item.image || item.poster || item.thumb || item.logo || item.icon || ''; }
-function normalizeTitle(item, fallback='ไม่มีชื่อ'){ return item.title || item.name || item.channel || item.ep || item.episode || fallback; }
-function normalizeUrl(item){ return item.url || item.link || item.file || item.stream || item.source || ''; }
-function isJsonLike(url=''){ return /\.json($|\?)/i.test(url); }
-function isM3uLike(url=''){ return /\.m3u($|\?)/i.test(url) || /\.m3u8($|\?)/i.test(url); }
-
-function normalizeServers(item) {
-  if (!item) return [];
-  if (Array.isArray(item.servers)) {
-    return item.servers.map((s, i) => ({
-      name: s.name || `Server ${i+1}`,
-      url: s.url || s.link || s.file || s.stream || s.source || ''
-    })).filter(s => s.url);
-  }
-  const direct = normalizeUrl(item);
-  return direct ? [{ name:'Main', url: direct }] : [];
-}
-
-function normalizeEpisodes(item) {
-  const eps = Array.isArray(item.episodes) ? item.episodes : [];
-  return eps.map((ep, i) => ({
-    title: normalizeTitle(ep, `EP ${i+1}`),
-    image: normalizeImage(ep) || normalizeImage(item),
-    servers: normalizeServers(ep),
-    raw: ep
-  }));
-}
-
-async function fetchText(url) {
-  const res = await fetch(url, { cache:'no-store' });
-  if (!res.ok) throw new Error('โหลดไม่สำเร็จ: ' + res.status);
-  return await res.text();
-}
-
-async function fetchJson(url) {
-  const res = await fetch(url, { cache:'no-store' });
-  if (!res.ok) throw new Error('โหลด JSON ไม่สำเร็จ: ' + res.status);
-  return await res.json();
-}
-
-function absolutize(url, base='') {
-  try { return new URL(url, base || location.href).href; } catch(e) { return url; }
-}
-
-function parseM3U(text, base='') {
-  const lines = text.split(/\r?\n/);
-  const items = [];
-  let meta = null;
-  for (const rawLine of lines) {
-    const line = rawLine.trim();
-    if (!line) continue;
-    if (line.startsWith('#EXTINF')) {
-      const title = (line.split(',').slice(1).join(',') || 'ไม่มีชื่อ').trim();
-      const logo = (line.match(/tvg-logo="([^"]+)"/i) || [,''])[1];
-      const group = (line.match(/group-title="([^"]+)"/i) || [,'ทีวีออนไลน์'])[1];
-      meta = { title, image: logo, group, kind:'playable', servers:[] };
-    } else if (!line.startsWith('#') && meta) {
-      const playUrl = absolutize(line, base);
-      meta.servers = [{ name:'Main', url: playUrl }];
-      items.push(meta);
-      meta = null;
-    }
-  }
-  return items;
-}
-
-function flattenJson(data, parentTitle='') {
-  const out = [];
-  function walk(node, inheritedGroup='') {
-    if (Array.isArray(node)) {
-      node.forEach(item => walk(item, inheritedGroup));
-      return;
-    }
-    if (!node || typeof node !== 'object') return;
-
-    const title = normalizeTitle(node, parentTitle || 'ไม่มีชื่อ');
-    const image = normalizeImage(node);
-    const group = String(node.group || node.category || node.subcategory || inheritedGroup || parentTitle || 'รายการ').trim();
-    const servers = normalizeServers(node);
-    const episodes = normalizeEpisodes(node);
-
-    if (node.type === 'menu' && Array.isArray(node.items)) {
-      node.items.forEach(item => {
-        out.push({
-          title: normalizeTitle(item),
-          image: normalizeImage(item),
-          kind:'submenu',
-          source: item.source || item.url || item.link || '',
-          group: String(item.group || item.category || group || 'เมนู').trim()
-        });
-      });
-      return;
-    }
-
-    const listLike = Array.isArray(node.items) ? node.items :
-      Array.isArray(node.data) ? node.data :
-      Array.isArray(node.channels) ? node.channels :
-      Array.isArray(node.results) ? node.results :
-      Array.isArray(node.playlists) ? node.playlists : null;
-
-    if (listLike && listLike.length) {
-      listLike.forEach(item => walk(item, group));
-      return;
-    }
-
-    if (episodes.length) {
-      out.push({ title, image, kind:'series', episodes, group, raw:node });
-      return;
-    }
-    if (servers.length) {
-      out.push({ title, image, kind:'playable', servers, group, raw:node });
-      return;
-    }
-
-    const subSource = node.source && isJsonLike(node.source) ? node.source : '';
-    if (subSource) out.push({ title, image, kind:'submenu', source: subSource, group });
-  }
-  walk(data, parentTitle);
-  return out;
-}
-
-function groupItems(items) {
-  const map = new Map();
-  items.forEach(item => {
-    const key = item.group || 'รายการ';
-    if (!map.has(key)) map.set(key, []);
-    map.get(key).push(item);
-  });
-  return Array.from(map.entries()).map(([title, arr]) => ({ title, items: arr }));
-}
-
-function makeCard(item, idx, sectionIndex, modalMode=false) {
-  const image = item.image
-    ? `<img class="thumb" src="${escapeHtml(item.image)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML='<div class=\\'thumb fallback\\'>📺</div>'">`
-    : `<div class="thumb fallback">📺</div>`;
-  const tags = [];
-  if (item.group) tags.push(`<span class="tag">${escapeHtml(item.group)}</span>`);
-  if (item.kind === 'series') tags.push('<span class="tag">มี EP</span>');
-  if (item.kind === 'submenu') tags.push('<span class="tag">เมนูย่อย</span>');
-  if (item.kind === 'playable') tags.push('<span class="tag">กดเล่นได้</span>');
-  if (item.kind === 'external') tags.push('<span class="tag">ลิงก์ตรง</span>');
-  return `
-    <button class="card focusable" data-item-index="${idx}" data-section-index="${sectionIndex}" data-nav-role="card" data-modal-mode="${modalMode ? '1':'0'}">
-      ${image}
-      <div class="card-body">
-        <div class="card-title">${escapeHtml(item.title)}</div>
-        <div class="card-meta">${tags.join('')}</div>
-      </div>
-    </button>
-  `;
-}
-
-function renderHome() {
-  const rows = state.rows.length ? state.rows : [
-    { title:'ทีวีออนไลน์', items:TV_ITEMS },
-    { title:'หนังและซีรีส์', items:[] }
-  ];
-
-  content.innerHTML = `
-    <div class="hero">
-      <div class="hero-title">TIEA IPTV PRO UI FULL</div>
-      <div class="hero-sub">ทีวีออนไลน์ใช้ Dooball66 และ 3BB TV แบบลิงก์ตรง • หนังและซีรีส์ยังอยู่ • รีโมทลูกศรคุม UI • หน้าแบบทีวีใช้ง่าย</div>
-      <div class="inline-note">ถ้าจะเล่นช่องสดให้กดเข้า Dooball66 หรือ 3BB TV ได้เลย</div>
-    </div>
-    ${rows.map((row, rowIdx) => `
-      <div class="section" data-section-index="${rowIdx}">
-        <div class="section-head">
-          <div class="section-title">${escapeHtml(row.title)}</div>
-          <div class="section-tools">
-            <div class="badge">โชว์ ${Math.min(HOME_SHOW_LIMIT, row.items.length)} / ${row.items.length}</div>
-            <button class="see-all-btn focusable" data-row-index="${rowIdx}" data-section-index="${rowIdx}" data-nav-role="see-all">ดูทั้งหมด</button>
-          </div>
+    <main class="main" id="mainArea">
+      <div class="topbar">
+        <div>
+          <div id="pageTitle" class="title">📺 ทีวี</div>
+          <div class="sub">โหลดไว + รีโมทเทพ + ซีรีส์แยกหมวด + หนังเล่นในเว็บก่อน</div>
         </div>
-        <div class="grid">
-          ${row.items.slice(0, HOME_SHOW_LIMIT).map((item, i) => makeCard(item, i, rowIdx)).join('')}
+        <div class="tools">
+          <button id="reloadBtn" class="top-btn">รีโหลด</button>
+          <button id="backBtn" class="top-btn">ย้อนกลับ</button>
         </div>
       </div>
-    `).join('')}
-  `;
-  bindHomeEvents(rows);
-}
 
-function bindHomeEvents(rows) {
-  content.querySelectorAll('.see-all-btn').forEach(btn => {
-    btn.onclick = () => {
-      const row = rows[Number(btn.dataset.rowIndex)];
-      state.modalReturnSelector = `.see-all-btn[data-section-index="${btn.dataset.sectionIndex}"]`;
-      openModal(row.title, row.items);
-    };
-  });
+      <div id="statusBox" class="status"></div>
 
-  content.querySelectorAll('.card').forEach(card => {
-    card.onclick = () => {
-      const sectionIndex = Number(card.dataset.sectionIndex);
-      const row = rows[sectionIndex];
-      const item = row.items[Number(card.dataset.itemIndex)];
-      openItem(item);
-    };
-  });
-}
+      <div id="listView">
+        <div id="grid" class="grid"></div>
+      </div>
 
-function openModal(title, items) {
-  state.modalTitle = title;
-  state.modalItems = items || [];
-  state.page = 1;
-  modal.classList.add('show');
-  renderModalPage();
-  setTimeout(() => focusFirst(modal), 50);
-}
+      <div id="epsWrap" class="eps-wrap">
+        <div id="epsTitle" class="eps-title">ตอนทั้งหมด</div>
+        <div id="epsGrid" class="eps-grid"></div>
+      </div>
+    </main>
+  </div>
 
-function renderModalPage() {
-  modalTitle.textContent = state.modalTitle;
-  modalCount.textContent = `ทั้งหมด ${state.modalItems.length} รายการ`;
-  const totalPages = Math.max(1, Math.ceil(state.modalItems.length / state.perPage));
-  if (state.page > totalPages) state.page = totalPages;
-  const start = (state.page - 1) * state.perPage;
-  const pageItems = state.modalItems.slice(start, start + state.perPage);
-  modalBody.innerHTML = `<div class="grid">${pageItems.map((item, i) => makeCard(item, start + i, 0, true)).join('')}</div>`;
-  pageInfo.textContent = `หน้า ${state.page} / ${totalPages}`;
-  modalBody.querySelectorAll('.card').forEach(card => {
-    card.onclick = () => openItem(state.modalItems[Number(card.dataset.itemIndex)]);
-  });
-}
+  <div id="playerWrap">
+    <video id="videoPlayer" controls playsinline webkit-playsinline autoplay></video>
+    <div id="playerBar">
+      <button id="playerHomeBtn" class="player-btn btn-home">🏠 หน้าโฮม</button>
+      <button id="playerExternalBtn" class="player-btn btn-player">▶ PLAYER</button>
+      <button id="playerMxBtn" class="player-btn btn-mx">▶ MX</button>
+      <button id="playerCloseBtn" class="player-btn btn-close">✕ ปิด</button>
+    </div>
+  </div>
 
-function closeModal() {
-  modal.classList.remove('show');
-  setTimeout(() => {
-    if (state.modalReturnSelector) focusEl(document.querySelector(state.modalReturnSelector));
-  }, 30);
-}
+  <script>
+    const grid = document.getElementById("grid");
+    const epsWrap = document.getElementById("epsWrap");
+    const epsGrid = document.getElementById("epsGrid");
+    const epsTitle = document.getElementById("epsTitle");
+    const pageTitle = document.getElementById("pageTitle");
+    const statusBox = document.getElementById("statusBox");
+    const listView = document.getElementById("listView");
+    const mainArea = document.getElementById("mainArea");
+    const playerWrap = document.getElementById("playerWrap");
+    const playerBar = document.getElementById("playerBar");
+    const video = document.getElementById("videoPlayer");
+    const menuButtons = Array.from(document.querySelectorAll(".menu-btn"));
 
-async function loadSourceGroup(key) {
-  try {
-    markActiveMenu(key);
-    setStatus('กำลังโหลด ' + key + ' ...');
-    const defs = SOURCES[key] || [];
-    const allItems = [];
+    const HOME_URL = "https://tiea9999.github.io/tv-online";
+    const RETURN_STATE_KEY = "tiea_ultra_return_state_v1";
+    const INITIAL_LIMIT = 18;
 
-    for (const def of defs) {
-      try {
-        if (def.type === 'json') {
-          const json = await fetchJson(def.source);
-          allItems.push(...flattenJson(json, def.title));
-        } else if (def.type === 'm3u') {
-          const text = await fetchText(def.source);
-          allItems.push(...parseM3U(text, def.source));
-        }
-      } catch (e) {
-        console.warn(def.title, e);
+    let currentSource = document.querySelector('.menu-btn[data-source].active')?.dataset.source || "";
+    let currentTitle = document.querySelector('.menu-btn[data-source].active')?.dataset.title || "📺 ทีวี";
+    let currentKind = document.querySelector('.menu-btn[data-source].active')?.dataset.kind || "tv";
+    let currentItem = null;
+    let currentServerIndex = 0;
+    let currentMode = "list";
+    let currentSeries = null;
+    let hls = null;
+    let cache = {};
+    let historyStack = [];
+    let playerUiTimer = null;
+    let movieFallbackTimer = null;
+    let sectionExpandState = {};
+
+    function setStatus(msg) {
+      statusBox.textContent = msg || "";
+      statusBox.style.display = msg ? "block" : "none";
+    }
+
+    function isMovieItem(item) {
+      return currentKind === "movie" || item?.type === "movie";
+    }
+
+    function isSeriesMenu() {
+      return currentKind === "series";
+    }
+
+    function clearMovieFallbackTimer() {
+      if (movieFallbackTimer) {
+        clearTimeout(movieFallbackTimer);
+        movieFallbackTimer = null;
       }
     }
 
-    state.rows = groupItems(allItems);
-    if (!state.rows.length) state.rows = [{ title:'รายการ', items:[] }];
-    renderHome();
-    setStatus(`โหลดสำเร็จ: ${key} • ${allItems.length} รายการ`);
-    setTimeout(() => focusFirst(document), 80);
-  } catch (e) {
-    console.error(e);
-    setStatus('โหลดไม่สำเร็จ • ' + e.message);
-  }
-}
-
-async function openSubmenu(title, sourceUrl) {
-  try {
-    setStatus('กำลังเปิดเมนูย่อย: ' + title);
-    let items = [];
-    if (isJsonLike(sourceUrl)) {
-      const json = await fetchJson(sourceUrl);
-      items = flattenJson(json, title);
-    } else if (isM3uLike(sourceUrl)) {
-      const text = await fetchText(sourceUrl);
-      items = parseM3U(text, sourceUrl);
-    } else {
-      return playUrl(sourceUrl, title);
+    function clearPlayer() {
+      clearMovieFallbackTimer();
+      if (hls) {
+        try { hls.destroy(); } catch (e) {}
+        hls = null;
+      }
+      try { video.pause(); } catch (e) {}
+      video.removeAttribute("src");
+      video.src = "";
+      video.load();
     }
-    state.rows = groupItems(items);
-    renderHome();
-    setStatus(`เปิดเมนู ${title} แล้ว • ${items.length} รายการ`);
-    setTimeout(() => focusFirst(document), 80);
-  } catch (e) {
-    setStatus('เปิดเมนูย่อยไม่สำเร็จ: ' + e.message);
-  }
-}
 
-function openSeries(item) {
-  const eps = item.episodes || [];
-  content.innerHTML = `
-    <div class="detail-box">
-      <div class="detail-title">${escapeHtml(item.title)}</div>
-      <div class="detail-sub">เลือกตอนเพื่อเล่นได้เลย • ถ้าตอนไหนเล่นไม่ได้ให้ลอง server อื่น</div>
-    </div>
-    <div class="episode-list">
-      ${eps.map((ep, i) => `<button class="episode-btn focusable" data-ep-index="${i}">${escapeHtml(ep.title || ('EP '+(i+1)))}</button>`).join('')}
-    </div>
-  `;
-  content.querySelectorAll('[data-ep-index]').forEach(btn => {
-    btn.onclick = () => openEpisode(item, eps[Number(btn.dataset.epIndex)]);
-  });
-  setStatus(`เปิดรายการตอนแล้ว: ${item.title} • ${eps.length} ตอน`);
-  setTimeout(() => focusFirst(document), 80);
-}
-
-function openEpisode(seriesItem, ep) {
-  const servers = ep.servers || [];
-  if (!servers.length) return setStatus('❌ ไม่มี server');
-  content.innerHTML = `
-    <div class="detail-box">
-      <div class="detail-title">${escapeHtml(seriesItem.title)}</div>
-      <div class="detail-sub">${escapeHtml(ep.title)} • เลือก server หรือกดอันแรกเพื่อเล่นทันที</div>
-    </div>
-    <div class="server-list">
-      ${servers.map((s, i) => `<button class="server-btn focusable" data-sv-index="${i}">${escapeHtml(s.name || ('Server '+(i+1)))}</button>`).join('')}
-    </div>
-  `;
-  content.querySelectorAll('[data-sv-index]').forEach(btn => {
-    btn.onclick = () => playUrl(servers[Number(btn.dataset.svIndex)].url, `${seriesItem.title} - ${ep.title}`);
-  });
-  setTimeout(() => {
-    const first = servers[0];
-    if (first) playUrl(first.url, `${seriesItem.title} - ${ep.title}`);
-  }, 260);
-}
-
-async function openItem(item) {
-  if (!item) return;
-  if (item.kind === 'external' && item.link) return window.location.href = item.link;
-  if (item.kind === 'submenu' && item.source) return openSubmenu(item.title, item.source);
-  if (item.kind === 'series') return openSeries(item);
-  const servers = item.servers || [];
-  if (item.url) return playUrl(item.url, item.title);
-  if (servers.length) return playUrl(servers[0].url, item.title);
-  setStatus('❌ ไม่พบลิงก์เล่น');
-}
-
-function cleanupPlayers() {
-  try { if (state.hls) { state.hls.destroy(); state.hls = null; } } catch(e){}
-  try { if (state.dash) { state.dash.reset(); state.dash = null; } } catch(e){}
-  try { video.pause(); video.removeAttribute('src'); video.load(); } catch(e){}
-}
-
-function shouldProxyUrl(url='') {
-  if (!/^https?:/i.test(url)) return false;
-  if (url.includes('iptv.tawatchai250958.workers.dev')) return false;
-  if (DIRECT_ONLY_PATTERNS.some(rx => rx.test(url))) return false;
-  return /\.m3u8($|\?)/i.test(url);
-}
-
-function buildPlayCandidates(url) {
-  const list = [];
-  if (!url) return list;
-  list.push(url);
-  if (shouldProxyUrl(url)) list.push(PROXY + encodeURIComponent(url));
-  return [...new Set(list)];
-}
-
-function attachAutoFallback(candidates, title) {
-  let switched = false;
-  const tryNext = () => {
-    if (switched) return;
-    switched = true;
-    const idx = candidates.indexOf(state.currentUrl);
-    const next = candidates[idx + 1];
-    if (next) {
-      setStatus('ลิงก์หลักไม่ขึ้น • กำลังลอง fallback ในเว็บ: ' + title);
-      playUrl(next, title, true);
-    } else {
-      setStatus('เล่นผ่านเว็บไม่ขึ้น • ลองกด MX หรือ PLAYER');
+    function showPlayerUi() {
+      playerBar.classList.remove("hide-ui");
+      if (playerUiTimer) clearTimeout(playerUiTimer);
+      playerUiTimer = setTimeout(() => {
+        if (playerWrap.style.display === "block") playerBar.classList.add("hide-ui");
+      }, 2500);
     }
-  };
 
-  const timer = setTimeout(() => {
-    if (video.readyState < 2 || (video.currentTime === 0 && video.paused)) tryNext();
-  }, 3200);
+    function showPlayer() {
+      playerWrap.style.display = "block";
+      showPlayerUi();
+    }
 
-  const clear = () => clearTimeout(timer);
-  video.addEventListener('loadeddata', clear, { once:true });
-  video.addEventListener('canplay', clear, { once:true });
-  video.addEventListener('playing', clear, { once:true });
-  return tryNext;
-}
+    function closePlayer() {
+      if (playerUiTimer) {
+        clearTimeout(playerUiTimer);
+        playerUiTimer = null;
+      }
+      clearPlayer();
+      playerWrap.style.display = "none";
+      playerBar.classList.remove("hide-ui");
+    }
 
-async function playUrl(url, title='กำลังเล่น', skipProxyBuild=false) {
-  if (!url) return setStatus('❌ Missing url parameter');
+    function saveReturnState(extra = {}) {
+      const state = {
+        source: currentSource || "",
+        title: currentTitle || "",
+        kind: currentKind || "",
+        mode: currentMode || "list",
+        seriesTitle: currentSeries?.title || "",
+        expand: sectionExpandState || {},
+        ts: Date.now(),
+        ...extra
+      };
+      sessionStorage.setItem(RETURN_STATE_KEY, JSON.stringify(state));
+    }
 
-  const candidates = skipProxyBuild ? [url] : buildPlayCandidates(url);
-  const currentUrl = candidates[0] || url;
+    function getReturnState() {
+      try {
+        const raw = sessionStorage.getItem(RETURN_STATE_KEY);
+        if (!raw) return null;
+        return JSON.parse(raw);
+      } catch (e) {
+        return null;
+      }
+    }
 
-  state.currentUrl = currentUrl;
-  state.currentTitle = title;
-  playerTitle.textContent = title;
-  playerPanel.classList.add('show');
-  cleanupPlayers();
-  setStatus('กำลังเล่น: ' + title);
+    function clearReturnState() {
+      sessionStorage.removeItem(RETURN_STATE_KEY);
+    }
 
-  try {
-    video.muted = true;
-    video.volume = 0.8;
-    video.preload = 'metadata';
-    video.playsInline = true;
-    video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
-    video.tabIndex = -1;
-    video.blur();
+    async function restoreReturnState() {
+      const state = getReturnState();
+      if (!state || !state.source) return false;
 
-    const fallback = attachAutoFallback(candidates, title);
+      try {
+        currentSource = state.source;
+        currentTitle = state.title || currentTitle;
+        currentKind = state.kind || currentKind;
+        sectionExpandState = state.expand || {};
+        pageTitle.textContent = currentTitle;
 
-    if (/\.mpd($|\?)/i.test(currentUrl)) {
-      state.dash = dashjs.MediaPlayer().create();
-      state.dash.updateSettings({ streaming:{ lowLatencyEnabled:false } });
-      state.dash.initialize(video, currentUrl, true);
-      video.addEventListener('error', fallback, { once:true });
-    } else if (/\.m3u8($|\?)/i.test(currentUrl)) {
-      if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = currentUrl;
-        await video.play().catch(() => {});
-        video.addEventListener('error', fallback, { once:true });
-      } else if (Hls.isSupported()) {
-        state.hls = new Hls({
-          enableWorker:false,
-          lowLatencyMode:false,
-          backBufferLength:10,
-          maxBufferLength:6,
-          maxMaxBufferLength:8,
-          capLevelToPlayerSize:true,
-          fragLoadingMaxRetry:1,
-          manifestLoadingMaxRetry:1,
-          levelLoadingMaxRetry:1,
-          fragLoadingRetryDelay:500,
-          manifestLoadingRetryDelay:500,
-          levelLoadingRetryDelay:500,
-          testBandwidth:false,
-          startFragPrefetch:false
+        const list = await loadSource(currentSource, currentKind);
+        renderGrid(list);
+
+        if (state.mode === "episodes" && state.seriesTitle) {
+          const found = list.find(item => item.type === "series" && item.title === state.seriesTitle);
+          if (found) showEpisodes(found, false);
+        }
+
+        clearReturnState();
+        return true;
+      } catch (e) {
+        console.error("restoreReturnState error:", e);
+        clearReturnState();
+        return false;
+      }
+    }
+
+    function openExternalPlayer(url) {
+      if (!url) return;
+      saveReturnState({
+        mode: currentMode,
+        seriesTitle: currentSeries?.title || ""
+      });
+      try {
+        const u = new URL(url);
+        location.href =
+          "intent://" + u.host + u.pathname + u.search +
+          "#Intent;scheme=" + u.protocol.replace(":", "") +
+          ";action=android.intent.action.VIEW;type=video/*;end";
+      } catch (e) {
+        location.href = url;
+      }
+    }
+
+    function openMx(url) {
+      if (!url) return;
+      saveReturnState({
+        mode: currentMode,
+        seriesTitle: currentSeries?.title || ""
+      });
+      location.href = "intent:" + url + "#Intent;package=com.mxtech.videoplayer.ad;end";
+    }
+
+    function getThumb(item) {
+      return item?.image || item?.poster || item?.thumb || item?.logo || item?.cover || "";
+    }
+
+    function mapServers(arr) {
+      if (!Array.isArray(arr)) return [];
+      return arr.map(s => ({
+        name: s?.name || "",
+        url: s?.url || s?.link || s?.file || s?.source || ""
+      })).filter(s => s.url);
+    }
+
+    function getPlayableUrl(item, idx = 0) {
+      if (!item) return "";
+      if (Array.isArray(item.servers) && item.servers.length) {
+        return item.servers[idx]?.url || item.servers[0]?.url || "";
+      }
+      return item.url || item.link || item.stream || item.source || item.file || "";
+    }
+
+    function normalizeMovieOrSeries(jsonItems) {
+      const out = [];
+      const seen = new Set();
+
+      function add(obj) {
+        if (!obj) return;
+        const key = `${obj.type}|${obj.title}|${obj.url || ""}|${obj.episodes?.length || 0}`.toLowerCase();
+        if (!seen.has(key)) {
+          seen.add(key);
+          out.push(obj);
+        }
+      }
+
+      function walk(node, inheritedImage = "") {
+        if (!node) return;
+        if (Array.isArray(node)) {
+          node.forEach(x => walk(x, inheritedImage));
+          return;
+        }
+        if (typeof node !== "object") return;
+
+        const img = getThumb(node) || inheritedImage || "";
+        const title = node.title || node.name || node.ep_name || node.episode || "ไม่มีชื่อ";
+        const url = node.url || node.link || node.stream || node.source || node.file || "";
+        const servers = mapServers(node.servers);
+
+        if (Array.isArray(node.episodes) && node.episodes.length) {
+          add({
+            title,
+            image: img,
+            url,
+            servers: [],
+            type: "series",
+            category: node.category || "",
+            subcategory: node.subcategory || "",
+            status: node.status || "",
+            latest_ep: node.latest_ep || node.episodes.length,
+            total_ep: node.total_ep || node.episodes.length,
+            year: node.year || "",
+            language: node.language || "",
+            episodes: node.episodes.map((ep, i) => ({
+              title: ep.title || ep.name || ep.ep_name || `EP${i + 1}`,
+              image: getThumb(ep) || img || "",
+              url: ep.url || ep.link || ep.source || ep.stream || ep.file || "",
+              servers: mapServers(ep.servers),
+              type: "episode"
+            }))
+          });
+          return;
+        }
+
+        if (Array.isArray(node.items) && node.items.length) {
+          node.items.forEach(item => walk(item, img));
+          return;
+        }
+
+        if (url || servers.length) {
+          add({
+            title,
+            image: img,
+            url: url || servers[0]?.url || "",
+            servers,
+            type: node.type || "video",
+            category: node.category || "",
+            subcategory: node.subcategory || "",
+            status: node.status || "",
+            year: node.year || "",
+            language: node.language || ""
+          });
+          return;
+        }
+
+        Object.values(node).forEach(v => {
+          if (Array.isArray(v) || (v && typeof v === "object")) walk(v, img);
         });
-        state.hls.loadSource(currentUrl);
-        state.hls.attachMedia(video);
-        state.hls.on(Hls.Events.MANIFEST_PARSED, async () => {
-          try { await video.play(); } catch(e){}
+      }
+
+      walk(jsonItems);
+      return out;
+    }
+
+    function normalizeTV(data) {
+      const out = [];
+
+      if (Array.isArray(data)) return normalizeMovieOrSeries(data);
+      if (Array.isArray(data?.items)) return normalizeMovieOrSeries(data.items);
+
+      if (Array.isArray(data?.groups)) {
+        data.groups.forEach(group => {
+          const groupName = group?.name || "";
+          const stations = Array.isArray(group?.stations) ? group.stations : [];
+          const subGroups = Array.isArray(group?.groups) ? group.groups : [];
+
+          stations.forEach((s, idx) => {
+            const url = s?.url || s?.link || s?.file || s?.source || "";
+            if (!url) return;
+            out.push({
+              title: s?.name || `${groupName || "ช่อง"} ${idx + 1}`,
+              image: s?.image || group?.image || "",
+              url,
+              servers: [{ name: s?.name || "Main", url }],
+              type: "video",
+              category: groupName,
+              language: s?.info || ""
+            });
+          });
+
+          subGroups.forEach(sub => {
+            const subStations = Array.isArray(sub?.stations) ? sub.stations : [];
+            subStations.forEach((s, idx) => {
+              const url = s?.url || s?.link || s?.file || s?.source || "";
+              if (!url) return;
+              out.push({
+                title: sub?.name || s?.name || `${groupName || "ช่อง"} ${idx + 1}`,
+                image: s?.image || sub?.image || group?.image || "",
+                url,
+                servers: [{ name: s?.name || "Main", url }],
+                type: "video",
+                category: groupName,
+                language: s?.info || ""
+              });
+            });
+          });
         });
-        state.hls.on(Hls.Events.ERROR, (event, data) => {
-          if (!data || !data.fatal) return;
-          if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
-            try { state.hls.recoverMediaError(); } catch(e) { fallback(); }
+      }
+
+      return out;
+    }
+
+    function normalizeM3U(text) {
+      const result = [];
+      const lines = text.split(/\r?\n/);
+      let current = null;
+
+      for (const raw of lines) {
+        const line = raw.trim();
+        if (!line) continue;
+
+        if (line.startsWith("#EXTINF:")) {
+          const logoMatch = line.match(/tvg-logo="([^"]*)"/i);
+          const groupMatch = line.match(/group-title="([^"]*)"/i);
+          const name = line.split(",").pop()?.trim() || "ไม่มีชื่อ";
+          current = {
+            title: name,
+            image: logoMatch ? logoMatch[1] : "",
+            url: "",
+            servers: [],
+            episodes: [],
+            type: "video",
+            category: groupMatch ? groupMatch[1] : ""
+          };
+        } else if (!line.startsWith("#") && current) {
+          current.url = line;
+          current.servers = [{ name: "Main", url: line }];
+          result.push(current);
+          current = null;
+        }
+      }
+      return result;
+    }
+
+    async function loadSource(sourceUrl, kind = currentKind) {
+      const cacheKey = `${kind}|${sourceUrl}`;
+      if (cache[cacheKey]) return cache[cacheKey];
+
+      const lower = sourceUrl.toLowerCase();
+
+      if (lower.endsWith(".m3u8") && !lower.includes(".json")) {
+        const direct = [{
+          title: "Live Stream",
+          image: "",
+          url: sourceUrl,
+          servers: [{ name: "Main", url: sourceUrl }],
+          episodes: [],
+          type: "video"
+        }];
+        cache[cacheKey] = direct;
+        return direct;
+      }
+
+      const res = await fetch(sourceUrl, { cache: "no-store" });
+      if (!res.ok) throw new Error("โหลดไฟล์ไม่สำเร็จ: " + res.status);
+
+      const text = await res.text();
+      const trimmed = text.trim();
+      if (!trimmed) return [];
+
+      let result = [];
+
+      if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
+        const json = JSON.parse(text);
+
+        if (kind === "tv") result = normalizeTV(json);
+        else if (Array.isArray(json)) result = normalizeMovieOrSeries(json);
+        else if (Array.isArray(json.items)) result = normalizeMovieOrSeries(json.items);
+        else result = normalizeMovieOrSeries([json]);
+
+      } else if (trimmed.includes("#EXTM3U") || trimmed.includes("#EXTINF")) {
+        result = normalizeM3U(text);
+      }
+
+      cache[cacheKey] = result;
+      return result;
+    }
+
+    function createCard(item, isTV, runOpen) {
+      const card = document.createElement("button");
+      card.className = "card" + (isTV ? " tv" : "");
+      card.type = "button";
+      card.setAttribute("tabindex", "0");
+
+      const meta = [];
+      if (item.year) meta.push(item.year);
+      if (item.language) meta.push(item.language);
+      if (item.category && currentKind !== "series") meta.push(item.category);
+      if (item.status === "ongoing" && item.latest_ep && item.total_ep) {
+        meta.push(`EP ${item.latest_ep}/${item.total_ep}`);
+      }
+
+      card.innerHTML = `
+        ${getThumb(item)
+          ? `<img src="${getThumb(item)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x450?text=NO+IMAGE'">`
+          : `<div style="height:${isTV ? 140 : 170}px;background:#000;"></div>`
+        }
+        <div class="card-title">${item.title || "ไม่มีชื่อ"}</div>
+        ${meta.length ? `<div class="card-meta">${meta.join(" • ")}</div>` : ""}
+      `;
+
+      card.onclick = runOpen;
+      card.onmousedown = (e) => { e.preventDefault(); runOpen(); };
+      card.ontouchstart = () => runOpen();
+      card.onkeydown = (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          runOpen();
+        }
+      };
+
+      return card;
+    }
+
+    function categoryOrder(cat) {
+      const text = String(cat || "");
+      if (text.includes("จีน")) return 1;
+      if (text.includes("เกาหลี")) return 2;
+      if (text.includes("ญี่ปุ่น")) return 3;
+      if (text.includes("ไทย")) return 4;
+      if (text.includes("ฝรั่ง")) return 5;
+      return 99;
+    }
+
+    function renderSeriesGrouped(list) {
+      grid.innerHTML = "";
+      grid.className = "";
+
+      const groups = {};
+      list.forEach(item => {
+        const cat = item.category || "อื่นๆ";
+        if (!groups[cat]) groups[cat] = [];
+        groups[cat].push(item);
+      });
+
+      const sortedCats = Object.keys(groups).sort((a, b) => {
+        const oa = categoryOrder(a);
+        const ob = categoryOrder(b);
+        if (oa !== ob) return oa - ob;
+        return a.localeCompare(b, "th");
+      });
+
+      sortedCats.forEach(cat => {
+        const section = document.createElement("div");
+        section.className = "section";
+
+        const head = document.createElement("div");
+        head.className = "section-head";
+
+        const title = document.createElement("div");
+        title.className = "section-title";
+        title.textContent = cat;
+
+        const moreBtn = document.createElement("button");
+        moreBtn.className = "more-btn";
+        moreBtn.type = "button";
+
+        const expanded = !!sectionExpandState[cat];
+        const items = groups[cat];
+        const visibleItems = expanded ? items : items.slice(0, INITIAL_LIMIT);
+
+        moreBtn.textContent = expanded ? "ดูน้อยลง" : `ดูทั้งหมด (${items.length})`;
+        moreBtn.style.display = items.length > INITIAL_LIMIT ? "block" : "none";
+
+        const sectionGrid = document.createElement("div");
+        sectionGrid.className = "grid";
+
+        function drawItems() {
+          sectionGrid.innerHTML = "";
+          const currentVisible = sectionExpandState[cat] ? items : items.slice(0, INITIAL_LIMIT);
+
+          currentVisible.forEach(item => {
+            const runOpen = async () => {
+              historyStack.push({ title: currentTitle, source: currentSource, kind: currentKind, mode: currentMode });
+              showEpisodes(item, true);
+            };
+            sectionGrid.appendChild(createCard(item, false, runOpen));
+          });
+
+          moreBtn.textContent = sectionExpandState[cat] ? "ดูน้อยลง" : `ดูทั้งหมด (${items.length})`;
+        }
+
+        moreBtn.onclick = () => {
+          sectionExpandState[cat] = !sectionExpandState[cat];
+          drawItems();
+        };
+
+        head.appendChild(title);
+        head.appendChild(moreBtn);
+        section.appendChild(head);
+        section.appendChild(sectionGrid);
+        grid.appendChild(section);
+
+        drawItems();
+      });
+    }
+
+    function renderGrid(list) {
+      currentMode = "list";
+      currentSeries = null;
+      listView.style.display = "block";
+      epsWrap.style.display = "none";
+      grid.innerHTML = "";
+
+      if (!list.length) {
+        grid.className = "grid";
+        grid.innerHTML = `<div style="padding:20px;color:#aaa">ไม่พบรายการ</div>`;
+        return;
+      }
+
+      if (isSeriesMenu()) {
+        renderSeriesGrouped(list);
+        setTimeout(focusFirstCard, 60);
+        return;
+      }
+
+      grid.className = "grid";
+      const isTV = currentKind === "tv";
+      const quickList = list;
+
+      quickList.forEach(item => {
+        const runOpen = async () => {
+          if (item.type === "source") {
+            historyStack.push({ title: currentTitle, source: currentSource, kind: currentKind, mode: currentMode });
+            currentSource = item.url || item.source || item.link || "";
+            currentTitle = item.title || currentTitle;
+            pageTitle.textContent = currentTitle;
+            await loadCurrentMenu();
             return;
           }
-          fallback();
+
+          if (item.type === "series" && item.episodes && item.episodes.length) {
+            historyStack.push({ title: currentTitle, source: currentSource, kind: currentKind, mode: currentMode });
+            showEpisodes(item, true);
+            return;
+          }
+
+          playItem(item, 0);
+        };
+
+        grid.appendChild(createCard(item, isTV, runOpen));
+      });
+
+      setTimeout(focusFirstCard, 60);
+    }
+
+    function showEpisodes(seriesItem, saveState = true) {
+      currentSeries = seriesItem;
+      currentMode = "episodes";
+      listView.style.display = "none";
+      epsWrap.style.display = "block";
+      epsTitle.textContent = seriesItem.title || "ตอนทั้งหมด";
+      epsGrid.innerHTML = "";
+
+      if (saveState) {
+        saveReturnState({
+          mode: "episodes",
+          seriesTitle: seriesItem.title || ""
         });
-      } else {
-        video.src = currentUrl;
-        await video.play().catch(() => {});
-        video.addEventListener('error', fallback, { once:true });
       }
-    } else {
-      video.src = currentUrl;
-      await video.play().catch(() => {});
-      video.addEventListener('error', fallback, { once:true });
-    }
 
-    setTimeout(async () => {
-      try {
-        if (video.readyState >= 2) {
-          video.muted = false;
-          await video.play();
+      const eps = Array.isArray(seriesItem.episodes) ? [...seriesItem.episodes] : [];
+      if (!eps.length) {
+        epsGrid.innerHTML = `<div style="padding:20px;color:#aaa">ไม่พบตอน</div>`;
+        return;
+      }
+
+      eps.forEach((ep, i) => {
+        const btn = document.createElement("button");
+        btn.className = "ep-btn";
+        btn.type = "button";
+        btn.textContent = ep.title || `EP${i + 1}`;
+
+        const runPlay = () => playItem(ep, 0);
+
+        btn.onclick = runPlay;
+        btn.onmousedown = (e) => { e.preventDefault(); runPlay(); };
+        btn.ontouchstart = (e) => { e.preventDefault(); runPlay(); };
+        btn.onkeydown = (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            runPlay();
+          }
+        };
+
+        epsGrid.appendChild(btn);
+      });
+
+      setTimeout(() => {
+        const firstBtn = epsGrid.querySelector(".ep-btn");
+        if (firstBtn) {
+          firstBtn.focus();
+          firstBtn.scrollIntoView({ block: "center" });
         }
-      } catch(e){}
-    }, 1200);
-
-    setTimeout(() => focusEl(document.getElementById('closePlayerBtn')), 120);
-  } catch (e) {
-    console.error(e);
-    const next = candidates[1];
-    if (next) return playUrl(next, title, true);
-    setStatus('เล่นผ่านเว็บไม่สำเร็จ • ลองกด MX หรือ PLAYER');
-  }
-}
-
-function closePlayer() {
-  playerPanel.classList.remove('show');
-  cleanupPlayers();
-  setStatus('ปิดตัวเล่นแล้ว');
-  setTimeout(() => focusFirst(document), 50);
-}
-
-function canUseIntentScheme() {
-  const ua = navigator.userAgent || '';
-  const isAndroid = /Android/i.test(ua);
-  const isWebView = /; wv\)|Version\/\d+\.\d+ Chrome\/\d+\.\d+ Mobile Safari\//i.test(ua) || /AppCreator|wv/i.test(ua);
-  return isAndroid && !isWebView;
-}
-
-function openExternalPlayer(mode='intent') {
-  const url = state.currentUrl;
-  if (!url) return;
-  if (!canUseIntentScheme()) {
-    setStatus('อุปกรณ์นี้ไม่รองรับ intent • ใช้เล่นในเว็บก่อน หรือค่อยเปิดภายนอกเอง');
-    return;
-  }
-  try {
-    if (mode === 'mx') {
-      window.location.href = 'intent:' + url + '#Intent;package=com.mxtech.videoplayer.ad;type=video/*;end';
-    } else {
-      window.location.href = 'intent:' + url + '#Intent;type=video/*;end';
+      }, 50);
     }
-  } catch(e) {
-    setStatus('เปิด PLAYER ภายนอกไม่สำเร็จ');
-  }
-}
 
-function goHome(){ window.location.href = HOME_URL; }
+    function tryStartVideoWithSound(fallbackFn) {
+      video.muted = false;
+      video.volume = 1;
+      const p = video.play();
 
-function markActiveMenu(keyOrAction) {
-  document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
-  const active =
-    document.querySelector(`.menu-btn[data-source="${keyOrAction}"]`) ||
-    document.querySelector(`.menu-btn[data-action="${keyOrAction}"]`) ||
-    document.querySelector('.menu-btn[data-action="home"]');
-  if (active) active.classList.add('active');
-}
-
-function isVisibleFocusable(el) {
-  if (!el || el.disabled) return false;
-  const style = window.getComputedStyle(el);
-  if (style.display === 'none' || style.visibility === 'hidden') return false;
-  const rect = el.getBoundingClientRect();
-  return rect.width > 0 && rect.height > 0;
-}
-
-function focusEl(el) {
-  if (!el || !isVisibleFocusable(el)) return false;
-  el.focus();
-  try { el.scrollIntoView({ block:'nearest', inline:'nearest' }); } catch(e){}
-  return true;
-}
-
-function getActiveRoot() {
-  if (playerPanel.classList.contains('show')) return playerPanel;
-  if (modal.classList.contains('show')) return modal;
-  return document;
-}
-
-function getVisibleList(selector, root=getActiveRoot()) {
-  return Array.from(root.querySelectorAll(selector)).filter(isVisibleFocusable);
-}
-
-function focusFirst(root=document) {
-  const el = getVisibleList('.menu-btn, .top-btn, .see-all-btn, .card, .page-btn, .episode-btn, .server-btn, .player-btn', root)[0];
-  if (el) el.focus();
-}
-
-function getCardsInSection(sectionIndex) {
-  return getVisibleList(`.card[data-section-index="${sectionIndex}"]`, document);
-}
-
-function moveHomeFocus(current, direction) {
-  const menuBtns = getVisibleList('.menu-btn', document);
-  const topBtns = getVisibleList('.top-btn', document);
-  const seeAlls = getVisibleList('.see-all-btn', document);
-  const role = current.dataset.navRole || '';
-  const sectionIndex = Number(current.dataset.sectionIndex || 0);
-
-  if (current.classList.contains('menu-btn')) {
-    const idx = menuBtns.indexOf(current);
-    if (direction === 'up') return focusEl(menuBtns[Math.max(0, idx - 1)] || current);
-    if (direction === 'down') return focusEl(menuBtns[Math.min(menuBtns.length - 1, idx + 1)] || current);
-    if (direction === 'right') return focusEl(seeAlls[0] || topBtns[0]);
-    return false;
-  }
-
-  if (current.classList.contains('top-btn')) {
-    const idx = topBtns.indexOf(current);
-    if (direction === 'left') return focusEl(topBtns[Math.max(0, idx - 1)] || menuBtns[menuBtns.length - 1]);
-    if (direction === 'right') return focusEl(topBtns[Math.min(topBtns.length - 1, idx + 1)] || current);
-    if (direction === 'down') return focusEl(seeAlls[0] || getCardsInSection(0)[0]);
-    if (direction === 'up') return focusEl(menuBtns[0] || current);
-    return false;
-  }
-
-  if (role === 'see-all') {
-    if (direction === 'left') return focusEl(menuBtns.find(b => b.classList.contains('active')) || menuBtns[0]);
-    if (direction === 'up') return focusEl(topBtns[0] || current);
-    if (direction === 'down') return focusEl(getCardsInSection(sectionIndex)[0] || current);
-    return true;
-  }
-
-  if (role === 'card') {
-    const cards = getCardsInSection(sectionIndex);
-    const idx = cards.indexOf(current);
-    const rectTop = current.getBoundingClientRect().top;
-    const sameRow = cards.filter(el => Math.abs(el.getBoundingClientRect().top - rectTop) < 20);
-    const colIndex = sameRow.indexOf(current);
-    const cols = Math.max(1, sameRow.length || 1);
-
-    if (direction === 'left') {
-      if (colIndex <= 0) return focusEl(document.querySelector(`.see-all-btn[data-section-index="${sectionIndex}"]`) || menuBtns[0]);
-      return focusEl(cards[idx - 1]);
+      if (p && typeof p.then === "function") {
+        p.catch(() => {
+          video.muted = true;
+          video.play().then(() => {
+            setTimeout(() => {
+              video.muted = false;
+              video.volume = 1;
+            }, 300);
+          }).catch(() => {
+            if (fallbackFn) fallbackFn();
+          });
+        });
+      }
     }
-    if (direction === 'right') return focusEl(cards[idx + 1] || current);
-    if (direction === 'up') {
-      if (idx < cols) return focusEl(document.querySelector(`.see-all-btn[data-section-index="${sectionIndex}"]`) || topBtns[0]);
-      return focusEl(cards[Math.max(0, idx - cols)] || current);
+
+    function createStableHls(isMovie = false) {
+      return new Hls({
+        enableWorker: true,
+        autoStartLoad: true,
+        startPosition: -1,
+        lowLatencyMode: false,
+        maxBufferLength: isMovie ? 45 : 35,
+        maxMaxBufferLength: isMovie ? 90 : 70,
+        backBufferLength: isMovie ? 60 : 45,
+        maxBufferHole: 1,
+        manifestLoadingMaxRetry: 5,
+        levelLoadingMaxRetry: 5,
+        fragLoadingMaxRetry: 6,
+        liveSyncDurationCount: 3,
+        liveMaxLatencyDurationCount: 10
+      });
     }
-    if (direction === 'down') {
-      const next = cards[idx + cols];
-      if (next) return focusEl(next);
-      const nextSeeAll = document.querySelector(`.see-all-btn[data-section-index="${sectionIndex + 1}"]`);
-      return focusEl(nextSeeAll || current);
+
+    function startMovieFallback(url) {
+      clearMovieFallbackTimer();
+      movieFallbackTimer = setTimeout(() => {
+        openExternalPlayer(url);
+      }, 2500);
     }
-  }
-  return false;
-}
 
-function moveModalFocus(current, direction) {
-  const closeBtn = document.getElementById('closeModalBtn');
-  const prevBtn = document.getElementById('prevPageBtn');
-  const nextBtn = document.getElementById('nextPageBtn');
-  const cards = getVisibleList('#modalBody .card', modal);
-
-  if (current === closeBtn) {
-    if (direction === 'down') return focusEl(cards[0] || prevBtn);
-    return false;
-  }
-
-  if (current === prevBtn || current === nextBtn) {
-    if (direction === 'up') return focusEl(cards[cards.length - 1] || closeBtn);
-    if (direction === 'left') return focusEl(prevBtn);
-    if (direction === 'right') return focusEl(nextBtn);
-    return false;
-  }
-
-  if (current.classList.contains('card')) {
-    const idx = cards.indexOf(current);
-    const rectTop = current.getBoundingClientRect().top;
-    const sameRow = cards.filter(el => Math.abs(el.getBoundingClientRect().top - rectTop) < 20);
-    const cols = Math.max(1, sameRow.length || 1);
-    if (direction === 'left') return focusEl(cards[Math.max(0, idx - 1)] || current);
-    if (direction === 'right') return focusEl(cards[Math.min(cards.length - 1, idx + 1)] || current);
-    if (direction === 'up') {
-      if (idx < cols) return focusEl(closeBtn);
-      return focusEl(cards[Math.max(0, idx - cols)] || current);
+    function attachPlaybackSuccessHandlers() {
+      const ok = () => clearMovieFallbackTimer();
+      video.addEventListener("playing", ok, { once: true });
+      video.addEventListener("loadeddata", ok, { once: true });
+      video.addEventListener("canplay", ok, { once: true });
     }
-    if (direction === 'down') return focusEl(cards[idx + cols] || prevBtn);
-  }
-  return false;
-}
 
-function movePlayerFocus(current, direction) {
-  const btns = getVisibleList('.player-top .player-btn', playerPanel);
-  const idx = btns.indexOf(current);
-  if (btns.includes(current)) {
-    if (direction === 'left') return focusEl(btns[Math.max(0, idx - 1)] || current);
-    if (direction === 'right') return focusEl(btns[Math.min(btns.length - 1, idx + 1)] || current);
-    return true;
-  }
-  return focusEl(document.getElementById('closePlayerBtn'));
-}
+    async function playItem(item, serverIndex = 0) {
+      currentItem = item;
+      currentServerIndex = serverIndex;
+      clearPlayer();
 
-function moveFocusByDirection(direction) {
-  const root = getActiveRoot();
-  const items = getVisibleList('.menu-btn, .top-btn, .see-all-btn, .card, .page-btn, .episode-btn, .server-btn, .player-btn', root);
-  if (!items.length) return false;
-  const current = items.includes(document.activeElement) ? document.activeElement : items[0];
-
-  if (playerPanel.classList.contains('show')) return movePlayerFocus(current, direction);
-  if (modal.classList.contains('show')) return moveModalFocus(current, direction);
-  return moveHomeFocus(current, direction);
-}
-
-function installScrollSafeTap() {
-  let startX = 0, startY = 0, moved = false;
-  document.addEventListener('touchstart', e => {
-    const t = e.changedTouches && e.changedTouches[0];
-    if (!t) return;
-    startX = t.clientX;
-    startY = t.clientY;
-    moved = false;
-  }, { passive:true });
-
-  document.addEventListener('touchmove', e => {
-    const t = e.changedTouches && e.changedTouches[0];
-    if (!t) return;
-    if (Math.abs(t.clientX - startX) > 12 || Math.abs(t.clientY - startY) > 12) moved = true;
-  }, { passive:true });
-
-  document.addEventListener('click', e => {
-    const btn = e.target && e.target.closest && e.target.closest('.card, .menu-btn, .see-all-btn, .episode-btn, .server-btn');
-    if (btn && moved) {
-      e.preventDefault();
-      e.stopPropagation();
-      moved = false;
-    }
-  }, true);
-}
-
-function setupEvents() {
-  document.getElementById('homeBtn').onclick = goHome;
-  document.getElementById('reloadBtn').onclick = () => location.reload();
-  document.getElementById('liveBtn').onclick = () => window.location.href = LIVE_URL;
-  document.getElementById('closeModalBtn').onclick = closeModal;
-  document.getElementById('prevPageBtn').onclick = () => {
-    if (state.page > 1) {
-      state.page--;
-      renderModalPage();
-    }
-  };
-  document.getElementById('nextPageBtn').onclick = () => {
-    const total = Math.max(1, Math.ceil(state.modalItems.length / state.perPage));
-    if (state.page < total) {
-      state.page++;
-      renderModalPage();
-    }
-  };
-  document.getElementById('closePlayerBtn').onclick = closePlayer;
-  document.getElementById('playerHomeBtn').onclick = goHome;
-  document.getElementById('mxBtn').onclick = () => openExternalPlayer('mx');
-  document.getElementById('extBtn').onclick = () => openExternalPlayer('intent');
-
-  document.querySelectorAll('.menu-btn').forEach(btn => {
-    btn.onclick = async () => {
-      const source = btn.dataset.source;
-      const link = btn.dataset.link;
-      const action = btn.dataset.action;
-
-      if (source) return loadSourceGroup(source);
-      if (link) return window.location.href = link;
-
-      if (action === 'home') {
-        markActiveMenu('home');
-        state.rows = [
-          { title:'ทีวีออนไลน์', items:TV_ITEMS },
-          { title:'หนังและซีรีส์', items:[
-            { title:'EZ Movie', image:'', kind:'submenu', source: RAW + 'Ezmovie.json', group:'หนัง' },
-            { title:'MySeriesHD', image:'', kind:'submenu', source: RAW + 'MySeries.json', group:'ซีรีส์' },
-            { title:'GoSeries', image:'', kind:'submenu', source: RAW + 'goseries_menu.json', group:'ซีรีส์' }
-          ]}
-        ];
-        renderHome();
-        setStatus('กลับหน้าแรกแล้ว');
-        return setTimeout(() => focusFirst(document), 50);
+      const url = getPlayableUrl(item, serverIndex);
+      if (!url) {
+        setStatus("ไม่พบลิงก์เล่น");
+        return;
       }
 
-      if (action === 'home-tv') {
-        markActiveMenu('home-tv');
-        state.rows = [{ title:'ทีวีออนไลน์', items:TV_ITEMS }];
-        renderHome();
-        setStatus('เปิดทีวีออนไลน์แล้ว');
-        return setTimeout(() => focusFirst(document), 50);
+      const lower = url.toLowerCase();
+      const movieMode = isMovieItem(item);
+
+      if (lower.includes(".m3u8")) {
+        showPlayer();
+
+        if (movieMode) {
+          startMovieFallback(url);
+          attachPlaybackSuccessHandlers();
+        }
+
+        if (Hls.isSupported()) {
+          hls = createStableHls(movieMode);
+          hls.loadSource(url);
+          hls.attachMedia(video);
+
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            tryStartVideoWithSound(() => openExternalPlayer(url));
+          });
+
+          hls.on(Hls.Events.ERROR, (e, data) => {
+            if (data?.fatal) {
+              if (Array.isArray(item.servers) && item.servers.length > serverIndex + 1) {
+                playItem(item, serverIndex + 1);
+              } else {
+                openExternalPlayer(url);
+              }
+            }
+          });
+        } else {
+          video.src = url;
+          tryStartVideoWithSound(() => openExternalPlayer(url));
+        }
+        return;
       }
 
-      if (action === 'live-page') {
-        return window.location.href = LIVE_URL;
+      if (lower.match(/\.(mp4|mkv|avi|mov)$/)) {
+        showPlayer();
+        if (movieMode) {
+          startMovieFallback(url);
+          attachPlaybackSuccessHandlers();
+        }
+        video.src = url;
+        tryStartVideoWithSound(() => openExternalPlayer(url));
+        return;
+      }
+
+      openExternalPlayer(url);
+    }
+
+    async function loadCurrentMenu() {
+      try {
+        setStatus("กำลังโหลดรายการ...");
+        const list = await loadSource(currentSource, currentKind);
+        renderGrid(list);
+        pageTitle.textContent = currentTitle;
+        setStatus("");
+      } catch (e) {
+        console.error(e);
+        setStatus("โหลดรายการไม่สำเร็จ\n" + e.message);
+        grid.className = "grid";
+        grid.innerHTML = `<div style="padding:20px;color:#aaa">โหลดรายการไม่สำเร็จ</div>`;
+      }
+    }
+
+    function focusFirstCard() {
+      const target =
+        grid.querySelector(".card") ||
+        grid.querySelector(".more-btn") ||
+        epsGrid.querySelector(".ep-btn");
+      if (target) target.focus();
+    }
+
+    document.getElementById("vipBtn").onclick = () => {
+      const pass = prompt("กรอกรหัส VIP");
+      if (pass === "1234") {
+        location.href = "https://tiea9999.github.io/tv-online/VIP.html";
+      } else if (pass !== null) {
+        alert("รหัสไม่ถูกต้อง");
       }
     };
-  });
 
-  document.addEventListener('keydown', e => {
-    const key = e.key || '';
-    const code = e.keyCode || e.which || 0;
+    menuButtons.forEach(btn => {
+      btn.onclick = async () => {
+        menuButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
 
-    if ([24,25,164,173,174,175].includes(code)) {
-      e.preventDefault();
-      e.stopPropagation();
-      return;
-    }
+        if (btn.dataset.link) {
+          location.href = btn.dataset.link;
+          return;
+        }
 
-    if ([37,38,39,40,19,20,21,22].includes(code) || ['ArrowLeft','ArrowUp','ArrowRight','ArrowDown'].includes(key)) {
-      e.preventDefault();
-      if (key === 'ArrowLeft' || code === 21 || code === 37) return moveFocusByDirection('left');
-      if (key === 'ArrowRight' || code === 22 || code === 39) return moveFocusByDirection('right');
-      if (key === 'ArrowUp' || code === 19 || code === 38) return moveFocusByDirection('up');
-      if (key === 'ArrowDown' || code === 20 || code === 40) return moveFocusByDirection('down');
-    }
+        historyStack = [];
+        currentSeries = null;
+        sectionExpandState = {};
+        clearReturnState();
+        currentSource = btn.dataset.source || "";
+        currentTitle = btn.dataset.title || btn.textContent.trim();
+        currentKind = btn.dataset.kind || "tv";
+        pageTitle.textContent = currentTitle;
+        closePlayer();
+        await loadCurrentMenu();
+      };
+    });
 
-    if (key === 'Enter' || key === 'OK' || key === 'NumpadEnter' || code === 23 || code === 13 || code === 66) {
-      const active = document.activeElement;
-      if (active && typeof active.click === 'function') {
-        e.preventDefault();
-        active.click();
+    document.getElementById("reloadBtn").onclick = async () => {
+      cache = {};
+      await loadCurrentMenu();
+    };
+
+    document.getElementById("backBtn").onclick = async () => {
+      closePlayer();
+
+      if (currentMode === "episodes") {
+        epsWrap.style.display = "none";
+        listView.style.display = "block";
+        currentMode = "list";
+        currentSeries = null;
+        clearReturnState();
+        setTimeout(focusFirstCard, 60);
+        return;
       }
-    }
 
-    if (key === 'Escape' || key === 'Backspace' || code === 4 || code === 27 || code === 8 || code === 461 || code === 10009) {
-      if (playerPanel.classList.contains('show')) {
-        e.preventDefault();
-        return closePlayer();
+      const prev = historyStack.pop();
+      if (prev && prev.source) {
+        currentSource = prev.source;
+        currentTitle = prev.title;
+        currentKind = prev.kind || currentKind;
+        pageTitle.textContent = currentTitle;
+        currentSeries = null;
+        await loadCurrentMenu();
       }
-      if (modal.classList.contains('show')) {
-        e.preventDefault();
-        return closeModal();
+    };
+
+    document.getElementById("playerHomeBtn").onclick = () => {
+      location.href = HOME_URL;
+    };
+
+    document.getElementById("playerCloseBtn").onclick = closePlayer;
+
+    document.getElementById("playerExternalBtn").onclick = () => {
+      const url = getPlayableUrl(currentItem, currentServerIndex);
+      openExternalPlayer(url);
+    };
+
+    document.getElementById("playerMxBtn").onclick = () => {
+      const url = getPlayableUrl(currentItem, currentServerIndex);
+      openMx(url);
+    };
+
+    ["mousemove", "mousedown", "touchstart"].forEach(evt => {
+      playerWrap.addEventListener(evt, () => {
+        if (playerWrap.style.display === "block") showPlayerUi();
+      });
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (playerWrap.style.display === "block") {
+        showPlayerUi();
+
+        if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
+          e.preventDefault();
+          closePlayer();
+          return;
+        }
+      } else {
+        if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
+          e.preventDefault();
+
+          if (currentMode === "episodes") {
+            epsWrap.style.display = "none";
+            listView.style.display = "block";
+            currentMode = "list";
+            currentSeries = null;
+            clearReturnState();
+            setTimeout(focusFirstCard, 60);
+            return;
+          }
+
+          location.href = HOME_URL;
+        }
       }
-    }
-  }, true);
+    });
 
-  document.addEventListener('focusin', e => {
-    const el = e.target;
-    if (el === video) {
-      focusEl(document.getElementById('closePlayerBtn'));
-      return;
-    }
-    if (el && typeof el.scrollIntoView === 'function' && isVisibleFocusable(el)) {
-      el.scrollIntoView({ block:'nearest', inline:'nearest' });
-    }
-  });
+    window.addEventListener("pageshow", async () => {
+      const restored = await restoreReturnState();
+      if (!restored && !grid.innerHTML.trim()) {
+        loadCurrentMenu();
+      }
+    });
 
-  installScrollSafeTap();
-}
-
-function boot() {
-  state.rows = [
-    { title:'ทีวีออนไลน์', items:TV_ITEMS },
-    { title:'หนังและซีรีส์', items:[
-      { title:'EZ Movie', image:'', kind:'submenu', source: RAW + 'Ezmovie.json', group:'หนัง' },
-      { title:'MySeriesHD', image:'', kind:'submenu', source: RAW + 'MySeries.json', group:'ซีรีส์' },
-      { title:'GoSeries', image:'', kind:'submenu', source: RAW + 'goseries_menu.json', group:'ซีรีส์' }
-    ]}
-  ];
-  renderHome();
-  setupEvents();
-  setTimeout(() => focusFirst(document), 100);
-}
-
-boot();
-</script>
+    restoreReturnState().then(restored => {
+      if (!restored) loadCurrentMenu();
+    });
+  </script>
 </body>
 </html>
