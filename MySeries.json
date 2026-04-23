@@ -3602,6 +3602,8 @@
       {
         "name": "Backup",
         "url": "https://top-cdn.com/hls/fc4d907c2dc46767f68d550dec06f3d9/master.m3u8"
+          }
+        ]
       }
     ]
   },
@@ -3638,7 +3640,7 @@
     ]
   }
 ]
-}
+
 
   
       
