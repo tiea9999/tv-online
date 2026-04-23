@@ -429,7 +429,7 @@ function loadChannel(channel, element){
     html5Video.pause(); html5Video.src=""; html5Video.style.display="none";
 
     const fileUrl = proxyUrl(channel.file);
-    const jwConfig = {file:fileUrl,width:"100%",aspectratio:"16:9",autostart:true,mute:false,volume:25};
+    const jwConfig = {file:fileUrl,width:"100%",aspectratio:"16:9",autostart:true,mute:false,volume:80};
     if(channel.drm) jwConfig.drm={clearkey:{keyId:channel.keyId,key:channel.key}};
 
     const playerInstance=jwplayer("jw-player").setup(jwConfig);
