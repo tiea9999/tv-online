@@ -1,5 +1,69 @@
 [
   {
+    "title": " Love Upon A Time (2026) ภพเธอ ",
+    "groups": ["ดูซีรี่ย์ไทย", "ซีรี่ย์มาใหม่"],
+    "language": "พากย์ไทย",
+    "poster": "https://myserieshd.com/wp-content/uploads/2026/03/ภพเธอ-111.webp",
+    "latest_ep": 1,
+    "total_ep": 36,
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/dc348cdc1eaf48082f386a135cd2ae4d/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/dc348cdc1eaf48082f386a135cd2ae4d/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/98b6f23f7c7579b263cf40e78f8db139/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/98b6f23f7c7579b263cf40e78f8db139/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/cf5ab52de39efc926e57ef1918038c99/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/cf5ab52de39efc926e57ef1918038c99/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/5da610414a4ff05725ce2a4a9ca3e720/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/5da610414a4ff05725ce2a4a9ca3e720/master.m3u8"
+
+          }
+        ]
+      }
+    ]
+  },
+  
+  {
     "title": "Generation to Generation (2026) ทิวากาลแห่งพิรุณโปรย",
     "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
     "language": "พากย์ไทย",
