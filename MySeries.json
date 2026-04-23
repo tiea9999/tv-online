@@ -1,5 +1,497 @@
 [
   {
+    "title": "Generation to Generation (2026) ทิวากาลแห่งพิรุณโปรย",
+    "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
+    "language": "พากย์ไทย",
+    "poster": "https://myserieshd.com/wp-content/uploads/2026/03/ทิวากาลแห่งพิรุณโปรย-111.webp",
+    "latest_ep": 1,
+    "total_ep": 37,
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/15570c8f8d930dd6b957d78ff1c43204/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/15570c8f8d930dd6b957d78ff1c43204/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/c0a16c3b8b958ca5832474fa8f4ae151/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/c0a16c3b8b958ca5832474fa8f4ae151/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/c516aac617d6cb42ec27709d55521446/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://ok-hd.com/hls/c516aac617d6cb42ec27709d55521446/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/e03404d9b96823a7e7657ba2a1a0fab1/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/e03404d9b96823a7e7657ba2a1a0fab1/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/863ac7bac5901f30e1d2f04a14dc67a6/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/863ac7bac5901f30e1d2f04a14dc67a6/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/e60f34392510918c9159f17004a9aee3/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/e60f34392510918c9159f17004a9aee3/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/c49f2a773128d489c5e35c6a44fab92d/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/c49f2a773128d489c5e35c6a44fab92d/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/3be718cc34eeb7d4a8387c49f9d5d58d/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/3be718cc34eeb7d4a8387c49f9d5d58d/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP9",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/78e7e4ab0c400cb2dcbee26586fb326f/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/78e7e4ab0c400cb2dcbee26586fb326f/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP10",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/055416a1e2c4e47bc9c3cc1dae751a21/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/055416a1e2c4e47bc9c3cc1dae751a21/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP11",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/0fec6525333db3300db4fb5567248594/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/0fec6525333db3300db4fb5567248594/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP12",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/e1af1988ac3d5219a05810bb4509cc14/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/e1af1988ac3d5219a05810bb4509cc14/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP13",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/7a4a371dcbedc19b3fdad3f7e8809bf0/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/7a4a371dcbedc19b3fdad3f7e8809bf0/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP14",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/a5f9617a6067711014a1eaf0a8963772/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/a5f9617a6067711014a1eaf0a8963772/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP15",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/8631fe0238ee04c694e2b288f7979c03/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/8631fe0238ee04c694e2b288f7979c03/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP16",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/ae134f7d3ffb1f5f53f5723a1c91567f/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/ae134f7d3ffb1f5f53f5723a1c91567f/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP17",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/8cdc18ab5d1298a8f44f29149563f177/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/8cdc18ab5d1298a8f44f29149563f177/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP18",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/8e550d352d6f0f8e02de99135048daeb/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/8e550d352d6f0f8e02de99135048daeb/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP19",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/a9b3bf6e6fa9fa4376b9fa79ab473bb3/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/a9b3bf6e6fa9fa4376b9fa79ab473bb3/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP20",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/c251c1563f4f5209030c3ab4a7dd6597/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/c251c1563f4f5209030c3ab4a7dd6597/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP21",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP22",
+        "servers": [
+          {
+            "name": "Main",
+           "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP23",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP24",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP25",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP26",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP27",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP28",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP29",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP30",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP31",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP32",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP33",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP34",
+        "servers": [
+          {
+            "name": "Main",
+           "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "title": "EP35",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          }
+        ]
+      },
+      {
+       "title": "EP36",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+           }
+        ]
+      },
+      {
+        "title": "ตอนจบ",
+        "servers": [
+          {
+            "name": "Main",
+            "url": ""
+          },
+          {
+            "name": "Backup",
+            "url": ""
+          
+          }
+        ]
+      }
+    ]
+  },  
+  {
     "title": "Dream of Golden Years (2026) ยุคทองของคนมีฝัน พากย์ไทย",
     "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
     "language": "พากย์ไทย",
