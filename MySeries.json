@@ -1226,7 +1226,7 @@
     "language": "พากย์ไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/ทนายสามสาวฉาว-1.webp",
     "latest_ep": 1,
-    "total_ep": 36,
+    "total_ep": 12,
     "episodes": [
       {
         "title": "EP1",
@@ -1731,7 +1731,7 @@
     ]
   }, 
   {
-    "title": "IDol I (2025) เมนฉันเป็นคนดี ",
+    "title": "IDol I (2025) เมนฉันเป็นคนดี",
     "groups": ["ดูซีรี่ย์เกาหลี", "ซีรี่ย์มาใหม่"],
     "language": "พากย์ไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/02/เมนฉันเป็นคนดี-1.webp",
@@ -2158,7 +2158,45 @@
           {
             "name": "Backup",
             "url": "https://top-cdn.com/hls/561fd80a1419536640b76422eaa4ee41/master.m3u8"
-
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/8ffa22ffe3b6d34586fc2ee92b2e690f/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/8ffa22ffe3b6d34586fc2ee92b2e690f/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP9",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/eb96250d3d210257ccb1e62fcb27cbdc/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/eb96250d3d210257ccb1e62fcb27cbdc/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "ตอนจบ",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/85175a1d0a14972acc76792c403ee9bf/master.m3u8"
+          },
+          {
+            "name": "Backup",
+            "url": "https://top-cdn.com/hls/85175a1d0a14972acc76792c403ee9bf/master.m3u8"
           }
         ]
       }
@@ -2277,7 +2315,7 @@
         ]
       }
     ]
-  },   
+  },
   {
     "title": " My Romance Scammer (2026) รักจริง หลังแต่ง ครบทุกตอน",
     "groups": ["ดูซีรี่ย์ไทย", "ซีรี่ย์มาใหม่"],
