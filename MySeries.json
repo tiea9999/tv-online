@@ -1,5 +1,106 @@
 [
   {
+    "title": "Eight Hundred (2026) 800เมตร คดีปิดตายมรณะ",
+    "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
+    "language": "ซับไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/800เมตร-คดีปิดตายมรณะ-1.webp",
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/c29d1454e35829fe7325a96269478f34/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/8a89813903e68ef020ee57cd79b43604/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/d01614bf62444cbee67102f0a68df8ad/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/293e0ae5dc27680b14d65fd2c8e48242/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/cdcaf365f5abb236942335350aede1a3/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/07d2263daa1a7c340b5ba2543cf77033/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/3728ee19a95b0e5a8738dedb2dd24513/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/68ea515fc7ab9d0d579aa684a895aca5/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP9",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/1086c65c83cdeb61f8c36d97af338beb/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP10",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/8a2c2654403f9a6c044bfc4ca8c82612/master.m3u8"
+
+
+          }
+        ]
+      }
+    ]
+  },
+  
+  {
     "title": "Echoes of a Thousand Moons (2026) เสียงสะท้อนจันทร์นับพัน",
     "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
     "language": "ซับไทย",
