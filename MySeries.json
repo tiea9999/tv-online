@@ -1687,7 +1687,230 @@
       }
     ]
   }, 
-
+  {
+    "title": "Remittance Letter (2026) ",
+    "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
+    "language": "ซับไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/Remittance-Letter-1.webp",
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/770afbf76dbad0ae4e91e03b50bffa93/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/770afbf76dbad0ae4e91e03b50bffa93/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/6f8b4e2019772840f16598ace5f6dfc3/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/78da83b2a4b530be2c7cfc8c13a4498d/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/52621efb372462554624289e64156ede/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/c7fef2168863e8b1530730a3ca727b71/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/78807130ed274001fbe4b8db82a90188/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/e224009344d3021ccb6d24391a166dfc/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP9",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/dac4d3cb7d9ef14b1b34a6360549128d/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP10",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/021c9db057f879543ef60d32c517888d/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP11",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/6fa6053b33d87d2e46f2f30bdc1e9963/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP12",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/ff574f1e9a190dc949b9a77bddf07f30/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP13",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/3aa4564087ba6c3f4e45691b0b552732/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP14",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/ce756cccc54e12bd62e2be27e82c1571/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP15",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/df2720b8fa94933e9b74df9a1105af7b/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP16",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/3512091887308f2857591b9f791e5ff3/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP17",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/b12fb101675171d6e7c8f14417537216/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP18",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/ae8c7875f7f7be5f603256af3b18d11c/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP19",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/6b1f3f8317793cfb81eb8c5e85ebd08a/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP20",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/0e20ed3a0d93326cf5ec8002ec5750c6/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP21",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/da8cdeffe5759f56059ba3950583a487/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP22",
+        "servers": [
+          {
+            "name": "Main",
+           "url": "https://top-cdn.com/hls/cc052ddfcd8b096b0f173091a59100e8/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP23",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/8f25e55123a5da11a359299ab698638f/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "ตอนจบ",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/c846ab7ea200367270a7deeaecba1336/master.m3u8"
+          }
+        ]
+      }
+    ]
+  }, 
 
   
   
