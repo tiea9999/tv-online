@@ -1625,7 +1625,68 @@
       }
     ]
   }, 
-
+  {
+    "title": "Wishing Upon the Shooting Stars คำอธิษฐานใต้ดวงดาว",
+    "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
+    "language": "ซับไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/03/คำอธิษฐานใต้ดวงดาว-1.webp",
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/196602196ca15930ebef2d18c688ba2d/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/57aeb486802a2b8d22c718e59060ff4b/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/adf07e4d74bef28b0fe4792f012a6541/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/b544306931b36533761771d396d3c7be/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/bae2e917415877e7d6c869b77ecefc21/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/1355b53866d4abd5b4fabb7803b3e686/master.m3u8"
+          }
+        ]
+      }
+    ]
+  }, 
 
 
   
