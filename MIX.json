@@ -1,0 +1,35 @@
+[ 
+ {
+    "title": "SUJI-304 การกระทำต้องห้ามยิ่งเพิ่มความตื่นเต้นเป็นสองเท่า:",
+    "group": "MIX",
+    "poster": "https://statics-03.duckduckcdn.com/26df367b-d609-ffc9-2dc3-114d3edc4dc2/poster.jpg",
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://statics-03.duckduckcdn.com/26df367b-d609-ffc9-2dc3-114d3edc4dc2/1280x720/playlist.m3u8"
+          }
+        ]
+      },
+ {
+    "title": "BANK-234 หญิงสาวแต่งงานแล้วอกใหญ่",
+    "group": "MIX",
+    "poster": "https://statics-03.duckduckcdn.com/5742a627-18e8-b704-b028-aa1442f48a28/poster.jpg",
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://statics-03.duckduckcdn.com/5742a627-18e8-b704-b028-aa1442f48a28/1280x720/playlist.m3u8"
+          }
+        ]
+      },
+ {
+    "title": "STARS-951 นางฟ้ามาโปรด โชว์โหมดคลั่งสวาท",
+    "group": "MIX",
+    "poster": "https://pics.dmm.co.jp/mono/movie/adult/1stars951/1stars951pl.jpg",
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://ezycdn.com/playlist-h7ua5u0-FHD.m3u8"
+      }
+    ]
+  }
+]
