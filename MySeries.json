@@ -844,7 +844,105 @@
       }
     ]
   }, 
+  {
+    "title": "Echoes of Gang City (2026) ลิขิตรักสองภพ",
+    "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
+    "language": "ซับไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/ลิขิตรักสองภพ-1.webp",
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/329083a2842f96873c174dc6f1b90020/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/cf17fdd601369b8f914a7089ac72260a/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/48556acd7820c2b2b2265e52fa9fe04e/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/df748b4ce5d8876fc8451f09a6a206be/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/6016f40f2d96e9642808b229f903a2a4/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/9d506d989262c15cc48c816d2d22f990/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/b34e2afa2ebc1e3d0dadfa49b0f0215a/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/ea262a1a2d6dce5d35cd1a5765dbb74a/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP9",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/d8251a207bf2821fcbc28e4b3daf89e5/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP10",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/f3981a96ce13c433bb6010a933797621/master.m3u8"
 
+          }
+        ]
+      }
+    ]
+  }, 
 
 
 
