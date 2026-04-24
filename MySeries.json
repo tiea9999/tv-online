@@ -781,6 +781,76 @@
           }
         ]
       }, 
+    {
+    "title": "Within The Grip (2026) เงามืดลวงใจ ",
+    "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
+    "language": "ซับไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/เงามืดลวงใจ-1.webp",
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/46484674b633f3ecf1b909d0a0117be8/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/484e894bb9e1ca914a776d55c6a5a3c7/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/ea4ffd3fb8d48f506279693cdb2cdb58/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/55bb160e88ee5f347d8b74c310876666/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/433d0ea0932ab3406d61a6c9751133e1/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/f690c5cb7c6c9f064cd0cccd7e3ace97/master.m3u8"
+
+          }
+        ]
+      }
+    ]
+  }, 
+
+
+
+
+
+
+
   
   
   
