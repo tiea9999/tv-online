@@ -943,7 +943,176 @@
       }
     ]
   }, 
-
+  {
+    "title": "Just To Meet You (2026) บังเอิญพบก็เผลอรัก",
+    "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
+    "language": "ซับไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/บังเอิญพบก็เผลอรัก-1.webp",
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/69c53a051e024c62231a9bbf2dcfce19/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/b20aff99d9e6ee688fc91162f2ad2fbe/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/ab12f432c15ef75ad6043ebb233893b1/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/cf856c9e8c837a58959f4514c4706b33/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/4cc17a587f60aa938c2667262c4311ee/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/8c745e6d12da618409118b8842e4288b/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/af6df306019b36886438511136124b1d/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/7d6dee585263edec56387dc1bae40302/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP9",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/85d44370dd0a42c410501e1c32b618ff/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP10",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/0de682fe95bfaf61429ed4ed0295bc3f/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP11",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/9a739afaf4e98cf507129f425bf935d8/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP12",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/95cde2c56194cabe4f705cb1f8562c65/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP13",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/fbb243911f285ffb42a1ce69a5af85e4/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP14",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/4b449e83de3d319b7c71399ab290f444/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP15",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/262c226798a5852e20191fc8623ea986/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP16",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/05e52415d03d5d9015b146af3b87e614/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP17",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/81bf8f45586539b944e2ad51d4500740/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP18",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/1bbde67176704cff6de8214dc3b74aeb/master.m3u8"
+          }
+        ]
+      }
+    ]
+  },
 
 
 
