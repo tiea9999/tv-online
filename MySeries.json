@@ -390,7 +390,7 @@
    {
     "title": "Turning Life Around (2026)",
     "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
-    "language": "พากย์ไทย",
+    "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/Turning-Life-Around-1.webp",
     "episodes": [
       {
@@ -557,7 +557,230 @@
           }
         ]
       }, 
-  
+   {
+    "title": "My Name is Zhao Wudi: Starting Over (2026)",
+    "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
+    "language": "ซับไทย ",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/My-Name-is-Zhao-Wudi-Starting-Over-1.webp",
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/1b46c775627693b409b6feaacba0811c/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/2bffae028bbecfc00511faf46273eac8/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/5410925fa5df1e6f0375ac989aca397e/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/ea9905cfac51375860dcfb85fa79edeb/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/3f53464b2fb15e1df3fe898c3b7793ba/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/283a2d91b0e7d02606d6a65530977650/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/e3485d82af6f0b3f74495be026d6226a/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/d0de2e66ded9d40c7025dc8d159ec4d6/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP9",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/a5c90b7395ec0a08132de9cb96aeaa76/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP10",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/c85096f5119d3e7348f31ffe372c2d8b/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP11",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/c9cd659936bc0ef9bbc68cc1cba04394/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP12",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/cdc5820ee6abcb9338dcbbe8aa0da6c1/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP13",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/27c4e9aa2e31b4f6ea3cef57e683939a/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP14",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/11f4c7c0b03104497d8829447898da00/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP15",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/6a9c15f55f1be4acd64f85a610678ffe/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP16",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/abe3c5055dfe5adebdbd38398343cabd/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP17",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/0c294ac10425d1b2181e986d34f06f0f/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP18",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/beb9adda12542592ea9f8efdf401267b/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP19",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/6699bda4372150caf132346833f00195/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP20",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/5664fceb43492a7f35ac457ed769037b/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP21",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/98af460c3a9def05b23aa0647b9cf54d/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP22",
+        "servers": [
+          {
+            "name": "Main",
+           "url": "https://top-cdn.com/hls/6db073afe8d6481bbe03bbeb16eeb8c4/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP23",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/736fbb4c36c731574fadbcb12af752fc/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "ตอนจบ",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/999831086cfcb3e41c2e1f4cce541232/master.m3u8"
+          }
+        ]
+          }
+        ]
+      }, 
   
   
   
