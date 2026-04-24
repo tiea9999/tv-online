@@ -1428,7 +1428,203 @@
       }
     ]
   }, 
-
+  {
+    "title": "This Palace Maid Isn’t Very Calm (2026)",
+    "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
+    "language": "ซับไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/นางกำนัลตัวแสบแห่งวังหลวง-1.webp",
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/4aa2ebb07c167a4734258f60ff9e2e89/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/4e75fee9e139827db64644171654aba1/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/5482450787e5740c08eb205a23d47f4a/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/e930a0ab910c55d029a818e23e2b472b/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/9b90e2644c9fc85e0118bc805423c053/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/21797ce882a252d8326771d4dd12d0c4/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/c651ebddcaeb796bdcdb7098fc172ebc/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/f544bf004392f728cf7cf1a431f1e481/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP9",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/083926135a85c0aa07840f0d02daa527/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP10",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/f81acf637e7488bd1b94f29afb4d8029/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP11",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/476641c4fdf263657e7aaab793197f83/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP12",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/d92445aa53b336bb53d79f4b4e1f2412/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP13",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/41fb909f1cedca372d06c9ed5998cbca/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP14",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/2cbbc8ffb2a9d2f6a520f4e2f6f1c64e/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP15",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/5d943f861a5b3d5dd7b56deaec696b2c/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP16",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/50a32690bdf8a0efffd11a53f738fc35/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP17",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/e018e713cd887d288cd28839d683886d/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP18",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/33e2b4c8cd72fa92b141e5ff2c43f3f5/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP19",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/863d0b9755d0dc264dbe19acd05d775b/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP20",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/8c6f23408493d182be28ada45a8451ff/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP21",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/cd9eb87564fdd6ec9faf411d5ceebb3b/master.m3u8"
+          }
+        ]
+      }
+    ]
+  }, 
 
 
 
