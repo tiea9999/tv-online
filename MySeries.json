@@ -99,7 +99,232 @@
       }
     ]
   },
-  
+    {
+    "title": "The Epoch of Miyu (2026) คำลวงซ้อนรัก",
+    "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
+    "language": "พากย์ไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/woox4bznmr1ouyew9z28-270x379.webp",
+    "latest_ep": 1,
+    "total_ep": 16,
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/3cb0589e08a427879d1933e82774f0f3/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/6e8ca5665989fe6abfb4736597bc9f00/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/eeb14d1eb5c9a3902e5681bd88826ebe/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/7a0008e5b35b7464ff937a24235e8f1f/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/109a67597542afd8fff853d143998183/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/109a67597542afd8fff853d143998183/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/ccfeb59b72b82179857f501a24eac6ae/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/cc6db3b97848c42d351caeb21244828b/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP9",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/093dcdc67f9092e249d050b41f3ba7e1/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP10",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/3525b854af8964e9d6af31af453b8d01/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP11",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/a60c2295d50867ca206083d1a0277c80/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP12",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/18be8764162e01fdacfe69ecaa54da56/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP13",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/6bcaf382836092709836a8d286ba70a8/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP14",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/e08d5cd23c86aa9ee9203cbb11305b5f/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP15",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/a2309416719a93976be60664e37a60c7/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP16",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/5388afc8159543c992901e1630d5dc87/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP17",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/3bfca3639b1ed20821e0cf47fd510c04/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP18",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/32481018d779f5797fd3d8b9a96d8bd7/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP19",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/383204e4985e898006689de457f919e2/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP20",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/4fc221a964e941b79a34f3e3480b2f53/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP21",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/11a144cc41aa30f6559de6adbd15b166/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP22",
+        "servers": [
+          {
+            "name": "Main",
+           "url": "https://top-cdn.com/hls/54692afc9fdac0bff6c50f7ecbe3a37f/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP23",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/d631c5ecb8597d2d452e432999a3bee3/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP24",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://top-cdn.com/hls/c231d7953a2ff52de3559831040038be/master.m3u8"
+          }
+        ]
+      }
+    ]
+  },
   {
     "title": "Echoes of a Thousand Moons (2026) เสียงสะท้อนจันทร์นับพัน",
     "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
