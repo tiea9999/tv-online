@@ -3,13 +3,19 @@
     "title": "SUJI-304 การกระทำต้องห้ามยิ่งเพิ่มความตื่นเต้นเป็นสองเท่า:",
     "poster": "https://statics-03.duckduckcdn.com/26df367b-d609-ffc9-2dc3-114d3edc4dc2/poster.jpg",
     "group": "New Release",
-     "servers": [{"name": "Main", "url": "https://ezycdn.com/playlist-2qqinfn0-2K.m3u8"}]}]
+     "servers": [
+       {"name":"Main", 
+         "url": "https://ezycdn.com/playlist-2qqinfn0-2K.m3u8"
+            }
+    ]
+  },
 
   {
     "title": "BANK-234 หญิงสาวแต่งงานแล้วอกใหญ่",
     "poster": "https://statics-03.duckduckcdn.com/5742a627-18e8-b704-b028-aa1442f48a28/poster.jpg",
     "group": "New Release",
-    "servers": [{"name": "Main", "url": "https://statics-03.duckduckcdn.com/5742a627-18e8-b704-b028-aa1442f48a28/1280x720/playlist.m3u8"}]
+    "servers": [{"name": "Main", "url": "https://statics-03.duckduckcdn.com/5742a627-18e8-b704-b028-aa1442f48a28/1280x720/playlist.m3u8"
+    }]
   },
   {
     "title": "BANK-233 ทริปแช่น้ำพุร้อนสุดซ่าส์กับสาวสวยสุดเซ็กซี่ที่มีจิ๋มสีชมพู",
