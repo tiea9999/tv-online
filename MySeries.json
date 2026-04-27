@@ -384,6 +384,51 @@
             "url": "https://ok-hd.com/hls/5d728695876ff1ce9d9a6da02f0c6c68/master.m3u8"
           }
         ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/42da4e48ef6f7902b8092a4052c24673/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/14b65ef4a33a1fc36cec7381894402a2/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP9",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/a49526dcee8411483ad96721942818a1/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP10",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/afa8e403f35092a05226564efd297a44/master.m3u8"       
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/5d728695876ff1ce9d9a6da02f0c6c68/master.m3u8"
+          }
+        ]
           }
         ]
       },
