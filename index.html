@@ -717,31 +717,86 @@
       return '';
     }
 
+    function normText(v='') {
+      return String(v || '')
+        .toLowerCase()
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
     function detectCategory(item, parentTitle='') {
+      const title = firstText(item.title, item.name, item.channel, item.ep, item.episode);
       const raw = firstText(
         item.group, item.groups, item.category, item.cat, item.genre,
         item.type_name, item.menu, item.section, item.subcategory,
-        parentTitle
+        item.type, parentTitle
       );
-      const text = raw.toLowerCase();
-      const th = raw;
-      if (th.includes('ซีรี่ย์มาใหม่') || th.includes('ซีรีส์มาใหม่') || text.includes('new')) return 'ซีรี่ย์มาใหม่';
-      if (th.includes('จีน') || text.includes('china') || text.includes('chinese')) return 'ดูซีรี่ย์จีน';
-      if (th.includes('เกาหลี') || text.includes('korea') || text.includes('korean')) return 'ดูซีรี่ย์เกาหลี';
-      if (th.includes('ไทย') || text.includes('thai')) return 'ดูซีรี่ย์ไทย';
-      if (th.includes('ญี่ปุ่น') || text.includes('japan') || text.includes('japanese')) return 'ซีรี่ย์ญี่ปุ่น';
-      if (th.includes('ละครสั้น') || th.includes('สั้น') || text.includes('short')) return 'ดูละครสั้น';
-      if (th.includes('หนัง') || text.includes('movie') || text.includes('film')) return 'ดูหนังออนไลน์';
-      return raw || 'รายการ';
+
+      const hay = normText([raw, parentTitle, title].join(' '));
+
+      if (
+        hay.includes('ซีรี่ย์มาใหม่') || hay.includes('ซีรีส์มาใหม่') ||
+        hay.includes('series update') || hay.includes('new series') ||
+        hay.includes('ล่าสุด') || hay.includes('มาใหม่')
+      ) return 'ซีรี่ย์มาใหม่';
+
+      if (
+        hay.includes('ดูซีรี่ย์จีน') || hay.includes('ซีรี่ย์จีน') || hay.includes('ซีรีส์จีน') ||
+        hay.includes('จีน') || hay.includes('china') || hay.includes('chinese') ||
+        hay.includes('cdrama') || hay.includes('c-drama')
+      ) return 'ดูซีรี่ย์จีน';
+
+      if (
+        hay.includes('ดูซีรี่ย์เกาหลี') || hay.includes('ซีรี่ย์เกาหลี') || hay.includes('ซีรีส์เกาหลี') ||
+        hay.includes('เกาหลี') || hay.includes('korea') || hay.includes('korean') ||
+        hay.includes('kdrama') || hay.includes('k-drama')
+      ) return 'ดูซีรี่ย์เกาหลี';
+
+      if (
+        hay.includes('ซีรี่ย์ญี่ปุ่น') || hay.includes('ซีรีส์ญี่ปุ่น') ||
+        hay.includes('ญี่ปุ่น') || hay.includes('japan') || hay.includes('japanese') ||
+        hay.includes('jdrama') || hay.includes('j-drama')
+      ) return 'ซีรี่ย์ญี่ปุ่น';
+
+      if (
+        hay.includes('ดูซีรี่ย์ไทย') || hay.includes('ซีรี่ย์ไทย') || hay.includes('ซีรีส์ไทย') ||
+        hay.includes('ละครไทย') || hay.includes('ไทย') || hay.includes('thai lakorn') ||
+        hay.includes('thai drama')
+      ) return 'ดูซีรี่ย์ไทย';
+
+      if (
+        hay.includes('ดูละครสั้น') || hay.includes('ละครสั้น') ||
+        hay.includes('short drama') || hay.includes('short series') ||
+        hay.includes('short') || hay.includes('vertical') || hay.includes('reel')
+      ) return 'ดูละครสั้น';
+
+      if (
+        hay.includes('ดูหนังออนไลน์') || hay.includes('หนังออนไลน์') ||
+        hay.includes('หนัง') || hay.includes('movie') || hay.includes('film') ||
+        hay.includes('cinema')
+      ) return 'ดูหนังออนไลน์';
+
+      if (raw && raw !== 'รายการ' && raw !== 'MySeriesHD') return raw;
+
+      return 'อื่นๆ';
     }
 
-    const SERIES_ORDER = ['ซีรี่ย์มาใหม่','ดูซีรี่ย์จีน','ดูซีรี่ย์เกาหลี','ดูซีรี่ย์ไทย','ซีรี่ย์ญี่ปุ่น','ดูละครสั้น','ดูหนังออนไลน์'];
+    const SERIES_ORDER = [
+      'ซีรี่ย์มาใหม่',
+      'ดูซีรี่ย์จีน',
+      'ดูซีรี่ย์เกาหลี',
+      'ดูซีรี่ย์ไทย',
+      'ซีรี่ย์ญี่ปุ่น',
+      'ดูละครสั้น',
+      'ดูหนังออนไลน์',
+      'อื่นๆ'
+    ];
 
     function sortRows(rows) {
       return rows.sort((a,b) => {
         const ia = SERIES_ORDER.indexOf(a.title);
         const ib = SERIES_ORDER.indexOf(b.title);
-        if (ia !== -1 || ib !== -1) return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+        if (ia !== -1 || ib !== -1) return (ia === -1 ? 98 : ia) - (ib === -1 ? 98 : ib);
         return String(a.title).localeCompare(String(b.title), 'th');
       });
     }
