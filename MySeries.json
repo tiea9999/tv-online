@@ -419,19 +419,10 @@
             "name": "Main",
             "url": "https://ok-hd.com/hls/afa8e403f35092a05226564efd297a44/master.m3u8"       
           }
-        ]
-      },
-      {
-        "title": "EP6",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/5d728695876ff1ce9d9a6da02f0c6c68/master.m3u8"
+          ]
           }
         ]
-          }
-        ]
-      },
+      }, 
    {
     "title": "Turning Life Around (2026)",
     "groups": ["ดูซีรี่ย์จีน", "ซีรี่ย์มาใหม่"],
