@@ -1,46 +1,42 @@
 {
   "type": "menu",
-  "title": "GoSeries",
+  "title": "MySeries",
   "items": [
+     {
+      "title": "ดูหนังออนไลน์",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/data/goseries4k_2026.json"
+    },   
     {
-      "title": "ซีรีย์ 2026",
+      "title": "ดูซีรี่ย์ออนไลน์",
       "type": "source",
       "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/data/goseries4k_2026.json"
     },
     {
-      "title": "ซีรีย์ 2025",
-      "type": "source",
-      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_2025.json"
-    },
-    {
-      "title": "ซีรีย์จีน",
-      "type": "source",
-      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_china.json"
-    },
-    {
-      "title": "ซีรีย์ญี่ปุ่น",
-      "type": "source",
-      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_japan.json"
-    },
-    {
-      "title": "ซีรีย์เกาหลี",
+      "title": "ดูซีรีย์เกาหลี",
       "type": "source",
       "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_korea.json"
     },
     {
-      "title": "ซีรีย์ฝรั่ง",
+      "title": "ดูซีรีย์จีน",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_china.json"
+    },
+    {
+      "title": "ดูซีรีย์ญี่ปุ่น",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_japan.json"
+    },
+    {
+      "title": "ดูละครไทย",
       "type": "source",
       "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_western.json"
     },
     {
-      "title": "ซีรีย์สั้น",
+      "title": "ดูซีรีย์-หนังสั้น",
       "type": "source",
       "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_mini.json"
-    },
-    {
-      "title": "อนิเมะ",
-      "type": "source",
-      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_anime.json"
+
     }
   ]
 }
