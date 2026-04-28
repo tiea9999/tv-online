@@ -5,7 +5,7 @@
      {
       "title": "ดูหนังออนไลน์",
       "type": "source",
-      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/data/goseries4k_2026.json"
+      "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/ดูหนังออนไลน์.json"
     },   
     {
       "title": "ดูซีรี่ย์ออนไลน์",
@@ -20,22 +20,22 @@
     {
       "title": "ดูซีรีย์จีน",
       "type": "source",
-      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_china.json"
+      "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/ดูซีรี่ย์จีน.json"
     },
     {
       "title": "ดูซีรีย์ญี่ปุ่น",
       "type": "source",
-      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_japan.json"
+      "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/ดูซีรี่ย์ญี่ปุ่น.json"
     },
     {
       "title": "ดูละครไทย",
       "type": "source",
-      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_western.json"
+      "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/ดูซีรี่ย์ไทย.json"
     },
     {
       "title": "ดูซีรีย์-หนังสั้น",
       "type": "source",
-      "source": "https://raw.githubusercontent.com/nongakka/goseries/refs/heads/main/goseries4k_mini.json"
+      "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/ดูละครสั้น.json"
 
     }
   ]
