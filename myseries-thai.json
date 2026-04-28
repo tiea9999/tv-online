@@ -117,7 +117,7 @@
       }
     ]
   },
-      {
+{
     "title": "Love Me, Love My Buffalo (2026) เลดี้ทุ่งกระบือบาล จบเรื่อง",
      "groups": ["ดูซีรี่ย์ไทย"],
     "language": "พากย์ไทย",
@@ -383,10 +383,9 @@
           {
             "name": "Main",
             "url": "https://ok-hd.com/hls/a047cced004681329e172d0f135f49c7/master.m3u8"
- 
-          }
-        ]
-      },
+      }
+    ]
+  },
       {
         "title": "ตอนจบ",
         "servers": [
@@ -399,4 +398,4 @@
       }
     ]
   }
-
+]
