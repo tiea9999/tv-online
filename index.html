@@ -320,6 +320,36 @@
             background: rgba(0, 208, 255, .09);
         }
 
+        .card-badges {
+            position: absolute;
+            left: 8px;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .card-badge {
+            font-size: 11px;
+            line-height: 1;
+            padding: 5px 7px;
+            border-radius: 999px;
+            background: rgba(0,0,0,.72);
+            border: 1px solid rgba(0,208,255,.75);
+            color: #d8fbff;
+            font-weight: 900;
+            text-shadow: 0 1px 2px #000;
+        }
+
+        .card-badge.new {
+            background: rgba(255,70,70,.88);
+            border-color: rgba(255,255,255,.35);
+            color: #fff;
+        }
+
         .inline-note {
             color: #bdbdbd;
             font-size: 13px;
@@ -655,9 +685,9 @@
     };
 
     const SAMPLE_TV = [
-      { title:'Football03', image:'https://cms.dmpcdn.com/livetv/2025/10/27/ebbad850-b303-11f0-b265-23dfa726a2d7_webp_original.webp', url:'https://love.bebin98399.workers.dev/vx-origin/epl-3_720/chunks.m3u8', group:'กีฬา', type:'tv' },
-      { title:'MONOMAX 02', image:'https://cms.dmpcdn.com/livetv/2023/07/24/5f3c5240-29cc-11ee-b2f4-e9de482d866e_webp_original.webp', url:'https://love.bebin98399.workers.dev/vx-origin/epl-bein1_720/chunks.m3u8', group:'กีฬา', type:'tv' },
-      { title:'SPORT DEMO', image:'https://cms.dmpcdn.com/livetv/2023/07/24/5fda18e0-29cc-11ee-846b-a1c4e5181c87_webp_original.webp', url:'https://love.bebin98399.workers.dev/vx-origin/epl-bein3_720/chunks.m3u8', group:'กีฬา', type:'tv' }
+      { title:'MONOMAX 01', image:'', url:'https://monomax-sz.thaicdn.com/mono29hd/mono29hd.stream/playlist.m3u8', group:'ทีวี', type:'tv' },
+      { title:'MONOMAX 02', image:'', url:'https://monomax-sz.thaicdn.com/mono_plus/mono_plus.stream/playlist.m3u8', group:'ทีวี', type:'tv' },
+      { title:'SPORT DEMO', image:'', url:'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8', group:'กีฬา', type:'tv' }
     ];
 
     const state = {
@@ -711,94 +741,146 @@
 
     function firstText(...vals) {
       for (const v of vals) {
+        if (Array.isArray(v)) {
+          const joined = v.map(x => typeof x === 'object' ? firstText(x.title, x.name, x.group, x.category) : x).filter(Boolean).join(' ');
+          if (joined.trim()) return joined.trim();
+          continue;
+        }
+        if (v && typeof v === 'object') {
+          const nested = firstText(v.title, v.name, v.group, v.category, v.label);
+          if (nested) return nested;
+          continue;
+        }
         if (v === 0) return '0';
         if (v !== undefined && v !== null && String(v).trim()) return String(v).trim();
       }
       return '';
     }
 
-    function normText(v='') {
-      return String(v || '')
-        .toLowerCase()
-        .replace(/\s+/g, ' ')
-        .trim();
+    function detectLang(item) {
+      const text = firstText(item?.audio, item?.sound, item?.lang, item?.language, item?.subtitle, item?.title, item?.name).toLowerCase();
+      const raw = firstText(item?.audio, item?.sound, item?.lang, item?.language, item?.subtitle, item?.title, item?.name);
+      if (raw.includes('พากย์ไทย') || raw.includes('เสียงไทย') || text.includes('thai dub')) return '🇹🇭 พากย์ไทย';
+      if (raw.includes('ซับไทย') || raw.includes('บรรยายไทย') || text.includes('thai sub')) return '🈶 ซับไทย';
+      return '';
     }
 
     function detectCategory(item, parentTitle='') {
-      const title = firstText(item.title, item.name, item.channel, item.ep, item.episode);
       const raw = firstText(
-        item.group, item.groups, item.category, item.cat, item.genre,
-        item.type_name, item.menu, item.section, item.subcategory,
-        item.type, parentTitle
+        item?.group, item?.groups, item?.category, item?.cat, item?.genre,
+        item?.type_name, item?.menu, item?.section, item?.subcategory,
+        item?.tag, item?.tags, item?.label, parentTitle, item?.title, item?.name
       );
-
-      const hay = normText([raw, parentTitle, title].join(' '));
-
-      if (
-        hay.includes('ซีรี่ย์มาใหม่') || hay.includes('ซีรีส์มาใหม่') ||
-        hay.includes('series update') || hay.includes('new series') ||
-        hay.includes('ล่าสุด') || hay.includes('มาใหม่')
-      ) return 'ซีรี่ย์มาใหม่';
-
-      if (
-        hay.includes('ดูซีรี่ย์จีน') || hay.includes('ซีรี่ย์จีน') || hay.includes('ซีรีส์จีน') ||
-        hay.includes('จีน') || hay.includes('china') || hay.includes('chinese') ||
-        hay.includes('cdrama') || hay.includes('c-drama')
-      ) return 'ดูซีรี่ย์จีน';
-
-      if (
-        hay.includes('ดูซีรี่ย์เกาหลี') || hay.includes('ซีรี่ย์เกาหลี') || hay.includes('ซีรีส์เกาหลี') ||
-        hay.includes('เกาหลี') || hay.includes('korea') || hay.includes('korean') ||
-        hay.includes('kdrama') || hay.includes('k-drama')
-      ) return 'ดูซีรี่ย์เกาหลี';
-
-      if (
-        hay.includes('ซีรี่ย์ญี่ปุ่น') || hay.includes('ซีรีส์ญี่ปุ่น') ||
-        hay.includes('ญี่ปุ่น') || hay.includes('japan') || hay.includes('japanese') ||
-        hay.includes('jdrama') || hay.includes('j-drama')
-      ) return 'ซีรี่ย์ญี่ปุ่น';
-
-      if (
-        hay.includes('ดูซีรี่ย์ไทย') || hay.includes('ซีรี่ย์ไทย') || hay.includes('ซีรีส์ไทย') ||
-        hay.includes('ละครไทย') || hay.includes('ไทย') || hay.includes('thai lakorn') ||
-        hay.includes('thai drama')
-      ) return 'ดูซีรี่ย์ไทย';
-
-      if (
-        hay.includes('ดูละครสั้น') || hay.includes('ละครสั้น') ||
-        hay.includes('short drama') || hay.includes('short series') ||
-        hay.includes('short') || hay.includes('vertical') || hay.includes('reel')
-      ) return 'ดูละครสั้น';
-
-      if (
-        hay.includes('ดูหนังออนไลน์') || hay.includes('หนังออนไลน์') ||
-        hay.includes('หนัง') || hay.includes('movie') || hay.includes('film') ||
-        hay.includes('cinema')
-      ) return 'ดูหนังออนไลน์';
-
-      if (raw && raw !== 'รายการ' && raw !== 'MySeriesHD') return raw;
-
-      return 'อื่นๆ';
+      const text = raw.toLowerCase();
+      const th = raw;
+      if (th.includes('ซีรี่ย์มาใหม่') || th.includes('ซีรีส์มาใหม่') || th.includes('มาใหม่') || text.includes('new')) return 'ซีรี่ย์มาใหม่';
+      if (th.includes('จีน') || text.includes('china') || text.includes('chinese')) return 'ดูซีรี่ย์จีน';
+      if (th.includes('เกาหลี') || text.includes('korea') || text.includes('korean')) return 'ดูซีรี่ย์เกาหลี';
+      if (th.includes('ไทย') || text.includes('thai')) return 'ดูซีรี่ย์ไทย';
+      if (th.includes('ญี่ปุ่น') || text.includes('japan') || text.includes('japanese')) return 'ซีรี่ย์ญี่ปุ่น';
+      if (th.includes('ละครสั้น') || th.includes('หนังสั้น') || th.includes('สั้น') || text.includes('short')) return 'ดูละครสั้น';
+      if (th.includes('หนัง') || text.includes('movie') || text.includes('film')) return 'ดูหนังออนไลน์';
+      return raw || 'รายการ';
     }
 
-    const SERIES_ORDER = [
-      'ซีรี่ย์มาใหม่',
-      'ดูซีรี่ย์จีน',
-      'ดูซีรี่ย์เกาหลี',
-      'ดูซีรี่ย์ไทย',
-      'ซีรี่ย์ญี่ปุ่น',
-      'ดูละครสั้น',
-      'ดูหนังออนไลน์',
-      'อื่นๆ'
-    ];
+    const SERIES_ORDER = ['ซีรี่ย์มาใหม่','ดูซีรี่ย์จีน','ดูซีรี่ย์เกาหลี','ดูซีรี่ย์ไทย','ซีรี่ย์ญี่ปุ่น','ดูละครสั้น','ดูหนังออนไลน์'];
 
     function sortRows(rows) {
       return rows.sort((a,b) => {
         const ia = SERIES_ORDER.indexOf(a.title);
         const ib = SERIES_ORDER.indexOf(b.title);
-        if (ia !== -1 || ib !== -1) return (ia === -1 ? 98 : ia) - (ib === -1 ? 98 : ib);
+        if (ia !== -1 || ib !== -1) return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
         return String(a.title).localeCompare(String(b.title), 'th');
       });
+    }
+
+
+    function cleanClassifyText(text='') {
+      return String(text)
+        .replace(/พากย์ไทย|เสียงไทย|ซับไทย|บรรยายไทย|TH|thai dub|thai sub/gi, ' ')
+        .replace(/[()\[\]_\-]+/g, ' ')
+        .trim();
+    }
+
+    function detectMySeriesGroups(item) {
+      const raw = item?.raw || item || {};
+      const textAll = firstText(
+        item?.group, raw?.group, raw?.groups, raw?.category, raw?.cat, raw?.genre,
+        raw?.type_name, raw?.menu, raw?.section, raw?.subcategory, raw?.tag, raw?.tags,
+        raw?.label, raw?.title, raw?.name, item?.title
+      );
+      const cleaned = cleanClassifyText(textAll);
+      const groups = [];
+      function add(g) { if (!groups.includes(g)) groups.push(g); }
+
+      if (/ซีรีส์มาใหม่|ซีรี่ย์มาใหม่|มาใหม่|new/i.test(textAll)) add('ซีรี่ย์มาใหม่');
+      if (/ละครสั้น|หนังสั้น|short/i.test(cleaned)) add('ดูละครสั้น');
+      if (/จีน|china|chinese|\bcn\b/i.test(cleaned)) add('ดูซีรี่ย์จีน');
+      if (/เกาหลี|korea|korean|\bkr\b/i.test(cleaned)) add('ดูซีรี่ย์เกาหลี');
+      if (/ญี่ปุ่น|japan|japanese|\bjp\b/i.test(cleaned)) add('ซีรี่ย์ญี่ปุ่น');
+      if (/ซีรี่ย์ไทย|ซีรีส์ไทย|ละครไทย|\bthai drama\b/i.test(cleaned)) add('ดูซีรี่ย์ไทย');
+      if (/ดูหนังออนไลน์|หนังออนไลน์|movie|film/i.test(cleaned)) add('ดูหนังออนไลน์');
+
+      if (!groups.length && SERIES_ORDER.includes(item?.group)) add(item.group);
+      if (!groups.length) add('ซีรี่ย์มาใหม่');
+      return groups;
+    }
+
+    function buildMySeriesRows(items) {
+      const maps = new Map();
+      SERIES_ORDER.forEach(t => maps.set(t, new Map()));
+      items.forEach(item => {
+        const cats = detectMySeriesGroups(item);
+        cats.forEach(cat => {
+          if (!maps.has(cat)) maps.set(cat, new Map());
+          const key = String(item.title || '') + '|' + String(item.image || '');
+          if (!maps.get(cat).has(key)) maps.get(cat).set(key, { ...item, group: cat });
+        });
+      });
+      return sortRows(Array.from(maps.entries()).map(([title, m]) => ({ title, items: Array.from(m.values()) })));
+    }
+
+    function collectMenuSources(data, parentTitle='') {
+      const found = [];
+      function walk(node, parent='') {
+        if (!node) return;
+        if (Array.isArray(node)) { node.forEach(x => walk(x, parent)); return; }
+        if (typeof node !== 'object') return;
+        const title = normalizeTitle(node, parent || 'เมนู');
+        const src = node.source || node.url || node.link || '';
+        if (src && isJsonLike(src)) found.push({ title, source: src });
+        const kids = Array.isArray(node.items) ? node.items : Array.isArray(node.data) ? node.data : [];
+        if (kids.length) kids.forEach(x => walk(x, title));
+      }
+      walk(data, parentTitle);
+      const seen = new Set();
+      return found.filter(x => {
+        const k = x.title + '|' + x.source;
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+    }
+
+    async function loadMySeriesMain() {
+      const def = SOURCES['series-main'][0];
+      const json = await fetchJson(def.source);
+      const menuSources = collectMenuSources(json, def.title);
+      const all = [];
+
+      if (menuSources.length > 1) {
+        for (const m of menuSources) {
+          try {
+            const sub = await fetchJson(m.source);
+            all.push(...flattenJson(sub, detectCategory({ title: m.title }, m.title)));
+          } catch (e) {
+            console.warn('MySeries submenu load fail', m.title, e);
+          }
+        }
+      }
+
+      if (!all.length) all.push(...flattenJson(json, 'ซีรี่ย์มาใหม่'));
+      return { items: all, rows: buildMySeriesRows(all) };
     }
 
     function normalizeServers(item) {
@@ -888,7 +970,9 @@
             image: normalizeImage(item),
             kind: 'submenu',
             source: item.source || item.url || item.link || '',
-            group: subGroup
+            group: subGroup,
+            lang: detectLang(item),
+            raw: item
           });
         });
         return out;
@@ -905,13 +989,23 @@
       const servers = normalizeServers(data);
       const episodes = normalizeEpisodes(data);
       const subSource = data.source && isJsonLike(data.source) ? data.source : '';
+      const lang = detectLang(data);
 
       if (episodes.length) {
-        out.push({ title, image, kind:'series', episodes, group: groupName, raw:data });
+        out.push({ title, image, kind:'series', episodes, group: groupName, lang, raw:data });
       } else if (servers.length) {
-        out.push({ title, image, kind:'playable', servers, group: groupName, raw:data });
+        out.push({ title, image, kind:'playable', servers, group: groupName, lang, raw:data });
       } else if (subSource) {
-        out.push({ title, image, kind:'submenu', source: subSource, group: groupName });
+        out.push({ title, image, kind:'submenu', source: subSource, group: groupName, lang, raw:data });
+      } else {
+        // รองรับ JSON ที่แยกหมวดเป็น key เช่น { "ดูซีรี่ย์จีน": [...] }
+        Object.entries(data).forEach(([key, value]) => {
+          if (Array.isArray(value) || (value && typeof value === 'object')) {
+            if (!['poster','image','thumb','logo','servers','episodes'].includes(key)) {
+              out.push(...flattenJson(value, key));
+            }
+          }
+        });
       }
       return out;
     }
@@ -919,12 +1013,24 @@
     function makeCard(item, idx, modalMode=false) {
       const image = item.image ? `<img class="thumb" src="${escapeHtml(item.image)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML='<div class=\'thumb fallback\'>📺</div>'">` : `<div class="thumb fallback">📺</div>`;
       const tags = [];
-      if (item.group) tags.push(`<span class="tag">${escapeHtml(item.group)}</span>`);
+      const overlay = [];
+      const lang = item.lang || detectLang(item.raw || item) || detectLang(item);
+      const groupText = item.group || '';
+
+      if (groupText) tags.push(`<span class="tag">${escapeHtml(groupText)}</span>`);
+      if (lang) tags.push(`<span class="tag">${escapeHtml(lang)}</span>`);
       if (item.kind === 'series') tags.push('<span class="tag">มี EP</span>');
       if (item.kind === 'submenu') tags.push('<span class="tag">เมนูย่อย</span>');
       if (item.kind === 'playable') tags.push('<span class="tag">กดเล่นได้</span>');
+
+      if (groupText === 'ซีรี่ย์มาใหม่') overlay.push('<span class="card-badge new">ซีรี่ย์มาใหม่</span>');
+      else if (groupText) overlay.push(`<span class="card-badge">${escapeHtml(groupText)}</span>`);
+      if (lang) overlay.push(`<span class="card-badge">${escapeHtml(lang)}</span>`);
+      if (item.kind === 'series') overlay.push('<span class="card-badge">มี EP</span>');
+
       return `
         <button class="card focusable" data-item-index="${idx}" data-modal-mode="${modalMode ? '1':'0'}">
+          ${overlay.length ? `<div class="card-badges">${overlay.join('')}</div>` : ''}
           ${image}
           <div class="card-body">
             <div class="card-title">${escapeHtml(item.title)}</div>
@@ -943,7 +1049,7 @@
       content.innerHTML = `
         <div class="hero">
           <div class="hero-title">TIEA IPTV ULTRA FINAL NETFLIX + AUTO FIX</div>
-          <div class="hero-sub">เวอร์ชันนี้เน้นใช้งานกับ Android TV / Smart TV / กล่อง / โปรเจคเตอร์ • มีปุ่ม HOME / X / MX / PLAYER • รองรับ JSON, M3U, HLS, DASH/MPD แบบปกติ • หนังทั้งหมดใช้ 24HD • ซีรีส์ทั้งหมดใช้ MySeries แยกหมวด • AUTO FIX ลิงก์เสีย</div>
+          <div class="hero-sub">เวอร์ชันนี้เน้นใช้งานกับ Android TV / Smart TV / กล่อง / โปรเจคเตอร์ • มีปุ่ม HOME / X / MX / PLAYER • รองรับ JSON, M3U, HLS, DASH/MPD แบบปกติ • หนังทั้งหมดใช้ 24HD • ซีรีส์ทั้งหมดใช้ MySeries แยกหมวดแบบโหลดเมนูย่อยครบ • AUTO FIX ลิงก์เสีย</div>
           <div class="inline-note">หมายเหตุ: MPD ที่เป็น DRM/Widevine จะไม่ถอดรหัสในเว็บ ให้กด MX หรือ PLAYER ภายนอกแทน</div>
         </div>
         ${rows.map((row, rowIdx) => `
@@ -956,7 +1062,7 @@
               </div>
             </div>
             <div class="grid">
-              ${row.items.slice(0, 15).map((item, i) => makeCard(item, i)).join('')}
+              ${row.items.length ? row.items.slice(0, 15).map((item, i) => makeCard(item, i)).join('') : '<div class="inline-note">ยังไม่พบรายการในหมวดนี้</div>'}
             </div>
           </div>
         `).join('')}
@@ -1013,7 +1119,17 @@
     async function loadSourceGroup(key) {
       try {
         markActiveMenu(key);
+        state.activeSource = key;
         setStatus('กำลังโหลด ' + key + ' ...');
+
+        if (key === 'series-main') {
+          const ms = await loadMySeriesMain();
+          state.rows = ms.rows;
+          renderHome();
+          setStatus(`โหลดสำเร็จ: ${key} • ${ms.items.length} รายการ`);
+          return;
+        }
+
         const defs = SOURCES[key] || [];
         const allItems = [];
         for (const def of defs) {
@@ -1037,7 +1153,6 @@
         }
         const grouped = groupItems(allItems);
         state.rows = grouped.length ? grouped : [{ title:'ตัวอย่างทีวี', items:SAMPLE_TV }];
-        state.activeSource = key;
         renderHome();
         setStatus(`โหลดสำเร็จ: ${key} • ${allItems.length} รายการ`);
       } catch (e) {
@@ -1050,12 +1165,29 @@
 
     function groupItems(items) {
       const map = new Map();
+
+      function addToGroup(key, item) {
+        const fixed = SERIES_ORDER.includes(key) ? key : detectCategory(item?.raw || item || {}, key || item?.group || item?.category || 'รายการ');
+        if (!map.has(fixed)) map.set(fixed, []);
+        map.get(fixed).push({ ...item, group: fixed });
+      }
+
       items.forEach(item => {
-        const key = item.group || 'รายการ';
-        if (!map.has(key)) map.set(key, []);
-        map.get(key).push(item);
+        let key = item.group || item.category || 'อื่นๆ';
+        addToGroup(key, item);
       });
-      return sortRows(Array.from(map.entries()).map(([title, arr]) => ({ title, items: arr })));
+
+      // เมนูซีรีส์ทั้งหมดต้องเห็นหัวหมวดครบ แม้บางหมวดจะยังโหลดไม่เจอ
+      if (state.activeSource === 'series-main') {
+        SERIES_ORDER.forEach(title => {
+          if (!map.has(title)) map.set(title, []);
+        });
+      }
+
+      return sortRows(Array.from(map.entries()).map(([title, arr]) => ({
+        title,
+        items: arr
+      })));
     }
 
     async function openSubmenu(title, sourceUrl) {
@@ -1360,8 +1492,8 @@
       state.rows = [
         { title:'ทีวีแนะนำ', items: SAMPLE_TV },
         { title:'หนังและซีรีส์', items: [
-          { title:'หนัง 24HD', image:'https://www.24hd.net/wp-content/uploads/2026/03/cropped-24-HD.jpg.webp', kind:'submenu', source: RAW + 'movie24hd.json', group:'ดูหนังออนไลน์' },
-          { title:'MySeriesHD', image:'https://myserieshd.com/wp-content/uploads/2025/05/iconhd-1.webp', kind:'submenu', source: RAW + 'MySeries.json', group:'ซีรีส์' },
+          { title:'หนัง 24HD', image:'', kind:'submenu', source: RAW + 'movie24hd.json', group:'ดูหนังออนไลน์' },
+          { title:'MySeriesHD', image:'', kind:'submenu', source: RAW + 'MySeries.json', group:'ซีรีส์' },
         ] }
       ];
       renderHome();
