@@ -1,4 +1,19 @@
 [
+
+  {
+    "title": "Something Is Not Right (2025) แพ้เสียงในหัว(ใจ)",
+    "groups": ["series-thai"],
+    "language": "ซับไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/แพ้เสียงในหัวใจ-1.webp",
+    "latest_ep": 1,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/7f6ad99c389aee1be145632a40b547bb/master.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/ddf9f8ee29674276e3419e21eb77ed69/master.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a0a12b2b3f2937915b8838792ead5a8e/master.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/170e404afa4c8183ae39f72fedc1ba03/master.m3u8" }] }
+    ]
+  },  
   {
     "title": "Never Forget Your Enemy (2026) ยังไงก็ใช่นาย",
    "groups": ["series-koera"],
