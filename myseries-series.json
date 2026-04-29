@@ -141,7 +141,17 @@
             "url": "https://ok-hd.com/hls/89f943ae4b6f6f6f51989267ddb5d9ea/master.m3u8"
           }
         ]
-      },
+      }
+    ]
+  },
+     {
+    "title": "The Epoch of Miyu (2026) คำลวงซ้อนรัก",
+    "groups": ["series"],
+    "language": "พากย์ไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/woox4bznmr1ouyew9z28-270x379.webp",
+    "latest_ep": 1,
+    "total_ep": 16,
+    "episodes": [ 
       {
         "title": "EP1",
         "servers": [
