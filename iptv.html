@@ -429,7 +429,7 @@ function loadChannel(channel, element){
     html5Video.pause(); html5Video.src=""; html5Video.style.display="none";
 
     const fileUrl = proxyUrl(channel.file);
-    const jwConfig = {file:fileUrl,width:"100%",aspectratio:"16:9",autostart:true,mute:false,volume:25};
+    const jwConfig = {file:fileUrl,width:"100%",aspectratio:"16:9",autostart:true,mute:false,volume:100};
     if(channel.drm) jwConfig.drm={clearkey:{keyId:channel.keyId,key:channel.key}};
 
     const playerInstance=jwplayer("jw-player").setup(jwConfig);
@@ -453,7 +453,7 @@ document.addEventListener("DOMContentLoaded",function(){
 function useHTML5(url){
     const jwContainer=document.getElementById("jw-player");
     const html5Video=document.getElementById("html5-player");
-    jwContainer.style.display="none"; html5Video.style.display="block"; html5Video.volume=0.25;
+    jwContainer.style.display="none"; html5Video.style.display="block"; html5Video.volume=0.100;
     if(html5Video.canPlayType('application/vnd.apple.mpegurl')){html5Video.src=url; html5Video.play();}
     else if(Hls.isSupported()){currentHls=new Hls(); currentHls.loadSource(url); currentHls.attachMedia(html5Video); currentHls.on(Hls.Events.MANIFEST_PARSED,function(){ html5Video.play(); });}
 }
