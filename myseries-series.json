@@ -46,9 +46,9 @@
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f8bed124c3ac4a8bfb2d006a48e8d51f/master.m3u8" }] },
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/78f31c077145972a4ef54c6adf3413c9/master.m3u8" }] },
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/0e933d66e2968285df44057807e6ec92/master.m3u8" }] },
-      { "title": "ตอนจบ",       "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8f116134bd619e96a96b5bc60f57873d/master.m3u8"}] }
+      { "title": "ตอนจบ","servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8f116134bd619e96a96b5bc60f57873d/master.m3u8"}] }
     ]
-  }, 
+  },
   {
     "title": "Eight Hundred (2026) 800เมตร คดีปิดตายมรณะ",
     "groups": ["series","series-china"],
