@@ -1726,9 +1726,7 @@
   },
   {
     "title": "Wishing Upon the Shooting Stars คำอธิษฐานใต้ดวงดาว",
-    "groups": [
-      "series"
-    ],
+ "groups": ["series","series-china"],
     "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/03/คำอธิษฐานใต้ดวงดาว-1.webp",
     "episodes": [
@@ -2330,7 +2328,7 @@
   },
   {
     "title": " Love Upon A Time (2026) ภพเธอ ",
-    "groups": ["series","series-china"],
+ "groups": ["series","series-thai"],
     "language": "พากย์ไทย",
     "poster": "https://myserieshd.com/wp-content/uploads/2026/03/ภพเธอ-111.webp",
     "latest_ep": 1,
@@ -2714,8 +2712,9 @@
             "url": "https://ok-hd.com/hls/dc7c973f519bdd815c988a0737b9a99d/master.m3u8"
           }
         ]
-      },
-
+      }
+    ]
+  },
        {
     "title": "Dream of Golden Years (2026) ยุคทองของคนมีฝัน พากย์ไทย",
     "groups": ["series","series-china"],
