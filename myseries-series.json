@@ -71,7 +71,7 @@
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/cb9f6b7dfb4560e92dcce2d302c4e64e/master.m3u8"}] },
       { "title": "EP13", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c746a093fed6da1559d9924bb95aaa2b/master.m3u8" }] },
       { "title": "EP14", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/ea15b949f2eacb84d415c04dbefda115/master.m3u8" }] },
-      { "title": "EP15", "servers": [{ "name": "Main", "url": ""https://ok-hd.com/hls/89f943ae4b6f6f6f51989267ddb5d9ea/master.m3u8"" }] }
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/89f943ae4b6f6f6f51989267ddb5d9ea/master.m3u8" }] }
     ]
   },
 
