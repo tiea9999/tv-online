@@ -555,7 +555,9 @@
             "url": "https://ok-hd.com/hls/0789f05a8dd70a0d9c2a237a6add235e/master.m3u8"
           }
         ]
-      },
+      }
+    ]
+  },
    {
     "title": "Turning Life Around (2026)",
     "groups": ["series"],
@@ -722,10 +724,10 @@
             "name": "Main",
             "url": "https://ok-hd.com/hls/59e6533b2dd4f8703591ae5611127949/master.m3u8"
           }
-          ]
-          }
         ]
-      }, 
+      }
+    ]
+  },
    {
     "title": " My Name is Zhao Wudi: Starting Over (2026)",
     "groups": ["series"],
