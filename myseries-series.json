@@ -556,7 +556,13 @@
           }
         ]
       },
-      {
+   {
+    "title": "Turning Life Around (2026)",
+    "groups": ["series"],
+    "language": "ซับไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/Turning-Life-Around-1.webp",
+    "episodes": [
+    {
         "title": "EP1",
         "servers": [
           {
@@ -721,10 +727,10 @@
         ]
       }, 
    {
-    "title": "Turning Life Around (2026)",
+    "title": " My Name is Zhao Wudi: Starting Over (2026)",
     "groups": ["series"],
     "language": "ซับไทย",
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/Turning-Life-Around-1.webp",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/My-Name-is-Zhao-Wudi-Starting-Over-1.webp",
     "episodes": [
       {
         "title": "EP1",
@@ -945,10 +951,10 @@
     ]
   },
    {
-    "title": "My Name is Zhao Wudi: Starting Over (2026)",
+    "title": "Within The Grip (2026) เงามืดลวงใจ",
     "groups": ["series"],
     "language": "ซับไทย ",
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/My-Name-is-Zhao-Wudi-Starting-Over-1.webp",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/เงามืดลวงใจ-1.webp",
     "episodes": [
       {
         "title": "EP1",
