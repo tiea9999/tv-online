@@ -431,7 +431,7 @@
         "servers": [
           {
             "name": "Main",
-            "url": "https://ok-hd.com/hls/afa8e403f35092a05226564efd297a44/master.m3u8"       
+            "url": "https://ok-hd.com/hls/afa8e403f35092a05226564efd297a44/master.m3u8"}]},       
       { "title": "EP11", "servers":[{"name":"Main","url":"",{"name":"Backup","url":"https://ok-hd.com/hls/6554066d51726360bc7d0be279ed07ab/master.m3u8"}]},
       { "title": "EP12", "servers":[{"name":"Main","url":"",{"name":"Backup","url":"https://ok-hd.com/hls/f362eaa0b07e9ff1c172782e2ce6b0c2/master.m3u8"}]},
       { "title": "EP13", "servers":[{"name":"Main","url":"",{"name":"Backup","url":"https://ok-hd.com/hls/5c59b81115826fa69c86b5f1cc23b8e4/master.m3u8"}]},
