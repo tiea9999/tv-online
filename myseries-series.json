@@ -3764,7 +3764,7 @@
     "language": "พากย์ไทย",
     "poster": "https://myserieshd.com/wp-content/uploads/2026/01/โค้ดรักหัวใจไม่มีรวน-111.webp",
     "latest_ep": 1,
-    "total_ep": 12,
+    "total_ep": 16,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/08d0a4bb5aca11e2f6cc935fe3a018f3/master.m3u8" }] },
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/4643f9a32d1219c740c132fb72f471e4/master.m3u8" }] },
@@ -3790,7 +3790,7 @@
     "language": "พากย์ไทย",
     "poster": "https://myserieshd.com/wp-content/uploads/2026/01/เงาจันทร์สลับร่าง-111.webp",
     "latest_ep": 1,
-    "total_ep": 12,
+    "total_ep": 14,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/4c72d102f3dd92fcdb33251cc3976a6d/master.m3u8" }] },
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c15cef782beaf2f00af06ac381177a1b/master.m3u8" }] },
@@ -3835,12 +3835,12 @@
     ]
   },
   {
-    "title": "",
+    "title": "For Eagle Brothers พี่สะใภ้จอมแกร่งกับน้องเขยทั้งสี่ พากย์ไทย",
     "groups": ["series","series-china"],
     "language": "พากย์ไทย",
-    "poster": "",
+    "poster": "https://myserieshd.com/wp-content/uploads/2025/08/พี่สะใภ้จอมแกร่งกับน้องเขยทั้งสี่-111.webp",
     "latest_ep": 1,
-    "total_ep": 30,
+    "total_ep": 54,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/e4ddf5d760051c933f7414734b89a762/master.m3u8" }] },
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/7c9d1fccfc194af644cf70d62a658e7f/master.m3u8" }] },
