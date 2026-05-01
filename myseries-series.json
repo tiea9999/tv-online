@@ -11,7 +11,11 @@
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/0516bed4f55de773dd7b75c8554068a6/master.m3u8" }] },
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/40f324415b7ce9f755f94733db4e1433/master.m3u8" }] },
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/367f73faeeebb0ddb4bb7f50e9db752f/master.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c788e5995385ad6d03a202219395e3a7/master.m3u8" }] }
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c788e5995385ad6d03a202219395e3a7/master.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/81d73302afbb4f3d14f48c71e301ae49/master.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8cba427ee3e2e8e5432e5f1c639ab528/master.m3u8" }] }
+
+
     ]
   },
   {
@@ -28,8 +32,10 @@
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/2a55dd695de1c32fd8fbb64608579100/master.m3u8" }] },
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/23060a33d29f20e3e8ecd71c9c022780/master.m3u8" }] },
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c4c1bd31daacc10c3793ba2d5df98af9/master.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/eb5c26ebdc6392aa467b0cbecb9c8cff/master.m3u8" }] }
-    ]
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/eb5c26ebdc6392aa467b0cbecb9c8cff/master.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6180fed64805b31d6b7be7a281649c3d/master.m3u8" }] }
+  
+  ]
   },
   {
     "title": "Royal Upstart Season 2 (2026) ยอดเขยกำมะลอ ภาค2",
@@ -86,8 +92,11 @@
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/3a5016aa938da1fa3e6efb279efcf501/master.m3u8" }] },
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8585db110ce527add6ce5ec16204b63d/master.m3u8" }] },
       { "title": "EP13", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/150f5d7409f328604bba34c97e1dc3d1/master.m3u8" }] },
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/521b47d6b7aaf10017476fb485064f43/master.m3u8" }] }
-    ]
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/521b47d6b7aaf10017476fb485064f43/master.m3u8" }] },
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a31d7b6103644b079ee28a0ea02f2157/master.m3u8" }] },
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/58e48563bd57455248cece62ebabaef3/master.m3u8" }] }
+ 
+   ]
   },
   {
     "title": "The Epoch of Miyu (2026) คำลวงซ้อนรัก",
@@ -128,7 +137,9 @@
       { "title": "EP29", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/ee356108b60ae46cc0e6814edd872f13/master.m3u8" }] },
       { "title": "EP30", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1db65617a6bcf9892dcb0d6d3b812c41/master.m3u8" }] },
       { "title": "EP31", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/9ae671a7a37327e5f3450a19d91e306f/master.m3u8" }] },
-      { "title": "EP32", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/9ae671a7a37327e5f3450a19d91e306f/master.m3u8" }] }
+      { "title": "EP32", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/9ae671a7a37327e5f3450a19d91e306f/master.m3u8" }] },
+      { "title": "EP33", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/ce73dad802adfdb763b0b31ce20bffa0/master.m3u8" }] }
+
     ]
   },
   {
@@ -154,7 +165,10 @@
       { "title": "EP13", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5c59b81115826fa69c86b5f1cc23b8e4/master.m3u8" }] },
       { "title": "EP14", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/0789f05a8dd70a0d9c2a237a6add235e/master.m3u8" }] },
       { "title": "EP15", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a7ac302b9d82ac059074a4ce19be3d14/master.m3u8" }] },
-      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6d3793e95bbdf2db4c9ee8321460619e/master.m3u8" }] }
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6d3793e95bbdf2db4c9ee8321460619e/master.m3u8" }] },
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f53f328b5e8771686be93a6dc917b822/master.m3u8" }] },
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6f25c5417d9a68c81b297ee62b8651c3/master.m3u8" }] }
+
     ]
   },
   {
@@ -187,7 +201,10 @@
       { "title": "EP20", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/d8d184e71b04465181136cc6704d662e/master.m3u8" }] },
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5131000ce601bc5be4891c898e732e49/master.m3u8" }] },
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/023d7706af14f713f42cc7eb4dc664b2/master.m3u8" }] },
-      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b60d05934bc17a46012eca9e8560c253/master.m3u8" }] }
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b60d05934bc17a46012eca9e8560c253/master.m3u8" }] },
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/cf4b53ade535ed23204fbdaca3b22f6a/master.m3u8" }] },
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/d1bcc5d8071f566e495ca7391c927892/master.m3u8" }] }
+
     ]
   },
   {
@@ -209,7 +226,11 @@
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1919c84701789491a153c28e323247b0/master.m3u8" }] },
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/00b351d96284067f9dcf71c09c07922c/master.m3u8" }] },
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c080e297bbf8b454162006983b6778ac/master.m3u8" }] },
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1eb539546a1c67a2d6909ba36ab1fdd3/master.m3u8" }] }
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1eb539546a1c67a2d6909ba36ab1fdd3/master.m3u8" }] },
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/9c178dee61da0c892765f099e67d79bb/master.m3u8" }] },
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8917e2daddd81c7b90e65161355638ec/master.m3u8" }]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/703070e1b34623b5500c0a127e00cf09/master.m3u8" }] },
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c1244edd4599482b9d11285d1f04e21f/master.m3u8" }] }
     ]
   },
   {
@@ -235,7 +256,9 @@
       { "title": "EP13", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/85e29fec4e3193d38b0668c645d3c6d9/master.m3u8" }] },
       { "title": "EP14", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/0c8a2d8df22792e50fcc95c0a8a3837e/master.m3u8" }] },
       { "title": "EP15", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/681b6dc380560c6e011d5618690eca83/master.m3u8" }] },
-      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/ae54d8d188d4a5e01d0d99e7caecce75/master.m3u8" }] }
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/ae54d8d188d4a5e01d0d99e7caecce75/master.m3u8" }] },
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/d241b6ae04cf244dfc270d9635125eef/master.m3u8" }] },
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1a649d7b374230061135119ca2c07f9a/master.m3u8" }] }
     ]
   },
   {
@@ -2763,6 +2786,18 @@
       }
     ]
   },
+
+
+
+
+
+
+
+
+
+
+
+
   {
     "title": "Never Forget Your Enemy (2026) ยังไงก็ใช่นาย",
     "groups": ["series","series-korea"],
@@ -2771,42 +2806,12 @@
     "latest_ep": 1,
     "total_ep": 8,
     "episodes": [
-      {
-        "title": "EP1",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/717769bceab874c7e240b51c4dc579f4/master.m3u8"
-          }
-        ]
-      },
-      {
-        "title": "EP2",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/e545103bb8a47e323b4537a8b4413edd/master.m3u8"
-          }
-        ]
-      },
-      {
-        "title": "EP3",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/f6c7cc5ab4e7cbe4d3beceb56b1b7b7a/master.m3u8"
-          }
-        ]
-      },
-      {
-        "title": "EP4",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/8781d8814c418bd6d7d6da82037399a6/master.m3u8"
-          }
-        ]
-      }
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/717769bceab874c7e240b51c4dc579f4/master.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/e545103bb8a47e323b4537a8b4413edd/master.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f6c7cc5ab4e7cbe4d3beceb56b1b7b7a/master.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8781d8814c418bd6d7d6da82037399a6/master.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/91103bc00a9c97461b432113819c1dab/master.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a019b0286df5cd5b590e087d0e0b11f6/master.m3u8" }] }
     ]
   },
   {
@@ -4543,4 +4548,5 @@
     ]
   }
 ]
+
 
