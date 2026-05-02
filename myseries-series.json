@@ -4423,7 +4423,7 @@
   },
     {
     "title": "การกลับมาของทายาทแชโบล",
-     "group": "short",
+    "groups": ["series","series-short"],
     "poster": "https://pic.bstarstatic.com/ugc/a7cebc31179056b1229f150ab73a7cf0.jpg",
     "language": "พากย์ไทย",
     "servers": [
