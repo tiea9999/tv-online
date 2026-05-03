@@ -1,20 +1,19 @@
 [
   {
-    "title": "Lady Liberty (2026) วังวนรักกลางมหานคร",
-    "groups": ["series","series-china"],
+    "title": "Dark Winds Season 3 (2025) ",
     "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/วังวนรักกลางมหานคร-1.webp",
     "latest_ep": 1,
-    "total_ep": 37,
+    "total_ep": 8,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/e002e6d3c9ac092ab14133214fcd6c30/master.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/0516bed4f55de773dd7b75c8554068a6/master.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/40f324415b7ce9f755f94733db4e1433/master.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/367f73faeeebb0ddb4bb7f50e9db752f/master.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c788e5995385ad6d03a202219395e3a7/master.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/81d73302afbb4f3d14f48c71e301ae49/master.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8cba427ee3e2e8e5432e5f1c639ab528/master.m3u8" }] }
-      
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Hyhwmi_E33-ws/video.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/cKd_Qopx-SFFe/video.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/d-ykNGcU_ahLb/video.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/sOj3_Cim-22ZU/video.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/9YUEb-jP3_8Wc/video.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/rpxr-WHB_TPyB/video.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/V-Lkkwfgf6_lF/video.m3u8" }] },
+      { "title": "ตอนจบ", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/h_JOqb3gh-Ux8/video.m3u8" }] }   
       
       ]
       }     
