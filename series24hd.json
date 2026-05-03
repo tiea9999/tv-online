@@ -154,6 +154,88 @@
       { "title": "EP15", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/GTBPaxdw-c_pl/video.m3u8" }] },
       { "title": "EP16", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/6_XD-6fRGtE76/video.m3u8" }] },
       { "title": "EP17", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/h_t-xX26bIiW4/video.m3u8" }] }
+ ]
+ },      
+ {
+    "title": "Shafted (2025) ยอดชายนายซูเปอร์ ",
+    "language": "พากย์ไทย",
+    "poster": "https://www.24hd.net/wp-content/uploads/2025/10/Shafted-2025.webp",
+    "latest_ep": 1,
+    "total_ep": 6,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/CZQ1_izAAA-Jc/video.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/TWwfbT_LPL-Il/video.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/1Pefb_PH-D4gb/video.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/KlSO_1mX-6ymC/video.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/77SoE_3Ws-U0v/video.m3u8" }] },
+      { "title": "ตอนจบ", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Lp_D-Ky5dQLH4/video.m3u8" }] }
+ ]
+ },      
+ {
+    "title": "Nero the Assassin (2025) กาลครั้งหนึ่งของนักฆ่า",
+    "language": "พากย์ไทย",
+    "poster": "https://www.24hd.net/wp-content/uploads/2025/10/Nero-the-Assassin-2025.webp",
+    "latest_ep": 1,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/cTtPOG-Vc_1kZ/video.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Sp0H_5-yu9HEq/video.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/tVr-x2nUv_4cF/video.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/4AKExgK-zj_Rm/video.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/9D-HmXu_UzyxY/video.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/1_hVXSK0s-NBh/video.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/G-70EOTN5_kqK/video.m3u8" }] },
+      { "title":  "ตอนจบ", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/hQ-f3a_LBH2uU/video.m3u8" }] }    
+ ]
+ },      
+ {
+    "title": "The Game You Never Play Alone (2025)",
+    "language": "ซับไทย",
+    "poster": "https://www.24hd.net/wp-content/uploads/2025/10/The-Game-You-Never-Play-Alone-2025.webp",
+    "latest_ep": 1,
+    "total_ep": 7,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/ck_k-qKynY5st/video.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/ogN68o-Le_Ash/video.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/1J_LN00m-79OJ/video.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/MQo_5mnhet-0o/video.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/J_Q-0F1t852uj/video.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/01Rm-A08nk_AC/video.m3u8" }] },
+      { "title": "ตอนจบ", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/5v_oE-2bU5bKx/video.m3u8" }] }    
+ ]
+ },      
+ {
+    "title": "Monster The Ed Gein Story (2025) ปีศาจ เรื่องราวของเอ็ด กีน ",
+    "language": "พากย์ไทย",
+    "poster": "https://www.24hd.net/wp-content/uploads/2025/10/Monster-The-Ed-Gein-Story-2025.webp",
+    "latest_ep": 1,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/0KYoqsd_KI-Fp/video.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/HgV8m-Zv_g7ez/video.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/hyBC-MwveU_NP/video.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/TIf5GO5P_c-17/video.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/EB0RZ71-Z_fIv/video.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/PdLdnDo3-z_7h/video.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/V_vWZkyrf-Ex8/video.m3u8" }] },
+      { "title": "ตอนจบ", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/h_30y3-zNMCnO/video.m3u8" }] }    
+ ]
+ },      
+ {
+    "title": "House of Guinness (2025) เฮาส์ ออฟ กินเนสส์ ",
+    "language": "พากย์ไทย",
+    "poster": "https://www.24hd.net/wp-content/uploads/2025/10/House-of-Guinness-2025.webp",
+    "latest_ep": 1,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/9lE9_Kf5Ti-Pp/video.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/ikQcCE1-8C_9m/video.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/j8R-BOVK36_2N/video.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/S-msd_WrWnGwG/video.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/R0br-4y7_C5kd/video.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/U-6_s8xmC5svV/video.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/v_bDdwuoR4-hv/video.m3u8" }] },
+      { "title": "ตอนจบ", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/MVT9U_iyU-vnp/video.m3u8" }] }    
 ]
 }     
 ]
