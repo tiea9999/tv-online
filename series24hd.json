@@ -236,8 +236,8 @@
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/U-6_s8xmC5svV/video.m3u8" }] },
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/v_bDdwuoR4-hv/video.m3u8" }] },
       { "title": "ตอนจบ", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/MVT9U_iyU-vnp/video.m3u8" }] }    
+    ]
+  }
 ]
-}     
-
   
  
