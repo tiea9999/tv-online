@@ -80,12 +80,8 @@
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/FS7DOhMu_Q-q6/video.m3u8" }] },
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/47G_5NuZ5-oID/video.m3u8" }] },
       { "title": "ตอนจบ", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/8kDF5-v7H_As2/video.m3u8" }] }
-
-
- 
-      
-      ]
-      }     
-     ]
+]
+}     
+]
   
  
