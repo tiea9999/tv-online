@@ -1,4 +1,3 @@
-[
 {
     "title": "Dark Winds Season 3 (2025) ",
     "language": "ซับไทย",
@@ -72,7 +71,7 @@
     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/12/City-of-Shadows-2025.webp",
     "latest_ep": 1,
-    "total_ep": 8,
+    "total_ep": 6,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/J_6-odCq2ztP7/video.m3u8" }] },
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/OnPkWG_FoG-XU/video.m3u8" }] },
@@ -80,6 +79,81 @@
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/FS7DOhMu_Q-q6/video.m3u8" }] },
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/47G_5NuZ5-oID/video.m3u8" }] },
       { "title": "ตอนจบ", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/8kDF5-v7H_As2/video.m3u8" }] }
+ ]
+ },      
+ {
+    "title": "Talamasca The Secret Order (2025) ทาลามาสกา ภาคีลี้ลับ",
+    "language": "พากย์ไทย",
+    "poster": "https://www.24hd.net/wp-content/uploads/2025/12/Talamasca-The-Secret-Order-2025.webp",
+    "latest_ep": 1,
+    "total_ep": 6,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/lU-4H_jvhH3hh/video.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/6-5JJ7djB_Wta/video.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Gd_T-Og6Wkt7B/video.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/m0Vv_oQPW-XKQ/video.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/uMPk-yd9e1_2C/video.m3u8" }] },
+     { "title": "ตอนจบ", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/7zju_dq4k-28k/video.m3u8" }] }
+ ]
+ },      
+ {
+    "title": "Stranger Things Season 5 (2025) สเตรนเจอร์ ธิงส์ ซีซั่น 5",
+    "language": "พากย์ไทย",
+    "poster": "https://www.24hd.net/wp-content/uploads/2025/07/Stranger-Things-Season-5-2025-e1753081106926.webp",
+    "latest_ep": 1,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/f-GKFKbcEf_2V/video.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/DU_AudI1-at4q/video.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/0-lXhy3BR_WOk/video.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/LQkEC-kR_jcb8/video.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/MzapMF-P_FKC5/video.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/QbX_fd-YspJLB/video.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/WzLX-I_Absvkp/video.m3u8" }] },
+      { "title": "ตอนจบ", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/uog_rW9p-zRt3/video.m3u8" }] }
+ ]
+ },      
+ {
+    "title": "Boots (2025) หลักสูตรชีวิตนาวิกน้องใหม่",
+    "language": "พากย์ไทย",
+    "poster": "https://www.24hd.net/wp-content/uploads/2025/10/Boots-2025.webp",
+    "latest_ep": 1,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/RiWLC-h_Fz81k/video.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/S3B7-P_Y0QWWf/video.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/nVM-mk_1qKRLZ/video.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Ffh-0NH_yH09A/video.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/gg_t-Jl1UCeVm/video.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Tm_qGP-X2Gu71/video.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/UF2M-6bIU_2JB/video.m3u8" }] },
+      { "title": "ตอนจบ", "servers":  [{ "name": "Main", "url": "https://media.vdohls.com/fwWXT-EL8_uKS/video.m3u8" }] }
+ ]
+ },      
+ {
+    "title": "High Potential Season 2 (2025) ",
+    "language": "ซับไทย",
+    "poster": "https://www.24hd.net/wp-content/uploads/2025/10/High-Potential-Season-2-2025.webp",
+    "latest_ep": 1,
+    "total_ep": 18,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/aVTq_mWCsI-XO/video.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Bl2_Rk-OXrb8F/video.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/P-rUku6F_3Z6B/video.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/I2IZXnr-t_H31/video.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/dWsM_MKk-jvAU/video.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/n-Cb_usP3JgTP/video.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/qORDO2-vF_9nV/video.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/s_R1AaYFG-Hgz/video.m3u8" }] },
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/dg-WiEHM_QcXV/video.m3u8" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/7_EN-xDhz4xZW/video.m3u8" }] },
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Pd_H5QiuG-uuK/video.m3u8" }] },
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/K-SEHAAK_sxOy/playlist.m3u8" }] },
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/xSjpRj_RU-XDz/video.m3u8" }] },
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/si_LWL-OmwCaJ/video.m3u8" }] },
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/GTBPaxdw-c_pl/video.m3u8" }] },
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/6_XD-6fRGtE76/video.m3u8" }] },
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/h_t-xX26bIiW4/video.m3u8" }] }
 ]
 }     
 ]
