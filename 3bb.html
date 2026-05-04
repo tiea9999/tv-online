@@ -324,13 +324,6 @@ let currentHls = null;
 let shakaPlayer = null;
 let activeJW = null;
 
-function showStatus(msg){
-  const box = document.getElementById("status");
-  if(!box) return;
-  box.textContent = msg || "";
-  box.style.display = msg ? "block" : "none";
-}
-
 function proxyUrl(url){
   return url;
 }
@@ -363,8 +356,6 @@ async function stopAllPlayers(){
 
   const jwBox = document.getElementById("jw-player");
   if(jwBox) jwBox.style.display = "none";
-
-  showStatus("");
 }
 
 async function loadChannel(channel, element){
@@ -375,15 +366,11 @@ async function loadChannel(channel, element){
   await stopAllPlayers();
 
   const url = proxyUrl(channel.file);
-  const isMPD = url.includes(".mpd");
-  const isM3U8 = url.includes(".m3u8");
 
-  if(isMPD){
-    await playMPDWithShaka(channel, url);
-  }else if(isM3U8){
-    useHTML5(url);
+  if(url.includes(".mpd")){
+    playMPD(channel, url);
   }else{
-    useHTML5(url);
+    useHLS(url);
   }
 
   setTimeout(()=>{
@@ -392,108 +379,93 @@ async function loadChannel(channel, element){
   },300);
 }
 
-async function playMPDWithShaka(channel, url){
+/* ================= MPD ================= */
+async function playMPD(channel, url){
   const video = document.getElementById("html5-player");
   const jwBox = document.getElementById("jw-player");
 
   if(jwBox) jwBox.style.display = "none";
   video.style.display = "block";
-  video.controls = true;
-  video.autoplay = true;
-  video.muted = false;
-  video.volume = 1;
 
-  if(!window.shaka){
-    showStatus("เครื่องนี้โหลด Shaka Player ไม่ได้");
-    return;
-  }
+  video.muted = false;
+  video.defaultMuted = false;
+  video.volume = 1.0;
 
   shaka.polyfill.installAll();
 
-  if(!shaka.Player.isBrowserSupported()){
-    showStatus("เครื่องนี้ไม่รองรับ MPD/DRM ผ่านเว็บ");
-    return;
-  }
-
   shakaPlayer = new shaka.Player(video);
 
-  if(channel.drm === true){
+  if(channel.drm){
     shakaPlayer.configure({
       drm:{
         clearKeys:{
           [channel.keyId]: channel.key
         }
-      },
-      streaming:{
-        bufferingGoal: 10,
-        rebufferingGoal: 2,
-        bufferBehind: 10
       }
     });
   }
 
-  shakaPlayer.addEventListener("error", function(e){
-    console.log("Shaka MPD error:", e.detail);
-    showStatus("MPD เล่นไม่ได้บนเครื่องนี้ / ลิงก์หรือคีย์ไม่ผ่าน");
-  });
-
   try{
-    showStatus("กำลังโหลด MPD...");
     await shakaPlayer.load(url);
-    showStatus("");
-    video.play().catch(()=>{});
+
+    setTimeout(()=>{
+      video.muted = false;
+      video.defaultMuted = false;
+      video.volume = 1.0;
+      video.play().catch(()=>{});
+    },300);
+
   }catch(e){
-    console.log("Shaka load failed:", e);
-    showStatus("MPD เล่นไม่ได้บนเครื่องนี้ / ลิงก์หรือคีย์ไม่ผ่าน");
+    console.log("MPD ERROR:", e);
   }
 }
 
-function useHTML5(url){
+/* ================= HLS ================= */
+function useHLS(url){
   const video = document.getElementById("html5-player");
   const jwBox = document.getElementById("jw-player");
 
   if(jwBox) jwBox.style.display = "none";
   video.style.display = "block";
-  video.controls = true;
 
   if(currentHls){
     currentHls.destroy();
     currentHls = null;
   }
 
-  if(Hls.isSupported() && url.includes(".m3u8")){
+  if(Hls.isSupported()){
     currentHls = new Hls({
       enableWorker:true,
-      lowLatencyMode:false,
       maxBufferLength:8,
-      maxMaxBufferLength:16,
-      backBufferLength:10
+      maxMaxBufferLength:16
     });
 
     currentHls.loadSource(url);
     currentHls.attachMedia(video);
 
-    currentHls.on(Hls.Events.MANIFEST_PARSED,function(){
-      showStatus("");
+    currentHls.on(Hls.Events.MANIFEST_PARSED, function(){
+
+      // 🔥 บังคับเสียง 100%
       video.muted = false;
-      video.volume = 1;
+      video.defaultMuted = false;
+      video.volume = 1.0;
+
       video.play().catch(()=>{});
     });
 
-    currentHls.on(Hls.Events.ERROR,function(event,data){
-      console.log("HLS error:", data);
-      if(data && data.fatal){
-        showStatus("m3u8 เล่นไม่ได้ / ลิงก์อาจเสียหรือโดนบล็อก");
-      }
-    });
   }else{
     video.src = url;
-    video.muted = false;
-    video.volume = 1;
-    video.play().catch(()=>{});
+
+    setTimeout(()=>{
+      video.muted = false;
+      video.defaultMuted = false;
+      video.volume = 1.0;
+      video.play().catch(()=>{});
+    },300);
   }
 }
 
+/* ================= CLOSE ================= */
 async function closePlayer(){
   await stopAllPlayers();
   document.getElementById("player-container").style.display = "none";
@@ -503,16 +475,19 @@ function goHome(){
   window.location.href = "https://tiea9999.github.io/tv-online/index.html";
 }
 
+/* ================= REMOTE ================= */
 document.addEventListener("keydown",function(e){
   const container = document.getElementById("player-container");
+
   if(container.style.display === "block"){
-    if(e.key === "Escape" || e.key === "Backspace" || e.key === "BrowserBack"){
+    if(e.key === "Escape" || e.key === "Backspace"){
       e.preventDefault();
       closePlayer();
     }
   }
 });
 
+/* ================= INIT ================= */
 document.addEventListener("DOMContentLoaded",function(){
   const listContainer = document.getElementById("channel-list");
 
@@ -525,8 +500,7 @@ document.addEventListener("DOMContentLoaded",function(){
     div.onclick = ()=>loadChannel(ch,div);
 
     div.onkeydown = e=>{
-      if(e.key === "Enter" || e.key === "OK"){
-        e.preventDefault();
+      if(e.key === "Enter"){
         loadChannel(ch,div);
       }
     };
@@ -538,4 +512,5 @@ document.addEventListener("DOMContentLoaded",function(){
 
 </body>
 </html>
+
 
