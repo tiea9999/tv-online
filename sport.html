@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV</title>
+    <title>TIEA IPTV WORKERS STABLE</title>
 
     <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
     <script>
@@ -111,7 +111,14 @@
             right: 12px;
             z-index: 100000;
             display: flex;
-            justify-content: space-between
+            justify-content: space-between;
+            gap: 10px
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap
         }
 
         .player-btn {
@@ -138,33 +145,23 @@
             z-index: 100001;
             text-align: center;
             color: #fff;
-            background: rgba(0, 0, 0, .65);
+            background: rgba(0, 0, 0, .7);
             padding: 8px 12px;
             border-radius: 10px;
             display: none;
-            font-size: 14px
+            font-size: 14px;
+            border: 1px solid rgba(0,255,255,.35)
         }
 
         @media(max-width:768px) {
-            #channel-list {
-                grid-template-columns: repeat(5, 1fr)
-            }
+            #channel-list { grid-template-columns: repeat(5, 1fr) }
+            .player-btn { font-size: 16px; padding: 8px 12px }
         }
 
         @media(max-width:480px) {
-            #channel-list {
-                grid-template-columns: repeat(3, 1fr)
-            }
-
-            .channel img {
-                width: 52px;
-                height: 52px
-            }
-
-            .channel {
-                font-size: 10px;
-                min-height: 60px
-            }
+            #channel-list { grid-template-columns: repeat(3, 1fr) }
+            .channel img { width: 52px; height: 52px }
+            .channel { font-size: 10px; min-height: 60px }
         }
     </style>
 </head>
@@ -172,22 +169,28 @@
 <body>
 
     <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-    <h2 style="color:orange;text-align:center;">TIEA IPTV</h2>
+    <h2 style="color:orange;text-align:center;">TIEA IPTV WORKERS STABLE</h2>
 
     <div id="player-container">
         <div class="player-controls">
-            <button class="player-btn" id="closeBtn" onclick="closePlayer()">X</button>
-            <button class="player-btn" onclick="goHome()">🏠 HOME</button>
+            <div class="btn-row">
+                <button class="player-btn" id="closeBtn" onclick="closePlayer()">X</button>
+                <button class="player-btn" onclick="restartCurrent()">↻ รีโหลด</button>
+            </div>
+            <div class="btn-row">
+                <button class="player-btn" onclick="openExternal()">▶ PLAYER</button>
+                <button class="player-btn" onclick="goHome()">🏠 HOME</button>
+            </div>
         </div>
         <div id="jw-player"></div>
-        <video id="html5-player" controls autoplay playsinline style="display:none;"></video>
+        <video id="html5-player" controls autoplay playsinline webkit-playsinline style="display:none;"></video>
         <div id="status" class="status"></div>
     </div>
 
     <div id="channel-list"></div>
 
     <script>
-        const WORKER_PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
+const WORKER_PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
 
 const channels = [
 {
@@ -202,7 +205,7 @@ drm:false
 { name:"MAX02",logo:"https://www.fileinwtv.site/postor/20250830165343Mono2.jpg",file:"https://love.bebin98399.workers.dev/lx-origin/th-monomax02_720/chunks.m3u8",drm:false},
 { name:"MAX02bk",logo:"https://www.fileinwtv.site/postor/20250830165343Mono2.jpg",file:"https://love.verowo7190.workers.dev/lx-origin/th-monomax02bkp_720/chunks.m3u8",drm:false},
 { name:"MAX03",logo:"https://www.fileinwtv.site/postor/20250830165408Mono3.jpg",file:"https://love.bebin98399.workers.dev/lx-origin/th-monomax03_720/chunks.m3u8",drm:false},
-{ name:"MAX03",logo:"https://www.fileinwtv.site/postor/20250830165408Mono3.jpg",file:"https://love.verowo7190.workers.dev/lx-origin/th-monomax03bkp_720/chunks.m3u8",drm:false},
+{ name:"MAX03bk",logo:"https://www.fileinwtv.site/postor/20250830165408Mono3.jpg",file:"https://love.verowo7190.workers.dev/lx-origin/th-monomax03bkp_720/chunks.m3u8",drm:false},
 { name:"MAX04",logo:"https://www.fileinwtv.site/postor/20250830165433Mono4.jpg",file:"https://love.bebin98399.workers.dev/lx-origin/th-monomax04bkp_720/chunks.m3u8",drm:false},
 { name:"MAX05",logo:"https://www.fileinwtv.site/postor/20250830165451Mono5.jpg",file:"https://love.bebin98399.workers.dev/lx-origin/th-monomax05_720/chunks.m3u8",drm:false},
 { name:"MAX06",logo:"https://www.fileinwtv.site/postor/20250830165513Mono6.jpg",file:"https://love.bebin98399.workers.dev/lx-origin/th-monomax06_720/chunks.m3u8",drm:false},
@@ -210,7 +213,6 @@ drm:false
 { name:"MAX08",logo:"https://www.fileinwtv.site/postor/20250830165621Mono8.jpg",file:"https://love.pifipa2974.workers.dev/lx-origin/th-monomax08_720/chunks.m3u8",drm:false},
 { name:"MAX09",logo:"https://raw.githubusercontent.com/zaxacaasada/logotv/refs/heads/main/MAXSLOGO.png",file:"https://love.sayob28681.workers.dev/lx-origin/th-monomax09_720/chunks.m3u8",drm:false},
 { name:"MAX10",logo:"https://raw.githubusercontent.com/zaxacaasada/logotv/refs/heads/main/MAXSLOGO.png",file:"https://love.sayob28681.workers.dev/lx-origin/th-monomax10_720/chunks.m3u8",drm:false},
-
 { name:"PLAY SPORTS FOOTBALL 1",logo:"https://raw.githubusercontent.com/zaxacaasada/logotv/refs/heads/main/playsport.png",file:"https://young-sky-6794.hssmnoy.workers.dev/ais/play/anevia/live/eds/TL001/HLS/TL001.m3u8",drm:false},
 { name:"PLAY SPORTS FOOTBALL 2",logo:"https://raw.githubusercontent.com/zaxacaasada/logotv/refs/heads/main/playsport.png",file:"https://young-sky-6794.hssmnoy.workers.dev/ais/play/anevia/live/eds/TL002/HLS/TL002.m3u8",drm:false},
 { name:"PLAY SPORTS FOOTBALL 3",logo:"https://raw.githubusercontent.com/zaxacaasada/logotv/refs/heads/main/playsport.png",file:"https://young-sky-6794.hssmnoy.workers.dev/ais/play/anevia/live/eds/TL003/HLS/TL003.m3u8",drm:false},
@@ -219,25 +221,20 @@ drm:false
 { name:"PLAY SPORTS FOOTBALL 6",logo:"https://raw.githubusercontent.com/zaxacaasada/logotv/refs/heads/main/playsport.png",file:"https://young-sky-6794.hssmnoy.workers.dev/ais/play/anevia/live/eds/TL006/HLS/TL006.m3u8",drm:false},
 { name:"PLAY SPORTS FOOTBALL 7",logo:"https://raw.githubusercontent.com/zaxacaasada/logotv/refs/heads/main/playsport.png",file:"https://young-sky-6794.hssmnoy.workers.dev/ais/play/anevia/live/eds/TL007/HLS/TL007.m3u8",drm:false},
 { name:"PLAY SPORTS FOOTBALL 8",logo:"https://raw.githubusercontent.com/zaxacaasada/logotv/refs/heads/main/playsport.png",file:"https://young-sky-6794.hssmnoy.workers.dev/ais/play/origin/live/eds/TL008/HLS/TL008.m3u8",drm:false},
-
 { name:"SPORT01",logo:"https://cms.dmpcdn.com/livetv/2023/04/24/81825540-e28a-11ed-9bb2-7fe2e28bfd8c_webp_original.png",file:"https://love.bebin98399.workers.dev/vx-origin/hd-tsport1_720/chunks.m3u8",drm:false},
 { name:"SPORT02",logo:"https://cms.dmpcdn.com/livetv/2023/04/28/2960b3f0-e593-11ed-b26c-6b89d082d464_webp_original.webp",file:"https://love.bebin98399.workers.dev/vx-origin/hd-tsport2_720/chunks.m3u8",drm:false},
 { name:"SPORT03",logo:"https://cms.dmpcdn.com/livetv/2023/04/28/296e96a0-e593-11ed-8507-4fc0b025fedb_webp_original.webp",file:"https://love.bebin98399.workers.dev/vx-origin/hd-tsport3_720/chunks.m3u8",drm:false},
 { name:"SPORT04",logo:"https://cms.dmpcdn.com/livetv/2024/01/16/cf36f170-b44d-11ee-b20d-816339e67c2d_webp_original.webp",file:"https://love.bebin98399.workers.dev/lx-origin/hd-tsport4_720/chunks.m3u8",drm:false},
 { name:"SPORT05",logo:"https://cms.dmpcdn.com/livetv/2023/04/28/f493fb20-e595-11ed-b26c-6b89d082d464_webp_original.webp",file:"https://love.bebin98399.workers.dev/vx-origin/sd-tsport5_720/chunks.m3u8",drm:false},
 { name:"SPORT07",logo:"https://cms.dmpcdn.com/livetv/2024/01/16/cff0f2a0-b44d-11ee-9687-e7ccd66e1ea3_webp_original.webp",file:"https://love.bebin98399.workers.dev/vx-origin/sd-tsport7_720/chunks.m3u8",drm:false},
-
 { name:"Football03",logo:"https://cms.dmpcdn.com/livetv/2025/10/27/ebbad850-b303-11f0-b265-23dfa726a2d7_webp_original.webp",file:"https://love.bebin98399.workers.dev/vx-origin/epl-3_720/chunks.m3u8",drm:false},
 { name:"Spotv",logo:"https://cms.dmpcdn.com/livetv/2023/07/24/60cba4d0-29cc-11ee-b2f4-e9de482d866e_webp_original.webp",file:"https://love.bebin98399.workers.dev/vx-origin/hd-spotv_720/chunks.m3u8",drm:false},
 { name:"Spotv2",logo:"https://cms.dmpcdn.com/livetv/2023/07/24/61050450-29cc-11ee-b2f4-e9de482d866e_webp_original.webp",file:"https://love.bebin98399.workers.dev/vx-origin/hd-spotv2_720/chunks.m3u8",drm:false},
-
 { name:"Bein01",logo:"https://cms.dmpcdn.com/livetv/2023/07/24/5f3c5240-29cc-11ee-b2f4-e9de482d866e_webp_original.webp",file:"https://tkgu7xwat7.montionz8935.top/do-ball.com/monomax-5/chunks.m3u8?nimblesessionid=4099376&wmsAuthSign=c2VydmVyX3RpbWU9NS8yLzIwMjYgNDowMjoyOCBQTSZoYXNoX3ZhbHVlPVJpNGpkOWJXRGpMYjFUTTY4UmM0Z2c9PSZ2YWxpZG1pbnV0ZXM9MzYwJmlkPTE=",drm:false},
 { name:"Bein02",logo:"https://cms.dmpcdn.com/livetv/2023/07/24/5f346300-29cc-11ee-b2f4-e9de482d866e_webp_original.webp",file:"https://love.bebin98399.workers.dev/vx-origin/epl-bein2_720/chunks.m3u8",drm:false},
 { name:"Bein03",logo:"https://cms.dmpcdn.com/livetv/2023/07/24/5fda18e0-29cc-11ee-846b-a1c4e5181c87_webp_original.webp",file:"https://love.bebin98399.workers.dev/vx-origin/epl-bein3_720/chunks.m3u8",drm:false},
-
 { name:"Golf Channel",logo:"https://cms.dmpcdn.com/livetv/2023/07/18/7cb4aae0-2515-11ee-9407-9367a664b338_webp_original.webp",file:"https://love.bebin98399.workers.dev/lx-origin/hd-golf2_720/chunks.m3u8",drm:false},
 { name:"TrueTennis",logo:"https://cms.dmpcdn.com/livetv/2022/01/12/29936990-7374-11ec-8066-ffb72c13e721_webp_320.png",file:"https://love.bebin98399.workers.dev/vx-origin/hd-tennis_720/chunks.m3u8",drm:false},
-
 { name:"Hubsport1",logo:"https://api.bananamuffin.org/images/png/sg-hubsport01.png",file:"https://love.bebin98399.workers.dev/lx-origin/sg-hubsport01_720/chunks.m3u8",drm:false},
 { name:"Hubsport2",logo:"https://api.bananamuffin.org/images/png/sg-hubsport02.png",file:"https://love.bebin98399.workers.dev/lx-origin/sg-hubsport02_720/chunks.m3u8",drm:false},
 { name:"Hubsport3",logo:"https://api.bananamuffin.org/images/png/sg-hubsport03.png",file:"https://love.bebin98399.workers.dev/lx-origin/sg-hubsport03_720/chunks.m3u8",drm:false}
@@ -245,191 +242,368 @@ drm:false
 
 let currentHls = null;
 let shakaPlayer = null;
-let activeJW = null;
+let activeChannel = null;
+let activeElement = null;
+let activeUrl = "";
+let hlsWatchdog = null;
+
+function setStatus(text, autoHide=true){
+  const box = document.getElementById("status");
+  if(!box) return;
+  box.textContent = text || "";
+  box.style.display = text ? "block" : "none";
+  if(autoHide && text){
+    clearTimeout(setStatus._timer);
+    setStatus._timer = setTimeout(()=>{ box.style.display = "none"; }, 4500);
+  }
+}
+
+function isWorkerUrl(url){
+  return String(url || "").includes("workers.dev");
+}
 
 function proxyUrl(url){
-return url;
+  url = String(url || "").trim();
+
+  // ผ่าน workers.dev ล้วนๆ:
+  // ถ้าเป็น workers อยู่แล้วใช้ตรง
+  if(isWorkerUrl(url)) return url;
+
+  // ถ้าไม่ใช่ workers ให้บังคับผ่าน Worker กลาง
+  return WORKER_PROXY + encodeURIComponent(url);
+}
+
+function directUrl(url){
+  return String(url || "").trim();
+}
+
+function forceAudio100(){
+  const video = document.getElementById("html5-player");
+  try{
+    video.muted = false;
+    video.defaultMuted = false;
+    video.volume = 1.0;
+  }catch(e){}
+}
+
+function openExternal(url){
+  url = url || (activeChannel ? activeChannel.file : "") || activeUrl;
+  if(!url) return;
+  try{
+    const u = new URL(url);
+    const scheme = u.protocol.replace(":","");
+    const hostPath = u.host + u.pathname + (u.search || "");
+    const intent = "intent://" + hostPath + "#Intent;scheme=" + scheme + ";action=android.intent.action.VIEW;type=video/*;S.browser_fallback_url=" + encodeURIComponent(url) + ";end";
+    window.location.href = intent;
+  }catch(e){
+    window.location.href = url;
+  }
 }
 
 async function stopAllPlayers(){
-const video = document.getElementById("html5-player");
+  const video = document.getElementById("html5-player");
 
-if(currentHls){
-currentHls.destroy();
-currentHls = null;
-}
+  if(hlsWatchdog){
+    clearInterval(hlsWatchdog);
+    hlsWatchdog = null;
+  }
 
-if(shakaPlayer){
-try{ await shakaPlayer.destroy(); }catch(e){}
-shakaPlayer = null;
-}
+  if(currentHls){
+    try{ currentHls.destroy(); }catch(e){}
+    currentHls = null;
+  }
 
-try{
-if(activeJW){
-activeJW.stop();
-activeJW.remove();
-activeJW = null;
-}
-}catch(e){}
+  if(shakaPlayer){
+    try{ await shakaPlayer.destroy(); }catch(e){}
+    shakaPlayer = null;
+  }
 
-video.pause();
-video.removeAttribute("src");
-video.load();
-video.style.display = "none";
+  try{
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+  }catch(e){}
 
-const jwBox = document.getElementById("jw-player");
-if(jwBox) jwBox.style.display = "none";
+  video.style.display = "none";
+
+  const jwBox = document.getElementById("jw-player");
+  if(jwBox) jwBox.style.display = "none";
+  setStatus("");
 }
 
 async function loadChannel(channel, element){
-document.querySelectorAll(".channel").forEach(ch=>ch.classList.remove("active"));
-if(element) element.classList.add("active");
+  activeChannel = channel;
+  activeElement = element;
 
-document.getElementById("player-container").style.display = "block";
-await stopAllPlayers();
+  document.querySelectorAll(".channel").forEach(ch=>ch.classList.remove("active"));
+  if(element) element.classList.add("active");
 
-const url = proxyUrl(channel.file);
+  document.getElementById("player-container").style.display = "block";
+  await stopAllPlayers();
 
-if(url.includes(".mpd")){
-playMPD(channel, url);
-}else{
-useHLS(url);
+  const original = directUrl(channel.file);
+  const url = proxyUrl(channel.file);
+  activeUrl = url;
+
+  if(original.includes(".mpd")){
+    playMPD(channel, url);
+  }else{
+    useHLS_STABLE(url);
+  }
+
+  setTimeout(()=>{
+    const btn = document.getElementById("closeBtn");
+    if(btn) btn.focus();
+  },300);
 }
 
-setTimeout(()=>{
-const btn = document.getElementById("closeBtn");
-if(btn) btn.focus();
-},300);
-}
-
-/* ================= MPD ================= */
+/* ================= MPD ผ่าน workers.dev ================= */
 async function playMPD(channel, url){
-const video = document.getElementById("html5-player");
-const jwBox = document.getElementById("jw-player");
+  const video = document.getElementById("html5-player");
+  const jwBox = document.getElementById("jw-player");
 
-if(jwBox) jwBox.style.display = "none";
-video.style.display = "block";
+  if(jwBox) jwBox.style.display = "none";
+  video.style.display = "block";
+  video.controls = true;
+  forceAudio100();
 
-video.muted = false;
-video.defaultMuted = false;
-video.volume = 1.0;
+  if(!window.shaka){
+    setStatus("เครื่องนี้โหลด Shaka Player ไม่ได้", false);
+    return;
+  }
 
-shaka.polyfill.installAll();
+  shaka.polyfill.installAll();
 
-shakaPlayer = new shaka.Player(video);
+  if(!shaka.Player.isBrowserSupported()){
+    setStatus("เครื่องนี้ไม่รองรับ MPD/DRM ผ่านเว็บ", false);
+    return;
+  }
 
-if(channel.drm){
-shakaPlayer.configure({
-drm:{
-clearKeys:{
-[channel.keyId]: channel.key
+  shakaPlayer = new shaka.Player(video);
+
+  shakaPlayer.configure({
+    streaming:{
+      bufferingGoal: 35,
+      rebufferingGoal: 5,
+      bufferBehind: 20,
+      retryParameters:{
+        maxAttempts: 6,
+        baseDelay: 1000,
+        backoffFactor: 1.5,
+        fuzzFactor: 0.5,
+        timeout: 30000
+      }
+    }
+  });
+
+  if(channel.drm){
+    shakaPlayer.configure({
+      drm:{
+        clearKeys:{
+          [channel.keyId]: channel.key
+        }
+      }
+    });
+  }
+
+  shakaPlayer.addEventListener("error", function(e){
+    console.log("MPD ERROR:", e.detail);
+    setStatus("MPD เล่นในเว็บนี้ไม่ได้ ให้กด PLAYER สำรอง", false);
+  });
+
+  try{
+    setStatus("กำลังโหลด MPD ผ่าน workers.dev...");
+    await shakaPlayer.load(url);
+    forceAudio100();
+    video.play().catch(()=>{});
+    setTimeout(()=>{ forceAudio100(); video.play().catch(()=>{}); },300);
+    setStatus("กำลังเล่น MPD ผ่าน workers.dev");
+  }catch(e){
+    console.log("MPD LOAD ERROR:", e);
+    setStatus("MPD เล่นไม่ได้บนเครื่องนี้ / ให้กด PLAYER", false);
+  }
 }
+
+/* ================= HLS นิ่งๆ ผ่าน workers.dev ================= */
+function useHLS_STABLE(url){
+  const video = document.getElementById("html5-player");
+  const jwBox = document.getElementById("jw-player");
+
+  if(jwBox) jwBox.style.display = "none";
+  video.style.display = "block";
+  video.controls = true;
+  forceAudio100();
+
+  if(currentHls){
+    try{ currentHls.destroy(); }catch(e){}
+    currentHls = null;
+  }
+
+  if(hlsWatchdog){
+    clearInterval(hlsWatchdog);
+    hlsWatchdog = null;
+  }
+
+  if(Hls.isSupported() && url.includes(".m3u8")){
+    setStatus("กำลังโหลด HLS ผ่าน workers.dev...");
+
+    currentHls = new Hls({
+      enableWorker: true,
+      lowLatencyMode: false,
+
+      maxBufferLength: 35,
+      maxMaxBufferLength: 70,
+      backBufferLength: 20,
+      maxBufferHole: 0.4,
+      highBufferWatchdogPeriod: 3,
+      nudgeOffset: 0.1,
+      nudgeMaxRetry: 5,
+
+      manifestLoadingMaxRetry: 6,
+      manifestLoadingRetryDelay: 1200,
+      manifestLoadingMaxRetryTimeout: 10000,
+      levelLoadingMaxRetry: 6,
+      levelLoadingRetryDelay: 1200,
+      levelLoadingMaxRetryTimeout: 10000,
+      fragLoadingMaxRetry: 8,
+      fragLoadingRetryDelay: 1200,
+      fragLoadingMaxRetryTimeout: 12000,
+
+      startFragPrefetch: true,
+      capLevelToPlayerSize: true,
+      testBandwidth: false,
+      abrEwmaDefaultEstimate: 1200000
+    });
+
+    currentHls.loadSource(url);
+    currentHls.attachMedia(video);
+
+    currentHls.on(Hls.Events.MANIFEST_PARSED, function(){
+      forceAudio100();
+      video.play().catch(()=>{});
+      setTimeout(()=>{ forceAudio100(); video.play().catch(()=>{}); },300);
+      setStatus("กำลังเล่น HLS");
+    });
+
+    currentHls.on(Hls.Events.BUFFER_STALLED, function(){
+      setStatus("กำลังเติมบัฟเฟอร์...", true);
+      try{ currentHls.startLoad(); }catch(e){}
+    });
+
+    currentHls.on(Hls.Events.ERROR, function(event, data){
+      console.log("HLS ERROR:", data);
+      if(!currentHls) return;
+
+      if(data.fatal){
+        if(data.type === Hls.ErrorTypes.NETWORK_ERROR){
+          setStatus("เน็ตเวิร์กสะดุด กำลังต่อใหม่...");
+          try{ currentHls.startLoad(); }catch(e){}
+        }else if(data.type === Hls.ErrorTypes.MEDIA_ERROR){
+          setStatus("สัญญาณวิดีโอสะดุด กำลังกู้คืน...");
+          try{ currentHls.recoverMediaError(); }catch(e){}
+        }else{
+          setStatus("โหลดใหม่เพื่อความนิ่ง...", false);
+          try{
+            currentHls.destroy();
+            currentHls = null;
+            setTimeout(()=>useHLS_STABLE(url), 1200);
+          }catch(e){}
+        }
+      }
+    });
+
+    startWatchdog(url);
+
+  }else{
+    video.src = url;
+    setTimeout(()=>{
+      forceAudio100();
+      video.play().catch(()=>{});
+    },300);
+  }
 }
-});
+
+function startWatchdog(url){
+  const video = document.getElementById("html5-player");
+  let lastTime = 0;
+  let stuckCount = 0;
+
+  hlsWatchdog = setInterval(()=>{
+    if(document.getElementById("player-container").style.display !== "block") return;
+    if(!currentHls) return;
+
+    forceAudio100();
+
+    if(video.paused || video.readyState < 2){
+      try{ currentHls.startLoad(); }catch(e){}
+      video.play().catch(()=>{});
+      return;
+    }
+
+    if(Math.abs(video.currentTime - lastTime) < 0.05){
+      stuckCount++;
+    }else{
+      stuckCount = 0;
+    }
+
+    lastTime = video.currentTime;
+
+    if(stuckCount >= 4){
+      setStatus("ภาพค้าง กำลังกู้คืน...");
+      try{ currentHls.startLoad(); }catch(e){}
+      video.play().catch(()=>{});
+      stuckCount = 0;
+    }
+  }, 3000);
 }
 
-try{
-await shakaPlayer.load(url);
-
-setTimeout(()=>{
-video.muted = false;
-video.defaultMuted = false;
-video.volume = 1.0;
-video.play().catch(()=>{});
-},300);
-
-}catch(e){
-console.log("MPD ERROR:", e);
-}
-}
-
-/* ================= HLS ================= */
-function useHLS(url){
-const video = document.getElementById("html5-player");
-const jwBox = document.getElementById("jw-player");
-
-if(jwBox) jwBox.style.display = "none";
-video.style.display = "block";
-
-if(currentHls){
-currentHls.destroy();
-currentHls = null;
-}
-
-if(Hls.isSupported()){
-currentHls = new Hls({
-enableWorker:true,
-maxBufferLength:8,
-maxMaxBufferLength:16
-});
-
-currentHls.loadSource(url);
-currentHls.attachMedia(video);
-
-currentHls.on(Hls.Events.MANIFEST_PARSED, function(){
-
-// 🔥 บังคับเสียง 100%
-video.muted = false;
-video.defaultMuted = false;
-video.volume = 1.0;
-
-video.play().catch(()=>{});
-});
-
-}else{
-video.src = url;
-
-setTimeout(()=>{
-video.muted = false;
-video.defaultMuted = false;
-video.volume = 1.0;
-video.play().catch(()=>{});
-},300);
-}
+function restartCurrent(){
+  if(activeChannel) loadChannel(activeChannel, activeElement);
 }
 
 /* ================= CLOSE ================= */
 async function closePlayer(){
-await stopAllPlayers();
-document.getElementById("player-container").style.display = "none";
+  await stopAllPlayers();
+  document.getElementById("player-container").style.display = "none";
 }
 
 function goHome(){
-window.location.href = "https://tiea9999.github.io/tv-online/index.html";
+  window.location.href = "https://tiea9999.github.io/tv-online/index.html";
 }
 
 /* ================= REMOTE ================= */
 document.addEventListener("keydown",function(e){
-const container = document.getElementById("player-container");
+  const container = document.getElementById("player-container");
 
-if(container.style.display === "block"){
-if(e.key === "Escape" || e.key === "Backspace"){
-e.preventDefault();
-closePlayer();
-}
-}
+  if(container.style.display === "block"){
+    if(e.key === "Escape" || e.key === "Backspace" || e.key === "BrowserBack"){
+      e.preventDefault();
+      closePlayer();
+    }
+  }
 });
 
 /* ================= INIT ================= */
 document.addEventListener("DOMContentLoaded",function(){
-const listContainer = document.getElementById("channel-list");
+  const listContainer = document.getElementById("channel-list");
 
-channels.forEach(ch=>{
-const div = document.createElement("div");
-div.className = "channel";
-div.tabIndex = 0;
-div.innerHTML = `<img src="${ch.logo}"><span>${ch.name}</span>`;
+  channels.forEach(ch=>{
+    const div = document.createElement("div");
+    div.className = "channel";
+    div.tabIndex = 0;
+    div.innerHTML = `<img src="${ch.logo}"><span>${ch.name}</span>`;
 
-div.onclick = ()=>loadChannel(ch,div);
+    div.onclick = ()=>loadChannel(ch,div);
 
-div.onkeydown = e=>{
-if(e.key === "Enter"){
-loadChannel(ch,div);
-}
-};
+    div.onkeydown = e=>{
+      if(e.key === "Enter" || e.key === "OK"){
+        e.preventDefault();
+        loadChannel(ch,div);
+      }
+    };
 
-listContainer.appendChild(div);
-});
+    listContainer.appendChild(div);
+  });
 });
 </script>
 
