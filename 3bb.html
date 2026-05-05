@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV MPD HOME BASE</title>
+    <title>TIEA IPTV MPD HOME BASE HIDE FIX</title>
 
     <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
     <script>
@@ -31,12 +31,28 @@
         @media(max-width:768px){#channel-list{grid-template-columns:repeat(5,1fr)}.player-btn{font-size:16px;padding:8px 12px}}
         @media(max-width:480px){#channel-list{grid-template-columns:repeat(3,1fr)}.channel img{width:52px;height:52px}.channel{font-size:10px;min-height:60px}}
     </style>
+
+<style id="force-autohide-style">
+#player-container.force-hide-controls .player-controls,
+#player-container.force-hide-controls .status{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transform:translateY(-22px)!important;
+}
+#player-container .player-controls{
+  opacity:1;
+  visibility:visible;
+  transition:opacity .22s ease, visibility .22s ease, transform .22s ease;
+}
+</style>
+
 </head>
 
 <body>
 
     <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-    <h2 style="color:orange;text-align:center;">TIEA IPTV MPD HOME BASE</h2>
+    <h2 style="color:orange;text-align:center;">TIEA IPTV MPD HOME BASE HIDE FIX</h2>
 
     <div id="player-container">
         <div class="player-controls">
@@ -213,7 +229,7 @@ async function loadChannel(channel, element){
   if(element) element.classList.add("active");
 
   document.getElementById("player-container").style.display = "block";
-  showPlayerControls();
+  forceShowControls();
   await stopAllPlayers();
 
   const url = proxyUrl(channel.file);
@@ -409,45 +425,49 @@ function restartCurrent(){
 }
 
 
-/* ================= AUTO HIDE PLAYER CONTROLS ONLY ================= */
+
+/* ================= FORCE AUTO HIDE PLAYER CONTROLS ================= */
 let controlsTimer = null;
 
-function showPlayerControls(){
-  const container = document.getElementById("player-container");
-  if(!container) return;
+function forceShowControls(){
+  const box = document.getElementById("player-container");
+  if(!box) return;
 
-  container.classList.remove("controls-hidden");
+  box.classList.remove("force-hide-controls");
+  box.classList.remove("controls-hidden");
 
-  if(controlsTimer){
-    clearTimeout(controlsTimer);
-    controlsTimer = null;
-  }
+  if(controlsTimer) clearTimeout(controlsTimer);
 
   controlsTimer = setTimeout(function(){
-    if(container.style.display === "block"){
-      try{
-        const active = document.activeElement;
-        if(active && active.classList && active.classList.contains("player-btn")){
-          active.blur();
-        }
-      }catch(e){}
-      container.classList.add("controls-hidden");
-    }
+    forceHideControls();
   }, 3000);
 }
 
-function setupAutoHideControls(){
-  const container = document.getElementById("player-container");
-  if(!container || container.dataset.autohideReady === "1") return;
-  container.dataset.autohideReady = "1";
+function forceHideControls(){
+  const box = document.getElementById("player-container");
+  if(!box) return;
+  if(box.style.display !== "none"){
+    try{
+      const active = document.activeElement;
+      if(active && active.blur) active.blur();
+    }catch(e){}
+    box.classList.add("force-hide-controls");
+    box.classList.add("controls-hidden");
+  }
+}
 
-  ["mousemove","mousedown","touchstart","touchmove","click"].forEach(function(ev){
-    container.addEventListener(ev, showPlayerControls, {passive:true});
+function setupForceAutoHide(){
+  const box = document.getElementById("player-container");
+  if(!box || box.dataset.forceHideReady === "1") return;
+  box.dataset.forceHideReady = "1";
+
+  ["mousemove","mousedown","touchstart","touchmove","click","pointermove","pointerdown"].forEach(function(ev){
+    box.addEventListener(ev, forceShowControls, {passive:true});
   });
 
   document.addEventListener("keydown", function(){
-    if(container.style.display === "block"){
-      showPlayerControls();
+    if(box.style.display !== "none"){
+      forceShowControls();
     }
   });
 }
@@ -455,6 +475,8 @@ function setupAutoHideControls(){
 async function closePlayer(){
   await stopAllPlayers();
   document.getElementById("player-container").classList.remove("controls-hidden");
+  document.getElementById("player-container").classList.remove("force-hide-controls");
+  document.getElementById("player-container").classList.remove("force-hide-controls");
   document.getElementById("player-container").style.display = "none";
 }
 
@@ -473,7 +495,7 @@ document.addEventListener("keydown",function(e){
 });
 
 document.addEventListener("DOMContentLoaded",function(){
-  setupAutoHideControls();
+  setupForceAutoHide();
   const listContainer = document.getElementById("channel-list");
 
   channels.forEach(ch=>{
