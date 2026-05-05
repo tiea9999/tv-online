@@ -104,16 +104,7 @@
             background: #000
         }
 
-        .player-controls {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            z-index: 100000;
-            display: flex;
-            justify-content: space-between;
-            gap: 10px
-        }
+        .player-controls{position:absolute;top:12px;left:12px;right:12px;z-index:100000;display:flex;justify-content:space-between;gap:10px;opacity:1;visibility:visible;transform:translateY(0);transition:opacity .25s ease,visibility .25s ease,transform .25s ease}#player-container.controls-hidden .player-controls{opacity:0;visibility:hidden;transform:translateY(-18px);pointer-events:none}#player-container.controls-hidden .status{opacity:0;visibility:hidden}
 
         .btn-row {
             display: flex;
@@ -339,6 +330,7 @@ async function loadChannel(channel, element){
   if(element) element.classList.add("active");
 
   document.getElementById("player-container").style.display = "block";
+  showPlayerControls();
   await stopAllPlayers();
 
   const original = directUrl(channel.file);
@@ -561,9 +553,54 @@ function restartCurrent(){
   if(activeChannel) loadChannel(activeChannel, activeElement);
 }
 
+
+/* ================= AUTO HIDE PLAYER CONTROLS ================= */
+let controlsTimer = null;
+
+function showPlayerControls(){
+  const container = document.getElementById("player-container");
+  if(!container) return;
+
+  container.classList.remove("controls-hidden");
+
+  if(controlsTimer){
+    clearTimeout(controlsTimer);
+    controlsTimer = null;
+  }
+
+  controlsTimer = setTimeout(()=>{
+    if(container.style.display === "block"){
+      try{
+        const active = document.activeElement;
+        if(active && active.classList && active.classList.contains("player-btn")){
+          active.blur();
+        }
+      }catch(e){}
+      container.classList.add("controls-hidden");
+    }
+  }, 3000);
+}
+
+function setupAutoHideControls(){
+  const container = document.getElementById("player-container");
+  if(!container || container.dataset.autohideReady === "1") return;
+  container.dataset.autohideReady = "1";
+
+  ["mousemove","mousedown","touchstart","touchmove","click"].forEach(ev=>{
+    container.addEventListener(ev, showPlayerControls, {passive:true});
+  });
+
+  document.addEventListener("keydown", function(){
+    if(container.style.display === "block"){
+      showPlayerControls();
+    }
+  });
+}
+
 /* ================= CLOSE ================= */
 async function closePlayer(){
   await stopAllPlayers();
+  document.getElementById("player-container").classList.remove("controls-hidden");
   document.getElementById("player-container").style.display = "none";
 }
 
@@ -585,6 +622,7 @@ document.addEventListener("keydown",function(e){
 
 /* ================= INIT ================= */
 document.addEventListener("DOMContentLoaded",function(){
+  setupAutoHideControls();
   const listContainer = document.getElementById("channel-list");
 
   channels.forEach(ch=>{
