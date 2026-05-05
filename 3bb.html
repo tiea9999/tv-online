@@ -478,6 +478,10 @@ function useHLS_STABLE(url, channel=null, triedProxy=false){
   }
 }
 
+function restartCurrent(){
+  if(activeChannel) loadChannel(activeChannel, activeElement);
+}
+
 
 /* ================= AUTO HIDE PLAYER CONTROLS ================= */
 let controlsTimer = null;
@@ -493,7 +497,7 @@ function showPlayerControls(){
     controlsTimer = null;
   }
 
-  controlsTimer = setTimeout(()=>{
+  controlsTimer = setTimeout(function(){
     if(container.style.display === "block"){
       try{
         const active = document.activeElement;
@@ -511,7 +515,7 @@ function setupAutoHideControls(){
   if(!container || container.dataset.autohideReady === "1") return;
   container.dataset.autohideReady = "1";
 
-  ["mousemove","mousedown","touchstart","touchmove","click"].forEach(ev=>{
+  ["mousemove","mousedown","touchstart","touchmove","click"].forEach(function(ev){
     container.addEventListener(ev, showPlayerControls, {passive:true});
   });
 
@@ -520,10 +524,6 @@ function setupAutoHideControls(){
       showPlayerControls();
     }
   });
-}
-
-function restartCurrent(){
-  if(activeChannel) loadChannel(activeChannel, activeElement);
 }
 
 async function closePlayer(){
