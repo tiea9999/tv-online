@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV GOD MODE</title>
+    <title>TIEA IPTV FINAL MPD FIX PRO</title>
 
     <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
     <script>
@@ -36,7 +36,7 @@
 <body>
 
     <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-    <h2 style="color:orange;text-align:center;">TIEA IPTV GOD MODE</h2>
+    <h2 style="color:orange;text-align:center;">TIEA IPTV FINAL MPD FIX PRO</h2>
 
     <div id="player-container">
         <div class="player-controls">
@@ -45,6 +45,8 @@
                 <button class="player-btn" onclick="restartCurrent()">↻ รีโหลด</button>
             </div>
             <div class="right-buttons">
+                <button class="player-btn" onclick="openExternal()">▶ PLAYER</button>
+                <button class="player-btn" onclick="openMX()">▶ MX</button>
                 <button class="player-btn" onclick="goHome()">🏠 HOME</button>
             </div>
         </div>
@@ -112,7 +114,6 @@ let hlsWatchdog = null;
 let activeChannel = null;
 let activeElement = null;
 let activeUrl = "";
-let restartLock = false;
 
 function setStatus(text, autoHide=true){
   const box = document.getElementById("status");
@@ -121,12 +122,27 @@ function setStatus(text, autoHide=true){
   box.style.display = text ? "block" : "none";
   if(autoHide && text){
     clearTimeout(setStatus._timer);
-    setStatus._timer = setTimeout(()=>{ box.style.display = "none"; }, 4500);
+    setStatus._timer = setTimeout(()=>{ box.style.display = "none"; }, 5000);
   }
 }
 
 function proxyUrl(url){
+  url = String(url || "").trim();
+
+  // ลิงก์ workers.dev เล่นตรง ห้าม proxy ซ้อน
+  if(url.includes("workers.dev")) return url;
+
+  // MPD/DRM บังคับผ่าน Worker เพื่อช่วยเรื่อง header / CORS / referer
+  if(url.includes(".mpd")){
+    return WORKER_PROXY + encodeURIComponent(url);
+  }
+
+  // m3u8 เล่นตรงก่อน นิ่งกว่าและเร็วกว่า
   return url;
+}
+
+function directUrl(url){
+  return String(url || "").trim();
 }
 
 function forceAudio100(){
@@ -136,6 +152,40 @@ function forceAudio100(){
     video.defaultMuted = false;
     video.volume = 1.0;
   }catch(e){}
+}
+
+function openExternal(url){
+  url = url || (activeChannel ? activeChannel.file : "") || activeUrl;
+  if(!url) return;
+  try{
+    const u = new URL(url);
+    const scheme = u.protocol.replace(":","");
+    const hostPath = u.host + u.pathname + (u.search || "");
+    const intent = "intent://" + hostPath +
+      "#Intent;scheme=" + scheme +
+      ";action=android.intent.action.VIEW;type=video/*;S.browser_fallback_url=" +
+      encodeURIComponent(url) + ";end";
+    window.location.href = intent;
+  }catch(e){
+    window.location.href = url;
+  }
+}
+
+function openMX(url){
+  url = url || (activeChannel ? activeChannel.file : "") || activeUrl;
+  if(!url) return;
+  try{
+    const u = new URL(url);
+    const scheme = u.protocol.replace(":","");
+    const hostPath = u.host + u.pathname + (u.search || "");
+    const intent = "intent://" + hostPath +
+      "#Intent;scheme=" + scheme +
+      ";action=android.intent.action.VIEW;type=video/*;package=com.mxtech.videoplayer.ad;S.browser_fallback_url=" +
+      encodeURIComponent(url) + ";end";
+    window.location.href = intent;
+  }catch(e){
+    window.location.href = url;
+  }
 }
 
 async function stopAllPlayers(){
@@ -179,13 +229,15 @@ async function loadChannel(channel, element){
   document.getElementById("player-container").style.display = "block";
   await stopAllPlayers();
 
+  const direct = directUrl(channel.file);
   const url = proxyUrl(channel.file);
   activeUrl = url;
 
-  if(url.includes(".mpd")){
-    playMPD(channel, url);
+  if(direct.includes(".mpd")){
+    playMPD_PRO(channel, url, direct);
   }else{
-    useHLS_GOD(url, channel);
+    // m3u8 เล่นตรงก่อน ถ้า error ค่อย fallback proxy ใน useHLS_STABLE
+    useHLS_STABLE(direct, channel);
   }
 
   setTimeout(()=>{
@@ -194,90 +246,106 @@ async function loadChannel(channel, element){
   },300);
 }
 
-async function playMPD(channel, url){
+/* ================= MPD =================
+   หมายเหตุ: MPD/DRM หลายช่องไม่เล่นใน WebView/Smart TV browser
+   เพราะเครื่องไม่รองรับ EME/ClearKey หรือ header/DRM ไม่ผ่าน
+   เวอร์ชันนี้ไม่ฝืนเล่นในเว็บ เพื่อไม่ให้ค้าง/จอดำ
+*/
+function playMPD_PRO(channel, proxyUrlValue, originalUrl){
   const video = document.getElementById("html5-player");
   const jwBox = document.getElementById("jw-player");
-
   if(jwBox) jwBox.style.display = "none";
   video.style.display = "block";
   video.controls = true;
   forceAudio100();
 
-  if(!window.shaka){
-    setStatus("เครื่องนี้โหลด Shaka Player ไม่ได้", false);
-    return;
-  }
+  setStatus("FINAL MPD FIX PRO: กำลังลองเล่น MPD ผ่าน proxy...", false);
 
-  shaka.polyfill.installAll();
+  // ลองด้วย Shaka + ClearKey ก่อน
+  try{
+    if(window.shaka){
+      shaka.polyfill.installAll();
+      if(shaka.Player.isBrowserSupported()){
+        shakaPlayer = new shaka.Player(video);
 
-  if(!shaka.Player.isBrowserSupported()){
-    setStatus("เครื่องนี้ไม่รองรับ MPD/DRM ผ่านเว็บ", false);
-    return;
-  }
+        shakaPlayer.configure({
+          streaming:{
+            bufferingGoal: 35,
+            rebufferingGoal: 5,
+            bufferBehind: 20,
+            retryParameters:{
+              maxAttempts:6,
+              baseDelay:1000,
+              backoffFactor:1.5,
+              fuzzFactor:0.5,
+              timeout:30000
+            }
+          }
+        });
 
-  shakaPlayer = new shaka.Player(video);
+        if(channel.drm){
+          shakaPlayer.configure({
+            drm:{
+              clearKeys:{
+                [channel.keyId]: channel.key
+              }
+            }
+          });
+        }
 
-  shakaPlayer.configure({
-    streaming: {
-      bufferingGoal: 45,
-      rebufferingGoal: 6,
-      bufferBehind: 25,
-      retryParameters: {
-        maxAttempts: 7,
-        baseDelay: 1200,
-        backoffFactor: 1.5,
-        fuzzFactor: 0.5,
-        timeout: 30000
+        shakaPlayer.addEventListener("error", function(e){
+          console.log("Shaka MPD error:", e.detail);
+          setStatus("MPD ผ่านเว็บไม่สำเร็จ กด PLAYER/MX สำรองได้", false);
+        });
+
+        shakaPlayer.load(proxyUrlValue).then(()=>{
+          forceAudio100();
+          video.play().catch(()=>{});
+          setStatus("กำลังเล่น MPD ผ่าน proxy");
+        }).catch(async e=>{
+          console.log("MPD proxy failed, try direct:", e);
+          setStatus("proxy ไม่ผ่าน กำลังลองลิงก์ตรง...", false);
+
+          try{
+            if(shakaPlayer){
+              await shakaPlayer.destroy();
+              shakaPlayer = null;
+            }
+
+            shakaPlayer = new shaka.Player(video);
+
+            if(channel.drm){
+              shakaPlayer.configure({
+                drm:{
+                  clearKeys:{
+                    [channel.keyId]: channel.key
+                  }
+                }
+              });
+            }
+
+            await shakaPlayer.load(originalUrl);
+            forceAudio100();
+            video.play().catch(()=>{});
+            setStatus("กำลังเล่น MPD ลิงก์ตรง");
+          }catch(e2){
+            console.log("MPD direct failed:", e2);
+            setStatus("MPD เล่นในเว็บนี้ไม่ได้ ให้กด PLAYER/MX", false);
+          }
+        });
+
+        return;
       }
     }
-  });
-
-  if(channel.drm){
-    shakaPlayer.configure({
-      drm:{ clearKeys:{ [channel.keyId]: channel.key } }
-    });
-  }
-
-  shakaPlayer.addEventListener("error", function(e){
-    console.log("MPD ERROR:", e.detail);
-    setStatus("MPD โหลดไม่ได้บนเครื่องนี้ หรือคีย์/ลิงก์ไม่ผ่าน", false);
-  });
-
-  try{
-    setStatus("กำลังโหลด MPD...");
-    await shakaPlayer.load(url);
-    forceAudio100();
-    video.play().catch(()=>{});
-    setTimeout(()=>{ forceAudio100(); video.play().catch(()=>{}); },300);
-    setStatus("กำลังเล่น MPD");
   }catch(e){
-    console.log("MPD LOAD ERROR:", e);
-    setStatus("MPD เล่นไม่ได้บนเครื่องนี้ / ลิงก์หรือคีย์อาจไม่ผ่าน", false);
+    console.log("MPD PRO error:", e);
   }
+
+  setStatus("เครื่องนี้ไม่รองรับ MPD/DRM ผ่านเว็บ ให้กด PLAYER/MX", false);
 }
 
-/* ================= HLS GOD MODE ================= */
-function pickStableLevel(hls){
-  try{
-    if(!hls || !hls.levels || !hls.levels.length) return;
-    const levels = hls.levels
-      .map((l,i)=>({i, height:l.height || 0, bitrate:l.bitrate || 0}))
-      .sort((a,b)=>a.bitrate-b.bitrate);
-
-    // เลือก 720p ถ้ามี, ถ้าไม่มีเลือกกลางค่อนไปต่ำ เพื่อความนิ่ง
-    let chosen = levels.find(x => x.height && x.height <= 720 && x.height >= 540);
-    if(!chosen) chosen = levels[Math.max(0, Math.floor((levels.length - 1) * 0.45))];
-
-    hls.currentLevel = chosen.i;
-    hls.loadLevel = chosen.i;
-    hls.nextLevel = chosen.i;
-    hls.autoLevelEnabled = false;
-
-    setStatus("ล็อกคุณภาพนิ่ง: " + (chosen.height ? chosen.height + "p" : "ระดับ " + chosen.i));
-  }catch(e){}
-}
-
-function useHLS_GOD(url, channel){
+/* ================= HLS STABLE CLASSIC ================= */
+function useHLS_STABLE(url, channel=null, triedProxy=false){
   const video = document.getElementById("html5-player");
   const jwBox = document.getElementById("jw-player");
 
@@ -297,85 +365,108 @@ function useHLS_GOD(url, channel){
   }
 
   if(Hls.isSupported() && url.includes(".m3u8")){
-    setStatus("GOD MODE: กำลังโหลด HLS...");
+    setStatus("กำลังโหลด HLS...");
 
     currentHls = new Hls({
       enableWorker: true,
       lowLatencyMode: false,
 
-      // บัฟเฟอร์ยาวขึ้น นิ่งขึ้น
-      maxBufferLength: 60,
-      maxMaxBufferLength: 120,
-      backBufferLength: 30,
-      maxBufferHole: 0.1,
-      highBufferWatchdogPeriod: 5,
-      nudgeOffset: 0.1,
-      nudgeMaxRetry: 8,
+      // สูตรเดิมที่นิ่งกว่า: ไม่ล็อกคุณภาพแข็งเกินไป
+      maxBufferLength: 30,
+      maxMaxBufferLength: 60,
+      backBufferLength: 20,
+      maxBufferHole: 0.5,
+      highBufferWatchdogPeriod: 3,
 
-      // Retry แรงขึ้น
-      manifestLoadingMaxRetry: 8,
-      manifestLoadingRetryDelay: 1200,
-      manifestLoadingMaxRetryTimeout: 12000,
-      levelLoadingMaxRetry: 8,
-      levelLoadingRetryDelay: 1200,
-      levelLoadingMaxRetryTimeout: 12000,
-      fragLoadingMaxRetry: 10,
-      fragLoadingRetryDelay: 1200,
-      fragLoadingMaxRetryTimeout: 15000,
+      manifestLoadingMaxRetry: 5,
+      manifestLoadingRetryDelay: 1000,
+      manifestLoadingMaxRetryTimeout: 8000,
+      levelLoadingMaxRetry: 5,
+      levelLoadingRetryDelay: 1000,
+      levelLoadingMaxRetryTimeout: 8000,
+      fragLoadingMaxRetry: 6,
+      fragLoadingRetryDelay: 1000,
+      fragLoadingMaxRetryTimeout: 10000,
 
-      // กันสลับ bitrate บ่อย
       startFragPrefetch: true,
       capLevelToPlayerSize: true,
       testBandwidth: false,
-      abrEwmaDefaultEstimate: 900000,
-      abrBandWidthFactor: 0.75,
-      abrBandWidthUpFactor: 0.55
+      abrEwmaDefaultEstimate: 1200000
     });
 
     currentHls.loadSource(url);
     currentHls.attachMedia(video);
 
     currentHls.on(Hls.Events.MANIFEST_PARSED, function(){
-      pickStableLevel(currentHls);
       forceAudio100();
       video.play().catch(()=>{});
       setTimeout(()=>{ forceAudio100(); video.play().catch(()=>{}); },300);
-    });
-
-    currentHls.on(Hls.Events.LEVEL_LOADED, function(){
-      forceAudio100();
+      setStatus("กำลังเล่น HLS");
     });
 
     currentHls.on(Hls.Events.BUFFER_STALLED, function(){
-      setStatus("GOD MODE: เติมบัฟเฟอร์...");
-      try{ currentHls.startLoad(); }catch(e){}
+      setStatus("กำลังเติมบัฟเฟอร์...", true);
     });
 
     currentHls.on(Hls.Events.ERROR, function(event, data){
       console.log("HLS ERROR:", data);
       if(!currentHls) return;
 
-      if(data.details === Hls.ErrorDetails.BUFFER_STALLED_ERROR){
+      if(data.fatal){
+        if(data.type === Hls.ErrorTypes.NETWORK_ERROR){
+          setStatus("เน็ตเวิร์กสะดุด กำลังโหลดต่อ...");
+          try{ currentHls.startLoad(); }catch(e){}
+        }else if(data.type === Hls.ErrorTypes.MEDIA_ERROR){
+          setStatus("สัญญาณวิดีโอสะดุด กำลังกู้คืน...");
+          try{ currentHls.recoverMediaError(); }catch(e){}
+        }else{
+          const proxy = WORKER_PROXY + encodeURIComponent(url);
+          if(!triedProxy && !url.includes("workers.dev")){
+            setStatus("ลิงก์ตรงเล่นไม่ได้ กำลังลองผ่าน proxy...", false);
+            try{ currentHls.destroy(); currentHls = null; }catch(e){}
+            setTimeout(()=>useHLS_STABLE(proxy, channel, true), 1200);
+          }else{
+            setStatus("เล่นไม่ได้ กำลังลองโหลดใหม่...", false);
+            try{
+              currentHls.destroy();
+              currentHls = null;
+              setTimeout(()=>useHLS_STABLE(url, channel, triedProxy), 1200);
+            }catch(e){}
+          }
+        }
+      }
+    });
+
+    // watchdog แบบเบา ไม่รีโหลดถี่เกินไป
+    let lastTime = 0;
+    let stuckCount = 0;
+    hlsWatchdog = setInterval(()=>{
+      if(document.getElementById("player-container").style.display !== "block") return;
+      if(!currentHls) return;
+
+      forceAudio100();
+
+      if(video.paused || video.readyState < 2){
         try{ currentHls.startLoad(); }catch(e){}
         video.play().catch(()=>{});
         return;
       }
 
-      if(data.fatal){
-        if(data.type === Hls.ErrorTypes.NETWORK_ERROR){
-          setStatus("GOD MODE: เน็ตสะดุด กำลังต่อใหม่...");
-          try{ currentHls.startLoad(); }catch(e){}
-        }else if(data.type === Hls.ErrorTypes.MEDIA_ERROR){
-          setStatus("GOD MODE: กู้คืนวิดีโอ...");
-          try{ currentHls.recoverMediaError(); }catch(e){}
-        }else{
-          setStatus("GOD MODE: โหลดใหม่ทั้งช่อง...");
-          softRestart();
-        }
+      if(Math.abs(video.currentTime - lastTime) < 0.05){
+        stuckCount++;
+      }else{
+        stuckCount = 0;
       }
-    });
 
-    startHlsWatchdog();
+      lastTime = video.currentTime;
+
+      if(stuckCount >= 4){
+        setStatus("ภาพค้าง กำลังกู้คืน...");
+        try{ currentHls.startLoad(); }catch(e){}
+        video.play().catch(()=>{});
+        stuckCount = 0;
+      }
+    }, 3000);
 
   }else{
     video.src = url;
@@ -384,83 +475,6 @@ function useHLS_GOD(url, channel){
       video.play().catch(()=>{});
     },300);
   }
-}
-
-function startHlsWatchdog(){
-  const video = document.getElementById("html5-player");
-  let lastTime = 0;
-  let stuckCount = 0;
-  let lowBufferCount = 0;
-
-  hlsWatchdog = setInterval(()=>{
-    if(document.getElementById("player-container").style.display !== "block") return;
-    if(!currentHls) return;
-
-    forceAudio100();
-
-    const buffered = (() => {
-      try{
-        if(!video.buffered || video.buffered.length === 0) return 0;
-        for(let i=0;i<video.buffered.length;i++){
-          if(video.currentTime >= video.buffered.start(i) && video.currentTime <= video.buffered.end(i)){
-            return video.buffered.end(i) - video.currentTime;
-          }
-        }
-      }catch(e){}
-      return 0;
-    })();
-
-    if(buffered > 0 && buffered < 2.5){
-      lowBufferCount++;
-      setStatus("GOD MODE: บัฟเฟอร์ต่ำ กำลังดึงล่วงหน้า...");
-      try{ currentHls.startLoad(); }catch(e){}
-    }else{
-      lowBufferCount = 0;
-    }
-
-    if(video.paused || video.readyState < 2){
-      try{ currentHls.startLoad(); }catch(e){}
-      video.play().catch(()=>{});
-      return;
-    }
-
-    if(Math.abs(video.currentTime - lastTime) < 0.03){
-      stuckCount++;
-    }else{
-      stuckCount = 0;
-    }
-
-    lastTime = video.currentTime;
-
-    if(stuckCount >= 3){
-      setStatus("GOD MODE: ภาพค้าง กำลังกู้คืน...");
-      try{
-        currentHls.startLoad();
-        currentHls.recoverMediaError();
-      }catch(e){}
-      video.play().catch(()=>{});
-      stuckCount = 0;
-    }
-
-    if(lowBufferCount >= 5){
-      setStatus("GOD MODE: รีโหลดช่องเพื่อความนิ่ง...");
-      softRestart();
-      lowBufferCount = 0;
-    }
-  }, 3000);
-}
-
-function softRestart(){
-  if(restartLock) return;
-  restartLock = true;
-  setTimeout(async ()=>{
-    if(activeChannel && document.getElementById("player-container").style.display === "block"){
-      await stopAllPlayers();
-      if(activeUrl && activeUrl.includes(".mpd")) playMPD(activeChannel, activeUrl);
-      else useHLS_GOD(activeUrl || activeChannel.file, activeChannel);
-    }
-    setTimeout(()=>restartLock=false, 2500);
-  }, 700);
 }
 
 function restartCurrent(){
