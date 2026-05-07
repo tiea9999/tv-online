@@ -2,19 +2,22 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIEA IPTV DOOBALL JSON ONLY</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TIEA IPTV DOOBALL JSON AUTO SERVER</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.9/shaka-player.compiled.min.js"></script>
 <style>
-body{margin:0;background:#000;color:#fff;font-family:Arial,sans-serif;text-align:center}
-h2{color:orange;margin:14px 0 6px}
-#load-status{color:#9ff;font-size:14px;margin:6px 10px}
+*{box-sizing:border-box}
+body{margin:0;background:#000;color:#fff;font-family:Arial,sans-serif;text-align:center;overflow-x:hidden}
+h2{color:orange;margin:14px 0 6px;font-size:22px}
+#load-status{color:#9ff;font-size:14px;margin:6px 10px;min-height:20px}
 #channel-list{margin:10px auto;max-width:1200px;display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:10px}
-.channel{cursor:pointer;padding:6px 4px;background:#222;border:2px solid #444;border-radius:10px;text-align:center;font-size:12px;min-height:82px}
-.channel img{width:65px;height:65px;margin-bottom:5px;object-fit:contain}
+.channel{cursor:pointer;padding:6px 4px;background:#222;border:2px solid #444;border-radius:10px;text-align:center;font-size:12px;min-height:94px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.channel img{width:65px;height:65px;margin-bottom:3px;object-fit:contain}
+.channel span{display:block;line-height:1.15;word-break:break-word}
+.channel small{color:#9ff;font-size:10px;line-height:1}
 .channel:hover,.channel:focus{background:#000;border-color:orange;outline:none;box-shadow:0 0 0 4px cyan}
-.channel.active{background:orange;color:#000;border-color:yellow}
+.channel.active{background:orange;color:#000;border-color:yellow}.channel.active small{color:#001}
 .back-home{position:fixed;top:15px;left:15px;padding:10px 18px;border-radius:50px;font-weight:700;cursor:pointer;z-index:9999;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff}
 #player-container{position:fixed;inset:0;background:#000;z-index:99999;display:none;overflow:hidden}
 #html5-player{width:100%;height:100%;background:#000}
@@ -25,13 +28,13 @@ h2{color:orange;margin:14px 0 6px}
 .status{position:fixed;bottom:15px;left:15px;right:15px;z-index:100001;text-align:center;background:rgba(0,0,0,.72);padding:8px 12px;border-radius:10px;display:none;font-size:14px;border:1px solid rgba(0,255,255,.35)}
 #player-container.force-hide-controls .player-controls,#player-container.force-hide-controls .status{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
 #player-container .player-controls{transition:opacity .22s ease,visibility .22s ease}
-@media(max-width:768px){#channel-list{grid-template-columns:repeat(5,1fr)}.player-btn{font-size:15px;padding:8px 10px}}
-@media(max-width:480px){#channel-list{grid-template-columns:repeat(3,1fr)}.channel img{width:52px;height:52px}.channel{font-size:10px;min-height:62px}}
+@media(max-width:768px){#channel-list{grid-template-columns:repeat(5,1fr)}.player-btn{font-size:15px;padding:8px 10px}.back-home{position:static;display:inline-block;margin-top:10px}}
+@media(max-width:480px){#channel-list{grid-template-columns:repeat(3,1fr)}.channel img{width:52px;height:52px}.channel{font-size:10px;min-height:78px}h2{font-size:18px}}
 </style>
 </head>
 <body>
 <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-<h2>TIEA IPTV DOOBALL JSON</h2>
+<h2>TIEA IPTV DOOBALL JSON AUTO SERVER</h2>
 <div id="load-status">กำลังโหลด Dooball.json...</div>
 
 <div id="player-container">
@@ -53,45 +56,87 @@ h2{color:orange;margin:14px 0 6px}
 <div id="channel-list"></div>
 
 <script>
-const DOOBALL_JSON="https://raw.githubusercontent.com/tiea9999/tv-online/main/M3U/Dooball.json";
+const DOOBALL_JSONS=[
+  "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/M3U/Dooball.json",
+  "https://raw.githubusercontent.com/tiea9999/tv-online/main/M3U/Dooball.json",
+  "https://raw.githubusercontent.com/tiea9999/tv-online/main/Dooball.json"
+];
 const FALLBACK_LOGO="https://dl.dropboxusercontent.com/scl/fi/k77ovxc35qm0girjo43mt/logo.png?rlkey=1x7w8nk1fl6gptnt9jiaugt54";
 
 let channels=[],currentHls=null,shakaPlayer=null,hlsWatchdog=null,activeChannel=null,activeElement=null,activeUrl="",controlsTimer=null;
+let activeServerIndex=0, switchingServer=false;
 
-function clean(v){return String(v||"").trim()}
-function pick(o,keys){for(const k of keys){if(o&&o[k])return o[k]}return""}
-function isJsonUrl(u){u=clean(u).toLowerCase();return u.includes(".json")||u.includes("githubusercontent.com")}
-function normalizeOne(item,parentGroup=""){
-  const name=pick(item,["title","name","channel","label"])||"ไม่มีชื่อ";
-  const logo=pick(item,["logo","poster","image","thumb","cover","icon"])||FALLBACK_LOGO;
-  const file=pick(item,["file","url","stream","link","source","src"]);
-  const group=pick(item,["group","group-title","category","type"])||parentGroup||"Dooball";
-  const keyId=pick(item,["keyId","kid","key_id"]);
-  const key=pick(item,["key","clearkey"]);
-  if(!file||isJsonUrl(file))return null;
-  return {name,logo,file,group,drm:!!item.drm||!!(keyId&&key),keyId,key};
+function clean(v){return String(v==null?"":v).trim()}
+function pick(o,keys){for(const k of keys){if(o&&o[k]!=null&&clean(o[k])!=="")return o[k]}return""}
+function isJsonUrl(u){u=clean(u).toLowerCase();return u.includes(".json")||u.includes("githubusercontent.com")&&!u.includes(".m3u8")&&!u.includes(".mpd")}
+function isPlayableUrl(u){u=clean(u).toLowerCase();return u.startsWith("http")&&(u.includes(".m3u8")||u.includes(".mpd")||u.includes(".mp4")||u.includes("/chunks")||u.includes("/live/"))}
+
+function makeServer(item,server){
+  const src=server||item||{};
+  const file=clean(pick(src,["file","url","stream","link","source","src"]));
+  const serverName=clean(server?pick(src,["name","title","label"]):"Main");
+  const keyId=clean(pick(src,["keyId","kid","key_id","keyid"])||pick(item,["keyId","kid","key_id","keyid"]));
+  const key=clean(pick(src,["key","clearkey"])||pick(item,["key","clearkey"]));
+  const drm=!!(src.drm||item.drm||keyId&&key);
+  if(!file||isJsonUrl(file)||!isPlayableUrl(file))return null;
+  return {serverName:serverName||"Server",file,drm,keyId,key};
 }
+
+function makeChannel(item,server,parentGroup=""){
+  const name=clean(pick(item,["title","name","channel","label"])||pick(server||{},["title","name","channel","label"])||"ไม่มีชื่อ");
+  const logo=clean(pick(item,["logo","poster","image","thumb","cover","icon","tvg-logo"])||pick(server||{},["logo","poster","image","thumb","cover","icon","tvg-logo"])||FALLBACK_LOGO);
+  const group=clean(pick(item,["group","group-title","category"])||parentGroup||"Dooball");
+  let servers=[];
+  if(Array.isArray(item.servers)){
+    servers=item.servers.map(s=>makeServer(item,s)).filter(Boolean);
+  }else{
+    const s=makeServer(item,server);
+    if(s)servers=[s];
+  }
+  if(!servers.length)return null;
+  return {name,logo,group,servers,file:servers[0].file,drm:servers[0].drm,keyId:servers[0].keyId,key:servers[0].key};
+}
+
 function collect(data,parentGroup=""){
   let out=[];
   if(Array.isArray(data)){data.forEach(x=>out.push(...collect(x,parentGroup)));return out}
   if(!data||typeof data!=="object")return out;
-  const title=pick(data,["title","name","group","category"])||parentGroup;
-  ["items","data","channels","list","rows"].forEach(k=>{
-    if(Array.isArray(data[k]))data[k].forEach(x=>out.push(...collect(x,title)));
+
+  const title=clean(pick(data,["title","name","group","category"])||parentGroup);
+
+  if(Array.isArray(data.servers)){
+    const ch=makeChannel(data,null,title||parentGroup);
+    if(ch)out.push(ch);
+    return out;
+  }
+
+  ["items","data","channels","list","rows","results","playlist"].forEach(k=>{
+    if(Array.isArray(data[k]))data[k].forEach(x=>out.push(...collect(x,title||parentGroup)));
   });
-  const one=normalizeOne(data,parentGroup);
+
+  const one=makeChannel(data,null,parentGroup);
   if(one)out.push(one);
   return out;
 }
+
 async function loadDooballJson(){
   const status=document.getElementById("load-status");
   const list=document.getElementById("channel-list");
   status.textContent="กำลังโหลด Dooball.json...";
   list.innerHTML="";
   try{
-    const res=await fetch(DOOBALL_JSON+"?t="+Date.now(),{cache:"no-store"});
-    if(!res.ok)throw new Error("HTTP "+res.status);
-    const data=await res.json();
+    let data=null,lastErr="";
+    for(const u of DOOBALL_JSONS){
+      try{
+        status.textContent="กำลังโหลด: "+u;
+        const res=await fetch(u+"?t="+Date.now(),{cache:"no-store"});
+        if(!res.ok)throw new Error("HTTP "+res.status);
+        data=await res.json();
+        status.textContent="โหลดไฟล์สำเร็จ: "+u;
+        break;
+      }catch(err){lastErr=err.message;}
+    }
+    if(!data)throw new Error(lastErr||"โหลด JSON ไม่สำเร็จ");
     channels=collect(data);
     const seen=new Set();
     channels=channels.filter(ch=>{
@@ -107,6 +152,7 @@ async function loadDooballJson(){
     status.textContent="โหลด Dooball.json ไม่สำเร็จ: "+e.message;
   }
 }
+
 function renderChannels(){
   const list=document.getElementById("channel-list");
   list.innerHTML="";
@@ -120,32 +166,16 @@ function renderChannels(){
   });
   setTimeout(()=>document.querySelector(".channel")?.focus(),150);
 }
+
 function setStatus(t,autoHide=true){
   const box=document.getElementById("status");
   box.textContent=t||"";
   box.style.display=t?"block":"none";
   if(autoHide&&t){clearTimeout(setStatus._timer);setStatus._timer=setTimeout(()=>box.style.display="none",5000)}
 }
-function forceAudio100(){
-  const v=document.getElementById("html5-player");
-  try{v.muted=false;v.defaultMuted=false;v.volume=1.0}catch(e){}
-}
-function openExternal(url){
-  url=url||activeUrl||(activeChannel?activeChannel.file:"");
-  if(!url)return;
-  try{
-    const u=new URL(url),scheme=u.protocol.replace(":",""),hostPath=u.host+u.pathname+(u.search||"");
-    window.location.href="intent://"+hostPath+"#Intent;scheme="+scheme+";action=android.intent.action.VIEW;type=video/*;S.browser_fallback_url="+encodeURIComponent(url)+";end";
-  }catch(e){window.location.href=url}
-}
-function openMX(url){
-  url=url||activeUrl||(activeChannel?activeChannel.file:"");
-  if(!url)return;
-  try{
-    const u=new URL(url),scheme=u.protocol.replace(":",""),hostPath=u.host+u.pathname+(u.search||"");
-    window.location.href="intent://"+hostPath+"#Intent;scheme="+scheme+";action=android.intent.action.VIEW;type=video/*;package=com.mxtech.videoplayer.ad;S.browser_fallback_url="+encodeURIComponent(url)+";end";
-  }catch(e){window.location.href=url}
-}
+function forceAudio100(){const v=document.getElementById("html5-player");try{v.muted=false;v.defaultMuted=false;v.volume=1.0}catch(e){}}
+function openExternal(url){url=url||activeUrl||(activeChannel?activeChannel.file:"");if(!url)return;try{const u=new URL(url),scheme=u.protocol.replace(":",""),hostPath=u.host+u.pathname+(u.search||"");window.location.href="intent://"+hostPath+"#Intent;scheme="+scheme+";action=android.intent.action.VIEW;type=video/*;S.browser_fallback_url="+encodeURIComponent(url)+";end"}catch(e){window.location.href=url}}
+function openMX(url){url=url||activeUrl||(activeChannel?activeChannel.file:"");if(!url)return;try{const u=new URL(url),scheme=u.protocol.replace(":",""),hostPath=u.host+u.pathname+(u.search||"");window.location.href="intent://"+hostPath+"#Intent;scheme="+scheme+";action=android.intent.action.VIEW;type=video/*;package=com.mxtech.videoplayer.ad;S.browser_fallback_url="+encodeURIComponent(url)+";end"}catch(e){window.location.href=url}}
 async function stopAllPlayers(){
   const v=document.getElementById("html5-player");
   if(hlsWatchdog){clearInterval(hlsWatchdog);hlsWatchdog=null}
@@ -155,15 +185,41 @@ async function stopAllPlayers(){
   setStatus("");
 }
 async function loadChannel(ch,el){
-  activeChannel=ch;activeElement=el;
+  activeChannel=ch;activeElement=el;activeServerIndex=0;switchingServer=false;
   document.querySelectorAll(".channel").forEach(x=>x.classList.remove("active"));
   if(el)el.classList.add("active");
   document.getElementById("player-container").style.display="block";
   forceShowControls();
   await stopAllPlayers();
-  activeUrl=ch.file;
-  if(ch.file.toLowerCase().includes(".mpd"))playMPD(ch,ch.file);else useHLS(ch.file);
+  playServer(activeServerIndex);
   setTimeout(()=>document.getElementById("closeBtn")?.focus(),300);
+}
+function getActiveServer(){
+  if(!activeChannel)return null;
+  return (activeChannel.servers&&activeChannel.servers[activeServerIndex])||activeChannel;
+}
+function playServer(index){
+  if(!activeChannel)return;
+  const s=(activeChannel.servers&&activeChannel.servers[index])||activeChannel;
+  activeServerIndex=index;
+  activeUrl=s.file;
+  const total=activeChannel.servers?activeChannel.servers.length:1;
+  setStatus("กำลังลอง server "+(index+1)+"/"+total+" : "+(s.serverName||"Main"),false);
+  if(s.file.toLowerCase().includes(".mpd"))playMPD(s,s.file);else useHLS(s.file);
+}
+async function tryNextServer(reason){
+  if(switchingServer)return;
+  const total=activeChannel&&activeChannel.servers?activeChannel.servers.length:1;
+  if(!activeChannel||activeServerIndex+1>=total){
+    setStatus((reason||"เล่นไม่ได้")+" | ไม่มี server สำรองแล้ว ให้กด PLAYER/MX",false);
+    return;
+  }
+  switchingServer=true;
+  const next=activeServerIndex+1;
+  setStatus((reason||"server นี้เล่นไม่ได้")+" กำลังลอง server "+(next+1)+"/"+total,false);
+  await stopAllPlayers();
+  switchingServer=false;
+  setTimeout(()=>playServer(next),700);
 }
 function playMPD(ch,url){
   const v=document.getElementById("html5-player");
@@ -176,19 +232,18 @@ function playMPD(ch,url){
         shakaPlayer=new shaka.Player(v);
         shakaPlayer.configure({streaming:{bufferingGoal:30,rebufferingGoal:5,bufferBehind:15,retryParameters:{maxAttempts:4,baseDelay:1000,backoffFactor:1.5,timeout:25000}}});
         if(ch.drm&&ch.keyId&&ch.key)shakaPlayer.configure({drm:{clearKeys:{[ch.keyId]:ch.key}}});
-        shakaPlayer.load(url).then(()=>{forceAudio100();v.play().catch(()=>{});setStatus("กำลังเล่น MPD")}).catch(e=>{console.log(e);setStatus("MPD เล่นในเว็บนี้ไม่ได้ ให้กด PLAYER/MX",false)});
+        shakaPlayer.load(url).then(()=>{forceAudio100();v.play().catch(()=>{});setStatus("กำลังเล่น MPD")}).catch(e=>{console.log(e);tryNextServer("MPD server นี้เล่นไม่ได้")});
       }
     }
-  }catch(e){setStatus("MPD เล่นในเว็บนี้ไม่ได้ ให้กด PLAYER/MX",false)}
+  }catch(e){tryNextServer("MPD server นี้เล่นไม่ได้")}
 }
 function useHLS(url){
   const v=document.getElementById("html5-player");
   v.style.display="block";v.controls=true;forceAudio100();
-
   if(currentHls){try{currentHls.destroy()}catch(e){}currentHls=null}
   if(hlsWatchdog){clearInterval(hlsWatchdog);hlsWatchdog=null}
 
-  if(Hls.isSupported()&&url.toLowerCase().includes(".m3u8")){
+  if(window.Hls&&Hls.isSupported()&&url.toLowerCase().includes(".m3u8")){
     setStatus("กำลังโหลด HLS...");
     currentHls=new Hls({
       enableWorker:true,lowLatencyMode:false,
@@ -202,9 +257,9 @@ function useHLS(url){
     currentHls.on(Hls.Events.ERROR,(event,data)=>{
       console.log("HLS ERROR",data);
       if(!currentHls||!data.fatal)return;
-      if(data.type===Hls.ErrorTypes.NETWORK_ERROR){setStatus("เน็ตเวิร์กสะดุด กำลังโหลดต่อ...");try{currentHls.startLoad()}catch(e){}}
-      else if(data.type===Hls.ErrorTypes.MEDIA_ERROR){setStatus("วิดีโอสะดุด กำลังกู้คืน...");try{currentHls.recoverMediaError()}catch(e){}}
-      else{setStatus("เล่นไม่ได้ กำลังลองโหลดใหม่...",false);try{currentHls.destroy();currentHls=null;setTimeout(()=>useHLS(url),1200)}catch(e){}}
+      if(data.type===Hls.ErrorTypes.NETWORK_ERROR){tryNextServer("HLS network error")}
+      else if(data.type===Hls.ErrorTypes.MEDIA_ERROR){setStatus("วิดีโอสะดุด กำลังกู้คืน...");try{currentHls.recoverMediaError()}catch(e){tryNextServer("HLS media error")}}
+      else{tryNextServer("HLS server นี้เล่นไม่ได้")}
     });
     let last=0,stuck=0;
     hlsWatchdog=setInterval(()=>{
@@ -214,44 +269,23 @@ function useHLS(url){
       if(v.paused||v.readyState<2){try{currentHls.startLoad()}catch(e){}v.play().catch(()=>{});return}
       if(Math.abs(v.currentTime-last)<.05)stuck++;else stuck=0;
       last=v.currentTime;
-      if(stuck>=4){setStatus("ภาพค้าง กำลังกู้คืน...");try{currentHls.startLoad()}catch(e){}v.play().catch(()=>{});stuck=0}
+      if(stuck>=4){tryNextServer("ภาพค้าง");stuck=0}
     },3000);
   }else{
     v.src=url;
-    setTimeout(()=>{forceAudio100();v.play().catch(()=>{})},300);
+    v.onerror=()=>tryNextServer("ไฟล์นี้เล่นไม่ได้");
+    setTimeout(()=>{forceAudio100();v.play().catch(()=>tryNextServer("เบราว์เซอร์ไม่ยอมเล่น server นี้"))},300);
   }
 }
-function restartCurrent(){if(activeChannel)loadChannel(activeChannel,activeElement)}
-function forceShowControls(){
-  const box=document.getElementById("player-container");
-  box.classList.remove("force-hide-controls");
-  if(controlsTimer)clearTimeout(controlsTimer);
-  controlsTimer=setTimeout(forceHideControls,3000);
-}
-function forceHideControls(){
-  const box=document.getElementById("player-container");
-  if(box.style.display!=="none")box.classList.add("force-hide-controls");
-}
-function setupForceAutoHide(){
-  const box=document.getElementById("player-container");
-  ["mousemove","mousedown","touchstart","touchmove","click","pointermove","pointerdown"].forEach(ev=>box.addEventListener(ev,forceShowControls,{passive:true}));
-  document.addEventListener("keydown",()=>{if(box.style.display!=="none")forceShowControls()});
-}
-async function closePlayer(){
-  await stopAllPlayers();
-  const box=document.getElementById("player-container");
-  box.classList.remove("force-hide-controls");
-  box.style.display="none";
-  setTimeout(()=>activeElement?.focus(),150);
-}
+function restartCurrent(){if(activeChannel){activeServerIndex=0;loadChannel(activeChannel,activeElement)}}
+function forceShowControls(){const box=document.getElementById("player-container");box.classList.remove("force-hide-controls");if(controlsTimer)clearTimeout(controlsTimer);controlsTimer=setTimeout(forceHideControls,3000)}
+function forceHideControls(){const box=document.getElementById("player-container");if(box.style.display!=="none")box.classList.add("force-hide-controls")}
+function setupForceAutoHide(){const box=document.getElementById("player-container");["mousemove","mousedown","touchstart","touchmove","click","pointermove","pointerdown"].forEach(ev=>box.addEventListener(ev,forceShowControls,{passive:true}));document.addEventListener("keydown",()=>{if(box.style.display!=="none")forceShowControls()})}
+async function closePlayer(){await stopAllPlayers();const box=document.getElementById("player-container");box.classList.remove("force-hide-controls");box.style.display="none";setTimeout(()=>activeElement?.focus(),150)}
 function goHome(){window.location.href="https://tiea9999.github.io/tv-online/index.html"}
-document.addEventListener("keydown",e=>{
-  const c=document.getElementById("player-container");
-  if(c.style.display==="block"&&(e.key==="Escape"||e.key==="Backspace"||e.key==="BrowserBack"||e.keyCode===10009)){
-    e.preventDefault();closePlayer();
-  }
-});
+document.addEventListener("keydown",e=>{const c=document.getElementById("player-container");if(c.style.display==="block"&&(e.key==="Escape"||e.key==="Backspace"||e.key==="BrowserBack"||e.keyCode===10009)){e.preventDefault();closePlayer()}});
 document.addEventListener("DOMContentLoaded",()=>{setupForceAutoHide();loadDooballJson()});
 </script>
 </body>
 </html>
+
