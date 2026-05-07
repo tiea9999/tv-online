@@ -1,10 +1,86 @@
 [
+
+
+  {
+    "title": "Bloodhounds Season 2",
+    "groups": ["series","series-korea"],
+    "language": "ซับไทย",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/04/Bloodhounds-Season-2-e1775318140769.jpg",
+    "latest_ep": 7,
+    "total_ep": 7,
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2/EP01.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2/EP02.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+           "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2/EP03.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2/EP04.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2/EP05.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2/EP06.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2/EP07.mp4/chunk.m3u8"
+
+          }
+        ]
+      }
+    ]
+  },  
   {
     "title": "ยูมีกับเซลล์สมองสุดอลเวง 3 (Yumi’s Cells 3)",
     "groups": ["series","series-korea"],
     "language": "ซับไทย",
     "poster": "https://www.baan-series.org/wp-content/uploads/2026/04/Yumis-Cells-3-ยูมีกับเซลล์สมองสุดอลเวง-3-e1776144584378.webp",
-    "latest_ep": 1,
+    "latest_ep": 8,
     "total_ep": 8,
     "episodes": [
       {
