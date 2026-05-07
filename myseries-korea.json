@@ -1,4 +1,87 @@
 [
+
+    {
+    "title": "If Wishes Could Kill กีรีโก แอปหลอน พรสั่งตาย",
+    "groups": ["series","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/04/If-Wishes-Could-Kill-กีรีโก-แอปหลอน-พรสั่งตาย-e1777094635878.webp",
+    "latest_ep": 1,
+    "total_ep": 8,
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKillThaiThai/EP01.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKillThai/EP02.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKillThai/EP03.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKillThai/EP04.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKillThai/EP05.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKillThai/EP06.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKillThai/EP07.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKillThai/EP08.mp4/playlist.m3u8"
+          }
+        ]
+      }
+    ]
+  },
   {
     "title": "If Wishes Could Kill กีรีโก แอปหลอน พรสั่งตาย",
     "groups": ["series","series-korea"],
