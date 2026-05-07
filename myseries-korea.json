@@ -1,6 +1,79 @@
 [
 
+  {
+    "title": "Bloodhounds Season 2 พากย์ไทย",
+    "groups": ["series","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/04/Bloodhounds-Season-2-e1775318140769.jpg",
+    "latest_ep": 7,
+    "total_ep": 7,
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2Thai/EP01.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2Thai/EP02.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+           "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2Thai/EP03.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2Thai/EP04.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2Thai/EP05.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2Thai/EP06.mp4/chunk.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaBloodhoundsS2Thai/EP07.mp4/chunk.m3u8"
 
+          }
+        ]
+      }
+    ]
+  },
   {
     "title": "Bloodhounds Season 2",
     "groups": ["series","series-korea"],
