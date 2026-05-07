@@ -2,404 +2,306 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>TIEA IPTV AUTO BEST SERVER FINAL</title>
-
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.9/shaka-player.compiled.min.js"></script>
-
 <style>
+*{box-sizing:border-box}
 body{margin:0;background:#000;color:#fff;font-family:Arial,sans-serif}
-h2{padding:12px;color:orange}
-.group-title{padding:10px 14px;font-size:22px;font-weight:bold;color:cyan}
-.channel-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;padding:10px}
-.channel{background:#222;border:2px solid #444;border-radius:12px;padding:8px;text-align:center;cursor:pointer}
-.channel img{width:70px;height:70px;object-fit:contain}
-.channel:hover,.channel:focus{border-color:orange;outline:none;box-shadow:0 0 10px cyan}
+.home-btn{
+  position:fixed;top:12px;left:12px;z-index:9999;
+  padding:10px 16px;border-radius:999px;background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.35);color:#fff;text-decoration:none;font-weight:900
+}
+.home-btn:hover,.home-btn:focus{outline:none;box-shadow:0 0 0 4px cyan}
+h2{padding:60px 14px 8px;margin:0;color:orange;text-align:center}
+#load-status{text-align:center;color:#9ff;font-size:14px;margin:6px 10px}
+.group-title{padding:14px 14px 4px;font-size:22px;font-weight:bold;color:cyan}
+.channel-row{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:10px 14px}
+.channel{background:#222;border:2px solid #444;border-radius:12px;padding:8px;text-align:center;cursor:pointer;min-height:96px}
+.channel img{width:68px;height:68px;object-fit:contain;margin-bottom:5px}
+.channel:hover,.channel:focus{border-color:orange;outline:none;box-shadow:0 0 0 4px cyan}
+.channel.active{background:orange;color:#000;border-color:yellow}
 #player-container{position:fixed;inset:0;background:#000;display:none;z-index:99999}
 #player{width:100%;height:100%;background:#000}
-.player-controls{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;z-index:100000}
-.player-btn{background:rgba(0,0,0,.75);color:#fff;border:2px solid #fff;border-radius:12px;padding:10px 16px;font-size:16px;font-weight:bold;margin:3px}
-.status{position:absolute;bottom:15px;left:15px;right:15px;text-align:center;background:rgba(0,0,0,.7);padding:10px;border-radius:10px;z-index:100001}
+.player-controls{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;gap:10px;z-index:100000}
+.left-buttons,.right-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.player-btn{background:rgba(0,0,0,.75);color:#fff;border:2px solid #fff;border-radius:12px;padding:10px 16px;font-size:16px;font-weight:900;cursor:pointer}
+.player-btn:focus{outline:none;box-shadow:0 0 0 4px cyan}
+.status{position:absolute;bottom:15px;left:15px;right:15px;text-align:center;background:rgba(0,0,0,.72);padding:10px;border-radius:10px;z-index:100001}
+@media(max-width:900px){.channel-row{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:520px){.channel-row{grid-template-columns:repeat(3,1fr)}.channel img{width:54px;height:54px}.player-btn{font-size:14px;padding:8px 10px}}
 </style>
 </head>
 <body>
 
+<a class="home-btn" href="https://tiea9999.github.io/tv-online/index.html">⬅ กลับหน้าหลัก</a>
 <h2>TIEA IPTV AUTO BEST SERVER FINAL</h2>
-
+<div id="load-status">กำลังโหลด Dooball.json...</div>
 <div id="app"></div>
 
 <div id="player-container">
-
-<div class="player-controls">
-<div>
-<button class="player-btn" onclick="closePlayer()">X</button>
-<button class="player-btn" onclick="reloadPlayer()">↻ รีโหลด</button>
-</div>
-
-<div>
-<button class="player-btn" onclick="openExternal()">▶ PLAYER</button>
-<button class="player-btn" onclick="openMX()">▶ MX</button>
-<button class="player-btn" onclick="goHome()">🏠 HOME</button>
-</div>
-</div>
-
-<video id="player" controls autoplay playsinline webkit-playsinline></video>
-
-<div id="status" class="status">กำลังโหลด...</div>
-
+  <div class="player-controls">
+    <div class="left-buttons">
+      <button class="player-btn" id="closeBtn" onclick="closePlayer()">X</button>
+      <button class="player-btn" onclick="reloadPlayer()">↻ รีโหลด</button>
+    </div>
+    <div class="right-buttons">
+      <button class="player-btn" onclick="openExternal()">▶ PLAYER</button>
+      <button class="player-btn" onclick="openMX()">▶ MX</button>
+      <button class="player-btn" onclick="goHome()">🏠 HOME</button>
+    </div>
+  </div>
+  <video id="player" controls autoplay playsinline webkit-playsinline></video>
+  <div id="status" class="status">กำลังโหลด...</div>
 </div>
 
 <script>
-
 const JSON_URL="https://raw.githubusercontent.com/tiea9999/tv-online/main/M3U/Dooball.json";
+const FALLBACK_LOGO="https://dl.dropboxusercontent.com/scl/fi/k77ovxc35qm0girjo43mt/logo.png?rlkey=1x7w8nk1fl6gptnt9jiaugt54";
 
 const app=document.getElementById("app");
 const player=document.getElementById("player");
+const loadStatus=document.getElementById("load-status");
 
-let hls=null;
-let shakaPlayer=null;
-let currentChannel=null;
-let currentServerIndex=0;
+let hls=null,shakaPlayer=null,currentChannel=null,currentServerIndex=0,currentElement=null;
 
-function setStatus(t){
- document.getElementById("status").textContent=t;
-}
+function clean(v){return String(v||"").trim()}
+function pick(o,keys){for(const k of keys){if(o&&o[k]!==undefined&&o[k]!==null&&clean(o[k])!=="")return o[k]}return ""}
+function setStatus(t){document.getElementById("status").textContent=t||""}
+function isJsonUrl(u){u=clean(u).toLowerCase();return u.includes(".json")}
 
-function pick(o,k){
- for(const x of k){
-   if(o&&o[x]) return o[x];
- }
- return "";
-}
-
-function normalize(item){
-
- let servers=[];
-
- if(Array.isArray(item.servers) && item.servers.length){
-
-   item.servers.forEach(s=>{
-      const url=pick(s,["url","file","stream","link"]);
-      if(url){
+function normalize(item,parentGroup=""){
+  let servers=[];
+  if(Array.isArray(item.servers)&&item.servers.length){
+    item.servers.forEach(s=>{
+      const url=clean(pick(s,["url","file","stream","link","source","src"]));
+      if(url&&!isJsonUrl(url)){
         servers.push({
-          url:url,
-          drm:!!s.drm,
-          keyId:s.keyId||"",
-          key:s.key||""
+          name:pick(s,["name","title","label"])||("Server "+(servers.length+1)),
+          url,
+          drm:!!s.drm||!!(pick(s,["keyId","kid","key_id"])&&pick(s,["key","clearkey"])),
+          keyId:pick(s,["keyId","kid","key_id"])||"",
+          key:pick(s,["key","clearkey"])||""
         });
       }
-   });
-
- }else{
-
-   const url=pick(item,["url","file","stream","link"]);
-
-   if(url){
+    });
+  }else{
+    const url=clean(pick(item,["url","file","stream","link","source","src"]));
+    if(url&&!isJsonUrl(url)){
       servers.push({
-        url:url,
-        drm:false,
-        keyId:"",
-        key:""
+        name:"Main",
+        url,
+        drm:!!item.drm||!!(pick(item,["keyId","kid","key_id"])&&pick(item,["key","clearkey"])),
+        keyId:pick(item,["keyId","kid","key_id"])||"",
+        key:pick(item,["key","clearkey"])||""
       });
-   }
-
- }
-
- if(!servers.length) return null;
-
- return{
-   title:pick(item,["title","name"]) || "No Name",
-   logo:pick(item,["logo","poster","image"]) || "",
-   group:pick(item,["group","category"]) || "อื่นๆ",
-   servers
- };
-
+    }
+  }
+  if(!servers.length)return null;
+  return{
+    title:pick(item,["title","name","channel","label"])||"ไม่มีชื่อ",
+    logo:pick(item,["logo","poster","image","thumb","cover","icon"])||FALLBACK_LOGO,
+    group:pick(item,["group","group-title","category"])||parentGroup||"อื่นๆ",
+    servers
+  };
 }
 
-function collect(data,out=[]){
+function collect(data,parentGroup="",out=[]){
+  if(Array.isArray(data)){data.forEach(x=>collect(x,parentGroup,out));return out}
+  if(!data||typeof data!=="object")return out;
 
- if(Array.isArray(data)){
-   data.forEach(x=>collect(x,out));
-   return out;
- }
+  const title=pick(data,["group","category","title","name"])||parentGroup;
 
- if(typeof data!=="object" || !data) return out;
+  const one=normalize(data,parentGroup);
+  if(one)out.push(one);
 
- const one=normalize(data);
-
- if(one) out.push(one);
-
- ["items","channels","data","list"].forEach(k=>{
-   if(Array.isArray(data[k])) collect(data[k],out);
- });
-
- return out;
+  ["items","channels","data","list","rows"].forEach(k=>{
+    if(Array.isArray(data[k]))data[k].forEach(x=>collect(x,title,out));
+  });
+  return out;
 }
 
 async function load(){
+  app.innerHTML="";
+  loadStatus.textContent="กำลังโหลด Dooball.json...";
+  try{
+    const res=await fetch(JSON_URL+"?t="+Date.now(),{cache:"no-store"});
+    if(!res.ok)throw new Error("HTTP "+res.status);
+    const json=await res.json();
+    let channels=collect(json);
 
- const res=await fetch(JSON_URL+"?t="+Date.now());
+    const seen=new Set();
+    channels=channels.filter(ch=>{
+      const key=(ch.title+"|"+ch.servers.map(s=>s.url).join("|")).toLowerCase();
+      if(seen.has(key))return false;
+      seen.add(key);
+      return true;
+    });
 
- const json=await res.json();
+    if(!channels.length){
+      loadStatus.textContent="โหลดได้ แต่ไม่พบช่องใน JSON";
+      return;
+    }
 
- const channels=collect(json);
+    loadStatus.textContent="โหลดสำเร็จ "+channels.length+" ช่อง";
+    render(channels);
+  }catch(e){
+    loadStatus.textContent="โหลด Dooball.json ไม่สำเร็จ: "+e.message;
+  }
+}
 
- const groups={};
+function render(channels){
+  const groups={};
+  channels.forEach(ch=>{
+    if(!groups[ch.group])groups[ch.group]=[];
+    groups[ch.group].push(ch);
+  });
 
- channels.forEach(ch=>{
-   if(!groups[ch.group]) groups[ch.group]=[];
-   groups[ch.group].push(ch);
- });
+  Object.keys(groups).forEach(group=>{
+    const title=document.createElement("div");
+    title.className="group-title";
+    title.textContent=group;
+    app.appendChild(title);
 
- Object.keys(groups).forEach(group=>{
+    const row=document.createElement("div");
+    row.className="channel-row";
 
-   const title=document.createElement("div");
-   title.className="group-title";
-   title.textContent=group;
-   app.appendChild(title);
-
-   const row=document.createElement("div");
-   row.className="channel-row";
-
-   groups[group].forEach(ch=>{
-
+    groups[group].forEach(ch=>{
       const div=document.createElement("div");
-
       div.className="channel";
       div.tabIndex=0;
-
-      div.innerHTML=`
-      <img src="${ch.logo}">
-      <div>${ch.title}</div>
-      `;
-
-      div.onclick=()=>playChannel(ch);
-
+      div.innerHTML='<img src="'+ch.logo+'" onerror="this.src=\''+FALLBACK_LOGO+'\'"><div>'+ch.title+'</div>';
+      div.onclick=()=>playChannel(ch,div);
+      div.onkeydown=e=>{
+        if(e.key==="Enter"||e.key==="OK"||e.key===" "){
+          e.preventDefault();
+          playChannel(ch,div);
+        }
+      };
       row.appendChild(div);
+    });
+    app.appendChild(row);
+  });
 
-   });
-
-   app.appendChild(row);
-
- });
-
+  setTimeout(()=>document.querySelector(".channel")?.focus(),200);
 }
 
 async function stopPlayers(){
-
- try{
-   if(hls){
-      hls.destroy();
-      hls=null;
-   }
- }catch(e){}
-
- try{
-   if(shakaPlayer){
-      await shakaPlayer.destroy();
-      shakaPlayer=null;
-   }
- }catch(e){}
-
- try{
-   player.pause();
-   player.removeAttribute("src");
-   player.load();
- }catch(e){}
-
+  try{if(hls){hls.destroy();hls=null}}catch(e){}
+  try{if(shakaPlayer){await shakaPlayer.destroy();shakaPlayer=null}}catch(e){}
+  try{player.pause();player.removeAttribute("src");player.load()}catch(e){}
 }
 
-async function playChannel(ch){
-
- currentChannel=ch;
- currentServerIndex=0;
-
- document.getElementById("player-container").style.display="block";
-
- await stopPlayers();
-
- tryServer();
-
+async function playChannel(ch,el){
+  currentChannel=ch;
+  currentElement=el;
+  currentServerIndex=0;
+  document.querySelectorAll(".channel").forEach(x=>x.classList.remove("active"));
+  if(el)el.classList.add("active");
+  document.getElementById("player-container").style.display="block";
+  setTimeout(()=>document.getElementById("closeBtn")?.focus(),200);
+  await tryServer();
 }
 
 async function tryServer(){
-
- if(!currentChannel) return;
-
- if(currentServerIndex >= currentChannel.servers.length){
-
+  if(!currentChannel)return;
+  if(currentServerIndex>=currentChannel.servers.length){
     setStatus("ทุก Server เล่นไม่ได้");
     return;
-
- }
-
- const s=currentChannel.servers[currentServerIndex];
-
- setStatus("กำลังลอง Server "+(currentServerIndex+1));
-
- await stopPlayers();
-
- if(s.url.includes(".mpd")){
-    playMPD(s);
- }else{
-    playHLS(s);
- }
-
+  }
+  await stopPlayers();
+  const s=currentChannel.servers[currentServerIndex];
+  setStatus("กำลังลอง "+(s.name||("Server "+(currentServerIndex+1)))+"...");
+  if(s.url.toLowerCase().includes(".mpd"))playMPD(s);
+  else playHLS(s);
 }
 
 function nextServer(){
-
- currentServerIndex++;
-
- setStatus("เปลี่ยนไป Backup "+(currentServerIndex+1));
-
- setTimeout(()=>{
-   tryServer();
- },1000);
-
+  currentServerIndex++;
+  setTimeout(tryServer,700);
 }
 
 function playMPD(s){
-
- if(window.shaka){
-
+  try{
+    if(!window.shaka){nextServer();return}
     shaka.polyfill.installAll();
-
     shakaPlayer=new shaka.Player(player);
-
-    if(s.drm && s.keyId && s.key){
-
-      shakaPlayer.configure({
-        drm:{
-          clearKeys:{
-            [s.keyId]:s.key
-          }
-        }
-      });
-
+    shakaPlayer.configure({streaming:{retryParameters:{maxAttempts:2,timeout:12000}}});
+    if(s.drm&&s.keyId&&s.key){
+      shakaPlayer.configure({drm:{clearKeys:{[s.keyId]:s.key}}});
     }
-
-    shakaPlayer.load(s.url)
-    .then(()=>{
-       player.play();
-       setStatus("กำลังเล่น MPD");
-    })
-    .catch(()=>{
-       nextServer();
-    });
-
- }
-
+    shakaPlayer.load(s.url).then(()=>{
+      player.muted=false;player.volume=1;
+      player.play().catch(()=>{});
+      setStatus("กำลังเล่น "+(s.name||"Server "+(currentServerIndex+1)));
+    }).catch(()=>nextServer());
+  }catch(e){nextServer()}
 }
 
 function playHLS(s){
-
- if(Hls.isSupported() && s.url.includes(".m3u8")){
-
-    hls=new Hls({
-      enableWorker:true,
-      lowLatencyMode:false,
-      maxBufferLength:30,
-      maxMaxBufferLength:60
-    });
-
-    hls.loadSource(s.url);
-
+  const url=s.url;
+  let started=false;
+  if(window.Hls&&Hls.isSupported()&&url.toLowerCase().includes(".m3u8")){
+    hls=new Hls({enableWorker:true,lowLatencyMode:false,maxBufferLength:30,maxMaxBufferLength:60,manifestLoadingMaxRetry:2,levelLoadingMaxRetry:2,fragLoadingMaxRetry:2});
+    hls.loadSource(url);
     hls.attachMedia(player);
-
     hls.on(Hls.Events.MANIFEST_PARSED,()=>{
-       player.play();
-       setStatus("กำลังเล่น Server "+(currentServerIndex+1));
+      started=true;
+      player.muted=false;player.volume=1;
+      player.play().catch(()=>{});
+      setStatus("กำลังเล่น "+(s.name||"Server "+(currentServerIndex+1)));
     });
-
-    hls.on(Hls.Events.ERROR,(e,data)=>{
-
-      if(data.fatal){
-         nextServer();
-      }
-
+    hls.on(Hls.Events.ERROR,(ev,data)=>{
+      if(data&&data.fatal)nextServer();
     });
-
     setTimeout(()=>{
-      if(player.readyState<2 || player.paused){
-         nextServer();
-      }
+      if(!started||player.readyState<2)nextServer();
     },5000);
-
- }else{
-
-    player.src=s.url;
-
-    player.play().catch(()=>{
-      nextServer();
-    });
-
- }
-
+  }else{
+    player.src=url;
+    player.play().then(()=>{
+      setStatus("กำลังเล่น "+(s.name||"Server "+(currentServerIndex+1)));
+    }).catch(()=>nextServer());
+  }
 }
 
 function closePlayer(){
-
- stopPlayers();
-
- document.getElementById("player-container").style.display="none";
-
+  stopPlayers();
+  document.getElementById("player-container").style.display="none";
+  setTimeout(()=>currentElement?.focus(),150);
 }
-
-function reloadPlayer(){
-
- if(currentChannel){
-   playChannel(currentChannel);
- }
-
+function reloadPlayer(){if(currentChannel){currentServerIndex=0;tryServer()}}
+function goHome(){window.location.href="https://tiea9999.github.io/tv-online/index.html"}
+function activeUrl(){
+  if(!currentChannel||!currentChannel.servers[currentServerIndex])return "";
+  return currentChannel.servers[currentServerIndex].url;
 }
-
-function goHome(){
-
- window.location.href="https://tiea9999.github.io/tv-online/index.html";
-
-}
-
 function openExternal(){
-
- if(!currentChannel) return;
-
- window.location.href=currentChannel.servers[currentServerIndex].url;
-
+  const url=activeUrl(); if(!url)return;
+  try{
+    const u=new URL(url),scheme=u.protocol.replace(":",""),hostPath=u.host+u.pathname+(u.search||"");
+    window.location.href="intent://"+hostPath+"#Intent;scheme="+scheme+";action=android.intent.action.VIEW;type=video/*;S.browser_fallback_url="+encodeURIComponent(url)+";end";
+  }catch(e){window.location.href=url}
 }
-
 function openMX(){
-
- if(!currentChannel) return;
-
- const url=currentChannel.servers[currentServerIndex].url;
-
- try{
-
-    const u=new URL(url);
-
-    const scheme=u.protocol.replace(":","");
-
-    const hostPath=u.host+u.pathname+(u.search||"");
-
-    window.location.href=
-    "intent://"+hostPath+
-    "#Intent;scheme="+scheme+
-    ";action=android.intent.action.VIEW;type=video/*;package=com.mxtech.videoplayer.ad;end";
-
- }catch(e){
-
-    window.location.href=url;
-
- }
-
+  const url=activeUrl(); if(!url)return;
+  try{
+    const u=new URL(url),scheme=u.protocol.replace(":",""),hostPath=u.host+u.pathname+(u.search||"");
+    window.location.href="intent://"+hostPath+"#Intent;scheme="+scheme+";action=android.intent.action.VIEW;type=video/*;package=com.mxtech.videoplayer.ad;S.browser_fallback_url="+encodeURIComponent(url)+";end";
+  }catch(e){window.location.href=url}
 }
 
-load();
+document.addEventListener("keydown",e=>{
+  const box=document.getElementById("player-container");
+  if(box.style.display==="block"&&(e.key==="Escape"||e.key==="Backspace"||e.key==="BrowserBack"||e.keyCode===10009)){
+    e.preventDefault();
+    closePlayer();
+  }
+});
 
+document.addEventListener("DOMContentLoaded",load);
 </script>
 </body>
 </html>
-
-
