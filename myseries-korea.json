@@ -1,10 +1,89 @@
 [
   {
+    "title": "If Wishes Could Kill กีรีโก แอปหลอน พรสั่งตาย",
+    "groups": ["series","series-korea"],
+    "language": "ซับไทย",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/04/If-Wishes-Could-Kill-กีรีโก-แอปหลอน-พรสั่งตาย-e1777094635878.webp",
+    "latest_ep": 1,
+    "total_ep": 8,
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKill/EP01.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKill/EP02.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKill/EP03.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKill/EP04.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKill/EP05.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKill/EP06.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKill/EP07.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaIfWishesCouldKill/EP08.mp4/playlist.m3u8"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "title": "Something Is Not Right (2025) แพ้เสียงในหัว(ใจ)",
-    "groups": [
-      "series",
-      "series-korea"
-    ],
+    "groups": ["series","series-korea"],
     "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/แพ้เสียงในหัวใจ-1.webp",
     "latest_ep": 6,
