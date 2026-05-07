@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>TIEA IPTV AUTO BEST SERVER FINAL</title>
+<title>TIEA IPTV PROJECTOR SMOOTH FINAL</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.9/shaka-player.compiled.min.js"></script>
 <style>
@@ -37,7 +37,7 @@ h2{padding:60px 14px 8px;margin:0;color:orange;text-align:center}
 <body>
 
 <a class="home-btn" href="https://tiea9999.github.io/tv-online/index.html">⬅ กลับหน้าหลัก</a>
-<h2>TIEA IPTV AUTO BEST SERVER FINAL</h2>
+<h2>TIEA IPTV PROJECTOR SMOOTH FINAL</h2>
 <div id="load-status">กำลังโหลด Dooball.json...</div>
 <div id="app"></div>
 
@@ -243,22 +243,106 @@ function playMPD(s){
 function playHLS(s){
   const url=s.url;
   let started=false;
+
   if(window.Hls&&Hls.isSupported()&&url.toLowerCase().includes(".m3u8")){
-    hls=new Hls({enableWorker:true,lowLatencyMode:false,maxBufferLength:30,maxMaxBufferLength:60,manifestLoadingMaxRetry:2,levelLoadingMaxRetry:2,fragLoadingMaxRetry:2});
+    hls=new Hls({
+      // PROJECTOR SMOOTH FINAL
+      enableWorker:false,
+      lowLatencyMode:false,
+
+      // buffer ยาวขึ้น เหมาะกับหนัง/ซีรี่ย์/โปรเจ็คเตอร์
+      maxBufferLength:80,
+      maxMaxBufferLength:120,
+      backBufferLength:30,
+
+      // ลดอาการสะดุด/หมุน
+      maxBufferHole:1.5,
+      nudgeOffset:0.2,
+      nudgeMaxRetry:5,
+      highBufferWatchdogPeriod:3,
+
+      // retry เยอะขึ้นสำหรับเน็ตแกว่ง
+      manifestLoadingMaxRetry:6,
+      levelLoadingMaxRetry:6,
+      fragLoadingMaxRetry:8,
+
+      manifestLoadingRetryDelay:1500,
+      levelLoadingRetryDelay:1500,
+      fragLoadingRetryDelay:1500,
+
+      // Android TV / Projector
+      capLevelToPlayerSize:true,
+      startLevel:0,
+      testBandwidth:false,
+      abrEwmaDefaultEstimate:900000
+    });
+
     hls.loadSource(url);
     hls.attachMedia(player);
+
     hls.on(Hls.Events.MANIFEST_PARSED,()=>{
       started=true;
-      player.muted=false;player.volume=1;
+      player.muted=false;
+      player.volume=1;
       player.play().catch(()=>{});
       setStatus("กำลังเล่น "+(s.name||"Server "+(currentServerIndex+1)));
     });
+
     hls.on(Hls.Events.ERROR,(ev,data)=>{
-      if(data&&data.fatal)nextServer();
+      console.log("HLS ERROR",data);
+
+      if(data&&data.fatal){
+        if(data.type===Hls.ErrorTypes.NETWORK_ERROR){
+          setStatus("เน็ตสะดุด กำลังกู้คืน...");
+          try{hls.startLoad()}catch(e){}
+        }else if(data.type===Hls.ErrorTypes.MEDIA_ERROR){
+          setStatus("วิดีโอสะดุด กำลังกู้คืน...");
+          try{hls.recoverMediaError()}catch(e){}
+        }else{
+          nextServer();
+        }
+      }
     });
+
+    // Watchdog แก้ภาพค้าง/หมุนเป็นระยะ
+    let lastTime=0;
+    let stuck=0;
+
+    const watchdog=setInterval(()=>{
+      const box=document.getElementById("player-container");
+
+      if(box.style.display!=="block"){
+        clearInterval(watchdog);
+        return;
+      }
+
+      if(player.paused){
+        player.play().catch(()=>{});
+      }
+
+      if(Math.abs(player.currentTime-lastTime)<0.05){
+        stuck++;
+      }else{
+        stuck=0;
+      }
+
+      lastTime=player.currentTime;
+
+      if(stuck>=4){
+        setStatus("ภาพค้าง กำลังกู้คืน...");
+        try{hls.startLoad()}catch(e){}
+        player.play().catch(()=>{});
+        stuck=0;
+      }
+    },3000);
+
+    // ให้เวลาโปรเจ็คเตอร์โหลดนานขึ้น ไม่สลับ Backup เร็วเกินไป
     setTimeout(()=>{
-      if(!started||player.readyState<2)nextServer();
-    },5000);
+      if(!started||player.readyState<2){
+        nextServer();
+      }
+    },8000);
+
   }else{
     player.src=url;
     player.play().then(()=>{
