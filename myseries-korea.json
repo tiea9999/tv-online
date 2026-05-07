@@ -1,5 +1,86 @@
 [
-
+  {
+    "title": "ยูมีกับเซลล์สมองสุดอลเวง 3 (Yumi’s Cells 3)",
+    "groups": ["series","series-korea"],
+    "language": "ซับไทย",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/04/Yumis-Cells-3-ยูมีกับเซลล์สมองสุดอลเวง-3-e1776144584378.webp",
+    "latest_ep": 1,
+    "total_ep": 8,
+    "episodes": [
+      {
+        "title": "EP1",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaYumisCellsS3/EP01.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP2",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaYumisCellsS3/EP02.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP3",
+        "servers": [
+          {
+            "name": "Main",
+           "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaYumisCellsS3/EP03.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP4",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaYumisCellsS3/EP04.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP5",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaYumisCellsS3/EP05.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP6",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaYumisCellsS3/EP06.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaYumisCellsS3/EP07.mp4/playlist.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2026KoreaYumisCellsS3/EP08.mp4/playlist.m3u8"
+          }
+        ]
+      }
+    ]
+  },
     {
     "title": "If Wishes Could Kill กีรีโก แอปหลอน พรสั่งตาย พากย์ไทย",
     "groups": ["series","series-korea"],
