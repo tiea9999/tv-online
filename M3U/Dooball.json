@@ -6,7 +6,7 @@
     "servers": [
       {
         "name": "Main",
-        "url": "https://fembeqv2.xyz/cdn/hls/a69dd9fa347e78ec2e40513bd7245758/master.txt",
+        "url": "https://fembeqv2.xyz/cdn/hls/a69dd9fa347e78ec2e40513bd7245758",
        "drm": false
       }
     ]
