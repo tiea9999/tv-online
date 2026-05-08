@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>TIEA IPTV PROJECTOR SAFE PLAYER FINAL</title>
+<title>TIEA IPTV PROJECTOR SAFE PLAYER FINAL MAX VOLUME</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.9/shaka-player.compiled.min.js"></script>
 <style>
@@ -37,7 +37,7 @@ h2{padding:60px 14px 8px;margin:0;color:orange;text-align:center}
 <body>
 
 <a class="home-btn" href="https://tiea9999.github.io/tv-online/index.html">⬅ กลับหน้าหลัก</a>
-<h2>TIEA IPTV PROJECTOR SAFE PLAYER FINAL</h2>
+<h2>TIEA IPTV PROJECTOR SAFE PLAYER FINAL MAX VOLUME</h2>
 <div id="load-status">กำลังโหลด Dooball.json...</div>
 <div id="app"></div>
 
@@ -283,7 +283,8 @@ function playHLS(s){
     hls.on(Hls.Events.MANIFEST_PARSED,()=>{
       started=true;
       player.muted=false;
-      player.volume=1;
+      player.volume=1.0;
+      try{player.defaultMuted=false;}catch(e){}
       player.play().catch(()=>{});
       setStatus("กำลังเล่น "+(s.name||"Server "+(currentServerIndex+1)));
     });
@@ -319,6 +320,10 @@ function playHLS(s){
       if(player.paused){
         player.play().catch(()=>{});
       }
+
+      // FORCE MAX VOLUME
+      player.volume=1.0;
+      player.muted=false;
 
       if(Math.abs(player.currentTime-lastTime)<0.05){
         stuck++;
