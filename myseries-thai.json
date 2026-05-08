@@ -164,6 +164,7 @@
     "total_ep": 8,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/de66e1eae6307a488109a82e73464770/master.m3u8" }] }
+      ]
   },
   {
     "title": "กฎหลัก-ห้ามรักเธอ",
