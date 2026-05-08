@@ -45,8 +45,29 @@
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP10.mp4/chunk.m3u8" }] },
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP11.mp4/chunk.m3u8" }] },
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP12.mp4/chunk.m3u8" }] }
+
+ ]
+ },      
+ {
+    "title": "Climax สุดจุดเดือด ซับไทย",
+    "language": "ซับไทย",
+    "groups": ["series","series-korea"],
+    "poster": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP01.mp4/chunk.m3u8",
+    "latest_ep": 10,
+    "total_ep": 10,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP01.mp4/chunk.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP02.mp4/chunk.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP03.mp4/chunk.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP04.mp4/chunk.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP05.mp4/chunk.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP06.mp4/chunk.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP07.mp4/chunk.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP08.mp4/chunk.m3u8" }] },
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP09.mp4/chunk.m3u8" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP10.mp4/chunk.m3u8" }] }
     ]
- },
+  },
  {
     "title": "Bloodhounds Season 2 พากย์ไทย",
     "groups": ["series","series-korea"],
