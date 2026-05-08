@@ -822,6 +822,26 @@
             "url": "https://ok-hd.com/hls/a019b0286df5cd5b590e087d0e0b11f6/master.m3u8"
           }
         ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/c0d77a343d98539bd97dad90706a9db6/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/e840718ea4bc923b4c7ad42166bc6f8e/master.m3u8"
+          
+          
+          }
+        ]
       }
     ]
   },
