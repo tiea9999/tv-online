@@ -6,7 +6,7 @@
     "servers": [
       {
         "name": "Main",
-        "url": "http://fastopen.live:8080/live/MLS003/qZj4zbPNDn/130723.m3u8",
+        "url": "http://v3tv.live:80/165377933209746/t9qn9irjyf/1776086.m3u8",
        "drm": false
       }
     ]
