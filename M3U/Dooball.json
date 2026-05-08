@@ -6,7 +6,7 @@
     "servers": [
       {
         "name": "Main",
-        "url": "https://raw.githubusercontent.com/tummeng21/m3u8/refs/heads/main/max2b.m3u8",
+        "url": "http://safetv.vip:8080/live/8gULQeqH3I/kbuahRdUJV/130725.m3u8",
        "drm": false
       }
     ]
