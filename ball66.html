@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>TIEA IPTV PROJECTOR SMOOTH FINAL</title>
+<title>TIEA IPTV PROJECTOR SAFE PLAYER FINAL</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.9/shaka-player.compiled.min.js"></script>
 <style>
@@ -37,7 +37,7 @@ h2{padding:60px 14px 8px;margin:0;color:orange;text-align:center}
 <body>
 
 <a class="home-btn" href="https://tiea9999.github.io/tv-online/index.html">⬅ กลับหน้าหลัก</a>
-<h2>TIEA IPTV PROJECTOR SMOOTH FINAL</h2>
+<h2>TIEA IPTV PROJECTOR SAFE PLAYER FINAL</h2>
 <div id="load-status">กำลังโหลด Dooball.json...</div>
 <div id="app"></div>
 
@@ -363,18 +363,32 @@ function activeUrl(){
   return currentChannel.servers[currentServerIndex].url;
 }
 function openExternal(){
-  const url=activeUrl(); if(!url)return;
-  try{
-    const u=new URL(url),scheme=u.protocol.replace(":",""),hostPath=u.host+u.pathname+(u.search||"");
-    window.location.href="intent://"+hostPath+"#Intent;scheme="+scheme+";action=android.intent.action.VIEW;type=video/*;S.browser_fallback_url="+encodeURIComponent(url)+";end";
-  }catch(e){window.location.href=url}
+  const url=activeUrl(); 
+  if(!url)return;
+
+  // PROJECTOR SAFE: เปิดลิงก์ https ตรง ๆ
+  window.location.href=url;
 }
 function openMX(){
-  const url=activeUrl(); if(!url)return;
+  const url=activeUrl(); 
+  if(!url)return;
+
   try{
-    const u=new URL(url),scheme=u.protocol.replace(":",""),hostPath=u.host+u.pathname+(u.search||"");
-    window.location.href="intent://"+hostPath+"#Intent;scheme="+scheme+";action=android.intent.action.VIEW;type=video/*;package=com.mxtech.videoplayer.ad;S.browser_fallback_url="+encodeURIComponent(url)+";end";
-  }catch(e){window.location.href=url}
+    const u=new URL(url);
+    const scheme=u.protocol.replace(":","");
+    const hostPath=u.host+u.pathname+(u.search||"");
+
+    window.location.href=
+      "intent://"+hostPath+
+      "#Intent;scheme="+scheme+
+      ";action=android.intent.action.VIEW"+
+      ";type=video/*"+
+      ";package=com.mxtech.videoplayer.ad"+
+      ";S.browser_fallback_url="+encodeURIComponent(url)+
+      ";end";
+  }catch(e){
+    window.location.href=url;
+  }
 }
 
 document.addEventListener("keydown",e=>{
