@@ -6,7 +6,7 @@
     "servers": [
       {
         "name": "Main",
-        "url": "http://safetv.vip:8080/live/8gULQeqH3I/kbuahRdUJV/130725.m3u8",
+        "url": "https://embed-test.bananacake.org/embed/monomax-01-th?muted=0",
        "drm": false
       }
     ]
