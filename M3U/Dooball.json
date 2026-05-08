@@ -6,7 +6,7 @@
     "servers": [
       {
         "name": "Main",
-        "url": "https://embed-test.bananacake.org/embed/monomax-01-th?muted=0",
+        "url": "http://fastopen.live:8080/live/MLS003/qZj4zbPNDn/130723.m3u8",
        "drm": false
       }
     ]
