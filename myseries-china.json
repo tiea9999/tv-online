@@ -1,5 +1,25 @@
 [
   {
+    "title": "Bloom Life (2026) เพลงรักแห่งคัชการ์",
+    "groups": ["series","series-china"],
+    "language": "พากย์ไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/05/เพลงรักแห่งคัชการ์-1.webp",
+    "latest_ep": 8,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/7ad0f4be881be592588e4c5a316ba612/master.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/7e45bcf1509bec96efce2d8f98c743e2/master.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/142c3c9915265fd5149b4b8b426a35fe/master.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/74560f5563a0ec4559077a5cdf5e58d8/master.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5df18dfa77cf4c8392bfc6ab7d2f0cf8/master.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/e0c823cc9840ad845159d109bab3c207/master.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/88a16e7e1c05c9f9519433eb081fc676/master.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/86a8f755da390aedb0e2c8da6535960b/master.m3u8" }] }
+    ]
+  },
+
+  
+  {
     "title": "Lady Liberty (2026) วังวนรักกลางมหานคร",
     "groups": [
       "series",
