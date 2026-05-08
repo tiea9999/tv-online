@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>TIEA IPTV PROJECTOR AUTO DETECT FINAL FIX</title>
+<title>TIEA IPTV AUTO HIDE PLAYER FINAL</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.9/shaka-player.compiled.min.js"></script>
 <style>
@@ -33,6 +33,15 @@ h2{padding:60px 14px 8px;margin:0;color:orange;text-align:center;text-shadow:0 0
 .empty{padding:30px;text-align:center;color:#ffcc66}
 #player-container{position:fixed;inset:0;background:#000;display:none;z-index:99999}
 #player{width:100%;height:100%;background:#000}
+#player-container.hide-ui .player-controls,
+#player-container.hide-ui .status{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.player-controls,.status{
+  transition:opacity .25s ease, visibility .25s ease;
+}
 .player-controls{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;gap:10px;z-index:100000}
 .left-buttons,.right-buttons{display:flex;gap:10px;flex-wrap:wrap}
 .player-btn{background:rgba(0,0,0,.75);color:#fff;border:2px solid #fff;border-radius:12px;padding:10px 16px;font-size:16px;font-weight:900;cursor:pointer}
@@ -45,7 +54,7 @@ h2{padding:60px 14px 8px;margin:0;color:orange;text-align:center;text-shadow:0 0
 <body>
 
 <a class="home-btn" href="https://tiea9999.github.io/tv-online/index.html">⬅ กลับหน้าหลัก</a>
-<h2>TIEA IPTV PROJECTOR AUTO DETECT FINAL FIX</h2>
+<h2>TIEA IPTV AUTO HIDE PLAYER FINAL</h2>
 <div id="load-status">กำลังโหลด JSON...</div>
 
 <div class="tools">
@@ -249,6 +258,7 @@ async function playChannel(ch,el){
   document.querySelectorAll(".channel").forEach(x=>x.classList.remove("active"));
   if(el)el.classList.add("active");
   document.getElementById("player-container").style.display="block";
+  showPlayerUI();
   setTimeout(()=>document.getElementById("closeBtn")?.focus(),200);
   await tryServer();
 }
@@ -484,7 +494,46 @@ document.getElementById("jsonFile").addEventListener("change",async e=>{
   }
 });
 
-document.addEventListener("DOMContentLoaded",loadDefaultJson);
+
+let uiTimer=null;
+
+function showPlayerUI(){
+  const box=document.getElementById("player-container");
+
+  box.classList.remove("hide-ui");
+
+  if(uiTimer) clearTimeout(uiTimer);
+
+  uiTimer=setTimeout(()=>{
+    if(box.style.display==="block"){
+      box.classList.add("hide-ui");
+    }
+  },3000);
+}
+
+function setupAutoHideUI(){
+  const box=document.getElementById("player-container");
+
+  [
+    "mousemove",
+    "mousedown",
+    "touchstart",
+    "touchmove",
+    "pointermove",
+    "pointerdown",
+    "click"
+  ].forEach(ev=>{
+    box.addEventListener(ev,showPlayerUI,{passive:true});
+  });
+
+  document.addEventListener("keydown",()=>{
+    if(box.style.display==="block"){
+      showPlayerUI();
+    }
+  });
+}
+
+document.addEventListener("DOMContentLoaded",()=>{setupAutoHideUI();loadDefaultJson();});
 </script>
 </body>
 </html>
