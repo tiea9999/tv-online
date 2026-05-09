@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV WORKERS STABLE</title>
+    <title>TIEA IPTV WORKERS SPORT STABLE FINAL</title>
 
     <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
     <script>
@@ -160,7 +160,7 @@
 <body>
 
     <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-    <h2 style="color:orange;text-align:center;">TIEA IPTV WORKERS STABLE</h2>
+    <h2 style="color:orange;text-align:center;">TIEA IPTV WORKERS SPORT STABLE FINAL</h2>
 
     <div id="player-container">
         <div class="player-controls">
@@ -448,31 +448,41 @@ function useHLS_STABLE(url){
     setStatus("กำลังโหลด HLS ผ่าน workers.dev...");
 
     currentHls = new Hls({
+      // WORKERS SPORT STABLE FINAL
       enableWorker: true,
       lowLatencyMode: false,
 
-      maxBufferLength: 35,
-      maxMaxBufferLength: 70,
-      backBufferLength: 20,
-      maxBufferHole: 0.4,
-      highBufferWatchdogPeriod: 3,
-      nudgeOffset: 0.1,
-      nudgeMaxRetry: 5,
+      // เพิ่ม buffer ให้นิ่งขึ้น
+      maxBufferLength: 120,
+      maxMaxBufferLength: 180,
+      backBufferLength: 60,
 
-      manifestLoadingMaxRetry: 6,
-      manifestLoadingRetryDelay: 1200,
-      manifestLoadingMaxRetryTimeout: 10000,
-      levelLoadingMaxRetry: 6,
-      levelLoadingRetryDelay: 1200,
-      levelLoadingMaxRetryTimeout: 10000,
-      fragLoadingMaxRetry: 8,
-      fragLoadingRetryDelay: 1200,
-      fragLoadingMaxRetryTimeout: 12000,
+      // ลดภาพหมุน
+      maxBufferHole: 2.5,
+      highBufferWatchdogPeriod: 5,
+      nudgeOffset: 0.3,
+      nudgeMaxRetry: 8,
+
+      // retry สูงขึ้น
+      manifestLoadingMaxRetry: 10,
+      manifestLoadingRetryDelay: 2000,
+      manifestLoadingMaxRetryTimeout: 20000,
+
+      levelLoadingMaxRetry: 10,
+      levelLoadingRetryDelay: 2000,
+      levelLoadingMaxRetryTimeout: 20000,
+
+      fragLoadingMaxRetry: 12,
+      fragLoadingRetryDelay: 2000,
+      fragLoadingMaxRetryTimeout: 25000,
 
       startFragPrefetch: true,
       capLevelToPlayerSize: true,
       testBandwidth: false,
-      abrEwmaDefaultEstimate: 1200000
+      abrEwmaDefaultEstimate: 700000,
+
+      liveSyncDurationCount: 5,
+      liveMaxLatencyDurationCount: 12
     });
 
     currentHls.loadSource(url);
@@ -548,13 +558,13 @@ function startWatchdog(url){
 
     lastTime = video.currentTime;
 
-    if(stuckCount >= 4){
+    if(stuckCount >= 7){
       setStatus("ภาพค้าง กำลังกู้คืน...");
       try{ currentHls.startLoad(); }catch(e){}
       video.play().catch(()=>{});
       stuckCount = 0;
     }
-  }, 3000);
+  }, 4000);
 }
 
 function restartCurrent(){
