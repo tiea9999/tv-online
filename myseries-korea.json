@@ -1,4 +1,66 @@
 [
+  {
+    "title": "ศัตรูหัวใจ นางร้ายวังหลวง",
+    "language": "ซับไทย",
+    "groups": ["series","series-korea"],
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/05/ศัตรูหัวใจ-นางร้ายวังหลวง-1.webp",
+    "latest_ep": 1,
+    "total_ep": 14,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f52d74d2f208e3b55c6208a79bba6683/master.m3u8" }] }
+    ]
+  },
+ {
+    "title": "Climax (2026) สุดจุดเดือด พากย์ไทย",
+    "language": "พากย์ไทย",
+    "groups": ["series","series-korea"],
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/05/สุดจุดเดือด-1.webp",
+    "latest_ep": 4,
+    "total_ep": 10,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a7c0cc7e9d0241056f42d61a173a181f/master.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/96f0707a119f5946349df18e0e79165a/master.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/71bf2e2c671fb89b4af3997bf2dd174b/master.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/4a45c8aecc0f809cd4f89ba7954a0ac0/master.m3u8" }] }
+    ]
+  },
+ {
+    "title": "Perfect Crown (2026) รักนี้มงลง",
+    "language": "ซับไทย",
+    "groups": ["series","series-korea"],
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/รักนี้มงลง-1.webp",
+    "latest_ep": 9,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a7ecfac6b2d2efb82e93dafaead33560/master.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/0ea010e0a0563102780acbeaa7e55afc/master.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1c6027883f5fbfb19d6f7ac42591d071/master.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/105398c938a1c6a5a1664f3fff49d86e/master.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/ff818001afee5b0b2f805d6799164c86/master.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/fe6603363e7f0557d132771c347ef47b/master.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6ff7755d66551dcebff54df963fd2e35/master.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/893bd19bc8f37e6f74e42e829117b01d/master.m3u8" }] },
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/816dd3b5d31e74730dda8e46e6a5ca60/master.m3u8" }] }
+    ]
+  },
+ {
+    "title": "Reverse (2026) จิตไม่ลืมแค้น ซับไทย",
+    "language": "ซับไทย",
+    "groups": ["series","series-korea"],
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/จิตไม่ลืมแค้น-1.webp",
+    "latest_ep": 8,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/672457e3e99e527f404ab74a28212545/master.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/88b341bf656e40614d0eb68d408f08fc/master.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6531156926720c5b5cd9747bf96075d5/master.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://top-cdn.com/hls/b3ddf0579db02e603f7f8a79265bea4b/master.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/0414574e17143ee543acbc237ddb34c5/master.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c148dd488f17572f49a99f9bf707c995/master.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/fab88bdda82f54d19e45979e39bfd5bb/master.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/7fe84e7f73403a8fb7da465d0a5b2c81/master.m3u8" }] }
+    ]
+  },
  {
     "title": "Phantom Lawyer ทนายสื่อวิญญาณ  ซับไทย",
    "groups": ["series","series-korea"],
