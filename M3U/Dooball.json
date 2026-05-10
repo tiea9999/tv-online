@@ -6,7 +6,11 @@
     "servers": [
       {
         "name": "Main",
-         "url": "https://love.uh6wzyncw9.workers.dev/lx-origin/hd-amarin_720/chunks.m3u8",
+         "url": "http://195.128.27.141:80/rmt8r91bac/tsleey7v5g/1776240.ts"
+        {
+        "name": "Backup 1",
+        "url": "http://v3tv.live:80/165377933209746/t9qn9irjyf/1776086.ts",
+      },      
         "drm": false
       }
     ]
