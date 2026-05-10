@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA SPORT FINAL</title>
+    <title>TIEA SPORT TS EXTERNAL FINAL</title>
 
     <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
     <script>
@@ -161,7 +161,7 @@
 <body>
 
     <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-    <h2 style="color:orange;text-align:center;">TIEA SPORT FINAL</h2>
+    <h2 style="color:orange;text-align:center;">TIEA SPORT TS EXTERNAL FINAL</h2>
 
     <div id="player-container">
         <div class="player-controls">
@@ -357,6 +357,14 @@ async function loadChannel(channel, element){
   }
 
   activeUrl = url;
+
+  // RAW TS DIRECT MODE
+  // ลิงก์ .ts สดบนโปรเจ็คเตอร์/เว็บวิวไม่เสถียร ให้เปิด PLAYER/MX โดยตรง
+  if(original.toLowerCase().includes(".ts") && !original.toLowerCase().includes(".m3u8")){
+    setStatus("TS สดเปิดผ่านเว็บไม่เสถียร กำลังเปิด PLAYER...", false);
+    setTimeout(()=>openExternal(original), 500);
+    return;
+  }
 
   if(original.includes(".mpd")){
     playMPD(channel, url);
