@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIEA IPTV WORKERS MPEGTS FINAL</title>
+    <title>TIEA IPTV WORKERS TS AUTO RECONNECT FINAL</title>
 
     <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
     <script>
@@ -161,7 +161,7 @@
 <body>
 
     <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-    <h2 style="color:orange;text-align:center;">TIEA IPTV WORKERS MPEGTS FINAL</h2>
+    <h2 style="color:orange;text-align:center;">TIEA IPTV WORKERS TS AUTO RECONNECT FINAL</h2>
 
     <div id="player-container">
         <div class="player-controls">
@@ -441,61 +441,155 @@ async function playMPD(channel, url){
 function playSingleTsAsHls(tsUrl){
   const video = document.getElementById("html5-player");
 
-  setStatus("กำลังโหลด TS Live...");
+  setStatus("กำลังโหลด TS Live Auto Reconnect...");
 
   if(currentHls){
     try{ currentHls.destroy(); }catch(e){}
     currentHls = null;
   }
 
-  if(mpegTsPlayer){
-    try{ mpegTsPlayer.destroy(); }catch(e){}
+  if(hlsWatchdog){
+    clearInterval(hlsWatchdog);
+    hlsWatchdog = null;
+  }
+
+  function destroyTsPlayer(){
+    try{
+      if(mpegTsPlayer){
+        try{mpegTsPlayer.pause && mpegTsPlayer.pause()}catch(e){}
+        try{mpegTsPlayer.unload && mpegTsPlayer.unload()}catch(e){}
+        try{mpegTsPlayer.detachMediaElement && mpegTsPlayer.detachMediaElement()}catch(e){}
+        try{mpegTsPlayer.destroy && mpegTsPlayer.destroy()}catch(e){}
+      }
+    }catch(e){}
     mpegTsPlayer = null;
   }
 
-  // MPEG-TS live stream ต้องใช้ mpegts.js โดยตรง
-  if(window.mpegts && mpegts.getFeatureList().mseLivePlayback){
-    try{
-      mpegTsPlayer = mpegts.createPlayer({
-        type: "mpegts",
-        isLive: true,
-        url: tsUrl,
-        cors: true,
-        withCredentials: false
-      },{
-        enableWorker: true,
-        lazyLoad: false,
-        liveBufferLatencyChasing: true,
-        liveBufferLatencyMaxLatency: 8,
-        liveBufferLatencyMinRemain: 1
-      });
+  let reconnectLock = false;
+  let reconnectCount = 0;
 
-      mpegTsPlayer.attachMediaElement(video);
-      mpegTsPlayer.load();
+  function scheduleReconnect(delay){
+    if(reconnectLock) return;
+    reconnectLock = true;
+    reconnectCount++;
 
-      setTimeout(()=>{
-        forceAudio100();
-        video.play().then(()=>{
-          setStatus("กำลังเล่น TS Live");
-        }).catch(()=>{
-          setStatus("TS Live ต้องกด ▶ บนจอ หรือกด PLAYER", false);
-        });
-      },500);
-
-      mpegTsPlayer.on(mpegts.Events.ERROR,function(type,detail,info){
-        console.log("MPEGTS ERROR",type,detail,info);
-        setStatus("TS Live เล่นในเว็บไม่ได้ ให้กด PLAYER", false);
-      });
-
-      return;
-    }catch(e){
-      console.log("MPEGTS INIT ERROR",e);
-    }
+    setTimeout(()=>{
+      setStatus("กำลังต่อสัญญาณใหม่ ครั้งที่ "+reconnectCount+"...");
+      createTsPlayer();
+      reconnectLock = false;
+    }, delay || 1000);
   }
 
-  // fallback สุดท้าย: เปิดลิงก์ตรง
-  setStatus("เครื่องนี้ไม่รองรับ TS Live ในเว็บ ให้กด PLAYER", false);
-  openExternal(tsUrl);
+  function createTsPlayer(){
+    destroyTsPlayer();
+
+    if(!window.mpegts || !mpegts.getFeatureList().mseLivePlayback){
+      setStatus("เครื่องนี้ไม่รองรับ TS Live ในเว็บ ให้กด PLAYER", false);
+      openExternal(tsUrl);
+      return;
+    }
+
+    try{
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    }catch(e){}
+
+    const freshUrl = tsUrl + (tsUrl.includes("?") ? "&" : "?") + "_t=" + Date.now();
+
+    mpegTsPlayer = mpegts.createPlayer({
+      type: "mpegts",
+      isLive: true,
+      url: freshUrl,
+      cors: true,
+      withCredentials: false
+    },{
+      // TS AUTO RECONNECT STABLE FINAL
+      enableWorker: false,
+      enableStashBuffer: true,
+      stashInitialSize: 1024 * 768,
+
+      lazyLoad: false,
+      deferLoadAfterSourceOpen: false,
+
+      autoCleanupSourceBuffer: true,
+      autoCleanupMaxBackwardDuration: 45,
+      autoCleanupMinBackwardDuration: 15,
+
+      liveBufferLatencyChasing: true,
+      liveBufferLatencyMaxLatency: 6,
+      liveBufferLatencyMinRemain: 1.5,
+
+      fixAudioTimestampGap: true,
+      accurateSeek: false
+    });
+
+    mpegTsPlayer.attachMediaElement(video);
+    mpegTsPlayer.load();
+
+    const tryPlay = ()=>{
+      forceAudio100();
+      video.play().then(()=>{
+        setStatus("กำลังเล่น TS Live");
+      }).catch(()=>{
+        setStatus("กด ▶ บนจอ 1 ครั้ง ถ้าเครื่องบล็อก autoplay", false);
+      });
+    };
+
+    setTimeout(tryPlay, 500);
+    setTimeout(tryPlay, 1600);
+    setTimeout(tryPlay, 3200);
+
+    mpegTsPlayer.on(mpegts.Events.ERROR,function(type,detail,info){
+      console.log("MPEGTS ERROR",type,detail,info);
+      setStatus("TS ขาดช่วง กำลังต่อ stream ใหม่...");
+      scheduleReconnect(1200);
+    });
+  }
+
+  createTsPlayer();
+
+  let lastTime = 0;
+  let stuck = 0;
+  let noData = 0;
+
+  hlsWatchdog = setInterval(()=>{
+    if(document.getElementById("player-container").style.display !== "block"){
+      clearInterval(hlsWatchdog);
+      hlsWatchdog = null;
+      destroyTsPlayer();
+      return;
+    }
+
+    forceAudio100();
+
+    if(video.paused){
+      setStatus("เล่นต่ออัตโนมัติ...");
+      video.play().catch(()=>{});
+    }
+
+    if(video.readyState < 2){
+      noData++;
+      setStatus("กำลังรอสัญญาณ TS...");
+    }else{
+      noData = 0;
+    }
+
+    if(Math.abs(video.currentTime - lastTime) < 0.05){
+      stuck++;
+    }else{
+      stuck = 0;
+    }
+
+    lastTime = video.currentTime;
+
+    if(noData >= 6 || stuck >= 8){
+      setStatus("TS ค้าง กำลังสร้างตัวเล่นใหม่...");
+      noData = 0;
+      stuck = 0;
+      scheduleReconnect(800);
+    }
+  },2500);
 }
 
 /* ================= HLS นิ่งๆ ผ่าน workers.dev ================= */
