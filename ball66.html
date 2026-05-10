@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
-<title>TIEA IPTV SPORT STABLE FINAL</title>
+<title>TIEA IPTV ULTRA LIVE SPORT TURBO FINAL</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.9/shaka-player.compiled.min.js"></script>
 <style>
@@ -74,7 +74,7 @@ h2{padding:60px 12px 8px;margin:0;color:orange;text-align:center;text-shadow:0 0
 <body>
 
 <a class="home-btn" href="https://tiea9999.github.io/tv-online/index.html">⬅ กลับหน้าหลัก</a>
-<h2>TIEA IPTV SPORT STABLE FINAL</h2>
+<h2>TIEA IPTV ULTRA LIVE SPORT TURBO FINAL</h2>
 <div id="load-status">กำลังโหลด JSON...</div>
 
 <div class="tools">
@@ -314,7 +314,7 @@ function playMPD(s){
     if(!window.shaka){nextServer();return}
     shaka.polyfill.installAll();
     shakaPlayer=new shaka.Player(player);
-    shakaPlayer.configure({streaming:{retryParameters:{maxAttempts:2,timeout:12000}}});
+    shakaPlayer.configure({streaming:{retryParameters:{maxAttempts:2,timeout:9000}}});
     if(s.drm&&s.keyId&&s.key){
       shakaPlayer.configure({drm:{clearKeys:{[s.keyId]:s.key}}});
     }
@@ -332,43 +332,61 @@ function playHLS(s){
 
   if(window.Hls&&Hls.isSupported()&&isM3U8Url(url)){
     hls=new Hls({
-      // SPORT / LIVE STABLE FINAL
-      enableWorker:false,
-      lowLatencyMode:false,
 
-      // เพิ่ม buffer ให้นิ่งขึ้นสำหรับดูบอล
-      maxBufferLength:120,
-      maxMaxBufferLength:180,
-      backBufferLength:60,
+      // ULTRA LIVE SPORT TURBO FINAL
+      enableWorker:true,
+      lowLatencyMode:true,
 
-      // ลดการกระตุกช่วงต่อไฟล์
-      maxBufferHole:2.5,
-      nudgeOffset:0.3,
-      nudgeMaxRetry:8,
-      highBufferWatchdogPeriod:5,
+      // เข้าเร็วมาก
+      maxBufferLength:18,
+      maxMaxBufferLength:30,
+      backBufferLength:12,
 
-      // retry สูงขึ้นสำหรับเน็ตแกว่ง
-      manifestLoadingMaxRetry:10,
-      levelLoadingMaxRetry:10,
-      fragLoadingMaxRetry:12,
+      // ลดหมุน
+      maxBufferHole:0.5,
+      highBufferWatchdogPeriod:1.5,
 
-      manifestLoadingRetryDelay:2000,
-      levelLoadingRetryDelay:2000,
-      fragLoadingRetryDelay:2000,
+      // กู้เร็ว
+      nudgeOffset:0.1,
+      nudgeMaxRetry:3,
 
-      // Android TV / Projector / Mobile
-      capLevelToPlayerSize:true,
+      // timeout สั้นลง
+      manifestLoadingTimeOut:7000,
+      levelLoadingTimeOut:7000,
+      fragLoadingTimeOut:9000,
+
+      manifestLoadingMaxRetry:3,
+      levelLoadingMaxRetry:3,
+      fragLoadingMaxRetry:4,
+
+      manifestLoadingRetryDelay:400,
+      levelLoadingRetryDelay:400,
+      fragLoadingRetryDelay:400,
+
+      startFragPrefetch:true,
       startLevel:0,
-      testBandwidth:false,
-      abrEwmaDefaultEstimate:700000,
 
-      // Live latency กันค้างยาว
-      liveSyncDurationCount:5,
-      liveMaxLatencyDurationCount:12
+      capLevelToPlayerSize:true,
+      testBandwidth:false,
+
+      // เริ่มต่ำสุดก่อน
+      abrEwmaDefaultEstimate:300000,
+
+      // ไล่คุณภาพช้าๆ
+      abrBandWidthFactor:0.75,
+      abrBandWidthUpFactor:0.5,
+
+      // live latency ต่ำ
+      liveSyncDurationCount:2,
+      liveMaxLatencyDurationCount:4,
+
+      liveDurationInfinity:true
     });
 
     hls.loadSource(url);
     hls.attachMedia(player);
+
+    player.play().catch(()=>{});
 
     hls.on(Hls.Events.MANIFEST_PARSED,()=>{
       started=true;
@@ -402,7 +420,7 @@ function playHLS(s){
 
       forceMaxVolume();
 
-      if(player.paused){
+      if(player.paused && player.readyState >= 2){
         player.play().catch(()=>{});
       }
 
@@ -414,19 +432,19 @@ function playHLS(s){
 
       lastTime=player.currentTime;
 
-      if(stuck>=7){
+      if(stuck>=2){
         setStatus("ภาพค้าง กำลังกู้คืน...");
         try{hls.startLoad()}catch(e){}
         player.play().catch(()=>{});
         stuck=0;
       }
-    },4000);
+    },1500);
 
     setTimeout(()=>{
       if(!started||player.readyState<2){
         nextServer();
       }
-    },12000);
+    },5000);
 
   }else{
     player.src=url;
