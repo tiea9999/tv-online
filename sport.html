@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
-<title>TIEA SPORT STEADY FINAL</title>
+<title>TIEA SPORT TV BUFFER HOLD FINAL</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.9/shaka-player.compiled.min.js"></script>
 <style>
@@ -74,7 +74,7 @@ h2{padding:60px 12px 8px;margin:0;color:orange;text-align:center;text-shadow:0 0
 <body>
 
 <a class="home-btn" href="index.html">⬅ กลับหน้าหลัก</a>
-<h2>TIEA SPORT STEADY FINAL</h2>
+<h2>TIEA SPORT TV BUFFER HOLD FINAL</h2>
 <div id="load-status">กำลังโหลด JSON...</div>
 
 <div class="tools">
@@ -298,7 +298,7 @@ async function tryServer(){
 
 function nextServer(){
   currentServerIndex++;
-  setTimeout(tryServer,700);
+  setTimeout(tryServer,2500);
 }
 
 function forceMaxVolume(){
@@ -326,49 +326,68 @@ function playMPD(s){
   }catch(e){nextServer()}
 }
 
+
+function isAndroidTVMode(){
+  const ua = navigator.userAgent.toLowerCase();
+  return ua.includes("android tv") ||
+         ua.includes("smart-tv") ||
+         ua.includes("smarttv") ||
+         ua.includes("aft") ||
+         ua.includes("mibox") ||
+         ua.includes("xgimi") ||
+         ua.includes("projector") ||
+         ua.includes("bravia") ||
+         ua.includes("tizen") ||
+         ua.includes("webos");
+}
+
 function playHLS(s){
   const url=s.url;
   let started=false;
 
   if(window.Hls&&Hls.isSupported()&&isM3U8Url(url)){
+    const tvMode = isAndroidTVMode();
+
     hls=new Hls({
-      // TIEA SPORT STEADY FINAL
-      // ค่ากลาง เน้นนิ่ง ไม่หนักเกิน และไม่เข้าเล่นช้าเกิน
+      // TIEA SPORT TV BUFFER HOLD FINAL
+      // Android TV ต้องใช้ buffer มากกว่ามือถือ เพราะ decoder ค้างง่ายกว่า
       enableWorker:true,
       lowLatencyMode:false,
 
-      maxBufferLength:60,
-      maxMaxBufferLength:100,
-      backBufferLength:30,
+      maxBufferLength: tvMode ? 120 : 75,
+      maxMaxBufferLength: tvMode ? 180 : 120,
+      backBufferLength: tvMode ? 60 : 40,
 
-      maxBufferHole:2,
-      highBufferWatchdogPeriod:5,
-      nudgeOffset:0.3,
-      nudgeMaxRetry:8,
+      maxBufferHole: tvMode ? 4 : 3,
+      highBufferWatchdogPeriod: tvMode ? 10 : 8,
+      nudgeOffset:0.35,
+      nudgeMaxRetry: tvMode ? 12 : 10,
 
-      manifestLoadingTimeOut:18000,
-      levelLoadingTimeOut:18000,
-      fragLoadingTimeOut:22000,
+      manifestLoadingTimeOut: tvMode ? 35000 : 25000,
+      levelLoadingTimeOut: tvMode ? 35000 : 25000,
+      fragLoadingTimeOut: tvMode ? 40000 : 30000,
 
-      manifestLoadingMaxRetry:8,
-      levelLoadingMaxRetry:8,
-      fragLoadingMaxRetry:10,
+      manifestLoadingMaxRetry: tvMode ? 14 : 10,
+      levelLoadingMaxRetry: tvMode ? 14 : 10,
+      fragLoadingMaxRetry: tvMode ? 18 : 14,
 
-      manifestLoadingRetryDelay:1500,
-      levelLoadingRetryDelay:1500,
-      fragLoadingRetryDelay:1500,
+      manifestLoadingRetryDelay: tvMode ? 2500 : 2000,
+      levelLoadingRetryDelay: tvMode ? 2500 : 2000,
+      fragLoadingRetryDelay: tvMode ? 2500 : 2000,
 
       startFragPrefetch:true,
       startLevel:0,
       capLevelToPlayerSize:true,
       testBandwidth:false,
 
-      abrEwmaDefaultEstimate:600000,
-      abrBandWidthFactor:0.85,
-      abrBandWidthUpFactor:0.65,
+      // ลด bitrate เริ่มต้นบน TV เพื่อให้ buffer เติมทัน
+      abrEwmaDefaultEstimate: tvMode ? 450000 : 650000,
+      abrBandWidthFactor: tvMode ? 0.85 : 0.9,
+      abrBandWidthUpFactor: tvMode ? 0.55 : 0.7,
 
-      liveSyncDurationCount:6,
-      liveMaxLatencyDurationCount:14,
+      // TV หน่วงสดมากขึ้นนิด เพื่อไม่หยุดหมุนชัด
+      liveSyncDurationCount: tvMode ? 9 : 7,
+      liveMaxLatencyDurationCount: tvMode ? 22 : 18,
 
       progressive:true,
       liveDurationInfinity:true
@@ -385,21 +404,40 @@ function playHLS(s){
     });
 
     hls.on(Hls.Events.ERROR,(ev,data)=>{
-      if(data&&data.fatal){
-        if(data.type===Hls.ErrorTypes.NETWORK_ERROR){
-          setStatus("เน็ตสะดุด กำลังกู้คืน...");
-          try{hls.startLoad()}catch(e){}
-        }else if(data.type===Hls.ErrorTypes.MEDIA_ERROR){
-          setStatus("วิดีโอสะดุด กำลังกู้คืน...");
-          try{hls.recoverMediaError()}catch(e){}
-        }else{
-          nextServer();
-        }
+      if(!data || !hls) return;
+
+      // ไม่จัดการ non-fatal บ่อย เพราะทำให้เด้ง/กระตุก
+      if(!data.fatal) return;
+
+      if(data.type===Hls.ErrorTypes.NETWORK_ERROR){
+        setStatus(tvMode ? "สัญญาณแกว่ง กำลังรอ buffer TV..." : "เน็ตสะดุด กำลังต่อเส้นเดิม...");
+        try{
+          if(hls){
+            if(!tvMode || player.readyState>=2) hls.startLoad();
+          }
+          if(player.readyState>=2) player.play().catch(()=>{});
+        }catch(e){}
+        return;
       }
+
+      if(data.type===Hls.ErrorTypes.MEDIA_ERROR){
+        setStatus("วิดีโอสะดุด กำลังกู้คืน...");
+        try{
+          hls.recoverMediaError();
+          if(player.readyState>=2) player.play().catch(()=>{});
+        }catch(e){}
+        return;
+      }
+
+      // error อื่นค่อยไป backup
+      nextServer();
     });
 
     let lastTime=0;
     let stuck=0;
+    let noData=0;
+    let recovering=false;
+
     const watchdog=setInterval(()=>{
       const box=document.getElementById("player-container");
       if(box.style.display!=="block"){
@@ -409,32 +447,55 @@ function playHLS(s){
 
       forceMaxVolume();
 
-      if(player.paused && player.readyState >= 2){
+      if(player.paused && player.readyState>=3){
         player.play().catch(()=>{});
       }
 
-      if(Math.abs(player.currentTime-lastTime)<0.05){
+      if(player.readyState<2){
+        noData++;
+      }else{
+        noData=0;
+      }
+
+      if(Math.abs((player.currentTime||0)-lastTime)<0.05){
         stuck++;
       }else{
         stuck=0;
       }
 
-      lastTime=player.currentTime;
+      lastTime=player.currentTime||0;
 
-      if(stuck>=6){
-        setStatus("ภาพค้าง กำลังกู้คืน...");
-        try{hls.startLoad()}catch(e){}
-        player.play().catch(()=>{});
-        stuck=0;
+      const stuckLimit = tvMode ? 16 : 10;
+      const noDataLimit = tvMode ? 16 : 10;
+      const recoverDelay = tvMode ? 14000 : 9000;
+
+      if((stuck>=stuckLimit || noData>=noDataLimit) && !recovering){
+        recovering=true;
+        setStatus(tvMode ? "TV buffer ต่ำ กำลังประคองสัญญาณ..." : "สัญญาณสะดุด กำลังประคองเส้นเดิม...");
+        try{
+          if(hls){
+            hls.startLoad(Math.max(0,(player.currentTime||0)-0.5));
+          }
+          if(player.readyState>=2){
+            player.play().catch(()=>{});
+          }
+        }catch(e){}
+
+        setTimeout(()=>{
+          recovering=false;
+          stuck=0;
+          noData=0;
+        },recoverDelay);
       }
-    },3500);
-
-    
+    }, tvMode ? 7000 : 5000);
+      }
+    },5000);
     setTimeout(()=>{
       if(!started||player.readyState<2){
-        nextServer();
+        setStatus(tvMode ? "TV กำลังรอ buffer เพิ่ม..." : "ยังโหลดอยู่ กำลังรอเส้นหลักอีกนิด...");
+        try{ if(hls) hls.startLoad(); }catch(e){}
       }
-    },15000);
+    }, tvMode ? 30000 : 22000);
 
   }else{
     player.src=url;
