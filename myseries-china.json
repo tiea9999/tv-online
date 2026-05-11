@@ -117,7 +117,7 @@
     "groups": ["series","series-china"],
     "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/05/เกมสองหน้า-1.webp",
-    "latest_ep": 8,
+    "latest_ep": 14,
     "total_ep": 20,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/18a4d995228e122e56e0d36d5efa500d/master.m3u8" }] },
@@ -127,7 +127,14 @@
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c3b59f84216ebed0c788db1d6764cbbf/master.m3u8" }] },
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/efb2bbc330b96ab3c79a79ed6dfff26d/master.m3u8" }] },
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/ad0ee5fe43295fa5187100d93fb38958/master.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/848337df796dca4e231e2a174f077f44/master.m3u8" }] }
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/848337df796dca4e231e2a174f077f44/master.m3u8" }] },
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a4d1673893e14a5a50d8b521da29b893/master.m3u8" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/dab1a9baee60b418b8374702fdbb633b/master.m3u8" }] },
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b900ebea685e615d57a2ab5a51524f04/master.m3u8" }] },
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/ed2b423144b84b9f0c78d39b6ab1dfee/master.m3u8" }] },
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/0ed12937316c750623a0b4914a146f77/master.m3u8" }] },
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/07d8229c713c83fbab910caa9f7102ea/master.m3u8" }] }
+    
     ]
   },
 
@@ -140,7 +147,7 @@
     ],
     "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/วังวนรักกลางมหานคร-1.webp",
-    "latest_ep": 21,
+    "latest_ep": 27,
     "total_ep": 37,
     "episodes": [
       {
@@ -300,6 +307,12 @@
       { "title": "EP19", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/92d085ba65ab1453d855d5d7d55ceb33/master.m3u8" }] },
       { "title": "EP20", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/254b686eef423373ce9150b5d393abe1/master.m3u8" }] },
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/2d88228ea8a3819e99a5c05b9bb387a9/master.m3u8" }] }
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/fa1f3a974c885d0d9521f8730075cff0/master.m3u8" }] },
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/2a48ef72f8e5aec4194384486bee9960/master.m3u8" }] },
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/df8e89e07c488b91d15f5a756bf6940a/master.m3u8" }] },
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/dfe0fd03e578d2efbb7d9a9257b05135/master.m3u8" }] },
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/947ab4ca4434ece7fd59c45815823622/master.m3u8" }] },
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8fbc66a5a79f388226c0453e1f23bf5f/master.m3u8" }] }
     ]
   },
   {
@@ -397,7 +410,7 @@
     ],
     "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/ยอดเขยกำมะลอ-ภาค2-1.webp",
-    "latest_ep": 21,
+    "latest_ep": 24,
     "total_ep": 28,
     "episodes": [
       {
@@ -572,7 +585,10 @@
         ]
       },
       { "title": "EP20", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b81375db39923733343ec79427ae8875/master.m3u8" }] },
-      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/321070bb9ab1b4c12bda1c6ea56c7702/master.m3u8" }] }      
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/321070bb9ab1b4c12bda1c6ea56c7702/master.m3u8" }] },      
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8192138ef0b7f5a2af397f58814d289d/master.m3u8" }] },
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/002a5b3c60fc7ec6d822b459f46c4027/master.m3u8" }] },
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/79bd4e89c9988cbd6e575e02d09dd378/master.m3u8" }] }
     ]
   },
   {
@@ -741,7 +757,10 @@
       },
       { "title": "EP18", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/0bfafc484c75340f4a4be691138f72ca/master.m3u8" }] },
       { "title": "EP19", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a5332550c82c79b2990bf25e2f3c14ff/master.m3u8" }] },
-      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/51996961e6660d3be9f838ed01508284/master.m3u8" }] }      
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/51996961e6660d3be9f838ed01508284/master.m3u8" }] },      
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5bfa8f1289fff78b99a370f2a86574bd/master.m3u8" }] },
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/01896248ab9f1dd14cd9eb5884446338/master.m3u8" }] },
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/40b3d290d0ebca04ece3271d54e0c41a/master.m3u8" }] }
     ]
   },
   {
@@ -752,7 +771,7 @@
     ],
     "language": "พากย์ไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/คู่สรรสวรรค์สร้าง-1.webp",
-    "latest_ep": 28,
+    "latest_ep": 35,
     "total_ep": 40,
     "episodes": [
       {
@@ -982,7 +1001,14 @@
       },
       { "title": "EP26", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/3e4c0ae68dbd334884b5e3608307e25c/master.m3u8" }] },
       { "title": "EP27", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/7115a27c591aebb68a083c0de8823434/master.m3u8" }] },
-      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1bdfd3cb15e0bf60bb9695ad22f9db98/master.m3u8" }] }      
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1bdfd3cb15e0bf60bb9695ad22f9db98/master.m3u8" }] },      
+      { "title": "EP29", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/811afe92797b9b65bb64ae52455fb083/master.m3u8" }] },
+      { "title": "EP30", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/098db01bab07afec6d39f7b149a3bc7b/master.m3u8" }] },
+      { "title": "EP31", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/d57f4546cf42124c7c7253d4761c42f1/master.m3u8" }] },
+      { "title": "EP32", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/707cd5631bdfcc7256bdc6390439590e/master.m3u8" }] },
+      { "title": "EP33", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a3fcb696edf0b0e18cf9cfed8e5b2573/master.m3u8" }] },
+      { "title": "EP34", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/789004c6976bf34b535bc9be51ce831a/master.m3u8" }] },
+      { "title": "EP35", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/652416cdda65ce27527e236210f9c611/master.m3u8" }] }
     ]
   },
   {
@@ -1339,7 +1365,7 @@
     ],
     "language": "พากย์ไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/ประทีปรักเหนือสองภพ-1.webp",
-    "latest_ep": 32,
+    "latest_ep": 37,
     "total_ep": 40,
     "episodes": [
       {
@@ -1597,7 +1623,12 @@
        { "title": "EP29", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8aa1e8ca7e4939874b7566f0aa8f4755/master.m3u8" }] },
       { "title": "EP30", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/67812b239fd84a614576109d821c1afc/master.m3u8" }] },
       { "title": "EP31", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f404e3a4576346187d1e22719cb9a325/master.m3u8" }] },
-      { "title": "EP32", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b69da755a8dcfdea45b3612625155d62/master.m3u8" }] }     
+      { "title": "EP32", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b69da755a8dcfdea45b3612625155d62/master.m3u8" }] },     
+      { "title": "EP33", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8f06f778c84789d7c2ea04b922513cee/master.m3u8" }] },
+      { "title": "EP34", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/bae461ef39312c6a350f9895d7d765fa/master.m3u8" }] },
+      { "title": "EP35", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/41f0c3b5f40933ac75bbe1b56551000d/master.m3u8" }] },
+      { "title": "EP36", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/cb2c3ed59de4cc51d79001f64e71e2ad/master.m3u8" }] },
+      { "title": "EP37", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6c1ad2e4fb096f3a42c5883c8fad547d/master.m3u8" }] }
     ]
   },
   {
@@ -1882,7 +1913,7 @@
     ],
     "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/สลับร่างล่าวิญญาณ-1.webp",
-    "latest_ep": 23,
+    "latest_ep": 24,
     "total_ep": 24,
     "episodes": [
       {
@@ -2075,7 +2106,8 @@
         ]
       },
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/e8f9100c9f58d847853543aa74ab1267/master.m3u8" }] },
-      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/553578cb28dddd7ea4e7ebb51549f0eb/master.m3u8" }] }      
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/553578cb28dddd7ea4e7ebb51549f0eb/master.m3u8" }] },      
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/3eb54af30a68a456cb910ee00d75b3ce/master.m3u8" }] }
     ]
   },
   {
@@ -2307,7 +2339,7 @@
     ],
     "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/ลิขิตรักสองภพ-1.webp",
-    "latest_ep": 26,
+    "latest_ep": 28,
     "total_ep": 28,
     "episodes": [
       {
@@ -2527,7 +2559,9 @@
         ]
       },
       { "title": "EP25", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c87a59ce9e3fd5e50bc160de6cea9279/master.m3u8" }] },
-      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1d841fdc80e50c390b269b8135c0a280/master.m3u8" }] }      
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1d841fdc80e50c390b269b8135c0a280/master.m3u8" }] },      
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b305c85f8dc1933febd20f462a100f78/master.m3u8" }] },
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/fff41a6a2e64a5a40614ff2574e7c12a/master.m3u8" }] }
     ]
   },
   {
