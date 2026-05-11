@@ -48,7 +48,7 @@
     "groups": ["series","series-china"],
     "language": "ซับไทย",
     "poster": "https://www.baan-series.org/wp-content/uploads/2026/03/Love-Beyond-the-Grave-ประทีปรักเหนือสองภพ-e1774755300630.jpg",
-    "latest_ep": 33,
+    "latest_ep": 40,
     "total_ep": 40,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/China/2026ChinaLoveBeyondTheGrave/EP01.mp4/chunk.m3u8" }] },
