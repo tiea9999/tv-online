@@ -1,4 +1,24 @@
 [ 
+ {
+    "title": "หงสาวดี",
+    "language": "พากย์ไทย",
+    "groups": ["series","series-thai"],
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/03/หงสาวดี-1.webp",
+    "latest_ep": 10,
+    "total_ep": 10,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8868fb1e1497d8016323b930c4f63198/master.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/2e3f65f4a3770350b139ca28d0aabb4c/master.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/db253eb647c16f88e2caf37e619b7c6e/master.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/13dfcc395dea2eee4b630b477f50a50b/master.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b5f92d765370826d8fc282bed512f04f/master.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/183e147b7e5990efa948a1cdc41ac134/master.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/388078e8515a2f4633d51318dc381adb/master.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/44ecf7356d822ecb91f4c20d5461ede1/master.m3u8" }] },
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/92bc8abaeb14de383f636d021ec3c07c/master.m3u8" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f46e0a9b493bbecb80433321c88c5bdb/master.m3u8" }] }
+    ]
+  },  
   {
     "title": "สอดสร้อยมาลา",
     "groups": ["series","series-thai"],
