@@ -1,20 +1,5 @@
 [
-  {
-    "title": "test",
-    "group": "ฟรีทีวี",
-    "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuwAjENpDBsnhb91rzlQxF39KqlCZxHqHVig&s",
-    "servers": [
-      {
-        "name": "Main",
-        "url": "http://195.128.27.141:80/rmt8r91bac/tsleey7v5g/1776175.ts"
-      },
-      {
-        "name": "Backup 1",
-        "url": "http://195.128.27.141:80/rmt8r91bac/tsleey7v5g/1776240.ts",
-        "drm": false
-      }
-    ]
-  },
+
   {
     "title": "hd-monobkp",
     "group": "ฟรีทีวี",
