@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>TIEA IPTV FINAL REMOTE SEEK</title>
+<title>TIEA IPTV FINAL FULL REMOTE CONTROL</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 <style>
@@ -65,6 +65,20 @@
 /* ซ่อนเฉพาะข้อความแถบล่าง ไม่ซ่อนปุ่ม */
 .player-hint{
   display:none!important;
+}
+
+
+.player-controls{
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  z-index:999999!important;
+}
+
+.player-btn{
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
 }
 
 </style>
