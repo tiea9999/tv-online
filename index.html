@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>TIEA IPTV FINAL INTENT FIX</title>
+<title>TIEA IPTV FINAL REMOTE SEEK</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 <style>
@@ -152,7 +152,85 @@ function openVip(url){let pass=prompt('กรุณาใส่รหัสผ�
 document.querySelectorAll('.menu-btn').forEach(btn=>{btn.onclick=()=>{document.querySelectorAll('.menu-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(btn.dataset.vipLink){openVip(btn.dataset.vipLink);return}if(btn.dataset.link){location.href=btn.dataset.link;return}if(btn.dataset.action==='home'){renderHome();return}if(btn.dataset.action==='live-page'){location.href=LIVE_URL;return}if(btn.dataset.source){loadMenuSource(btn.dataset.source);return}}});
 $('homeBtn').onclick=()=>location.href=HOME_URL;$('reloadBtn').onclick=()=>{state.cache={};if(state.activeSource&&state.activeSource!=='home')loadMenuSource(state.activeSource);else renderHome()};$('liveBtn').onclick=()=>location.href=LIVE_URL;$('closePlayerBtn').onclick=closePlayer;$('playerHomeBtn').onclick=()=>location.href=HOME_URL;$('mxBtn').onclick=()=>openMx();$('extBtn').onclick=()=>openExternal();$('closeModalBtn').onclick=closeModal;$('prevPageBtn').onclick=()=>{state.page--;renderModalPage()};$('nextPageBtn').onclick=()=>{state.page++;renderModalPage()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape'||e.key==='Backspace'||e.keyCode===10009){e.preventDefault();if(playerPanel.classList.contains('show'))closePlayer();else if($('modal').classList.contains('show'))closeModal();else location.href=HOME_URL}});document.addEventListener('keydown',e=>{let a=document.activeElement;if(!a||!a.classList||!a.classList.contains('card'))return;if(e.key==='ArrowRight'){let n=a.nextElementSibling;if(n&&n.classList.contains('card')){e.preventDefault();n.focus();n.scrollIntoView({block:'nearest',inline:'center'})}}if(e.key==='ArrowLeft'){let p=a.previousElementSibling;if(p&&p.classList.contains('card')){e.preventDefault();p.focus();p.scrollIntoView({block:'nearest',inline:'center'})}}});
-window.addEventListener('pageshow',()=>{restoreReturnState()});setupPlayerAutoHide();if(!restoreReturnState())renderHome();
+
+/* ===== REMOTE SEEK CONTROL FOR MOVIE/SERIES PLAYER ===== */
+function setupRemoteSeekControl(){
+  if(setupRemoteSeekControl._ready) return;
+  setupRemoteSeekControl._ready=true;
+
+  document.addEventListener('keydown',function(e){
+    const panel=document.getElementById('playerPanel');
+    const v=document.getElementById('video');
+
+    // ทำงานเฉพาะตอนเปิด player หนัง/ซีรีส์อยู่
+    if(!panel || !panel.classList.contains('show') || !v) return;
+
+    const key=e.key || '';
+    const code=e.keyCode || e.which;
+
+    // ถ้า focus อยู่ที่ปุ่ม X/HOME/MX/PLAYER ให้ OK ยังทำงานปุ่มเดิมได้
+    const active=document.activeElement;
+    const activeIsPlayerButton=active && active.classList && active.classList.contains('player-btn');
+
+    // ขวา = เดินหน้า 10 วิ
+    if(key==='ArrowRight' || code===39){
+      e.preventDefault();
+      e.stopPropagation();
+      try{
+        if(isFinite(v.duration)){
+          v.currentTime=Math.min(v.duration, (v.currentTime||0)+10);
+        }else{
+          v.currentTime=(v.currentTime||0)+10;
+        }
+      }catch(err){}
+      return;
+    }
+
+    // ซ้าย = ย้อนกลับ 10 วิ
+    if(key==='ArrowLeft' || code===37){
+      e.preventDefault();
+      e.stopPropagation();
+      try{
+        v.currentTime=Math.max(0, (v.currentTime||0)-10);
+      }catch(err){}
+      return;
+    }
+
+    // OK/Enter = เล่น/หยุด เฉพาะไม่ได้ focus ปุ่ม player
+    if((key==='Enter' || key==='OK' || code===13 || code===23) && !activeIsPlayerButton){
+      e.preventDefault();
+      e.stopPropagation();
+      try{
+        if(v.paused) v.play().catch(()=>{});
+        else v.pause();
+      }catch(err){}
+      return;
+    }
+
+    // ขึ้น = เพิ่มเสียง
+    if(key==='ArrowUp' || code===38){
+      e.preventDefault();
+      e.stopPropagation();
+      try{
+        v.muted=false;
+        v.volume=Math.min(1, (v.volume||0)+0.1);
+      }catch(err){}
+      return;
+    }
+
+    // ลง = ลดเสียง
+    if(key==='ArrowDown' || code===40){
+      e.preventDefault();
+      e.stopPropagation();
+      try{
+        v.volume=Math.max(0, (v.volume||0)-0.1);
+      }catch(err){}
+      return;
+    }
+  }, true);
+}
+
+window.addEventListener('pageshow',()=>{restoreReturnState()});setupPlayerAutoHide();setupRemoteSeekControl();if(!restoreReturnState())renderHome();
 </script>
 </body>
 </html>
