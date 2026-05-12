@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>TIEA IPTV FINAL FULL REMOTE CONTROL</title>
+<title>TIEA IPTV FINAL REMOTE PROJECTOR FIX</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 <style>
@@ -160,7 +160,52 @@ function closePlayer(){
     setTimeout(()=>openDetail(item),120);
   }
 }function saveReturnState(obj){try{sessionStorage.setItem('tiea_return_state',JSON.stringify({activeSource:state.activeSource,scroll:content.scrollTop,time:Date.now(),...obj}))}catch(e){}}function restoreReturnState(){try{let raw=sessionStorage.getItem('tiea_return_state');if(!raw)return false;let data=JSON.parse(raw);sessionStorage.removeItem('tiea_return_state');if(data.activeSource&&data.activeSource!=='home'){loadMenuSource(data.activeSource).then(()=>setTimeout(()=>{content.scrollTop=data.scroll||0},500));return true}}catch(e){}return false}
-function safeIntent(url,mode){url=url||state.originalUrl||state.currentUrl;if(!url)return;saveReturnState({player:mode||'external',url:url});try{let u=new URL(url),scheme=u.protocol.replace(':',''),hostPath=u.host+u.pathname+(u.search||''),intent='';if(mode==='mx')intent='intent://'+hostPath+'#Intent;scheme='+scheme+';action=android.intent.action.VIEW;type=video/*;package=com.mxtech.videoplayer.ad;S.browser_fallback_url='+encodeURIComponent(url)+';end';else intent='intent://'+hostPath+'#Intent;scheme='+scheme+';action=android.intent.action.VIEW;type=video/*;S.browser_fallback_url='+encodeURIComponent(url)+';end';setTimeout(()=>{window.location.href=intent},80)}catch(e){window.location.href=url}}function openMx(url){safeIntent(url||state.originalUrl||state.currentUrl,'mx')}function openExternal(url){safeIntent(url||state.originalUrl||state.currentUrl,'external')}
+function safeIntent(url,mode){
+  url=url||state.originalUrl||state.currentUrl;
+  if(!url)return;
+  saveReturnState({player:mode||'external',url:url});
+
+  const ua=(navigator.userAgent||'').toLowerCase();
+  const isTV =
+    ua.includes('android tv') ||
+    ua.includes('smart-tv') ||
+    ua.includes('smarttv') ||
+    ua.includes('projector') ||
+    ua.includes('xgimi') ||
+    ua.includes('mibox') ||
+    ua.includes('bravia') ||
+    ua.includes('chromecast') ||
+    ua.includes('aft') ||
+    ua.includes('tizen') ||
+    ua.includes('webos');
+
+  // โปรเจคเตอร์/Android TV ไม่ใช้ intent:// เพื่อกัน ERR_UNKNOWN_URL_SCHEME
+  if(isTV){
+    try{
+      window.location.href=url;
+    }catch(e){
+      window.open(url,'_self');
+    }
+    return;
+  }
+
+  try{
+    let u=new URL(url);
+    let scheme=u.protocol.replace(':','');
+    let hostPath=u.host+u.pathname+(u.search||'');
+    let intent='';
+
+    if(mode==='mx'){
+      intent='intent://'+hostPath+'#Intent;scheme='+scheme+';action=android.intent.action.VIEW;type=video/*;package=com.mxtech.videoplayer.ad;S.browser_fallback_url='+encodeURIComponent(url)+';end';
+    }else{
+      intent='intent://'+hostPath+'#Intent;scheme='+scheme+';action=android.intent.action.VIEW;type=video/*;S.browser_fallback_url='+encodeURIComponent(url)+';end';
+    }
+
+    setTimeout(()=>{window.location.href=intent},80);
+  }catch(e){
+    window.location.href=url;
+  }
+}function openMx(url){safeIntent(url||state.originalUrl||state.currentUrl,'mx')}function openExternal(url){safeIntent(url||state.originalUrl||state.currentUrl,'external')}
 async function loadMenuSource(key){state.activeSource=key;let label=document.querySelector(`[data-source="${key}"]`)?.textContent?.trim()||'รายการ';setStatus('กำลังโหลด '+label+' ...');content.innerHTML='<div class="hero"><div class="hero-title">กำลังโหลด...</div><div class="hero-sub">'+label+'</div></div>';try{if(key==='series-main'){renderRows([{title:'MySeries แยกหมวด',items:MYSERIES_FOLDERS}],label);setStatus('พร้อมใช้งาน • MySeries แยกหมวด');return}let items=await loadSourcePack(key);renderRows(makeRows(items),label);setStatus(items.length?'โหลดสำเร็จ '+items.length+' รายการ':'ไม่พบรายการ')}catch(e){content.innerHTML='<div class="hero"><div class="hero-title">โหลดไม่สำเร็จ</div><div class="hero-sub">'+e.message+'</div></div>';setStatus('โหลดไม่สำเร็จ')}}
 function openVip(url){let pass=prompt('กรุณาใส่รหัสผ่าน VIP');if(pass===VIP_PASSWORD)location.href=url;else if(pass!==null)alert('รหัสผ่านไม่ถูกต้อง')}
 document.querySelectorAll('.menu-btn').forEach(btn=>{btn.onclick=()=>{document.querySelectorAll('.menu-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(btn.dataset.vipLink){openVip(btn.dataset.vipLink);return}if(btn.dataset.link){location.href=btn.dataset.link;return}if(btn.dataset.action==='home'){renderHome();return}if(btn.dataset.action==='live-page'){location.href=LIVE_URL;return}if(btn.dataset.source){loadMenuSource(btn.dataset.source);return}}});
