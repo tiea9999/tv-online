@@ -7,7 +7,7 @@
     "latest_ep": 40,
     "total_ep": 40,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/89369d4fc648c63009ec51635d6bb403/master.txt" }] },
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://cdn-y26.dumoviefree.com/api/files/cea47356a7150c887659dd4fb4ac3c2d/master.txt" }] },
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/cbed8f5d6fe43bcd4453b5aa83ce2bcd/master.txt" }] },
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/428c3c6efb2bf4108e755915f475adbd/master.txt" }] },
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/847ddcabc71c673e304b7591ddc3a580/master.txt" }] },
@@ -54,7 +54,7 @@
     "groups": ["series","series-china"],
     "language": "ซับไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/04/9-15.jpg",
-    "latest_ep": 1,
+    "latest_ep": 22,
     "total_ep": 30,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/6abdee54f4c3653faa5ec2db68ef5980/master.txt" }] },
