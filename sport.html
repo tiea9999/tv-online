@@ -280,7 +280,7 @@ async function playChannel(ch,el){
   currentServerIndex=0;
   document.querySelectorAll(".channel").forEach(x=>x.classList.remove("active"));
   if(el)el.classList.add("active");
-  document.getElementById("player-container").style.display="block";
+  document.getElementById("player-container").style.display="block";showPlayerUI(false);
   showPlayerUI();
   setTimeout(()=>document.getElementById("closeBtn")?.focus(),200);
   await tryServer();
