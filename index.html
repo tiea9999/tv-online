@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>TIEA IPTV FINAL EP RETURN REMOTE FIX</title>
+<title>TIEA IPTV FINAL 1080P TV STABLE</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
 <style>
@@ -174,9 +174,6 @@ liveDurationInfinity:true
 
 
 
-
-
-
 let playerUiTimer=null;
 
 function showPlayerUI(focusClose){
@@ -188,6 +185,7 @@ function showPlayerUI(focusClose){
         if(closeBtn) closeBtn.focus();
       },80);
     }
+
     if(playerUiTimer) clearTimeout(playerUiTimer);
     playerUiTimer=setTimeout(()=>{
       if(playerPanel.classList.contains('show')){
@@ -204,11 +202,14 @@ function showPlayerUI(focusClose){
 function setupPlayerAutoHide(){
   if(setupPlayerAutoHide._ready)return;
   setupPlayerAutoHide._ready=true;
+
   ['mousemove','mousedown','touchstart','touchmove','pointermove','pointerdown','click'].forEach(ev=>{
     playerPanel.addEventListener(ev,()=>showPlayerUI(false),{passive:true});
   });
+
   document.addEventListener('keydown',(e)=>{
     if(!playerPanel.classList.contains('show'))return;
+    // กดขึ้นบนตอนดูหนัง = แสดงปุ่มและโฟกัส X
     if(e.key==='ArrowUp'||e.keyCode===38){
       showPlayerUI(true);
     }else{
@@ -219,16 +220,15 @@ function setupPlayerAutoHide(){
 
 function closePlayer(){
   cleanupPlayer();
-  playerPanel.classList.remove('show');
+  playerPanel.classList.remove('show');playerPanel.classList.remove('hide-ui');
   playerPanel.classList.remove('hide-ui');
 
-  // ถ้าเปิดจาก EP ให้กลับไปหน้ารายการ EP เดิม ไม่เด้งหน้าหลัก
+  // ถ้าเปิดจาก EP ให้กลับไปหน้ารายการ EP เดิม ไม่เด้งไปหน้าหลัก
   if(state.returnEpisodeItem){
     const item=state.returnEpisodeItem;
     state.returnEpisodeItem=null;
     setTimeout(()=>openDetail(item),120);
   }
-}
 }function saveReturnState(obj){try{sessionStorage.setItem('tiea_return_state',JSON.stringify({activeSource:state.activeSource,scroll:content.scrollTop,time:Date.now(),...obj}))}catch(e){}}function restoreReturnState(){try{let raw=sessionStorage.getItem('tiea_return_state');if(!raw)return false;let data=JSON.parse(raw);sessionStorage.removeItem('tiea_return_state');if(data.activeSource&&data.activeSource!=='home'){loadMenuSource(data.activeSource).then(()=>setTimeout(()=>{content.scrollTop=data.scroll||0},500));return true}}catch(e){}return false}
 function safeIntent(url,mode){
   url=url||state.originalUrl||state.currentUrl;
@@ -277,9 +277,6 @@ document.querySelectorAll('.menu-btn').forEach(btn=>{btn.onclick=()=>{document.q
 $('homeBtn').onclick=()=>location.href=HOME_URL;$('reloadBtn').onclick=()=>{state.cache={};if(state.activeSource&&state.activeSource!=='home')loadMenuSource(state.activeSource);else renderHome()};$('liveBtn').onclick=()=>location.href=LIVE_URL;$('closePlayerBtn').onclick=closePlayer;$('playerHomeBtn').onclick=()=>location.href=HOME_URL;$('mxBtn').onclick=()=>openMx();$('extBtn').onclick=()=>openExternal();$('closeModalBtn').onclick=closeModal;$('prevPageBtn').onclick=()=>{state.page--;renderModalPage()};$('nextPageBtn').onclick=()=>{state.page++;renderModalPage()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape'||e.key==='Backspace'||e.keyCode===10009){e.preventDefault();if(playerPanel.classList.contains('show'))closePlayer();else if($('modal').classList.contains('show'))closeModal();else location.href=HOME_URL}});document.addEventListener('keydown',e=>{let a=document.activeElement;if(!a||!a.classList||!a.classList.contains('card'))return;if(e.key==='ArrowRight'){let n=a.nextElementSibling;if(n&&n.classList.contains('card')){e.preventDefault();n.focus();n.scrollIntoView({block:'nearest',inline:'center'})}}if(e.key==='ArrowLeft'){let p=a.previousElementSibling;if(p&&p.classList.contains('card')){e.preventDefault();p.focus();p.scrollIntoView({block:'nearest',inline:'center'})}}});
 
-
-
-
 function setupRemoteSeekControl(){
   if(setupRemoteSeekControl._ready)return;
   setupRemoteSeekControl._ready=true;
@@ -296,30 +293,28 @@ function setupRemoteSeekControl(){
     if(key==='ArrowRight'||code===39){
       e.preventDefault();e.stopPropagation();
       try{v.currentTime=isFinite(v.duration)?Math.min(v.duration,(v.currentTime||0)+10):(v.currentTime||0)+10}catch(err){}
-      showPlayerUI(false);
       return;
     }
     if(key==='ArrowLeft'||code===37){
       e.preventDefault();e.stopPropagation();
       try{v.currentTime=Math.max(0,(v.currentTime||0)-10)}catch(err){}
-      showPlayerUI(false);
+      return;
+    }
+    if((key==='Enter'||key==='OK'||code===13||code===23)&&!activeIsBtn){
+      e.preventDefault();e.stopPropagation();
+      try{if(v.paused)v.play().catch(()=>{});else v.pause()}catch(err){}
       return;
     }
     if(key==='ArrowUp'||code===38){
-      e.preventDefault();e.stopPropagation();
+      e.preventDefault();
+      e.stopPropagation();
+      // ขึ้นบน = แสดงปุ่มและโฟกัสปุ่มปิด
       showPlayerUI(true);
       return;
     }
     if(key==='ArrowDown'||code===40){
       e.preventDefault();e.stopPropagation();
       try{v.volume=Math.max(0,(v.volume||0)-0.1)}catch(err){}
-      showPlayerUI(false);
-      return;
-    }
-    if((key==='Enter'||key==='OK'||code===13||code===23)&&!activeIsBtn){
-      e.preventDefault();e.stopPropagation();
-      try{if(v.paused)v.play().catch(()=>{});else v.pause()}catch(err){}
-      showPlayerUI(false);
       return;
     }
   },true);
