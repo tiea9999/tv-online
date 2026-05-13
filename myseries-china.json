@@ -1,4 +1,16 @@
 [
+  {
+    "title": "Zhan Zhao Adventures จั่นเจาตะลุยยุทธภพ (2026) ซับไทย ",
+    "groups": ["series","series-china"],
+    "language": "ซับไทย",
+    "poster": "https://320hdr.com/wp-content/uploads/2026/05/550.jpg",
+    "latest_ep": 14,
+    "total_ep": 22,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/3c591e664b7c8ad1806a96219ec9d446/master.txt" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/7d492f8e45e3c34ad27ea98f4720eb9a/master.txt" }] }
+    ]
+  },
   
   {
     "title": "ฉู่เฉียวจอมใจจารชน 2 Rebirth (2026) ซับไทย",
