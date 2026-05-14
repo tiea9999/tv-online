@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
-<title>TIEA SPORT SAFE JSON LOAD FINAL</title>
+<title>TIEA IPTV HYBRID LIVE SPORT STABLE FINAL</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.9/shaka-player.compiled.min.js"></script>
 <style>
@@ -69,15 +69,12 @@ h2{padding:60px 12px 8px;margin:0;color:orange;text-align:center;text-shadow:0 0
   .channel-row{grid-template-columns:repeat(2,1fr)}
   .player-btn{font-size:11px;padding:6px 7px}
 }
-
-/* ซ่อนข้อความโหลดด้านบน แต่ไม่แตะระบบ JSON */
-#load-status{display:none!important;}
 </style>
 </head>
 <body>
 
-<a class="home-btn" href="index.html">⬅ กลับหน้าหลัก</a>
-<h2>TIEA SPORT SAFE JSON LOAD FINAL</h2>
+<a class="home-btn" href="https://tiea9999.github.io/tv-online/index.html">⬅ กลับหน้าหลัก</a>
+<h2>TIEA IPTV HYBRID LIVE SPORT STABLE FINAL</h2>
 <div id="load-status">กำลังโหลด JSON...</div>
 
 <div class="tools">
@@ -301,7 +298,7 @@ async function tryServer(){
 
 function nextServer(){
   currentServerIndex++;
-  setTimeout(tryServer,2500);
+  setTimeout(tryServer,700);
 }
 
 function forceMaxVolume(){
@@ -335,38 +332,57 @@ function playHLS(s){
 
   if(window.Hls&&Hls.isSupported()&&isM3U8Url(url)){
     hls=new Hls({
-      // SPORT SAFE JSON LOAD + ANDROID TV SOFT STABLE
-      enableWorker:false,
+
+      // HYBRID LIVE SPORT STABLE FINAL
+      // สำหรับต้นทางบอลที่มีหมุนเป็นระยะ
+      enableWorker:true,
       lowLatencyMode:false,
 
-      maxBufferLength:35,
-      maxMaxBufferLength:50,
-      backBufferLength:20,
-
-      liveBackBufferLength:0,
-      maxBufferHole:1.0,
-      maxFragLookUpTolerance:0.2,
-
-      fragLoadingMaxRetry:6,
-      levelLoadingMaxRetry:5,
-      manifestLoadingMaxRetry:4,
-
-      fragLoadingRetryDelay:1200,
-      levelLoadingRetryDelay:1200,
-      manifestLoadingRetryDelay:1200,
-
+      // เข้าไว แต่มี buffer พอประคอง
+      startFragPrefetch:true,
       startLevel:0,
+      maxBufferLength:45,
+      maxMaxBufferLength:80,
+      backBufferLength:30,
+
+      // ทนต้นทางไม่นิ่ง
+      maxBufferHole:3,
+      highBufferWatchdogPeriod:4,
+
+      // ไม่ไล่ live edge เกินไป
+      liveSyncDurationCount:5,
+      liveMaxLatencyDurationCount:10,
+
+      // กู้ภาพนุ่มกว่า TURBO
+      nudgeOffset:0.25,
+      nudgeMaxRetry:6,
+
+      // retry กลาง ๆ ไม่รัวเกิน
+      manifestLoadingTimeOut:10000,
+      levelLoadingTimeOut:10000,
+      fragLoadingTimeOut:12000,
+
+      manifestLoadingMaxRetry:6,
+      levelLoadingMaxRetry:6,
+      fragLoadingMaxRetry:8,
+
+      manifestLoadingRetryDelay:1000,
+      levelLoadingRetryDelay:1000,
+      fragLoadingRetryDelay:1000,
+
+      // Android TV / Projector
       capLevelToPlayerSize:true,
       testBandwidth:false,
 
-      abrEwmaDefaultEstimate:500000,
-      abrBandWidthFactor:0.7,
-      abrBandWidthUpFactor:0.45,
+      // เริ่มคุณภาพต่ำก่อน แล้วค่อยนิ่งขึ้น
+      abrEwmaDefaultEstimate:350000,
 
-      liveSyncDurationCount:8,
-      liveMaxLatencyDurationCount:16,
+      // ลดการเปลี่ยน quality ถี่
+      abrBandWidthFactor:0.9,
+      abrBandWidthUpFactor:0.8,
 
-      progressive:true
+      progressive:true,
+      liveDurationInfinity:true
     });
 
     hls.loadSource(url);
@@ -380,38 +396,21 @@ function playHLS(s){
     });
 
     hls.on(Hls.Events.ERROR,(ev,data)=>{
-      if(!data || !hls) return;
-
-      // ไม่จัดการ non-fatal บ่อย เพราะทำให้เด้ง/กระตุก
-      if(!data.fatal) return;
-
-      if(data.type===Hls.ErrorTypes.NETWORK_ERROR){
-        setStatus("เน็ตสะดุด กำลังต่อเส้นเดิม...");
-        try{
-          hls.startLoad();
-          if(player.readyState>=2) player.play().catch(()=>{});
-        }catch(e){}
-        return;
+      if(data&&data.fatal){
+        if(data.type===Hls.ErrorTypes.NETWORK_ERROR){
+          setStatus("เน็ตสะดุด กำลังกู้คืน...");
+          try{hls.startLoad()}catch(e){}
+        }else if(data.type===Hls.ErrorTypes.MEDIA_ERROR){
+          setStatus("วิดีโอสะดุด กำลังกู้คืน...");
+          try{hls.recoverMediaError()}catch(e){}
+        }else{
+          nextServer();
+        }
       }
-
-      if(data.type===Hls.ErrorTypes.MEDIA_ERROR){
-        setStatus("วิดีโอสะดุด กำลังกู้คืน...");
-        try{
-          hls.recoverMediaError();
-          if(player.readyState>=2) player.play().catch(()=>{});
-        }catch(e){}
-        return;
-      }
-
-      // error อื่นค่อยไป backup
-      nextServer();
     });
 
     let lastTime=0;
     let stuck=0;
-    let noData=0;
-    let recovering=false;
-
     const watchdog=setInterval(()=>{
       const box=document.getElementById("player-container");
       if(box.style.display!=="block"){
@@ -421,51 +420,31 @@ function playHLS(s){
 
       forceMaxVolume();
 
-      // อย่ากด play ซ้ำถ้ายังไม่มี buffer
-      if(player.paused && player.readyState>=2){
+      if(player.paused && player.readyState >= 2){
         player.play().catch(()=>{});
       }
 
-      if(player.readyState<2){
-        noData++;
-      }else{
-        noData=0;
-      }
-
-      if(Math.abs((player.currentTime||0)-lastTime)<0.05){
+      if(Math.abs(player.currentTime-lastTime)<0.05){
         stuck++;
       }else{
         stuck=0;
       }
 
-      lastTime=player.currentTime||0;
+      lastTime=player.currentTime;
 
-      // รอให้นานพอ ลดการเด้งออก-กลับซ้ำ
-      if((stuck>=10 || noData>=10) && !recovering){
-        recovering=true;
-        setStatus("สัญญาณสะดุด กำลังประคองเส้นเดิม...");
-        try{
-          if(hls){
-            hls.startLoad(Math.max(0,(player.currentTime||0)-0.5));
-          }
-          if(player.readyState>=2){
-            player.play().catch(()=>{});
-          }
-        }catch(e){}
-
-        setTimeout(()=>{
-          recovering=false;
-          stuck=0;
-          noData=0;
-        },9000);
+      if(stuck>=5){
+        setStatus("ภาพค้าง กำลังกู้คืน...");
+        try{hls.startLoad()}catch(e){}
+        player.play().catch(()=>{});
+        stuck=0;
       }
-    },5000);
+    },3500);
+
     setTimeout(()=>{
       if(!started||player.readyState<2){
-        setStatus("ยังโหลดอยู่ กำลังรอเส้นหลักอีกนิด...");
-        try{ if(hls) hls.startLoad(); }catch(e){}
+        nextServer();
       }
-    },22000);
+    },9000);
 
   }else{
     player.src=url;
@@ -482,7 +461,7 @@ function closePlayer(){
   setTimeout(()=>currentElement?.focus(),150);
 }
 function reloadPlayer(){if(currentChannel){currentServerIndex=0;tryServer()}}
-function goHome(){window.location.href="index.html"}
+function goHome(){window.location.href="https://tiea9999.github.io/tv-online/index.html"}
 function activeUrl(){
   if(!currentChannel||!currentChannel.servers[currentServerIndex])return "";
   return currentChannel.servers[currentServerIndex].url;
