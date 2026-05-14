@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
-<title>TIEA SPORT ANDROID TV SOFT STABLE FINAL</title>
+<title>TIEA SPORT SAFE JSON LOAD FINAL</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.9/shaka-player.compiled.min.js"></script>
 <style>
@@ -70,14 +70,15 @@ h2{padding:60px 12px 8px;margin:0;color:orange;text-align:center;text-shadow:0 0
   .player-btn{font-size:11px;padding:6px 7px}
 }
 
+/* ซ่อนข้อความโหลดด้านบน แต่ไม่แตะระบบ JSON */
 #load-status{display:none!important;}
 </style>
 </head>
 <body>
 
 <a class="home-btn" href="index.html">⬅ กลับหน้าหลัก</a>
-<h2>TIEA SPORT ANDROID TV SOFT STABLE FINAL</h2>
-<div id="load-status"></div>
+<h2>TIEA SPORT SAFE JSON LOAD FINAL</h2>
+<div id="load-status">กำลังโหลด JSON...</div>
 
 <div class="tools">
   <button class="tool-btn" onclick="loadDefaultJson()">↻ โหลด JSON ใหม่</button>
@@ -194,7 +195,7 @@ function renderFromJson(json, label){
     return;
   }
 
-  loadStatus.textContent="";
+  loadStatus.textContent="โหลดสำเร็จ "+channels.length+" รายการ จาก "+label;
   render(channels);
 }
 
@@ -217,7 +218,7 @@ async function loadDefaultJson(){
   let lastErr="";
   for(const u of JSON_URLS){
     try{
-      loadStatus.textContent="";
+      loadStatus.textContent="กำลังโหลด: "+u;
       const res=await fetchWithTimeout(u,12000);
       if(!res.ok)throw new Error("HTTP "+res.status);
       const json=await res.json();
@@ -334,7 +335,7 @@ function playHLS(s){
 
   if(window.Hls&&Hls.isSupported()&&isM3U8Url(url)){
     hls=new Hls({
-      // SPORT ANDROID TV SOFT STABLE FINAL
+      // SPORT SAFE JSON LOAD + ANDROID TV SOFT STABLE
       enableWorker:false,
       lowLatencyMode:false,
 
@@ -420,13 +421,13 @@ function playHLS(s){
 
       forceMaxVolume();
 
+      // อย่ากด play ซ้ำถ้ายังไม่มี buffer
       if(player.paused && player.readyState>=2){
         player.play().catch(()=>{});
       }
 
       if(player.readyState<2){
         noData++;
-        try{ if(hls) hls.startLoad(); }catch(e){}
       }else{
         noData=0;
       }
@@ -439,22 +440,24 @@ function playHLS(s){
 
       lastTime=player.currentTime||0;
 
-      // กู้เบา ๆ ไม่ detach/attach ไม่เด้ง backup ถี่
-      if((stuck>=5 || noData>=5) && !recovering){
+      // รอให้นานพอ ลดการเด้งออก-กลับซ้ำ
+      if((stuck>=10 || noData>=10) && !recovering){
         recovering=true;
-        setStatus("สัญญาณสะดุด กำลังต่อใหม่ในหน้าเดิม...");
+        setStatus("สัญญาณสะดุด กำลังประคองเส้นเดิม...");
         try{
-          if(hls) hls.startLoad();
-          if(player.readyState>=2) player.play().catch(()=>{});
+          if(hls){
+            hls.startLoad(Math.max(0,(player.currentTime||0)-0.5));
+          }
+          if(player.readyState>=2){
+            player.play().catch(()=>{});
+          }
         }catch(e){}
 
         setTimeout(()=>{
           recovering=false;
           stuck=0;
           noData=0;
-        },10000);
-      }
-    },5000);
+        },9000);
       }
     },5000);
     setTimeout(()=>{
