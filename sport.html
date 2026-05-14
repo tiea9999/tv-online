@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
-<title>TIEA SPORT AUTO RECONNECT</title>
+<title>TIEA SPORT ANDROID TV SOFT STABLE FINAL</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.10.9/shaka-player.compiled.min.js"></script>
 <style>
@@ -76,7 +76,7 @@ h2{padding:60px 12px 8px;margin:0;color:orange;text-align:center;text-shadow:0 0
 <body>
 
 <a class="home-btn" href="index.html">⬅ กลับหน้าหลัก</a>
-<h2>TIEA SPORT TV SAFE FINAL</h2>
+<h2>TIEA SPORT ANDROID TV SOFT STABLE FINAL</h2>
 <div id="load-status"></div>
 
 <div class="tools">
@@ -334,49 +334,38 @@ function playHLS(s){
 
   if(window.Hls&&Hls.isSupported()&&isM3U8Url(url)){
     hls=new Hls({
-      // TIEA SPORT TV SAFE FINAL
-      // ลดอาการเด้งออก-กลับซ้ำ ไม่รีโหลดถี่เกิน
-      enableWorker:true,
+      // SPORT ANDROID TV SOFT STABLE FINAL
+      enableWorker:false,
       lowLatencyMode:false,
 
-      maxBufferLength:(navigator.userAgent.toLowerCase().includes('android tv')?110:75),
-      maxMaxBufferLength:(navigator.userAgent.toLowerCase().includes('android tv')?170:120),
-      backBufferLength:40,
+      maxBufferLength:35,
+      maxMaxBufferLength:50,
+      backBufferLength:20,
 
-      maxBufferHole:3,
-      highBufferWatchdogPeriod:8,
-      nudgeOffset:0.35,
-      nudgeMaxRetry:10,
+      liveBackBufferLength:0,
+      maxBufferHole:1.0,
+      maxFragLookUpTolerance:0.2,
 
-      manifestLoadingTimeOut:25000,
-      levelLoadingTimeOut:25000,
-      fragLoadingTimeOut:30000,
+      fragLoadingMaxRetry:6,
+      levelLoadingMaxRetry:5,
+      manifestLoadingMaxRetry:4,
 
-      manifestLoadingMaxRetry:10,
-      levelLoadingMaxRetry:10,
-      fragLoadingMaxRetry:14,
+      fragLoadingRetryDelay:1200,
+      levelLoadingRetryDelay:1200,
+      manifestLoadingRetryDelay:1200,
 
-      manifestLoadingRetryDelay:2000,
-      levelLoadingRetryDelay:2000,
-      fragLoadingRetryDelay:2000,
-
-      startFragPrefetch:true,
       startLevel:0,
       capLevelToPlayerSize:true,
       testBandwidth:false,
 
-      abrEwmaDefaultEstimate:650000,
-      abrBandWidthFactor:0.9,
-      abrBandWidthUpFactor:0.7,
+      abrEwmaDefaultEstimate:500000,
+      abrBandWidthFactor:0.7,
+      abrBandWidthUpFactor:0.45,
 
-      liveSyncDurationCount:(navigator.userAgent.toLowerCase().includes('android tv')?9:7),
-      liveMaxLatencyDurationCount:(navigator.userAgent.toLowerCase().includes('android tv')?24:18),
+      liveSyncDurationCount:8,
+      liveMaxLatencyDurationCount:16,
 
-      progressive:true,
-      liveDurationInfinity:true,
-      liveBackBufferLength:0,
-      maxFragLookUpTolerance:0.25,
-      appendErrorMaxRetry:20
+      progressive:true
     });
 
     hls.loadSource(url);
@@ -431,13 +420,13 @@ function playHLS(s){
 
       forceMaxVolume();
 
-      // อย่ากด play ซ้ำถ้ายังไม่มี buffer
       if(player.paused && player.readyState>=2){
         player.play().catch(()=>{});
       }
 
       if(player.readyState<2){
         noData++;
+        try{ if(hls) hls.startLoad(); }catch(e){}
       }else{
         noData=0;
       }
@@ -450,24 +439,22 @@ function playHLS(s){
 
       lastTime=player.currentTime||0;
 
-      // รอให้นานพอ ลดการเด้งออก-กลับซ้ำ
-      if((stuck>=7 || noData>=7) && !recovering){
+      // กู้เบา ๆ ไม่ detach/attach ไม่เด้ง backup ถี่
+      if((stuck>=5 || noData>=5) && !recovering){
         recovering=true;
-        setStatus("สัญญาณสะดุด กำลังประคองเส้นเดิม...");
+        setStatus("สัญญาณสะดุด กำลังต่อใหม่ในหน้าเดิม...");
         try{
-          if(hls){
-            hls.startLoad(Math.max(0,(player.currentTime||0)-0.5));if(player.readyState<2){try{hls.detachMedia();hls.attachMedia(player)}catch(e){}}
-          }
-          if(player.readyState>=2){
-            player.play().catch(()=>{});
-          }
+          if(hls) hls.startLoad();
+          if(player.readyState>=2) player.play().catch(()=>{});
         }catch(e){}
 
         setTimeout(()=>{
           recovering=false;
           stuck=0;
           noData=0;
-        },12000);
+        },10000);
+      }
+    },5000);
       }
     },5000);
     setTimeout(()=>{
