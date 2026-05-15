@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TIEA IPTV PROJECTOR 720P FIX</title>
+    <title>TIEA IPTV TV BOX PROJECTOR FIX</title>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
@@ -15,8 +15,7 @@
             color: #fff;
             font-family: sans-serif;
         }
-
-        .row-title {
+.row-title {
             padding: 10px;
             display: flex;
             justify-content: space-between;
@@ -245,29 +244,29 @@
                 grid-template-columns: repeat(6, minmax(0, 1fr));
             }
         }
+    
+/* ===== PROJECTOR / ANDROID TV FIX ===== */
+.projector-status{
+  position:absolute;
+  left:10px;
+  bottom:52px;
+  z-index:1005;
+  background:rgba(0,0,0,.72);
+  color:#fff;
+  padding:8px 10px;
+  border-radius:8px;
+  font-size:13px;
+  display:none;
+}
+#player.show-controls .projector-status{
+  display:block;
+}
+.player-top-buttons button:focus{
+  outline:3px solid #00e5ff;
+  outline-offset:2px;
+}
 
-        .projector-status {
-            position: absolute;
-            left: 10px;
-            bottom: 52px;
-            z-index: 1005;
-            background: rgba(0, 0, 0, .72);
-            color: #fff;
-            padding: 8px 10px;
-            border-radius: 8px;
-            font-size: 13px;
-            display: none;
-        }
-
-        #player.show-controls .projector-status {
-            display: block
-        }
-
-        .player-top-buttons button:focus {
-            outline: 3px solid #00e5ff;
-            outline-offset: 2px;
-        }
-    </style>
+</style>
 </head>
 
 <body>
@@ -448,16 +447,14 @@ url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/pornx
 
             startAudioOnlyGuard._timer = setTimeout(() => {
                 try {
-                    const playing = player.style.display === "block";
-                    const hasProgress = !video.paused && video.currentTime > 1;
+                    const hasSoundProgress = !video.paused && video.currentTime > 1;
                     const noPicture = video.style.display !== "none" && (!video.videoWidth || !video.videoHeight);
-
-                    if (playing && hasProgress && noPicture) {
-                        setProjectorStatus("มีเสียงแต่ไม่มีภาพ: โปรเจคเตอร์อาจไม่รองรับ codec นี้ ให้กด ▶ MX");
+                    if (player.style.display === "block" && hasSoundProgress && noPicture) {
+                        setProjectorStatus("เครื่องนี้อาจไม่รองรับ codec ภาพของลิงก์นี้ • กด ▶ MX เพื่อดูภาพ");
                         showPlayerControls(true);
                     }
                 } catch (e) {}
-            }, 5500);
+            }, 6000);
         }
 
         function togglePlayPause() {
@@ -953,38 +950,41 @@ url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/pornx
                     video.load();
                 } else if (Hls.isSupported()) {
                     hls = new Hls({
-                        // PROJECTOR 720P WEBVIEW SAFE
+                        // PROJECTOR / ANDROID TV SOFT STABLE
                         enableWorker: false,
                         lowLatencyMode: false,
 
-                        startLevel: 0,
-                        capLevelToPlayerSize: true,
-                        testBandwidth: false,
-
-                        maxBufferLength: 25,
-                        maxMaxBufferLength: 40,
-                        backBufferLength: 15,
+                        maxBufferLength: 35,
+                        maxMaxBufferLength: 50,
+                        backBufferLength: 20,
                         liveBackBufferLength: 0,
 
                         maxBufferHole: 1.0,
                         maxFragLookUpTolerance: 0.2,
                         appendErrorMaxRetry: 20,
 
-                        abrEwmaDefaultEstimate: 400000,
-                        abrBandWidthFactor: 0.65,
-                        abrBandWidthUpFactor: 0.35,
+                        startLevel: 0,
+                        capLevelToPlayerSize: true,
+                        testBandwidth: false,
+
+                        abrEwmaDefaultEstimate: 500000,
+                        abrBandWidthFactor: 0.7,
+                        abrBandWidthUpFactor: 0.45,
 
                         fragLoadingTimeOut: 25000,
                         manifestLoadingTimeOut: 25000,
                         levelLoadingTimeOut: 25000,
 
-                        fragLoadingMaxRetry: 5,
-                        levelLoadingMaxRetry: 4,
-                        manifestLoadingMaxRetry: 3,
+                        fragLoadingMaxRetry: 6,
+                        levelLoadingMaxRetry: 5,
+                        manifestLoadingMaxRetry: 4,
 
                         fragLoadingRetryDelay: 1200,
                         levelLoadingRetryDelay: 1200,
                         manifestLoadingRetryDelay: 1200,
+
+                        liveSyncDurationCount: 8,
+                        liveMaxLatencyDurationCount: 16,
 
                         progressive: true
                     });
