@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TIEA IPTV TV BOX PROJECTOR FIX</title>
+    <title>TIEA IPTV PROJECTOR 720P FIX</title>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
@@ -246,7 +246,6 @@
             }
         }
 
-        /* ===== PROJECTOR / ANDROID TV FIX ===== */
         .projector-status {
             position: absolute;
             left: 10px;
@@ -261,7 +260,7 @@
         }
 
         #player.show-controls .projector-status {
-            display: block;
+            display: block
         }
 
         .player-top-buttons button:focus {
@@ -449,14 +448,16 @@ url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/pornx
 
             startAudioOnlyGuard._timer = setTimeout(() => {
                 try {
-                    const hasSoundProgress = !video.paused && video.currentTime > 1;
+                    const playing = player.style.display === "block";
+                    const hasProgress = !video.paused && video.currentTime > 1;
                     const noPicture = video.style.display !== "none" && (!video.videoWidth || !video.videoHeight);
-                    if (player.style.display === "block" && hasSoundProgress && noPicture) {
-                        setProjectorStatus("เครื่องนี้อาจไม่รองรับ codec ภาพของลิงก์นี้ • กด ▶ MX เพื่อดูภาพ");
+
+                    if (playing && hasProgress && noPicture) {
+                        setProjectorStatus("มีเสียงแต่ไม่มีภาพ: โปรเจคเตอร์อาจไม่รองรับ codec นี้ ให้กด ▶ MX");
                         showPlayerControls(true);
                     }
                 } catch (e) {}
-            }, 6000);
+            }, 5500);
         }
 
         function togglePlayPause() {
@@ -952,41 +953,38 @@ url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/pornx
                     video.load();
                 } else if (Hls.isSupported()) {
                     hls = new Hls({
-                        // PROJECTOR / ANDROID TV SOFT STABLE
+                        // PROJECTOR 720P WEBVIEW SAFE
                         enableWorker: false,
                         lowLatencyMode: false,
 
-                        maxBufferLength: 35,
-                        maxMaxBufferLength: 50,
-                        backBufferLength: 20,
+                        startLevel: 0,
+                        capLevelToPlayerSize: true,
+                        testBandwidth: false,
+
+                        maxBufferLength: 25,
+                        maxMaxBufferLength: 40,
+                        backBufferLength: 15,
                         liveBackBufferLength: 0,
 
                         maxBufferHole: 1.0,
                         maxFragLookUpTolerance: 0.2,
                         appendErrorMaxRetry: 20,
 
-                        startLevel: 0,
-                        capLevelToPlayerSize: true,
-                        testBandwidth: false,
-
-                        abrEwmaDefaultEstimate: 500000,
-                        abrBandWidthFactor: 0.7,
-                        abrBandWidthUpFactor: 0.45,
+                        abrEwmaDefaultEstimate: 400000,
+                        abrBandWidthFactor: 0.65,
+                        abrBandWidthUpFactor: 0.35,
 
                         fragLoadingTimeOut: 25000,
                         manifestLoadingTimeOut: 25000,
                         levelLoadingTimeOut: 25000,
 
-                        fragLoadingMaxRetry: 6,
-                        levelLoadingMaxRetry: 5,
-                        manifestLoadingMaxRetry: 4,
+                        fragLoadingMaxRetry: 5,
+                        levelLoadingMaxRetry: 4,
+                        manifestLoadingMaxRetry: 3,
 
                         fragLoadingRetryDelay: 1200,
                         levelLoadingRetryDelay: 1200,
                         manifestLoadingRetryDelay: 1200,
-
-                        liveSyncDurationCount: 8,
-                        liveMaxLatencyDurationCount: 16,
 
                         progressive: true
                     });
