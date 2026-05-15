@@ -4,67 +4,54 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TIEA IPTV PROJECTOR OKHD FIX</title>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <style>
-        * {
-            box-sizing: border-box
-        }
+    <title>TIEA IPTV PRO FINAL</title>
 
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <style>
         body {
             margin: 0;
             background: #000;
             color: #fff;
-            font-family: Arial, Helvetica, sans-serif;
-            overflow-x: hidden
+            font-family: sans-serif;
         }
 
         .row-title {
-            padding: 12px;
+            padding: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: #00e5ff;
             font-weight: bold;
-            font-size: 18px
+            font-size: 18px;
         }
 
         .seeall {
             background: #ff9800;
-            border: 0;
-            padding: 8px 12px;
+            border: none;
+            padding: 6px 10px;
             border-radius: 8px;
             color: #fff;
-            font-weight: bold;
-            cursor: pointer
+            cursor: pointer;
         }
 
         .row-items {
             display: flex;
             gap: 12px;
             overflow-x: auto;
-            padding: 10px
+            padding: 10px;
+            scrollbar-width: thin;
         }
 
         .card {
             min-width: 160px;
             max-width: 160px;
             background: #111;
-            border: 1px solid #222;
-            border-radius: 12px;
+            border-radius: 10px;
             padding: 8px;
             text-align: center;
             cursor: pointer;
             flex-shrink: 0;
-            color: #fff
-        }
-
-        .card:focus,
-        .seeall:focus,
-        .ep-card:focus,
-        .pbtn:focus {
-            outline: 3px solid #00e5ff;
-            box-shadow: 0 0 18px #00e5ff
         }
 
         .card img {
@@ -72,161 +59,156 @@
             height: 210px;
             object-fit: cover;
             border-radius: 8px;
-            background: #222;
-            display: block
+            background: #1a1a1a;
+            display: block;
         }
 
         .card-title {
             margin-top: 8px;
             font-size: 14px;
             line-height: 1.35;
-            word-break: break-word
-        }
-
-        .status {
-            padding: 14px;
-            color: #bdf6ff
+            word-break: break-word;
         }
 
         #overlay,
         #player {
             position: fixed;
-            inset: 0;
-            display: none
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
         }
 
         #overlay {
             background: #000;
             z-index: 999;
             overflow: auto;
-            padding-top: 50px
+            padding-top: 50px;
         }
 
         #player {
             background: #000;
-            z-index: 1000
+            z-index: 1000;
         }
+
+        #player {
+            cursor: none;
+        }
+
+        #player.show-controls {
+            cursor: default;
+        }
+
+        .player-top-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1004;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            max-width: calc(100vw - 20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s ease;
+        }
+
+        #player.show-controls .player-top-buttons {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .player-top-buttons .btn,
+        .player-top-buttons .btn3,
+        .player-top-buttons .btn4,
+        .player-top-buttons .home-player-btn {
+            position: static;
+            top: auto;
+            right: auto;
+        }
+
+        .home-player-btn {
+            background: #00c853;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #mxHint {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s ease;
+        }
+
+        #player.show-controls #mxHint {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
 
         video,
         iframe {
             width: 100%;
             height: 100%;
-            border: 0;
+            border: none;
             background: #000;
-            object-fit: contain
+            object-fit: contain;
         }
 
-        #frame {
-            display: none
-        }
-
-        .player-top {
+        .btn,
+        .btn3,
+        .btn4 {
             position: absolute;
-            left: 8px;
-            right: 8px;
-            top: 8px;
-            z-index: 1005;
-            display: flex;
-            justify-content: space-between;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: .2s
-        }
-
-        #player.show-controls .player-top {
-            opacity: 1;
-            pointer-events: auto
-        }
-
-        .leftBtns,
-        .rightBtns {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap
-        }
-
-        .pbtn {
-            background: rgba(0, 0, 0, .65);
-            border: 2px solid #fff;
+            top: 10px;
+            z-index: 1002;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
             color: #fff;
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-weight: 900;
-            font-size: 15px;
             cursor: pointer;
-            text-shadow: 0 1px 2px #000
         }
 
-        .pbtn.close {
-            background: rgba(120, 0, 0, .75)
+        .btn {
+            right: 10px;
+            background: #ff0000;
         }
 
-        .pbtn.home {
-            background: rgba(0, 130, 65, .75)
+        .btn3 {
+            right: 60px;
+            background: #2196f3;
         }
 
-        .pbtn.reload {
-            background: rgba(0, 80, 120, .75)
+        .btn4 {
+            right: 130px;
+            background: #9c27b0;
         }
 
-        .pbtn.mx,
-        .pbtn.ext {
-            background: rgba(45, 45, 45, .8)
-        }
-
-        #hint {
+        #mxHint {
             position: absolute;
             left: 10px;
-            bottom: 12px;
-            right: 10px;
-            z-index: 1005;
-            background: rgba(0, 0, 0, .72);
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 10px 12px;
+            bottom: 10px;
+            z-index: 1002;
+            background: rgba(0, 0, 0, .65);
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .status {
+            padding: 14px;
             color: #fff;
-            font-size: 14px;
-            font-weight: bold;
-            opacity: 0;
-            pointer-events: none
-        }
-
-        #player.show-controls #hint {
-            opacity: 1
-        }
-
-        .centerPlay {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1004;
-            width: 84px;
-            height: 84px;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            background: rgba(255, 255, 255, .85);
-            color: #111;
-            font-size: 34px;
-            font-weight: 900;
-            display: none;
-            align-items: center;
-            justify-content: center
-        }
-
-        .centerPlay.show {
-            display: flex
         }
 
         .ep-wrap {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            padding: 10px
+            padding: 10px;
         }
 
         .ep-card {
@@ -236,64 +218,58 @@
             padding: 12px;
             text-align: center;
             cursor: pointer;
-            border: 1px solid #222
+            border: 1px solid #222;
         }
 
         .all-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
-            padding: 10px
+            padding: 10px;
         }
 
         .all-grid .card {
             min-width: 0;
             max-width: none;
-            width: 100%
+            width: 100%;
         }
 
-        @media(min-width:700px) {
+        @media (min-width: 700px) {
             .all-grid {
-                grid-template-columns: repeat(4, minmax(0, 1fr))
+                grid-template-columns: repeat(4, minmax(0, 1fr));
             }
         }
 
-        @media(min-width:1100px) {
+        @media (min-width: 1100px) {
             .all-grid {
-                grid-template-columns: repeat(6, minmax(0, 1fr))
+                grid-template-columns: repeat(6, minmax(0, 1fr));
             }
         }
     </style>
 </head>
 
 <body>
+
+
     <div id="grid"></div>
     <div id="overlay"></div>
 
     <div id="player">
-        <div class="player-top">
-            <div class="leftBtns">
-                <button class="pbtn close" id="closeBtn">✕</button>
-                <button class="pbtn reload" id="reloadBtn">↻ รีโหลด</button>
-            </div>
-            <div class="rightBtns">
-                <button class="pbtn ext" id="deviceBtn">▶ PLAYER</button>
-                <button class="pbtn mx" id="mxBtn">▶ MX</button>
-                <button class="pbtn home" id="homeBtn">🏠 HOME</button>
-            </div>
+        <div class="player-top-buttons">
+            <button class="btn" id="closePlayerBtn" onclick="closePlayerToLastView()" tabindex="0">✕</button>
+            <button class="btn3" onclick="openExternal()" tabindex="0">▶ MX</button>
+            <button class="btn4" onclick="copyCurrentLink()" tabindex="0">คัดลอก</button>
+            <button class="home-player-btn" onclick="goHome()" tabindex="0">🏠 HOME</button>
         </div>
-        <button class="centerPlay" id="centerPlay">▶</button>
-        <video id="video" playsinline webkit-playsinline x5-playsinline autoplay preload="auto"></video>
+        <div id="mxHint">ถ้าภาพไม่ขึ้นในแอพ24 ให้กด ▶ MX</div>
+        <video id="video" playsinline webkit-playsinline x5-playsinline controls autoplay muted preload="auto"></video>
         <iframe id="frame" allowfullscreen referrerpolicy="no-referrer"></iframe>
-        <div id="hint">กำลังเตรียมเล่น...</div>
     </div>
 
     <script>
-        const PROXY="https://iptv.tawatchai250958.workers.dev/?url=";
-const HOME_URL="https://tiea9999.github.io/tv-online/index.html";
-const TEST_OKHD="https://ok-hd.com/hls/6553758273a9419011f8b92bec62fd62/master.m3u8";
+        const PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
 
-const SOURCES=[
+        const SOURCES = [
             {
             name: "EZ 18+",
             type: "json",
@@ -319,245 +295,778 @@ const SOURCES=[
             type: "json",
             url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/pornxxx.json",
             },
-];
+       ];
 
-const FALLBACK_IMG="data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450"><rect width="100%" height="100%" fill="#1a1a1a"/><text x="50%" y="50%" fill="#ffffff" font-size="22" text-anchor="middle" dy=".3em">NO IMAGE</text></svg>`);
+        const FALLBACK_IMG =
+            "data:image/svg+xml;utf8," +
+            encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg" width="300" height="450">
+                    <rect width="100%" height="100%" fill="#1a1a1a"/>
+                    <text x="50%" y="50%" fill="#ffffff" font-size="22" text-anchor="middle" dy=".3em">NO IMAGE</text>
+                </svg>
+            `);
 
-let grid=document.getElementById("grid");
-let overlay=document.getElementById("overlay");
-let player=document.getElementById("player");
-let video=document.getElementById("video");
-let frame=document.getElementById("frame");
-let hint=document.getElementById("hint");
-let centerPlay=document.getElementById("centerPlay");
-let hls=null, store={}, currentList=[], currentIndex=0, currentUrl="", lastView={type:"grid",item:null}, controlsTimer=null, playWatchTimer=null;
+        let grid = document.getElementById("grid");
+        let overlay = document.getElementById("overlay");
+        let video = document.getElementById("video");
+        let frame = document.getElementById("frame");
+        let player = document.getElementById("player");
 
-function safeId(t){return String(t).replace(/[^\wก-๙-]/g,"_")}
-function getTitle(i){return i?.title||i?.name||i?.ep_name||"ไม่มีชื่อ"}
-function getImage(i){return i?.image||i?.poster||i?.poster_url||i?.thumb||i?.thumbnail||i?.logo||FALLBACK_IMG}
-function getDirectUrl(i){return i?.url||i?.file||i?.src||i?.link||i?.stream||i?.play||i?.video||i?.video_url||i?.m3u8||i?.player||i?.embed||i?.stream_url||""}
-function normalizeServers(x){
-  if(!Array.isArray(x)) return [];
-  return x.map(s=>{
-    if(typeof s==="string") return {url:s};
-    return {url:getDirectUrl(s||{})};
-  }).filter(s=>s.url);
-}
-function getServers(item){
-  let servers=normalizeServers(item?.servers||item?.sources||item?.links||item?.files||[]);
-  let one=getDirectUrl(item||{});
-  if(one) servers.unshift({url:one});
-  let seen=new Set();
-  return servers.filter(s=>{if(seen.has(s.url))return false;seen.add(s.url);return true});
-}
-function isHls(u){return /\.m3u8($|\?)/i.test(String(u||""))}
-function isVideoFile(u){return /\.(mp4|m4v|webm|ogg|ogv|mov)($|\?)/i.test(String(u||""))}
-function shouldProxy(u){
-  u=String(u||"").toLowerCase();
-  if(u.includes(".mpd"))return false;
-  if(u.includes("thaicdn"))return false;
-  if(u.includes("mux.dev"))return false;
-  if(u.includes("byteark"))return false;
-  return true;
-}
-function proxied(u){return shouldProxy(u)?PROXY+encodeURIComponent(u):u}
-function setHint(t){hint.textContent=t}
-function showControls(focusX=false){
-  player.classList.add("show-controls");
-  clearTimeout(controlsTimer);
-  if(focusX)setTimeout(()=>document.getElementById("closeBtn").focus(),60);
-  controlsTimer=setTimeout(()=>player.classList.remove("show-controls"),5000);
-}
-function requestFull(){
-  try{if(player.requestFullscreen)player.requestFullscreen();else if(player.webkitRequestFullscreen)player.webkitRequestFullscreen()}catch(e){}
-}
-function cleanup(){
-  clearTimeout(playWatchTimer);
-  if(hls){try{hls.destroy()}catch(e){} hls=null}
-  try{video.pause();video.removeAttribute("src");video.src="";video.load()}catch(e){}
-  frame.src="about:blank"; frame.style.display="none"; video.style.display="block"; centerPlay.classList.remove("show");
-}
-function closePlayer(){
-  cleanup();
-  player.style.display="none";
-  player.classList.remove("show-controls");
-  try{if(document.fullscreenElement)document.exitFullscreen();else if(document.webkitFullscreenElement)document.webkitExitFullscreen()}catch(e){}
-  if(lastView.type==="ep"&&lastView.item){showEP(lastView.item);return}
-  overlay.style.display="none"; grid.style.display="block";
-  setTimeout(()=>document.querySelector(".card")?.focus(),120);
-}
-async function loadAll(){
-  grid.innerHTML='<div class="status">⚡ LOADING...</div>';
-  grid.innerHTML="";
-  for(const s of SOURCES){
-    try{
-      let list=[];
-      if(Array.isArray(s.items)) list=s.items;
-      else{
-        let res=await fetch(s.url+"?t="+Date.now(),{cache:"no-store"});
-        let data=await res.json();
-        list=Array.isArray(data)?data:(Array.isArray(data.items)?data.items:(Array.isArray(data.data)?data.data:[]));
-      }
-      store[s.name]={data:list,error:""};
-    }catch(e){store[s.name]={data:[],error:"โหลดรายการไม่ได้"}}
-    renderRow(s.name);
-  }
-}
-function renderRow(name){
-  let row=document.createElement("div");
-  row.innerHTML=`<div class="row-title"><span>${name}</span><button class="seeall" onclick="seeAll('${name.replace(/'/g,"\\'")}')">ดูทั้งหมด</button></div><div class="row-items" id="row-${safeId(name)}"></div>`;
-  grid.appendChild(row); renderPage(name);
-}
-function createCard(item,onClick){
-  let d=document.createElement("div"); d.className="card"; d.tabIndex=0;
-  let img=getImage(item), title=getTitle(item);
-  d.innerHTML=`<img src="${img}" alt="${title}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${FALLBACK_IMG}'"><div class="card-title">${title}</div>`;
-  d.onclick=onClick;
-  d.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();onClick()}};
-  return d;
-}
-function renderPage(name){
-  let row=document.getElementById("row-"+safeId(name)), obj=store[name]; if(!row||!obj)return;
-  row.innerHTML="";
-  if(obj.error){row.innerHTML=`<div class="status">❌ ${obj.error}</div>`;return}
-  obj.data.slice(0,15).forEach(item=>row.appendChild(createCard(item,()=>openItem(item))));
-}
-function seeAll(name){
-  let obj=store[name]; if(!obj)return;
-  overlay.style.display="block"; grid.style.display="none";
-  overlay.innerHTML=`<div style="padding:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;"><h2>${name}</h2><button class="seeall" onclick="backToGrid()">← กลับ</button></div><div id="allBox" class="all-grid"></div>`;
-  let box=document.getElementById("allBox");
-  obj.data.forEach(item=>box.appendChild(createCard(item,()=>openItem(item))));
-}
-function backToGrid(){overlay.style.display="none";overlay.innerHTML="";grid.style.display="block"}
-function openItem(item){
-  if(Array.isArray(item.episodes)&&item.episodes.length){showEP(item);return}
-  let servers=getServers(item);
-  if(!servers.length){setHint("❌ ไม่พบลิงก์เล่น");showControls(true);return}
-  startPlay(servers);
-}
-function showEP(item){
-  lastView={type:"ep",item};
-  overlay.style.display="block"; grid.style.display="none";
-  overlay.innerHTML=`<div style="padding:10px;display:flex;align-items:center;justify-content:space-between;"><h2>${getTitle(item)}</h2><button class="seeall" onclick="backToGrid()">← กลับ</button></div><div class="ep-wrap" id="epBox"></div>`;
-  let box=document.getElementById("epBox");
-  item.episodes.forEach((ep,i)=>{
-    let d=document.createElement("div"); d.className="ep-card"; d.tabIndex=0; d.textContent=ep.name||ep.title||`EP ${i+1}`;
-    let fn=()=>{let sv=getServers(ep); if(sv.length)startPlay(sv); else {setHint("❌ ตอนนี้ไม่มีลิงก์เล่น");showControls(true)}};
-    d.onclick=fn; d.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();fn()}};
-    box.appendChild(d);
-  });
-}
-function startPlay(list){
-  currentList=list.filter(s=>s&&s.url); currentIndex=0;
-  if(!currentList.length)return;
-  overlay.style.display="none"; player.style.display="block"; video.style.display="block"; frame.style.display="none";
-  showControls(true); requestFull(); playCurrent();
-}
-function playCurrent(){
-  let s=currentList[currentIndex];
-  if(!s){webFailed();return}
-  currentUrl=s.url;
-  tryPlayChain(currentUrl).catch(()=>{currentIndex++;playCurrent()});
-}
-async function tryPlayChain(url){
-  if(isHls(url)){
-    try{await playHls(url,false);return}catch(e){}
-    try{await playHls(url,true);return}catch(e){}
-    throw "hls failed";
-  }
-  if(isVideoFile(url)){await playNative(url);return}
-  frame.style.display="block"; video.style.display="none"; frame.src=url; setHint("เปิด iframe แล้ว"); return;
-}
-function playHls(url,useProxy){
-  cleanup(); currentUrl=url; video.style.display="block";
-  let src=useProxy?proxied(url):url;
-  setHint(useProxy?"ลองผ่าน proxy...":"ลองลิงก์ตรง...");
-  return new Promise((resolve,reject)=>{
-    let settled=false;
-    function ok(){
-      if(settled)return; settled=true; clearTimeout(playWatchTimer); clearAll();
-      video.muted=false; video.volume=1;
-      video.play().then(()=>{setHint("เล่นผ่านเว็บแล้ว");resolve()}).catch(()=>{centerPlay.classList.add("show");setHint("กดปุ่ม ▶ กลางจอ เพื่อเริ่มเล่น");resolve()});
-    }
-    function fail(){
-      if(settled)return; settled=true; clearTimeout(playWatchTimer); clearAll(); reject("fail");
-    }
-    function clearAll(){
-      video.removeEventListener("loadedmetadata",ok);video.removeEventListener("canplay",ok);video.removeEventListener("playing",ok);video.removeEventListener("error",fail);
-    }
-    video.addEventListener("loadedmetadata",ok,{once:true});
-    video.addEventListener("canplay",ok,{once:true});
-    video.addEventListener("playing",ok,{once:true});
-    video.addEventListener("error",fail,{once:true});
-    if(Hls.isSupported()){
-      hls=new Hls({
-        enableWorker:false, lowLatencyMode:false, backBufferLength:10, maxBufferLength:18, maxMaxBufferLength:36,
-        startLevel:-1, capLevelToPlayerSize:true, testBandwidth:false,
-        fragLoadingTimeOut:30000, manifestLoadingTimeOut:30000, levelLoadingTimeOut:30000,
-        fragLoadingMaxRetry:4, manifestLoadingMaxRetry:3, levelLoadingMaxRetry:3
-      });
-      hls.on(Hls.Events.MANIFEST_PARSED,()=>{try{video.muted=true;video.play().catch(()=>{})}catch(e){}});
-      hls.on(Hls.Events.ERROR,(ev,data)=>{
-        if(data&&data.fatal){
-          if(data.type===Hls.ErrorTypes.NETWORK_ERROR){try{hls.startLoad()}catch(e){}}
-          else if(data.type===Hls.ErrorTypes.MEDIA_ERROR){try{hls.recoverMediaError()}catch(e){}}
-          else fail();
+        let hls = null;
+        let store = {};
+
+        let allView = {
+            active: false,
+            name: "",
+            page: 1
+        };
+
+        let currentList = [];
+        let currentIndex = 0;
+        let lastView = { type: "grid", item: null };
+        let controlTimer = null;
+
+        function safeId(text) {
+            return String(text).replace(/[^\wก-๙-]/g, "_");
         }
-      });
-      hls.loadSource(src); hls.attachMedia(video);
-    }else if(video.canPlayType("application/vnd.apple.mpegurl")){
-      video.src=src; video.load(); video.muted=true; video.play().catch(()=>{});
-    }else reject("no hls");
-    playWatchTimer=setTimeout(()=>{ if(!settled) fail() }, /ok-hd\.com/i.test(url)?18000:10000);
-  });
-}
-function playNative(url){
-  cleanup(); video.style.display="block"; video.src=url; video.muted=false; video.volume=1; setHint("เล่นไฟล์วิดีโอ...");
-  return video.play();
-}
-function webFailed(){
-  setHint("เว็บเล่นไม่ได้ในโปรเจ็คเตอร์นี้ กด ▶ PLAYER หรือ ▶ MX เพื่อเล่นลิงก์ตรง");
-  showControls(true);
-  centerPlay.classList.add("show");
-}
-function buildIntent(url,type,pkg){
-  let scheme=url.startsWith("https://")?"https":"http", clean=url.replace(/^https?:\/\//,""), fallback=encodeURIComponent(url);
-  return `intent://${clean}#Intent;scheme=${scheme};action=android.intent.action.VIEW;${pkg?`package=${pkg};`:""}type=${type};S.browser_fallback_url=${fallback};end`;
-}
-function openDevicePlayer(){
-  if(!currentUrl)return;
-  window.location.href=buildIntent(currentUrl,isHls(currentUrl)?"application/x-mpegURL":"video/*","");
-}
-function openMx(){
-  if(!currentUrl)return;
-  window.location.href=buildIntent(currentUrl,isHls(currentUrl)?"application/x-mpegURL":"video/*","com.mxtech.videoplayer.ad");
-}
-function seekVideo(sec){
-  showControls();
-  if(video.style.display==="none")return;
-  video.currentTime=Math.max(0,(video.currentTime||0)+sec);
-}
-document.getElementById("closeBtn").onclick=closePlayer;
-document.getElementById("reloadBtn").onclick=()=>{if(currentUrl)playCurrent()};
-document.getElementById("deviceBtn").onclick=openDevicePlayer;
-document.getElementById("mxBtn").onclick=openMx;
-document.getElementById("homeBtn").onclick=()=>location.href=HOME_URL;
-centerPlay.onclick=()=>{video.muted=false;video.volume=1;video.play().then(()=>centerPlay.classList.remove("show")).catch(()=>{})};
-player.addEventListener("mousemove",()=>showControls());
-player.addEventListener("click",()=>showControls());
-player.addEventListener("touchstart",()=>showControls());
-document.addEventListener("keydown",e=>{
-  if(player.style.display==="block"){
-    showControls(true);
-    if(e.key==="ArrowLeft"){e.preventDefault();seekVideo(-10)}
-    else if(e.key==="ArrowRight"){e.preventDefault();seekVideo(10)}
-    else if(e.key==="Enter"||e.key==="OK"){requestFull()}
-    else if(e.key==="Escape"||e.key==="Backspace"||e.keyCode===10009){e.preventDefault();closePlayer()}
-  }
-});
-loadAll();
+
+        function getTitle(item) {
+            return item.title || item.name || item.ep_name || "ไม่มีชื่อ";
+        }
+
+        function getImage(item) {
+            return (
+                item.image ||
+                item.poster ||
+                item.poster_url ||
+                item.thumb ||
+                item.thumbnail ||
+                item.logo ||
+                FALLBACK_IMG
+            );
+        }
+
+        function getDirectUrl(item) {
+            if (!item || typeof item !== "object") return "";
+            return (
+                item.url ||
+                item.file ||
+                item.src ||
+                item.link ||
+                item.stream ||
+                item.play ||
+                item.video ||
+                item.video_url ||
+                item.m3u8 ||
+                item.player ||
+                item.embed ||
+                item.stream_url ||
+                ""
+            );
+        }
+
+        function normalizeServers(servers) {
+            if (!Array.isArray(servers)) return [];
+
+            return servers
+                .map(s => {
+                    if (typeof s === "string") return { url: s };
+
+                    if (s && typeof s === "object") {
+                        return {
+                            url:
+                                s.url ||
+                                s.file ||
+                                s.src ||
+                                s.link ||
+                                s.stream ||
+                                s.play ||
+                                s.video ||
+                                s.video_url ||
+                                s.m3u8 ||
+                                s.player ||
+                                s.embed ||
+                                s.stream_url ||
+                                ""
+                        };
+                    }
+
+                    return { url: "" };
+                })
+                .filter(s => s.url);
+        }
+
+        async function loadAll() {
+            grid.innerHTML = `<div class="status">⚡ LOADING...</div>`;
+            const rows = [];
+
+            for (const s of SOURCES) {
+                try {
+                    const res = await fetch(s.url + "?t=" + Date.now(), { cache: "no-store" });
+                    if (!res.ok) throw new Error("โหลดไม่สำเร็จ " + res.status);
+
+                    const data = await res.json();
+
+                    let list = [];
+                    if (Array.isArray(data)) {
+                        list = data;
+                    } else if (Array.isArray(data.items)) {
+                        list = data.items;
+                    } else if (Array.isArray(data.data)) {
+                        list = data.data;
+                    }
+
+                    store[s.name] = {
+                        data: list,
+                        page: 1,
+                        error: ""
+                    };
+                } catch (err) {
+                    console.error("โหลด source ไม่ได้:", s.name, err);
+                    store[s.name] = {
+                        data: [],
+                        page: 1,
+                        error: "โหลดรายการไม่ได้"
+                    };
+                }
+
+                rows.push(s.name);
+            }
+
+            grid.innerHTML = "";
+            rows.forEach(renderRow);
+        }
+
+        function renderRow(name) {
+            const rowId = safeId(name);
+            const row = document.createElement("div");
+
+            row.innerHTML = `
+                <div class="row-title">
+                    <span>${name}</span>
+                    <button class="seeall" onclick="seeAll('${name.replace(/'/g, "\\'")}')">ดูทั้งหมด</button>
+                </div>
+                <div class="row-items" id="row-${rowId}"></div>
+            `;
+
+            grid.appendChild(row);
+            renderPage(name);
+        }
+
+        function createCard(item, onClick) {
+            const div = document.createElement("div");
+            div.className = "card";
+            div.tabIndex = 0;
+
+            const img = getImage(item);
+            const title = getTitle(item);
+
+            div.innerHTML = `
+                <img
+                    src="${img}"
+                    alt="${title}"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                    onerror="this.onerror=null;this.src='${FALLBACK_IMG}'"
+                >
+                <div class="card-title">${title}</div>
+            `;
+
+            div.onclick = onClick;
+            div.onkeydown = (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onClick();
+                }
+            };
+            return div;
+        }
+
+        function renderPage(name) {
+            const obj = store[name];
+            if (!obj) return;
+
+            const row = document.getElementById("row-" + safeId(name));
+            if (!row) return;
+
+            const items = obj.data.slice(0, 15);
+            row.innerHTML = "";
+
+            if (obj.error) {
+                row.innerHTML = `<div class="status">❌ ${obj.error}</div>`;
+                return;
+            }
+
+            if (!items.length) {
+                row.innerHTML = `<div class="status">ไม่มีข้อมูล</div>`;
+                return;
+            }
+
+            items.forEach(item => row.appendChild(createCard(item, () => openItem(item))));
+        }
+
+        function seeAll(name) {
+            allView.active = true;
+            allView.name = name;
+            allView.page = 1;
+            renderAllPage();
+        }
+
+        function renderAllPage() {
+            const obj = store[allView.name];
+            if (!obj) return;
+
+            const perPage = 20;
+            const totalItems = obj.data.length;
+            const totalPages = Math.max(1, Math.ceil(totalItems / perPage));
+            const currentPage = Math.min(allView.page, totalPages);
+            const start = (currentPage - 1) * perPage;
+            const end = start + perPage;
+            const items = obj.data.slice(start, end);
+
+            overlay.style.display = "block";
+            grid.style.display = "none";
+
+            overlay.innerHTML = `
+                <div style="padding:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+                    <h2 style="margin:0;">${allView.name}</h2>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                        <button class="seeall" onclick="prevAllPage()">◀ ก่อนหน้า</button>
+                        <button class="seeall" onclick="nextAllPage()">ถัดไป ▶</button>
+                        <button class="seeall" onclick="backToGrid()">← กลับ</button>
+                    </div>
+                </div>
+
+                <div style="padding:0 10px 10px 10px;color:#00e5ff;">
+                    หน้า ${currentPage} / ${totalPages} &nbsp; | &nbsp; ทั้งหมด ${totalItems} เรื่อง
+                </div>
+
+                <div id="allBox" class="all-grid"></div>
+            `;
+
+            const box = document.getElementById("allBox");
+
+            if (obj.error) {
+                box.innerHTML = `<div class="status">❌ ${obj.error}</div>`;
+                return;
+            }
+
+            if (!items.length) {
+                box.innerHTML = `<div class="status">ไม่มีข้อมูล</div>`;
+                return;
+            }
+
+            items.forEach(item => box.appendChild(createCard(item, () => openItem(item))));
+        }
+
+        function nextAllPage() {
+            const obj = store[allView.name];
+            if (!obj) return;
+
+            const totalPages = Math.max(1, Math.ceil(obj.data.length / 20));
+            if (allView.page < totalPages) {
+                allView.page++;
+                renderAllPage();
+            }
+        }
+
+        function prevAllPage() {
+            if (allView.page > 1) {
+                allView.page--;
+                renderAllPage();
+            }
+        }
+
+        function openItem(item) {
+            if (Array.isArray(item.episodes) && item.episodes.length) {
+                showEP(item);
+                return;
+            }
+
+            const servers = normalizeServers(item.servers || item.sources || item.links || []);
+            const url = getDirectUrl(item);
+
+            if (servers.length) {
+                startPlay(servers);
+                return;
+            }
+
+            if (url) {
+                startPlay([{ url }]);
+                return;
+            }
+
+            alert("❌ ไม่พบลิงก์เล่น");
+        }
+
+        function showEP(item) {
+            lastView = { type: "ep", item };
+            overlay.style.display = "block";
+            grid.style.display = "none";
+
+            overlay.innerHTML = `
+                <div style="padding:10px;display:flex;align-items:center;justify-content:space-between;">
+                    <h2 style="margin:0;">${getTitle(item)}</h2>
+                    <button class="seeall" onclick="backToListOrGrid()">← กลับ</button>
+                </div>
+                <div class="ep-wrap" id="epBox"></div>
+            `;
+
+            const box = document.getElementById("epBox");
+
+            item.episodes.forEach((ep, index) => {
+                const d = document.createElement("div");
+                d.className = "ep-card";
+                d.tabIndex = 0;
+                d.textContent = ep.name || ep.title || `EP ${index + 1}`;
+                const playThisEp = () => {
+                    const servers = normalizeServers(
+                        ep.servers || ep.sources || ep.links || ep.files || ep.playlist || []
+                    );
+
+                    const single = getDirectUrl(ep);
+
+                    if (servers.length) {
+                        startPlay(servers);
+                    } else if (single) {
+                        startPlay([{ url: single }]);
+                    } else {
+                        alert("❌ ตอนนี้ไม่มีลิงก์เล่น");
+                    }
+                };
+                d.onclick = playThisEp;
+                d.onkeydown = (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        playThisEp();
+                    }
+                };
+                box.appendChild(d);
+            });
+        }
+
+        function startPlay(list) {
+            currentList = [...list];
+            currentIndex = 0;
+            overlay.style.display = "none";
+            player.style.display = "block";
+            showPlayerControls(true);
+            playServers(currentList);
+        }
+
+        async function playServers(list) {
+            currentList = [...list];
+
+            for (let i = 0; i < list.length; i++) {
+                currentIndex = i;
+                const item = list[i];
+                const url = typeof item === "string" ? item : item.url;
+
+                if (!url) continue;
+
+                try {
+                    await play(url);
+                    return;
+                } catch (e) {
+                    console.warn("server เล่นไม่ได้:", url, e);
+                }
+            }
+
+            alert("❌ เล่นไม่ได้ทุก server");
+            goHome();
+        }
+
+        function cleanupPlayers() {
+            if (hls) {
+                try { hls.destroy(); } catch (e) { }
+                hls = null;
+            }
+
+            video.pause();
+            video.muted = true;
+            video.removeAttribute("src");
+            video.load();
+
+            frame.src = "";
+            video.style.display = "none";
+            frame.style.display = "none";
+        }
+
+        function isHls(url) {
+            return /\.m3u8($|\?)/i.test(url);
+        }
+
+        function isVideoFile(url) {
+            return /\.(mp4|m4v|webm|ogg|ogv|mov)($|\?)/i.test(url);
+        }
+
+        function isEmbeddable(url) {
+            return /youtube\.com|youtu\.be|vk\.com|ok\.ru|dailymotion\.com|player|embed/i.test(url);
+        }
+
+        async function play(url) {
+            cleanupPlayers();
+
+            if (isHls(url)) {
+                try {
+                    await playHlsWithFallback(url);
+                    return;
+                } catch (e) {
+                    try {
+                        await playNativeVideo(PROXY + encodeURIComponent(url));
+                        return;
+                    } catch (_) {
+                        throw e;
+                    }
+                }
+            }
+
+            if (isVideoFile(url)) {
+                return playNativeVideo(url);
+            }
+
+            if (isEmbeddable(url)) {
+                return openFrame(url);
+            }
+
+            try {
+                await playNativeVideo(url);
+                return;
+            } catch (_) {
+                return openFrame(url);
+            }
+        }
+
+        function playNativeVideo(url) {
+            video.style.display = "block";
+            frame.style.display = "none";
+
+            return new Promise((resolve, reject) => {
+                let done = false;
+
+                const ok = () => {
+                    if (done) return;
+                    done = true;
+                    clear();
+                    video.muted = false;
+                    const p = video.play();
+                    if (p && typeof p.then === "function") {
+                        p.then(() => resolve()).catch(() => resolve());
+                    } else {
+                        resolve();
+                    }
+                };
+
+                const fail = () => {
+                    if (done) return;
+                    done = true;
+                    clear();
+                    reject("video error");
+                };
+
+                const clear = () => {
+                    video.removeEventListener("loadedmetadata", ok);
+                    video.removeEventListener("canplay", ok);
+                    video.removeEventListener("playing", ok);
+                    video.removeEventListener("error", fail);
+                };
+
+                video.addEventListener("loadedmetadata", ok, { once: true });
+                video.addEventListener("canplay", ok, { once: true });
+                video.addEventListener("playing", ok, { once: true });
+                video.addEventListener("error", fail, { once: true });
+
+                video.pause();
+                video.removeAttribute("src");
+                video.load();
+
+                video.src = url;
+                video.load();
+
+                setTimeout(() => {
+                    if (!done) fail();
+                }, 10000);
+            });
+        }
+
+        function playHlsWithFallback(url) {
+            const tryUrls = [url, PROXY + encodeURIComponent(url)];
+
+            return new Promise(async (resolve, reject) => {
+                for (const testUrl of tryUrls) {
+                    try {
+                        await playOneHls(testUrl);
+                        resolve();
+                        return;
+                    } catch (e) {
+                        console.warn("HLS ล้มเหลว:", testUrl, e);
+                    }
+                }
+                reject("hls fail");
+            });
+        }
+
+        function playOneHls(sourceUrl) {
+            video.style.display = "block";
+            frame.style.display = "none";
+
+            return new Promise((resolve, reject) => {
+                let settled = false;
+
+                const ok = () => {
+                    if (settled) return;
+                    settled = true;
+                    clear();
+
+                    setTimeout(() => {
+                        video.muted = false;
+                        const p = video.play();
+                        if (p && typeof p.then === "function") {
+                            p.then(() => resolve()).catch(() => resolve());
+                        } else {
+                            resolve();
+                        }
+                    }, 200);
+                };
+
+                const fail = () => {
+                    if (settled) return;
+                    settled = true;
+                    clear();
+                    reject("hls error");
+                };
+
+                const clear = () => {
+                    video.removeEventListener("loadedmetadata", ok);
+                    video.removeEventListener("canplay", ok);
+                    video.removeEventListener("playing", ok);
+                    video.removeEventListener("error", fail);
+
+                    if (hls) {
+                        hls.off(Hls.Events.MANIFEST_PARSED, ok);
+                        hls.off(Hls.Events.LEVEL_LOADED, ok);
+                        hls.off(Hls.Events.ERROR, onHlsError);
+                    }
+                };
+
+                const onHlsError = (event, data) => {
+                    if (!data) return;
+
+                    if (data.fatal) {
+                        if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
+                            try { hls.startLoad(); } catch (e) { }
+                        } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
+                            try { hls.recoverMediaError(); } catch (e) { }
+                        } else {
+                            fail();
+                        }
+                    }
+                };
+
+                video.pause();
+                video.removeAttribute("src");
+                video.load();
+
+                if (video.canPlayType("application/vnd.apple.mpegurl")) {
+                    video.addEventListener("loadedmetadata", ok, { once: true });
+                    video.addEventListener("canplay", ok, { once: true });
+                    video.addEventListener("playing", ok, { once: true });
+                    video.addEventListener("error", fail, { once: true });
+
+                    video.src = sourceUrl;
+                    video.load();
+                } else if (Hls.isSupported()) {
+                    hls = new Hls({
+                        enableWorker: true,
+                        lowLatencyMode: false,
+                        backBufferLength: 30,
+                        maxBufferLength: 20,
+                        maxMaxBufferLength: 30,
+                        startLevel: -1,
+                        fragLoadingTimeOut: 20000,
+                        manifestLoadingTimeOut: 20000
+                    });
+
+                    video.addEventListener("loadedmetadata", ok, { once: true });
+                    video.addEventListener("canplay", ok, { once: true });
+                    video.addEventListener("playing", ok, { once: true });
+                    video.addEventListener("error", fail, { once: true });
+
+                    hls.on(Hls.Events.MANIFEST_PARSED, ok);
+                    hls.on(Hls.Events.LEVEL_LOADED, ok);
+                    hls.on(Hls.Events.ERROR, onHlsError);
+
+                    hls.loadSource(sourceUrl);
+                    hls.attachMedia(video);
+                } else {
+                    reject("browser not support hls");
+                    return;
+                }
+
+                setTimeout(() => {
+                    if (!settled) fail();
+                }, 12000);
+            });
+        }
+
+        function openFrame(url) {
+            frame.style.display = "block";
+
+            return new Promise((resolve, reject) => {
+                let done = false;
+
+                const ok = () => {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    resolve();
+                };
+
+                const fail = () => {
+                    if (done) return;
+                    done = true;
+                    clearTimeout(timer);
+                    reject("iframe error");
+                };
+
+                frame.onload = ok;
+                frame.onerror = fail;
+                frame.src = url;
+
+                const timer = setTimeout(() => {
+                    if (!done) ok();
+                }, 2500);
+            });
+        }
+
+        function openExternal() {
+            if (!currentList.length) return;
+
+            const item = currentList[currentIndex];
+            const url = typeof item === "string" ? item : item.url;
+            if (!url) return;
+
+            const scheme = url.startsWith("https://") ? "https" : "http";
+            const clean = url.replace(/^https?:\/\//, "");
+
+            const mxPhoneIntent =
+                `intent://${clean}#Intent;scheme=${scheme};package=com.mxtech.videoplayer.ad;type=video/*;end`;
+
+            const mxTvIntent =
+                `intent://${clean}#Intent;scheme=${scheme};package=com.mxtech.videoplayer.television;type=video/*;end`;
+
+            try {
+                window.location.href = mxPhoneIntent;
+
+                setTimeout(() => {
+                    window.location.href = mxTvIntent;
+                }, 1200);
+            } catch (e) {
+                window.location.href = url;
+            }
+        }
+
+        async function copyCurrentLink() {
+            if (!currentList.length) return;
+            const item = currentList[currentIndex];
+            const url = typeof item === "string" ? item : item.url;
+            if (!url) return;
+
+            try {
+                await navigator.clipboard.writeText(url);
+                alert("คัดลอกลิงก์แล้ว");
+            } catch (e) {
+                prompt("คัดลอกลิงก์นี้", url);
+            }
+        }
+
+        function backToListOrGrid() {
+            if (allView.active) {
+                renderAllPage();
+            } else {
+                backToGrid();
+            }
+        }
+
+        function backToGrid() {
+            overlay.style.display = "none";
+            overlay.innerHTML = "";
+            grid.style.display = "block";
+            allView.active = false;
+            allView.name = "";
+            allView.page = 1;
+        }
+
+        function showPlayerControls(focusX = false) {
+            player.classList.add("show-controls");
+            clearTimeout(controlTimer);
+
+            if (focusX) {
+                setTimeout(() => {
+                    const xBtn = document.getElementById("closePlayerBtn");
+                    if (xBtn && player.style.display === "block") xBtn.focus();
+                }, 60);
+            }
+
+            controlTimer = setTimeout(() => {
+                player.classList.remove("show-controls");
+            }, 4500);
+        }
+
+        function closePlayerToLastView() {
+            cleanupPlayers();
+            player.style.display = "none";
+            player.classList.remove("show-controls");
+
+            if (lastView.type === "ep" && lastView.item) {
+                showEP(lastView.item);
+                return;
+            }
+
+            if (allView.active) {
+                renderAllPage();
+                return;
+            }
+
+            overlay.style.display = "none";
+            grid.style.display = "block";
+            setTimeout(() => document.querySelector(".card")?.focus(), 100);
+        }
+
+        function seekVideo(sec) {
+            showPlayerControls();
+            if (!video || video.style.display === "none") return;
+            video.currentTime = Math.max(0, (video.currentTime || 0) + sec);
+        }
+
+        function goHome() {
+            window.location.href = "https://tiea9999.github.io/tv/";
+        }
+
+        player.addEventListener("mousemove", () => showPlayerControls());
+        player.addEventListener("click", () => showPlayerControls());
+        player.addEventListener("touchstart", () => showPlayerControls());
+
+        document.addEventListener("keydown", (e) => {
+            if (player.style.display !== "block") return;
+
+            showPlayerControls(true);
+
+            if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                seekVideo(-15);
+            } else if (e.key === "ArrowRight") {
+                e.preventDefault();
+                seekVideo(15);
+            } else if (e.key === "Escape" || e.key === "Backspace" || e.keyCode === 10009) {
+                e.preventDefault();
+                closePlayerToLastView();
+            }
+        });
+
+        loadAll();
     </script>
+
 </body>
 
 </html>
