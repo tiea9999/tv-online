@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TIEA IPTV PRO FINAL</title>
+    <title>TIEA IPTV TV BOX PROJECTOR FIX</title>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
@@ -14,19 +14,6 @@
             background: #000;
             color: #fff;
             font-family: sans-serif;
-        }
-
-        #homeBtn {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            z-index: 9999;
-            padding: 10px 14px;
-            background: #00c853;
-            border: none;
-            border-radius: 10px;
-            color: #fff;
-            cursor: pointer;
         }
 
         .row-title {
@@ -105,6 +92,65 @@
             z-index: 1000;
         }
 
+        #player {
+            cursor: none;
+        }
+
+        #player.show-controls {
+            cursor: default;
+        }
+
+        .player-top-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1004;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            max-width: calc(100vw - 20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s ease;
+        }
+
+        #player.show-controls .player-top-buttons {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .player-top-buttons .btn,
+        .player-top-buttons .btn3,
+        .player-top-buttons .btn4,
+        .player-top-buttons .home-player-btn {
+            position: static;
+            top: auto;
+            right: auto;
+        }
+
+        .home-player-btn {
+            background: #00c853;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #mxHint {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s ease;
+        }
+
+        #player.show-controls #mxHint {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+
         video,
         iframe {
             width: 100%;
@@ -175,13 +221,6 @@
             border: 1px solid #222;
         }
 
-        .card:focus,
-        .ep-card:focus,
-        button:focus {
-            outline: 3px solid #00e5ff;
-            outline-offset: 2px;
-        }
-
         .all-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -206,21 +245,47 @@
                 grid-template-columns: repeat(6, minmax(0, 1fr));
             }
         }
+
+        /* ===== PROJECTOR / ANDROID TV FIX ===== */
+        .projector-status {
+            position: absolute;
+            left: 10px;
+            bottom: 52px;
+            z-index: 1005;
+            background: rgba(0, 0, 0, .72);
+            color: #fff;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            display: none;
+        }
+
+        #player.show-controls .projector-status {
+            display: block;
+        }
+
+        .player-top-buttons button:focus {
+            outline: 3px solid #00e5ff;
+            outline-offset: 2px;
+        }
     </style>
 </head>
 
 <body>
 
-    <button id="homeBtn">🏠 HOME</button>
 
     <div id="grid"></div>
     <div id="overlay"></div>
 
     <div id="player">
-        <button class="btn" onclick="goHome()">✕</button>
-        <button class="btn3" onclick="openExternal()">▶ MX</button>
-        <button class="btn4" onclick="copyCurrentLink()">คัดลอก</button>
-        <div id="mxHint">ถ้าไม่มีภาพให้กด MX</div>
+        <div class="player-top-buttons">
+            <button class="btn" id="closePlayerBtn" onclick="closePlayerToLastView()" tabindex="0">✕</button>
+            <button class="btn3" onclick="openExternal()" tabindex="0">▶ MX</button>
+            <button class="btn4" onclick="copyCurrentLink()" tabindex="0">คัดลอก</button>
+            <button class="home-player-btn" onclick="goHome()" tabindex="0">🏠 HOME</button>
+        </div>
+        <div id="mxHint">ถ้าภาพไม่ขึ้นใน Android TV/โปรเจคเตอร์ ให้กด ▶ MX</div>
+        <div id="projectorStatus" class="projector-status"></div>
         <video id="video" playsinline webkit-playsinline x5-playsinline controls autoplay muted preload="auto"></video>
         <iframe id="frame" allowfullscreen referrerpolicy="no-referrer"></iframe>
     </div>
@@ -229,32 +294,32 @@
         const PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
 
         const SOURCES = [
-            {
-            name: "EZ 18+",
-            type: "json",
-            url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Vip.json",
-            },
-            {
-            name: "njav 18+",
-            type: "json",
-            url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/njav.json",
-            },
-            {
-            name: "avpung 18+",
-            type: "json",
-            url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/playlist_avpung.json",
-            },
-            {
-            name: "jav24 18+",
-            type: "json",
-            url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/playlist_jav24.json",
-            },
-            {
-            name: "pornxxx",
-            type: "json",
-            url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/pornxxx.json",
-            },
-        ];
+{
+name: "EZ 18+",
+type: "json",
+url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Vip.json",
+},
+{
+name: "njav 18+",
+type: "json",
+url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/njav.json",
+},
+{
+name: "avpung 18+",
+type: "json",
+url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/playlist_avpung.json",
+},
+{
+name: "jav24 18+",
+type: "json",
+url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/playlist_jav24.json",
+},
+{
+name: "pornxxx",
+type: "json",
+url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/pornxxx.json",
+},
+       ];
 
         const FALLBACK_IMG =
             "data:image/svg+xml;utf8," +
@@ -282,6 +347,8 @@
 
         let currentList = [];
         let currentIndex = 0;
+        let lastView = { type: "grid", item: null };
+        let controlTimer = null;
 
         function safeId(text) {
             return String(text).replace(/[^\wก-๙-]/g, "_");
@@ -353,6 +420,52 @@
                 .filter(s => s.url);
         }
 
+
+        function setProjectorStatus(msg) {
+            const box = document.getElementById("projectorStatus");
+            if (!box) return;
+            box.textContent = msg || "";
+            box.style.display = msg ? "block" : "none";
+        }
+
+        function isAndroidTvOrProjector() {
+            const ua = (navigator.userAgent || "").toLowerCase();
+            return ua.includes("android tv") ||
+                ua.includes("smart-tv") ||
+                ua.includes("smarttv") ||
+                ua.includes("projector") ||
+                ua.includes("xgimi") ||
+                ua.includes("mibox") ||
+                ua.includes("bravia") ||
+                ua.includes("chromecast") ||
+                ua.includes("aft") ||
+                ua.includes("tizen") ||
+                ua.includes("webos");
+        }
+
+        function startAudioOnlyGuard(rawUrl) {
+            clearTimeout(startAudioOnlyGuard._timer);
+            if (!isAndroidTvOrProjector()) return;
+
+            startAudioOnlyGuard._timer = setTimeout(() => {
+                try {
+                    const hasSoundProgress = !video.paused && video.currentTime > 1;
+                    const noPicture = video.style.display !== "none" && (!video.videoWidth || !video.videoHeight);
+                    if (player.style.display === "block" && hasSoundProgress && noPicture) {
+                        setProjectorStatus("เครื่องนี้อาจไม่รองรับ codec ภาพของลิงก์นี้ • กด ▶ MX เพื่อดูภาพ");
+                        showPlayerControls(true);
+                    }
+                } catch (e) {}
+            }, 6000);
+        }
+
+        function togglePlayPause() {
+            if (!video || video.style.display === "none") return;
+            if (video.paused) video.play().catch(() => {});
+            else video.pause();
+            showPlayerControls(false);
+        }
+
         async function loadAll() {
             grid.innerHTML = `<div class="status">⚡ LOADING...</div>`;
             const rows = [];
@@ -392,11 +505,6 @@
 
             grid.innerHTML = "";
             rows.forEach(renderRow);
-
-            setTimeout(() => {
-                const homeBtn = document.getElementById("homeBtn");
-                if (homeBtn) homeBtn.focus();
-            }, 300);
         }
 
         function renderRow(name) {
@@ -436,7 +544,7 @@
 
             div.onclick = onClick;
             div.onkeydown = (e) => {
-                if (e.key === "Enter" || e.key === "OK") {
+                if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
                     onClick();
                 }
@@ -562,6 +670,7 @@
         }
 
         function showEP(item) {
+            lastView = { type: "ep", item };
             overlay.style.display = "block";
             grid.style.display = "none";
 
@@ -580,7 +689,7 @@
                 d.className = "ep-card";
                 d.tabIndex = 0;
                 d.textContent = ep.name || ep.title || `EP ${index + 1}`;
-                d.onclick = () => {
+                const playThisEp = () => {
                     const servers = normalizeServers(
                         ep.servers || ep.sources || ep.links || ep.files || ep.playlist || []
                     );
@@ -595,10 +704,11 @@
                         alert("❌ ตอนนี้ไม่มีลิงก์เล่น");
                     }
                 };
+                d.onclick = playThisEp;
                 d.onkeydown = (e) => {
-                    if (e.key === "Enter" || e.key === "OK") {
+                    if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
-                        d.click();
+                        playThisEp();
                     }
                 };
                 box.appendChild(d);
@@ -610,6 +720,7 @@
             currentIndex = 0;
             overlay.style.display = "none";
             player.style.display = "block";
+            showPlayerControls(true);
             playServers(currentList);
         }
 
@@ -645,14 +756,15 @@
             video.muted = true;
             video.removeAttribute("src");
             video.load();
-            video.style.display = "none";
 
             frame.src = "";
+            video.style.display = "none";
             frame.style.display = "none";
         }
 
         function isHls(url) {
-            return /\.m3u8($|\?)/i.test(url);
+            url = String(url || "").toLowerCase();
+            return url.includes(".m3u8") || url.includes("master.txt") || url.includes(".txt") || url.includes("type=m3u8") || url.includes("extension=m3u8");
         }
 
         function isVideoFile(url) {
@@ -665,6 +777,8 @@
 
         async function play(url) {
             cleanupPlayers();
+            setProjectorStatus("");
+            startAudioOnlyGuard(url);
 
             if (isHls(url)) {
                 try {
@@ -708,6 +822,7 @@
                     done = true;
                     clear();
                     video.muted = false;
+                    video.volume = 1;
                     const p = video.play();
                     if (p && typeof p.then === "function") {
                         p.then(() => resolve()).catch(() => resolve());
@@ -779,6 +894,7 @@
 
                     setTimeout(() => {
                         video.muted = false;
+                        video.volume = 1;
                         const p = video.play();
                         if (p && typeof p.then === "function") {
                             p.then(() => resolve()).catch(() => resolve());
@@ -836,14 +952,43 @@
                     video.load();
                 } else if (Hls.isSupported()) {
                     hls = new Hls({
-                        enableWorker: true,
+                        // PROJECTOR / ANDROID TV SOFT STABLE
+                        enableWorker: false,
                         lowLatencyMode: false,
-                        backBufferLength: 30,
-                        maxBufferLength: 20,
-                        maxMaxBufferLength: 30,
-                        startLevel: -1,
-                        fragLoadingTimeOut: 20000,
-                        manifestLoadingTimeOut: 20000
+
+                        maxBufferLength: 35,
+                        maxMaxBufferLength: 50,
+                        backBufferLength: 20,
+                        liveBackBufferLength: 0,
+
+                        maxBufferHole: 1.0,
+                        maxFragLookUpTolerance: 0.2,
+                        appendErrorMaxRetry: 20,
+
+                        startLevel: 0,
+                        capLevelToPlayerSize: true,
+                        testBandwidth: false,
+
+                        abrEwmaDefaultEstimate: 500000,
+                        abrBandWidthFactor: 0.7,
+                        abrBandWidthUpFactor: 0.45,
+
+                        fragLoadingTimeOut: 25000,
+                        manifestLoadingTimeOut: 25000,
+                        levelLoadingTimeOut: 25000,
+
+                        fragLoadingMaxRetry: 6,
+                        levelLoadingMaxRetry: 5,
+                        manifestLoadingMaxRetry: 4,
+
+                        fragLoadingRetryDelay: 1200,
+                        levelLoadingRetryDelay: 1200,
+                        manifestLoadingRetryDelay: 1200,
+
+                        liveSyncDurationCount: 8,
+                        liveMaxLatencyDurationCount: 16,
+
+                        progressive: true
                     });
 
                     video.addEventListener("loadedmetadata", ok, { once: true });
@@ -905,10 +1050,23 @@
             const url = typeof item === "string" ? item : item.url;
             if (!url) return;
 
+            const scheme = url.startsWith("https://") ? "https" : "http";
+            const clean = url.replace(/^https?:\/\//, "");
+
+            const mxPhoneIntent =
+                `intent://${clean}#Intent;scheme=${scheme};package=com.mxtech.videoplayer.ad;type=video/*;end`;
+
+            const mxTvIntent =
+                `intent://${clean}#Intent;scheme=${scheme};package=com.mxtech.videoplayer.television;type=video/*;end`;
+
             try {
-                window.open(url, "_blank");
+                window.location.href = mxPhoneIntent;
+
+                setTimeout(() => {
+                    window.location.href = mxTvIntent;
+                }, 1200);
             } catch (e) {
-                prompt("คัดลิงก์นี้ไปเปิดใน MX", url);
+                window.location.href = url;
             }
         }
 
@@ -943,55 +1101,96 @@
             allView.page = 1;
         }
 
-        function goHome() {
-            cleanupPlayers();
+        function showPlayerControls(focusX = false) {
+            player.classList.add("show-controls");
+            clearTimeout(controlTimer);
 
-            player.style.display = "none";
-            overlay.style.display = "none";
-            overlay.innerHTML = "";
-            grid.style.display = "block";
+            if (focusX) {
+                setTimeout(() => {
+                    const xBtn = document.getElementById("closePlayerBtn");
+                    if (xBtn && player.style.display === "block") xBtn.focus();
+                }, 60);
+            }
 
-            allView.active = false;
-            allView.name = "";
-            allView.page = 1;
-
-            currentList = [];
-            currentIndex = 0;
-
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            controlTimer = setTimeout(() => {
+                player.classList.remove("show-controls");
+            setProjectorStatus("");
+            }, 4500);
         }
 
-        document.getElementById("homeBtn").onclick = () => {
+        function closePlayerToLastView() {
             cleanupPlayers();
-            window.location.href = "https://tiea9999.github.io/tv-online/index.html";
-        };
+            player.style.display = "none";
+            player.classList.remove("show-controls");
+            setProjectorStatus("");
 
-        document.addEventListener("keydown", function (e) {
-            const key = e.key;
-
-            if (key === "Escape" || key === "Backspace" || key === "GoBack") {
-                e.preventDefault();
-
-                if (player.style.display === "block") {
-                    goHome();
-                    return;
-                }
-
-                if (overlay.style.display === "block") {
-                    backToListOrGrid();
-                    return;
-                }
-
+            if (lastView.type === "ep" && lastView.item) {
+                showEP(lastView.item);
                 return;
             }
 
-            if (key === "Enter" || key === "OK") {
-                const el = document.activeElement;
-                if (el && typeof el.click === "function") {
-                    e.preventDefault();
-                    el.click();
-                }
+            if (allView.active) {
+                renderAllPage();
+                return;
             }
+
+            overlay.style.display = "none";
+            grid.style.display = "block";
+            setTimeout(() => document.querySelector(".card")?.focus(), 100);
+        }
+
+        function seekVideo(sec) {
+            showPlayerControls();
+            if (!video || video.style.display === "none") return;
+            video.currentTime = Math.max(0, (video.currentTime || 0) + sec);
+        }
+
+        function goHome() {
+            window.location.href = "https://tiea9999.github.io/tv/";
+        }
+
+        player.addEventListener("mousemove", () => showPlayerControls());
+        player.addEventListener("click", () => showPlayerControls());
+        player.addEventListener("touchstart", () => showPlayerControls());
+
+        document.addEventListener("keydown", (e) => {
+            if (player.style.display !== "block") return;
+
+            const active = document.activeElement;
+            const activeIsButton = active && active.tagName === "BUTTON";
+
+            if (e.key === "ArrowUp") {
+                e.preventDefault();
+                showPlayerControls(true);
+                return;
+            }
+
+            if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                seekVideo(-10);
+                return;
+            }
+
+            if (e.key === "ArrowRight") {
+                e.preventDefault();
+                seekVideo(10);
+                return;
+            }
+
+            if (e.key === "Enter" || e.key === "OK" || e.keyCode === 13 || e.keyCode === 23) {
+                if (activeIsButton) return;
+                e.preventDefault();
+                togglePlayPause();
+                return;
+            }
+
+            if (e.key === "Escape" || e.key === "Backspace" || e.key === "GoBack" || e.keyCode === 10009) {
+                e.preventDefault();
+                closePlayerToLastView();
+                return;
+            }
+
+            showPlayerControls(false);
         });
 
         loadAll();
