@@ -1,5 +1,18 @@
 [
   {
+    "title": "จิตไม่ลืมแค้น-2026-Reverse พากย์ไทย",
+    "groups": ["series","series-china"],
+    "language": "พากย์ไทย",
+    "poster": "https://series99.net/wp-content/uploads/2026/04/จิตไม่ลืมแค้น-2026-Reverse-พากย์ไทย-200x300.webp",
+    "latest_ep": 1,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://cdn-y26.dumoviefree.com/api/files/d1675e84dd0dbf595b4a208528967b8f/master.txt" }] }
+
+    ]
+  }, 
+  
+  {
     "title": " Gold Land แผนล่าท้าคนโลภ (2026) พากย์ไทย",
     "groups": ["series","series-china"],
     "language": "พากย์ไทย",
@@ -20,11 +33,13 @@
     "language": "ซับไทย",
     "groups": ["series","series-korea"],
     "poster": "https://series-fulls.com/wp-content/uploads/2026/05/ศัตรูหัวใจ-นางร้ายวังหลวง-1.webp",
-    "latest_ep": 2,
+    "latest_ep": 3,
     "total_ep": 14,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f52d74d2f208e3b55c6208a79bba6683/master.m3u8"}] },
-{ "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1a1c403d6b6a8fd97afc3b865754c4a3/master.m3u8"}] }
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1a1c403d6b6a8fd97afc3b865754c4a3/master.m3u8"}] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://cdn-y26.dumoviefree.com/api/files/7b8127db36cdcb305125b050a4db4c8a/master.txt" }] }
+    
     ]
   },
  {
@@ -32,13 +47,14 @@
     "language": "พากย์ไทย",
     "groups": ["series","series-korea"],
     "poster": "https://series-fulls.com/wp-content/uploads/2026/05/สุดจุดเดือด-1.webp",
-    "latest_ep": 4,
+    "latest_ep": 5,
     "total_ep": 10,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a7c0cc7e9d0241056f42d61a173a181f/master.m3u8" }] },
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/96f0707a119f5946349df18e0e79165a/master.m3u8" }] },
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/71bf2e2c671fb89b4af3997bf2dd174b/master.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/4a45c8aecc0f809cd4f89ba7954a0ac0/master.m3u8" }] }
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/4a45c8aecc0f809cd4f89ba7954a0ac0/master.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/db5af183516a7f05a379fc952ce56a71/master.m3u8" }] }  
     ]
   },
  {
@@ -46,7 +62,7 @@
     "language": "ซับไทย",
     "groups": ["series","series-korea"],
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/รักนี้มงลง-1.webp",
-    "latest_ep": 9,
+    "latest_ep": 11,
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a7ecfac6b2d2efb82e93dafaead33560/master.m3u8" }] },
@@ -57,7 +73,9 @@
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/fe6603363e7f0557d132771c347ef47b/master.m3u8" }] },
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6ff7755d66551dcebff54df963fd2e35/master.m3u8" }] },
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/893bd19bc8f37e6f74e42e829117b01d/master.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/816dd3b5d31e74730dda8e46e6a5ca60/master.m3u8" }] }
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/816dd3b5d31e74730dda8e46e6a5ca60/master.m3u8" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/43d8ad7de4be95842d588856b140d38f/master.m3u8" }] },
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5132d5f940d5c28a41a03e17bd7d02f5/master.m3u8" }] }
     ]
   },
  {
@@ -590,8 +608,8 @@
     "groups": ["series","series-korea"],
     "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/แพ้เสียงในหัวใจ-1.webp",
-    "latest_ep": 6,
-    "total_ep": 12,
+    "latest_ep": 8,
+    "total_ep": 8,
     "episodes": [
       {
         "title": "EP1",
@@ -646,6 +664,25 @@
             "url": "https://ok-hd.com/hls/35e916d7166d94b2ddf8d30177df3ddd/master.m3u8"
           }
         ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/5025fdeb7914baea82c9001ae30bc1f2/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/11c41e19a77bfa583843796786453f4e/master.m3u8"  
+          
+          }
+        ]
       }
     ]
   },
@@ -657,7 +694,7 @@
     ],
     "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/หุ่นลวงเชือด-1.webp",
-    "latest_ep": 6,
+    "latest_ep": 8,
     "total_ep": 12,
     "episodes": [
       {
@@ -711,6 +748,25 @@
           {
             "name": "Main",
             "url": "https://ok-hd.com/hls/6943a04723772d5cd2a140887ff0a4ed/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/7c8ee7f9c52680483c71acc2a17b364c/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/e3e472d93c7ee2b508f4df6016ec9d72/master.m3u8"  
+          
           }
         ]
       }
