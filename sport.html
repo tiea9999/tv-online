@@ -337,9 +337,9 @@ function playHLS(s){
       enableWorker:false,
       lowLatencyMode:false,
 
-      maxBufferLength:(navigator.userAgent.toLowerCase().includes('android tv')?55:35),
-      maxMaxBufferLength:(navigator.userAgent.toLowerCase().includes('android tv')?80:55),
-      backBufferLength:20,
+      maxBufferLength:(navigator.userAgent.toLowerCase().includes('android tv')?28:18),
+      maxMaxBufferLength:(navigator.userAgent.toLowerCase().includes('android tv')?42:26),
+      backBufferLength:8,
 
       maxBufferHole:3,
       highBufferWatchdogPeriod:4,
@@ -359,16 +359,19 @@ function playHLS(s){
       fragLoadingRetryDelay:3000,
 
       startFragPrefetch:true,
-      startLevel:0,
+      startLevel:-1,
       capLevelToPlayerSize:true,
       testBandwidth:false,
+      autoStartLoad:true,
+      maxLiveSyncPlaybackRate:1,
+      liveDurationInfinity:false,
 
       abrEwmaDefaultEstimate:450000,
       abrBandWidthFactor:0.9,
       abrBandWidthUpFactor:0.7,
 
-      liveSyncDurationCount:(navigator.userAgent.toLowerCase().includes('android tv')?5:4),
-      liveMaxLatencyDurationCount:(navigator.userAgent.toLowerCase().includes('android tv')?10:8),
+      liveSyncDurationCount:(navigator.userAgent.toLowerCase().includes('android tv')?3:3),
+      liveMaxLatencyDurationCount:(navigator.userAgent.toLowerCase().includes('android tv')?6:5),
 
       progressive:true,
       liveDurationInfinity:true
