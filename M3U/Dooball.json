@@ -618,20 +618,6 @@
   },
 
   {
-    "title": "cinemax",
-    "group": "หนัง",
-    "logo": "https://www.fileinwtv.site/postor/20240418201426cinemax.jpg",
-    "servers": [
-      {
-        "name": "Main",
-        "url": "https://cri-streamer1.cdn.3bbtv.com:8443/3bb/live/107/107.mpd",
-        "drm": true,
-        "keyId": "f48caba466394e93b50780f21798787a",
-        "key": "9a074a10db4342e7937076b3e52f6029"
-      }
-    ]
-  },
-  {
     "title": "hd-cinemax",
     "group": "หนัง",
     "logo": "https://www.fileinwtv.site/postor/20240418201426cinemax.jpg",
