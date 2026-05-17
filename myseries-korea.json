@@ -1,4 +1,28 @@
 [
+ {
+    "title": "The Judge Returns (2026) คืนบัลลังก์พิพากษา",
+    "language": "พากย์ไทย",
+    "groups": ["series","series-korea"],
+    "poster": "https://www.24hd.net/wp-content/uploads/2026/05/The-Judge-Returns-2026.webp",
+    "latest_ep": 14,
+    "total_ep": 14,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/vzS_H8e-Y4viK/video.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/7IP-r8jCTC_dq/video.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/uXek-E_zPD4yC/video.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/fHRXfm_HLu-TR/video.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/0X-v02kd_HRt0/video.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/kE_bdPje-G9Xx/video.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/i_NvuUTI-Bno8/video.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Ja6WZ_c-iWMBH/video.m3u8" }] },
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/u-WoiUInB0_mA/video.m3u8" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/hJz1vc-Kuo_uA/video.m3u8" }] },
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/u5hTl-m_IoZNI/video.m3u8" }] },
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/QZfVSMp-YK_pt/video.m3u8" }] },
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/M-D8SB_xTxTdq/video.m3u8" }] },
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/J-nwwdSoRd_7S/video.m3u8" }] }
+    ]
+  },  
   {
     "title": "จิตไม่ลืมแค้น-2026-Reverse พากย์ไทย",
     "groups": ["series","series-china"],
@@ -38,7 +62,8 @@
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f52d74d2f208e3b55c6208a79bba6683/master.m3u8"}] },
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1a1c403d6b6a8fd97afc3b865754c4a3/master.m3u8"}] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/6dda1798a58f5e652256c0edaf6929e7/master.txt" }] }
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/cc822ffeb75d9c1b99fc098e30c48219/master.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c6ec34236ab4d90df49541e8c79cc3cb/master.m3u8" }] }
     
     ]
   },
@@ -47,14 +72,15 @@
     "language": "พากย์ไทย",
     "groups": ["series","series-korea"],
     "poster": "https://series-fulls.com/wp-content/uploads/2026/05/สุดจุดเดือด-1.webp",
-    "latest_ep": 5,
+    "latest_ep": 6,
     "total_ep": 10,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a7c0cc7e9d0241056f42d61a173a181f/master.m3u8" }] },
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/96f0707a119f5946349df18e0e79165a/master.m3u8" }] },
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/71bf2e2c671fb89b4af3997bf2dd174b/master.m3u8" }] },
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/4a45c8aecc0f809cd4f89ba7954a0ac0/master.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/db5af183516a7f05a379fc952ce56a71/master.m3u8" }] }  
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/db5af183516a7f05a379fc952ce56a71/master.m3u8" }] },  
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/89351d83463dce0a5b69c6576cf0720d/master.m3u8" }] }  
     ]
   },
  {
