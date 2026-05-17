@@ -88,7 +88,7 @@
     "language": "ซับไทย",
     "groups": ["series","series-korea"],
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/รักนี้มงลง-1.webp",
-    "latest_ep": 11,
+    "latest_ep": 12,
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a7ecfac6b2d2efb82e93dafaead33560/master.m3u8" }] },
@@ -101,7 +101,9 @@
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/893bd19bc8f37e6f74e42e829117b01d/master.m3u8" }] },
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/816dd3b5d31e74730dda8e46e6a5ca60/master.m3u8" }] },
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/43d8ad7de4be95842d588856b140d38f/master.m3u8" }] },
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5132d5f940d5c28a41a03e17bd7d02f5/master.m3u8" }] }
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5132d5f940d5c28a41a03e17bd7d02f5/master.m3u8" }]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/3819c4dc5ce5da92d6fc5a5783d0445e/master.m3u8" }] }
+
     ]
   },
  {
