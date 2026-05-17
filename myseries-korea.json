@@ -28,10 +28,11 @@
     "groups": ["series","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://series99.net/wp-content/uploads/2026/04/จิตไม่ลืมแค้น-2026-Reverse-พากย์ไทย-200x300.webp",
-    "latest_ep": 1,
+    "latest_ep": 2,
     "total_ep": 8,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ddd0a30f0a2b04e8467c4197db3a4be9/master.txt" }] }
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ddd0a30f0a2b04e8467c4197db3a4be9/master.txt" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ca95f1e7f7f2b1349cf162961177c797/master.txt" }] }
 
     ]
   }, 
