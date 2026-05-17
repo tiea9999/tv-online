@@ -1334,7 +1334,7 @@
     "servers": [
       {
         "name": "Main",
-        "url": "https://love.sikoyo3159.workers.dev/lx-origin/th-monomax04bkp_720/chunks.m3u8"
+        "url": "https://d2uwysbzxhz9oq.cloudfront.net/v2/lx-origin/91/sIYSrCabwVh3H1r_CP80PQ/b08612ac269bc158771f5aff08ff343d/1779028163/th-monomax04_480/chunks.m3u8"
       },
       {
         "name": "Backup 1",
