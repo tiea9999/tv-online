@@ -1,4 +1,26 @@
 [
+  {
+"title": "Absolute Value of Romance (2026) วุ่นนัก รักสัมบูรณ์",
+    "language": "พากย์ไทย",
+    "groups": ["series","series-korea"],
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/วุ่นนัก-รักสัมบูรณ์-1.webp",
+    "latest_ep": 1,
+    "total_ep": 16,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/0367d2415b0369d04e7c0730d862bcbe/master.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/79b9ab99ac1cec08b0194517da8d23c4/master.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/943b3ec3a87f20d5fb7b9268b3b9a270/master.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/122909542d36528ac39d756e540bc24e/master.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/622a3d8184b46c47ba25f7250aeb53a3/master.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c0c4e16032b5df5ccbf43f7f2d3d9c7a/master.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/3fb0de7a1ddbe4e4c42ddfa2e238b89a/master.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/1f9f1bc28bfe5ef65c0913c7626bef10/master.m3u8" }] },
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/83bf7f8f78f774e1c0db31f4daa8ccd1/master.m3u8" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/afc1788d1df789e13b7bc5f9a7edf9f6/master.m3u8" }] },
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/99ba1c213bfe391b23c2ac99f3c22da4/master.m3u8" }] },
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5444edf643b28fd817fa70e438c50c36/master.m3u8" }] }
+    ]
+  },
  {
     "title": "Phantom Lawyer (2026) ทนายผีเข้าผีออก พากย์ไทย ",
     "language": "พากย์ไทย",
@@ -1030,55 +1052,7 @@
       }
     ]
   },
-  {
-    "title": "Phantom Lawyer (2026) ทนายผีเข้าผีออก",
-    "groups": [
-      "series",
-      "series-korea"
-    ],
-    "language": "พากย์ไทย",
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/ทนายผีเข้าผีออก-1.webp",
-    "latest_ep": 4,
-    "total_ep": 16,
-    "episodes": [
-      {
-        "title": "EP1",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/06747496f336657d32797cbd6213c122/master.m3u8"
-          }
-        ]
-      },
-      {
-        "title": "EP2",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/69878939968bf6fa8556913dff08c370/master.m3u8"
-          }
-        ]
-      },
-      {
-        "title": "EP3",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/241d8a896bc89c11537d96ac2fa194a4/master.m3u8"
-          }
-        ]
-      },
-      {
-        "title": "EP4",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/b1236a6cc78396133d67ec5af9e95de2/master.m3u8"
-          }
-        ]
-      }
-    ]
-  },
+
   {
     "title": "Love Phobia (2026) เอไอไขรัก",
     "groups": [
@@ -1141,6 +1115,25 @@
           {
             "name": "Main",
             "url": "https://ok-hd.com/hls/692a2972a41cbf65e6e0739ab6ec55fb/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP7",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/31056c6813bedffb44ce3186ddac1074/master.m3u8"
+          }
+        ]
+      },
+      {
+        "title": "EP8",
+        "servers": [
+          {
+            "name": "Main",
+            "url": "https://ok-hd.com/hls/d3efc60336f8f52c3131088c1c48ea39/master.m3u8" 
+          
           }
         ]
       }
@@ -1271,55 +1264,7 @@
       }
     ]
   },
-  {
-    "title": "Absolute Value of Romance (2026) วุ่นนัก รักสัมบูรณ์",
-    "groups": [
-      "series",
-      "series-korea"
-    ],
-    "language": "พากย์ไทย",
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/วุ่นนัก-รักสัมบูรณ์-1.webp",
-    "latest_ep": 4,
-    "total_ep": 16,
-    "episodes": [
-      {
-        "title": "EP1",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/0367d2415b0369d04e7c0730d862bcbe/master.m3u8"
-          }
-        ]
-      },
-      {
-        "title": "EP2",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/79b9ab99ac1cec08b0194517da8d23c4/master.m3u8"
-          }
-        ]
-      },
-      {
-        "title": "EP3",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/943b3ec3a87f20d5fb7b9268b3b9a270/master.m3u8"
-          }
-        ]
-      },
-      {
-        "title": "EP4",
-        "servers": [
-          {
-            "name": "Main",
-            "url": "https://ok-hd.com/hls/122909542d36528ac39d756e540bc24e/master.m3u8"
-          }
-        ]
-      }
-    ]
-  },
+
   {
     "title": "Tide of Love 2 (2025) กระแสแรงรัก ภาค 2",
     "groups": [
