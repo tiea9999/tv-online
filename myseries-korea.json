@@ -1,5 +1,26 @@
 [
  {
+    "title": "Phantom Lawyer (2026) ทนายผีเข้าผีออก พากย์ไทย ",
+    "language": "พากย์ไทย",
+    "groups": ["series","series-korea"],
+    "poster": "https://320hdr.com/wp-content/uploads/2026/03/510-2.jpg",
+    "latest_ep": 11,
+    "total_ep": 16,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/06747496f336657d32797cbd6213c122/master.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/69878939968bf6fa8556913dff08c370/master.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/241d8a896bc89c11537d96ac2fa194a4/master.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b1236a6cc78396133d67ec5af9e95de2/master.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/56c021dcd11048559a7e42d2cda3aef1/master.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b68a35502f2ea65036e3f5f1d04f9ee6/master.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/dabba33f251916a7d122d69c60eac900/master.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/9693d1a455f5bc48ba87cb066494e440/master.m3u8" }] },
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/04075ac5f4832a7690d470610381e3c5/master.m3u8" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/d52743a0df03e3007dfe79305b83559c/master.m3u8" }] },
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/321a9fb9ff4dd3924345fbffecdf1305/master.m3u8" }] } 
+    ]
+  },  
+     {
     "title": "The Judge Returns (2026) คืนบัลลังก์พิพากษา",
     "language": "พากย์ไทย",
     "groups": ["series","series-korea"],
