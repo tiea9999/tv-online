@@ -1,7 +1,7 @@
 [
   {
     "title": "สาวโดดตึกหวังตุย_ดันชนCEOป่วยหนัก",
-    "group": "หนัง",
+    "groups": ["series","series-short"],
     "logo": "https://www.imgx02.xyz/assets/movie_poster/a/a2ed34dd67ea5a7343a9926105eca09f.jpg",
     "servers": [
       {
