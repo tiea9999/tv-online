@@ -1,5 +1,15 @@
 [
-
+  {
+    "title": "สาวโดดตึกหวังตุย_ดันชนCEOป่วยหนัก",
+    "group": "หนัง",
+    "logo": "https://www.imgx02.xyz/assets/movie_poster/a/a2ed34dd67ea5a7343a9926105eca09f.jpg",
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://movie02.oneplayer.online:11231/api/video/Storage00%2FijzgN1i%2FijzgN1i_360.mp4"
+      }
+    ]
+  },
  {
     "title": "แลนดิ้งรัก ในสายหมอก",
     "groups": ["series","series-short"],
