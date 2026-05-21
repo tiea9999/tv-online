@@ -1,4 +1,19 @@
 [
+ {
+    "title": "The Legend of Kitchen Soldier บันทึกครัวค่ายทหาร (2026) ",
+    "language": "ซับไทย",
+    "groups": ["series","series-korea"],
+    "poster": "https://320hdr.com/wp-content/uploads/2026/05/800.jpg",
+    "latest_ep": 4,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/43e44f88dce21bc14a9c4d1ae4e24e5b/master.txt" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/add34f27dad3e1e5331f2fd049504be8/master.txt" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5c2345a7a4d47c2903bdc2bbb0e7d73f/master.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/3b35dc71e61dbb95e5f8c8d2ae3923bf/master.txt" }] }
+    ]
+  },
+  
   {
 "title": "Absolute Value of Romance (2026) วุ่นนัก รักสัมบูรณ์",
     "language": "พากย์ไทย",
