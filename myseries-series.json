@@ -7,6 +7,11 @@
       "type": "source",
       "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/myseries-china.json"
     },
+     {
+      "title": "update",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/myseries-series.json"
+    },   
     {
       "title": "korea",
       "type": "source",
