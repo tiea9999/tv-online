@@ -4,7 +4,7 @@
     "groups":["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/550.jpg",
-    "latest_ep": 12,
+    "latest_ep": 18,
     "total_ep": 37,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/3c591e664b7c8ad1806a96219ec9d446/master.txt" }] },
