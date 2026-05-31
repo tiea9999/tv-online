@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>TIEA IPTV DIRECT BROWSER PLAY FINAL</title>
+    <title>TIEA IPTV HBO WORKER HLS FINAL</title>
 
     <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
     <script>
@@ -241,7 +241,7 @@
 <body>
 
     <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-    <h2 style="color:orange;text-align:center;">TIEA IPTV DIRECT BROWSER PLAY FINAL</h2>
+    <h2 style="color:orange;text-align:center;">TIEA IPTV HBO WORKER HLS FINAL</h2>
 
     <div id="player-container">
         <div class="player-controls">
@@ -526,8 +526,8 @@ async function loadChannel(channel, element){
   }else if(original.toLowerCase().includes(".ts") && !original.toLowerCase().includes(".m3u8")){
     playSingleTsAsHls(original);
   }else{
-    // สำคัญ: ลิงก์นี้บราวเซอร์เล่นตรงได้ จึงต้องใช้ตรงก่อน ห้าม Worker
-    playDirectNative(original);
+    // ใช้ HLS.js สำหรับลิงก์ m3u8/Worker เช่น /hbo
+    useHLS_STABLE(original,false);
   }
 
   setTimeout(()=>{
@@ -768,7 +768,7 @@ function useHLS_STABLE(url, usedProxy){
     hlsWatchdog = null;
   }
 
-  if(Hls.isSupported() && (url.includes(".m3u8") || url.toLowerCase().includes("extension=m3u8"))){
+  if(Hls.isSupported()){
     setStatus(usedProxy ? "กำลังโหลด HLS ผ่าน Worker..." : "กำลังโหลด HLS ตรง...");
 
     currentHls = new Hls({
