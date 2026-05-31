@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>TIEA IPTV HBO EXTERNAL PLAYER FINAL</title>
+    <title>TIEA IPTV HBO WORKER HLS FINAL</title>
 
     <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
     <script>
@@ -241,7 +241,7 @@
 <body>
 
     <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-    <h2 style="color:orange;text-align:center;">TIEA IPTV HBO EXTERNAL PLAYER FINAL</h2>
+    <h2 style="color:orange;text-align:center;">TIEA IPTV HBO WORKER HLS FINAL</h2>
 
     <div id="player-container">
         <div class="player-controls">
@@ -269,9 +269,8 @@ const channels = [
 {
   name:"HBO",
   logo:"https://www.dropbox.com/scl/fi/ndoy26p71sq6yv0e5kohs/hbo.png?rlkey=mcbfqd7ghrh9dtw42qwtphk2i&dl=1",
-  file:"http://43.228.85.248:8990/stream/ais/hbohd/master.m3u8?u=admin2025a5brt&p=048d3a220cb399309e101459f5bcc27e34393433ff31d3105e66fff6a66e878e",
-  drm:false,
-  externalOnly:true
+  file:"https://movieproxy.tawatchai250958.workers.dev/hbo",
+  drm:false
 }
 
 ];
@@ -301,7 +300,7 @@ function isWorkerUrl(url){
 
 function shouldAvoidProxy(url){
   url = String(url || "").toLowerCase();
-  return (url.includes(".mpd") || url.includes("thaicdn") || url.includes("mux") || url.includes("byteark") || url.includes("akamaized") || url.includes("cloudfront"));
+  return (url.includes(".mpd") || url.includes("movieproxy.tawatchai250958.workers.dev") || url.includes("thaicdn") || url.includes("mux") || url.includes("byteark") || url.includes("akamaized") || url.includes("cloudfront"));
 }
 function proxyUrl(url){
   url = String(url || "").trim();
@@ -519,15 +518,7 @@ async function loadChannel(channel, element){
   showPlayerControls();
   await stopAllPlayers();
 
-  
-  // HBO / ช่องที่เว็บเล่นไม่ได้ ให้เปิดผ่าน PLAYER/MX โดยตรง
-  if(channel.externalOnly){
-    setStatus("ช่องนี้เปิดผ่าน PLAYER/MX เพื่อความเสถียร...");
-    openExternal(channel.file);
-    return;
-  }
-
-const original = directUrl(channel.file);
+  const original = directUrl(channel.file);
   activeUrl = original;
 
   if(original.toLowerCase().includes(".mpd")){
@@ -535,7 +526,6 @@ const original = directUrl(channel.file);
   }else if(original.toLowerCase().includes(".ts") && !original.toLowerCase().includes(".m3u8")){
     playSingleTsAsHls(original);
   }else{
-    // ใช้ HLS.js สำหรับลิงก์ m3u8/Worker เช่น /hbo
     useHLS_STABLE(original,false);
   }
 
@@ -820,16 +810,25 @@ function useHLS_STABLE(url, usedProxy){
       liveMaxLatencyDurationCount: 8
     });
 
-    currentHls.loadSource(url);
+    let hlsStarted = false;
+
     currentHls.attachMedia(video);
 
-    let hlsStarted = false;
+    currentHls.on(Hls.Events.MEDIA_ATTACHED, function(){
+      setStatus("เชื่อมต่อ Player แล้ว กำลังโหลดสัญญาณ...");
+      currentHls.loadSource(url);
+    });
+
     currentHls.on(Hls.Events.MANIFEST_PARSED, function(){
       hlsStarted = true;
       forceAudio100();
       video.play().catch(()=>{});
       setTimeout(()=>{ forceAudio100(); video.play().catch(()=>{}); },300);
       setStatus("กำลังเล่น HLS");
+    });
+
+    currentHls.on(Hls.Events.FRAG_LOADED, function(){
+      hlsStarted = true;
     });
     setTimeout(()=>{
       if(!hlsStarted && !usedProxy && !shouldAvoidProxy(url)){
