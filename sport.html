@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>TIEA IPTV HBO WORKER HLS FINAL</title>
+    <title>TIEA IPTV HBO EXTERNAL PLAYER FINAL</title>
 
     <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
     <script>
@@ -241,7 +241,7 @@
 <body>
 
     <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-    <h2 style="color:orange;text-align:center;">TIEA IPTV HBO WORKER HLS FINAL</h2>
+    <h2 style="color:orange;text-align:center;">TIEA IPTV HBO EXTERNAL PLAYER FINAL</h2>
 
     <div id="player-container">
         <div class="player-controls">
@@ -519,7 +519,15 @@ async function loadChannel(channel, element){
   showPlayerControls();
   await stopAllPlayers();
 
-  const original = directUrl(channel.file);
+  
+  // HBO / ช่องที่เว็บเล่นไม่ได้ ให้เปิดผ่าน PLAYER/MX โดยตรง
+  if(channel.externalOnly){
+    setStatus("ช่องนี้เปิดผ่าน PLAYER/MX เพื่อความเสถียร...");
+    openExternal(channel.file);
+    return;
+  }
+
+const original = directUrl(channel.file);
   activeUrl = original;
 
   if(original.toLowerCase().includes(".mpd")){
