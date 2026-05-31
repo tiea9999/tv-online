@@ -1,1262 +1,142 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TIEA IPTV VIP FIREBASE LOCKED</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>TIEA IPTV VIP MOVIE SERIES SPORT FINAL</title>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#050505;color:#fff;font-family:Arial,Helvetica,sans-serif;overflow:hidden}:root{--line:#2a2a2a;--accent:#00d0ff;--focus:0 0 0 3px rgba(0,208,255,.95),0 0 20px rgba(0,208,255,.55)}.app{display:flex;width:100vw;height:100vh;background:radial-gradient(circle at top right,rgba(0,208,255,.12),transparent 28%),#050505}.sidebar{width:235px;min-width:235px;height:100%;background:linear-gradient(180deg,#111,#080808);border-right:1px solid var(--line);overflow-y:auto;padding:14px 10px 90px}.brand{text-align:center;font-weight:900;font-size:25px;color:var(--accent);letter-spacing:1px;margin:4px 0 14px;text-shadow:0 0 18px rgba(0,208,255,.35)}.subbrand{color:#9befff;font-size:12px;margin-top:2px}.group-title{color:#9fd4e0;font-size:12px;margin:18px 8px 8px;opacity:.9}button{font-family:inherit}.menu-btn,.top-btn,.card,.player-btn,.page-btn,.episode-btn,.see-all-btn{outline:none}.menu-btn{display:block;width:100%;text-align:left;background:#181818;border:1px solid #222;color:#fff;padding:12px;border-radius:14px;margin:7px 0;font-size:15px;font-weight:800;cursor:pointer;transition:.15s}.menu-btn.active{border-color:rgba(0,208,255,.8);background:linear-gradient(180deg,#102833,#151515)}.menu-btn:focus,.card:focus,.top-btn:focus,.player-btn:focus,.page-btn:focus,.episode-btn:focus,.see-all-btn:focus{box-shadow:var(--focus);border-color:var(--accent)}.menu-btn:active,.card:active,.top-btn:active,.player-btn:active,.page-btn:active,.episode-btn:active,.see-all-btn:active{transform:scale(.98)}.main{flex:1;min-width:0;height:100%;display:flex;flex-direction:column;overflow:hidden}.topbar{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:rgba(8,8,8,.97);flex-wrap:wrap}.top-btn{border:1px solid #2b2b2b;background:#171717;color:#fff;border-radius:12px;padding:11px 14px;font-size:14px;font-weight:800;cursor:pointer}.top-btn.home{background:linear-gradient(180deg,#01aa63,#00874f)}.top-btn.reload{background:linear-gradient(180deg,#14698b,#0f4c64)}.top-btn.live{background:linear-gradient(180deg,#5a2f8f,#43226d)}.status{flex:1;min-width:200px;padding:10px 12px;border-radius:12px;background:#101010;border:1px solid #222;color:#c7f7ff;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.content{flex:1;min-height:0;overflow-y:auto;padding:14px;scroll-behavior:smooth}.hero{border:1px solid #222;background:linear-gradient(135deg,rgba(0,208,255,.13),rgba(0,0,0,.05) 38%),linear-gradient(180deg,#171717,#0e0e0e);border-radius:20px;padding:18px;margin-bottom:14px}.hero-title{font-size:26px;font-weight:900;margin-bottom:6px}.hero-sub{color:#a8edf7;font-size:14px;line-height:1.45}.section{margin-bottom:24px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 10px}.section-title{font-size:20px;font-weight:900;color:#fff}.section-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.badge{font-size:12px;padding:6px 10px;border-radius:999px;background:#121212;border:1px solid #262626;color:#9deeff}.see-all-btn,.page-btn{border:1px solid #2d2d2d;background:#171717;color:#fff;padding:8px 12px;border-radius:12px;font-weight:800;cursor:pointer}.row{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;padding:2px 2px 8px;scroll-behavior:smooth}.row::-webkit-scrollbar{height:8px}.row::-webkit-scrollbar-thumb{background:#333;border-radius:999px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}.card{position:relative;border:1px solid #242424;border-radius:18px;background:linear-gradient(180deg,#171717,#0e0e0e);overflow:hidden;cursor:pointer;padding:0;text-align:left;color:inherit;min-height:240px;flex:0 0 190px;transition:.18s}.card:hover,.card:focus{transform:scale(1.055);z-index:5;border-color:#00d0ff;box-shadow:0 0 22px rgba(0,208,255,.62),0 0 44px rgba(0,208,255,.26)}.card-glow{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(0,208,255,.25),transparent 62%);opacity:0;transition:opacity .25s;pointer-events:none;z-index:1}.card:hover .card-glow,.card:focus .card-glow{opacity:1}.poster-wrap{position:relative;width:100%;height:160px;background:#111;overflow:hidden}.thumb{width:100%;height:100%;object-fit:cover;display:block;background:#111}.thumb.tv{object-fit:contain;padding:10px}.thumb.folder-logo{object-fit:contain;padding:18px;background:linear-gradient(135deg,#001b24,#000)}.thumb.fallback{display:flex;align-items:center;justify-content:center;font-size:40px;color:#00d0ff;background:linear-gradient(135deg,#0c2730,#111)}.lang-ribbon{position:absolute;right:-36px;top:16px;width:135px;transform:rotate(45deg);background:#ff1f62;color:#fff;text-align:center;font-size:13px;font-weight:900;padding:6px 0;z-index:4;box-shadow:0 2px 8px rgba(0,0,0,.35)}.status-pill{position:absolute;left:7px;bottom:7px;background:#b8783d;color:#fff;font-size:13px;font-weight:900;padding:5px 8px;border-radius:6px;z-index:4;text-shadow:0 1px 2px #000}.status-pill.done{background:#777}.ep-pill{position:absolute;right:7px;bottom:7px;background:#2b7ed8;color:#fff;font-size:13px;font-weight:900;padding:5px 8px;border-radius:6px;z-index:4;text-shadow:0 1px 2px #000}.card-body{padding:12px;position:relative;z-index:2}.card-title{font-size:16px;font-weight:900;line-height:1.35;min-height:46px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.folder-card .card-title{color:#9ff4ff}.card-meta{margin-top:8px;font-size:12px;color:#9cdce6;display:flex;flex-wrap:wrap;gap:6px}.tag{padding:4px 8px;border-radius:999px;border:1px solid #24444d;background:rgba(0,208,255,.09)}.player-panel{position:fixed;inset:0;display:none;background:rgba(0,0,0,.96);z-index:9999;flex-direction:column}.player-panel.show{display:flex}.player-top{display:flex;gap:10px;padding:12px;border-bottom:1px solid #222;align-items:center;flex-wrap:wrap;background:rgba(10,10,10,.98)}.player-title{flex:1;min-width:180px;font-weight:900;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.player-btn{border:1px solid #2d2d2d;background:#171717;color:#fff;border-radius:12px;padding:10px 14px;font-size:14px;font-weight:800;cursor:pointer}.player-btn.close{background:linear-gradient(180deg,#7b2020,#601919)}.player-btn.home{background:linear-gradient(180deg,#00a760,#008450)}.player-btn.mx{background:linear-gradient(180deg,#1164a5,#0b4a7c)}.player-wrap{flex:1;min-height:0;display:flex;flex-direction:column;padding:12px;gap:10px}.video-shell{flex:1;min-height:220px;background:#000;border:1px solid #222;border-radius:18px;overflow:hidden}video{width:100%;height:100%;background:#000}.player-hint{font-size:13px;color:#b8ecf7;border:1px solid #1e3b41;background:#0d171a;border-radius:12px;padding:10px 12px}.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.86);z-index:9998;padding:20px}.modal.show{display:flex}.modal-box{width:min(1200px,100%);max-height:92vh;background:linear-gradient(180deg,#151515,#0c0c0c);border:1px solid #2a2a2a;border-radius:22px;display:flex;flex-direction:column;overflow:hidden}.modal-head{padding:12px 14px;border-bottom:1px solid #222;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.modal-title{font-size:20px;font-weight:900;flex:1}.modal-body{padding:14px;overflow:auto}.modal-foot{padding:10px 14px 14px;border-top:1px solid #222;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.pages{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.episode-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:14px}.episode-btn{border:1px solid #2a2a2a;background:#161616;color:#fff;padding:12px;border-radius:14px;font-weight:800;cursor:pointer;text-align:left}.detail-box{padding:14px;border:1px solid #242424;border-radius:18px;background:linear-gradient(180deg,#141414,#0d0d0d);margin-bottom:14px}.detail-title{font-size:22px;font-weight:900;margin-bottom:6px}.detail-sub{color:#a9edf7;font-size:14px;line-height:1.5}@media(max-width:860px){.sidebar{width:190px;min-width:190px}.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}.card{flex-basis:160px}.poster-wrap{height:140px}}
 
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
-<!-- ===== TIEA FIREBASE VIP CHECK ===== -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD56tjCIPBM3nctC5P2NzBgLOShcbx1w8A",
-  authDomain: "tiea-iptv.firebaseapp.com",
-  projectId: "tiea-iptv",
-  storageBucket: "tiea-iptv.firebasestorage.app",
-  messagingSenderId: "1031384335454",
-  appId: "1:1031384335454:web:34e41ad2d93705834920cf",
-  measurementId: "G-Z9G1KQJ3HB"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-function blockVip(message){
-  document.body.innerHTML = `
-    <div style="min-height:100vh;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-family:Arial;padding:20px">
-      <div style="max-width:430px;width:100%;background:#111;border:1px solid #333;border-radius:20px;padding:24px;text-align:center">
-        <h2 style="color:#00e5ff;margin-top:0">TIEA IPTV VIP</h2>
-        <p style="line-height:1.6;color:#ddd">${message}</p>
-        <a href="member/login.html" style="display:block;margin-top:16px;padding:14px;border-radius:999px;background:#0072ff;color:#fff;text-decoration:none;font-weight:bold">เข้าสู่ระบบ</a>
-      </div>
-    </div>
-  `;
+/* ===== FULLSCREEN PLAYER + AUTO HIDE CONTROLS ===== */
+.player-panel{background:#000!important}
+.player-panel.show{display:flex!important}
+.player-panel.hide-ui .player-top,
+.player-panel.hide-ui .player-hint{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
 }
-
-onAuthStateChanged(auth, async (user) => {
-  if(!user){
-    location.href = "member/login.html";
-    return;
-  }
-
-  try{
-    const snap = await getDoc(doc(db, "members", user.uid));
-
-    if(!snap.exists()){
-      location.href = "member/waiting.html";
-      return;
-    }
-
-    const data = snap.data();
-
-    if(data.vip === true || data.active === true || data.role === "admin"){
-      window.TIEA_USER = { uid:user.uid, email:user.email, ...data };
-      return;
-    }
-
-    location.href = "member/waiting.html";
-  }catch(e){
-    console.error(e);
-    blockVip("ตรวจสอบสมาชิก VIP ไม่สำเร็จ กรุณาลองเข้าสู่ระบบใหม่");
-  }
-});
-</script>
-<!-- ===== END TIEA FIREBASE VIP CHECK ===== -->
-
-
-    <style>
-        body {
-            margin: 0;
-            background: #000;
-            color: #fff;
-            font-family: sans-serif;
-        }
-.row-title {
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #00e5ff;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .seeall {
-            background: #ff9800;
-            border: none;
-            padding: 6px 10px;
-            border-radius: 8px;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .row-items {
-            display: flex;
-            gap: 12px;
-            overflow-x: auto;
-            padding: 10px;
-            scrollbar-width: thin;
-        }
-
-        .card {
-            min-width: 160px;
-            max-width: 160px;
-            background: #111;
-            border-radius: 10px;
-            padding: 8px;
-            text-align: center;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .card img {
-            width: 100%;
-            height: 210px;
-            object-fit: cover;
-            border-radius: 8px;
-            background: #1a1a1a;
-            display: block;
-        }
-
-        .card-title {
-            margin-top: 8px;
-            font-size: 14px;
-            line-height: 1.35;
-            word-break: break-word;
-        }
-
-        #overlay,
-        #player {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
-        }
-
-        #overlay {
-            background: #000;
-            z-index: 999;
-            overflow: auto;
-            padding-top: 50px;
-        }
-
-        #player {
-            background: #000;
-            z-index: 1000;
-        }
-
-        #player {
-            cursor: none;
-        }
-
-        #player.show-controls {
-            cursor: default;
-        }
-
-        .player-top-buttons {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 1004;
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            max-width: calc(100vw - 20px);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .2s ease;
-        }
-
-        #player.show-controls .player-top-buttons {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .player-top-buttons .btn,
-        .player-top-buttons .btn3,
-        .player-top-buttons .btn4,
-        .player-top-buttons .home-player-btn {
-            position: static;
-            top: auto;
-            right: auto;
-        }
-
-        .home-player-btn {
-            background: #00c853;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        #mxHint {
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .2s ease;
-        }
-
-        #player.show-controls #mxHint {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-
-        video,
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: #000;
-            object-fit: contain;
-        }
-
-        .btn,
-        .btn3,
-        .btn4 {
-            position: absolute;
-            top: 10px;
-            z-index: 1002;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .btn {
-            right: 10px;
-            background: #ff0000;
-        }
-
-        .btn3 {
-            right: 60px;
-            background: #2196f3;
-        }
-
-        .btn4 {
-            right: 130px;
-            background: #9c27b0;
-        }
-
-        #mxHint {
-            position: absolute;
-            left: 10px;
-            bottom: 10px;
-            z-index: 1002;
-            background: rgba(0, 0, 0, .65);
-            padding: 8px 10px;
-            border-radius: 8px;
-            font-size: 13px;
-        }
-
-        .status {
-            padding: 14px;
-            color: #fff;
-        }
-
-        .ep-wrap {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 10px;
-        }
-
-        .ep-card {
-            min-width: 110px;
-            background: #111;
-            border-radius: 10px;
-            padding: 12px;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid #222;
-        }
-
-        .all-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            padding: 10px;
-        }
-
-        .all-grid .card {
-            min-width: 0;
-            max-width: none;
-            width: 100%;
-        }
-
-        @media (min-width: 700px) {
-            .all-grid {
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-            }
-        }
-
-        @media (min-width: 1100px) {
-            .all-grid {
-                grid-template-columns: repeat(6, minmax(0, 1fr));
-            }
-        }
-    
-/* ===== PROJECTOR / ANDROID TV FIX ===== */
-.projector-status{
-  position:absolute;
-  left:10px;
-  bottom:52px;
-  z-index:1005;
-  background:rgba(0,0,0,.72);
-  color:#fff;
-  padding:8px 10px;
-  border-radius:8px;
-  font-size:13px;
-  display:none;
+.player-top{
+  position:absolute!important;
+  top:0!important;
+  left:0!important;
+  right:0!important;
+  z-index:10050!important;
+  background:linear-gradient(180deg,rgba(0,0,0,.88),rgba(0,0,0,.18))!important;
+  border-bottom:0!important;
+  transition:opacity .25s ease,visibility .25s ease!important;
 }
-#player.show-controls .projector-status{
-  display:block;
+.player-wrap{
+  flex:1!important;
+  width:100vw!important;
+  height:100vh!important;
+  min-height:0!important;
+  padding:0!important;
+  gap:0!important;
+  background:#000!important;
 }
-.player-top-buttons button:focus{
-  outline:3px solid #00e5ff;
-  outline-offset:2px;
+.video-shell{
+  flex:1!important;
+  width:100vw!important;
+  height:100vh!important;
+  min-height:100vh!important;
+  border:0!important;
+  border-radius:0!important;
+  background:#000!important;
+}
+#video{
+  width:100vw!important;
+  height:100vh!important;
+  object-fit:contain!important;
+  background:#000!important;
+}
+.player-hint{
+  position:absolute!important;
+  left:12px!important;
+  right:12px!important;
+  bottom:12px!important;
+  z-index:10051!important;
+  background:rgba(0,0,0,.62)!important;
+  transition:opacity .25s ease,visibility .25s ease!important;
 }
 
 </style>
+<script type="module" src="./member/member-check.js"></script>
 </head>
-
 <body>
-
-
-    <div id="grid"></div>
-    <div id="overlay"></div>
-
-    <div id="player">
-        <div class="player-top-buttons">
-            <button class="btn" id="closePlayerBtn" onclick="closePlayerToLastView()" tabindex="0">✕</button>
-            <button class="btn3" onclick="openExternal()" tabindex="0">▶ MX</button>
-            <!-- ปิดปุ่มคัดลอกลิงก์เพื่อไม่ให้แชร์ลิงก์ง่าย -->
-            <button class="home-player-btn" onclick="goHome()" tabindex="0">🏠 HOME</button>
-        </div>
-        <div id="mxHint">ถ้าภาพไม่ขึ้นใน Android TV/โปรเจคเตอร์ ให้กด ▶ MX</div>
-        <div id="projectorStatus" class="projector-status"></div>
-        <video id="video" playsinline webkit-playsinline x5-playsinline controls autoplay muted preload="auto"></video>
-        <iframe id="frame" allowfullscreen referrerpolicy="no-referrer"></iframe>
-    </div>
-
-    <script>
-        const PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
-
-        const SOURCES = [
-{
-name: "EZ 18+",
-type: "json",
-url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/Vip.json",
-},
-{
-name: "supjav 18+",
-type: "json",
-url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/supjav.json",
-},
-{
-name: "avpung 18+",
-type: "json",
-url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/playlist_avpung.json",
-},
-{
-name: "jav24 18+",
-type: "json",
-url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/playlist_jav24.json",
-},
-{
-name: "pornxxx",
-type: "json",
-url: "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/pornxxx.json",
-},
-       ];
-
-        const FALLBACK_IMG =
-            "data:image/svg+xml;utf8," +
-            encodeURIComponent(`
-                <svg xmlns="http://www.w3.org/2000/svg" width="300" height="450">
-                    <rect width="100%" height="100%" fill="#1a1a1a"/>
-                    <text x="50%" y="50%" fill="#ffffff" font-size="22" text-anchor="middle" dy=".3em">NO IMAGE</text>
-                </svg>
-            `);
-
-        let grid = document.getElementById("grid");
-        let overlay = document.getElementById("overlay");
-        let video = document.getElementById("video");
-        let frame = document.getElementById("frame");
-        let player = document.getElementById("player");
-
-        let hls = null;
-        let store = {};
-
-        let allView = {
-            active: false,
-            name: "",
-            page: 1
-        };
-
-        let currentList = [];
-        let currentIndex = 0;
-        let lastView = { type: "grid", item: null };
-        let controlTimer = null;
-
-        function safeId(text) {
-            return String(text).replace(/[^\wก-๙-]/g, "_");
-        }
-
-        function getTitle(item) {
-            return item.title || item.name || item.ep_name || "ไม่มีชื่อ";
-        }
-
-        function getImage(item) {
-            return (
-                item.image ||
-                item.poster ||
-                item.poster_url ||
-                item.thumb ||
-                item.thumbnail ||
-                item.logo ||
-                FALLBACK_IMG
-            );
-        }
-
-        function getDirectUrl(item) {
-            if (!item || typeof item !== "object") return "";
-            return (
-                item.url ||
-                item.file ||
-                item.src ||
-                item.link ||
-                item.stream ||
-                item.play ||
-                item.video ||
-                item.video_url ||
-                item.m3u8 ||
-                item.player ||
-                item.embed ||
-                item.stream_url ||
-                ""
-            );
-        }
-
-        function normalizeServers(servers) {
-            if (!Array.isArray(servers)) return [];
-
-            return servers
-                .map(s => {
-                    if (typeof s === "string") return { url: s };
-
-                    if (s && typeof s === "object") {
-                        return {
-                            url:
-                                s.url ||
-                                s.file ||
-                                s.src ||
-                                s.link ||
-                                s.stream ||
-                                s.play ||
-                                s.video ||
-                                s.video_url ||
-                                s.m3u8 ||
-                                s.player ||
-                                s.embed ||
-                                s.stream_url ||
-                                ""
-                        };
-                    }
-
-                    return { url: "" };
-                })
-                .filter(s => s.url);
-        }
-
-
-        function setProjectorStatus(msg) {
-            const box = document.getElementById("projectorStatus");
-            if (!box) return;
-            box.textContent = msg || "";
-            box.style.display = msg ? "block" : "none";
-        }
-
-        function isAndroidTvOrProjector() {
-            const ua = (navigator.userAgent || "").toLowerCase();
-            return ua.includes("android tv") ||
-                ua.includes("smart-tv") ||
-                ua.includes("smarttv") ||
-                ua.includes("projector") ||
-                ua.includes("xgimi") ||
-                ua.includes("mibox") ||
-                ua.includes("bravia") ||
-                ua.includes("chromecast") ||
-                ua.includes("aft") ||
-                ua.includes("tizen") ||
-                ua.includes("webos");
-        }
-
-        function startAudioOnlyGuard(rawUrl) {
-            clearTimeout(startAudioOnlyGuard._timer);
-            if (!isAndroidTvOrProjector()) return;
-
-            startAudioOnlyGuard._timer = setTimeout(() => {
-                try {
-                    const hasSoundProgress = !video.paused && video.currentTime > 1;
-                    const noPicture = video.style.display !== "none" && (!video.videoWidth || !video.videoHeight);
-                    if (player.style.display === "block" && hasSoundProgress && noPicture) {
-                        setProjectorStatus("เครื่องนี้อาจไม่รองรับ codec ภาพของลิงก์นี้ • กด ▶ MX เพื่อดูภาพ");
-                        showPlayerControls(true);
-                    }
-                } catch (e) {}
-            }, 6000);
-        }
-
-        function togglePlayPause() {
-            if (!video || video.style.display === "none") return;
-            if (video.paused) video.play().catch(() => {});
-            else video.pause();
-            showPlayerControls(false);
-        }
-
-        async function loadAll() {
-            grid.innerHTML = `<div class="status">⚡ LOADING...</div>`;
-            const rows = [];
-
-            for (const s of SOURCES) {
-                try {
-                    const res = await fetch(s.url + "?t=" + Date.now(), { cache: "no-store" });
-                    if (!res.ok) throw new Error("โหลดไม่สำเร็จ " + res.status);
-
-                    const data = await res.json();
-
-                    let list = [];
-                    if (Array.isArray(data)) {
-                        list = data;
-                    } else if (Array.isArray(data.items)) {
-                        list = data.items;
-                    } else if (Array.isArray(data.data)) {
-                        list = data.data;
-                    }
-
-                    store[s.name] = {
-                        data: list,
-                        page: 1,
-                        error: ""
-                    };
-                } catch (err) {
-                    console.error("โหลด source ไม่ได้:", s.name, err);
-                    store[s.name] = {
-                        data: [],
-                        page: 1,
-                        error: "โหลดรายการไม่ได้"
-                    };
-                }
-
-                rows.push(s.name);
-            }
-
-            grid.innerHTML = "";
-            rows.forEach(renderRow);
-        }
-
-        function renderRow(name) {
-            const rowId = safeId(name);
-            const row = document.createElement("div");
-
-            row.innerHTML = `
-                <div class="row-title">
-                    <span>${name}</span>
-                    <button class="seeall" onclick="seeAll('${name.replace(/'/g, "\\'")}')">ดูทั้งหมด</button>
-                </div>
-                <div class="row-items" id="row-${rowId}"></div>
-            `;
-
-            grid.appendChild(row);
-            renderPage(name);
-        }
-
-        function createCard(item, onClick) {
-            const div = document.createElement("div");
-            div.className = "card";
-            div.tabIndex = 0;
-
-            const img = getImage(item);
-            const title = getTitle(item);
-
-            div.innerHTML = `
-                <img
-                    src="${img}"
-                    alt="${title}"
-                    loading="lazy"
-                    referrerpolicy="no-referrer"
-                    onerror="this.onerror=null;this.src='${FALLBACK_IMG}'"
-                >
-                <div class="card-title">${title}</div>
-            `;
-
-            div.onclick = onClick;
-            div.onkeydown = (e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    onClick();
-                }
-            };
-            return div;
-        }
-
-        function renderPage(name) {
-            const obj = store[name];
-            if (!obj) return;
-
-            const row = document.getElementById("row-" + safeId(name));
-            if (!row) return;
-
-            const items = obj.data.slice(0, 15);
-            row.innerHTML = "";
-
-            if (obj.error) {
-                row.innerHTML = `<div class="status">❌ ${obj.error}</div>`;
-                return;
-            }
-
-            if (!items.length) {
-                row.innerHTML = `<div class="status">ไม่มีข้อมูล</div>`;
-                return;
-            }
-
-            items.forEach(item => row.appendChild(createCard(item, () => openItem(item))));
-        }
-
-        function seeAll(name) {
-            allView.active = true;
-            allView.name = name;
-            allView.page = 1;
-            renderAllPage();
-        }
-
-        function renderAllPage() {
-            const obj = store[allView.name];
-            if (!obj) return;
-
-            const perPage = 20;
-            const totalItems = obj.data.length;
-            const totalPages = Math.max(1, Math.ceil(totalItems / perPage));
-            const currentPage = Math.min(allView.page, totalPages);
-            const start = (currentPage - 1) * perPage;
-            const end = start + perPage;
-            const items = obj.data.slice(start, end);
-
-            overlay.style.display = "block";
-            grid.style.display = "none";
-
-            overlay.innerHTML = `
-                <div style="padding:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
-                    <h2 style="margin:0;">${allView.name}</h2>
-                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                        <button class="seeall" onclick="prevAllPage()">◀ ก่อนหน้า</button>
-                        <button class="seeall" onclick="nextAllPage()">ถัดไป ▶</button>
-                        <button class="seeall" onclick="backToGrid()">← กลับ</button>
-                    </div>
-                </div>
-
-                <div style="padding:0 10px 10px 10px;color:#00e5ff;">
-                    หน้า ${currentPage} / ${totalPages} &nbsp; | &nbsp; ทั้งหมด ${totalItems} เรื่อง
-                </div>
-
-                <div id="allBox" class="all-grid"></div>
-            `;
-
-            const box = document.getElementById("allBox");
-
-            if (obj.error) {
-                box.innerHTML = `<div class="status">❌ ${obj.error}</div>`;
-                return;
-            }
-
-            if (!items.length) {
-                box.innerHTML = `<div class="status">ไม่มีข้อมูล</div>`;
-                return;
-            }
-
-            items.forEach(item => box.appendChild(createCard(item, () => openItem(item))));
-        }
-
-        function nextAllPage() {
-            const obj = store[allView.name];
-            if (!obj) return;
-
-            const totalPages = Math.max(1, Math.ceil(obj.data.length / 20));
-            if (allView.page < totalPages) {
-                allView.page++;
-                renderAllPage();
-            }
-        }
-
-        function prevAllPage() {
-            if (allView.page > 1) {
-                allView.page--;
-                renderAllPage();
-            }
-        }
-
-        function openItem(item) {
-            if (Array.isArray(item.episodes) && item.episodes.length) {
-                showEP(item);
-                return;
-            }
-
-            const servers = normalizeServers(item.servers || item.sources || item.links || []);
-            const url = getDirectUrl(item);
-
-            if (servers.length) {
-                startPlay(servers);
-                return;
-            }
-
-            if (url) {
-                startPlay([{ url }]);
-                return;
-            }
-
-            alert("❌ ไม่พบลิงก์เล่น");
-        }
-
-        function showEP(item) {
-            lastView = { type: "ep", item };
-            overlay.style.display = "block";
-            grid.style.display = "none";
-
-            overlay.innerHTML = `
-                <div style="padding:10px;display:flex;align-items:center;justify-content:space-between;">
-                    <h2 style="margin:0;">${getTitle(item)}</h2>
-                    <button class="seeall" onclick="backToListOrGrid()">← กลับ</button>
-                </div>
-                <div class="ep-wrap" id="epBox"></div>
-            `;
-
-            const box = document.getElementById("epBox");
-
-            item.episodes.forEach((ep, index) => {
-                const d = document.createElement("div");
-                d.className = "ep-card";
-                d.tabIndex = 0;
-                d.textContent = ep.name || ep.title || `EP ${index + 1}`;
-                const playThisEp = () => {
-                    const servers = normalizeServers(
-                        ep.servers || ep.sources || ep.links || ep.files || ep.playlist || []
-                    );
-
-                    const single = getDirectUrl(ep);
-
-                    if (servers.length) {
-                        startPlay(servers);
-                    } else if (single) {
-                        startPlay([{ url: single }]);
-                    } else {
-                        alert("❌ ตอนนี้ไม่มีลิงก์เล่น");
-                    }
-                };
-                d.onclick = playThisEp;
-                d.onkeydown = (e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        playThisEp();
-                    }
-                };
-                box.appendChild(d);
-            });
-        }
-
-        function startPlay(list) {
-            currentList = [...list];
-            currentIndex = 0;
-            overlay.style.display = "none";
-            player.style.display = "block";
-            showPlayerControls(true);
-            playServers(currentList);
-        }
-
-        async function playServers(list) {
-            currentList = [...list];
-
-            for (let i = 0; i < list.length; i++) {
-                currentIndex = i;
-                const item = list[i];
-                const url = typeof item === "string" ? item : item.url;
-
-                if (!url) continue;
-
-                try {
-                    await play(url);
-                    return;
-                } catch (e) {
-                    console.warn("server เล่นไม่ได้:", url, e);
-                }
-            }
-
-            alert("❌ เล่นไม่ได้ทุก server");
-            goHome();
-        }
-
-        function cleanupPlayers() {
-            if (hls) {
-                try { hls.destroy(); } catch (e) { }
-                hls = null;
-            }
-
-            video.pause();
-            video.muted = true;
-            video.removeAttribute("src");
-            video.load();
-
-            frame.src = "";
-            video.style.display = "none";
-            frame.style.display = "none";
-        }
-
-        function isHls(url) {
-            url = String(url || "").toLowerCase();
-            return url.includes(".m3u8") || url.includes("master.txt") || url.includes(".txt") || url.includes("type=m3u8") || url.includes("extension=m3u8");
-        }
-
-        function isVideoFile(url) {
-            return /\.(mp4|m4v|webm|ogg|ogv|mov)($|\?)/i.test(url);
-        }
-
-        function isEmbeddable(url) {
-            return /youtube\.com|youtu\.be|vk\.com|ok\.ru|dailymotion\.com|player|embed/i.test(url);
-        }
-
-        async function play(url) {
-            cleanupPlayers();
-            setProjectorStatus("");
-            startAudioOnlyGuard(url);
-
-            if (isHls(url)) {
-                try {
-                    await playHlsWithFallback(url);
-                    return;
-                } catch (e) {
-                    try {
-                        await playNativeVideo(PROXY + encodeURIComponent(url));
-                        return;
-                    } catch (_) {
-                        throw e;
-                    }
-                }
-            }
-
-            if (isVideoFile(url)) {
-                return playNativeVideo(url);
-            }
-
-            if (isEmbeddable(url)) {
-                return openFrame(url);
-            }
-
-            try {
-                await playNativeVideo(url);
-                return;
-            } catch (_) {
-                return openFrame(url);
-            }
-        }
-
-        function playNativeVideo(url) {
-            video.style.display = "block";
-            frame.style.display = "none";
-
-            return new Promise((resolve, reject) => {
-                let done = false;
-
-                const ok = () => {
-                    if (done) return;
-                    done = true;
-                    clear();
-                    video.muted = false;
-                    video.volume = 1;
-                    const p = video.play();
-                    if (p && typeof p.then === "function") {
-                        p.then(() => resolve()).catch(() => resolve());
-                    } else {
-                        resolve();
-                    }
-                };
-
-                const fail = () => {
-                    if (done) return;
-                    done = true;
-                    clear();
-                    reject("video error");
-                };
-
-                const clear = () => {
-                    video.removeEventListener("loadedmetadata", ok);
-                    video.removeEventListener("canplay", ok);
-                    video.removeEventListener("playing", ok);
-                    video.removeEventListener("error", fail);
-                };
-
-                video.addEventListener("loadedmetadata", ok, { once: true });
-                video.addEventListener("canplay", ok, { once: true });
-                video.addEventListener("playing", ok, { once: true });
-                video.addEventListener("error", fail, { once: true });
-
-                video.pause();
-                video.removeAttribute("src");
-                video.load();
-
-                video.src = url;
-                video.load();
-
-                setTimeout(() => {
-                    if (!done) fail();
-                }, 10000);
-            });
-        }
-
-        function playHlsWithFallback(url) {
-            const tryUrls = [url, PROXY + encodeURIComponent(url)];
-
-            return new Promise(async (resolve, reject) => {
-                for (const testUrl of tryUrls) {
-                    try {
-                        await playOneHls(testUrl);
-                        resolve();
-                        return;
-                    } catch (e) {
-                        console.warn("HLS ล้มเหลว:", testUrl, e);
-                    }
-                }
-                reject("hls fail");
-            });
-        }
-
-        function playOneHls(sourceUrl) {
-            video.style.display = "block";
-            frame.style.display = "none";
-
-            return new Promise((resolve, reject) => {
-                let settled = false;
-
-                const ok = () => {
-                    if (settled) return;
-                    settled = true;
-                    clear();
-
-                    setTimeout(() => {
-                        video.muted = false;
-                        video.volume = 1;
-                        const p = video.play();
-                        if (p && typeof p.then === "function") {
-                            p.then(() => resolve()).catch(() => resolve());
-                        } else {
-                            resolve();
-                        }
-                    }, 200);
-                };
-
-                const fail = () => {
-                    if (settled) return;
-                    settled = true;
-                    clear();
-                    reject("hls error");
-                };
-
-                const clear = () => {
-                    video.removeEventListener("loadedmetadata", ok);
-                    video.removeEventListener("canplay", ok);
-                    video.removeEventListener("playing", ok);
-                    video.removeEventListener("error", fail);
-
-                    if (hls) {
-                        hls.off(Hls.Events.MANIFEST_PARSED, ok);
-                        hls.off(Hls.Events.LEVEL_LOADED, ok);
-                        hls.off(Hls.Events.ERROR, onHlsError);
-                    }
-                };
-
-                const onHlsError = (event, data) => {
-                    if (!data) return;
-
-                    if (data.fatal) {
-                        if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
-                            try { hls.startLoad(); } catch (e) { }
-                        } else if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
-                            try { hls.recoverMediaError(); } catch (e) { }
-                        } else {
-                            fail();
-                        }
-                    }
-                };
-
-                video.pause();
-                video.removeAttribute("src");
-                video.load();
-
-                if (video.canPlayType("application/vnd.apple.mpegurl")) {
-                    video.addEventListener("loadedmetadata", ok, { once: true });
-                    video.addEventListener("canplay", ok, { once: true });
-                    video.addEventListener("playing", ok, { once: true });
-                    video.addEventListener("error", fail, { once: true });
-
-                    video.src = sourceUrl;
-                    video.load();
-                } else if (Hls.isSupported()) {
-                    hls = new Hls({
-                        // PROJECTOR / ANDROID TV SOFT STABLE
-                        enableWorker: false,
-                        lowLatencyMode: false,
-
-                        maxBufferLength: 35,
-                        maxMaxBufferLength: 50,
-                        backBufferLength: 20,
-                        liveBackBufferLength: 0,
-
-                        maxBufferHole: 1.0,
-                        maxFragLookUpTolerance: 0.2,
-                        appendErrorMaxRetry: 20,
-
-                        startLevel: 0,
-                        capLevelToPlayerSize: true,
-                        testBandwidth: false,
-
-                        abrEwmaDefaultEstimate: 500000,
-                        abrBandWidthFactor: 0.7,
-                        abrBandWidthUpFactor: 0.45,
-
-                        fragLoadingTimeOut: 25000,
-                        manifestLoadingTimeOut: 25000,
-                        levelLoadingTimeOut: 25000,
-
-                        fragLoadingMaxRetry: 6,
-                        levelLoadingMaxRetry: 5,
-                        manifestLoadingMaxRetry: 4,
-
-                        fragLoadingRetryDelay: 1200,
-                        levelLoadingRetryDelay: 1200,
-                        manifestLoadingRetryDelay: 1200,
-
-                        liveSyncDurationCount: 8,
-                        liveMaxLatencyDurationCount: 16,
-
-                        progressive: true
-                    });
-
-                    video.addEventListener("loadedmetadata", ok, { once: true });
-                    video.addEventListener("canplay", ok, { once: true });
-                    video.addEventListener("playing", ok, { once: true });
-                    video.addEventListener("error", fail, { once: true });
-
-                    hls.on(Hls.Events.MANIFEST_PARSED, ok);
-                    hls.on(Hls.Events.LEVEL_LOADED, ok);
-                    hls.on(Hls.Events.ERROR, onHlsError);
-
-                    hls.loadSource(sourceUrl);
-                    hls.attachMedia(video);
-                } else {
-                    reject("browser not support hls");
-                    return;
-                }
-
-                setTimeout(() => {
-                    if (!settled) fail();
-                }, 12000);
-            });
-        }
-
-        function openFrame(url) {
-            frame.style.display = "block";
-
-            return new Promise((resolve, reject) => {
-                let done = false;
-
-                const ok = () => {
-                    if (done) return;
-                    done = true;
-                    clearTimeout(timer);
-                    resolve();
-                };
-
-                const fail = () => {
-                    if (done) return;
-                    done = true;
-                    clearTimeout(timer);
-                    reject("iframe error");
-                };
-
-                frame.onload = ok;
-                frame.onerror = fail;
-                frame.src = url;
-
-                const timer = setTimeout(() => {
-                    if (!done) ok();
-                }, 2500);
-            });
-        }
-
-        function openExternal() {
-            if (!currentList.length) return;
-
-            const item = currentList[currentIndex];
-            const url = typeof item === "string" ? item : item.url;
-            if (!url) return;
-
-            const scheme = url.startsWith("https://") ? "https" : "http";
-            const clean = url.replace(/^https?:\/\//, "");
-
-            const mxPhoneIntent =
-                `intent://${clean}#Intent;scheme=${scheme};package=com.mxtech.videoplayer.ad;type=video/*;end`;
-
-            const mxTvIntent =
-                `intent://${clean}#Intent;scheme=${scheme};package=com.mxtech.videoplayer.television;type=video/*;end`;
-
-            try {
-                window.location.href = mxPhoneIntent;
-
-                setTimeout(() => {
-                    window.location.href = mxTvIntent;
-                }, 1200);
-            } catch (e) {
-                window.location.href = url;
-            }
-        }
-
-        async function copyCurrentLink() {
-            if (!currentList.length) return;
-            const item = currentList[currentIndex];
-            const url = typeof item === "string" ? item : item.url;
-            if (!url) return;
-
-            try {
-                await navigator.clipboard.writeText(url);
-                alert("คัดลอกลิงก์แล้ว");
-            } catch (e) {
-                prompt("คัดลอกลิงก์นี้", url);
-            }
-        }
-
-        function backToListOrGrid() {
-            if (allView.active) {
-                renderAllPage();
-            } else {
-                backToGrid();
-            }
-        }
-
-        function backToGrid() {
-            overlay.style.display = "none";
-            overlay.innerHTML = "";
-            grid.style.display = "block";
-            allView.active = false;
-            allView.name = "";
-            allView.page = 1;
-        }
-
-        function showPlayerControls(focusX = false) {
-            player.classList.add("show-controls");
-            clearTimeout(controlTimer);
-
-            if (focusX) {
-                setTimeout(() => {
-                    const xBtn = document.getElementById("closePlayerBtn");
-                    if (xBtn && player.style.display === "block") xBtn.focus();
-                }, 60);
-            }
-
-            controlTimer = setTimeout(() => {
-                player.classList.remove("show-controls");
-            setProjectorStatus("");
-            }, 4500);
-        }
-
-        function closePlayerToLastView() {
-            cleanupPlayers();
-            player.style.display = "none";
-            player.classList.remove("show-controls");
-            setProjectorStatus("");
-
-            if (lastView.type === "ep" && lastView.item) {
-                showEP(lastView.item);
-                return;
-            }
-
-            if (allView.active) {
-                renderAllPage();
-                return;
-            }
-
-            overlay.style.display = "none";
-            grid.style.display = "block";
-            setTimeout(() => document.querySelector(".card")?.focus(), 100);
-        }
-
-        function seekVideo(sec) {
-            showPlayerControls();
-            if (!video || video.style.display === "none") return;
-            video.currentTime = Math.max(0, (video.currentTime || 0) + sec);
-        }
-
-        function goHome() {
-            window.location.href = "https://tiea9999.github.io/tv/";
-        }
-
-        player.addEventListener("mousemove", () => showPlayerControls());
-        player.addEventListener("click", () => showPlayerControls());
-        player.addEventListener("touchstart", () => showPlayerControls());
-
-        document.addEventListener("keydown", (e) => {
-            if (player.style.display !== "block") return;
-
-            const active = document.activeElement;
-            const activeIsButton = active && active.tagName === "BUTTON";
-
-            if (e.key === "ArrowUp") {
-                e.preventDefault();
-                showPlayerControls(true);
-                return;
-            }
-
-            if (e.key === "ArrowLeft") {
-                e.preventDefault();
-                seekVideo(-10);
-                return;
-            }
-
-            if (e.key === "ArrowRight") {
-                e.preventDefault();
-                seekVideo(10);
-                return;
-            }
-
-            if (e.key === "Enter" || e.key === "OK" || e.keyCode === 13 || e.keyCode === 23) {
-                if (activeIsButton) return;
-                e.preventDefault();
-                togglePlayPause();
-                return;
-            }
-
-            if (e.key === "Escape" || e.key === "Backspace" || e.key === "GoBack" || e.keyCode === 10009) {
-                e.preventDefault();
-                closePlayerToLastView();
-                return;
-            }
-
-            showPlayerControls(false);
-        });
-
-        loadAll();
-    </script>
-
+<div class="app"><aside class="sidebar"><div class="brand">TIEA IPTV<div class="subbrand">MYSERIES FULLSCREEN</div></div><div class="group-title">เมนูหลัก</div><button class="menu-btn active" data-action="home">🏠 หน้าแรก</button><button class="menu-btn" data-action="live-page">📅 ตารางแข่งขัน</button><div class="group-title">ทีวีออนไลน์</div><button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/3bb.html">📡 3BB IPTV</button><button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/sport.html">🏆 SPORT TV</button><button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/ball66.html">⚽ DOOBALL66</button><div class="group-title">หนัง</div><button class="menu-btn" data-source="movie-main">🎬 หนังทั้งหมด</button><button class="menu-btn" data-source="movie-24hd">🎬 หนัง 24HD</button><div class="group-title">ซีรีส์</div><button class="menu-btn" data-source="series-main">📚 MySeries แยกหมวด</button><button class="menu-btn" data-source="series-china">🇨🇳 ซีรี่ย์จีน</button><button class="menu-btn" data-source="series-korea">🇰🇷 ซีรี่ย์เกาหลี</button><button class="menu-btn" data-source="series-thai">🇹🇭 ซีรี่ย์ไทย</button><button class="menu-btn" data-source="series-japan">🇯🇵 ซีรี่ย์ญี่ปุ่น</button><button class="menu-btn" data-source="series-short">🎞️ ละครสั้น</button><button class="menu-btn" data-source="series-movie">🎬 หนัง MySeries</button><button class="menu-btn" data-source="series-24hd">📺 ซีรีส์ 24HD</button><button class="menu-btn" data-action="home">💎 VIP หน้าแรก</button><div class="group-title">ระบบ</div><button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/index.html">🏠 HOME จริง</button></aside><main class="main"><div class="topbar"><button class="top-btn home" id="homeBtn">🏠 HOME</button><button class="top-btn reload" id="reloadBtn">⟳ โหลดใหม่</button><button class="top-btn live" id="liveBtn">📅 live.html</button><div class="status" id="statusText">VIP • หนัง / ซีรี่ย์ / กีฬา • ต้อง Login ก่อนเข้าใช้งาน</div></div><div class="content" id="content"></div></main></div>
+<div class="player-panel" id="playerPanel"><div class="player-top"><button class="player-btn close" id="closePlayerBtn">✕ ปิด</button><button class="player-btn home" id="playerHomeBtn">🏠 หน้าโฮม</button><div class="player-title" id="playerTitle">กำลังเล่น</div><button class="player-btn mx" id="mxBtn">▶ MX</button><button class="player-btn" id="extBtn">▶ PLAYER</button></div><div class="player-wrap"><div class="video-shell"><video id="video" controls playsinline webkit-playsinline autoplay></video></div><div class="player-hint">fullscreen • ปุ่มซ่อนอัตโนมัติ ขยับเม้าท์/รีโมทค่อยแสดง</div></div></div>
+<div class="modal" id="modal"><div class="modal-box"><div class="modal-head"><div class="modal-title" id="modalTitle">ดูทั้งหมด</div><button class="player-btn close" id="closeModalBtn">✕ ปิด</button></div><div class="modal-body" id="modalBody"></div><div class="modal-foot"><div class="badge" id="modalCount">ทั้งหมด 0 รายการ</div><div class="pages"><button class="page-btn" id="prevPageBtn">◀ ก่อนหน้า</button><div class="badge" id="pageInfo">หน้า 1 / 1</div><button class="page-btn" id="nextPageBtn">ถัดไป ▶</button></div></div></div></div>
+<script>
+const HOME_URL='https://tiea9999.github.io/tv-online/index.html',LIVE_URL='https://tiea9999.github.io/tv-online/live.html',RAW='https://raw.githubusercontent.com/tiea9999/tv-online/main/',PROXY='https://iptv.tawatchai250958.workers.dev/?url=',FOLDER_LOGO='https://dl.dropboxusercontent.com/scl/fi/k77ovxc35qm0girjo43mt/logo.png?rlkey=1x7w8nk1fl6gptnt9jiaugt54';
+const MY_CHINA=RAW+'myseries-china.json',MY_KOREA=RAW+'myseries-korea.json',MY_THAI=RAW+'myseries-thai.json',MY_JAPAN=RAW+'myseries-japan.json',MY_SHORT=RAW+'myseries-short.json',MY_MOVIE=RAW+'myseries-movie.json';
+const TV_LINKS=[{kind:'link',title:'3BB IPTV',image:FOLDER_LOGO,url:'https://tiea9999.github.io/tv-online/3bb.html',group:'ทีวีออนไลน์'},{kind:'link',title:'SPORT TV',image:FOLDER_LOGO,url:'https://tiea9999.github.io/tv-online/sport.html',group:'ทีวีออนไลน์'},{kind:'link',title:'DOOBALL66',image:FOLDER_LOGO,url:'https://tiea9999.github.io/tv-online/ball66.html',group:'ทีวีออนไลน์'}];
+const MYSERIES_FOLDERS=[{kind:'folder',title:'ดูซีรี่ย์จีน',image:FOLDER_LOGO,source:MY_CHINA,group:'MySeries'},{kind:'folder',title:'ดูซีรี่ย์เกาหลี',image:FOLDER_LOGO,source:MY_KOREA,group:'MySeries'},{kind:'folder',title:'ดูซีรี่ย์ไทย',image:FOLDER_LOGO,source:MY_THAI,group:'MySeries'},{kind:'folder',title:'ซีรี่ย์ญี่ปุ่น',image:FOLDER_LOGO,source:MY_JAPAN,group:'MySeries'},{kind:'folder',title:'ดูละครสั้น',image:FOLDER_LOGO,source:MY_SHORT,group:'MySeries'},{kind:'folder',title:'ดูหนังออนไลน์',image:FOLDER_LOGO,source:MY_MOVIE,group:'MySeries'}];
+const SOURCES={'movie-main':[{title:'หนัง 24HD',source:RAW+'movie24hd.json'}],'movie-24hd':[{title:'หนัง 24HD',source:RAW+'movie24hd.json'}],'series-main':[{title:'ดูซีรี่ย์จีน',source:MY_CHINA},{title:'ดูซีรี่ย์เกาหลี',source:MY_KOREA},{title:'ดูซีรี่ย์ไทย',source:MY_THAI},{title:'ซีรี่ย์ญี่ปุ่น',source:MY_JAPAN},{title:'ดูละครสั้น',source:MY_SHORT},{title:'ดูหนังออนไลน์',source:MY_MOVIE}],'series-china':[{title:'ดูซีรี่ย์จีน',source:MY_CHINA}],'series-korea':[{title:'ดูซีรี่ย์เกาหลี',source:MY_KOREA}],'series-thai':[{title:'ดูซีรี่ย์ไทย',source:MY_THAI}],'series-japan':[{title:'ซีรี่ย์ญี่ปุ่น',source:MY_JAPAN}],'series-short':[{title:'ดูละครสั้น',source:MY_SHORT}],'series-movie':[{title:'ดูหนังออนไลน์',source:MY_MOVIE}],'series-24hd':[{title:'Series 24HD',source:RAW+'series24hd.json'}]};
+const state={rows:[],modalItems:[],page:1,perPage:20,activeSource:null,currentUrl:'',currentTitle:'',originalUrl:'',hls:null,dash:null,playTimer:null,preloaded:{},watchdog:null,lastTime:0,stuckCount:0,recoverCount:0,lastRecoverAt:0,cache:{}};
+const $=id=>document.getElementById(id),content=$('content'),statusText=$('statusText'),video=$('video'),playerPanel=$('playerPanel');
+function setStatus(t){statusText.textContent=t||'พร้อมใช้งาน'}function cleanUrl(u){return String(u||'').trim()}function isJsonUrl(u){return /\.json($|\?)/i.test(String(u||''))||String(u||'').includes('githubusercontent.com')}function imgOf(i){return i.poster||i.image||i.thumb||i.logo||i.cover||''}
+function groupName(g){let t=String(g||'').trim(),m={'series':'ดูซีรี่ย์ออนไลน์','series-online':'ดูซีรี่ย์ออนไลน์','series-china':'ดูซีรี่ย์จีน','series-korea':'ดูซีรี่ย์เกาหลี','series-thai':'ดูซีรี่ย์ไทย','series-japan':'ซีรี่ย์ญี่ปุ่น','movie':'ดูหนังออนไลน์','short':'ดูละครสั้น','tv':'ทีวี','sport':'กีฬา'};if(m[t])return m[t];if(t.includes('ละครสั้น')||t.includes('หนังสั้น'))return'ดูละครสั้น';if(t.includes('ดูหนัง')||t==='หนัง'||t.includes('หนังออนไลน์'))return'ดูหนังออนไลน์';if(t.includes('จีน'))return'ดูซีรี่ย์จีน';if(t.includes('เกาหลี'))return'ดูซีรี่ย์เกาหลี';if(t.includes('ญี่ปุ่น'))return'ซีรี่ย์ญี่ปุ่น';if(t.includes('ไทย'))return'ดูซีรี่ย์ไทย';if(t.includes('ซีรี่ย์')||t.includes('ซีรีย์')||t.includes('ออนไลน์'))return'ดูซีรี่ย์ออนไลน์';return t||'อื่นๆ'}
+function groupsOf(item,parent=''){let a=[];if(Array.isArray(item.groups))a.push(...item.groups.map(groupName));if(typeof item.groups==='string')a.push(groupName(item.groups));if(item.group)a.push(groupName(item.group));if(item.category)a.push(groupName(item.category));if(!a.length&&parent)a.push(groupName(parent));if(!a.length)a.push('อื่นๆ');return[...new Set(a.filter(Boolean))]}
+function serversOf(item){let o=[];if(Array.isArray(item.servers))item.servers.forEach(s=>{let u=cleanUrl(s.url||s.link||s.file||s.source);if(u)o.push({name:s.name||'Main',url:u})});let one=cleanUrl(item.url||item.link||item.stream||item.file);if(one&&!isJsonUrl(one))o.push({name:'Main',url:one});return o}
+function episodesOf(item,img=''){if(!Array.isArray(item.episodes))return[];return item.episodes.map((ep,i)=>({title:ep.title||ep.name||ep.ep_name||`EP${i+1}`,image:imgOf(ep)||img,servers:serversOf(ep),type:'episode'})).filter(e=>e.servers.length)}
+function calcStatus(item,eps){let raw=String(item.status||item.finish||item.end||item.complete||'').trim();if(raw)return raw;let title=String(item.title||''),l=Number(item.latest_ep||0),t=Number(item.total_ep||0);if(title.includes('จบเรื่อง')||title.includes('ครบทุกตอน')||title.includes('(END)'))return'จบแล้ว';if(t&&l&&l>=t)return'จบแล้ว';if(eps&&eps.some(e=>String(e.title||'').includes('ตอนจบ')))return'จบแล้ว';if(eps&&eps.length)return'ยังไม่จบ';return''}
+function normalize(data,parent=''){let out=[],seen=new Set();function add(obj){let k=[obj.kind,obj.title,obj.source,obj.servers?.[0]?.url,obj.episodes?.length].join('|').toLowerCase();if(seen.has(k))return;seen.add(k);out.push(obj)}function walk(n,pg=''){if(Array.isArray(n)){n.forEach(x=>walk(x,pg));return}if(!n||typeof n!=='object')return;let title=n.title||n.name||n.channel||'ไม่มีชื่อ',img=imgOf(n),gs=groupsOf(n,pg||parent),source=cleanUrl(n.source||n.url||n.link||n.file);if((n.type==='menu'||Array.isArray(n.items))&&Array.isArray(n.items)){n.items.forEach(x=>walk(x,title));return}if((n.type==='source'||source)&&source&&isJsonUrl(source)&&!n.episodes){add({kind:'folder',title,image:img,source,groups:gs,group:gs[0]||title,status:n.status||''});return}if(Array.isArray(n.data)){n.data.forEach(x=>walk(x,gs[0]));return}let eps=episodesOf(n,img),sv=serversOf(n);if(eps.length)add({kind:'series',title,image:img,groups:gs,group:gs[0],language:n.language||'',year:n.year||'',status:calcStatus(n,eps),latest_ep:n.latest_ep||eps.length,total_ep:n.total_ep||eps.length,episodes:eps,raw:n});else if(sv.length)add({kind:'play',title,image:img,groups:gs,group:gs[0]||'อื่นๆ',language:n.language||'',year:n.year||'',status:calcStatus(n,[]),servers:sv,type:n.type||'video',raw:n})}walk(data,parent);return out}
+function parseM3U(text,parent='ทีวี'){let out=[],cur=null;text.split(/\r?\n/).forEach(raw=>{let line=raw.trim();if(!line)return;if(line.startsWith('#EXTINF:')){let logo=line.match(/tvg-logo="([^"]*)"/i)?.[1]||'',group=groupName(line.match(/group-title="([^"]*)"/i)?.[1]||parent),title=line.split(',').pop()?.trim()||'ช่อง';cur={kind:'play',title,image:logo,group,groups:[group],servers:[],type:'tv'}}else if(!line.startsWith('#')&&cur){cur.servers=[{name:'Main',url:line}];out.push(cur);cur=null}});return out}
+async function fetchText(url){if(state.cache[url])return state.cache[url];let sep=url.includes('?')?'&':'?',res=await fetch(url+sep+'t='+Date.now(),{cache:'no-store'});if(!res.ok)throw new Error('HTTP '+res.status);let text=await res.text();state.cache[url]=text;return text}
+async function loadUrl(url,parent=''){let text=await fetchText(url),trim=text.trim();if(trim.startsWith('{')||trim.startsWith('['))return normalize(JSON.parse(text),parent);if(trim.includes('#EXTM3U')||trim.includes('#EXTINF'))return parseM3U(text,parent);return[]}
+async function loadSourcePack(key){if(key==='tv-main')return TV_LINKS;let pack=SOURCES[key]||[],all=[];for(const s of pack){try{all.push(...await loadUrl(s.source,s.title))}catch(e){console.log('โหลดไม่ได้',s.source,e)}}return all}
+async function loadFolder(item){setStatus('กำลังโหลด '+item.title+' ...');try{let items=await loadUrl(item.source,item.title);renderRows(makeRows(items),item.title);setStatus(items.length?'โหลด '+item.title+' สำเร็จ '+items.length+' รายการ':'โหลด '+item.title+' ได้ 0 รายการ')}catch(e){setStatus('โหลดไม่สำเร็จ '+e.message)}}
+function makeRows(items){let order=['ดูซีรี่ย์ออนไลน์','ดูซีรี่ย์จีน','ดูซีรี่ย์เกาหลี','ดูซีรี่ย์ไทย','ซีรี่ย์ญี่ปุ่น','ดูหนังออนไลน์','ดูละครสั้น','ทีวีออนไลน์','ทีวี','กีฬา','อื่นๆ'],map={};items.forEach(item=>{let cats=item.groups&&item.groups.length?item.groups:[item.group||'อื่นๆ'];cats.forEach(c=>{c=groupName(c);if(!map[c])map[c]=[];if(!map[c].some(x=>x.title===item.title))map[c].push(item)})});return Object.keys(map).sort((a,b)=>{let ia=order.indexOf(a)<0?99:order.indexOf(a),ib=order.indexOf(b)<0?99:order.indexOf(b);return ia-ib||a.localeCompare(b,'th')}).map(title=>({title,items:map[title]}))}
+function renderHome(){state.activeSource='home';setStatus('หน้าแรก • MySeries แยกหมวด + หนัง + ทีวี');content.innerHTML=`<div class="hero"><div class="hero-title">TIEA IPTV VIP MOVIE SERIES SPORT FINAL</div><div class="hero-sub">หนัง • ซีรี่ย์ • กีฬา สำหรับสมาชิก VIP</div></div><div id="homeRows"></div>`;Promise.all([loadSourcePack('movie-main').catch(()=>[]),loadSourcePack('series-24hd').catch(()=>[])]).then(([movies,series24])=>{let rows=[{title:'MySeries แยกหมวด',items:MYSERIES_FOLDERS},{title:'ซีรีส์ 24HD',items:series24.slice(0,30)},{title:'ดูหนังออนไลน์',items:movies.slice(0,30)},{title:'ทีวีออนไลน์',items:TV_LINKS}].filter(r=>r.items.length);renderRows(rows,'หน้าแรก',document.getElementById('homeRows'));setStatus('พร้อมใช้งาน • โหลดหน้าแรกสำเร็จ')})}
+function renderRows(rows,title='รายการ',target=content){state.rows=rows;target.innerHTML='';rows.forEach(row=>{let sec=document.createElement('div');sec.className='section';sec.innerHTML=`<div class="section-head"><div class="section-title">${row.title}</div><div class="section-tools"><div class="badge">${row.items.length} รายการ</div><button class="see-all-btn">ดูทั้งหมด</button></div></div><div class="row"></div>`;let rowEl=sec.querySelector('.row');row.items.slice(0,18).forEach(item=>rowEl.appendChild(createCard(item)));sec.querySelector('.see-all-btn').onclick=()=>openModal(row.title,row.items);target.appendChild(sec)});if(!rows.length)target.innerHTML='<div class="hero"><div class="hero-title">ไม่พบรายการ</div><div class="hero-sub">ตรวจสอบชื่อไฟล์ JSON หรือโครงสร้างข้อมูลอีกครั้ง</div></div>';setTimeout(()=>document.querySelector('.card,.menu-btn.active')?.focus(),80)}
+function epText(item){if(item.latest_ep&&item.total_ep)return'EP.'+item.latest_ep+'/'+item.total_ep;if(item.total_ep)return'EP.1-'+item.total_ep;if(item.episodes?.length)return'EP.'+item.episodes.length;return''}
+function createCard(item){let btn=document.createElement('button'),isFolder=item.kind==='folder'||item.kind==='link';btn.className='card'+(isFolder?' folder-card':'');btn.type='button';let image=isFolder?(item.image||FOLDER_LOGO):imgOf(item),lang=item.language||'',ep=epText(item),st=item.status||'';if(!st&&!isFolder&&item.kind==='series'){let le=Number(item.latest_ep||0),te=Number(item.total_ep||0);st=(te&&le&&le>=te)?'จบแล้ว':'ยังไม่จบ'}let done=String(st).includes('จบ')&&!String(st).includes('ยัง');btn.innerHTML=`<div class="card-glow"></div><div class="poster-wrap">${image?`<img class="thumb ${item.type==='tv'?'tv':''} ${isFolder?'folder-logo':''}" src="${image}" loading="lazy" onerror="this.onerror=null;this.outerHTML='<div class=&quot;thumb fallback&quot;>${item.kind==='link'?'🔗':(isFolder?'📁':'🎬')}</div>'">`:`<div class="thumb fallback">${item.kind==='link'?'🔗':(isFolder?'📁':'🎬')}</div>`}${(!isFolder&&lang)?`<div class="lang-ribbon">${lang}</div>`:''}${(!isFolder&&st)?`<div class="status-pill ${done?'done':''}">${st}</div>`:''}${(!isFolder&&ep)?`<div class="ep-pill">${ep}</div>`:''}</div><div class="card-body"><div class="card-title">${item.kind==='link'?'🔗 ':isFolder?'📁 ':''}${item.title||'ไม่มีชื่อ'}</div><div class="card-meta">${item.group?`<span class="tag">${item.group}</span>`:''}</div></div>`;btn.onclick=()=>openItem(item);btn.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openItem(item)}};return btn}
+function openItem(item){if(item.kind==='link'){location.href=item.url;return}if(item.kind==='folder'){loadFolder(item);return}if(item.kind==='series'&&item.episodes?.length){openDetail(item);return}playItem(item,0)}
+function openDetail(item){let modal=$('modal');$('modalTitle').textContent=item.title;$('modalBody').innerHTML=`<div class="detail-box"><div class="detail-title">${item.title}</div><div class="detail-sub">${item.language?item.language+' • ':''}${item.status?item.status+' • ':''}${item.group||''}${item.total_ep?' • ทั้งหมด '+item.total_ep+' ตอน':''}</div></div><div class="episode-list"></div>`;let list=$('modalBody').querySelector('.episode-list');item.episodes.forEach((ep,i)=>{let b=document.createElement('button');b.className='episode-btn';b.textContent=ep.title||`EP${i+1}`;b.onclick=()=>{closeModal();playItem(ep,0,item.title+' '+b.textContent)};list.appendChild(b)});$('modalCount').textContent='ทั้งหมด '+item.episodes.length+' ตอน';$('pageInfo').textContent='เลือกตอน';$('prevPageBtn').style.display='none';$('nextPageBtn').style.display='none';modal.classList.add('show');setTimeout(()=>list.querySelector('.episode-btn')?.focus(),80)}
+function openModal(title,items){state.modalItems=items;state.page=1;$('modalTitle').textContent=title;$('prevPageBtn').style.display='';$('nextPageBtn').style.display='';renderModalPage();$('modal').classList.add('show')}
+function renderModalPage(){let total=state.modalItems.length,pages=Math.max(1,Math.ceil(total/state.perPage));state.page=Math.max(1,Math.min(state.page,pages));let start=(state.page-1)*state.perPage,items=state.modalItems.slice(start,start+state.perPage);$('modalBody').innerHTML='<div class="grid"></div>';let g=$('modalBody').querySelector('.grid');items.forEach(item=>g.appendChild(createCard(item)));$('modalCount').textContent='ทั้งหมด '+total+' รายการ';$('pageInfo').textContent='หน้า '+state.page+' / '+pages;$('prevPageBtn').disabled=state.page<=1;$('nextPageBtn').disabled=state.page>=pages;setTimeout(()=>g.querySelector('.card')?.focus(),80)}
+function closeModal(){$('modal').classList.remove('show');$('prevPageBtn').style.display='';$('nextPageBtn').style.display=''}function getUrl(item,serverIndex=0){return cleanUrl(item.servers?.[serverIndex]?.url||item.servers?.[0]?.url||item.url||item.link||item.stream||'')}
+function forceFullSound(){try{video.muted=false;video.defaultMuted=false;video.volume=1;video.play().catch(()=>{})}catch(e){}}function stopWatchdog(){if(state.watchdog){clearInterval(state.watchdog);state.watchdog=null}}
+function startWatchdog(){stopWatchdog();state.lastTime=0;state.stuckCount=0;state.recoverCount=0;state.lastRecoverAt=0;state.watchdog=setInterval(()=>{if(!playerPanel.classList.contains('show'))return;forceFullSound();if(video.paused)video.play().catch(()=>{});let moved=Math.abs((video.currentTime||0)-(state.lastTime||0))>.25;if(moved){state.stuckCount=0;state.recoverCount=0}else if(!video.paused){state.stuckCount++}state.lastTime=video.currentTime||0;if(state.stuckCount>=3&&Date.now()-state.lastRecoverAt>8000){state.stuckCount=0;state.recoverCount++;state.lastRecoverAt=Date.now();setStatus('สัญญาณค้าง • กำลังต่อใหม่ครั้งที่ '+state.recoverCount);try{if(state.hls){state.hls.stopLoad();setTimeout(()=>{try{state.hls.startLoad(Math.max(0,video.currentTime-1));video.play().catch(()=>{})}catch(e){}},500);return}if(state.dash){video.play().catch(()=>{});return}}catch(e){}if(state.recoverCount>=3)openExternal(state.originalUrl||state.currentUrl)}},5000)}
+function cleanupPlayer(){stopWatchdog();if(state.playTimer){clearTimeout(state.playTimer);state.playTimer=null}if(state.hls){try{state.hls.destroy()}catch(e){}state.hls=null}if(state.dash){try{state.dash.destroy()}catch(e){}state.dash=null}try{video.pause()}catch(e){}video.removeAttribute('src');video.src='';video.load()}
+function playItem(item,serverIndex=0,displayTitle=''){let original=getUrl(item,serverIndex);if(!original){setStatus('ไม่พบลิงก์เล่น');return}cleanupPlayer();state.originalUrl=original;state.currentUrl=original;state.currentTitle=displayTitle||item.title||'กำลังเล่น';$('playerTitle').textContent=state.currentTitle;setStatus('กำลังเล่น • v8.1 balanced');playerPanel.classList.add('show');showPlayerUI();let lower=original.toLowerCase(),isMpd=lower.includes('.mpd'),noProxy=isMpd||lower.includes('thaicdn')||lower.includes('mux.dev')||lower.includes('byteark'),candidates=noProxy?[original]:[original,PROXY+encodeURIComponent(original)];playCandidate(candidates,item,serverIndex,0)}
+function playCandidate(candidates,item,serverIndex,idx){let url=candidates[idx]||candidates[0];state.currentUrl=url;let direct=getUrl(item,serverIndex);let next=()=>{if(idx+1<candidates.length){playCandidate(candidates,item,serverIndex,idx+1);return}if(item.servers?.length>serverIndex+1){playItem(item,serverIndex+1);return}openMx(direct)};cleanupPlayer();playerPanel.classList.add('show');showPlayerUI();forceFullSound();startWatchdog();state.playTimer=setTimeout(()=>{if(video.readyState<2||video.currentTime===0)openExternal(direct)},6500);['playing','loadeddata','canplay'].forEach(ev=>video.addEventListener(ev,()=>{if(state.playTimer)clearTimeout(state.playTimer);state.stuckCount=0;forceFullSound()},{once:true}));let lower=url.toLowerCase();if(lower.includes('.mpd')){try{state.dash=dashjs.MediaPlayer().create();state.dash.initialize(video,url,true);setTimeout(forceFullSound,500)}catch(e){next()}return}if(Hls.isSupported()&&lower.includes('.m3u8')){state.hls=new Hls({enableWorker:false,lowLatencyMode:false,maxBufferLength:18,maxMaxBufferLength:35,backBufferLength:10,maxBufferHole:.5,fragLoadingTimeOut:20000,manifestLoadingTimeOut:15000,levelLoadingTimeOut:15000,fragLoadingMaxRetry:8,manifestLoadingMaxRetry:6,levelLoadingMaxRetry:6,fragLoadingRetryDelay:1000,manifestLoadingRetryDelay:1000,levelLoadingRetryDelay:1000,startFragPrefetch:true,capLevelToPlayerSize:true,testBandwidth:false});state.hls.loadSource(url);state.hls.attachMedia(video);state.hls.on(Hls.Events.MANIFEST_PARSED,()=>{forceFullSound();startWatchdog();video.play().catch(()=>{})});state.hls.on(Hls.Events.ERROR,(e,d)=>{if(!d)return;if(!d.fatal){if(d.type===Hls.ErrorTypes.NETWORK_ERROR){try{state.hls.startLoad()}catch(err){}}return}if(d.type===Hls.ErrorTypes.NETWORK_ERROR){setStatus('network ค้าง • ต่อสัญญาณใหม่');try{state.hls.startLoad(Math.max(0,video.currentTime-1));video.play().catch(()=>{})}catch(err){next()}return}if(d.type===Hls.ErrorTypes.MEDIA_ERROR){setStatus('media ค้าง • ซ่อม player');try{state.hls.recoverMediaError();video.play().catch(()=>{})}catch(err){next()}return}next()});return}video.src=url;forceFullSound();startWatchdog();video.play().catch(()=>next())}
+
+let playerUiTimer=null;
+function showPlayerUI(){
+  try{
+    playerPanel.classList.remove('hide-ui');
+    if(playerUiTimer) clearTimeout(playerUiTimer);
+    playerUiTimer=setTimeout(()=>{
+      if(playerPanel.classList.contains('show')){
+        try{
+          const a=document.activeElement;
+          if(a && a.classList && a.classList.contains('player-btn')) a.blur();
+        }catch(e){}
+        playerPanel.classList.add('hide-ui');
+      }
+    },3000);
+  }catch(e){}
+}
+function setupPlayerAutoHide(){
+  ['mousemove','mousedown','touchstart','touchmove','pointermove','pointerdown','click'].forEach(ev=>{
+    playerPanel.addEventListener(ev,showPlayerUI,{passive:true});
+  });
+  document.addEventListener('keydown',()=>{
+    if(playerPanel.classList.contains('show')) showPlayerUI();
+  });
+}
+
+function closePlayer(){cleanupPlayer();playerPanel.classList.remove('show');playerPanel.classList.remove('hide-ui')}function saveReturnState(obj){try{sessionStorage.setItem('tiea_return_state',JSON.stringify({activeSource:state.activeSource,scroll:content.scrollTop,time:Date.now(),...obj}))}catch(e){}}function restoreReturnState(){try{let raw=sessionStorage.getItem('tiea_return_state');if(!raw)return false;let data=JSON.parse(raw);sessionStorage.removeItem('tiea_return_state');if(data.activeSource&&data.activeSource!=='home'){loadMenuSource(data.activeSource).then(()=>setTimeout(()=>{content.scrollTop=data.scroll||0},500));return true}}catch(e){}return false}
+function safeIntent(url,mode){url=url||state.originalUrl||state.currentUrl;if(!url)return;saveReturnState({player:mode||'external',url:url});try{let u=new URL(url),scheme=u.protocol.replace(':',''),hostPath=u.host+u.pathname+(u.search||''),intent='';if(mode==='mx')intent='intent://'+hostPath+'#Intent;scheme='+scheme+';action=android.intent.action.VIEW;type=video/*;package=com.mxtech.videoplayer.ad;S.browser_fallback_url='+encodeURIComponent(url)+';end';else intent='intent://'+hostPath+'#Intent;scheme='+scheme+';action=android.intent.action.VIEW;type=video/*;S.browser_fallback_url='+encodeURIComponent(url)+';end';setTimeout(()=>{window.location.href=intent},80)}catch(e){window.location.href=url}}function openMx(url){safeIntent(url||state.originalUrl||state.currentUrl,'mx')}function openExternal(url){safeIntent(url||state.originalUrl||state.currentUrl,'external')}
+async function loadMenuSource(key){state.activeSource=key;let label=document.querySelector(`[data-source="${key}"]`)?.textContent?.trim()||'รายการ';setStatus('กำลังโหลด '+label+' ...');content.innerHTML='<div class="hero"><div class="hero-title">กำลังโหลด...</div><div class="hero-sub">'+label+'</div></div>';try{if(key==='series-main'){renderRows([{title:'MySeries แยกหมวด',items:MYSERIES_FOLDERS}],label);setStatus('พร้อมใช้งาน • MySeries แยกหมวด');return}let items=await loadSourcePack(key);renderRows(makeRows(items),label);setStatus(items.length?'โหลดสำเร็จ '+items.length+' รายการ':'ไม่พบรายการ')}catch(e){content.innerHTML='<div class="hero"><div class="hero-title">โหลดไม่สำเร็จ</div><div class="hero-sub">'+e.message+'</div></div>';setStatus('โหลดไม่สำเร็จ')}}
+function openVip(url){ location.href=url; }
+document.querySelectorAll('.menu-btn').forEach(btn=>{btn.onclick=()=>{document.querySelectorAll('.menu-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(btn.dataset.vipLink){openVip(btn.dataset.vipLink);return}if(btn.dataset.link){location.href=btn.dataset.link;return}if(btn.dataset.action==='home'){renderHome();return}if(btn.dataset.action==='live-page'){location.href=LIVE_URL;return}if(btn.dataset.source){loadMenuSource(btn.dataset.source);return}}});
+$('homeBtn').onclick=()=>location.href=HOME_URL;$('reloadBtn').onclick=()=>{state.cache={};if(state.activeSource&&state.activeSource!=='home')loadMenuSource(state.activeSource);else renderHome()};$('liveBtn').onclick=()=>location.href=LIVE_URL;$('closePlayerBtn').onclick=closePlayer;$('playerHomeBtn').onclick=()=>location.href=HOME_URL;$('mxBtn').onclick=()=>openMx();$('extBtn').onclick=()=>openExternal();$('closeModalBtn').onclick=closeModal;$('prevPageBtn').onclick=()=>{state.page--;renderModalPage()};$('nextPageBtn').onclick=()=>{state.page++;renderModalPage()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'||e.key==='Backspace'||e.keyCode===10009){e.preventDefault();if(playerPanel.classList.contains('show'))closePlayer();else if($('modal').classList.contains('show'))closeModal();else location.href=HOME_URL}});document.addEventListener('keydown',e=>{let a=document.activeElement;if(!a||!a.classList||!a.classList.contains('card'))return;if(e.key==='ArrowRight'){let n=a.nextElementSibling;if(n&&n.classList.contains('card')){e.preventDefault();n.focus();n.scrollIntoView({block:'nearest',inline:'center'})}}if(e.key==='ArrowLeft'){let p=a.previousElementSibling;if(p&&p.classList.contains('card')){e.preventDefault();p.focus();p.scrollIntoView({block:'nearest',inline:'center'})}}});
+window.addEventListener('pageshow',()=>{restoreReturnState()});setupPlayerAutoHide();if(!restoreReturnState())renderHome();
+</script>
 </body>
-
 </html>
