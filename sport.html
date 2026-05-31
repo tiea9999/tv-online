@@ -355,9 +355,7 @@ async function loadChannel(channel, element){
   await stopAllPlayers();
 
   const original = directUrl(channel.file);
-  let url = channel.noProxy
-  ? directUrl(channel.file)
-  :proxyUrl(channel.file);
+  let url =  directUrl(channel.file);
 
   // TS Live ใช้ลิงก์ตรงก่อน เพราะ Worker อาจทำให้ stream ค้าง
   if(original.toLowerCase().includes(".ts") && !original.toLowerCase().includes(".m3u8")){
