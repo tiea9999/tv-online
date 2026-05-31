@@ -270,7 +270,7 @@ function setStatus(t,auto=true){
   if(auto&&t){clearTimeout(setStatus._t);setStatus._t=setTimeout(()=>box.classList.remove("show-status"),3600)}
 }
 function showFallback(msg){
-  setStatus(msg || "", false);
+  setStatus(msg || "ถ้าเว็บไม่ขึ้นภาพ ให้กด PLAYER/MX ด้านบน", false);
   showUI();
 }
 function hideFallback(){
