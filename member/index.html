@@ -1,23 +1,62 @@
-<!DOCTYPE html><html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>TIEA VIP HOME</title><style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#050505;color:#fff;font-family:Arial,sans-serif;display:flex;align-items:center;justify-content:center;padding:18px}
-.card{width:100%;max-width:760px;background:#111;border:1px solid #333;border-radius:20px;padding:24px;box-shadow:0 0 35px rgba(0,200,255,.13)}
-.logo{text-align:center;font-size:28px;font-weight:900;color:#00e5ff;margin-bottom:8px}.sub{text-align:center;color:#bbb;line-height:1.5;margin-bottom:18px}
-.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.menu a{background:#1b1b1b;border:1px solid #444;border-radius:16px;padding:18px;text-align:center;color:#fff;text-decoration:none;font-weight:900}
-.menu a:focus,.menu a:hover{outline:none;box-shadow:0 0 0 4px #00e5ff}.small{text-align:center;color:#aaa;margin-top:14px;font-size:13px;line-height:1.5}
-</style></head><body>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TIEA VIP HOME</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;background:#050505;color:#fff;font-family:Arial,sans-serif;
+  display:flex;align-items:center;justify-content:center;padding:18px;
+}
+.card{
+  width:100%;max-width:860px;background:#111;border:1px solid #333;border-radius:20px;
+  padding:24px;box-shadow:0 0 35px rgba(0,200,255,.13)
+}
+.logo{text-align:center;font-size:28px;font-weight:900;color:#00e5ff;margin-bottom:8px}
+.sub{text-align:center;color:#bbb;line-height:1.5;margin-bottom:18px}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.menu a{
+  background:#1b1b1b;border:1px solid #444;border-radius:16px;padding:18px;text-align:center;
+  color:#fff;text-decoration:none;font-weight:900;min-height:76px;display:flex;align-items:center;justify-content:center;line-height:1.35
+}
+.menu a:focus,.menu a:hover{outline:none;box-shadow:0 0 0 4px #00e5ff}
+.small{text-align:center;color:#aaa;margin-top:14px;font-size:13px;line-height:1.5}
+.note{color:#ffcc66;text-align:center;margin-top:12px;font-size:13px;line-height:1.5}
+#adminLink{display:none}
+</style>
+</head>
+<body>
 <div class="card">
   <div class="logo">TIEA IPTV VIP</div>
   <div class="sub">หน้าแรกสมาชิก VIP</div>
+
   <div class="menu">
-    <a href="../3bb.html">📺 3BB IPTV ฟรี</a>
-    <a href="../vip_content.html">🎬 หนัง / ซีรี่ย์ VIP</a>
-    <a href="../vip_content.html">⚽ กีฬา VIP</a>
-    <a href="../vip_content.html">📚 MySeries VIP</a>
-    <a href="admin.html">🛠️ แอดมิน</a>
-    <a href="logout.html">🚪 ออก</a>
+    <a href="../3bb.html">📺 3BB IPTV<br>ดูฟรี</a>
+    <a href="../vip_content.html">🎬 หนัง / ซีรี่ย์<br>VIP</a>
+    <a href="../vip_content.html">📚 MySeries<br>VIP</a>
+    <a href="../sport.html">🏆 SPORT TV<br>VIP</a>
+    <a href="../ball66.html">⚽ DOOBALL66<br>VIP</a>
+    <a id="adminLink" href="admin.html">🛠️ แอดมิน</a>
+    <a href="logout.html">🚪 ออกจากระบบ</a>
+  </div>
+
+  <div class="note">
+    ถ้ากดหนัง/ซีรี่ย์แล้ว 404 ให้สร้างไฟล์ <b>vip_content.html</b> ที่โฟลเดอร์หลัก tv-online ก่อน
   </div>
   <div id="userInfo" class="small"></div>
 </div>
+
 <script type="module" src="./member-check.js"></script>
-<script>document.addEventListener("tiea-member-ready",e=>{document.getElementById("userInfo").textContent="เข้าสู่ระบบ: "+(e.detail.email||"");});</script>
-</body></html>
+<script>
+document.addEventListener("tiea-member-ready", e => {
+  const u = e.detail || {};
+  document.getElementById("userInfo").textContent = "เข้าสู่ระบบ: " + (u.email || "");
+  if (u.role === "admin") {
+    document.getElementById("adminLink").style.display = "flex";
+  }
+});
+</script>
+</body>
+</html>
