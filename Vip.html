@@ -4,9 +4,72 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TIEA IPTV TV BOX PROJECTOR FIX</title>
+    <title>TIEA IPTV VIP FIREBASE LOCKED</title>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<!-- ===== TIEA FIREBASE VIP CHECK ===== -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD56tjCIPBM3nctC5P2NzBgLOShcbx1w8A",
+  authDomain: "tiea-iptv.firebaseapp.com",
+  projectId: "tiea-iptv",
+  storageBucket: "tiea-iptv.firebasestorage.app",
+  messagingSenderId: "1031384335454",
+  appId: "1:1031384335454:web:34e41ad2d93705834920cf",
+  measurementId: "G-Z9G1KQJ3HB"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+function blockVip(message){
+  document.body.innerHTML = `
+    <div style="min-height:100vh;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-family:Arial;padding:20px">
+      <div style="max-width:430px;width:100%;background:#111;border:1px solid #333;border-radius:20px;padding:24px;text-align:center">
+        <h2 style="color:#00e5ff;margin-top:0">TIEA IPTV VIP</h2>
+        <p style="line-height:1.6;color:#ddd">${message}</p>
+        <a href="member/login.html" style="display:block;margin-top:16px;padding:14px;border-radius:999px;background:#0072ff;color:#fff;text-decoration:none;font-weight:bold">เข้าสู่ระบบ</a>
+      </div>
+    </div>
+  `;
+}
+
+onAuthStateChanged(auth, async (user) => {
+  if(!user){
+    location.href = "member/login.html";
+    return;
+  }
+
+  try{
+    const snap = await getDoc(doc(db, "members", user.uid));
+
+    if(!snap.exists()){
+      location.href = "member/waiting.html";
+      return;
+    }
+
+    const data = snap.data();
+
+    if(data.vip === true || data.active === true || data.role === "admin"){
+      window.TIEA_USER = { uid:user.uid, email:user.email, ...data };
+      return;
+    }
+
+    location.href = "member/waiting.html";
+  }catch(e){
+    console.error(e);
+    blockVip("ตรวจสอบสมาชิก VIP ไม่สำเร็จ กรุณาลองเข้าสู่ระบบใหม่");
+  }
+});
+</script>
+<!-- ===== END TIEA FIREBASE VIP CHECK ===== -->
+
 
     <style>
         body {
@@ -279,7 +342,7 @@
         <div class="player-top-buttons">
             <button class="btn" id="closePlayerBtn" onclick="closePlayerToLastView()" tabindex="0">✕</button>
             <button class="btn3" onclick="openExternal()" tabindex="0">▶ MX</button>
-            <button class="btn4" onclick="copyCurrentLink()" tabindex="0">คัดลอก</button>
+            <!-- ปิดปุ่มคัดลอกลิงก์เพื่อไม่ให้แชร์ลิงก์ง่าย -->
             <button class="home-player-btn" onclick="goHome()" tabindex="0">🏠 HOME</button>
         </div>
         <div id="mxHint">ถ้าภาพไม่ขึ้นใน Android TV/โปรเจคเตอร์ ให้กด ▶ MX</div>
