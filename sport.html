@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>TIEA IPTV HBO WORKER HLS FINAL</title>
+    <title>TIEA IPTV HBO SMART TV FINAL</title>
 
     <script src="https://ssl.p.jwpcdn.com/player/v/8.26.0/jwplayer.js"></script>
     <script>
@@ -241,7 +241,7 @@
 <body>
 
     <div class="back-home" onclick="goHome()">⬅ กลับหน้าหลัก</div>
-    <h2 style="color:orange;text-align:center;">TIEA IPTV HBO WORKER HLS FINAL</h2>
+    <h2 style="color:orange;text-align:center;">TIEA IPTV HBO SMART TV FINAL</h2>
 
     <div id="player-container">
         <div class="player-controls">
@@ -263,15 +263,10 @@
     <div id="channel-list"></div>
 
     <script>
-        const WORKER_PROXY = "https://iptv.tawatchai250958.workers.dev/?url=";
+        const WORKER_PROXY = "https://movieproxy.tawatchai250958.workers.dev/?url=";
 
 const channels = [
-{
-  name:"HBO",
-  logo:"https://www.dropbox.com/scl/fi/ndoy26p71sq6yv0e5kohs/hbo.png?rlkey=mcbfqd7ghrh9dtw42qwtphk2i&dl=1",
-  file:"https://movieproxy.tawatchai250958.workers.dev/hbo",
-  drm:false
-}
+{name:"HBO",logo:"https://www.dropbox.com/scl/fi/ndoy26p71sq6yv0e5kohs/hbo.png?rlkey=mcbfqd7ghrh9dtw42qwtphk2i&dl=1",file:"https://movieproxy.tawatchai250958.workers.dev/hbo",directFile:"http://43.228.85.248:8990/stream/ais/hbohd/master.m3u8?u=admin2025a5brt&p=048d3a220cb399309e101459f5bcc27e34393433ff31d3105e66fff6a66e878e",drm:false},
 
 ];
 
@@ -342,8 +337,8 @@ function openIntent(url, pkg){
     window.location.href = intent;
   }catch(e){ window.location.href = url; }
 }
-function openExternal(url){ openIntent(url || (activeChannel ? activeChannel.file : "") || activeUrl, ""); }
-function openMX(url){ openIntent(url || (activeChannel ? activeChannel.file : "") || activeUrl, "com.mxtech.videoplayer.ad"); }
+function openExternal(url){ openIntent(url || (activeChannel ? (activeChannel.directFile || activeChannel.file) : "") || activeUrl, ""); }
+function openMX(url){ openIntent(url || (activeChannel ? (activeChannel.directFile || activeChannel.file) : "") || activeUrl, "com.mxtech.videoplayer.ad"); }
 
 async function stopAllPlayers(){
   const video = document.getElementById("html5-player");
@@ -813,9 +808,7 @@ function useHLS_STABLE(url, usedProxy){
     let hlsStarted = false;
 
     currentHls.attachMedia(video);
-
     currentHls.on(Hls.Events.MEDIA_ATTACHED, function(){
-      setStatus("เชื่อมต่อ Player แล้ว กำลังโหลดสัญญาณ...");
       currentHls.loadSource(url);
     });
 
@@ -825,10 +818,6 @@ function useHLS_STABLE(url, usedProxy){
       video.play().catch(()=>{});
       setTimeout(()=>{ forceAudio100(); video.play().catch(()=>{}); },300);
       setStatus("กำลังเล่น HLS");
-    });
-
-    currentHls.on(Hls.Events.FRAG_LOADED, function(){
-      hlsStarted = true;
     });
     setTimeout(()=>{
       if(!hlsStarted && !usedProxy && !shouldAvoidProxy(url)){
