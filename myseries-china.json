@@ -6,7 +6,7 @@
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/5040.jpg",
     "latest_ep": 35,
-    "total_ep": 36,
+    "total_ep": 40,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ff42c99f7703235e29cdc3819264af12/master.txt" }] },
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9cf48d26aeec4052e56b59d9d8a3d536/master.txt" }] },
@@ -42,8 +42,12 @@
       { "title": "EP32", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/d08b551e49e7d1f0fd03dfe90aa65d4a/master.txt"}] },
       { "title": "EP33", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/0f8dc63bc9c9eea354a96c6ba68b47ab/master.txt"}] },
       { "title": "EP34", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/fe5878cc7d93c52bc23367e0e26163f6/master.txt"}] },
-      { "title": "EP35", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/1dc504a6561131f9b530fbc8b5d8f160/master.m3u8"}] }
-
+      { "title": "EP35", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1dc504a6561131f9b530fbc8b5d8f160/master.txt"}]},
+      { "title": "EP36", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/6dbf97c12053e3a196f32ea3db815355/master.txt"}]},
+      { "title": "EP37", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/95e8714a78eb7897ec4f1859de977e50/master.txt"}]},
+      { "title": "EP38", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b45e54e3056c6c35ae0cdc3ad2bf27b8/master.txt"}]},
+      { "title": "EP39", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/efba9f97382d60ed1b973fae413f9670/master.txt"}]},
+      { "title": "EP40", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/0a040fe2a23d49dcf2469185c59e9757/master.txt"}]}
     ]
   },  
   {
