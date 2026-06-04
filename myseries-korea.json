@@ -65,7 +65,7 @@
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/9693d1a455f5bc48ba87cb066494e440/master.m3u8" }] },
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/04075ac5f4832a7690d470610381e3c5/master.m3u8" }] },
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/d52743a0df03e3007dfe79305b83559c/master.m3u8" }] },
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/321a9fb9ff4dd3924345fbffecdf1305/master.m3u8" }] }}, 
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/321a9fb9ff4dd3924345fbffecdf1305/master.m3u8" }] }, 
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/98638115facbaaef726a419da48a22ac/master.m3u8" }] },
       { "title": "EP13", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/32ac41d33513d8bc2f3d0b65705be279/master.m3u8" }] },
       { "title": "EP14", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/aef16d783fbe872754e639532e327a07/master.m3u8" }] },
