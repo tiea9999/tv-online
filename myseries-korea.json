@@ -20,7 +20,7 @@
     "language": "พากย์ไทย",
     "groups": ["series","series-korea"],
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/วุ่นนัก-รักสัมบูรณ์-1.webp",
-    "latest_ep": 1,
+    "latest_ep": 16,
     "total_ep": 16,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/0367d2415b0369d04e7c0730d862bcbe/master.m3u8" }] },
@@ -34,7 +34,12 @@
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/83bf7f8f78f774e1c0db31f4daa8ccd1/master.m3u8" }] },
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/afc1788d1df789e13b7bc5f9a7edf9f6/master.m3u8" }] },
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/99ba1c213bfe391b23c2ac99f3c22da4/master.m3u8" }] },
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5444edf643b28fd817fa70e438c50c36/master.m3u8" }] }
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5444edf643b28fd817fa70e438c50c36/master.m3u8" }] },
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/7c09a2ec47e7862482d2a45517a23d7f/master.m3u8" }] },
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/e9a9c9335b3ae0a42ccc92b1c492a1bd/master.m3u8" }] },
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/134a64217e25eecec25fcab08b0128cc/master.m3u8" }] },
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/742c59111b83b4dae79105d087a91444/master.m3u8" }] }
+    
     ]
   },
  {
