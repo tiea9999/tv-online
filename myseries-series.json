@@ -1,17 +1,17 @@
 {
   "type": "menu",
-  "title": "myeries",
+  "title": "myseries",
   "items": [
+    {
+      "title": "update",
+      "type": "source",
+      "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/myseries-series.json"
+    },
     {
       "title": "china",
       "type": "source",
       "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/myseries-china.json"
     },
-     {
-      "title": "update",
-      "type": "source",
-      "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/myseries-series.json"
-    },   
     {
       "title": "korea",
       "type": "source",
@@ -36,7 +36,6 @@
       "title": "movie",
       "type": "source",
       "source": "https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/myseries-movie.json"
-
     }
   ]
 }
