@@ -1,4 +1,17 @@
 [
+ {
+    "title": "The Scarecrow หุ่นลวงเชือด (2026) พากย์ไทย",
+    "updated": "2026-06-6",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://320hdr.com/wp-content/uploads/2026/04/5.20-4.jpg",
+    "latest_ep": 10,
+    "total_ep": 10,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5ae2d684f5e3dcead19be1a6e9bbe864/master.txt" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/401b90c4ddb0b09e91fee34cfe4b4287/master.txt" }] }
+      ]
+  },
   {
     "title": " Teach You a Lesson อย่างนี้ต้องโดนสั่งสอน (2026)",
     "updated": "2026-06-6",
@@ -75,7 +88,7 @@
     "language": "พากย์ไทย",
     "groups": ["series","series-korea"],
     "poster": "https://320hdr.com/wp-content/uploads/2026/03/510-2.jpg",
-    "latest_ep": 11,
+    "latest_ep": 16,
     "total_ep": 16,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/06747496f336657d32797cbd6213c122/master.m3u8" }] },
