@@ -5,7 +5,7 @@
     "groups": ["series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/04/5.20-4.jpg",
-    "latest_ep": 10,
+    "latest_ep": 2,
     "total_ep": 10,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5ae2d684f5e3dcead19be1a6e9bbe864/master.txt" }] },
