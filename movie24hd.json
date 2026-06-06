@@ -12,7 +12,334 @@
         "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2019USASynchronic.mp4/chunk.m3u8"
       }
     ]
-  },  
+  },
+  
+  {
+    "title": "เกมล่าทรชน คนล่าคน (Scare Out)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/06/โกน-Gone-e1780332395658.webp",
+    "category": "หนังใหม่2026",
+    "language": ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/China/2026ChinaScareOutThai.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "มันแอบอยู่ในร้าน (The Convenience Store)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/06/มันแอบอยู่ในร้าน-The-Convenience-Store-e1780332102485.webp",
+    "category": "หนังใหม่2026",
+    "language": "พากย์ไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/Japan/2026JapanTheConvenienceStore.mp4/chunk.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "ลี โครนิน เดอะ มัมมี่ (Lee Cronins The Mummy)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/06/ลี-โครนิน-เดอะ-มัมมี่-Lee-Cronins-The-Mummy-e1780331791234.webp",
+    "category": "หนังใหม่2026",
+    "language": "พากย์ไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2026USALeeCroninsTheMummyThai.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "พวกมันจะฆ่าแก (They Will Kill You)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/06/พวกมันจะฆ่าแก-They-Will-Kill-You-e1780331473927.webp",
+    "category": "หนังใหม่2026",
+    "language": "พากย์ไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2026USATheyWillKillYouThai.mp4/chunk.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "6 ชั่วโมง..ล่า..ท้าชะตา (You&#8217;ll Die in Six Hours)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/06/6-ชั่วโมง.ล่า.ท้าชะตา-Youll-Die-in-Six-Hours-e1780380459715.jpg",
+    "category": "หนังใหม่2026",
+    "language": ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/Korea/2026KoreaYoullDieInSixHours.mp4/chunk.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "รักหลอนซ่อนอสูร (Raakaasa)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/06/รักหลอนซ่อนอสูร-Raakaasa-e1780379512373.webp",
+    "category": "หนังใหม่2026",
+    "language": ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/Asia/2026AsiaRaakaasa.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "ยุติธรรมนำทาง (System)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/06/ยุติธรรมนำทาง-System-e1780331913692.webp",
+    "category": "หนังใหม่2026",
+    "language": ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/Asia/2026AsiaSystem.mp4/chunk.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "เดอะ ล็อตโต้ วินเนอร์ (The Lotto Winner)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/06/เดอะ-ล็อตโต้-วินเนอร์-The-Lotto-Winner-e1780331128281.webp",
+    "category": "หนังใหม่2026",
+    "language": ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2026USATheLottoWinner.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "ตื่นมาอีกทีโลกนี้ผู้หญิงใหญ่ (Ladies First)",
+    "poster": "",
+    "category": "หนังใหม่2026",
+    "language": "พากย์ไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://a1fb73713dac28e7.001140.xyz/GI/Movies/USA/2026USALadiesFirstThai.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "อะนีโมนี Anemone",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/06/อะนีโมนี-Anemone-e1780330716718.webp",
+    "category": "หนังใหม่2026",
+    "language": "พากย์ไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2025USAAnemoneThai.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "เมืองนี้ไม่มีที่ให้คนโสด (No Place to Be Single)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/เมืองนี้ไม่มีที่ให้คนโสด-No-Place-to-Be-Single.webp",
+    "category": "หนังใหม่2026",
+    "language": "พากย์ไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2026USANoPlaceToBeSingle.mp4/chunk.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "มอร์ทัล คอมแบท 2 (Mortal Kombat II)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/มอร์ทัล-คอมแบท-2-Mortal-Kombat-II-e1779768939690.jpg",
+    "category": "หนังใหม่2026",
+    "language": "พากย์ไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2026USAMortalKombatIIThai.mp4/chunk.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "Gary กับการเดินทางของเพื่อนสองคน",
+    "title": "https://www.baan-series.org/wp-content/uploads/2026/05/Gary.webp",
+    "poster": "Fuze",
+    "category": "หนังใหม่2026",
+    "language": "พากย์ไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2026USAGary.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "Fuze",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/06/Fuze-e1780373715778.webp",
+    "category": "หนังใหม่2026",
+    "language": "ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2026USAFuze.mp4/chunk.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "โกน (Gone)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/06/โกน-Gone-e1780332395658.webp",
+    "category": "หนังใหม่2026",
+    "language": "พากย์ไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/Thai/2026ThaiGone.mp4/chunk.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "บีสต์ (Beast) ซับไทย",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/บีสต์-Beast.webp",
+    "category": "หนังใหม่2026",
+    "language": "ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2026USABeast.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "ภคัต สิงห์ ยอดคนผดุงความยุติธรรม (Ustaad Bhagat Singh)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/ภคัต-สิงห์-ยอดคนผดุงความยุติธรรม-Ustaad-Bhagat-Singh.webp",
+    "category": "หนังใหม่2026",
+    "language": "พากย์ไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/Asia/2026AsiaUstaadBhagatSingh.mp4/chunk.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "นี่แม่… ใช่ไหม (Smothered)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/นี่แม่…-ใช่ไหม-Smothered.webp",
+    "category": "หนังใหม่2026",
+    "language": "ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/Asia/2025AsiaSmothered.mp4/chunk.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "Thief Female Hero",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/Thief-Female-Hero.webp",
+    "category": "หนังใหม่2026",
+    "language": "ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/China/2026ChinaThiefFemaleHeroThai.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "Ikkis",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/Ikkis-e1779246889730.webp",
+    "category": "หนังใหม่2026",
+    "language": "ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/Asia/2026AsiaIkkis.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "ต้นไม้วิเศษที่อยู่ไกลแสนไกล (The Magic Faraway Tree)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/ต้นไม้วิเศษที่อยู่ไกลแสนไกล-The-Magic-Faraway-Tree-e1779250994372.webp",
+    "category": "หนังใหม่2026",
+    "language": "ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2026USATheMagicFarawayTree.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "ตำนานนักล่าภูผาอาถรรพ์ (Ginseng King)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/ตำนานนักล่าภูผาอาถรรพ์-Ginseng-King.jpg",
+    "category": "หนังใหม่2026",
+    "language": "ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/China/2026ChinaGinsengKing.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "Rise of the Conqueror",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/Rise-of-the-Conqueror-e1779249108221.webp",
+    "category": "หนังใหม่2026",
+    "language": "ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2026USARiseOfTheConqueror.mp4/chunk.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "คนแปลกหน้าในสวน (Strangers in the Park)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/คนแปลกหน้าในสวน-Strangers-in-the-Park-e1779250819872.webp",
+    "category": "หนังใหม่2026",
+    "language": "ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/USA/2026USAStrangersInThePark.mp4/playlist.m3u8"
+      }
+    ]
+  },
+  {
+    "title": "ตี๋เหรินเจี๋ย เจดีย์สู่สวรรค์ (Detective Dee Buddha’s Wrath)",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/05/ตี๋เหรินเจี๋ย-เจดีย์สู่สวรรค์-Detective-Dee-Buddhas-Wrath-e1779247323376.webp",
+    "category": "หนังใหม่2026",
+    "language": "ซับไทย",
+      "rating": 0,
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/Movies/China/2026ChinaDetectiveDeeBuddhasWrath.mp4/chunk.m3u8"
+      }
+    ]
+  },
   {
     "title": "เดอะ พันนิชเชอร์ ฆ่าทิ้งทวน พากย์ไทย (2026) The Punisher",
     "poster": "https://series99.net/wp-content/uploads/2026/05/เดอะ-พันนิชเชอร์-ฆ่าทิ้งทวน-The-Punisher-One-Last-Kill-2026-200x300.webp",
