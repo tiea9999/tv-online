@@ -1,4 +1,27 @@
 [
+  {
+    "title": " Teach You a Lesson อย่างนี้ต้องโดนสั่งสอน (2026)",
+    "updated": "2026-06-6",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://320hdr.com/wp-content/uploads/2026/06/500.jpg",
+    "latest_ep": 10,
+    "total_ep": 10,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/d5e083e95836b1d124e3e04063b002d2/master.txt" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a07f4c2c0c0a554fa1416b7fd9e0796d/master.txt" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/e2f85660865d29c2e1fb236a3358289c/master.txt" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/0c73afabce92303cffd2eb7a0dff8380/master.txt" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/4db5d46e0a3d512ddbbf76986f6cd703/master.txt" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a12591d2d5c4488afd79d41882f6b2dd/master.txt" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/e2e9a6bb27df2bdc313184070a3675c9/master.txt" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/e2e9a6bb27df2bdc313184070a3675c9/master.txt" }] },
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/58e7e6b4f584851b601a385c5bf853cd/master.txt" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/5d300ca3401a30f1e5508fc5f72b2059/master.txt" }] }
+    ]
+  },
+
+ 
  {
     "title": "The Legend of Kitchen Soldier บันทึกครัวค่ายทหาร (2026) ",
     "updated": "2026-05-21",  
