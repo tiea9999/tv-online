@@ -34,8 +34,38 @@
       { "title": "EP24", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/63f428b7ba87bcd623444bbd41585010/master.txt"}]}
     ]
   }, 
-
-
+  {
+    "title": "Dazzling เปล่งรักประกายฝัน (2026)",
+    "updated": "2026-06-7",
+    "groups": ["series-update","series-china"],
+    "language": "ซับไทย",
+    "poster": "https://320hdr.com/wp-content/uploads/2026/05/5.500-214x300.jpg",
+    "latest_ep": 21,
+    "total_ep": 30,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/f7019095869ce8f27a31c729ce6577c3/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/0bfc45500c5db00c2b6e8e7a388b1095/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/9568587125b9bc2772d0f4be0571ef05/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/176d5278bf1ea4bc52f5c23a6e6b85f1/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/134da068de94d8b90d8273ebbd32e405/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/917912268bdd32f93252d6973311a7c6/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/102c61e1d61452b3ddc6e2aaa8f02564/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/2ff71274f2ce76e6f5ce7c17ce1e97d3/master.txt"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/7dcad085fecfeba242e77729d68872f4/master.txt"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/df64531a140138b7af36530ef5feca6b/master.txt"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4c724fcb4a4f0464f4895daf86e0de92/master.txt"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8da8341f93758752dbfcdef0238516a1/master.txt"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/2819e384ad6056bdcec2713280ef286f/master.txt"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ced98a3874c076fe73218bb68c2535c4/master.txt"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/f482bca1212f133a7d964fe9e7e64cb5/master.txt"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "Request URLhttps://servcdn2.cumpon1.com/api/files/6cb29b03a68a1cec8fcf1dcd7bf9a995/master.txt"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/075a04720d16824db536af85105a0f02/master.txt"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e7d1deed6c1de6bb60b2747ad9d5d1a6/master.txt"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/7e480bd05298d9a2a5e30108b4d8cfb8/master.txt"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/551ef424be9bc98577bbb290efb3d916/master.txt"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a05beab71dc87aa56ced352c9e353aed/master.txt"}]}
+    ]
+  }, 
 
 
 
