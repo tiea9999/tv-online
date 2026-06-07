@@ -1,5 +1,38 @@
 [
   {
+    "title": "",
+    "updated": "2026-06-7",
+    "groups": ["series-update","series-china"],
+    "language": "ซับไทย",
+    "poster": "",
+    "latest_ep": 22,
+    "total_ep": 25,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/38b1b76641ac48f49ccd34b823098b04/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/6dbcfea6d0de3ac76296d9c02a0bce85/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/0178459651fbca985f3dbdfe4504981e/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a92d7417585a2fc555f3bc7251cd61e1/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ef60b588c11a7d26815d6d824ff66bdc/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/d88cd56b793a66cde0412b11f063c492/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/301457e74cac46974f1ef15c2b1a3c36/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/118a5f73477d68ea881dfde5187e4fe8/master.txt"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/fed16f8c9902430c4920973124ba66bf/master.txt"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/44536b4d4859e1a12875d22971587517/master.txt"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/0d95aa493a4fd979819d823d16a0493d/master.txt"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/85f0d51df7af0a4f5e4dfd257ff72ece/master.txt"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/6adcd265b6ed5550ba4ff2d53b606817/master.txt"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/922045ac767a5baf0e2bd782aa22faf7/master.txt"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/782b2d3269b215183bef48f9440984a5/master.txt"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/c94e3d19aee23bea8ed16be106f34566/master.txt"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/64e0f070065a1714b44fefc7251e8cc9/master.txt"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/820706b90b0033e14d2d84c8f9cd735a/master.txt"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ae826a7ac3e808b1279a898363944c79/master.txt"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5d93ed231d4bc70fa131c5c07b28be5b/master.txt"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/20e86a3a9c94d5e941794a1b8e336feb/master.txt"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e7d0010312e7b0fc37db13cd8b255982/master.txt"}]}  
+     ]
+  },  
+    {
     "title": "A Thousand Miles to Your Heart คู่หูไขคดีแห่งราชสำนัก (2026)",
     "updated": "2026-06-7",
     "groups": ["series-update","series-china"],
