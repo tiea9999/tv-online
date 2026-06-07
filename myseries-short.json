@@ -1,5 +1,17 @@
 [
   {
+    "title": "",
+    "groups": ["series-update","series-china"],
+    "logo": "",
+    "servers": [
+      {
+        "name": "Main",
+        "url": ""
+      }
+    ]
+  },
+  
+  {
     "title": "สาวโดดตึกหวังตุย_ดันชนCEOป่วยหนัก",
     "groups": ["series-update","series-china"],
     "logo": "https://www.imgx02.xyz/assets/movie_poster/a/a2ed34dd67ea5a7343a9926105eca09f.jpg",
