@@ -108,11 +108,11 @@
 
 {
     "title": "The Tang Mist S1 หมอกปริศนาแห่งราชวงศ์ถัง ภาค 1 (2026)",
-    "updated": "2026-06-7",
+    "updated": "2026-06-9",
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/20-214x300.jpg",
-    "latest_ep": 22,
+    "latest_ep": 23,
     "total_ep": 25,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/38b1b76641ac48f49ccd34b823098b04/master.txt"}]},
@@ -136,8 +136,10 @@
       { "title": "EP19", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ae826a7ac3e808b1279a898363944c79/master.txt"}]},
       { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5d93ed231d4bc70fa131c5c07b28be5b/master.txt"}]},
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/20e86a3a9c94d5e941794a1b8e336feb/master.txt"}]},
-      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e7d0010312e7b0fc37db13cd8b255982/master.txt"}]}  
-     ]
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e7d0010312e7b0fc37db13cd8b255982/master.txt"}]},  
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/23239746c5f25d04b59ea97ba58b740d/master.txt"}]}  
+
+    ]
   },  
     {
     "title": "A Thousand Miles to Your Heart คู่หูไขคดีแห่งราชสำนัก (2026)",
