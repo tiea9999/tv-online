@@ -31,7 +31,7 @@
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/832cf0b62522ea32eb0750e26f66a42b/master.txt"}]},
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/6aaa74f54fb2c87f664c5a9b479439e6/master.txt"}]},
       { "title": "EP23", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/362261a1ee33cef8596ff5df732bcd93/master.txt"}]},
-      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/88d6b4522572f2f06f45f390676a9a54/7master.txt"}]}
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/88d6b4522572f2f06f45f390676a9a54/master.txt"}]}
     ]
   },  
   {
