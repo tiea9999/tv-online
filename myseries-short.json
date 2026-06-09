@@ -1,5 +1,16 @@
 [
-  
+  {
+    "title": "test",
+    "groups": ["series-update","series-short"],
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuwAjENpDBsnhb91rzlQxF39KqlCZxHqHVig&s",
+    "language": "พากย์ไทย",
+    "servers": [
+      {
+        "name": "Main",
+        "url": "https://main.24playerhd.com/newplaylist/33140c6b6916dfa39e0aa8de/33140c6b6916dfa39e0aa8de.m3u8"
+      }
+    ]
+  },  
   {
     "title": "สาวน้อยตัวแม่แห่งยุค",
     "groups": ["series-update","series-short"],
