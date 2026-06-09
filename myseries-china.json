@@ -30,7 +30,7 @@
       { "title": "EP20", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/f3519712c41a7dda5aa69e949326d94e/master.txt"}]},
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/cadecd5341b6917d01088dc45f128de1/master.txt"}]},
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/34bfc1ab9e296564abd9ecf16a6dfb7c/master.txt"}]},
-      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/ee0ba50cfd4e1d577c6865cccd54c195/index.m3u8master.m3u8"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/ee0ba50cfd4e1d577c6865cccd54c195/index.m3u8"}]},
       { "title": "EP24", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/ef12e908808c0ccfcc157c49edb19326/master.txt"}]}
     ]
   },  
