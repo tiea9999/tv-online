@@ -51,7 +51,8 @@
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/e517bb3ba6b557125e7cfdaf6643fbb8/master.m3u8" }] },
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/a52f7c95f10fa7b2637e62087a0e64f5/master.m3u8" }] },
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/34898e8ddd440119488f5e4d69d35313/master.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6de706defe5f63445f8ea92799cae70b/master.m3u8" }] }
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6de706defe5f63445f8ea92799cae70b/master.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/0ef3ff0b23140d73fac1980cf15ac827/master.txt" }]}
     
     ]
   },
