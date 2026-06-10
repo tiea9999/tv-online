@@ -178,10 +178,11 @@
   },  
   {
     "title": "ศัตรูหัวใจ นางร้ายวังหลวง",
+     "updated": "2026-06-6",  
     "language": "ซับไทย",
     "groups": ["series","series-korea"],
     "poster": "https://series-fulls.com/wp-content/uploads/2026/05/ศัตรูหัวใจ-นางร้ายวังหลวง-1.webp",
-    "latest_ep": 8,
+    "latest_ep": 10,
     "total_ep": 14,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f52d74d2f208e3b55c6208a79bba6683/master.m3u8"}] },
@@ -191,7 +192,9 @@
        { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f2a76479d4e0162208a1d613ae524ff4/master.m3u8" }] },
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/585c9e10153d26eedf1b547d1ffbbba0/master.m3u8" }] },
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6c371df2e901467ace53d3c5b0cfa581/master.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c918672525e609fb3fe274c065665ef7/master.m3u8" }] }   
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c918672525e609fb3fe274c065665ef7/master.m3u8" }] },   
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d361d6fc863de5fe48f6398a/d361d6fc863de5fe48f6398a.m3u8" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/dc37d6f829c3364924bb405e/dc37d6f829c3364924bb405e.m3u8" }] }   
     ]
   },
  {
