@@ -217,7 +217,7 @@
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/20-214x300.jpg",
-    "latest_ep": 23,
+    "latest_ep": 25,
     "total_ep": 25,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/38b1b76641ac48f49ccd34b823098b04/master.txt"}]},
@@ -242,8 +242,9 @@
       { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5d93ed231d4bc70fa131c5c07b28be5b/master.txt"}]},
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/20e86a3a9c94d5e941794a1b8e336feb/master.txt"}]},
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e7d0010312e7b0fc37db13cd8b255982/master.txt"}]},  
-      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/23239746c5f25d04b59ea97ba58b740d/master.txt"}]}  
-
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/23239746c5f25d04b59ea97ba58b740d/master.txt"}]}, 
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d4202a08996f12b1ad2d2ae3/d4202a08996f12b1ad2d2ae3.m3u8"}]},  
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/c6e595a65f959220a69dde95/c6e595a65f959220a69dde95.m3u8"}]}
     ]
   },  
     {
