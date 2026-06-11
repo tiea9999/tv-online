@@ -254,7 +254,7 @@
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/5.2000-214x300.jpg",
     "latest_ep": 24,
-    "total_ep": 30,
+    "total_ep": 24,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/62a2e442ba3e65a69a5f638da09b27b8/master.txt"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5fc64ef295824179bbfc864a3bd023cd/master.txt"}]},
@@ -284,11 +284,11 @@
   }, 
   {
     "title": "Dazzling เปล่งรักประกายฝัน (2026)",
-    "updated": "2026-06-7",
+    "updated": "2026-06-11",
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/5.500-214x300.jpg",
-    "latest_ep": 21,
+    "latest_ep": 30,
     "total_ep": 30,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/f7019095869ce8f27a31c729ce6577c3/master.txt"}]},
@@ -313,7 +313,14 @@
       { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/551ef424be9bc98577bbb290efb3d916/master.txt"}]},
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a05beab71dc87aa56ced352c9e353aed/master.txt"}]},
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/340361843ea8a2457f34fcc46f45973c/master.txt"}]},
-      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/ca794b65c78bf9a54c9901cb8ca4f183/master.txt"}]}
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/ca794b65c78bf9a54c9901cb8ca4f183/master.txt"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://cdn-y26.dumoviefree.com/api/files/0fa7a821e565aa92dbd9d14e7094d748/master.txt"}]},
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://cdn-y26.dumoviefree.com/api/files/00e701068810ebfcd4b162b8405219a5/master.txt"}]},
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://cdn-y26.dumoviefree.com/api/files/4ca5f395d21ddac28d197e3afd492fb9/master.txt"}]},
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "ttps://cdn-y26.dumoviefree.com/api/files/60f13069b7e42875e9e569f902eacd78/master.txt"}]},
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://cdn-y26.dumoviefree.com/api/files/c7eb548f80e4ed460b2cf9df5cfe07d0/master.txt"}]},
+      { "title": "EP29", "servers": [{ "name": "Main", "url": "https://cdn-y26.dumoviefree.com/api/files/d41c180b212f15ba20ed6ee7582bdcc0/master.txt"}]},
+      { "title": "EP30", "servers": [{ "name": "Main", "url": "https://cdn-y26.dumoviefree.com/api/files/f8f2f8983b5284bb9246d48f0bcaf7b5/master.txt"}]}
 
     
     ]
