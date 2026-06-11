@@ -322,46 +322,52 @@
                 padding: 6px 7px
             }
         }
-    
-/* ===== FULLSCREEN PLAYER AUTO HIDE FINAL ===== */
-#player-container{
-  position:fixed!important;
-  inset:0!important;
-  width:100vw!important;
-  height:100vh!important;
-  background:#000!important;
-  z-index:99999!important;
-}
-#player{
-  width:100vw!important;
-  height:100vh!important;
-  max-width:none!important;
-  object-fit:contain!important;
-  background:#000!important;
-}
-.player-controls,
-.status{
-  opacity:0!important;
-  visibility:hidden!important;
-  pointer-events:none!important;
-  transition:opacity .22s ease,visibility .22s ease!important;
-}
-#player-container.show-ui .player-controls{
-  opacity:1!important;
-  visibility:visible!important;
-  pointer-events:auto!important;
-}
-#player-container.show-status .status{
-  opacity:1!important;
-  visibility:visible!important;
-  pointer-events:auto!important;
-}
-</style>
+
+        /* ===== FULLSCREEN PLAYER AUTO HIDE FINAL ===== */
+        #player-container {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            background: #000 !important;
+            z-index: 99999 !important;
+        }
+
+        #player {
+            width: 100vw !important;
+            height: 100vh !important;
+            max-width: none !important;
+            object-fit: contain !important;
+            background: #000 !important;
+        }
+
+        .player-controls,
+        .status {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            transition: opacity .22s ease, visibility .22s ease !important;
+        }
+
+        #player-container.show-ui .player-controls {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+
+        #player-container.show-status .status {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+    </style>
+
+
 </head>
 
 <body>
 
-    <a class="home-btn" href="https://tiea9999.github.io/tv-online/index.html">⬅ กลับหน้าหลัก</a>
+    <a class="home-btn" href="https://tiea9999.github.io/tv/index.html">⬅ กลับหน้าหลัก</a>
     <h2>TIEA MULTI JSON ROWS 20 FINAL</h2>
     <div id="load-status">กำลังโหลด JSON...</div>
 
