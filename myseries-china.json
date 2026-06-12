@@ -1423,7 +1423,7 @@
     "groups":["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://series-fulls.com/wp-content/uploads/2026/04/Light-to-the-Night-1.webp",
-    "latest_ep": 25,
+    "latest_ep": 28,
     "total_ep": 28,
     "episodes": [
       {
@@ -1586,7 +1586,10 @@
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/01896248ab9f1dd14cd9eb5884446338/master.m3u8" }] },
       { "title": "EP23", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/40b3d290d0ebca04ece3271d54e0c41a/master.m3u8" }] },
       { "title": "EP24", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/7e422d51e7047d16fde473934848d0ed/master.m3u8" }] },
-      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/ed10980db6e969c8e8c7654a5d479db2/master.m3u8" }] }
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/ed10980db6e969c8e8c7654a5d479db2/master.m3u8" }] },
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5e01674edee905480c57506c509f6cc7/master.txt"}]},
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/247d2b766dd5703c58f32badc1f89ae0/master.txt"}]},
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/30d15419686e289f7694066487d48104/master.txt"}]}
     ]
   },
   {
