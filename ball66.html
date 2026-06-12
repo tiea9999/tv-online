@@ -225,48 +225,37 @@ function normalizeDrmInfo(src){
   const out={drm:false,keyId:"",key:"",licenseUrl:"",headers:{}};
   if(!src || typeof src!=="object") return out;
 
-  const drm=src.drm;
-  const directKeyId=pick(src,["keyId","kid","key_id","keyid"]);
-  const directKey=pick(src,["key","clearkey","clearKey"]);
+  const drmObj=(src.drm && typeof src.drm==="object") ? src.drm : null;
+  const base=drmObj || src;
 
-  if(drm && typeof drm==="object"){
-    out.drm=true;
-    out.keyId=pick(drm,["keyId","kid","key_id","keyid"]) || directKeyId || "";
-    out.key=pick(drm,["key","clearkey","clearKey"]) || directKey || "";
-    out.licenseUrl=pick(drm,["licenseUrl","license","serverURL","serverUrl","la_url"]) || pick(src,["licenseUrl","license","serverURL","serverUrl","la_url"]) || "";
-    out.headers=drm.headers || src.headers || {};
+  // รองรับหลายรูปแบบ: keyId/key, kid/key, key:{kid:key}, clearKeys:{kid:key}
+  out.keyId=pick(base,["keyId","keyid","kid","key_id","KID"]);
 
-    if(!out.keyId && !out.key && drm.key && typeof drm.key==="object"){
-      const ks=Object.keys(drm.key);
-      if(ks.length){out.keyId=ks[0];out.key=drm.key[ks[0]];}
-    }
-    if(!out.keyId && !out.key && drm.clearKeys && typeof drm.clearKeys==="object"){
-      const ks=Object.keys(drm.clearKeys);
-      if(ks.length){out.keyId=ks[0];out.key=drm.clearKeys[ks[0]];}
-    }
-  }else{
-    out.drm=!!drm || !!directKeyId || !!directKey || !!src.licenseUrl || !!src.license;
-    out.keyId=directKeyId || "";
-    out.key=directKey || "";
-    out.licenseUrl=pick(src,["licenseUrl","license","serverURL","serverUrl","la_url"]) || "";
-    out.headers=src.headers || {};
+  const rawKey=base.key;
+  if(typeof rawKey==="string") out.key=rawKey;
+  else out.key=pick(base,["clearkey","clearKey","KEY"]);
 
-    if(src.key && typeof src.key==="object"){
-      const ks=Object.keys(src.key);
-      if(ks.length){out.drm=true;out.keyId=ks[0];out.key=src.key[ks[0]];}
-    }
-    if(src.clearKeys && typeof src.clearKeys==="object"){
-      const ks=Object.keys(src.clearKeys);
-      if(ks.length){out.drm=true;out.keyId=ks[0];out.key=src.clearKeys[ks[0]];}
+  const keyMap=(rawKey && typeof rawKey==="object") ? rawKey :
+    ((base.clearKeys && typeof base.clearKeys==="object") ? base.clearKeys : null);
+
+  if(keyMap){
+    const ks=Object.keys(keyMap);
+    if(ks.length){
+      out.keyId=out.keyId || ks[0];
+      out.key=keyMap[out.keyId] || keyMap[ks[0]] || out.key;
     }
   }
 
+  out.licenseUrl=pick(base,["licenseUrl","license","serverURL","serverUrl","la_url"]) ||
+    pick(src,["licenseUrl","license","serverURL","serverUrl","la_url"]);
+
+  out.headers=base.headers || src.headers || {};
   out.keyId=clean(out.keyId).replace(/-/g,"").toLowerCase();
   out.key=clean(out.key).replace(/-/g,"").toLowerCase();
   out.licenseUrl=clean(out.licenseUrl);
+  out.drm=!!(src.drm || out.keyId || out.key || out.licenseUrl);
   return out;
 }
-
 function normalizeJsonChannel(item,parentGroup){
   if(!item || typeof item!=="object") return null;
 
@@ -279,7 +268,7 @@ function normalizeJsonChannel(item,parentGroup){
   if(Array.isArray(item.servers) && item.servers.length){
     for(const s of item.servers){
       const u=pick(s,["url","file","stream","link","source","src"]);
-      if(u){url=u;server=s;break;}
+      if(u){url=u;server=s;break}
     }
   }
   if(!url){
@@ -290,7 +279,7 @@ function normalizeJsonChannel(item,parentGroup){
   if(!url) return null;
   url=normalizeStreamUrl(url);
 
-  const drmInfo=normalizeDrmInfo(server);
+  const drmInfo=normalizeDrmInfo(server || item);
 
   return {
     name:title,
@@ -778,55 +767,56 @@ async function playMPD(url){
   try{
     shaka.polyfill.installAll();
     shakaPlayer=new shaka.Player(video);
-    shakaPlayer.configure({
+
+    const cfg={
       streaming:{
         bufferingGoal:35,
         rebufferingGoal:5,
         bufferBehind:20,
         retryParameters:{maxAttempts:5,timeout:25000}
-      }
-    });
+      },
+      manifest:{retryParameters:{maxAttempts:5,timeout:25000}}
+    };
 
-    // รองรับ DRM แบบ ClearKey จาก JSON
-    // ใช้ได้ทั้งแบบ keyId/key, drm:{keyId,key}, key:{kid:key}, drm:{clearKeys:{kid:key}}
+    // DRM ทำงานเฉพาะ MPD เท่านั้น ไม่กระทบช่อง HLS/TS เดิม
     if(activeChannel && activeChannel.drm){
+      cfg.drm={};
+
+      // ClearKey: รองรับ keyId/key และ key:{kid:key}
       if(activeChannel.keyId && activeChannel.key){
-        shakaPlayer.configure({
-          drm:{
-            clearKeys:{
-              [activeChannel.keyId]: activeChannel.key
-            }
-          }
-        });
+        cfg.drm.clearKeys={};
+        cfg.drm.clearKeys[activeChannel.keyId]=activeChannel.key;
       }
 
-      // เผื่ออนาคตใช้ Widevine license server
+      // Widevine license server ถ้ามี licenseUrl
       if(activeChannel.licenseUrl){
-        shakaPlayer.configure({
-          drm:{
-            servers:{
-              "com.widevine.alpha": activeChannel.licenseUrl
-            }
-          }
-        });
-        if(activeChannel.headers && Object.keys(activeChannel.headers).length){
-          shakaPlayer.getNetworkingEngine().registerRequestFilter((type, request)=>{
-            if(type === shaka.net.NetworkingEngine.RequestType.LICENSE){
-              Object.keys(activeChannel.headers).forEach(k=>{
-                request.headers[k]=activeChannel.headers[k];
-              });
-            }
-          });
-        }
+        cfg.drm.servers={"com.widevine.alpha":activeChannel.licenseUrl};
       }
+    }
+
+    shakaPlayer.configure(cfg);
+
+    if(activeChannel && activeChannel.headers && Object.keys(activeChannel.headers).length){
+      shakaPlayer.getNetworkingEngine().registerRequestFilter((type,request)=>{
+        if(type===shaka.net.NetworkingEngine.RequestType.LICENSE ||
+           type===shaka.net.NetworkingEngine.RequestType.MANIFEST ||
+           type===shaka.net.NetworkingEngine.RequestType.SEGMENT){
+          Object.keys(activeChannel.headers).forEach(k=>{request.headers[k]=activeChannel.headers[k]});
+        }
+      });
     }
 
     setStatus(activeChannel && activeChannel.drm ? "กำลังโหลด MPD DRM..." : "กำลังโหลด MPD...");
     await shakaPlayer.load(url);
-    forceAudio();video.play().catch(()=>{});
+    forceAudio();
+    video.play().catch(()=>{});
     setStatus(activeChannel && activeChannel.drm ? "กำลังเล่น MPD DRM" : "กำลังเล่น MPD");
     startWatchdog(()=>{try{shakaPlayer.retryStreaming();video.play().catch(()=>{})}catch(e){}});
-  }catch(e){console.log(e);showFallback("MPD/DRM เล่นในเว็บไม่ได้ ให้กด PLAYER/MX")}
+  }catch(e){
+    console.log("MPD/DRM ERROR",e);
+    const code=e && e.code ? " รหัส "+e.code : "";
+    showFallback("MPD/DRM เล่นในเว็บไม่ได้"+code+" ให้กด PLAYER/MX");
+  }
 }
 
 function startWatchdog(recover){
