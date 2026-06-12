@@ -424,17 +424,7 @@
     
     ]
   }, 
-
-
-
-
-
-
-
-
-
-   
-   {
+  {
     "title": "A Splendid Match วาสนารักลิขิตใจ (2026)ซับไทย ",
     "updated": "2026-05-21",
     "groups": ["series-update","series-china"],
@@ -541,7 +531,7 @@
     "groups":["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/550.jpg",
-    "latest_ep": 18,
+    "latest_ep": 37,
     "total_ep": 37,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/3c591e664b7c8ad1806a96219ec9d446/master.txt" }] },
@@ -561,7 +551,26 @@
       { "title": "EP15", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ee7efce33ab680e5d05b5b8e9c30be7d/master.txt" }] },
       { "title": "EP16", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a681a78682b219a0b86c9434d628a580/master.txt" }] },
       { "title": "EP17", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/652bddb8b648776fd1f0e251d0da3d60/master.txt" }] },
-      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/cdba4841bb0bda20d9f91be2838944ce/master.txt" }] }
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/cdba4841bb0bda20d9f91be2838944ce/master.txt" }]},
+       { "title": "EP19", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/c4b79936f231b7cdd3bf414a70f77160/master.txt"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/10773cecb77fc84bd656620c3b3bf0af/master.txt"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/d96de9ffebc077ceca06e54108aae6be/master.txt"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ffee753b5ad6d945393226e46a05fadb/master.txt"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/f4a23226a7803e2f7fbe5b6d2ec78e48/master.txt"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b5f92952a63edc1e5695e0a0d143714e/master.txt"}]},
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/c5bc52b3b6abb10b1d981a016f150bbc/master.txt"}]},
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/41536ccc895c9116663c97e4e77a4a7d/master.txt"}]},
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/16bc73d5fe2c79298944378785536599/master.txt"}]},
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/97a2a8eaf9530ce098322c5809822bbb/master.txt"}]},
+      { "title": "EP29", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e6bd490d9dbd87aaf1b2fe6dd06cc0f3/master.txt"}]},
+      { "title": "EP30", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e91f23de89a33c97dfb6113407b35cf6/master.txt"}]},
+      { "title": "EP31", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ccd9b19c03ea64e12ca1e010c0969fc9/master.txt"}]},
+      { "title": "EP32", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/763b1e47e6e895f458ee4f1775ddbbcc/master.txt"}]},
+      { "title": "EP33", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/f6bc187ab377086776144a4e76171391/master.txt"}]},
+      { "title": "EP34", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1d71f6bf9eb3d36f3fa266f6b3f8fa63/master.txt"}]},
+      { "title": "EP35", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/49a8a022869060cba585574ee3c7c3d1/master.txt"}]},
+      { "title": "EP36", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8f47b9a638d6c505af23c08f1e87db3c/master.txt"}]},
+      { "title": "EP37", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/983ee4ac8c1b63f082ea408389ec39f3/master.txt"}]}
     ]
   },
     {
