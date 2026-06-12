@@ -2,7 +2,7 @@
 { 
     "title": "Worldcup",
     "group": "กีฬา",
-    "logo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMu7gQoNOKnWwlQQPvEjV00BkjefHBjYE-OQ&s" 
+    "logo" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMu7gQoNOKnWwlQQPvEjV00BkjefHBjYE-OQ&s", 
  "servers": [
       {
         "name": "Main",
