@@ -1,5 +1,25 @@
-[ 
+[
+
  {
+    "title": "ทนายปีศาจ The Evil Lawyer (2026)",
+    "updated": "2026-06-12",
+    "groups": ["series-update","series-thai"],
+    "language": "พากย์ไทย",
+    "poster": "https://320hdr.com/wp-content/uploads/2026/06/500-2.jpg",
+    "latest_ep": 8,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/7f311a4206bc179e0168942191087cfa/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/154357bf533983f8fab249940103af8e/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/f935cfa05a14deb3c08379c919e80bcb/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/61d0c22b5576d598973ab6525bc98214/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/334659451b8c139b90df6f4c46b13d45/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e4f8899164ceaf4779d1d24a7dc44b3c/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/050822bd1c4ae09f201db29b76dfc0f2/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a594936af802737a493d04b3d0346666/master.txt"}]}
+     ]
+  },  
+  {
     "title": "หงสาวดี",
     "language": "พากย์ไทย",
     "groups": ["series","series-thai"],
