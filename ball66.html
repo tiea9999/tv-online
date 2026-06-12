@@ -221,6 +221,52 @@ function pick(obj,keys){
   }
   return "";
 }
+function normalizeDrmInfo(src){
+  const out={drm:false,keyId:"",key:"",licenseUrl:"",headers:{}};
+  if(!src || typeof src!=="object") return out;
+
+  const drm=src.drm;
+  const directKeyId=pick(src,["keyId","kid","key_id","keyid"]);
+  const directKey=pick(src,["key","clearkey","clearKey"]);
+
+  if(drm && typeof drm==="object"){
+    out.drm=true;
+    out.keyId=pick(drm,["keyId","kid","key_id","keyid"]) || directKeyId || "";
+    out.key=pick(drm,["key","clearkey","clearKey"]) || directKey || "";
+    out.licenseUrl=pick(drm,["licenseUrl","license","serverURL","serverUrl","la_url"]) || pick(src,["licenseUrl","license","serverURL","serverUrl","la_url"]) || "";
+    out.headers=drm.headers || src.headers || {};
+
+    if(!out.keyId && !out.key && drm.key && typeof drm.key==="object"){
+      const ks=Object.keys(drm.key);
+      if(ks.length){out.keyId=ks[0];out.key=drm.key[ks[0]];}
+    }
+    if(!out.keyId && !out.key && drm.clearKeys && typeof drm.clearKeys==="object"){
+      const ks=Object.keys(drm.clearKeys);
+      if(ks.length){out.keyId=ks[0];out.key=drm.clearKeys[ks[0]];}
+    }
+  }else{
+    out.drm=!!drm || !!directKeyId || !!directKey || !!src.licenseUrl || !!src.license;
+    out.keyId=directKeyId || "";
+    out.key=directKey || "";
+    out.licenseUrl=pick(src,["licenseUrl","license","serverURL","serverUrl","la_url"]) || "";
+    out.headers=src.headers || {};
+
+    if(src.key && typeof src.key==="object"){
+      const ks=Object.keys(src.key);
+      if(ks.length){out.drm=true;out.keyId=ks[0];out.key=src.key[ks[0]];}
+    }
+    if(src.clearKeys && typeof src.clearKeys==="object"){
+      const ks=Object.keys(src.clearKeys);
+      if(ks.length){out.drm=true;out.keyId=ks[0];out.key=src.clearKeys[ks[0]];}
+    }
+  }
+
+  out.keyId=clean(out.keyId).replace(/-/g,"").toLowerCase();
+  out.key=clean(out.key).replace(/-/g,"").toLowerCase();
+  out.licenseUrl=clean(out.licenseUrl);
+  return out;
+}
+
 function normalizeJsonChannel(item,parentGroup){
   if(!item || typeof item!=="object") return null;
 
@@ -229,25 +275,33 @@ function normalizeJsonChannel(item,parentGroup){
   const group=pick(item,["group","group-title","category","cat"]) || parentGroup || "อื่นๆ";
 
   let url="";
+  let server=item;
   if(Array.isArray(item.servers) && item.servers.length){
     for(const s of item.servers){
-      url=pick(s,["url","file","stream","link","source","src"]);
-      if(url) break;
+      const u=pick(s,["url","file","stream","link","source","src"]);
+      if(u){url=u;server=s;break;}
     }
   }
   if(!url){
     url=pick(item,["url","file","stream","link","source","src"]);
+    server=item;
   }
 
   if(!url) return null;
   url=normalizeStreamUrl(url);
+
+  const drmInfo=normalizeDrmInfo(server);
 
   return {
     name:title,
     logo:logo,
     group:group,
     file:url,
-    drm:false
+    drm:drmInfo.drm,
+    keyId:drmInfo.keyId,
+    key:drmInfo.key,
+    licenseUrl:drmInfo.licenseUrl,
+    headers:drmInfo.headers
   };
 }
 function collectJsonChannels(data,parentGroup,out){
@@ -724,13 +778,55 @@ async function playMPD(url){
   try{
     shaka.polyfill.installAll();
     shakaPlayer=new shaka.Player(video);
-    shakaPlayer.configure({streaming:{bufferingGoal:35,rebufferingGoal:5,bufferBehind:20,retryParameters:{maxAttempts:5,timeout:25000}}});
-    setStatus("กำลังโหลด MPD...");
+    shakaPlayer.configure({
+      streaming:{
+        bufferingGoal:35,
+        rebufferingGoal:5,
+        bufferBehind:20,
+        retryParameters:{maxAttempts:5,timeout:25000}
+      }
+    });
+
+    // รองรับ DRM แบบ ClearKey จาก JSON
+    // ใช้ได้ทั้งแบบ keyId/key, drm:{keyId,key}, key:{kid:key}, drm:{clearKeys:{kid:key}}
+    if(activeChannel && activeChannel.drm){
+      if(activeChannel.keyId && activeChannel.key){
+        shakaPlayer.configure({
+          drm:{
+            clearKeys:{
+              [activeChannel.keyId]: activeChannel.key
+            }
+          }
+        });
+      }
+
+      // เผื่ออนาคตใช้ Widevine license server
+      if(activeChannel.licenseUrl){
+        shakaPlayer.configure({
+          drm:{
+            servers:{
+              "com.widevine.alpha": activeChannel.licenseUrl
+            }
+          }
+        });
+        if(activeChannel.headers && Object.keys(activeChannel.headers).length){
+          shakaPlayer.getNetworkingEngine().registerRequestFilter((type, request)=>{
+            if(type === shaka.net.NetworkingEngine.RequestType.LICENSE){
+              Object.keys(activeChannel.headers).forEach(k=>{
+                request.headers[k]=activeChannel.headers[k];
+              });
+            }
+          });
+        }
+      }
+    }
+
+    setStatus(activeChannel && activeChannel.drm ? "กำลังโหลด MPD DRM..." : "กำลังโหลด MPD...");
     await shakaPlayer.load(url);
     forceAudio();video.play().catch(()=>{});
-    setStatus("กำลังเล่น MPD");
+    setStatus(activeChannel && activeChannel.drm ? "กำลังเล่น MPD DRM" : "กำลังเล่น MPD");
     startWatchdog(()=>{try{shakaPlayer.retryStreaming();video.play().catch(()=>{})}catch(e){}});
-  }catch(e){console.log(e);showFallback("MPD เล่นในเว็บไม่ได้ ให้กด PLAYER/MX")}
+  }catch(e){console.log(e);showFallback("MPD/DRM เล่นในเว็บไม่ได้ ให้กด PLAYER/MX")}
 }
 
 function startWatchdog(recover){
