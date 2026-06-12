@@ -168,12 +168,12 @@
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ddd0a30f0a2b04e8467c4197db3a4be9/master.txt" }] },
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ca95f1e7f7f2b1349cf162961177c797/master.txt" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6531156926720c5b5cd9747bf96075d5/master.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b3ddf0579db02e603f7f8a79265bea4b/master.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b3ddf0579db02e603f7f8a79265bea4b/master.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c148dd488f17572f49a99f9bf707c995/master.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/fab88bdda82f54d19e45979e39bfd5bb/master.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/7fe84e7f73403a8fb7da465d0a5b2c81/master.m3u8" }] }
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/1c1d93b1de2d869a51882b73a6a4e0b9/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/f3e76628405ce90fd4333cc46bd38856/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ff9e1668dfa698d5955552bc3bc533ea/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/79920a51159b072c8eb9a52889ba407f/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/d33c35655cfca63a97e4ee457d47f2f8/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4ee163a013bb84b010021162cf8d72b2/master.txt"}]}
     ]
   }, 
   
