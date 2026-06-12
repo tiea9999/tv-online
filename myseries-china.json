@@ -1,5 +1,26 @@
 [
   {
+    "title": "Rise Again รักเหนือชะตาฟ้า (2026)",
+    "updated": "2026-06-12",
+    "groups": ["series-update","series-china"],
+    "language": "ซับไทย",
+    "poster": "https://320hdr.com/wp-content/uploads/2026/06/520-1-214x300.jpg",
+    "latest_ep": 10,
+    "total_ep": 23,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/1a5beb76d7864d0fe6ea8de9c825a0a0/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/be3680474a07a10c50b2304a39a23e8b/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/b22f0592c80e4bea5438476fe8e27ab8/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/cb74735f7e1f02869a62f33adf60d08b/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/b39cb581601dd1e4119e17d296fa5087/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/e1dfc3cef2b889b189aedab61a55f811/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/9b21306778f7142a006b4c26b5f9414d/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a539cfc25b4555704c622dfaa2e2c3d1/master.txt"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/ba96cd3def6cd3ff584e72eb7bff6e7a/master.txt"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/41c72ebcdc2b6cd9e60892f6625bf99d/master.txt"}]}
+    ]
+  },  
+  {
     "title": "Archives: The Nanyang Mystery บันทึกคดีแดนใต้ (2026)",
     "updated": "2026-06-11",
     "groups": ["series-update","series-china"],
