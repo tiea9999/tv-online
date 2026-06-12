@@ -1,5 +1,22 @@
 [
   {
+    "title": "Viral Hit นักสู้ทูปเบอร์ (2026)",
+    "updated": "2026-06-12",
+    "groups": ["series-update","series-japan"],
+    "language": "พากย์ไทย",
+    "poster": "https://320hdr.com/wp-content/uploads/2026/06/50101-214x300.jpg",
+    "latest_ep": 6,
+    "total_ep": 6,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a7d6b07fe391a996c80390fc9d673ec7/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/2dfd89017b8b4b2e8e783f90d17a546a/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/0fbfee1a6f25ff2c7844775227c2c494/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/cf70c887372860a14c92c04a02943baa/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/8ca20faca0842d0554227592a18883de/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/2a0ba8dd470db4ed72ec42a4f287e055/master.txt"}]}  
+        ]
+      },  
+{
     "title": "Last Samurai Standing (2025) ศึกซามูไรผู้พิชิต พากย์ไทย เต็มเรื่อง",
     "groups":["series-update","series-japan"],
     "language": "พากย์ไทย",
