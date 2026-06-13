@@ -80,11 +80,11 @@
   },
   {
     "title": "The First Jasmine ชายาเคียงหทัย (2026) ซับไทย",
-    "updated": "2026-06-11",
+    "updated": "2026-06-13",
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/2-214x300.jpg",
-    "latest_ep": 9,
+    "latest_ep": 10,
     "total_ep": 40,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b4e3ce627424f987dbe541e36ceeaff4/master.txt"}]},
@@ -95,8 +95,10 @@
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/85d1d630f9351d09985c7cc06c8ed22b/master.txt"}]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/c828963293a9d85f7ec04e7acccb37ca/master.txt"}]},
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ee11859f06d2462c65d3e3e0329f6716/master.txt"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ee11859f06d2462c65d3e3e0329f6716/master.txt"}]}
-      ]
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ee11859f06d2462c65d3e3e0329f6716/master.txt"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8a33e924a0b376c191f3ae80643c5c74/master.txt"}]}
+ 
+    ]
   },
   {
     "title": "Daughter of Fortune (2026) พลิกชะตาวิวาห์กิ่งทอง",
