@@ -15,7 +15,9 @@
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9a0c51480b0044e8a3f38dfc15efabf2/master.txt"}]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/dbe8b7febb28924d5083c7d45c090076/master.txt"}]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/0b8a31b3a14ee2495e0589eb51a41506/master.txt"}]}
-  {
+    },     
+ { 
+{
     "title": "หญิงเหล็กศาลเยาวชน พากย์ไทย Juvenile Justice 2022",
     "updated": "2026-06-11",
     "groups": ["series-update","series-korea"],
