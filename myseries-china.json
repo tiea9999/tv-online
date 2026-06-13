@@ -28,11 +28,11 @@
   },
   {
     "title": "Rise Again รักเหนือชะตาฟ้า (2026)",
-    "updated": "2026-06-12",
+    "updated": "2026-06-13",
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/520-1-214x300.jpg",
-    "latest_ep": 10,
+    "latest_ep": 12,
     "total_ep": 23,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/1a5beb76d7864d0fe6ea8de9c825a0a0/master.txt"}]},
@@ -44,7 +44,9 @@
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/9b21306778f7142a006b4c26b5f9414d/master.txt"}]},
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a539cfc25b4555704c622dfaa2e2c3d1/master.txt"}]},
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/ba96cd3def6cd3ff584e72eb7bff6e7a/master.txt"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/41c72ebcdc2b6cd9e60892f6625bf99d/master.txt"}]}
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/41c72ebcdc2b6cd9e60892f6625bf99d/master.txt"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/382b807256477943561bb63d4e5582b8/master.txt"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/99b4fb1274286b2b709bb6bbda6ab909/master.txt"}]}
 
     
     ]
