@@ -8,7 +8,7 @@
     "servers": [
       {
         "name": "Main",
-        "url": "https://stream.xn--72c9ab1ec1bc6q.xyz/e195701c-41c1-418b-b101-a2265d0a5149/480p/video.m3u8"
+        "url": "https://stream.xn--72c9ab1ec1bc6q.xyz/e195701c-41c1-418b-b101-a2265d0a5149/playlist.m3u8"
       }
     ]
   },  
