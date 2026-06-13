@@ -1,5 +1,20 @@
 [
-
+  {
+    "title": "Fifties Professionals มือโปรห้าสิบพลัส (2026)",
+    "updated": "2026-06-13",
+    "groups": ["series-update","series-china"],
+    "language": "ซับไทย",
+    "poster": "https://320hdr.com/wp-content/uploads/2026/05/550-1-214x300.jpg",
+    "latest_ep": 7,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1c34a1d7726be17d1df1ba1c999490e2/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/38ab26c9682fc38a7276d3f6d4abf414/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a976fe8afd3786d74479422c047accd1/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9061bab57a8d1403ac333ae949d6fe8f/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9a0c51480b0044e8a3f38dfc15efabf2/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/dbe8b7febb28924d5083c7d45c090076/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/0b8a31b3a14ee2495e0589eb51a41506/master.txt"}]}
   {
     "title": "หญิงเหล็กศาลเยาวชน พากย์ไทย Juvenile Justice 2022",
     "updated": "2026-06-11",
@@ -200,11 +215,11 @@
   },  
   {
     "title": "ศัตรูหัวใจ นางร้ายวังหลวง",
-     "updated": "2026-06-6",  
+     "updated": "2026-06-13",  
     "language": "ซับไทย",
     "groups": ["series","series-korea"],
     "poster": "https://series-fulls.com/wp-content/uploads/2026/05/ศัตรูหัวใจ-นางร้ายวังหลวง-1.webp",
-    "latest_ep": 10,
+    "latest_ep": 11,
     "total_ep": 14,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f52d74d2f208e3b55c6208a79bba6683/master.m3u8"}] },
@@ -216,7 +231,8 @@
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/6c371df2e901467ace53d3c5b0cfa581/master.m3u8" }] },
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c918672525e609fb3fe274c065665ef7/master.m3u8" }] },   
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d361d6fc863de5fe48f6398a/d361d6fc863de5fe48f6398a.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/dc37d6f829c3364924bb405e/dc37d6f829c3364924bb405e.m3u8" }] }   
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/dc37d6f829c3364924bb405e/dc37d6f829c3364924bb405e.m3u8" }] },   
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/ef7657d3546926e4a34f613b66f7adc7/master.txt"}]}
     ]
   },
  {
