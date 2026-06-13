@@ -1,6 +1,30 @@
 [
-
- {
+  {
+    "title": "",
+    "updated": "2026-06-13",
+    "groups": ["series-update","series-thai"],
+    "language": "พากย์ไทย",
+    "poster": "",
+    "latest_ep": 14,
+    "total_ep": 14,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/090f6f774a9447e42010a85c0a73043d/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8683ca1e70938c6bab2777b06ad100a8/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://cdn-y26.dumoviefree.com/api/files/871d2fdd7285e2c74b61e6bea127c30d/1master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/104924a3d2b92637c117d99172daa432/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8221040c0ee0365d77ecc94a8643d298/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/26b7b2d1ac0aa08d30570a44f1a5ff54/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/d9cbda948b8ead16fcbaa7dd490b31f1/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/7886c70092d1fd23756da50c33f357db/master.txt"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/499b09175037bd8fc79d4ef946662576/master.txt"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/09050ef80d2d836bc4f722328b44b5cc/master.txt"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5c47977edda6886865f3b5d06a4969e1/master.txt"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/be572321619844a54326c4f03298638c/master.txt"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/310eaa8e6415eece260c38b048834a4a/master.txt"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/6e6c758f7b1cc65115cad49ab1bbc568/master.txt"}]}
+    ]
+  },
+   {
     "title": "ทนายปีศาจ The Evil Lawyer (2026)",
     "updated": "2026-06-12",
     "groups": ["series-update","series-thai"],
