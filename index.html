@@ -1137,64 +1137,88 @@ async function playItem(item,serverIndex=0,displayTitle=''){
 }
 function isProjectorDevice(){
   const ua=(navigator.userAgent||'').toLowerCase();
-  return ua.includes('projector')||ua.includes('xgimi')||ua.includes('mibox')||ua.includes('android tv')||ua.includes('smart-tv')||ua.includes('smarttv')||ua.includes('bravia')||ua.includes('chromecast')||ua.includes('aft');
+  return ua.includes('projector')||
+         ua.includes('xgimi')||
+         ua.includes('mibox')||
+         ua.includes('android tv')||
+         ua.includes('android')||
+         ua.includes('smart-tv')||
+         ua.includes('smarttv')||
+         ua.includes('bravia')||
+         ua.includes('chromecast')||
+         ua.includes('aft')||
+         ua.includes('appcreator')||
+         ua.includes('wv');
 }
+
 function getStableHlsConfig(){
-  const projector=isProjectorDevice();
+  const tvbox=isProjectorDevice();
   return {
     enableWorker:false,
     lowLatencyMode:false,
 
-    // PROJECTOR LIGHT MODE: บัฟเฟอร์ไม่ใหญ่เกิน ลดอาการหน่วง/หมุนเป็นช่วง
-    maxBufferLength: projector ? 22 : 45,
-    maxMaxBufferLength: projector ? 36 : 60,
-    backBufferLength: projector ? 6 : 20,
-    liveBackBufferLength: projector ? 6 : 20,
-    maxBufferHole: projector ? 1.2 : 1.5,
-    maxFragLookUpTolerance: projector ? 0.8 : 1,
-    highBufferWatchdogPeriod: projector ? 4 : 8,
-    nudgeOffset:0.25,
-    nudgeMaxRetry: projector ? 6 : 10,
-
-    manifestLoadingTimeOut: projector ? 18000 : 20000,
-    levelLoadingTimeOut: projector ? 18000 : 20000,
-    fragLoadingTimeOut: projector ? 26000 : 38000,
-    manifestLoadingMaxRetry: projector ? 5 : 8,
-    levelLoadingMaxRetry: projector ? 5 : 8,
-    fragLoadingMaxRetry: projector ? 6 : 12,
-    manifestLoadingRetryDelay: projector ? 1200 : 2000,
-    levelLoadingRetryDelay: projector ? 1200 : 2000,
-    fragLoadingRetryDelay: projector ? 1500 : 2500,
-
-    startFragPrefetch:false,
+    // TV BOX / PROJECTOR SAFE MODE:
+    // เน้นให้มีภาพก่อน โดยเริ่มจากคุณภาพต่ำสุด ลดอาการมีแต่เสียง/จอดำบน WebView
+    startLevel:0,
     capLevelToPlayerSize:true,
     testBandwidth:false,
-    abrEwmaDefaultEstimate: projector ? 350000 : 650000,
-    abrBandWidthFactor: projector ? 0.82 : 0.75,
-    abrBandWidthUpFactor: projector ? 0.65 : 0.55,
-    startLevel: projector ? 0 : -1,
-    liveSyncDurationCount: projector ? 4 : 8,
-    liveMaxLatencyDurationCount: projector ? 8 : 16,
+    abrEwmaDefaultEstimate: tvbox ? 280000 : 650000,
+    abrBandWidthFactor: tvbox ? 0.70 : 0.75,
+    abrBandWidthUpFactor: tvbox ? 0.50 : 0.55,
+
+    maxBufferLength: tvbox ? 16 : 45,
+    maxMaxBufferLength: tvbox ? 26 : 60,
+    backBufferLength: tvbox ? 4 : 20,
+    liveBackBufferLength: tvbox ? 4 : 20,
+    maxBufferHole: tvbox ? 0.8 : 1.5,
+    maxFragLookUpTolerance: tvbox ? 0.5 : 1,
+    highBufferWatchdogPeriod: tvbox ? 3 : 8,
+    nudgeOffset:0.2,
+    nudgeMaxRetry: tvbox ? 4 : 10,
+
+    manifestLoadingTimeOut: tvbox ? 18000 : 20000,
+    levelLoadingTimeOut: tvbox ? 18000 : 20000,
+    fragLoadingTimeOut: tvbox ? 24000 : 38000,
+    manifestLoadingMaxRetry: tvbox ? 5 : 8,
+    levelLoadingMaxRetry: tvbox ? 5 : 8,
+    fragLoadingMaxRetry: tvbox ? 6 : 12,
+    manifestLoadingRetryDelay: tvbox ? 1000 : 2000,
+    levelLoadingRetryDelay: tvbox ? 1000 : 2000,
+    fragLoadingRetryDelay: tvbox ? 1200 : 2500,
+
+    startFragPrefetch:false,
     progressive:true,
     liveDurationInfinity:true
   };
 }
+
 function tuneProjectorLevel(){
   try{
-    if(!isProjectorDevice()||!state.hls||!state.hls.levels||!state.hls.levels.length)return;
+    if(!state.hls||!state.hls.levels||!state.hls.levels.length)return;
+
+    const tvbox=isProjectorDevice();
     let cap=0;
+
+    // เลือกความละเอียดที่กล่อง/โปรเจ็คเตอร์รับได้ง่ายที่สุด
+    // ถ้ามี 360/480 ให้บังคับไม่เกิน 480 ก่อน เพื่อแก้เสียงมาแต่ภาพไม่มา
     for(let i=0;i<state.hls.levels.length;i++){
       const h=state.hls.levels[i].height||0;
-      if(h && h<=720) cap=i;
+      if(tvbox){
+        if(h && h<=480) cap=i;
+      }else{
+        if(h && h<=720) cap=i;
+      }
     }
-    // จำกัดไม่ให้โปรเจ็คเตอร์กระโดดไป bitrate สูงเกิน ถ้ามี 480/720 จะเลือกไม่เกิน 720
+
     state.hls.autoLevelCapping=cap;
     state.hls.currentLevel=0;
     state.hls.nextLevel=0;
+    state.hls.startLevel=0;
   }catch(e){}
 }
 
-function playCandidate(candidates,item,serverIndex,idx){let url=candidates[idx]||candidates[0];state.currentUrl=url;let direct=getUrl(item,serverIndex);let next=()=>{if(idx+1<candidates.length){playCandidate(candidates,item,serverIndex,idx+1);return}if(item.servers?.length>serverIndex+1){playItem(item,serverIndex+1);return}openMx(direct)};cleanupPlayer();playerPanel.classList.add('show');showPlayerUI();forceFullSound();startWatchdog();state.playTimer=setTimeout(()=>{if(video.readyState<2 && (video.currentTime||0)===0)setStatus('ถ้าภาพไม่ขึ้น ให้กด PLAYER/MX ด้านบน')},30000);['playing','loadeddata','canplay'].forEach(ev=>video.addEventListener(ev,()=>{if(state.playTimer)clearTimeout(state.playTimer);state.stuckCount=0;forceFullSound()},{once:true}));let lower=url.toLowerCase();if(lower.includes('.mpd')){try{state.dash=dashjs.MediaPlayer().create();state.dash.initialize(video,url,true);setTimeout(forceFullSound,500)}catch(e){next()}return}if(Hls.isSupported()&&(lower.includes('.m3u8')||lower.includes('master.txt')||lower.includes('.txt')||lower.includes('type=m3u8')||lower.includes('extension=m3u8'))){state.hls=new Hls(getStableHlsConfig());state.hls.loadSource(url);state.hls.attachMedia(video);state.hls.on(Hls.Events.MANIFEST_PARSED,()=>{tuneProjectorLevel();forceFullSound();startWatchdog();video.play().catch(()=>{})});state.hls.on(Hls.Events.ERROR,(e,d)=>{if(!d)return;if(!d.fatal){if(d.type===Hls.ErrorTypes.NETWORK_ERROR){try{state.hls.startLoad()}catch(err){}}return}if(d.type===Hls.ErrorTypes.NETWORK_ERROR){setStatus('network ค้าง • ต่อสัญญาณใหม่');try{state.hls.startLoad(Math.max(0,video.currentTime-1));video.play().catch(()=>{})}catch(err){next()}return}if(d.type===Hls.ErrorTypes.MEDIA_ERROR){setStatus('media ค้าง • ซ่อม player');try{state.hls.recoverMediaError();video.play().catch(()=>{})}catch(err){next()}return}next()});return}video.src=url;forceFullSound();startWatchdog();video.play().catch(()=>next())}
+
+function playCandidate(candidates,item,serverIndex,idx){let url=candidates[idx]||candidates[0];state.currentUrl=url;let direct=getUrl(item,serverIndex);let next=()=>{if(idx+1<candidates.length){playCandidate(candidates,item,serverIndex,idx+1);return}if(item.servers?.length>serverIndex+1){playItem(item,serverIndex+1);return}openMx(direct)};cleanupPlayer();playerPanel.classList.add('show');showPlayerUI();forceFullSound();startWatchdog();state.playTimer=setTimeout(()=>{if(video.readyState<2 && (video.currentTime||0)===0)setStatus('ถ้าภาพไม่ขึ้น ให้กด PLAYER/MX ด้านบน')},30000);['playing','loadeddata','canplay'].forEach(ev=>video.addEventListener(ev,()=>{if(state.playTimer)clearTimeout(state.playTimer);state.stuckCount=0;forceFullSound()},{once:true}));let lower=url.toLowerCase();if(lower.includes('.mpd')){try{state.dash=dashjs.MediaPlayer().create();state.dash.initialize(video,url,true);setTimeout(forceFullSound,500)}catch(e){next()}return}if(Hls.isSupported()&&(lower.includes('.m3u8')||lower.includes('master.txt')||lower.includes('.txt')||lower.includes('type=m3u8')||lower.includes('extension=m3u8'))){state.hls=new Hls(getStableHlsConfig());state.hls.loadSource(url);state.hls.attachMedia(video);state.hls.on(Hls.Events.MANIFEST_PARSED,()=>{tuneProjectorLevel();forceFullSound();startWatchdog();video.play().catch(()=>{})});state.hls.on(Hls.Events.LEVEL_LOADED,()=>{tuneProjectorLevel();});state.hls.on(Hls.Events.ERROR,(e,d)=>{if(!d)return;if(!d.fatal){if(d.type===Hls.ErrorTypes.NETWORK_ERROR){try{state.hls.startLoad()}catch(err){}}return}if(d.type===Hls.ErrorTypes.NETWORK_ERROR){setStatus('network ค้าง • ต่อสัญญาณใหม่');try{state.hls.startLoad(Math.max(0,video.currentTime-1));video.play().catch(()=>{})}catch(err){next()}return}if(d.type===Hls.ErrorTypes.MEDIA_ERROR){setStatus('media ค้าง • ซ่อม player');try{state.hls.recoverMediaError();video.play().catch(()=>{})}catch(err){next()}return}next()});return}video.src=url;forceFullSound();startWatchdog();video.play().catch(()=>next())}
 
 
 
