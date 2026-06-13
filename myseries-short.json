@@ -1,13 +1,14 @@
 [
   {
-    "title": "test",
+    "title": "กำพร้าล้างบาปเลือดไฮโซ",
+    "updated": "2026-06-13",    
     "groups": ["series-update","series-short"],
-    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuwAjENpDBsnhb91rzlQxF39KqlCZxHqHVig&s",
+    "poster": "https://หนังสั้น.online//uploads/posters/e876bbf49915541dc209b45c1b0a0b95.webp",
     "language": "พากย์ไทย",
     "servers": [
       {
         "name": "Main",
-        "url": "https://main.24playerhd.com/newplaylist/33140c6b6916dfa39e0aa8de/33140c6b6916dfa39e0aa8de.m3u8"
+        "url": "https://stream.xn--72c9ab1ec1bc6q.xyz/e195701c-41c1-418b-b101-a2265d0a5149/480p/video.m3u8"
       }
     ]
   },  
