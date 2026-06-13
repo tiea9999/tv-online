@@ -45,15 +45,17 @@
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a539cfc25b4555704c622dfaa2e2c3d1/master.txt"}]},
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/ba96cd3def6cd3ff584e72eb7bff6e7a/master.txt"}]},
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/41c72ebcdc2b6cd9e60892f6625bf99d/master.txt"}]}
+
+    
     ]
   },  
   {
     "title": "Archives: The Nanyang Mystery บันทึกคดีแดนใต้ (2026)",
-    "updated": "2026-06-11",
+    "updated": "2026-06-13",
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/5250-214x300.jpg",
-    "latest_ep": 6,
+    "latest_ep": 8,
     "total_ep": 33,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/694e7ac6d10dc2decdde7ce57b83dd14/master.txt"}]},
@@ -61,21 +63,27 @@
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/3a5a7b8e9c3f6cbb9ac1daa395880cd5/master.txt"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ee006c9cb96527535dbc3afc6cced2bd/master.txt"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9df6d6035edc16d4d8faabf3e2d82428/master.txt"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/d77ed04fee29ae2edc33ff0c2ae795e9/master.txt"}]}
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/d77ed04fee29ae2edc33ff0c2ae795e9/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b1a71b46c0d88edfa545170d2539d854/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/986978fd077e8f47e76404b10c3b6533/master.txt"}]}
+
     ]
   },
   {
     "title": "Daughter of Fortune พลิกชะตาวิวาห์กิ่งทอง (2026) พากย์ไทย",
-    "updated": "2026-06-11",
+    "updated": "2026-06-13",
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/5352-214x300.jpg",
-    "latest_ep": 3,
+    "latest_ep": 5,
     "total_ep": 24,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5abd4360739fd192a205c1b8f054145e/master.txt"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/dde395e17405839b5d7782ee63d7a288/master.txt"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/24e4ca18a9af478f4a1f288c73632e82/master.txt"}]}
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/24e4ca18a9af478f4a1f288c73632e82/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/f73295bcb64305fe9294b6f040fba1a5/master.txt"}]}, 
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/699ba946e5a8636d0364a60816f04caa/master.txt"}]} 
+
     ]
   },
   {
