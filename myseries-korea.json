@@ -1,11 +1,11 @@
 [
   {
     "title": "Fifties Professionals มือโปรห้าสิบพลัส (2026)",
-    "updated": "2026-06-13",
+    "updated": "2026-06-14",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/550-1-214x300.jpg",
-    "latest_ep": 7,
+    "latest_ep": 8,
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1c34a1d7726be17d1df1ba1c999490e2/master.txt"}]},
@@ -14,8 +14,10 @@
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9061bab57a8d1403ac333ae949d6fe8f/master.txt"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9a0c51480b0044e8a3f38dfc15efabf2/master.txt"}]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/dbe8b7febb28924d5083c7d45c090076/master.txt"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/0b8a31b3a14ee2495e0589eb51a41506/master.txt"}]}
-      ]
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/0b8a31b3a14ee2495e0589eb51a41506/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b0f7fb41e201a77f691b2d4c689edc43/master.txt"}]}
+
+    ]
     }, 
 {
     "title": "หญิงเหล็กศาลเยาวชน พากย์ไทย Juvenile Justice 2022",
@@ -40,16 +42,20 @@
     },     
  {
     "title": "The Scarecrow หุ่นลวงเชือด (2026) พากย์ไทย",
-    "updated": "2026-06-6",
+    "updated": "2026-06-14",
     "groups": ["series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/04/5.20-4.jpg",
-    "latest_ep": 2,
+    "latest_ep": 4,
     "total_ep": 10,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5ae2d684f5e3dcead19be1a6e9bbe864/master.txt" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/401b90c4ddb0b09e91fee34cfe4b4287/master.txt" }] }
-      ]
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/401b90c4ddb0b09e91fee34cfe4b4287/master.txt" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b29e983117a23d68182af6d426011411/master.txt" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4d669056c99c1cbe95468611a73f0dae/master.txt" }] }
+
+    
+    ]
   },
   {
     "title": " Teach You a Lesson อย่างนี้ต้องโดนสั่งสอน (2026)",
@@ -217,11 +223,11 @@
   },  
   {
     "title": "ศัตรูหัวใจ นางร้ายวังหลวง",
-     "updated": "2026-06-13",  
+     "updated": "2026-06-14",  
     "language": "ซับไทย",
     "groups": ["series","series-korea"],
     "poster": "https://series-fulls.com/wp-content/uploads/2026/05/ศัตรูหัวใจ-นางร้ายวังหลวง-1.webp",
-    "latest_ep": 11,
+    "latest_ep": 12,
     "total_ep": 14,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f52d74d2f208e3b55c6208a79bba6683/master.m3u8"}] },
@@ -234,7 +240,9 @@
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/c918672525e609fb3fe274c065665ef7/master.m3u8" }] },   
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d361d6fc863de5fe48f6398a/d361d6fc863de5fe48f6398a.m3u8" }] },
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/dc37d6f829c3364924bb405e/dc37d6f829c3364924bb405e.m3u8" }] },   
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/ef7657d3546926e4a34f613b66f7adc7/master.txt"}]}
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/ef7657d3546926e4a34f613b66f7adc7/master.txt"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/d6c94441e282eb18629bb4eb128124a8/master.txt"}]}
+
     ]
   },
  {
