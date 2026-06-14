@@ -1,5 +1,22 @@
 [
   {
+    "title": "Reborn Rookie มือใหม่หัดแค้น (2026)",
+    "updated": "2026-06-14",
+    "groups": ["series-update","series-china"],
+    "language": "ซับไทย",
+    "poster": "https://320hdr.com/wp-content/uploads/2026/05/5350.jpg",
+    "latest_ep": 5,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/273d1e972541ea22a2b78abd669fa3d5/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/6650a181cea1089a7fc26d0d59d07802/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/609f18f1d2160afe62999d6ec9edc755/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/86a9144dccdd3c163a7fb4e6df3cb8c3/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/64fe7a4aeaef72eacbdb4448677789a9/master.txt"}]}
+
+      ]
+    }, 
+  {
     "title": "Fifties Professionals มือโปรห้าสิบพลัส (2026)",
     "updated": "2026-06-14",
     "groups": ["series-update","series-korea"],
