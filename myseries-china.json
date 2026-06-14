@@ -64,7 +64,7 @@
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/ba96cd3def6cd3ff584e72eb7bff6e7a/master.txt"}]},
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/41c72ebcdc2b6cd9e60892f6625bf99d/master.txt"}]},
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/382b807256477943561bb63d4e5582b8/master.txt"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/99b4fb1274286b2b709bb6bbda6ab909/master.txt"}]}
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/99b4fb1274286b2b709bb6bbda6ab909/master.txt"}]},
       { "title": "EP13", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/188c89c98f9b0ebc6c36df5a596f91ae/1master.txt"}]},
       { "title": "EP14", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/3ac65ff447c76cf0386f5d27d1fbc6a9/master.txt"}]}
 
@@ -106,7 +106,7 @@
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/dde395e17405839b5d7782ee63d7a288/master.txt"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/24e4ca18a9af478f4a1f288c73632e82/master.txt"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/f73295bcb64305fe9294b6f040fba1a5/master.txt"}]}, 
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/699ba946e5a8636d0364a60816f04caa/master.txt"}]} 
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/699ba946e5a8636d0364a60816f04caa/master.txt"}]}, 
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/2d5bf3c530ee0955996b0619db629b61/master.txt"}]}, 
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/04e1f8a56580910563c77062f93bcb53/master.txt"}]}
 
@@ -130,7 +130,7 @@
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/c828963293a9d85f7ec04e7acccb37ca/master.txt"}]},
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ee11859f06d2462c65d3e3e0329f6716/master.txt"}]},
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ee11859f06d2462c65d3e3e0329f6716/master.txt"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8a33e924a0b376c191f3ae80643c5c74/master.txt"}]}
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8a33e924a0b376c191f3ae80643c5c74/master.txt"}]},
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1036344295cb643e19b3fbd285efb16b/master.txt"}]},
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1ed4dfb0f9e7b3df6a5bdfe188587652/master.txt"}]}
  
