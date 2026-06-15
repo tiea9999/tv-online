@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>TIEA IPTV TV-ONLINE ENGINE FINAL</title>
+    <title>TIEA IPTV INDEX OKHD REFERER FINAL</title>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
     <style>
@@ -787,23 +787,24 @@
 <body>
     <div class="app">
         <aside class="sidebar">
-            <div class="brand">TIEA IPTV<div class="subbrand">TV-ONLINE ENGINE FINAL</div>
+            <div class="brand">TIEA IPTV<div class="subbrand">OKHD REFERER FINAL</div>
             </div>
             <div class="group-title">เมนูหลัก</div>
             <button class="menu-btn active" data-action="home">🏠 หน้าแรก</button><button class="menu-btn" data-action="live-page">📅 ตารางแข่งขัน</button>
             <div class="group-title">ทีวีออนไลน์</div>
-            <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/3bb.html">📡 3BB IPTV</button><button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/sport.html">🏆 SPORT TV</button><button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/6395-movie.html">🏆 DooBall6395</button><button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/animegood.html">🏆 Animegood</button>
+            <button class="menu-btn" data-link="https://tiea9999.github.io/tv/3bb.html">📡 3BB IPTV</button><button class="menu-btn" data-link="https://tiea9999.github.io/tv/sport.html">🏆 SPORT TV</button><button class="menu-btn" data-link="https://tiea9999.github.io/tv/6395-movie.html">🏆 DooBall6395</button><button class="menu-btn" data-link="https://tiea9999.github.io/tv/animegood.html">🏆 Animegood</button>
             <div class="group-title">หนัง</div>
-            <button class="menu-btn" data-source="movie-24hd">🎬 หนัง 24HD</button><button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/037hd.html">🎬 Movie 037HD</button>
+            <button class="menu-btn" data-source="movie-24hd">🎬 หนัง 24HD</button><button class="menu-btn" data-link="https://tiea9999.github.io/tv/037hd.html">🎬 Movie 037HD</button>
             <div class="group-title">ซีรีส์</div>
-            <button class="menu-btn" data-source="series-update">🔥 ซีรี่ย์อัพเดทใหม่</button><button class="menu-btn" data-source="series-china">🇨🇳 ซีรี่ย์จีน</button><button class="menu-btn" data-source="series-korea">🇰🇷 ซีรี่ย์เกาหลี</button><button class="menu-btn" data-source="series-thai">🇹🇭 ซีรี่ย์ไทย</button><button class="menu-btn" data-source="series-japan">🇯🇵 ซีรี่ย์ญี่ปุ่น</button><button class="menu-btn" data-source="series-short">🎞️ ละครสั้น</button><button class="menu-btn" data-source="series-24hd">📺 ซีรีส์ ฝรั่ง</button><button class="menu-btn" data-vip-link="https://tiea9999.github.io/tv-online/member/index.html">💎 VIP</button>
+            <button class="menu-btn" data-source="series-update">🔥 ซีรี่ย์อัพเดทใหม่</button><button class="menu-btn" data-source="series-china">🇨🇳 ซีรี่ย์จีน</button><button class="menu-btn" data-source="series-korea">🇰🇷 ซีรี่ย์เกาหลี</button><button class="menu-btn" data-source="series-thai">🇹🇭 ซีรี่ย์ไทย</button><button class="menu-btn" data-source="series-japan">🇯🇵 ซีรี่ย์ญี่ปุ่น</button><button class="menu-btn" data-source="series-short">🎞️ ละครสั้น</button><button class="menu-btn" data-source="series-24hd">📺 ซีรีส์ ฝรั่ง</button><button class="menu-btn" data-vip-link="https://tiea9999.github.io/tv/VIP.html">💎 VIP</button>
             <div class="group-title">ระบบ</div>
-            <button class="menu-btn" data-link="https://tiea9999.github.io/tv-online/index.html">🏠 HOME จริง</button>
+            <button class="menu-btn" data-link="https://tiea9999.github.io/tv/index.html">🏠 HOME จริง</button>
         </aside>
         <main class="main">
             <div class="topbar">
                 <button class="top-btn home" id="homeBtn">🏠 HOME</button><button class="top-btn reload" id="reloadBtn">⟳ โหลดใหม่</button><button class="top-btn live" id="liveBtn">📅 live.html</button>
-                <div class="status" id="statusText">พร้อมใช้งาน • TV-ONLINE ใช้ Engine TV • กัน Worker ซ้ำ</div>
+                <div class="status" id="statusText">พร้อมใช้งาน • MySeries แยกหมวด • fullscreen auto hide no hint + ep
+                    return</div>
             </div>
             <div class="content" id="content"></div>
         </main>
@@ -841,10 +842,9 @@
         </div>
     </div>
     <script>
-        /* TV-ONLINE ENGINE: ใช้ระบบเล่นจาก TV + ข้อมูลหนัง/ซีรี่ย์/MySeries จาก tv-online */
-const HOME_URL='https://tiea9999.github.io/tv-online/index.html',LIVE_URL='https://tiea9999.github.io/tv-online/live.html',RAW='https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/',PROXY='https://iptv.tawatchai250958.workers.dev/?url=',FOLDER_LOGO='https://dl.dropboxusercontent.com/scl/fi/k77ovxc35qm0girjo43mt/logo.png?rlkey=1x7w8nk1fl6gptnt9jiaugt54',VIP_PASSWORD='9999';
+        const HOME_URL='https://tiea9999.github.io/tv/index.html',LIVE_URL='https://tiea9999.github.io/tv/live.html',RAW='https://raw.githubusercontent.com/tiea9999/tv-online/refs/heads/main/',PROXY='https://iptv.tawatchai250958.workers.dev/?url=',FOLDER_LOGO='https://dl.dropboxusercontent.com/scl/fi/k77ovxc35qm0girjo43mt/logo.png?rlkey=1x7w8nk1fl6gptnt9jiaugt54',VIP_PASSWORD='9999';
 const MY_SERIES=RAW+'myseries-series.json',MY_CHINA=RAW+'myseries-china.json',MY_KOREA=RAW+'myseries-korea.json',MY_THAI=RAW+'myseries-thai.json',MY_JAPAN=RAW+'myseries-japan.json',MY_SHORT=RAW+'myseries-short.json',MY_MOVIE=RAW+'myseries-movie.json';
-const TV_LINKS=[{kind:'link',title:'3BB IPTV',image:FOLDER_LOGO,url:'https://tiea9999.github.io/tv-online/3bb.html',group:'ทีวีออนไลน์'},{kind:'link',title:'SPORT TV',image:FOLDER_LOGO,url:'https://tiea9999.github.io/tv-online/sport.html',group:'ทีวีออนไลน์'},{kind:'link',title:'DOOBALL66',image:FOLDER_LOGO,url:'https://tiea9999.github.io/tv-online/ball66.html',group:'ทีวีออนไลน์'}];
+const TV_LINKS=[{kind:'link',title:'3BB IPTV',image:FOLDER_LOGO,url:'https://tiea9999.github.io/tv/3bb.html',group:'ทีวีออนไลน์'},{kind:'link',title:'SPORT TV',image:FOLDER_LOGO,url:'https://tiea9999.github.io/tv/sport.html',group:'ทีวีออนไลน์'},{kind:'link',title:'DOOBALL66',image:FOLDER_LOGO,url:'https://tiea9999.github.io/tv/ball66.html',group:'ทีวีออนไลน์'}];
 const MYSERIES_FOLDERS=[{kind:'folder',title:'MySeries',image:FOLDER_LOGO,source:MY_SERIES,group:'MySeries'}];
 const MYSERIES_FILTERS={
 'series-update':[
@@ -965,12 +965,12 @@ function sortByUpdated(items){
 }
 
 function makeRows(items){let order=['ซีรี่ย์อัพเดทใหม่','ซีรี่ย์จีน','ซีรี่ย์เกาหลี','ซีรี่ย์ฝรั่ง','ซีรี่ย์ไทย','ซีรี่ย์ญี่ปุ่น','ซีรี่ย์สั้น','หนัง MySeries','ดูหนังออนไลน์','ทีวีออนไลน์','ทีวี','กีฬา','อื่นๆ'],map={};items.forEach(item=>{let cats=item.groups&&item.groups.length?item.groups:[item.group||'อื่นๆ'];cats.forEach(c=>{c=groupName(c);if(!map[c])map[c]=[];if(!map[c].some(x=>x.title===item.title))map[c].push(item)})});return Object.keys(map).sort((a,b)=>{let ia=order.indexOf(a)<0?99:order.indexOf(a),ib=order.indexOf(b)<0?99:order.indexOf(b);return ia-ib||a.localeCompare(b,'th')}).map(title=>({title,items:map[title]}))}
-function renderHome(){state.activeSource='home';setStatus('หน้าแรก • ซีรี่ย์อัพเดทใหม่ + ดูหนังออนไลน์ + ทีวี');content.innerHTML=`<div class="hero"><div class="hero-title">TIEA IPTV TV-ONLINE FINAL</div><div class="hero-sub">หน้าแรกใหม่ • ซีรี่ย์อัพเดทใหม่ • ดูหนังออนไลน์จาก 037HD หนังใหม่ 2026 • เล่นไวขึ้น</div></div><div id="homeRows"></div>`;Promise.all([loadSeriesUpdateDirect().catch(()=>[]),loadUrl('https://raw.githubusercontent.com/tiea9999/037hd/refs/heads/main/json/%E0%B8%AB%E0%B8%99%E0%B8%B1%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%202026.json','ดูหนังออนไลน์').catch(()=>[])]).then(([seriesUpdate,movieOnline])=>{let rows=[
+function renderHome(){state.activeSource='home';setStatus('หน้าแรก • ซีรี่ย์อัพเดทใหม่ + ดูหนังออนไลน์ + ทีวี');content.innerHTML=`<div class="hero"><div class="hero-title">TIEA IPTV FINAL 1080P TV STABLE</div><div class="hero-sub">หน้าแรกใหม่ • ซีรี่ย์อัพเดทใหม่ • ดูหนังออนไลน์จาก 037HD หนังใหม่ 2026 • เล่นไวขึ้น</div></div><div id="homeRows"></div>`;Promise.all([loadSeriesUpdateDirect().catch(()=>[]),loadUrl('https://raw.githubusercontent.com/tiea9999/037hd/refs/heads/main/json/%E0%B8%AB%E0%B8%99%E0%B8%B1%E0%B8%87%E0%B9%83%E0%B8%AB%E0%B8%A1%E0%B9%88%202026.json','ดูหนังออนไลน์').catch(()=>[])]).then(([seriesUpdate,movieOnline])=>{let rows=[
 {title:'ทีวีแนะนำ',items:[
 {kind:'play',title:'BEIN 01',image:FOLDER_LOGO,group:'ทีวี',groups:['ทีวี'],servers:[{name:'Main',url:'https://6395online.com:8443/live/mrpoogapooga@gmail.com/085858/203.m3u8'}]},
 {kind:'play',title:'BEIN 02',image:FOLDER_LOGO,group:'ทีวี',groups:['ทีวี'],servers:[{name:'Main',url:'https://6395online.com:8443/live/mrpoogapooga@gmail.com/085858/204.m3u8'}]},
 {kind:'play',title:'BEIN 03',image:FOLDER_LOGO,group:'ทีวี',groups:['ทีวี'],servers:[{name:'Main',url:'https://6395online.com:8443/live/mrpoogapooga@gmail.com/085858/205.m3u8'}]},
-{kind:'play',title:'FOOTBALL03',image:FOLDER_LOGO,group:'กีฬา',groups:['กีฬา'],servers:[{name:'Main',url:'https://apiiptv.lnwthailive.online/api/play/stream.m3u8?c=epl-3'}]}
+{kind:'play',title:'FOOTBALL03',image:FOLDER_LOGO,group:'กีฬา',groups:['กีฬา'],servers:[{name:'Main',url:'https://6395online.com:8443/live/mrpoogapooga@gmail.com/085858/391722.m3u8'}]}
 ]},
 {title:'ซีรี่ย์อัพเดทใหม่',items:seriesUpdate.slice(0,30)},
 {title:'ดูหนังออนไลน์',items:movieOnline.slice(0,30)},
@@ -1068,8 +1068,14 @@ function isWorkerUrl(url){
   const u=String(url||'').toLowerCase();
   return u.includes('iptv.tawatchai250958.workers.dev') || u.includes('workers.dev/?url=') || u.includes('workers.dev/?u=');
 }
+function isNoWorkerDirectDomain(url){
+  const u=String(url||'').toLowerCase();
+  // กลุ่มนี้เล่นตรงได้ แต่พอผ่าน Worker จะโดน 401 / CORS / token ผิด
+  return u.includes('6395online.com') || u.includes('gold.6395online.com');
+}
 function makePlayProxyUrl(url){
   if(isWorkerUrl(url)) return url;
+  if(isNoWorkerDirectDomain(url)) return url;
   let ref=getAutoReferer(url);
   let out=PROXY+encodeURIComponent(url);
   if(ref) out+='&referer='+encodeURIComponent(ref);
@@ -1077,7 +1083,7 @@ function makePlayProxyUrl(url){
 }
 function preferProxyFirst(url){
   const u=String(url||'').toLowerCase();
-  if(isWorkerUrl(url)) return false;
+  if(isWorkerUrl(url) || isNoWorkerDirectDomain(url)) return false;
   return u.includes('ok-hd.com') || u.includes('main.24playerhd.com') || u.includes('24playerhd') || u.includes('037hddmovie.com') || u.includes('037hdmovie.com') || u.includes('master.streamhls.com') || u.includes('stream1689.com') || u.includes('fc2stream') || u.includes('doonewmovie') || u.includes('livedoomovies');
 }
 
@@ -1129,7 +1135,7 @@ async function playItem(item,serverIndex=0,displayTitle=''){
   state.originalUrl=finalUrl;
   state.currentUrl=finalUrl;
 
-  let lower=finalUrl.toLowerCase(),isMpd=lower.includes('.mpd'),noProxy=isMpd||lower.includes('thaicdn')||lower.includes('mux.dev')||lower.includes('byteark')||isWorkerUrl(finalUrl);
+  let lower=finalUrl.toLowerCase(),isMpd=lower.includes('.mpd'),noProxy=isMpd||isNoWorkerDirectDomain(finalUrl)||lower.includes('thaicdn')||lower.includes('mux.dev')||lower.includes('byteark')||isWorkerUrl(finalUrl);
   let proxied=isWorkerUrl(finalUrl)?finalUrl:makePlayProxyUrl(finalUrl);
   let candidates=isWorkerUrl(finalUrl)?[finalUrl]:(noProxy?[finalUrl]:(preferProxyFirst(finalUrl)?[proxied,finalUrl]:[finalUrl,proxied]));
   let playObj=Object.assign({},item,{servers:[{name:'Main',url:finalUrl}]});
@@ -1137,88 +1143,64 @@ async function playItem(item,serverIndex=0,displayTitle=''){
 }
 function isProjectorDevice(){
   const ua=(navigator.userAgent||'').toLowerCase();
-  return ua.includes('projector')||
-         ua.includes('xgimi')||
-         ua.includes('mibox')||
-         ua.includes('android tv')||
-         ua.includes('android')||
-         ua.includes('smart-tv')||
-         ua.includes('smarttv')||
-         ua.includes('bravia')||
-         ua.includes('chromecast')||
-         ua.includes('aft')||
-         ua.includes('appcreator')||
-         ua.includes('wv');
+  return ua.includes('projector')||ua.includes('xgimi')||ua.includes('mibox')||ua.includes('android tv')||ua.includes('smart-tv')||ua.includes('smarttv')||ua.includes('bravia')||ua.includes('chromecast')||ua.includes('aft');
 }
-
 function getStableHlsConfig(){
-  const tvbox=isProjectorDevice();
+  const projector=isProjectorDevice();
   return {
     enableWorker:false,
     lowLatencyMode:false,
 
-    // TV BOX / PROJECTOR SAFE MODE:
-    // เน้นให้มีภาพก่อน โดยเริ่มจากคุณภาพต่ำสุด ลดอาการมีแต่เสียง/จอดำบน WebView
-    startLevel:0,
-    capLevelToPlayerSize:true,
-    testBandwidth:false,
-    abrEwmaDefaultEstimate: tvbox ? 280000 : 650000,
-    abrBandWidthFactor: tvbox ? 0.70 : 0.75,
-    abrBandWidthUpFactor: tvbox ? 0.50 : 0.55,
+    // PROJECTOR LIGHT MODE: บัฟเฟอร์ไม่ใหญ่เกิน ลดอาการหน่วง/หมุนเป็นช่วง
+    maxBufferLength: projector ? 22 : 45,
+    maxMaxBufferLength: projector ? 36 : 60,
+    backBufferLength: projector ? 6 : 20,
+    liveBackBufferLength: projector ? 6 : 20,
+    maxBufferHole: projector ? 1.2 : 1.5,
+    maxFragLookUpTolerance: projector ? 0.8 : 1,
+    highBufferWatchdogPeriod: projector ? 4 : 8,
+    nudgeOffset:0.25,
+    nudgeMaxRetry: projector ? 6 : 10,
 
-    maxBufferLength: tvbox ? 16 : 45,
-    maxMaxBufferLength: tvbox ? 26 : 60,
-    backBufferLength: tvbox ? 4 : 20,
-    liveBackBufferLength: tvbox ? 4 : 20,
-    maxBufferHole: tvbox ? 0.8 : 1.5,
-    maxFragLookUpTolerance: tvbox ? 0.5 : 1,
-    highBufferWatchdogPeriod: tvbox ? 3 : 8,
-    nudgeOffset:0.2,
-    nudgeMaxRetry: tvbox ? 4 : 10,
-
-    manifestLoadingTimeOut: tvbox ? 18000 : 20000,
-    levelLoadingTimeOut: tvbox ? 18000 : 20000,
-    fragLoadingTimeOut: tvbox ? 24000 : 38000,
-    manifestLoadingMaxRetry: tvbox ? 5 : 8,
-    levelLoadingMaxRetry: tvbox ? 5 : 8,
-    fragLoadingMaxRetry: tvbox ? 6 : 12,
-    manifestLoadingRetryDelay: tvbox ? 1000 : 2000,
-    levelLoadingRetryDelay: tvbox ? 1000 : 2000,
-    fragLoadingRetryDelay: tvbox ? 1200 : 2500,
+    manifestLoadingTimeOut: projector ? 18000 : 20000,
+    levelLoadingTimeOut: projector ? 18000 : 20000,
+    fragLoadingTimeOut: projector ? 26000 : 38000,
+    manifestLoadingMaxRetry: projector ? 5 : 8,
+    levelLoadingMaxRetry: projector ? 5 : 8,
+    fragLoadingMaxRetry: projector ? 6 : 12,
+    manifestLoadingRetryDelay: projector ? 1200 : 2000,
+    levelLoadingRetryDelay: projector ? 1200 : 2000,
+    fragLoadingRetryDelay: projector ? 1500 : 2500,
 
     startFragPrefetch:false,
+    capLevelToPlayerSize:true,
+    testBandwidth:false,
+    abrEwmaDefaultEstimate: projector ? 350000 : 650000,
+    abrBandWidthFactor: projector ? 0.82 : 0.75,
+    abrBandWidthUpFactor: projector ? 0.65 : 0.55,
+    startLevel: projector ? 0 : -1,
+    liveSyncDurationCount: projector ? 4 : 8,
+    liveMaxLatencyDurationCount: projector ? 8 : 16,
     progressive:true,
     liveDurationInfinity:true
   };
 }
-
 function tuneProjectorLevel(){
   try{
-    if(!state.hls||!state.hls.levels||!state.hls.levels.length)return;
-
-    const tvbox=isProjectorDevice();
+    if(!isProjectorDevice()||!state.hls||!state.hls.levels||!state.hls.levels.length)return;
     let cap=0;
-
-    // เลือกความละเอียดที่กล่อง/โปรเจ็คเตอร์รับได้ง่ายที่สุด
-    // ถ้ามี 360/480 ให้บังคับไม่เกิน 480 ก่อน เพื่อแก้เสียงมาแต่ภาพไม่มา
     for(let i=0;i<state.hls.levels.length;i++){
       const h=state.hls.levels[i].height||0;
-      if(tvbox){
-        if(h && h<=480) cap=i;
-      }else{
-        if(h && h<=720) cap=i;
-      }
+      if(h && h<=720) cap=i;
     }
-
+    // จำกัดไม่ให้โปรเจ็คเตอร์กระโดดไป bitrate สูงเกิน ถ้ามี 480/720 จะเลือกไม่เกิน 720
     state.hls.autoLevelCapping=cap;
     state.hls.currentLevel=0;
     state.hls.nextLevel=0;
-    state.hls.startLevel=0;
   }catch(e){}
 }
 
-
-function playCandidate(candidates,item,serverIndex,idx){let url=candidates[idx]||candidates[0];state.currentUrl=url;let direct=getUrl(item,serverIndex);let next=()=>{if(idx+1<candidates.length){playCandidate(candidates,item,serverIndex,idx+1);return}if(item.servers?.length>serverIndex+1){playItem(item,serverIndex+1);return}openMx(direct)};cleanupPlayer();playerPanel.classList.add('show');showPlayerUI();forceFullSound();startWatchdog();state.playTimer=setTimeout(()=>{if(video.readyState<2 && (video.currentTime||0)===0)setStatus('ถ้าภาพไม่ขึ้น ให้กด PLAYER/MX ด้านบน')},30000);['playing','loadeddata','canplay'].forEach(ev=>video.addEventListener(ev,()=>{if(state.playTimer)clearTimeout(state.playTimer);state.stuckCount=0;forceFullSound()},{once:true}));let lower=url.toLowerCase();if(lower.includes('.mpd')){try{state.dash=dashjs.MediaPlayer().create();state.dash.initialize(video,url,true);setTimeout(forceFullSound,500)}catch(e){next()}return}if(Hls.isSupported()&&(lower.includes('.m3u8')||lower.includes('master.txt')||lower.includes('.txt')||lower.includes('type=m3u8')||lower.includes('extension=m3u8'))){state.hls=new Hls(getStableHlsConfig());state.hls.loadSource(url);state.hls.attachMedia(video);state.hls.on(Hls.Events.MANIFEST_PARSED,()=>{tuneProjectorLevel();forceFullSound();startWatchdog();video.play().catch(()=>{})});state.hls.on(Hls.Events.LEVEL_LOADED,()=>{tuneProjectorLevel();});state.hls.on(Hls.Events.ERROR,(e,d)=>{if(!d)return;if(!d.fatal){if(d.type===Hls.ErrorTypes.NETWORK_ERROR){try{state.hls.startLoad()}catch(err){}}return}if(d.type===Hls.ErrorTypes.NETWORK_ERROR){setStatus('network ค้าง • ต่อสัญญาณใหม่');try{state.hls.startLoad(Math.max(0,video.currentTime-1));video.play().catch(()=>{})}catch(err){next()}return}if(d.type===Hls.ErrorTypes.MEDIA_ERROR){setStatus('media ค้าง • ซ่อม player');try{state.hls.recoverMediaError();video.play().catch(()=>{})}catch(err){next()}return}next()});return}video.src=url;forceFullSound();startWatchdog();video.play().catch(()=>next())}
+function playCandidate(candidates,item,serverIndex,idx){let url=candidates[idx]||candidates[0];state.currentUrl=url;let direct=getUrl(item,serverIndex);let next=()=>{if(idx+1<candidates.length){playCandidate(candidates,item,serverIndex,idx+1);return}if(item.servers?.length>serverIndex+1){playItem(item,serverIndex+1);return}openMx(direct)};cleanupPlayer();playerPanel.classList.add('show');showPlayerUI();forceFullSound();startWatchdog();state.playTimer=setTimeout(()=>{if(video.readyState<2 && (video.currentTime||0)===0)setStatus('ถ้าภาพไม่ขึ้น ให้กด PLAYER/MX ด้านบน')},30000);['playing','loadeddata','canplay'].forEach(ev=>video.addEventListener(ev,()=>{if(state.playTimer)clearTimeout(state.playTimer);state.stuckCount=0;forceFullSound()},{once:true}));let lower=url.toLowerCase();if(lower.includes('.mpd')){try{state.dash=dashjs.MediaPlayer().create();state.dash.initialize(video,url,true);setTimeout(forceFullSound,500)}catch(e){next()}return}if(Hls.isSupported()&&(lower.includes('.m3u8')||lower.includes('master.txt')||lower.includes('.txt')||lower.includes('type=m3u8')||lower.includes('extension=m3u8'))){state.hls=new Hls(getStableHlsConfig());state.hls.loadSource(url);state.hls.attachMedia(video);state.hls.on(Hls.Events.MANIFEST_PARSED,()=>{tuneProjectorLevel();forceFullSound();startWatchdog();video.play().catch(()=>{})});state.hls.on(Hls.Events.ERROR,(e,d)=>{if(!d)return;if(!d.fatal){if(d.type===Hls.ErrorTypes.NETWORK_ERROR){try{state.hls.startLoad()}catch(err){}}return}if(d.type===Hls.ErrorTypes.NETWORK_ERROR){setStatus('network ค้าง • ต่อสัญญาณใหม่');try{state.hls.startLoad(Math.max(0,video.currentTime-1));video.play().catch(()=>{})}catch(err){next()}return}if(d.type===Hls.ErrorTypes.MEDIA_ERROR){setStatus('media ค้าง • ซ่อม player');try{state.hls.recoverMediaError();video.play().catch(()=>{})}catch(err){next()}return}next()});return}video.src=url;forceFullSound();startWatchdog();video.play().catch(()=>next())}
 
 
 
