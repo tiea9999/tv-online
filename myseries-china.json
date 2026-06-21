@@ -61,7 +61,7 @@
       { "title": "EP16", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/7b127eb8d9d6c3ecb732eae00f62ca7a/master.txt"}]},
       { "title": "EP17", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8c16cae2796a3b28a51859839872102a/master.txt"}]},
       { "title": "EP18", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/39f5d22fd63668b24072e2c4bad97b97/master.txt"}]},
-      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://sv3.img2svg.com/files/a55c7741d90e5c781ea1853dea9737cb/master.txt"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/a55c7741d90e5c781ea1853dea9737cb/master.m3u8"}]},
       { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/834a67351713d462a2127a66575b50fa/master.txt"}]}
     ]
   },  
