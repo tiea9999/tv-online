@@ -67,11 +67,11 @@
   },  
   {
     "title": " Bright Eyes เล่ห์รักนัยน์ตาแค้น (2025) พากย์ไทย",
-    "updated": "2026-06-12",
+    "updated": "2026-06-21",
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/8.0-214x300.jpg",
-    "latest_ep": 16,
+    "latest_ep": 20,
     "total_ep": 24,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9f0748a36c318907d79d90f25e80107c/master.txt"}]},
@@ -89,8 +89,12 @@
       { "title": "EP13", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/740a7bc602c8db799e95102fed17a804/master.txt"}]},
       { "title": "EP14", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/527b44d1f1f8edb4fa63d6526a6f1dd3/master.txt"}]},
       { "title": "EP15", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/2c2c6a38e7cffdd9cffd83272ef78848/master.txt"}]},
-      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ad7bf93e10a880a3400a454470182029/master.txt"}]}
-      ]
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ad7bf93e10a880a3400a454470182029/master.txt"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1157331e9d1e557113544973e149b1c0/master.txt"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/c4d18858d7fcfc411ccddbfba417067f/master.txt"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1b798ea32f5c378a7b70d0ed2d8a3263/master.txt"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/180e42ec2ddcd651eefaae2484bdcab2/master.txt"}]}
+    ]
   },
   {
     "title": "Rise Again รักเหนือชะตาฟ้า (2026)",
