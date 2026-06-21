@@ -36,9 +36,9 @@
   },  
   {
     "title": "The Embroidered Truth ลิขิตปักพยับเมฆ (2026) ",
-    "updated": "2026-06-13",
+    "updated": "2026-06-21",
     "groups": ["series-update","series-china"],
-    "language": "พากย์ไทย",
+    "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/8350-214x300.jpg",
     "latest_ep": 7,
     "total_ep": 24,
@@ -49,8 +49,21 @@
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/2ab40eaeb5fa1bfdfd086f76ae5637a9/master.txt"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/95d7755102fdcb223cf2e32b81223b8a/master.txt"}]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a31856663778f353350a5aa76b3b0dba/master.txt"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/d5d7fc4b5d45644e53b3a0bc26117122/master.txt"}]}
-      ]
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/d5d7fc4b5d45644e53b3a0bc26117122/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4ea9085908e209fef1c3cbae0e0bf5cb/master.txt"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4c5eee8d486e48b215c22a9600f9eb03/master.txt"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e3f924790fe4b134cef138bc6f46dd79/master.txt"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4ea62d926997924c4e99bc7d97d36cdc/master.txt"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/515136247ba9bbdbcd7db9de5c07c3f3/master.txt"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/f775f15b32a8d13519ef462ec36ea90c/master.txt"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/0e7dcc681438a07046c8c25edb30f66b/master.txt"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4a5390acf1a2f971977b2248a7646f3a/master.txt"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/7b127eb8d9d6c3ecb732eae00f62ca7a/master.txt"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8c16cae2796a3b28a51859839872102a/master.txt"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/39f5d22fd63668b24072e2c4bad97b97/master.txt"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://sv3.img2svg.com/files/a55c7741d90e5c781ea1853dea9737cb/master.txt"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/834a67351713d462a2127a66575b50fa/master.txt"}]}
+    ]
   },  
   {
     "title": " Bright Eyes เล่ห์รักนัยน์ตาแค้น (2025) พากย์ไทย",
