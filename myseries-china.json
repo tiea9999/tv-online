@@ -40,7 +40,7 @@
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/8350-214x300.jpg",
-    "latest_ep": 7,
+    "latest_ep": 20,
     "total_ep": 24,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/c842742846df77f82df3a3ea92230a85/master.txt"}]},
