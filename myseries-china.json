@@ -98,11 +98,11 @@
   },
   {
     "title": "Rise Again รักเหนือชะตาฟ้า (2026)",
-    "updated": "2026-06-14",
+    "updated": "2026-06-21",
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/520-1-214x300.jpg",
-    "latest_ep": 14,
+    "latest_ep": 21,
     "total_ep": 23,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/1a5beb76d7864d0fe6ea8de9c825a0a0/master.txt"}]},
@@ -118,18 +118,24 @@
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/382b807256477943561bb63d4e5582b8/master.txt"}]},
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/99b4fb1274286b2b709bb6bbda6ab909/master.txt"}]},
       { "title": "EP13", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/188c89c98f9b0ebc6c36df5a596f91ae/master.txt"}]},
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/3ac65ff447c76cf0386f5d27d1fbc6a9/master.txt"}]}
-
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/3ac65ff447c76cf0386f5d27d1fbc6a9/master.txt"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ab52a91800514e072304c7122586656f/master.txt"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/c4be1a47135090708241a13e07d6214d/master.txt"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/77b42187cb74ff958c4095a784264215/master.txt"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/f1b045bf29df2cc26acbb6038472eafb/master.txt"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/fda84203eeab800e492c68b9f96eff66/master.txt"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/45e0d460fe17d8baf06c436644245e79/master.m3u8"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/87e384e551f025a9c70d0c9ed546ab12/master.txt"}]}
     
     ]
   },  
   {
     "title": "Archives: The Nanyang Mystery บันทึกคดีแดนใต้ (2026)",
-    "updated": "2026-06-14",
+    "updated": "2026-06-21",
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/5250-214x300.jpg",
-    "latest_ep": 10,
+    "latest_ep": 24,
     "total_ep": 33,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/694e7ac6d10dc2decdde7ce57b83dd14/master.txt"}]},
@@ -141,17 +147,30 @@
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b1a71b46c0d88edfa545170d2539d854/master.txt"}]},
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/986978fd077e8f47e76404b10c3b6533/master.txt"}]},
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1c55daea794dcc9d4af82eb72ed61b65/master.txt"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/965cdb1521e331eb5c668126d34a1969/master.txt"}]}
-
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/965cdb1521e331eb5c668126d34a1969/master.txt"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9d512a15a49180e4db51b2099eeec014/master.txt"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/fc1a4f48cbe59172db2a204c5a1277d2/master.txt"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/dc5285fb98e725d0a6851386120d7b53/master.txt"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/f6cae6feb7db4c1fda64771e0a293346/master.txt"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/333c733c1c257b821320d834257e80b1/master.txt"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/28dbb8e6368d5b9d419b88ae97147aeb/master.txt"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/222ac9279502fc45840bcb683fe7bdc8/master.txt"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e6647b2ede0235b6ae5c33df5206a882/master.txt"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/0188910a74d3982ad521b1cb64ebc6c0/master.txt"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/f6edd7ea91e7b5b12ca1f489e11e1c14/master.txt"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/e577642b07f66e6e5a14e7c5f112e8eb/master.m3u8"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/78d8afaeef82b271876ddfc1fa8c86ea/master.m3u8"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1709af4c917e5b7066599d3472440535/master.txt"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1278a614fec209ca80045cf89dfa931b/master.txt"}]}
     ]
   },
   {
     "title": "Daughter of Fortune พลิกชะตาวิวาห์กิ่งทอง (2026) พากย์ไทย",
-    "updated": "2026-06-14",
+    "updated": "2026-06-21",
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/5352-214x300.jpg",
-    "latest_ep": 7,
+    "latest_ep": 20,
     "total_ep": 24,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5abd4360739fd192a205c1b8f054145e/master.txt"}]},
@@ -160,8 +179,20 @@
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/f73295bcb64305fe9294b6f040fba1a5/master.txt"}]}, 
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/699ba946e5a8636d0364a60816f04caa/master.txt"}]}, 
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/2d5bf3c530ee0955996b0619db629b61/master.txt"}]}, 
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/04e1f8a56580910563c77062f93bcb53/master.txt"}]}
-
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/04e1f8a56580910563c77062f93bcb53/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/3ead31c49e1d5217b1947ed303a4e56d/master.txt"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/6ec64880bb03e4cb656860b8d6870d0e/master.txt"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/b9f6555399e313b6a2899c3d91c072b5/master.txt"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/589ac30c684828c98885ab699b74a7e3/master.txt"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/c834dac098892e94b5a97bbbfbf82e83/master.txt"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b7085fd333d39d7861fc56ebb84ab53a/master.txt"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/f89b0b71827577eea8a3b59fc1c8bce5/master.txt"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/50b6bb754ff78d3191f2d5a98677444e/master.txt"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/adf24f51656127930c495c5396f3e7f1/master.txt"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a43d8fa4531b6633331776b24e8e07e0/master.txt"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5354bc4a312398092cfc652f798f07ad/master.txt"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/af9fe4b05399dae7dde17b1f61845187/master.txt"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/201a757074f78a218adfe07761ecd1fb/master.txt"}]}
     ]
   },
   {
@@ -170,7 +201,7 @@
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/2-214x300.jpg",
-    "latest_ep": 12,
+    "latest_ep": 26,
     "total_ep": 40,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b4e3ce627424f987dbe541e36ceeaff4/master.txt"}]},
@@ -185,8 +216,20 @@
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8a33e924a0b376c191f3ae80643c5c74/master.txt"}]},
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1036344295cb643e19b3fbd285efb16b/master.txt"}]},
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1ed4dfb0f9e7b3df6a5bdfe188587652/master.txt"}]},
-      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/203055a163ff61022ad2285b74011807/master.txt"}]}
-
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/203055a163ff61022ad2285b74011807/master.txt"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/92a9fc9e60fd3b98277d7ee5819437d7/master.txt"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/d71145fb89ecc5d0c0bf5a799476d5ea/master.txt"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/c53e586a35bd9ff33e1819195688c4a9/master.txt"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/05f485f0ac9df493bbdcb1ef169ac8ca/master.txt"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/3755285b00524585887d158c7aaf974d/master.txt"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4f735ba44115cc191a7091616369d2f8/master.txt"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/403321994cd2335ba50e1c43e1b678a8/master.txt"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/6ceaf73faf39c8544a88afc42772f295/master.txt"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/43b60cec9f4ada6875a4b6d0d83ebe3d/master.m3u8"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/304f14792ff827e50d689f05b09de0dd/master.m3u8"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/f7defdecfe2c00d825f9f73e3232a0c1/master.m3u8"}]},
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/827374dc59dd763a823a263660417eae/master.txt"}]},
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/0ea00c1c2dcecb54b64c85750acd9864/master.txt"}]}
     ]
   },
   {
