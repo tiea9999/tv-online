@@ -33,14 +33,14 @@
     "latest_ep": 8,
     "total_ep": 8,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/7f311a4206bc179e0168942191087cfa/master.txt"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/154357bf533983f8fab249940103af8e/master.txt"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/f935cfa05a14deb3c08379c919e80bcb/master.txt"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/61d0c22b5576d598973ab6525bc98214/master.txt"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/334659451b8c139b90df6f4c46b13d45/master.txt"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e4f8899164ceaf4779d1d24a7dc44b3c/master.txt"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/050822bd1c4ae09f201db29b76dfc0f2/master.txt"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a594936af802737a493d04b3d0346666/master.txt"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/344162984f1bb9803a7d103827e3d686/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/092f131f82bd3cdfa2f8139cdb503554/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/17157d6c57e67ce396fd9373cc0bdde2/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/81b317796a96d0fea2e1e55469cd2058/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/7b06472468d0f68ba872ddd11e45d803/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/8123f9af22099adc0a8077751f099fa4/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/16f0728e4345603195c91c28ee2ddabf/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/9c407f7ed71d6e1fa61f89535c4fa6e9/master.txt"}]}
      ]
   },  
   {
