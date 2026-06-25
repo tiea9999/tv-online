@@ -3,34 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>TIEA FULLSCREEN GATE</title>
+<title>TIEA UNMUTE FULLSCREEN GATE</title>
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;overflow:hidden}
-.wrap{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;padding:22px;background:radial-gradient(circle at top,rgba(0,229,255,.18),transparent 42%),#000}
-.box{width:min(720px,96vw);border:1px solid #233;border-radius:22px;background:linear-gradient(180deg,#101010,#050505);padding:22px;text-align:center;box-shadow:0 0 35px rgba(0,229,255,.18)}
-.title{font-size:28px;font-weight:900;color:#00e5ff;margin-bottom:10px}
+html,body{
+  margin:0;width:100%;height:100%;
+  background:#000;color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow:hidden
+}
+.wrap{
+  width:100vw;height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:22px;
+  background:radial-gradient(circle at top,rgba(0,229,255,.22),transparent 42%),#000
+}
+.box{
+  width:min(760px,96vw);
+  border:2px solid rgba(0,229,255,.45);
+  border-radius:24px;
+  background:linear-gradient(180deg,#111,#040404);
+  padding:24px;
+  text-align:center;
+  box-shadow:0 0 45px rgba(0,229,255,.22)
+}
+.title{font-size:30px;font-weight:900;color:#00e5ff;margin-bottom:10px}
+.warn{font-size:22px;font-weight:900;color:#ffd54f;line-height:1.45;margin:12px 0 18px}
 .sub{font-size:14px;color:#bdefff;line-height:1.5;margin-bottom:18px;word-break:break-word}
-.btns{display:grid;grid-template-columns:1fr;gap:12px}
-button{border:0;border-radius:16px;padding:18px 14px;color:#fff;font-size:20px;font-weight:900;cursor:pointer}
-button:focus{outline:3px solid #00e5ff}
-.open{background:#00a85a}.player{background:#00897b}.mx{background:#ff9800}.back{background:#333}
-.note{margin-top:14px;font-size:13px;color:#aaa;line-height:1.45}
-@media(min-width:720px){.btns{grid-template-columns:1fr 1fr}.open{grid-column:1/3}.back{grid-column:1/3}}
+.btns{display:grid;grid-template-columns:1fr;gap:14px}
+button{border:0;border-radius:18px;padding:20px 14px;color:#fff;font-size:22px;font-weight:900;cursor:pointer}
+button:focus{outline:4px solid #00e5ff;box-shadow:0 0 28px rgba(0,229,255,.7)}
+.open{background:linear-gradient(180deg,#00c853,#008b3a)}
+.player{background:linear-gradient(180deg,#009688,#00695c)}
+.mx{background:linear-gradient(180deg,#ff9800,#e06c00)}
+.back{background:#333}
+.note{
+  margin-top:16px;font-size:15px;color:#ddd;line-height:1.55;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:14px;padding:12px
+}
+.big-unmute{
+  display:inline-block;margin-top:8px;padding:8px 12px;
+  border:1px solid #777;border-radius:10px;color:#fff;background:#111;
+  font-size:18px;letter-spacing:1px
+}
+@media(min-width:720px){
+  .btns{grid-template-columns:1fr 1fr}
+  .open{grid-column:1/3}
+  .back{grid-column:1/3}
+}
 </style>
 </head>
 <body>
-<div class="wrap" id="wrap">
+<div class="wrap">
   <div class="box">
-    <div class="title">▶ เปิดเต็มจอ</div>
+    <div class="title">▶ เปิดเว็บต้นทางเต็มจอ</div>
+    <div class="warn">
+      ถ้าเข้าแล้วไม่มีเสียง<br>
+      ให้กดปุ่มบนเว็บว่า
+      <div class="big-unmute">CLICK HERE TO UNMUTE</div>
+    </div>
     <div class="sub" id="urlText">กำลังเตรียมลิงก์...</div>
     <div class="btns">
-      <button class="open" id="openBtn">เปิดเว็บต้นทางเต็มจอ</button>
+      <button class="open" id="openBtn">เปิดเว็บ + พร้อมกดเปิดเสียง</button>
       <button class="player" id="playerBtn">เปิด PLAYER</button>
       <button class="mx" id="mxBtn">เปิด MX</button>
       <button class="back" id="backBtn">ย้อนกลับ</button>
     </div>
-    <div class="note">ถ้ามีภาพแต่ไม่มีเสียง ให้แตะที่จอหรือกดปุ่มลำโพงในเว็บต้นทาง</div>
+    <div class="note">
+      แนะนำ: กดปุ่มสีเขียว แล้วเมื่อเข้าเว็บต้นทาง ให้กดบริเวณปุ่ม “CLICK HERE TO UNMUTE” ด้านบนทันที<br>
+      ถ้าใช้รีโมท ให้กด OK/Enter ที่ปุ่มสีเขียวได้เลย
+    </div>
   </div>
 </div>
 <script>
@@ -40,15 +84,19 @@ document.getElementById('urlText').textContent=url||'ไม่พบลิงก
 
 async function goFull(){
   try{
-    if(document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen();
+    if(document.documentElement.requestFullscreen){
+      await document.documentElement.requestFullscreen();
+    }
   }catch(e){}
   try{
-    if(screen.orientation && screen.orientation.lock) await screen.orientation.lock('landscape');
+    if(screen.orientation && screen.orientation.lock){
+      await screen.orientation.lock('landscape');
+    }
   }catch(e){}
 }
 function openWeb(){
   goFull();
-  setTimeout(()=>{ if(url) location.href=url; },180);
+  setTimeout(()=>{ if(url) location.href=url; },260);
 }
 function openPlayer(mode){
   if(!url)return;
@@ -56,12 +104,18 @@ function openPlayer(mode){
   setTimeout(()=>{
     try{
       const u=new URL(url);
-      let intent='intent://'+u.host+u.pathname+u.search+'#Intent;scheme='+u.protocol.replace(':','')+';action=android.intent.action.VIEW;type=video/*;';
-      if(mode==='mx') intent+='package=com.mxtech.videoplayer.ad;';
+      let intent='intent://'+u.host+u.pathname+u.search+
+        '#Intent;scheme='+u.protocol.replace(':','')+
+        ';action=android.intent.action.VIEW;type=video/*;';
+      if(mode==='mx'){
+        intent+='package=com.mxtech.videoplayer.ad;';
+      }
       intent+='S.browser_fallback_url='+encodeURIComponent(url)+';end';
       location.href=intent;
-    }catch(e){ location.href=url; }
-  },180);
+    }catch(e){
+      location.href=url;
+    }
+  },260);
 }
 document.getElementById('openBtn').onclick=openWeb;
 document.getElementById('playerBtn').onclick=()=>openPlayer('player');
@@ -69,10 +123,22 @@ document.getElementById('mxBtn').onclick=()=>openPlayer('mx');
 document.getElementById('backBtn').onclick=()=>history.back();
 
 document.addEventListener('keydown',e=>{
-  if(e.key==='Enter'||e.keyCode===13||e.keyCode===23){e.preventDefault();openWeb();}
-  if(e.key==='Escape'||e.key==='Backspace'||e.keyCode===10009){e.preventDefault();history.back();}
+  const key=e.key||'';
+  const code=e.keyCode||e.which;
+  if(key==='Enter'||key==='OK'||code===13||code===23){
+    e.preventDefault();
+    openWeb();
+    return;
+  }
+  if(key==='Escape'||key==='Backspace'||code===10009){
+    e.preventDefault();
+    history.back();
+  }
 });
-setTimeout(()=>document.getElementById('openBtn').focus(),200);
+setTimeout(()=>{
+  const b=document.getElementById('openBtn');
+  if(b)b.focus();
+},180);
 goFull();
 </script>
 </body>
