@@ -153,8 +153,8 @@
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4d669056c99c1cbe95468611a73f0dae/master.txt" }]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/2b47a29bfce9b088c155bc5ae58efb51/master.m3u8"}]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1f7fc2fa2e2a9124eb8de804a0a7ffb7/master.txt"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/d4af8f11fbb0e9f7eb1d59a44e29c0a9/master.txt" }]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ddbee887a624ef89e955c8d5a655ad0b/master.txt"}]}    
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/d4af8f11fbb0e9f7eb1d59a44e29c0a9/master.txt" }]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ddbee887a624ef89e955c8d5a655ad0b/master.txt"}]}    
     ]
   },
   {
