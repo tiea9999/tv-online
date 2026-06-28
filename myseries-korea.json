@@ -13,13 +13,33 @@
 
        ]
     },  
+
+
+  {
+    "title": "Notes from the Last Row บันทึกจากหลังห้อง (2026)",
+    "updated": "2026-05-28",
+    "groups": ["series-update","series-china"],
+    "language": "พากย์ไทย",
+    "poster": "https://320hdg.com/wp-content/uploads/2026/06/5.50-1.jpg",
+    "latest_ep": 6,
+    "total_ep": 6,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/cc41991e2f0b283e9053bf56edae68b4/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/e6fa87afbb6c0de00b97430302588200/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a0317b8beae2ecf0a962cb015dda0144/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/e17087308f60967dc01d8d7cecc39a46/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/83823433eb3f7d1734c5b89c42a0c0c9/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/bcf4459fb1a65acc596f91188330ad86/master.txt"}]}
+       ]
+    },  
+  
   {
     "title": "Reborn Rookie มือใหม่หัดแค้น (2026)",
-    "updated": "2026-06-21",
+    "updated": "2026-06-28",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/5350.jpg",
-    "latest_ep": 6,
+    "latest_ep": 8,
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/273d1e972541ea22a2b78abd669fa3d5/master.txt"}]},
@@ -27,17 +47,18 @@
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/609f18f1d2160afe62999d6ec9edc755/master.txt"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/86a9144dccdd3c163a7fb4e6df3cb8c3/master.txt"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/64fe7a4aeaef72eacbdb4448677789a9/master.txt"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/c3e11a199689c4350254aefdc7eb49b1/master.txt"}]}
-      
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/c3e11a199689c4350254aefdc7eb49b1/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/9a902046436e4afe5da40772517218ae/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/3615835e3238b0fc2f62c85ba5ee9657/master.txt"}]}      
       ]
     }, 
   {
     "title": "Fifties Professionals มือโปรห้าสิบพลัส (2026)",
-    "updated": "2026-06-21",
+    "updated": "2026-06-28",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/550-1-214x300.jpg",
-    "latest_ep": 10,
+    "latest_ep": 12,
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1c34a1d7726be17d1df1ba1c999490e2/master.txt"}]},
@@ -49,8 +70,10 @@
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/0b8a31b3a14ee2495e0589eb51a41506/master.txt"}]},
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b0f7fb41e201a77f691b2d4c689edc43/master.txt"}]},
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/0147a39d1ae8a5a0b77d50dcc93ae580/master.txt"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/864582e86588c5ce7adf4c374eb5e57f/master.txt"}]}
-    ]
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/864582e86588c5ce7adf4c374eb5e57f/master.txt"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9813d6ecb7183909deeace419aace29f/master.txt"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/44c21ce1f4f510192017dc3405e64122/master.txt"}]}
+       ]
     }, 
 {
     "title": "หญิงเหล็กศาลเยาวชน พากย์ไทย Juvenile Justice 2022",
@@ -75,11 +98,11 @@
     },     
  {
     "title": "The Scarecrow หุ่นลวงเชือด (2026) พากย์ไทย",
-    "updated": "2026-06-21",
+    "updated": "2026-06-28",
     "groups": ["series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/04/5.20-4.jpg",
-    "latest_ep": 6,
+    "latest_ep": 8,
     "total_ep": 10,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5ae2d684f5e3dcead19be1a6e9bbe864/master.txt" }]},
@@ -87,8 +110,9 @@
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b29e983117a23d68182af6d426011411/master.txt" }]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4d669056c99c1cbe95468611a73f0dae/master.txt" }]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/2b47a29bfce9b088c155bc5ae58efb51/master.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1f7fc2fa2e2a9124eb8de804a0a7ffb7/master.txt"}]}
-    
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1f7fc2fa2e2a9124eb8de804a0a7ffb7/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/d4af8f11fbb0e9f7eb1d59a44e29c0a9/master.txt" }]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/ddbee887a624ef89e955c8d5a655ad0b/master.txt"}]}    
     ]
   },
   {
@@ -320,7 +344,7 @@
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/816dd3b5d31e74730dda8e46e6a5ca60/master.m3u8" }] },
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/43d8ad7de4be95842d588856b140d38f/master.m3u8" }] },
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/5132d5f940d5c28a41a03e17bd7d02f5/master.m3u8" }]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/3819c4dc5ce5da92d6fc5a5783d0445e/master.m3u8" }] }
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/3819c4dc5ce5da92d6fc5a5783d0445e/master.m3u8" }] }
 
     ]
   },
