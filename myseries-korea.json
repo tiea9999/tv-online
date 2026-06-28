@@ -14,7 +14,25 @@
        ]
     },  
 
-
+  {
+    "title": "แพ้เสียงในหัว(ใจ) Something&#8217;s Not Right (2026) ",
+    "updated": "2026-05-28",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://flixmono.com/wp-content/uploads/2026/06/ดูซีรี่ย์-แพ้เสียงในหัวใจ-Somethings-Not-Right-2026-พากย์ไทย-EP1-8-จบ-214x300.jpg",
+    "latest_ep": 8,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5ae9c09897ba3ca2b568c7bab4abf9f0/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/2bbb9e8874fdc4f7eea413db75a9bfcb/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/35383781188c1dab0873b4ee103e0634/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/044fa02ec028d02cc859808e34f99bc0/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/51e96501f62fd6db6d2ad1c6255d7c11/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/206c451c3585fcf169e02a99c162161a/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b05bc784d0f304d8179d72cdee0d3e6e/master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/0ee78a136ad9a76db88fb4ec8a5d6c56/master.txt"}]}
+       ]
+ },        
   {
     "title": "Notes from the Last Row บันทึกจากหลังห้อง (2026)",
     "updated": "2026-05-28",
@@ -75,7 +93,31 @@
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/44c21ce1f4f510192017dc3405e64122/master.txt"}]}
        ]
     }, 
-{
+
+  {
+    "title": "Filing for Love ยื่นคำร้องฉบับเลิฟ (2026) ",
+    "updated": "2026-05-28",
+    "groups": ["series-update","series-korea"],
+    "language": "ซับไทย",
+    "poster": "https://320hdg.com/wp-content/uploads/2026/04/44000.jpg",
+    "latest_ep": 12,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e8415ea21350c2fe76a63e35824978ee/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/8f46ebecd885f0ddfb5e50db89a65f7c/master.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/17a211892c8e373d752d9e11e92e3d4b/master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e8392ea666bd594ff6df393cf9f0f12a/master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8539791fe3ac1fc8b9471b9732e9df0b/master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a6f2bfe6aed05ea2d98b94c40d0ef248/master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b4ba6c958f760ce049f4ed066b6afbba/master.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/cc7c7296dc500151b595b8796411ff38/master.txt"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/d62ffc32ed5cb22c8c2b6274df1aa7d7/master.txt"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/65670b60585b81f7fbdeda0ac847cdbd/master.txt"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/51a6921b44a19ef9cbe182aa0648be1d/master.txt"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4b2e724cf2e123ac2aa855e6837f704d/master.txt"}]}  
+       ]
+    }, 
+      {
     "title": "หญิงเหล็กศาลเยาวชน พากย์ไทย Juvenile Justice 2022",
     "updated": "2026-06-11",
     "groups": ["series-update","series-korea"],
