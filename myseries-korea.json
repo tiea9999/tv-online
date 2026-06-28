@@ -9,7 +9,7 @@
     "total_ep": 10,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a9d1eec5441ada160afbaef03bcbbbd9/master.txt"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/07dc8bfd6a0d4d253c43e2922d916279/master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/07dc8bfd6a0d4d253c43e2922d916279/master.txt"}]}
 
        ]
     },  
