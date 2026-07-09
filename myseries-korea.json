@@ -140,11 +140,11 @@
     },     
  {
     "title": "The Scarecrow หุ่นลวงเชือด (2026) พากย์ไทย",
-    "updated": "2026-06-28",
+    "updated": "2026-07-9",
     "groups": ["series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/04/5.20-4.jpg",
-    "latest_ep": 8,
+    "latest_ep": 10,
     "total_ep": 10,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5ae2d684f5e3dcead19be1a6e9bbe864/master.txt" }]},
@@ -154,7 +154,10 @@
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/2b47a29bfce9b088c155bc5ae58efb51/master.m3u8"}]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1f7fc2fa2e2a9124eb8de804a0a7ffb7/master.txt"}]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/d4af8f11fbb0e9f7eb1d59a44e29c0a9/master.txt" }]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/ddbee887a624ef89e955c8d5a655ad0b/master.txt"}]}    
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/ddbee887a624ef89e955c8d5a655ad0b/master.txt"}]},    
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/f2ad0bd7dd7c9fc9c055fa82ab433c57/index.m3u8" }]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/4dd3f0eb915ed114dd43e200827c6de8/index.m3u8"}]}    
+
     ]
   },
   {
