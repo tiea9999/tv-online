@@ -1,11 +1,11 @@
 [
   {
     "title": "The First Jasmine ชายาเคียงหทัย (2026) พากย์ไทย",
-    "updated": "2026-06-28",
+    "updated": "2026-07-9",
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/2-214x300.jpg",
-    "latest_ep":12,
+    "latest_ep":27,
     "total_ep": 40,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/86b4c4c448f925c963773b1eaa6293b6/master.txt"}]},
@@ -19,8 +19,23 @@
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/77a5d36462c50771239424c77a4e5227master.txt"}]},
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/3b8b7c4db7250d10923a63a790520b73/master.txt"}]},
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a1522006c4c509c2cf1240e8a83ec600/master.txt"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/77f7096de7df6ee176444b44ab64eea9/master.txt"}]}  
-        ]
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/77f7096de7df6ee176444b44ab64eea9/master.txt"}]},  
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/508292fc240efefd91c3edb257325a55/index.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2a065088a0f4d5e375b2bfc971e3a971/index.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7f68004163bd8df3d27fff186d0bd5b1/index.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "master.txt"}]}
+    ]
   }, 
   {
     "title": "อันเล่อจ้วน The Legend of Anle",
