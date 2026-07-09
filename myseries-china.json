@@ -25,7 +25,7 @@
       { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c4f2545d409c41587ed29dab54c44fc9/index.m3u8"}]},
       { "title": "EP16", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/f6db0167cda97501cb8772bf7e8b286b/index.m3u8"}]},
       { "title": "EP17", "servers": [{ "name": "Main", "url": "https://showhd9.com/hls/908c12a23c411aa55ed3ddf603b555ca/master.m3u8"}]},
-      { "title": "EP18", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://showhd9.com/hls/1268914f1ad5783c4b23ccb293af03fa/master.m3u8"}]},
       { "title": "EP19", "servers": [{ "name": "Main", "url": "master.txt"}]},
       { "title": "EP20", "servers": [{ "name": "Main", "url": "master.txt"}]},
       { "title": "EP21", "servers": [{ "name": "Main", "url": "master.txt"}]},
