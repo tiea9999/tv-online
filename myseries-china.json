@@ -5,7 +5,7 @@
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/2-214x300.jpg",
-    "latest_ep":27,
+    "latest_ep":28,
     "total_ep": 40,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/86b4c4c448f925c963773b1eaa6293b6/master.txt"}]},
@@ -24,17 +24,18 @@
       { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ca0db7a3dd77a00706d64fc0c4254ef3/index.m3u8"}]},
       { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c4f2545d409c41587ed29dab54c44fc9/index.m3u8"}]},
       { "title": "EP16", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/f6db0167cda97501cb8772bf7e8b286b/index.m3u8"}]},
-      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://showhd9.com/hls/908c12a23c411aa55ed3ddf603b555ca/master.m3u8"}]},
-      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://showhd9.com/hls/1268914f1ad5783c4b23ccb293af03fa/master.m3u8"}]},
-      { "title": "EP19", "servers": [{ "name": "Main", "url": "master.txt"}]},
-      { "title": "EP20", "servers": [{ "name": "Main", "url": "master.txt"}]},
-      { "title": "EP21", "servers": [{ "name": "Main", "url": "master.txt"}]},
-      { "title": "EP22", "servers": [{ "name": "Main", "url": "master.txt"}]},
-      { "title": "EP23", "servers": [{ "name": "Main", "url": "master.txt"}]},
-      { "title": "EP24", "servers": [{ "name": "Main", "url": "master.txt"}]},
-      { "title": "EP25", "servers": [{ "name": "Main", "url": "master.txt"}]},
-      { "title": "EP26", "servers": [{ "name": "Main", "url": "master.txt"}]},
-      { "title": "EP27", "servers": [{ "name": "Main", "url": "master.txt"}]}
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/b2e6d4a576a07064ad107d4618ba9547/index.m3u8"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/f80516e39859237cdbaeca96acdcf710/index.m3u8"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/2db9045e0ad00259a750618210befcaa/index.m3u8"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/b2e78771a1c2ad5c897a33e2224ab943/index.m3u8"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/d7e3761a756dbcba53e45236ab68fb15/index.m3u8"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/719cd63182c71163494ce699ed856862/index.m3u8"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/719cd63182c71163494ce699ed856862/index.m3u8"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/831101094e42f4adeaec870f510efe5a/index.m3u8"}]},
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/e19047babdbea5a5c715fbf1d76de2f9/index.m3u8"}]},
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/3eceb2ee8e6c020aea6974dc5341cf70/index.m3u8"}]},
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/b38e10561a6b28ac66700ed0885121ec/index.m3u8"}]},
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/adbd5dd07756c0e2f3184df500aae9b6/index.m3u8"}]}      
     ]
   }, 
   {
