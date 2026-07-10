@@ -1,7 +1,31 @@
 [
   {
+    "title": "Doctor on the Edge (2026) หมอติดเกาะรักติดเธอ",
+    "updated": "2026-07-10",
+    "groups": ["series-update","series-korea"],
+    "language": "ซับไทย",
+    "poster": "https://series-fulls.com/wp-content/uploads/2026/06/หมอติดเกาะรักติดเธอ-1.webp",
+    "latest_ep": 12,
+    "total_ep": 12,
+    "episodes": [
+
+       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/d082086516f88cf6ef3d20a3114d786b/index.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/bb567364a916a20c9dd9e19743e60954/index.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/b3e62ce18e20687a4da55e84dc884c7b/index.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/da2eb5ee5d350ded771b6cdf8fc07aa6/index.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/3b26db07ae85aecc991c4b676a152a83/index.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/c122704e3e0223f366f61db1766290fc/index.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/4be2f88a7059cdf694e09b9087654cc7/index.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/f50dc55f1e05ce379dd689e3a460fca2/index.m3u8" }] },
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/7985ea5f60dff052358f01f0f7a3bcbd/index.m3u8" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/2df3b5a92eff901e3880615bbbb2d028/index.m3u8" }] },
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/36b58fe5baf3b6a9798b55013763c573/index.m3u8" }] },
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/84534d924f6b93591b521184a73eb8a7/index.m3u8" }] }
+         ]
+    },
+  {
     "title": "Agent Kim Reactivated สายลับคิมกลับมาแล้ว (2026)",
-    "updated": "2026-06-28",
+    "updated": "2026-07-10",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
     "poster": "https://320hdg.com/wp-content/uploads/2026/06/220.jpg",
@@ -9,7 +33,9 @@
     "total_ep": 10,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a9d1eec5441ada160afbaef03bcbbbd9/master.txt"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/07dc8bfd6a0d4d253c43e2922d916279/master.txt"}]}
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/07dc8bfd6a0d4d253c43e2922d916279/master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/8185a80629259f3065281affea98cb53/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/2bb7cd2cddb6f8a8009127e099cbffe1/index.m3u8"}]}
 
        ]
     },  
@@ -53,11 +79,11 @@
   
   {
     "title": "Reborn Rookie มือใหม่หัดแค้น (2026)",
-    "updated": "2026-06-28",
+    "updated": "2026-07-10",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/05/5350.jpg",
-    "latest_ep": 8,
+    "latest_ep": 12,
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/273d1e972541ea22a2b78abd669fa3d5/master.txt"}]},
@@ -67,8 +93,12 @@
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/64fe7a4aeaef72eacbdb4448677789a9/master.txt"}]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/c3e11a199689c4350254aefdc7eb49b1/master.txt"}]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/9a902046436e4afe5da40772517218ae/master.txt"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/3615835e3238b0fc2f62c85ba5ee9657/master.txt"}]}      
-      ]
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/3615835e3238b0fc2f62c85ba5ee9657/master.txt"}]},      
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/a6b6b21cb27fd3ae345777f810ea1f52/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/d4b16d47cbb898148f6c24b6ad602416/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/255c069caea637efe609db7ecf22f9f1/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/dab23a16b78a03b00713f6e327355810/index.m3u8"}]}      
+    ]
     }, 
   {
     "title": "Fifties Professionals มือโปรห้าสิบพลัส (2026)",
@@ -145,7 +175,7 @@
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/04/5.20-4.jpg",
     "latest_ep": 10,
-    "total_ep": 10,
+    "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5ae2d684f5e3dcead19be1a6e9bbe864/master.txt" }]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/401b90c4ddb0b09e91fee34cfe4b4287/master.txt" }]},
