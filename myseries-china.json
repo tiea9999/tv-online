@@ -62,7 +62,7 @@
     "total_ep": 40,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/86b4c4c448f925c963773b1eaa6293b6/master.txt"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0e1505b59b69119d2d73e164ffdd4d2b/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/5641a965be97a35c6a5b658c75bbab82/index.m3u8"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/59ebfb14fe3277b70636f757c1382950/master.txt"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/078b4c686b459cafafa9f8576bad865f/master.txt"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/51fd1c41e22c9b82ff42e118b4b67466/master.txt"}]},
