@@ -54,11 +54,11 @@
 
   {
     "title": "The First Jasmine ชายาเคียงหทัย (2026) พากย์ไทย",
-    "updated": "2026-07-9",
+    "updated": "2026-07-11",
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/2-214x300.jpg",
-    "latest_ep":28,
+    "latest_ep":29,
     "total_ep": 40,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/86b4c4c448f925c963773b1eaa6293b6/master.txt"}]},
@@ -88,7 +88,9 @@
       { "title": "EP25", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/e19047babdbea5a5c715fbf1d76de2f9/index.m3u8"}]},
       { "title": "EP26", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/3eceb2ee8e6c020aea6974dc5341cf70/index.m3u8"}]},
       { "title": "EP27", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/b38e10561a6b28ac66700ed0885121ec/index.m3u8"}]},
-      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/adbd5dd07756c0e2f3184df500aae9b6/index.m3u8"}]}      
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/adbd5dd07756c0e2f3184df500aae9b6/index.m3u8"}]},      
+      { "title": "EP29", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/15b62ba25de1c1985758e4ba9db49153/index.m3u8"}]}      
+ 
     ]
   }, 
   {
