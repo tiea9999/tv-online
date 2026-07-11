@@ -170,7 +170,7 @@
     },     
  {
     "title": "The Scarecrow หุ่นลวงเชือด (2026) พากย์ไทย",
-    "updated": "2026-07-10",
+    "updated": "2026-07-11",
     "groups": ["series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/04/5.20-4.jpg",
@@ -188,6 +188,7 @@
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/f2ad0bd7dd7c9fc9c055fa82ab433c57/index.m3u8" }]},
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6b73bcb68b354939b064765f91fd8b30/index.m3u8"}]},    
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fa586749dd93734fc3a224f99f8f184e/index.m3u8"}]}    
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/62edb00693d04d10de4107809feb9aa2/index.m3u8"}]}    
 
     ]
   },
