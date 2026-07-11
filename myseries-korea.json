@@ -187,7 +187,7 @@
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/ddbee887a624ef89e955c8d5a655ad0b/master.txt"}]},    
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/f2ad0bd7dd7c9fc9c055fa82ab433c57/index.m3u8" }]},
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6b73bcb68b354939b064765f91fd8b30/index.m3u8"}]},    
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fa586749dd93734fc3a224f99f8f184e/index.m3u8"}]}    
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fa586749dd93734fc3a224f99f8f184e/index.m3u8"}]},    
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/62edb00693d04d10de4107809feb9aa2/index.m3u8"}]}    
 
     ]
