@@ -1,6 +1,21 @@
 [
   {
     "title": "Doctor on the Edge (2026) หมอติดเกาะรักติดเธอ",
+    "updated": "2026-07-12",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/07/The-Apartment-Job-2026-204x300.jpg",
+    "latest_ep": 1,
+    "total_ep": 12,
+    "episodes": [
+
+       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/d3350ca28c98b8cde88f98dd/d3350ca28c98b8cde88f98dd438.m3u8" }] }
+         ]
+    },
+
+  
+  {
+    "title": "Doctor on the Edge (2026) หมอติดเกาะรักติดเธอ",
     "updated": "2026-07-10",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
