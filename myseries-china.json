@@ -73,9 +73,9 @@
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/ee4d6772320d3db13d623d24262a15b1/index.m3u8"}]},
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/427435ec4b849bb28120e95c0dcbc4e6/index.m3u8"}]},
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/c9cc5859e73caca31fc7582cc8900915/index.m3u8"}]},  
-      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/508292fc240efefd91c3edb257325a55/index.m3u8"}]},
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ca0db7a3dd77a00706d64fc0c4254ef3/index.m3u8"}]},
-      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c4f2545d409c41587ed29dab54c44fc9/index.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/508292fc240efefd91c3edb257325a55/index.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/2a065088a0f4d5e375b2bfc971e3a971/index.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/7f68004163bd8df3d27fff186d0bd5b1/index.m3u8"}]},
       { "title": "EP16", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/f6db0167cda97501cb8772bf7e8b286b/index.m3u8"}]},
       { "title": "EP17", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/b2e6d4a576a07064ad107d4618ba9547/index.m3u8"}]},
       { "title": "EP18", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/f80516e39859237cdbaeca96acdcf710/index.m3u8"}]},
@@ -88,8 +88,8 @@
       { "title": "EP25", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/e19047babdbea5a5c715fbf1d76de2f9/index.m3u8"}]},
       { "title": "EP26", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/3eceb2ee8e6c020aea6974dc5341cf70/index.m3u8"}]},
       { "title": "EP27", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/b38e10561a6b28ac66700ed0885121ec/index.m3u8"}]},
-      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/adbd5dd07756c0e2f3184df500aae9b6/index.m3u8"}]},      
-      { "title": "EP29", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/15b62ba25de1c1985758e4ba9db49153/index.m3u8"}]},      
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/e334cde6fea374a5d1506d4e7d8be370/index.m3u8"}]},      
+      { "title": "EP29", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/91369c24ffc18b45784e30ba41400eb3/index.m3u8"}]},      
       { "title": "EP30", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/15b62ba25de1c1985758e4ba9db49153/index.m3u8"}]} 
     ]
   }, 
