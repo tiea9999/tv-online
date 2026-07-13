@@ -21,8 +21,8 @@
     "groups": ["series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://320hdg.com/wp-content/uploads/2024/10/3.0-214x300.jpg",
-    "latest_ep": 1,
-    "total_ep": 30,
+    "latest_ep": 16,
+    "total_ep": 16,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f37a0b3a2778c8ff056599fed6d6f76e/index.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70d59d772bff1f5c45fe536620234cf2/index.m3u8"}]},
@@ -48,8 +48,8 @@
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
     "poster": "https://320hdg.com/wp-content/uploads/2024/10/3.0-214x300.jpg",
-    "latest_ep": 1,
-    "total_ep": 30,
+    "latest_ep": 16,
+    "total_ep": 16,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f6204677a026dd63afaef094afd09e06/index.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/93b04f97288bf1ef0408f99a05d360df/index.m3u8"}]},
