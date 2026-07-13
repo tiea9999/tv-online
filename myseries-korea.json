@@ -15,7 +15,25 @@
        { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/353fffbcaed50ba5c504ce055ce61809/index.m3u8" }] } 
     ]
     },
-  
+   {
+    "title": "The Killer’s Shopping List ลิสต์นักฆ่า ล่าผ่าร้าน (2022)",
+    "updated": "2026-07-13",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://goseries4k.com/wp-content/uploads/2026/07/77-1.jpg",
+    "latest_ep": 8,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2122c4454eac838bf21b004deb7ef431/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/56180dc7ed648b8a9faf8003cc0d9179/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8fecda53ee4e56a109437f4d02fe448f/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5345d4e933e94710eae97ab0cd3cd207/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b504f0bfee8b308f61300d49ffd61ac4/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/75e39e8d19c3cda27c54873ef8dbfd4d/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9c8ae8df60b22d174e07a20e6441a519/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cffeda368109d62114add59ba5c9f651/index.m3u8"}]} 
+    ]
+    },      
   {
     "title": "Doctor on the Edge (2026) หมอติดเกาะรักติดเธอ",
     "updated": "2026-07-13",
