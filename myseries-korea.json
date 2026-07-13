@@ -35,6 +35,30 @@
     ]
     },      
   {
+    "title": "Filing for Love ยื่นคำร้องฉบับเลิฟ (2026) ",
+    "updated": "2026-07-13",
+    "groups": ["series-update","series-korea"],
+    "language": "ซับไทย ",
+    "poster": "https://goseries4k.com/wp-content/uploads/2026/04/9999.jpg",
+    "latest_ep": 12,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f95e041b416059f46128511c4561928a/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5f1ba5e2dbe34d9ede3bb90060e0a724/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/be1598e440483fb02b8c7d9a9d9ebab2/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7f425c6c3aaa9c9d0be4caf6f82fa5ab/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7f425c6c3aaa9c9d0be4caf6f82fa5ab/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8d48ab6c8d9242952b717d82d66f6f42/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/81d5b5147f2f36c62f9bfc7e8f2fe720/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2ee645c1b15dc53af38f23e63e302617/index.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/04a77f3b0b77134cdb154b656c48a35f/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0aaa122598ce34e2b1deb2a8e724cd11/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d4d4f4c096fe0792ff7f69c865d68eea/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c2abe53e097518ffffe208b5aeba610e/index.m3u8"}]}
+       ]
+    },  
+  
+  {
     "title": "Doctor on the Edge (2026) หมอติดเกาะรักติดเธอ",
     "updated": "2026-07-13",
     "groups": ["series-update","series-korea"],
@@ -92,6 +116,8 @@
        ]
     },  
 
+
+  
   {
     "title": "แพ้เสียงในหัว(ใจ) Something&#8217;s Not Right (2026)",
     "updated": "2026-05-28",
