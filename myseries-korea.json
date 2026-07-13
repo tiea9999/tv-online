@@ -15,7 +15,62 @@
        { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/353fffbcaed50ba5c504ce055ce61809/index.m3u8" }] } 
     ]
     },
-   {
+  {
+    "title": "ครอบครัวหัวใจลิขิตเอง Family By Choice",
+    "updated": "2026-07-13",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://320hdg.com/wp-content/uploads/2024/10/3.0-214x300.jpg",
+    "latest_ep": 1,
+    "total_ep": 30,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f37a0b3a2778c8ff056599fed6d6f76e/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70d59d772bff1f5c45fe536620234cf2/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0d045182f6036d9cf072ea48aae3e63e/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/20394e14174dddaa9c1c37df0d0acf42/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/477ae929d9aa80a78de31c57fecd905a/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/833d6125a7ce84560a2ea7a065f831e7/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ff471065f685f8d9c2cc7ed3b1c5a20f/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c14bbb1ce23b228f1b16d43c9b7f1a85/index.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/63a2b784526c598c49dbe88108e5b313/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/da84077034ac78e433cf0989d7ed9010/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e1c1cbdbec57f5bcc348140d9838dde3/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70e7de27c2f69d235a56b4c0bb52beeb/index.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3216d8a6cf27d1079fd625f4a09f79d1/index.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70e7de27c2f69d235a56b4c0bb52beeb/index.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e70dd4048a3b224e0248eb1c7a9e7291/index.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/61f2d3fabb19fbb954b120ad441a60f0/index.m3u8"}]}
+    ]
+  }, 
+  {
+    "title": "ครอบครัวหัวใจลิขิตเอง Family By Choice ซับไทย",
+    "updated": "2026-07-13",
+    "groups": ["series-update","series-korea"],
+    "language": "ซับไทย",
+    "poster": "https://320hdg.com/wp-content/uploads/2024/10/3.0-214x300.jpg",
+    "latest_ep": 1,
+    "total_ep": 30,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "master.txt"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "master.txt"}]}
+    ]
+  }, 
+  
+  {
     "title": "The Killer’s Shopping List ลิสต์นักฆ่า ล่าผ่าร้าน (2022)",
     "updated": "2026-07-13",
     "groups": ["series-update","series-korea"],
