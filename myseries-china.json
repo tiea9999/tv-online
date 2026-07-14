@@ -56,7 +56,7 @@
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/2-214x300.jpg",
-    "latest_ep":31,
+    "latest_ep":32,
     "total_ep": 40,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/693c4d6768325d54b61588b1d80bb0da/index.m3u8"}]},
