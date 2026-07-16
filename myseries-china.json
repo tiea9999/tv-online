@@ -91,7 +91,7 @@
       { "title": "EP31", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2db9045e0ad00259a750618210befcaa/index.m3u8"}]}, 
       { "title": "EP32", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d26910a623b779aa0e0bad54c71606f7/index.m3u8"}]}, 
       { "title": "EP33", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b2257530a01eb91b4a80db555bd38ef1/index.m3u8"}]}, 
-      { "title": "EP34", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/16a6d037ecb28b6f96b699788416a8cf/index.m3u8"}]} 
+      { "title": "EP34", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/16a6d037ecb28b6f96b699788416a8cf/index.m3u8"}]}, 
       { "title": "EP35", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2b8439b7b0930185621dbb19ad51768f/index.m3u8"}]} 
         
     ]
