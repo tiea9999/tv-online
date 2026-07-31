@@ -55,7 +55,7 @@
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://320hdr.com/wp-content/uploads/2026/06/2-214x300.jpg",
-    "latest_ep":35,
+    "latest_ep":40,
     "total_ep": 40,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/693c4d6768325d54b61588b1d80bb0da/index.m3u8"}]},
@@ -92,8 +92,12 @@
       { "title": "EP32", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d26910a623b779aa0e0bad54c71606f7/index.m3u8"}]}, 
       { "title": "EP33", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b2257530a01eb91b4a80db555bd38ef1/index.m3u8"}]}, 
       { "title": "EP34", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/16a6d037ecb28b6f96b699788416a8cf/index.m3u8"}]}, 
-      { "title": "EP35", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2b8439b7b0930185621dbb19ad51768f/index.m3u8"}]} 
-        
+      { "title": "EP35", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2b8439b7b0930185621dbb19ad51768f/index.m3u8"}]}, 
+     { "title": "EP36", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/150e55a41dd9945533fa53a0e4b06ba2/index.m3u8"}]}, 
+      { "title": "EP37", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/05575c919798a0af22e8e3f3c163006d/index.m3u8"}]}, 
+      { "title": "EP38", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a8abb30f532afcb3f7e6901e1b552c66/index.m3u8"}]}, 
+      { "title": "EP39", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9ed042c3986a11b54d572eacd5a185ad/index.m3u8"}]}, 
+      { "title": "EP40", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/747cdb04543ba79d7a056d1e2c71197b/index.m3u8"}]}       
     ]
   }, 
   {
