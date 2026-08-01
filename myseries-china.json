@@ -52,7 +52,7 @@
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c1d22e3cec44363aeaafbf15abdb12fe/index.m3u8" }]},
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/afce30c379bfe6b4be3bfa7379fb6090/index.m3u8" }]},
       { "title": "EP23", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5b81b072b2192a39f0e6d6d9e27d755c/index.m3u8" }]},
-      { "title": "EP24", "servers": [{ "name": "Main", "url": "" }]}
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://moddepp.com/api/stream/c1c862dbe9857305ae41b8531ec82bc8/index.m3u8?token=41a804988558ee933a865dcce0247a659c4a235333ffc2f274fe5783de980d6a&expires=1785555087&parent=320hdg.com" }]}
     ]
   },
   {
