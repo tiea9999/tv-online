@@ -1,4 +1,28 @@
 [
+
+    {
+    "title": "The Bionic Life (2023) ไขคดีปริศนามนุษย์ไบโอนิค",
+    "updated": "2026-08-1",
+    "groups": ["series-update","series-china"],
+    "language": "พากย์ไทย",
+    "poster": "https://goseries4k.com/wp-content/uploads/2023/11/ไขคดีปริศนามนุษย์ไบโอนิค.jpg",
+    "latest_ep":12,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c32bfa62fe540f5ac6aa3e40a38f9b89/index.m3u8" }]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2c5d4b139d2a5ed599d2efc7c63db497/index.m3u8" }]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/be920b0f55f9048588fc02eee8366873/index.m3u8" }]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ac8284090a33f72c1774c73558c36150/index.m3u8" }]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3f236f92227e76d109c95288f559fdf9/index.m3u8" }]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d10b0c1bb2ed3e0c044f616b1cfaff04/index.m3u8" }]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bccd7d1d8e303b37356817484b89a66b/index.m3u8" }]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1eb7b01c4a9075f4fa7d23ae73e5e710/index.m3u8" }]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a6f18ffe57aeff710d01ff14b945705f/index.m3u8" }]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8b27eb5dc039fca5ea914c747a8b5936/index.m3u8" }]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/79c8cceb955d1613108b3bd988ef4bd7/index.m3u8" }]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/83fab0018e175c33896aa507684f9d38/index.m3u8" }]}
+    ]
+  },      
   {
     "title": "Follow My Dear General ปล่อยใจไปตามท่านแม่ทัพ (2026) ",
     "updated": "2026-08-1",
