@@ -324,7 +324,52 @@
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a32573aee117028efab8a68b9d8377ff/index.m3u8" }]}
        ]
     },  
-
+  {
+    "title": "The Practical Guide to Love เดตที่ชอบ กับคนที่ใช่ (2026)",
+    "updated": "2026-08-2",
+    "groups": ["series-update","series-korea"],
+    "language": "ซับไทย ",
+    "poster": "https://goseries4k.com/wp-content/uploads/2026/02/885.jpg",
+    "latest_ep":12,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7abaa2cc68d069e5dec009e0cb6c0ded/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e7c1360c2fff1c9cd8633a7b07e4dfd9/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ef6cde8072640fb27615fbfc24eaf3cf/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0bf4cd5cbf790c3e9d451b30e73d603c/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/dc57c93ddc8cc6a3e7ceffdd83929a4d/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/818f1791b685a7e56b4ae5883e87a1a7/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/82dcf4493a2940be285a766e0749d146/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3c5840c83f06a6b47f884b1a71322c55/index.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/11a4f291492e37df65d5df806434e5c7/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d12a59ce8ed14a4a155e5d19bb7e62d1/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fcb00abf056bb3a58579f29bd4ea3da3/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c4b28170ab2f72373150e7dec5ad65eb/index.m3u8"}]}
+    ]
+    },
+  {
+    "title": "The Practical Guide to Love เดตที่ชอบ กับคนที่ใช่ (2026)",
+    "updated": "2026-08-2",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://320hdg.com/wp-content/uploads/2026/02/440-1.jpg",
+    "latest_ep":12,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7abaa2cc68d069e5dec009e0cb6c0ded/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/83c5a7fdd9b89d81ead2db27d07a9b4c/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ef6cde8072640fb27615fbfc24eaf3cf/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0bf4cd5cbf790c3e9d451b30e73d603c/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/dc57c93ddc8cc6a3e7ceffdd83929a4d/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/818f1791b685a7e56b4ae5883e87a1a7/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/82dcf4493a2940be285a766e0749d146/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3c5840c83f06a6b47f884b1a71322c55/index.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c998bb2ea0ff6559ea81f0e5f26d59a8/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d12a59ce8ed14a4a155e5d19bb7e62d1/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fcb00abf056bb3a58579f29bd4ea3da3/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/961261c165f7beff79ec44d3e3a20bb9/index.m3u8"}]}
+    ]
+    },
 
   
   {
