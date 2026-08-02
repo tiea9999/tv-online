@@ -1,5 +1,77 @@
 [
   {
+    "title": "See You at Work Tomorrow! เจอกันที่ออฟฟิศพรุ่งนี้นะ! (2026) ",
+    "updated": "2026-08-2",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://320hdg.com/wp-content/uploads/2026/06/5.5200.jpg",
+    "latest_ep":12,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e963f04ecfa7cf397bdb6768f74ce448/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4ea64e01373499eb00d440a8d432c3d8/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2656a4a0dbda98e2f411789816772c4c/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fab3b1bf7e25aeccd911b1dee1607fb3/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/100e285aaadef01c73e0a884bd659a0d/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4e3313c77a1528afb77679543e15f57f/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3cf2d0b1feda3c07c6724ee7f06486ec/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/414339d8cc322ead629f269451824227/index.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/74a7d94436ed6e1d5ccbe0adfe146690/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/595637cd42616013418f4e456b98d403/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fdec21c170b76a08520fe44e0136684f/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/949882d93d7a2794fd1af50a2ef861bd/index.m3u8"}]}
+    ]
+    },
+
+  {
+    "title": "The Legend of Kitchen Soldier บันทึกครัวค่ายทหาร (2026) พากย์ไทย",
+    "updated": "2026-08-2",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://320hdg.com/wp-content/uploads/2026/05/800.jpg",
+    "latest_ep":12,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a054759da78fffc20c17e112e4b17899/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/989358bf4e834e5f4e6e14780c637a98/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/79504de636b03e0d90d897fd1087a59d/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f532896bb04e8ddc0311cbbe7d7e2d0a/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0f0c69824e1daf3e1d3fc77b050b36b6/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7e0d53697e03993d761034e962c0e782/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/19252d2f0ebe8939afcd2268f97f8cf7/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5b1472e41d95b1e884785af5671588d9/index.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3f5a9f77ea8e35c976c5a453d33fe35a/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/df475c79c51cc6edb7b76e9196c65f6e/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c603a4c8d4b1d499d480e17d6ec314d7/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/845dcf90cba6eff4fa28ddb1651ac317/index.m3u8"}]}
+    ]
+    },
+
+  {
+    "title": "Doctor on the Edge หมอติดเกาะรักติดเธอ (2026) พากย์ไทย",
+    "updated": "2026-08-2",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://320hdg.com/wp-content/uploads/2026/05/520.jpg",
+    "latest_ep":12,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d082086516f88cf6ef3d20a3114d786b/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bb567364a916a20c9dd9e19743e60954/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b3e62ce18e20687a4da55e84dc884c7b/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/da2eb5ee5d350ded771b6cdf8fc07aa6/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/da2eb5ee5d350ded771b6cdf8fc07aa6/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ecafc90f47d5b3c007e2c6961d7cc259/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70f161d5e492f1be0442f0a0aa336b49/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bc3a65333222fe42e64ea0fc992ff5ba/index.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7985ea5f60dff052358f01f0f7a3bcbd/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2df3b5a92eff901e3880615bbbb2d028/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/510d7a80de6613df764a0f85ae494f05/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/94e809a7cde5131623b45882c6ed3582/index.m3u8"}]}
+    ]
+    },
+  
+  {
     "title": "The Husband คืนล่าก่อนหย่า (2026)พากย์ไทย ",
     "updated": "2026-08-2",
     "groups": ["series-update","series-korea"],
