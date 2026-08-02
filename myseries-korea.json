@@ -1,18 +1,40 @@
 [
   {
+    "title": "The Husband คืนล่าก่อนหย่า (2026)พากย์ไทย ",
+    "updated": "2026-08-2",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://goseries4k.com/wp-content/uploads/2026/06/9-14.jpg",
+    "latest_ep": 2,
+    "total_ep": 12,
+    "episodes": [
+
+       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9ba064da76515108752a29b2a08cc7d9/index.m3u8" }] },
+       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/99f0cd50ed1558df83620e811bed66e7/index.m3u8" }] },
+ 
+    ]
+    },
+  
+  {
     "title": "The Husband คืนล่าก่อนหย่า (2026) ",
-    "updated": "2026-07-13",
+    "updated": "2026-08-2",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
     "poster": "https://320hdg.com/wp-content/uploads/2026/07/500.jpg",
-    "latest_ep": 4,
+    "latest_ep": 9,
     "total_ep": 12,
     "episodes": [
 
        { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a4be2d06a4b3301459bc302a4e1862da/index.m3u8" }] },
        { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/41ab146e430e93a12d43acd10dbc9ab7/index.m3u8" }] },
        { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9a67d01e1f82ac600e7d1b27ee6742c5/index.m3u8" }] },
-       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/353fffbcaed50ba5c504ce055ce61809/index.m3u8" }] } 
+       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/353fffbcaed50ba5c504ce055ce61809/index.m3u8" }] }, 
+       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c4145211f971ee808bba24e2a5a627bf/index.m3u8" }] },
+       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a19d58812fa84d6d144502ab6ecccde0/index.m3u8" }] },
+       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/862b2d8e757cb89b6d71e70ec59f1cdc/index.m3u8" }] },  
+       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bf007b020945f78a3f103bc7a226fafe/index.m3u8" }] },
+       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6d0f048fadbcb7fb7a0e188a39c82c4b/index.m3u8" }] }  
+ 
     ]
     },
   {
@@ -124,8 +146,16 @@
     "episodes": [
 
        { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8786aae7788d60a74e6c3cbc278bcef2/index.m3u8" }] },
-       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3faedb409075fed8ac60f5e3fe0c78a6/index.m3u8" }] }
- 
+       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3faedb409075fed8ac60f5e3fe0c78a6/index.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a1aaf7f9b647fe5d0a9c39711779ccf4/index.m3u8" }]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e74293db5a7bc00f7a7a9d41c74fc99d/index.m3u8" }]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fe4d536a9bb1f03759473ec2dca0627e/index.m3u8" }]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0eb952c1762e7d7ba0f03d24f6a46b26/index.m3u8" }]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/78c6a4328ba89200ec291ca4859275c2/index.m3u8" }]} 
+
+    
+    
+    
     ]
     },
 
@@ -166,8 +196,13 @@
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a9d1eec5441ada160afbaef03bcbbbd9/master.txt"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/07dc8bfd6a0d4d253c43e2922d916279/master.txt"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/8185a80629259f3065281affea98cb53/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/2bb7cd2cddb6f8a8009127e099cbffe1/index.m3u8"}]}
-
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/2bb7cd2cddb6f8a8009127e099cbffe1/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5e242353f6f4824d826af80fdf926136/index.m3u8" }]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1d4fa127536bfa62b8138de4b6d991ae/index.m3u8" }]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/58961a0cc8703eb59c6a0d55ad211378/index.m3u8" }]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/57e6770500b47b70d33e8d873a947dee/index.m3u8" }]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bc2710cec022887aba9e510dfd3a0cf7/index.m3u8" }]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a32573aee117028efab8a68b9d8377ff/index.m3u8" }]}
        ]
     },  
 
