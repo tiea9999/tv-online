@@ -46,7 +46,7 @@
     ]
     },
   {
-    "title": "",
+    "title": "A Shop for Killers (ร้านลับนักฆ่า) ซีซัน 2 (2026) พากย์ไทย",
     "updated": "2026-08-2",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย ",
@@ -69,12 +69,12 @@
     "latest_ep":4,
     "total_ep": 8,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4bbd4194efd0afabc0a11690237b1947/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3dc6aff9558caa397265ce2f4fe91063/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f696b041cd40b836d097b526c748ecc2/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ec3d6444fdc9f6a9a482dc8cffce250e/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c9e023a4e27cc363014d56bd54a25ac4/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5f39c38891ea4cb5379ee810f0009439/index.m3u8"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://vdohls.com/HPF2_1Cv0-ooK/video.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://vdohls.com/O_sAcs-nNv5Up/video.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://vdohls.com/2Z2My1_4Y-dl3/video.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://vdohls.com/Ddi_X3lfm-Vcb/video.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://vdohls.com/NSILthyK_d-Sh/video.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://vdohls.com/05_Qj-A3DRrqw/video.m3u8"}]}
     ]
     },
     {
