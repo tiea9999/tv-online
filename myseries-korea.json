@@ -137,11 +137,10 @@
     "title": "Moonshine (2021) ",
     "updated": "2026-08-2",
     "groups": ["series-update","series-korea"],
-    "language": "ซับไทย ",
+    "language": "พากย์ไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2022/09/Moonshine1.webp",
-    "latest_ep":5,
-    "total_ep": 12,
-    "episodes": [
+    "latest_ep":16,
+    "total_ep": 16,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/78118a4c369e4c160140721dc042e78c/index.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5b06ef3e4c9ff025ec6f58a915d101ae/index.m3u8"}]},
@@ -161,8 +160,7 @@
       { "title": "EP16", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bd0ccbbc355b31fdd3826aad0ea687f1/index.m3u8"}]}
     ]
     },
-
-  {
+{
     "title": "ครอบครัวหัวใจลิขิตเอง Family By Choice",
     "updated": "2026-07-13",
     "groups": ["series-update","series-korea"],
