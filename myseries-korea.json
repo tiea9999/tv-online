@@ -26,9 +26,11 @@
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4c697fd424d2758e47898051bdd97a7d/index.m3u8"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9a0daa837e33195f7ee39f14de000a6f/index.m3u8"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e7afb4277b37bb41e62557797d3c2153/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/51487816c7dbb782062764c62b06cfdd/index.m3u8"}]},    ]
-  { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/498dde1b93e295947fc30f0d9d9e5be6/index.m3u8"}]} 
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/51487816c7dbb782062764c62b06cfdd/index.m3u8"}]},    
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/498dde1b93e295947fc30f0d9d9e5be6/index.m3u8"}]} 
+    ]
     },
+
   {
     "title": "The Husband คืนล่าก่อนหย่า (2026) ",
     "updated": "2026-08-2",
