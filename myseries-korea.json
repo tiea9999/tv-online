@@ -152,11 +152,7 @@
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fe4d536a9bb1f03759473ec2dca0627e/index.m3u8" }]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0eb952c1762e7d7ba0f03d24f6a46b26/index.m3u8" }]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/78c6a4328ba89200ec291ca4859275c2/index.m3u8" }]} 
-
-    
-    
-    
-    ]
+   ]
     },
 
   
