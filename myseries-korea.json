@@ -94,7 +94,23 @@
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/498dde1b93e295947fc30f0d9d9e5be6/index.m3u8"}]} 
     ]
     },
-
+    {
+    "title": "ผีดิบคลั่ง บัลลังก์เดือด ภาค1",
+    "updated": "2026-08-2",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://goseries4k.com/wp-content/uploads/2020/08/10.jpg",
+    "latest_ep": 6,
+    "total_ep": 6,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/89157ef544a76dd756f79df16897bf77/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/213ae73e94b380093127987123da5a80/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9739043afad57d68207eb09cb7290f21/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7dc7682388630ef415aba5d80db81eb7/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f8f47353004fd9069f9a74374b1cd0ff/index.m3u8"}]},    
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/093ffcdb566f6bdc90abf5ba159351a3/index.m3u8"}]} 
+    ]
+    },
   {
     "title": "The Husband คืนล่าก่อนหย่า (2026) ",
     "updated": "2026-08-2",
