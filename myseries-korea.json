@@ -165,18 +165,18 @@
     "total_ep": 12,
     "episodes": [
 
-       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/d082086516f88cf6ef3d20a3114d786b/index.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/bb567364a916a20c9dd9e19743e60954/index.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/b3e62ce18e20687a4da55e84dc884c7b/index.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/da2eb5ee5d350ded771b6cdf8fc07aa6/index.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/3b26db07ae85aecc991c4b676a152a83/index.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/c122704e3e0223f366f61db1766290fc/index.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/4be2f88a7059cdf694e09b9087654cc7/index.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/f50dc55f1e05ce379dd689e3a460fca2/index.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/7985ea5f60dff052358f01f0f7a3bcbd/index.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/2df3b5a92eff901e3880615bbbb2d028/index.m3u8" }] },
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/36b58fe5baf3b6a9798b55013763c573/index.m3u8" }] },
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/84534d924f6b93591b521184a73eb8a7/index.m3u8" }] }
+       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d082086516f88cf6ef3d20a3114d786b/index.m3u8" }] },
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bb567364a916a20c9dd9e19743e60954/index.m3u8" }] },
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b3e62ce18e20687a4da55e84dc884c7b/index.m3u8" }] },
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/da2eb5ee5d350ded771b6cdf8fc07aa6/index.m3u8" }] },
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/da2eb5ee5d350ded771b6cdf8fc07aa6/index.m3u8" }] },
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c122704e3e0223f366f61db1766290fc/index.m3u8" }] },
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4be2f88a7059cdf694e09b9087654cc7/index.m3u8" }] },
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f50dc55f1e05ce379dd689e3a460fca2/index.m3u8" }] },
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7985ea5f60dff052358f01f0f7a3bcbd/index.m3u8" }] },
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2df3b5a92eff901e3880615bbbb2d028/index.m3u8" }] },
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/510d7a80de6613df764a0f85ae494f05/index.m3u8" }] },
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/94e809a7cde5131623b45882c6ed3582/index.m3u8" }] }
          ]
     },
   {
@@ -188,10 +188,10 @@
     "latest_ep": 2,
     "total_ep": 10,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a9d1eec5441ada160afbaef03bcbbbd9/master.txt"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/07dc8bfd6a0d4d253c43e2922d916279/master.txt"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/8185a80629259f3065281affea98cb53/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/2bb7cd2cddb6f8a8009127e099cbffe1/index.m3u8"}]},
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5dd430b24f4984ecbf19519f13ee0414/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9f156d78e0ef6bbf668c9111f145d86b/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3d919454ac917df6c14f360556f06e40/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e985750350b99d89c56101ac517878b3/index.m3u8"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5e242353f6f4824d826af80fdf926136/index.m3u8" }]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1d4fa127536bfa62b8138de4b6d991ae/index.m3u8" }]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/58961a0cc8703eb59c6a0d55ad211378/index.m3u8" }]},
@@ -231,12 +231,12 @@
     "latest_ep": 6,
     "total_ep": 6,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/cc41991e2f0b283e9053bf56edae68b4/master.txt"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/e6fa87afbb6c0de00b97430302588200/master.txt"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a0317b8beae2ecf0a962cb015dda0144/master.txt"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/e17087308f60967dc01d8d7cecc39a46/master.txt"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/83823433eb3f7d1734c5b89c42a0c0c9/master.txt"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/bcf4459fb1a65acc596f91188330ad86/master.txt"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/aebdf2cef60934aee5eb1a6adc8e0531/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2abcba4b1e9f297774a116f0c41d1057/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/13bd80684b389951cf1485d63b8e3c55/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ea1760d7549daaa5450de66e46253668/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7a2176f4fce23e35f3912403cd471305/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d391af7f44c253c8ff50b604a566c21f/index.m3u8"}]}
        ]
     },  
   
@@ -249,18 +249,18 @@
     "latest_ep": 12,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/273d1e972541ea22a2b78abd669fa3d5/master.txt"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/6650a181cea1089a7fc26d0d59d07802/master.txt"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/609f18f1d2160afe62999d6ec9edc755/master.txt"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/86a9144dccdd3c163a7fb4e6df3cb8c3/master.txt"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/64fe7a4aeaef72eacbdb4448677789a9/master.txt"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/c3e11a199689c4350254aefdc7eb49b1/master.txt"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/9a902046436e4afe5da40772517218ae/master.txt"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/3615835e3238b0fc2f62c85ba5ee9657/master.txt"}]},      
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/a6b6b21cb27fd3ae345777f810ea1f52/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/d4b16d47cbb898148f6c24b6ad602416/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/255c069caea637efe609db7ecf22f9f1/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/dab23a16b78a03b00713f6e327355810/index.m3u8"}]}      
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7dde2ad3ca283399668685850d6281cb/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5a8cdf248cbde4969eb3f3fe37f2f872/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1369b4457c0a8f480117f40a8c7572fa/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5de1b7467fd9d8a97c1d3c2c2aa5b3e7/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70eb1415f3969b6e935c746594c63848/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bad344163d480678b4f7cd2b6c7f4c33/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8ee43f6461f096fd4fefb46aa31698e1/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/54e40286e900ceb948b51794df8e91a8/index.m3u8"}]},      
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6538037be34c81e4400e902a1760d96e/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/10f09e0bab7ca3ae6a449604464ef2f1/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cd97a3f0c0fd82268b3aee2e1f354e1b/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b2aeb14ff6e22b9c87235ab71adfaad6/index.m3u8"}]}      
     ]
     }, 
   {
@@ -272,18 +272,18 @@
     "latest_ep": 12,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1c34a1d7726be17d1df1ba1c999490e2/master.txt"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/38ab26c9682fc38a7276d3f6d4abf414/master.txt"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a976fe8afd3786d74479422c047accd1/master.txt"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9061bab57a8d1403ac333ae949d6fe8f/master.txt"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9a0c51480b0044e8a3f38dfc15efabf2/master.txt"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/dbe8b7febb28924d5083c7d45c090076/master.txt"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/0b8a31b3a14ee2495e0589eb51a41506/master.txt"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b0f7fb41e201a77f691b2d4c689edc43/master.txt"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/0147a39d1ae8a5a0b77d50dcc93ae580/master.txt"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/864582e86588c5ce7adf4c374eb5e57f/master.txt"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/9813d6ecb7183909deeace419aace29f/master.txt"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/44c21ce1f4f510192017dc3405e64122/master.txt"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c7a7b593706b23216deb91c7cab4dbee/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c58512865dff792cd2a7f7fb3edfe8a1/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/57c7c95140276210edf912988b4e575c/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/444fd08abf3445f28fc2836da917654d/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4546fd38d4592f06f1ec03e3aca34267/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b69e16aa74d4e3f73616876b212f0283/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/28b78eecf62b7a541e0367d5eb47f9a3/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cfd32ffc715edc0a66c10a44ffd6823a/index.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d82426c0bb7f19ef67c7632679f411b1/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/77fc359da43fc8935e06d7d426647c35/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9526a8c3d1dfd99fd1ab7ce9c9b5f979/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/18b561c3b36df320291631b40fbe4405/index.m3u8"}]}
        ]
     }, 
 
@@ -296,18 +296,18 @@
     "latest_ep": 12,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e8415ea21350c2fe76a63e35824978ee/master.txt"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/8f46ebecd885f0ddfb5e50db89a65f7c/master.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/17a211892c8e373d752d9e11e92e3d4b/master.txt"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/e8392ea666bd594ff6df393cf9f0f12a/master.txt"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/8539791fe3ac1fc8b9471b9732e9df0b/master.txt"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/a6f2bfe6aed05ea2d98b94c40d0ef248/master.txt"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b4ba6c958f760ce049f4ed066b6afbba/master.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/cc7c7296dc500151b595b8796411ff38/master.txt"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/d62ffc32ed5cb22c8c2b6274df1aa7d7/master.txt"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/65670b60585b81f7fbdeda0ac847cdbd/master.txt"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/51a6921b44a19ef9cbe182aa0648be1d/master.txt"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4b2e724cf2e123ac2aa855e6837f704d/master.txt"}]}  
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f95e041b416059f46128511c4561928a/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5f1ba5e2dbe34d9ede3bb90060e0a724/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/be1598e440483fb02b8c7d9a9d9ebab2/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7f425c6c3aaa9c9d0be4caf6f82fa5ab/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/534cd0e216cd6230d7e7f2dc8278bdcf/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8d48ab6c8d9242952b717d82d66f6f42/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/81d5b5147f2f36c62f9bfc7e8f2fe720/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2ee645c1b15dc53af38f23e63e302617/index.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/04a77f3b0b77134cdb154b656c48a35f/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0aaa122598ce34e2b1deb2a8e724cd11/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d4d4f4c096fe0792ff7f69c865d68eea/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c2abe53e097518ffffe208b5aeba610e/index.m3u8"}]}  
        ]
     }, 
       {
@@ -340,15 +340,15 @@
     "latest_ep": 11,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/5ae2d684f5e3dcead19be1a6e9bbe864/master.txt" }]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/401b90c4ddb0b09e91fee34cfe4b4287/master.txt" }]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/b29e983117a23d68182af6d426011411/master.txt" }]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/4d669056c99c1cbe95468611a73f0dae/master.txt" }]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-nah.com/hls/2b47a29bfce9b088c155bc5ae58efb51/master.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://servcdn2.cumpon1.com/api/files/1f7fc2fa2e2a9124eb8de804a0a7ffb7/master.txt"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/d4af8f11fbb0e9f7eb1d59a44e29c0a9/master.txt" }]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://imsvg.com/api/files/ddbee887a624ef89e955c8d5a655ad0b/master.txt"}]},    
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://getplay-cdn.com/api/stream/f2ad0bd7dd7c9fc9c055fa82ab433c57/index.m3u8" }]},
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f23a947ca4d8f2c27a1bc0591ac91750/index.m3u8" }]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fe7fcc9bbe78a7beca1513024ed90586/index.m3u8" }]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/306a8fb018d9b488ddf91643197f2d07/index.m3u8" }]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4c4343dfa10cd69c3f338a4c33dab728/index.m3u8" }]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/009c7abab2a60c698f5e3ec392d051c0/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d97cd8d0694b18246d0e1a9bc2ebb2b9/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f264f076094dc1077fb0a011b37631ec/index.m3u8" }]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a14cdc174b1e00bd0c7bb97654b011c9/index.m3u8"}]},    
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f2ad0bd7dd7c9fc9c055fa82ab433c57/index.m3u8" }]},
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6b73bcb68b354939b064765f91fd8b30/index.m3u8"}]},    
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fa586749dd93734fc3a224f99f8f184e/index.m3u8"}]},    
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/62edb00693d04d10de4107809feb9aa2/index.m3u8"}]}    
