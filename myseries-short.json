@@ -589,13 +589,7 @@
     "language": "พากย์ไทย",
     "servers": [
 {"name": "Main","url": "https://ok-hd.com/hls/e5a2d2e13efc6306daaaf6d2930e4913/master.m3u8"}]},
- {
-    "title": "2002อีกครั้ง",
-    "groups": ["series-update","series-short"],
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/03/2002อีกครั้ง-1.webp",
-    "language": "พากย์ไทย",
-    "servers": [
-{"name": "Main","url": "https://ok-hd.com/hls/5d3c9f762618d4a8d6384546d94b9f32/master.m3u8"}]},
+
  {
     "title": "สวรรค์บัญชาการ",
     "groups": ["series-update","series-short"],
