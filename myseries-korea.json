@@ -73,63 +73,71 @@
   
   {
     "title": "The Husband คืนล่าก่อนหย่า (2026)พากย์ไทย ",
-    "updated": "2026-08-2",
+    "updated": "2026-08-7",
     "groups": ["series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/06/9-14.jpg",
-    "latest_ep": 2,
+    "latest_ep": 4,
     "total_ep": 12,
     "episodes": [
 
        { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9ba064da76515108752a29b2a08cc7d9/index.m3u8"}]},
-       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/99f0cd50ed1558df83620e811bed66e7/index.m3u8"}]}
+       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/99f0cd50ed1558df83620e811bed66e7/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0f589854cfc32f429e6642bca8393d4b/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f8a139ac8e45afde26b4e0ff33a9048e/index.m3u8"}]}
     ]
     },
     {
     "title": "Spooky in Love สะดุดรักกุ๊กกุ๊กกู๋ (2026) ",
-    "updated": "2026-08-2",
+    "updated": "2026-08-7",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย ",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/07/1-1.jpg",
-    "latest_ep":5,
+    "latest_ep":6,
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/14deae6fdbbfb2badd6be3668dcdc4f5/index.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8d37de3dfdfc3c7239d867500700df0a/index.m3u8"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/497f0f5c6d0ba35309c25ed0f78de82a/index.m3u8"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7c74158b8a208666cd298429b50eb8a1/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/92b7903b6546f5f1e0ae2a0efadcd25d/index.m3u8"}]}
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/92b7903b6546f5f1e0ae2a0efadcd25d/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/aae8c92c51563d8f4e24da1ac08d236c/index.m3u8"}]}
     ]
     },
 
   {
     "title": "A Shop for Killers (ร้านลับนักฆ่า) ซีซัน 2 (2026) พากย์ไทย",
-    "updated": "2026-08-2",
+    "updated": "2026-08-7",
     "groups": ["series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://320hdg.com/wp-content/uploads/2026/07/100.jpg",
-    "latest_ep":4,
+    "latest_ep":6,
     "total_ep": 8,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/dc9df6854ac7b82f693527105f2a2282/index.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/975969ee9cdcc6afd290aadcda9793bd/index.m3u8"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/21b9641509cf467adf67f510d2d1e5c5/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/20dbce89407b97c81b1f9a2cc3c9b3c3/index.m3u8"}]}
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/20dbce89407b97c81b1f9a2cc3c9b3c3/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8a56344614f2086b547bfe2617ed3f96/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cb766b5e561e8ec7ac850409aee99184/index.m3u8"}]}
     ]
     },
   {
     "title": "A Shop for Killers (ร้านลับนักฆ่า) ซีซัน 2 (2026) พากย์ไทย",
-    "updated": "2026-08-2",
+    "updated": "2026-08-7",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย ",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/07/2-1.jpg",
-    "latest_ep":4,
+    "latest_ep":6,
     "total_ep": 8,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ffcd8b69cfbbf7dc029ee5b3892516d2/index.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7043e108234248fef3af7c904b67c7b3/index.m3u8"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c8eea3ab3093bf3607366ab673f62e7a/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/154130a0f0d8dbd9755fa335602811c8/index.m3u8"}]}
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/154130a0f0d8dbd9755fa335602811c8/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d000d20fd7b7365c133dd03e9f2cfdc2/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/64641d34875adc2857dcb799de676b18/index.m3u8"}]}
+
     ]
     },
   {
@@ -138,8 +146,8 @@
     "groups": ["series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2022/12/Connect.jpg",
-    "latest_ep":4,
-    "total_ep": 8,
+    "latest_ep":6,
+    "total_ep": 6,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://vdohls.com/HPF2_1Cv0-ooK/video.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://vdohls.com/O_sAcs-nNv5Up/video.m3u8"}]},
@@ -163,7 +171,7 @@
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9a0daa837e33195f7ee39f14de000a6f/index.m3u8"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e7afb4277b37bb41e62557797d3c2153/index.m3u8"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/51487816c7dbb782062764c62b06cfdd/index.m3u8"}]},    
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/498dde1b93e295947fc30f0d9d9e5be6/index.m3u8"}]} 
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/498dde1b93e295947fc30f0d9d9e5be6/index.m3u8"}]} 
     ]
     },
     {
@@ -180,7 +188,7 @@
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9739043afad57d68207eb09cb7290f21/index.m3u8"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7dc7682388630ef415aba5d80db81eb7/index.m3u8"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f8f47353004fd9069f9a74374b1cd0ff/index.m3u8"}]},    
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/093ffcdb566f6bdc90abf5ba159351a3/index.m3u8"}]} 
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/093ffcdb566f6bdc90abf5ba159351a3/index.m3u8"}]} 
     ]
     },
   {
