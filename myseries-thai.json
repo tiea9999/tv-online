@@ -60,23 +60,28 @@
      ]
   },  
   {
-    "title": "หงสาวดี",
-    "language": "พากย์ไทย",
+    "title": "The Scammer Games (2026) เกมส์โกงเกมส์ ",
+    "language": "พากย์ไทย",    "updated": "2026-08-7",
     "groups": ["series","series-thai"],
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/03/หงสาวดี-1.webp",
-    "latest_ep": 10,
-    "total_ep": 10,
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/07/The-Scammer-Games-2026-เกมส์โกงเกมส์.jpg",
+    "latest_ep": 15,
+    "total_ep": 15,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/8868fb1e1497d8016323b930c4f63198/master.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/2e3f65f4a3770350b139ca28d0aabb4c/master.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/db253eb647c16f88e2caf37e619b7c6e/master.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/13dfcc395dea2eee4b630b477f50a50b/master.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/b5f92d765370826d8fc282bed512f04f/master.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/183e147b7e5990efa948a1cdc41ac134/master.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/388078e8515a2f4633d51318dc381adb/master.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/44ecf7356d822ecb91f4c20d5461ede1/master.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/92bc8abaeb14de383f636d021ec3c07c/master.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://ok-hd.com/hls/f46e0a9b493bbecb80433321c88c5bdb/master.m3u8" }] }
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/bcf092cc3b4f8a7a90f4de0a/bcf092cc3b4f8a7a90f4de0a.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/dc922000beb2211d19739f37/dc922000beb2211d19739f37.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d313c9ae152d7f007c076fe6/d313c9ae152d7f007c076fe6.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/6d8ec2fa6baa00dffcdcd2c7/6d8ec2fa6baa00dffcdcd2c7.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d089cf9ec66c541c2a3ef092/d089cf9ec66c541c2a3ef092.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/9b21f45001489390b6875fac/9b21f45001489390b6875fac.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/5d093c71361de607938fcf5d/5d093c71361de607938fcf5d.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d9af9a5ce20aa92b990e7ff0/d9af9a5ce20aa92b990e7ff0.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/3d62ad2b7ce635682a8cfa82/3d62ad2b7ce635682a8cfa82.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/fce5edbe02bd944e13f777c9/fce5edbe02bd944e13f777c9.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/566cb45cce162e92ee03e487/566cb45cce162e92ee03e487.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/3e0bde01848fa20cbfb8c468/3e0bde01848fa20cbfb8c468.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/e57ddce7d03b51481afab42c/e57ddce7d03b51481afab42c.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/3d9c05b456ae608e6fde2f52/3d9c05b456ae608e6fde2f52.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/6b197d299f5caf52a29ee325/6b197d299f5caf52a29ee325.m3u8"}]}
     ]
   },  
   {
