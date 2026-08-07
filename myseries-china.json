@@ -880,10 +880,11 @@
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/8eaab9235f58a6912d164e44/8eaab9235f58a6912d164e44.m3u8"}]},
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d4068f14057a9ce6c40060fb/d4068f14057a9ce6c40060fb.m3u8"}]},
       { "title": "EP23", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/772a44609358a4ac509cedaf/772a44609358a4ac509cedaf.m3u8"}]},
-      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/703fa6b0bb656876e5544c95/703fa6b0bb656876e5544c95.m3u8"}]}
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/703fa6b0bb656876e5544c95/703fa6b0bb656876e5544c95.m3u8"
+      }]}
       ]
   }
-]
+
 
 
 
