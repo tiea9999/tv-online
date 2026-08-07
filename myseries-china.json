@@ -121,11 +121,11 @@
   
   {
     "title": "Princess Zhaoyang องค์หญิงเจาหยาง (2026)",
-    "updated": "2026-08-1",
+    "updated": "2026-08-7",
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/07/2-4.jpg",
-    "latest_ep":10,
+    "latest_ep":18,
     "total_ep": 18,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6c589e454161a918c340dd5ce316756e/index.m3u8" }] },
@@ -137,16 +137,24 @@
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e96e0753ebf81887350124531192b96d/index.m3u8" }] },
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e0198ada1e3221c76477faff28ee22fd/index.m3u8" }] },
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/62eb1bfda37f5bfbc238270d0c870f5c/index.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e32df2e184f1ba5d8b54958899c5c333/index.m3u8" }] }
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e32df2e184f1ba5d8b54958899c5c333/index.m3u8" }]},
+       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a2d90e21157cb39abab1355b293bd95a/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/680f3799a3f4890b844f3a123f380a44/index.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bc1bf7114b68016716d0b15af7c7a07d/index.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9bb1761a7c194aad6812ff5c00bab434/index.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1c502e3d688374b368f1ba14df259321/index.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ea2bda5da237ae08767807e41995302f/index.m3u8"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/acbd16430403efea5c2ecf67af5aa888/index.m3u8"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4904721941ced24f1ee4be64ec279a86/index.m3u8"}]}
     ]
   },
   {
     "title": " Overdo รักเกินแค้น-หากวินาทีนั้นไม่พบเธอ (2026)พากย์ไทย ",
-    "updated": "2026-08-1",
+    "updated": "2026-08-7",
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://320hdg.com/wp-content/uploads/2026/07/5.5010.jpg",
-    "latest_ep":24,
+    "latest_ep":33,
     "total_ep": 33,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/da5e4eebd97056e93134445258a3ce1c/index.m3u8" }]},
@@ -172,16 +180,25 @@
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c1d22e3cec44363aeaafbf15abdb12fe/index.m3u8" }]},
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/afce30c379bfe6b4be3bfa7379fb6090/index.m3u8" }]},
       { "title": "EP23", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5b81b072b2192a39f0e6d6d9e27d755c/index.m3u8" }]},
-      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/6688a7fbfeb45a5786497ab0/6688a7fbfeb45a5786497ab0.m3u8" }]}
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/6688a7fbfeb45a5786497ab0/6688a7fbfeb45a5786497ab0.m3u8" }]},
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9a0d7ad0c56bab5dbd257a4bc6a600d5/index.m3u8"}]},
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d0fde145e6da16827e7862159d5cf57b/index.m3u8"}]},
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9bda9f43f71bf6365f480269ff429427/index.m3u8"}]},
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/11a0628a277917d7e6f69297fe999911/index.m3u8"}]},
+      { "title": "EP29", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0c77229cdfb229d2fdd0cbab80a443e8/index.m3u8"}]},
+      { "title": "EP30", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3067e09566fa3375e2b2c750d65563c7/index.m3u8"}]},
+      { "title": "EP31", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1930d244c129c75ee96f64417f4b9a26/index.m3u8"}]},
+      { "title": "EP32", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c981810068a33bf309964f8f81c4d751/index.m3u8"}]},
+      { "title": "EP33", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/63462470575c98c47e26a03fa06a7e2c/index.m3u8"}]}
     ]
   },
   {
     "title": " Overdo รักเกินแค้น-หากวินาทีนั้นไม่พบเธอ (2026)ซับไทย ",
-    "updated": "2026-08-1",
+    "updated": "2026-08-7",
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/07/1784439703765.jpg",
-    "latest_ep":24,
+    "latest_ep":33,
     "total_ep": 33,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5b81b072b2192a39f0e6d6d9e27d755c/index.m3u8" }]},
@@ -207,7 +224,16 @@
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f4cef67b3789f4f30821f9e95078118c/index.m3u8" }]},
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ef19bcde0f57aab3cd577ea204513eec/index.m3u8" }]},
       { "title": "EP23", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9dcbdd94977c6b0b4dbc0845b029cda4/index.m3u8" }]},
-      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/07c1b8b9c89170fa705fff1af151362b/index.m3u8" }]}
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/07c1b8b9c89170fa705fff1af151362b/index.m3u8" }]},
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ee95ba1e4a78aa2dc3d43de17b25074e/index.m3u8"}]},
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2ba785c1854f258c0b7f679f3d74beac/index.m3u8"}]},
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5edd638a1cacac66f6d1aaedc0ad76b1/index.m3u8"}]},
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e483b5d62b5aa5065fc76635e2d623d4/index.m3u8"}]},
+      { "title": "EP29", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2d8c84bafe22af6970bcc69c741704ff/index.m3u8"}]},
+      { "title": "EP30", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/99bff54cf8586a2cfe704d05a3a5711c/index.m3u8"}]},
+      { "title": "EP31", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1ea06f9343422721c0e462a8d2e2bb66/index.m3u8"}]},
+      { "title": "EP32", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a1fb4db66aecd38bdffbbe11d36e2889/index.m3u8"}]},
+      { "title": "EP33", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/16567a3d91f5bb0a75ebb98bf710bb02/index.m3u8"}]}
     ]
   },
 
