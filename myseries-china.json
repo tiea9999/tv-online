@@ -306,15 +306,7 @@
       { "title": "EP33", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/16567a3d91f5bb0a75ebb98bf710bb02/index.m3u8"}]}
     ]
   },
-
-
-
-
-
-
-
-  
-  {
+ {
     "title": "Love Has Fireworks (2026) เมื่อรักส่องประกาย",
     "updated": "2026-07-10",
     "groups": ["series-update","series-china"],
@@ -891,7 +883,7 @@
       { "title": "EP24", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/703fa6b0bb656876e5544c95/703fa6b0bb656876e5544c95.m3u8"}]}
       ]
   }
-
+]
 
 
 
