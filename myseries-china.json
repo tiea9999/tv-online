@@ -22,7 +22,7 @@
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/07/1-7.jpg",
-    "latest_ep":36,
+    "latest_ep":20,
     "total_ep": 36,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ae2c319eb66867bc1a3e575ed468500e/index.m3u8"}]},
@@ -54,7 +54,7 @@
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/07/1-7.jpg",
-    "latest_ep":36,
+    "latest_ep":9,
     "total_ep": 36,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/46c669bc24f11907d0167cfa8bae90a5/index.m3u8"}]},
