@@ -1,5 +1,29 @@
 [
   {
+    "title": " A Superior Day (2022) ",
+    "updated": "2026-08-8",
+    "groups": ["series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://goseries4k.com/wp-content/uploads/2022/08/A-Superior-Day-2022.webp",
+    "latest_ep":8,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4c5de7b30d12c433d295206ecb8d5fe0/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1a74ce8b73cbb3b69ccc40a61ac68e8a/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d5cf62623e55b2e09eb497443c08ffd6/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/08be19c90a0bc9c9d412bf8c657b5318/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/072b9134e4edd326672b4a9773025154/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f6a7743ca878b9c3bdd34cf555e49603/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7b42574601ed8148fd61d9578c7ce6a1/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/852e888de46818f1f6ccd996f13a3b1f/index.m3u8"}]}
+    ]
+  },
+
+
+
+
+  
+  {
     "title": "See You at Work Tomorrow! เจอกันที่ออฟฟิศพรุ่งนี้นะ! (2026) ",
     "updated": "2026-08-2",
     "groups": ["series-update","series-korea"],
