@@ -19,8 +19,19 @@
     ]
   },
 
+  {
+    "title": "Flex X Cop 2 คุณชายสายสืบ ซีซั่น 2 (2026)",
+    "updated": "2026-08-8",
+    "groups": ["series-update","series-korea"],
+    "language": "ซับไทย",
+    "poster": "https://goseries4k.com/wp-content/uploads/2026/08/9-1.png",
+    "latest_ep":1,
+    "total_ep": 14,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cd414e443da71d4a55e50484622d0955/index.m3u8"}]}
 
-
+    ]
+  },
 
   
   {
