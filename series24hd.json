@@ -1,6 +1,29 @@
 [
 {
+    "title": "คิงส์ทาวน์ เมืองเดือดคนขบถ 1 (Mayor of Kingstown)",
+    "updated": "2026-08-8",
+    "groups": ["series-update","series-series24hd"],    
+    "language": "พากย์ไทย ",
+    "poster": "https://goseries4k.com/wp-content/uploads/2025/03/1-14.jpg",
+    "latest_ep": 10,
+    "total_ep": 10,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4d293a035cadadd56936f3ebd344e754/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b7cdffaa8d8083872a133ca8995f7dc7/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9d4dceedd2ed08ad5108e71d67720ef5/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/658dfedaf2eb02179c96da91dc39bc23/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ba2410a70e9a008f3b928d09025b74a8/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d47dddf29a0b9fac2f488210d378ec6c/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/eb28b72147614490ebd2a4decc3880f7/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ed7bfa40094e805b623107fcce4a3ad1/index.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/99facbfca3c1795ae51af332947c8321/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9d1b7962cfe4b84ef00149dd4fac9167/index.m3u8"}]}
+    ]
+  },    
+{
     "title": "Dark Winds Season 3 (2025) ",
+    "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],    
     "language": "ซับไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2026/04/Dark-Winds-Season-3-2025-e1776823515413.webp",
     "latest_ep": 1,
@@ -18,6 +41,8 @@
  },      
  {
     "title": "The Beauty (2026) ",
+    "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],        
     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2026/03/The-Beauty-2026.webp",
     "latest_ep": 1,
@@ -39,6 +64,8 @@
  },      
  {
     "title": "Scarpetta (2026) สการ์เพ็ตตา ผ่าคดีนิติเวช",
+    "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],      
     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2026/03/Scarpetta-2026.webp",
     "latest_ep": 1,
@@ -56,6 +83,8 @@
  },      
  {
     "title": "Man vs Baby (2025)",
+    "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],        
     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/12/Man-vs-Baby-2025.webp",
     "latest_ep": 1,
@@ -69,6 +98,8 @@
  },      
  {
     "title": "City of Shadows (2025) เมืองซ่อนเขา",
+     "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],       
     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/12/City-of-Shadows-2025.webp",
     "latest_ep": 1,
@@ -84,6 +115,8 @@
  },      
  {
     "title": "Talamasca The Secret Order (2025) ทาลามาสกา ภาคีลี้ลับ",
+     "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],       
     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/12/Talamasca-The-Secret-Order-2025.webp",
     "latest_ep": 1,
@@ -99,7 +132,9 @@
  },      
  {
     "title": "Stranger Things Season 5 (2025) สเตรนเจอร์ ธิงส์ ซีซั่น 5",
-    "language": "พากย์ไทย",
+    "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],   
+     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/07/Stranger-Things-Season-5-2025-e1753081106926.webp",
     "latest_ep": 1,
     "total_ep": 8,
@@ -116,7 +151,9 @@
  },      
  {
     "title": "Boots (2025) หลักสูตรชีวิตนาวิกน้องใหม่",
-    "language": "พากย์ไทย",
+    "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],   
+     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/10/Boots-2025.webp",
     "latest_ep": 1,
     "total_ep": 8,
@@ -133,7 +170,9 @@
  },      
  {
     "title": "High Potential Season 2 (2025) ",
-    "language": "ซับไทย",
+     "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],   
+     "language": "ซับไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/10/High-Potential-Season-2-2025.webp",
     "latest_ep": 1,
     "total_ep": 18,
@@ -159,7 +198,9 @@
  },      
  {
     "title": "Shafted (2025) ยอดชายนายซูเปอร์ ",
-    "language": "พากย์ไทย",
+     "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],   
+     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/10/Shafted-2025.webp",
     "latest_ep": 1,
     "total_ep": 6,
@@ -174,7 +215,9 @@
  },      
  {
     "title": "Nero the Assassin (2025) กาลครั้งหนึ่งของนักฆ่า",
-    "language": "พากย์ไทย",
+     "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],   
+     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/10/Nero-the-Assassin-2025.webp",
     "latest_ep": 1,
     "total_ep": 8,
@@ -191,7 +234,9 @@
  },      
  {
     "title": "The Game You Never Play Alone (2025)",
-    "language": "ซับไทย",
+     "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],   
+     "language": "ซับไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/10/The-Game-You-Never-Play-Alone-2025.webp",
     "latest_ep": 1,
     "total_ep": 7,
@@ -207,7 +252,9 @@
  },      
  {
     "title": "Monster The Ed Gein Story (2025) ปีศาจ เรื่องราวของเอ็ด กีน ",
-    "language": "พากย์ไทย",
+     "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],   
+     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/10/Monster-The-Ed-Gein-Story-2025.webp",
     "latest_ep": 1,
     "total_ep": 8,
@@ -224,7 +271,9 @@
  },      
  {
     "title": "House of Guinness (2025) เฮาส์ ออฟ กินเนสส์ ",
-    "language": "พากย์ไทย",
+     "updated": "2026-07-10",
+    "groups": ["series-update","series-series24hd"],   
+     "language": "พากย์ไทย",
     "poster": "https://www.24hd.net/wp-content/uploads/2025/10/House-of-Guinness-2025.webp",
     "latest_ep": 1,
     "total_ep": 8,
