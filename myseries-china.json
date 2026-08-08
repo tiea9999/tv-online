@@ -18,7 +18,7 @@
   },
   {
     "title": "Mystic Nine เก้าสกุล (2026) ซับไทย",
-    "updated": "2026-08-8",ซับไทย",
+    "updated": "2026-08-8",
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/07/1-7.jpg",
@@ -50,9 +50,9 @@
 
   {
     "title": "Mystic Nine เก้าสกุล (2026) พากย์ไทย",
-    "updated": "2026-08-8",พากย์ไทย",
+    "updated": "2026-08-8",
     "groups": ["series-update","series-china"],
-    "language": "ซับไทย",
+    "language": "พากย์ไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/07/1-7.jpg",
     "latest_ep":9,
     "total_ep": 36,
@@ -69,7 +69,41 @@
     ]
   },
 
-
+  {
+    "title": "Twenty Five Twenty One (2022) ยี่สิบห้า ยี่สิบเอ็ด ",
+    "updated": "2026-08-8",
+    "groups": ["series-update","series-china"],
+    "language": "พากย์ไทย",
+    "poster": "https://goseries4k.com/wp-content/uploads/2022/06/twenty-five-twenty-one-1.webp",
+    "latest_ep":24,
+    "total_ep": 24,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9dcee38f1281410c18f9f62fb3d34e03/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c309ed89584d30f8bac0697cdbe7dac7/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9a8aa10eb198b794e319dde422b37c07/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f4a0f82374648965b0b300800e4d9086/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9decec8f1e3a82c12875dda97ffb918f/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/431d327b04dd6dd606e830a5f42b041b/index.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ce69db9f490f3b4bac05f4ceb08a3739/index.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2bad0d87b68e96c8773a7416d71edf7b/index.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7cebb16aae98447063ab9a27cd6586b1/index.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c36199017ec4e55b2fb58fbf221ef62c/index.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6f04a26f207c08f2596de4f53c264502/index.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8ffb20baefa031d53950bddd2d8294b1/index.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/73501bdca6799d431d467c0c6b566e9a/index.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/313673b56e3ffce77db29463670dd0e0/index.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a878f280f492b94d5877e6d91ca3d655/index.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7271442bfbc42a548e01bbde6955a731/index.m3u8"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/48e46d54a9c7b0494364c2a318d6c82f/index.m3u8"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/feef0085111e725b445aac8689599696/index.m3u8"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c40fd7e5ac86aa6154b0471e54ed925f/index.m3u8"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/78c4ba525e524e76479ade28a01be61e/index.m3u8"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/97abe4a7737b10f03c8e3194d0a4bf6b/index.m3u8"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c73186f6598ba639da96dc72bb2477e0/index.m3u8"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e77ba5b750290147b6ca49390c124dac/index.m3u8"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/82826d5750b00133173c20b41a8f7f5d/index.m3u8"}]}
+    ]
+  },
 
 
 
