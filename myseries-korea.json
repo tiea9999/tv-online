@@ -186,11 +186,11 @@
     },
   {
     "title": "The Husband คืนล่าก่อนหย่า (2026) ",
-    "updated": "2026-08-2",
+    "updated": "2026-08-9",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
     "poster": "https://320hdg.com/wp-content/uploads/2026/07/500.jpg",
-    "latest_ep": 9,
+    "latest_ep": 10,
     "total_ep": 12,
     "episodes": [
 
@@ -202,7 +202,8 @@
        { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a19d58812fa84d6d144502ab6ecccde0/index.m3u8"}]},
        { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/862b2d8e757cb89b6d71e70ec59f1cdc/index.m3u8"}]},
        { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bf007b020945f78a3f103bc7a226fafe/index.m3u8"}]},
-       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6d0f048fadbcb7fb7a0e188a39c82c4b/index.m3u8"}]}  
+       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6d0f048fadbcb7fb7a0e188a39c82c4b/index.m3u8"}]},  
+       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/899d24ce958c9a264eef0d21e100663f/index.m3u8"}]}  
  
     ]
     },
