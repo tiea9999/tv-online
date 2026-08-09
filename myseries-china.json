@@ -1,7 +1,7 @@
 [
   {
     "title": " เปลี่ยนชะตาราชินี Echoes of the Self (2025)",
-    "updated": "2026-07-10",
+    "updated": "2026-08-9",
     "groups": ["series-update","series-china"],
     "language": "พากย์ไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2025/12/99-1-320x480.jpg",
@@ -52,6 +52,23 @@
       { "title": "EP42", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/452249c663eea9f72de84f1330bdec6e/index.m3u8"}]},
       { "title": "EP43", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/609ad02988876c7f632509bad6b070e4/index.m3u8"}]},
       { "title": "EP44", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7df33d26af4902d844b60ef485bb1962/index.m3u8"}]}
+    ]
+  },
+  {
+    "title": "เล่ห์รักวังต้องห้าม เจ้าหญิงผจญภัย",
+    "updated": "2026-08-9",
+    "groups": ["series-update","series-china"],
+    "language": "พากย์ไทย",
+    "poster": "https://goseries4k.com/wp-content/uploads/2020/10/เล่ห์รักวังต้องห้าม-เจ้าหญิงผจญภัย.jpg",
+    "latest_ep":6,
+    "total_ep": 6,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/953a7e801cf2872e0acd44a9cd908e32/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/716d98d9f7e34197154f6674de5e52c7/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b652454f75ec618b714cae88c027c1bb/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/56be57a18484fb41e41e2ff16e98e5ca/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3de8b559bcbbb56b21287013ece95ef3/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/323e91633460af2a02d44b6d6438dcb5/index.m3u8"}]}
     ]
   },
 
