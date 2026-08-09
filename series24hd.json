@@ -1,13 +1,29 @@
 [
-
-
-  
   {
-    "title": "",
+    "title": "Unfamiliar สายลับซ่อนเร้น (2026) ",
     "updated": "2026-08-9",
     "groups": ["series-update","series-series24hd"],  
     "language": "พากย์ไทย",
-    "poster": "",
+    "poster": "https://goseries4k.com/wp-content/uploads/2026/02/999-320x480.jpg",
+    "latest_ep":3,
+    "total_ep": 10,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b9304b35bc92d25bbe2f8fbdf2761751/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b4850634c41794d4aab716b9aa6cc3d1/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cbe91017f047d3db189639bfb18d5d51/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9c92ef4db390037cc23e765b9d3d5dd7/index.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3bdf60e41db84f1535135c7f2a690f37/index.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/172d37e4ed2cb15895b904e43cf1531f/index.m3u8"}]}
+    ]
+  },
+
+  
+  {
+    "title": "สจ๊วตล่มแผนกู้จักรวาล Stuart Fails to Save the Universe (2026) ",
+    "updated": "2026-08-9",
+    "groups": ["series-update","series-series24hd"],  
+    "language": "พากย์ไทย",
+    "poster": "https://goseries4k.com/wp-content/uploads/2026/07/1-5-342x480.jpg",
     "latest_ep":3,
     "total_ep": 10,
     "episodes": [
