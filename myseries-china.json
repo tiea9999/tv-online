@@ -420,12 +420,12 @@
   
   {
     "title": "Princess Zhaoyang องค์หญิงเจาหยาง (2026)",
-    "updated": "2026-08-7",
+    "updated": "2026-08-9",
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/07/2-4.jpg",
-    "latest_ep":18,
-    "total_ep": 18,
+    "latest_ep":20,
+    "total_ep": 36,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6c589e454161a918c340dd5ce316756e/index.m3u8" }] },
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1ad3e38059675f70857542ff088a312b/index.m3u8" }] },
@@ -444,7 +444,10 @@
       { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1c502e3d688374b368f1ba14df259321/index.m3u8"}]},
       { "title": "EP16", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ea2bda5da237ae08767807e41995302f/index.m3u8"}]},
       { "title": "EP17", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/acbd16430403efea5c2ecf67af5aa888/index.m3u8"}]},
-      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4904721941ced24f1ee4be64ec279a86/index.m3u8"}]}
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4904721941ced24f1ee4be64ec279a86/index.m3u8"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0b061a280032a52e97caf206ed1f09c5/index.m3u8"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cbe15f0ae85394838c684a3f065a3ed9/index.m3u8"}]}
+
     ]
   },
   {
