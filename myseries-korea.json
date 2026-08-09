@@ -184,6 +184,29 @@
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f8a139ac8e45afde26b4e0ff33a9048e/index.m3u8"}]}
     ]
     },
+  {
+    "title": "The Husband คืนล่าก่อนหย่า (2026) ",
+    "updated": "2026-08-2",
+    "groups": ["series-update","series-korea"],
+    "language": "ซับไทย",
+    "poster": "https://320hdg.com/wp-content/uploads/2026/07/500.jpg",
+    "latest_ep": 9,
+    "total_ep": 12,
+    "episodes": [
+
+       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a4be2d06a4b3301459bc302a4e1862da/index.m3u8"}]},
+       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/41ab146e430e93a12d43acd10dbc9ab7/index.m3u8"}]},
+       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9a67d01e1f82ac600e7d1b27ee6742c5/index.m3u8"}]},
+       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/353fffbcaed50ba5c504ce055ce61809/index.m3u8"}]},
+       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c4145211f971ee808bba24e2a5a627bf/index.m3u8"}]},
+       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a19d58812fa84d6d144502ab6ecccde0/index.m3u8"}]},
+       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/862b2d8e757cb89b6d71e70ec59f1cdc/index.m3u8"}]},
+       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bf007b020945f78a3f103bc7a226fafe/index.m3u8"}]},
+       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6d0f048fadbcb7fb7a0e188a39c82c4b/index.m3u8"}]}  
+ 
+    ]
+    },
+  
     {
     "title": "Spooky in Love สะดุดรักกุ๊กกุ๊กกู๋ (2026) ",
     "updated": "2026-08-7",
@@ -288,28 +311,7 @@
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/093ffcdb566f6bdc90abf5ba159351a3/index.m3u8"}]} 
     ]
     },
-  {
-    "title": "The Husband คืนล่าก่อนหย่า (2026) ",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/07/500.jpg",
-    "latest_ep": 9,
-    "total_ep": 12,
-    "episodes": [
 
-       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a4be2d06a4b3301459bc302a4e1862da/index.m3u8"}]},
-       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/41ab146e430e93a12d43acd10dbc9ab7/index.m3u8"}]},
-       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9a67d01e1f82ac600e7d1b27ee6742c5/index.m3u8"}]},
-       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/353fffbcaed50ba5c504ce055ce61809/index.m3u8"}]},
-       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c4145211f971ee808bba24e2a5a627bf/index.m3u8"}]},
-       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a19d58812fa84d6d144502ab6ecccde0/index.m3u8"}]},
-       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/862b2d8e757cb89b6d71e70ec59f1cdc/index.m3u8"}]},
-       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bf007b020945f78a3f103bc7a226fafe/index.m3u8"}]},
-       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6d0f048fadbcb7fb7a0e188a39c82c4b/index.m3u8"}]}  
- 
-    ]
-    },
     {
     "title": "Moonshine (2021) ",
     "updated": "2026-08-2",
