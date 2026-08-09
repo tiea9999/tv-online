@@ -1,5 +1,21 @@
 [
   {
+    "title": " The Affair Was Just The Beginning ชู้รักอำพรางเลือด (2026) ",
+    "updated": "2026-08-9",
+    "groups": ["series-update","series-korea"],
+    "language": "ซับไทย",
+    "poster": "",
+    "latest_ep":4,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0997d3cbdf4a6418c8b19fde88552d8c/index.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/68ee7acf48cccbff741b3bd1b38f6954/index.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3331f415aa93c8952903e0ae5c2b3c4e/index.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9b4461e2e55b6a1a0b9ef0585e74a7e5/index.m3u8"}]}
+    ]
+  },
+  
+  {
     "title": " A Superior Day (2022) ",
     "updated": "2026-08-8",
     "groups": ["series-update","series-korea"],
