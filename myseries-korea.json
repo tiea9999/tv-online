@@ -168,22 +168,22 @@
     ]
     },
   
-  {
-    "title": "The Husband คืนล่าก่อนหย่า (2026)พากย์ไทย ",
-    "updated": "2026-08-7",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://goseries4k.com/wp-content/uploads/2026/06/9-14.jpg",
-    "latest_ep": 4,
-    "total_ep": 12,
-    "episodes": [
-
-       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9ba064da76515108752a29b2a08cc7d9/index.m3u8"}]},
-       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/99f0cd50ed1558df83620e811bed66e7/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0f589854cfc32f429e6642bca8393d4b/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f8a139ac8e45afde26b4e0ff33a9048e/index.m3u8"}]}
-    ]
-    },
+{
+  "title": "The Husband คืนล่าก่อนหย่า (2026)พากย์ไทย ",
+  "updated": "2026-08-7",
+  "groups": ["series-update","series-korea"],
+  "language": "พากย์ไทย",
+  "poster": "https://goseries4k.com/wp-content/uploads/2026/06/9-14.jpg",
+  "page": "https://goseries4k.com/the-husband/",
+  "latest_ep": 4,
+  "total_ep": 12,
+  "episodes": [
+    { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9ba064da76515108752a29b2a08cc7d9/index.m3u8"}]},
+    { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/99f0cd50ed1558df83620e811bed66e7/index.m3u8"}]},
+    { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0f589854cfc32f429e6642bca8393d4b/index.m3u8"}]},
+    { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f8a139ac8e45afde26b4e0ff33a9048e/index.m3u8"}]}
+  ]
+}
   {
     "title": "The Husband คืนล่าก่อนหย่า (2026) ",
     "updated": "2026-08-9",
