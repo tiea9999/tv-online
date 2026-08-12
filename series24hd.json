@@ -8,7 +8,7 @@
     "latest_ep":3,
     "total_ep": 10,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b9304b35bc92d25bbe2f8fbdf2761751/index.m3u8"}]},
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/4c6ef648292b25ed7ce4f62a/4c6ef648292b25ed7ce4f62a.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b4850634c41794d4aab716b9aa6cc3d1/index.m3u8"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cbe91017f047d3db189639bfb18d5d51/index.m3u8"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9c92ef4db390037cc23e765b9d3d5dd7/index.m3u8"}]},
