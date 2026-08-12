@@ -5,7 +5,7 @@
     "groups": ["series-update","series-china"],
     "language": "ซับไทย",
     "poster": "https://www.24hd.vip/wp-content/uploads/2026/08/Love-on-the-Menu-2026.webp",
-    "latest_ep":3,
+    "latest_ep":4,
     "total_ep": 50,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/1471ddf024ef13fcf54b0d6a/1471ddf024ef13fcf54b0d6a.m3u8"}]},
