@@ -65,7 +65,7 @@
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/08/9-1.png",
-    "latest_ep":1,
+    "latest_ep":2,
     "total_ep": 14,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFlexXCopS2/EP01.mp4/playlist.m3u8"}]},
@@ -196,7 +196,7 @@
   "language": "พากย์ไทย",
   "poster": "https://goseries4k.com/wp-content/uploads/2026/06/9-14.jpg",
   "page": "https://goseries4k.com/the-husband/",
-  "latest_ep": 4,
+  "latest_ep": 6,
   "total_ep": 12,
   "episodes": [
     { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP01.mp4/playlist.m3u8"}]},
@@ -241,15 +241,18 @@
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย ",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/07/1-1.jpg",
-    "latest_ep":6,
+    "latest_ep":8,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/14deae6fdbbfb2badd6be3668dcdc4f5/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8d37de3dfdfc3c7239d867500700df0a/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/497f0f5c6d0ba35309c25ed0f78de82a/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7c74158b8a208666cd298429b50eb8a1/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/92b7903b6546f5f1e0ae2a0efadcd25d/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/aae8c92c51563d8f4e24da1ac08d236c/index.m3u8"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP08.mp4/playlist.m3u8"}]}
+
     ]
     },
 
@@ -262,12 +265,12 @@
     "latest_ep":6,
     "total_ep": 8,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/dc9df6854ac7b82f693527105f2a2282/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/975969ee9cdcc6afd290aadcda9793bd/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/21b9641509cf467adf67f510d2d1e5c5/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/20dbce89407b97c81b1f9a2cc3c9b3c3/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8a56344614f2086b547bfe2617ed3f96/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cb766b5e561e8ec7ac850409aee99184/index.m3u8"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP06.mp4/playlist.m3u8"}]},
     ]
     },
   {
@@ -279,12 +282,12 @@
     "latest_ep":6,
     "total_ep": 8,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ffcd8b69cfbbf7dc029ee5b3892516d2/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7043e108234248fef3af7c904b67c7b3/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c8eea3ab3093bf3607366ab673f62e7a/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/154130a0f0d8dbd9755fa335602811c8/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d000d20fd7b7365c133dd03e9f2cfdc2/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/64641d34875adc2857dcb799de676b18/index.m3u8"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP06.mp4/playlist.m3u8"}]},
 
     ]
     },
@@ -314,12 +317,12 @@
     "latest_ep": 6,
     "total_ep": 6,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/234a8d99094d16fb08706f09312886bb/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4c697fd424d2758e47898051bdd97a7d/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9a0daa837e33195f7ee39f14de000a6f/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e7afb4277b37bb41e62557797d3c2153/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/51487816c7dbb782062764c62b06cfdd/index.m3u8"}]},    
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/498dde1b93e295947fc30f0d9d9e5be6/index.m3u8"}]} 
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/c9815db433f68fa52d07ddf6/c9815db433f68fa52d07ddf6.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/3575b920040f13ca8c1defd2/3575b920040f13ca8c1defd2.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/3273c34273b75e871bc78f98/3273c34273b75e871bc78f98.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/00b50886fd8795c7c3de2152/00b50886fd8795c7c3de2152.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/13329fa135d3c568cb1ff864/13329fa135d3c568cb1ff864.m3u8"}]},    
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/a04bea180e688a1242cfe2eb/a04bea180e688a1242cfe2eb.m3u8"}]} 
     ]
     },
     {
@@ -331,12 +334,12 @@
     "latest_ep": 6,
     "total_ep": 6,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/89157ef544a76dd756f79df16897bf77/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/213ae73e94b380093127987123da5a80/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9739043afad57d68207eb09cb7290f21/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7dc7682388630ef415aba5d80db81eb7/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f8f47353004fd9069f9a74374b1cd0ff/index.m3u8"}]},    
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/093ffcdb566f6bdc90abf5ba159351a3/index.m3u8"}]} 
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/2e35ed85a48a851037415ea0/2e35ed85a48a851037415ea0.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/028100e878a8221c6dcbe346/028100e878a8221c6dcbe346.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/187f9e54c3f39b2f3234bc01/187f9e54c3f39b2f3234bc01.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/dc5146218ea394c2f3662463/dc5146218ea394c2f3662463.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/dc82cc862c9b82e7fbcd193f/dc82cc862c9b82e7fbcd193f.m3u8"}]},    
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/817f526abf146f763932b361/817f526abf146f763932b361.m3u8"}]} 
     ]
     },
 
@@ -349,22 +352,22 @@
     "latest_ep":16,
     "total_ep": 16,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/78118a4c369e4c160140721dc042e78c/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5b06ef3e4c9ff025ec6f58a915d101ae/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/23aae8c16e0cbdb3c191dc08514aacb3/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a8633b27a98cfdf46aae0afc7f24fa77/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/dec201e63200091f2748ac4479fa57a3/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6b752fb3d673df87a5848299770fa1a3/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b03141e141aab47e06f15fd5d41a9121/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c8a07f8a210e733be6b9826e5b8e5acc/index.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1acf602c511e2dbe80964710cecd06d6/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5bc2230c03bb9ede0058f3281a5ab27a/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/32f719328ae8e8f06a3f5538c333fc32/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/04867f4eb37a8bb17aa14734d318afd6/index.m3u8"}]},
-      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/91c930ad89e1294fd7c73675b863ae8e/index.m3u8"}]},
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/13d5475ece7975aaa9b053d9046dd80c/index.m3u8"}]},
-      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/de45f6270140b659371f3b6e5ff1476a/index.m3u8"}]},
-      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bd0ccbbc355b31fdd3826aad0ea687f1/index.m3u8"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.1.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.2.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.3.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.4.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.5.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.6.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.7.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.8.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.9.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.10.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.11.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.12.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.13.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.14.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.15.SD.mp4/playlist.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.16.SD.mp4/playlist.m3u8"}]}
     ]
     },
 
@@ -378,14 +381,14 @@
     "latest_ep": 8,
     "total_ep": 8,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2122c4454eac838bf21b004deb7ef431/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/56180dc7ed648b8a9faf8003cc0d9179/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8fecda53ee4e56a109437f4d02fe448f/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5345d4e933e94710eae97ab0cd3cd207/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b504f0bfee8b308f61300d49ffd61ac4/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/75e39e8d19c3cda27c54873ef8dbfd4d/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9c8ae8df60b22d174e07a20e6441a519/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cffeda368109d62114add59ba5c9f651/index.m3u8"}]} 
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/980988e313e6c4f740628282/980988e313e6c4f740628282.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d2a97a9f6f847e9af26037c3/d2a97a9f6f847e9af26037c3.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/e05932684c205080665cf739/e05932684c205080665cf739.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/869432bfa21b6f4d75f1d374/869432bfa21b6f4d75f1d374.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/3bac2e2d38d3728bb9d93232/3bac2e2d38d3728bb9d93232.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/06232f333b224e989b278c1b/06232f333b224e989b278c1b.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/adb6dd94442877b03858c1f9/adb6dd94442877b03858c1f9.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/e2bc0271d9f2487f7597dd47/e2bc0271d9f2487f7597dd47.m3u8"}]} 
     ]
     },      
   {
@@ -397,23 +400,22 @@
     "latest_ep": 12,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f95e041b416059f46128511c4561928a/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5f1ba5e2dbe34d9ede3bb90060e0a724/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/be1598e440483fb02b8c7d9a9d9ebab2/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7f425c6c3aaa9c9d0be4caf6f82fa5ab/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/534cd0e216cd6230d7e7f2dc8278bdcf/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8d48ab6c8d9242952b717d82d66f6f42/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/81d5b5147f2f36c62f9bfc7e8f2fe720/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2ee645c1b15dc53af38f23e63e302617/index.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/04a77f3b0b77134cdb154b656c48a35f/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0aaa122598ce34e2b1deb2a8e724cd11/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d4d4f4c096fe0792ff7f69c865d68eea/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c2abe53e097518ffffe208b5aeba610e/index.m3u8"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP010.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP11.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP012.mp4/playlist.m3u8"}]}
        ]
     },  
-  
-  {
-    "title": "The Apartment Job (2026) ท่านประธานกำมะลอ",
+    {
+    "title": "The Apartment Job (2026) ท่านประธานกำมะลอ ซับไทย",
     "updated": "2026-08-7",
     "groups": ["series-update","series-korea"],
     "language": "พากย์ไทย",
@@ -422,43 +424,41 @@
     "total_ep": 12,
     "episodes": [
 
-       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8786aae7788d60a74e6c3cbc278bcef2/index.m3u8"}]},
-       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3faedb409075fed8ac60f5e3fe0c78a6/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a1aaf7f9b647fe5d0a9c39711779ccf4/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e74293db5a7bc00f7a7a9d41c74fc99d/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fe4d536a9bb1f03759473ec2dca0627e/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0eb952c1762e7d7ba0f03d24f6a46b26/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/78c6a4328ba89200ec291ca4859275c2/index.m3u8"}]}, 
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f142fc85c82df3d3c13a9e25950bc142/index.m3u8"}]} 
- 
+       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP01.mp4/playlist.m3u8"}]},
+       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP10.mp4/playlist.m3u8"}]},
     ]
     },
-
-  
   {
-    "title": "Doctor on the Edge (2026) หมอติดเกาะรักติดเธอ",
-    "updated": "2026-07-10",
+    "title": "The Apartment Job (2026) ท่านประธานกำมะลอ ซับไทย",
+    "updated": "2026-08-7",
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/06/หมอติดเกาะรักติดเธอ-1.webp",
-    "latest_ep": 12,
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/07/The-Apartment-Job-2026-204x300.jpg",
+    "latest_ep": 8,
     "total_ep": 12,
     "episodes": [
 
-       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d082086516f88cf6ef3d20a3114d786b/index.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bb567364a916a20c9dd9e19743e60954/index.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b3e62ce18e20687a4da55e84dc884c7b/index.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/da2eb5ee5d350ded771b6cdf8fc07aa6/index.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/da2eb5ee5d350ded771b6cdf8fc07aa6/index.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c122704e3e0223f366f61db1766290fc/index.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4be2f88a7059cdf694e09b9087654cc7/index.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f50dc55f1e05ce379dd689e3a460fca2/index.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7985ea5f60dff052358f01f0f7a3bcbd/index.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2df3b5a92eff901e3880615bbbb2d028/index.m3u8" }] },
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/510d7a80de6613df764a0f85ae494f05/index.m3u8" }] },
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/94e809a7cde5131623b45882c6ed3582/index.m3u8" }] }
-         ]
+       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP01.mp4/playlist.m3u8"}]},
+       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobEP09.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP10.mp4/playlist.m3u8"}]},
+    ]
     },
+
   {
     "title": "Agent Kim Reactivated สายลับคิมกลับมาแล้ว (2026)",
     "updated": "2026-08-2",
@@ -468,16 +468,16 @@
     "latest_ep":10,
     "total_ep": 10,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5dd430b24f4984ecbf19519f13ee0414/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9f156d78e0ef6bbf668c9111f145d86b/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3d919454ac917df6c14f360556f06e40/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e985750350b99d89c56101ac517878b3/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5e242353f6f4824d826af80fdf926136/index.m3u8" }]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1d4fa127536bfa62b8138de4b6d991ae/index.m3u8" }]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/58961a0cc8703eb59c6a0d55ad211378/index.m3u8" }]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/57e6770500b47b70d33e8d873a947dee/index.m3u8" }]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bc2710cec022887aba9e510dfd3a0cf7/index.m3u8" }]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a32573aee117028efab8a68b9d8377ff/index.m3u8" }]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main","url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP10.mp4/playlist.m3u8"}]}
        ]
     },  
   {
