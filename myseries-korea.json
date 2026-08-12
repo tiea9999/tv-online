@@ -8,7 +8,7 @@
     "latest_ep":12,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP01.mp4/playlist.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP02.mp4/playlist.m3u8"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP03.mp4/playlist.m3u8"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP04.mp4/playlist.m3u8"}]},
@@ -83,17 +83,17 @@
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url":"https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP08.mp4/playlist.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP10.mp4/playlist.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP11.mp4/playlist.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP12.mp4/playlist.m3u8"}]}    ]
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP11.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP12.mp4/playlist.m3u8"}]}    ]
     },  
   {
     "title": "See You at Work Tomorrow! เจอกันที่ออฟฟิศพรุ่งนี้นะ! (2026) ",
@@ -110,7 +110,7 @@
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP04.mp4/playlist.m3u8"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP05.mp4/playlist.m3u8"}]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url":"https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP07.mp4/playlist.m3u8"}]},
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP08.mp4/playlist.m3u8"}]},
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP09.mp4/playlist.m3u8"}]},
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP10.mp4/playlist.m3u8"}]},
@@ -270,7 +270,7 @@
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP03.mp4/playlist.m3u8"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP04.mp4/playlist.m3u8"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP06.mp4/playlist.m3u8"}]}
     ]
     },
   {
@@ -287,7 +287,7 @@
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP03.mp4/playlist.m3u8"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP04.mp4/playlist.m3u8"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP06.mp4/playlist.m3u8"}]}
 
     ]
     },
@@ -433,7 +433,7 @@
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP07.mp4/playlist.m3u8"}]},
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP08.mp4/playlist.m3u8"}]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP10.mp4/playlist.m3u8"}]}
     ]
     },
   {
@@ -455,7 +455,7 @@
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP07.mp4/playlist.m3u8"}]},
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP08.mp4/playlist.m3u8"}]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobEP09.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP10.mp4/playlist.m3u8"}]}
     ]
     },
 
