@@ -8,7 +8,7 @@
     "latest_ep":12,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP01.mp4/playlist.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP02.mp4/playlist.m3u8"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP03.mp4/playlist.m3u8"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP04.mp4/playlist.m3u8"}]},
@@ -123,23 +123,23 @@
     "title": "The Legend of Kitchen Soldier บันทึกครัวค่ายทหาร (2026) พากย์ไทย",
     "updated": "2026-08-2",
     "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
+    "language": "ซับไทย",
     "poster": "https://320hdg.com/wp-content/uploads/2026/05/800.jpg",
     "latest_ep":12,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/882cb60dbf7cf0200e6b584ff5d8aa51/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1885b09d0d9ad2ad8c6c1b539be446b7/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/503aa943d4e9e7e1197d21c2073babf3/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b859c1811da09badf391083cc107c14f/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2416448280273e9e9fbd01ec7887243b/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ecafc90f47d5b3c007e2c6961d7cc259/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70f161d5e492f1be0442f0a0aa336b49/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bc3a65333222fe42e64ea0fc992ff5ba/index.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/51ecb8a68ba3b3bd05f8b8582b70793d/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2f712207e714cebbe601544fdcf47b0e/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/781fb35744704fc882e57e3bf412e471/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cb1a1c634d8a07971ddee4556a28056f/index.m3u8"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP11.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP12.mp4/playlist.m3u8"}]}
     ]
     },
 
@@ -152,21 +152,43 @@
     "latest_ep":12,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/882cb60dbf7cf0200e6b584ff5d8aa51/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1885b09d0d9ad2ad8c6c1b539be446b7/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/503aa943d4e9e7e1197d21c2073babf3/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b859c1811da09badf391083cc107c14f/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2416448280273e9e9fbd01ec7887243b/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ecafc90f47d5b3c007e2c6961d7cc259/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70f161d5e492f1be0442f0a0aa336b49/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bc3a65333222fe42e64ea0fc992ff5ba/index.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/51ecb8a68ba3b3bd05f8b8582b70793d/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2f712207e714cebbe601544fdcf47b0e/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/781fb35744704fc882e57e3bf412e471/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cb1a1c634d8a07971ddee4556a28056f/index.m3u8"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP11.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP12.mp4/playlist.m3u8"}]}
     ]
     },
-  
+  {
+    "title": "Doctor on the Edge หมอติดเกาะรักติดเธอ (2026) ซับไทย",
+    "updated": "2026-08-2",
+    "groups": ["series-update","series-korea"],
+    "language": "ซับไทย",
+    "poster": "https://320hdg.com/wp-content/uploads/2026/05/520.jpg",
+    "latest_ep":12,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP11.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP12.mp4/playlist.m3u8"}]}
+    ]
+    },  
 {
   "title": "The Husband คืนล่าก่อนหย่า (2026)พากย์ไทย ",
   "updated": "2026-08-7",
@@ -177,10 +199,13 @@
   "latest_ep": 4,
   "total_ep": 12,
   "episodes": [
-    { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9ba064da76515108752a29b2a08cc7d9/index.m3u8"}]},
-    { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/99f0cd50ed1558df83620e811bed66e7/index.m3u8"}]},
-    { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0f589854cfc32f429e6642bca8393d4b/index.m3u8"}]},
-    { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f8a139ac8e45afde26b4e0ff33a9048e/index.m3u8"}]}
+    { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP01.mp4/playlist.m3u8"}]},
+    { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP02.mp4/playlist.m3u8"}]},
+    { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP03.mp4/playlist.m3u8"}]},
+    { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP04.mp4/playlist.m3u8"}]},
+    { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP05.mp4/playlist.m3u8"}]},
+    { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP06.mp4/playlist.m3u8"}]}
+
   ]
 },
   {
@@ -190,21 +215,23 @@
     "groups": ["series-update","series-korea"],
     "language": "ซับไทย",
     "poster": "https://320hdg.com/wp-content/uploads/2026/07/500.jpg",
-    "latest_ep": 10,
+    "latest_ep": 12,
     "total_ep": 12,
     "episodes": [
 
-       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/fa50daddbc80916f7dfdbe94/fa50daddbc80916f7dfdbe94.m3u8"}]},
-       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/41ab146e430e93a12d43acd10dbc9ab7/index.m3u8"}]},
-       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9a67d01e1f82ac600e7d1b27ee6742c5/index.m3u8"}]},
-       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/353fffbcaed50ba5c504ce055ce61809/index.m3u8"}]},
-       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c4145211f971ee808bba24e2a5a627bf/index.m3u8"}]},
-       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a19d58812fa84d6d144502ab6ecccde0/index.m3u8"}]},
-       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/862b2d8e757cb89b6d71e70ec59f1cdc/index.m3u8"}]},
-       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bf007b020945f78a3f103bc7a226fafe/index.m3u8"}]},
-       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6d0f048fadbcb7fb7a0e188a39c82c4b/index.m3u8"}]},  
-       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/899d24ce958c9a264eef0d21e100663f/index.m3u8"}]}  
- 
+       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP01.mp4/playlist.m3u8"}]},
+       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP02.mp4/playlist.m3u8"}]},
+       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP03.mp4/playlist.m3u8"}]},
+       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP04.mp4/playlist.m3u8"}]},
+       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP05.mp4/playlist.m3u8"}]},
+       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP06.mp4/playlist.m3u8"}]},
+       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP07.mp4/playlist.m3u8"}]},
+       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP08.mp4/playlist.m3u8"}]},
+       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP09.mp4/playlist.m3u8"}]},
+       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP10.mp4/playlist.m3u8"}]},
+       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP11.mp4/playlist.m3u8"}]},
+       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP12.mp4/playlist.m3u8"}]}
+  
     ]
     },
   
