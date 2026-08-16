@@ -8,10 +8,10 @@
     "latest_ep":4,
     "total_ep": 50,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaLoveOnTheMenu/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaLoveOnTheMenu/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaLoveOnTheMenu/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaLoveOnTheMenu/EP04.mp4/playlist.m3u8"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/1471ddf024ef13fcf54b0d6a/1471ddf024ef13fcf54b0d6a438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/11fa1c32f5509f260dd2d276/11fa1c32f5509f260dd2d276.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/57b8e9f8b3951bcb65668d0a/57b8e9f8b3951bcb65668d0a.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/a06db0819002b6016ad24e2e/a06db0819002b6016ad24e2e.m3u8"}]}
     ]
   },
 
