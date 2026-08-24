@@ -5,8 +5,8 @@
     "groups": ["series-update","series-series24hd"],  
     "language": "พากย์ไทย",
     "poster": "https://www.seriedays.com/wp-content/uploads/2025/01/High-Potential-2024-203x300.jpg",
-    "latest_ep":3,
-    "total_ep": 10,
+    "latest_ep":13,
+    "total_ep": 13,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/4c6ef648292b25ed7ce4f62a/4c6ef648292b25ed7ce4f62a.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/ff614a2b77f3052af5e80f13/ff614a2b77f3052af5e80f13.m3u8"}]},
@@ -21,8 +21,7 @@
       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d2e53e1ffda5f36c919fa7c8/d2e53e1ffda5f36c919fa7c8.m3u8"}]},
       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/80701d996c5aff41b8cb3f93/80701d996c5aff41b8cb3f93.m3u8"}]},
       { "title": "EP13", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/c35e94cfc39820828419402e/c35e94cfc39820828419402e.m3u8"}]}
-    
-    ]
+        ]
   },
 
   
