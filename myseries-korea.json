@@ -1,1102 +1,968 @@
 [
   {
-    "title": "Love on the Menu (2026) รักมาแล้ว ",
-    "updated": "2026-08-12",
-    "groups": ["series-update","series-korea"],
+    "title": "The Apartment Job (2026) ท่านประธานกำมะลอ",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
     "language": "ซับไทย",
-    "poster": "https://www.24hd.vip/wp-content/uploads/2026/08/Love-on-the-Menu-2026.webp",
-    "latest_ep":4,
-    "total_ep": 50,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/1471ddf024ef13fcf54b0d6a/1471ddf024ef13fcf54b0d6a438.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/11fa1c32f5509f260dd2d276/11fa1c32f5509f260dd2d276438.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/57b8e9f8b3951bcb65668d0a/57b8e9f8b3951bcb65668d0a438.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/a06db0819002b6016ad24e2e/a06db0819002b6016ad24e2e438.m3u8"}]}
-    ]
-  },
-
-  
-  {
-    "title": "Our Stricky Love รักติดหนึบ (2026) พากย์ไทย",
-    "updated": "2026-08-9",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://goseries4k.com/wp-content/uploads/2026/07/2-5.jpg",
-    "latest_ep":12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP08.mp4/playlist.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP10.mp4/playlist.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP11.mp4/playlist.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaOurStickyLoveThai/EP12.mp4/playlist.m3u8"}]}
-     ]
-  },
- 
-  {
-    "title": " The Affair Was Just The Beginning ชู้รักอำพรางเลือด (2026) ",
-    "updated": "2026-08-9",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย",
-    "poster": "https://goseries4k.com/wp-content/uploads/2026/08/9.png",
-    "latest_ep":4,
-    "total_ep": 8,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheAffairWasJustTheBeginning/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheAffairWasJustTheBeginning/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheAffairWasJustTheBeginning/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheAffairWasJustTheBeginning/EP04.mp4/playlist.m3u8"}]}
-    ]
-  },
-  
-  {
-    "title": " A Superior Day (2022) ",
-    "updated": "2026-08-8",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://goseries4k.com/wp-content/uploads/2022/08/A-Superior-Day-2022.webp",
-    "latest_ep":8,
-    "total_ep": 8,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/ASuperiorDay24/EP.1.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/ASuperiorDay24/EP.2.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/ASuperiorDay24/EP.3.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/ASuperiorDay24/EP.4.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/ASuperiorDay24/EP.5.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/ASuperiorDay24/EP.6.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/ASuperiorDay24/EP.7.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/ASuperiorDay24/EP.8.SD.mp4/playlist.m3u8"}]}
-    ]
-  },
-
-  {
-    "title": "Flex X Cop 2 คุณชายสายสืบ ซีซั่น 2 (2026)",
-    "updated": "2026-08-8",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย",
-    "poster": "https://goseries4k.com/wp-content/uploads/2026/08/9-1.png",
-    "latest_ep":2,
-    "total_ep": 14,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFlexXCopS2/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFlexXCopS2/EP01.mp4/playlist.m3u8"}]}
-    ]
-  },
-
-  {
-    "title": "See You at Work Tomorrow! เจอกันที่ออฟฟิศพรุ่งนี้นะ! (2026) ซับไทย",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/06/5.5200.jpg",
-    "latest_ep":12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP08.mp4/playlist.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP10.mp4/playlist.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP11.mp4/playlist.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrow/EP12.mp4/playlist.m3u8"}]}    ]
-    },  
-  {
-    "title": "See You at Work Tomorrow! เจอกันที่ออฟฟิศพรุ่งนี้นะ! (2026) ",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/06/5.5200.jpg",
-    "latest_ep":12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP08.mp4/playlist.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP10.mp4/playlist.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP11.mp4/playlist.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSeeYouAtWorkTomorrowThai/EP12.mp4/playlist.m3u8"}]}
-    ]
-    },
-
-  {
-    "title": "The Legend of Kitchen Soldier บันทึกครัวค่ายทหาร (2026) พากย์ไทย",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/05/800.jpg",
-    "latest_ep":12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP08.mp4/playlist.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP10.mp4/playlist.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP11.mp4/playlist.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheLegendOfKitchenSoldier/EP12.mp4/playlist.m3u8"}]}
-    ]
-    },
-
-  {
-    "title": "Doctor on the Edge หมอติดเกาะรักติดเธอ (2026) พากย์ไทย",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/05/520.jpg",
-    "latest_ep":12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP08.mp4/playlist.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP10.mp4/playlist.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP11.mp4/playlist.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdgeThai/EP12.mp4/playlist.m3u8"}]}
-    ]
-    },
-  {
-    "title": "Doctor on the Edge หมอติดเกาะรักติดเธอ (2026) ซับไทย",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/05/520.jpg",
-    "latest_ep":12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP08.mp4/playlist.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP10.mp4/playlist.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP11.mp4/playlist.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaDoctorOnTheEdge/EP12.mp4/playlist.m3u8"}]}
-    ]
-    },  
-{
-  "title": "The Husband คืนล่าก่อนหย่า (2026)พากย์ไทย ",
-  "updated": "2026-08-7",
-  "groups": ["series-update","series-korea"],
-  "language": "พากย์ไทย",
-  "poster": "https://goseries4k.com/wp-content/uploads/2026/06/9-14.jpg",
-  "page": "https://goseries4k.com/the-husband/",
-  "latest_ep": 6,
-  "total_ep": 12,
-  "episodes": [
-    { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP01.mp4/playlist.m3u8"}]},
-    { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP02.mp4/playlist.m3u8"}]},
-    { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP03.mp4/playlist.m3u8"}]},
-    { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP04.mp4/playlist.m3u8"}]},
-    { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP05.mp4/playlist.m3u8"}]},
-    { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusbandThai/EP06.mp4/playlist.m3u8"}]}
-
-  ]
-},
-  {
-    "title": "The Husband คืนล่าก่อนหย่า (2026) ",
-    "updated": "2026-08-9",
-  "page": "https://goseries4k.com/the-husband/",    
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/07/500.jpg",
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/07/The-Apartment-Job-2026-187x269.jpg",
     "latest_ep": 12,
     "total_ep": 12,
     "episodes": [
-
-       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP01.mp4/playlist.m3u8"}]},
-       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP02.mp4/playlist.m3u8"}]},
-       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP03.mp4/playlist.m3u8"}]},
-       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP04.mp4/playlist.m3u8"}]},
-       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP05.mp4/playlist.m3u8"}]},
-       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP06.mp4/playlist.m3u8"}]},
-       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP07.mp4/playlist.m3u8"}]},
-       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP08.mp4/playlist.m3u8"}]},
-       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP09.mp4/playlist.m3u8"}]},
-       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP10.mp4/playlist.m3u8"}]},
-       { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP11.mp4/playlist.m3u8"}]},
-       { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheHusband/EP12.mp4/playlist.m3u8"}]}
-  
+      {
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/d3350ca28c98b8cde88f98dd/d3350ca28c98b8cde88f98dd438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/9154384ea9cb995655b4d27e/9154384ea9cb995655b4d27e438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/c990e7c1cbf4709e1e9b244c/c990e7c1cbf4709e1e9b244c438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/4b8dfc036d83683a0a65a2c6/4b8dfc036d83683a0a65a2c6438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/4f139a150b6468553efcf153/4f139a150b6468553efcf153438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/1f895286cd77c0c05abcb2b9/1f895286cd77c0c05abcb2b9438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/5a520fc8870d6959c36ffd57/5a520fc8870d6959c36ffd57438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/199e3ac143a7cfe27b754674/199e3ac143a7cfe27b754674438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://main.24playerhd.com/m3u8/d3350ca28c98b8cde88f98dd/d3350ca28c98b8cde88f98dd438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://main.24playerhd.com/m3u8/d7bb3a611a9629e048908326/d7bb3a611a9629e048908326438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP11",
+        "url": "https://main.24playerhd.com/m3u8/eca3c53aff072e89b09f742b/eca3c53aff072e89b09f742b438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP12",
+        "url": "https://main.24playerhd.com/m3u8/627a34d7d98989cb703e2d46/627a34d7d98989cb703e2d46438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      }
     ]
-    },
-  
-    {
-    "title": "Spooky in Love สะดุดรักกุ๊กกุ๊กกู๋ (2026) ",
-    "updated": "2026-08-7",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย ",
-    "poster": "https://goseries4k.com/wp-content/uploads/2026/07/1-1.jpg",
-    "latest_ep":8,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaSpookyInLove/EP08.mp4/playlist.m3u8"}]}
-
-    ]
-    },
-
+  },
   {
-    "title": "A Shop for Killers (ร้านลับนักฆ่า) ซีซัน 2 (2026) พากย์ไทย",
-    "updated": "2026-08-7",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/07/100.jpg",
-    "latest_ep":6,
-    "total_ep": 8,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2Thai/EP06.mp4/playlist.m3u8"}]}
-    ]
-    },
-  {
-    "title": "A Shop for Killers (ร้านลับนักฆ่า) ซีซัน 2 (2026) พากย์ไทย",
-    "updated": "2026-08-7",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย ",
-    "poster": "https://goseries4k.com/wp-content/uploads/2026/07/2-1.jpg",
-    "latest_ep":6,
-    "total_ep": 8,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAShopForKillersS2/EP06.mp4/playlist.m3u8"}]}
-
-    ]
-    },
-  {
-    "title": "Connect (2022) เผ่าพันธุ์อมตะ",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://goseries4k.com/wp-content/uploads/2022/12/Connect.jpg",
-    "latest_ep":6,
-    "total_ep": 6,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://vdohls.com/HPF2_1Cv0-ooK/video.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://vdohls.com/O_sAcs-nNv5Up/video.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://vdohls.com/2Z2My1_4Y-dl3/video.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://vdohls.com/Ddi_X3lfm-Vcb/video.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://vdohls.com/NSILthyK_d-Sh/video.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://vdohls.com/05_Qj-A3DRrqw/video.m3u8"}]}
-    ]
-    },
-    {
-    "title": "ผีดิบคลั่ง บัลลังก์เดือด ภาค2",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://goseries4k.com/wp-content/uploads/2020/08/14-2.jpg",
-    "latest_ep": 6,
-    "total_ep": 6,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/c9815db433f68fa52d07ddf6/c9815db433f68fa52d07ddf6.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/3575b920040f13ca8c1defd2/3575b920040f13ca8c1defd2.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/3273c34273b75e871bc78f98/3273c34273b75e871bc78f98.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/00b50886fd8795c7c3de2152/00b50886fd8795c7c3de2152.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/13329fa135d3c568cb1ff864/13329fa135d3c568cb1ff864.m3u8"}]},    
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/a04bea180e688a1242cfe2eb/a04bea180e688a1242cfe2eb.m3u8"}]} 
-    ]
-    },
-    {
-    "title": "ผีดิบคลั่ง บัลลังก์เดือด ภาค1",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://goseries4k.com/wp-content/uploads/2020/08/10.jpg",
-    "latest_ep": 6,
-    "total_ep": 6,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/2e35ed85a48a851037415ea0/2e35ed85a48a851037415ea0.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/028100e878a8221c6dcbe346/028100e878a8221c6dcbe346.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/187f9e54c3f39b2f3234bc01/187f9e54c3f39b2f3234bc01.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/dc5146218ea394c2f3662463/dc5146218ea394c2f3662463.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/dc82cc862c9b82e7fbcd193f/dc82cc862c9b82e7fbcd193f.m3u8"}]},    
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/817f526abf146f763932b361/817f526abf146f763932b361.m3u8"}]} 
-    ]
-    },
-
-    {
-    "title": "Moonshine (2021) ",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://goseries4k.com/wp-content/uploads/2022/09/Moonshine1.webp",
-    "latest_ep":16,
-    "total_ep": 16,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.1.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.2.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.3.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.4.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.5.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.6.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.7.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.8.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.9.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.10.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.11.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.12.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.13.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.14.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.15.SD.mp4/playlist.m3u8"}]},
-      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/b/2/KoreanSeriesThaiDub/Moonshine/EP.16.SD.mp4/playlist.m3u8"}]}
-    ]
-    },
-
-  
-  {
-    "title": "The Killer’s Shopping List ลิสต์นักฆ่า ล่าผ่าร้าน (2022)",
-    "updated": "2026-07-13",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://goseries4k.com/wp-content/uploads/2026/07/77-1.jpg",
-    "latest_ep": 8,
-    "total_ep": 8,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/980988e313e6c4f740628282/980988e313e6c4f740628282.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d2a97a9f6f847e9af26037c3/d2a97a9f6f847e9af26037c3.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/e05932684c205080665cf739/e05932684c205080665cf739.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/869432bfa21b6f4d75f1d374/869432bfa21b6f4d75f1d374.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/3bac2e2d38d3728bb9d93232/3bac2e2d38d3728bb9d93232.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/06232f333b224e989b278c1b/06232f333b224e989b278c1b.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/adb6dd94442877b03858c1f9/adb6dd94442877b03858c1f9.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/e2bc0271d9f2487f7597dd47/e2bc0271d9f2487f7597dd47.m3u8"}]} 
-    ]
-    },      
-  {
-    "title": "Filing for Love ยื่นคำร้องฉบับเลิฟ (2026) ",
-    "updated": "2026-07-13",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย ",
-    "poster": "https://goseries4k.com/wp-content/uploads/2026/04/9999.jpg",
-    "latest_ep": 12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP08.mp4/playlist.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP010.mp4/playlist.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP11.mp4/playlist.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaFilingForLove/EP012.mp4/playlist.m3u8"}]}
-       ]
-    },  
-    {
-    "title": "The Apartment Job (2026) ท่านประธานกำมะลอ ซับไทย",
-    "updated": "2026-08-7",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://www.seriedays.com/wp-content/uploads/2026/07/The-Apartment-Job-2026-204x300.jpg",
-    "latest_ep": 8,
-    "total_ep": 12,
-    "episodes": [
-
-       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP01.mp4/playlist.m3u8"}]},
-       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP08.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobThai/EP10.mp4/playlist.m3u8"}]}
-    ]
-    },
-  {
-    "title": "The Apartment Job (2026) ท่านประธานกำมะลอ ซับไทย",
-    "updated": "2026-08-7",
-    "groups": ["series-update","series-korea"],
+    "title": "Love in Sync (2026) ใจเชื่อมรัก",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
     "language": "ซับไทย",
-    "poster": "https://www.seriedays.com/wp-content/uploads/2026/07/The-Apartment-Job-2026-204x300.jpg",
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/07/Love-in-Sync-2026-187x269.jpg",
     "latest_ep": 8,
-    "total_ep": 12,
+    "total_ep": 8,
     "episodes": [
-
-       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP01.mp4/playlist.m3u8"}]},
-       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP08.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJobEP09.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaTheApartmentJob/EP10.mp4/playlist.m3u8"}]}
+      {
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/a5844e6ff9689f837bd7cb3f/a5844e6ff9689f837bd7cb3f438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/3454de7e8fb81fe4ad1fcce1/3454de7e8fb81fe4ad1fcce1438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/c02b822ff9a63eb4228ec02f/c02b822ff9a63eb4228ec02f438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/e2bf03ce6ff9232be416925f/e2bf03ce6ff9232be416925f438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/baae074c701d6107b1dcb03c/baae074c701d6107b1dcb03c438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/0d8e7ed6d2359586ad7984a1/0d8e7ed6d2359586ad7984a1438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/80d0c22762d306f1396bd94d/80d0c22762d306f1396bd94d438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/0550db29896bed858c3af6da/0550db29896bed858c3af6da438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      }
     ]
-    },
-
+  },
   {
     "title": "Agent Kim Reactivated สายลับคิมกลับมาแล้ว (2026)",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
     "language": "ซับไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/06/220.jpg",
-    "latest_ep":10,
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/06/Agent-Kim-Reactivated-2026-187x269.jpg",
+    "latest_ep": 10,
     "total_ep": 10,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP01.mp4/playlist.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP02.mp4/playlist.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP03.mp4/playlist.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP04.mp4/playlist.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP05.mp4/playlist.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP06.mp4/playlist.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP07.mp4/playlist.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP08.mp4/playlist.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main","url": "https://e84e7f9116ffb3cc.001140.xyz/GI/TVShows/Korea/2026KoreaAgentKimReactivated/EP10.mp4/playlist.m3u8"}]}
-       ]
-    },  
-  {
-    "title": "The Practical Guide to Love เดตที่ชอบ กับคนที่ใช่ (2026)",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย ",
-    "poster": "https://goseries4k.com/wp-content/uploads/2026/02/885.jpg",
-    "latest_ep":12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7abaa2cc68d069e5dec009e0cb6c0ded/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e7c1360c2fff1c9cd8633a7b07e4dfd9/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ef6cde8072640fb27615fbfc24eaf3cf/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0bf4cd5cbf790c3e9d451b30e73d603c/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/dc57c93ddc8cc6a3e7ceffdd83929a4d/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/818f1791b685a7e56b4ae5883e87a1a7/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/82dcf4493a2940be285a766e0749d146/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3c5840c83f06a6b47f884b1a71322c55/index.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/11a4f291492e37df65d5df806434e5c7/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d12a59ce8ed14a4a155e5d19bb7e62d1/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fcb00abf056bb3a58579f29bd4ea3da3/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c4b28170ab2f72373150e7dec5ad65eb/index.m3u8"}]}
-    ]
-    },
-  {
-    "title": "The Practical Guide to Love เดตที่ชอบ กับคนที่ใช่ (2026)พากย์ไทย",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/02/440-1.jpg",
-    "latest_ep":12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7abaa2cc68d069e5dec009e0cb6c0ded/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/83c5a7fdd9b89d81ead2db27d07a9b4c/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ef6cde8072640fb27615fbfc24eaf3cf/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0bf4cd5cbf790c3e9d451b30e73d603c/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/dc57c93ddc8cc6a3e7ceffdd83929a4d/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/818f1791b685a7e56b4ae5883e87a1a7/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/82dcf4493a2940be285a766e0749d146/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3c5840c83f06a6b47f884b1a71322c55/index.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c998bb2ea0ff6559ea81f0e5f26d59a8/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d12a59ce8ed14a4a155e5d19bb7e62d1/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fcb00abf056bb3a58579f29bd4ea3da3/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/961261c165f7beff79ec44d3e3a20bb9/index.m3u8"}]}
-    ]
-    },
-  {
-    "title": "Tale of the Nine Tailed 2020 ตำนานรักจิ้งจอกเก้าหาง ",
-    "updated": "2026-08-2",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://goseries4k.com/wp-content/uploads/2020/10/Tale-of-the-Nine-Tailed.jpg",
-    "latest_ep":16,
-    "total_ep": 16,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ceb3c83bd540e8ccce41fda1bd272e3c/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f3ce2e5ea3b48c8032fbaa6904e619e7/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/114655cf3d7a698efff907103257e64e/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9b318670e3dcd350ead04473abfffc02/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4d9c5bf30d20422c451f28bbea022ebb/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8e878fc7a52a9aa107672a8c63abac03/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1d03f6b8ae345aeff9fa1b464b672b7a/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f11eafb4894dd11b0130620fa30a951a/index.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/016f4192968792b32a4677b2ed6198c0/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/51d9113b247799cd4349e9437a54c624/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d72e1d29c7c8d1e214dc71791905b141/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/11498d384055e0dbaf2eae015740ff95/index.m3u8"}]},
-      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d4231e9f5530aed4fe75f8ac26606558/index.m3u8"}]},
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e62fdd59d9e163fb8b472319487b47ee/index.m3u8"}]},
-      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a0f057059444ce53e4d395271ebd1220/index.m3u8"}]},
-      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/aed7a27d6791c578d61d06c3215be181/index.m3u8"}]}
-    ]
-    },
-
-  
-       
-  {
-    "title": "Notes from the Last Row บันทึกจากหลังห้อง (2026)",
-    "updated": "2026-05-28",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/06/5.50-1.jpg",
-    "latest_ep": 6,
-    "total_ep": 6,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/aebdf2cef60934aee5eb1a6adc8e0531/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2abcba4b1e9f297774a116f0c41d1057/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/13bd80684b389951cf1485d63b8e3c55/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ea1760d7549daaa5450de66e46253668/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7a2176f4fce23e35f3912403cd471305/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d391af7f44c253c8ff50b604a566c21f/index.m3u8"}]}
-       ]
-    },  
-  {
-    "title": "ครอบครัวหัวใจลิขิตเอง Family By Choice",
-    "updated": "2026-07-13",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2024/10/3.0-214x300.jpg",
-    "latest_ep": 16,
-    "total_ep": 16,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f37a0b3a2778c8ff056599fed6d6f76e/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70d59d772bff1f5c45fe536620234cf2/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0d045182f6036d9cf072ea48aae3e63e/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/20394e14174dddaa9c1c37df0d0acf42/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/477ae929d9aa80a78de31c57fecd905a/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/833d6125a7ce84560a2ea7a065f831e7/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ff471065f685f8d9c2cc7ed3b1c5a20f/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c14bbb1ce23b228f1b16d43c9b7f1a85/index.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/63a2b784526c598c49dbe88108e5b313/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/da84077034ac78e433cf0989d7ed9010/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e1c1cbdbec57f5bcc348140d9838dde3/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70e7de27c2f69d235a56b4c0bb52beeb/index.m3u8"}]},
-      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3216d8a6cf27d1079fd625f4a09f79d1/index.m3u8"}]},
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70e7de27c2f69d235a56b4c0bb52beeb/index.m3u8"}]},
-      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e70dd4048a3b224e0248eb1c7a9e7291/index.m3u8"}]},
-      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/61f2d3fabb19fbb954b120ad441a60f0/index.m3u8"}]}
-    ]
-  }, 
-  {
-    "title": "ครอบครัวหัวใจลิขิตเอง Family By Choice ซับไทย",
-    "updated": "2026-07-13",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2024/10/3.0-214x300.jpg",
-    "latest_ep": 16,
-    "total_ep": 16,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f6204677a026dd63afaef094afd09e06/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/93b04f97288bf1ef0408f99a05d360df/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2a8e38e57aa9b3238193c805c10ee386/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/30b3c91a668df7f82b2973a1b1c81ca5/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/15cdcf94b6d5f319d260e84db6875c89/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/eac8e284a0c0cac061e4f1610bcd6fe1/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fa6569d5dfe092203a9a0de5c9d6348b/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6010cf172a443d5a99b263e1955a7e04/index.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b97a9f17859292c9738fd188edf8f007/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/627cba6cf5e4d18210612151897df966/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/681ce6463d535c1b4697185a526d79c3/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/80c4db24db231811c86a67468681a6b3/index.m3u8"}]},
-      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5d19199b3bb0f1a8ce170a8000195366/index.m3u8"}]},
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3debb5a09a4b986f801fd9aac0d02c56/index.m3u8"}]},
-      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/970e27859b3fe88de620f0ba0789c9c2/index.m3u8"}]},
-      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d1fa6fffab0d222679c4e4bb1c524ca9/index.m3u8"}]}
-    ]
-  }, 
-  {
-    "title": "Reborn Rookie มือใหม่หัดแค้น (2026)",
-    "updated": "2026-07-10",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย",
-    "poster": "https://320hdr.com/wp-content/uploads/2026/05/5350.jpg",
-    "latest_ep": 12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7dde2ad3ca283399668685850d6281cb/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5a8cdf248cbde4969eb3f3fe37f2f872/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/1369b4457c0a8f480117f40a8c7572fa/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5de1b7467fd9d8a97c1d3c2c2aa5b3e7/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/70eb1415f3969b6e935c746594c63848/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/bad344163d480678b4f7cd2b6c7f4c33/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8ee43f6461f096fd4fefb46aa31698e1/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/54e40286e900ceb948b51794df8e91a8/index.m3u8"}]},      
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6538037be34c81e4400e902a1760d96e/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/10f09e0bab7ca3ae6a449604464ef2f1/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cd97a3f0c0fd82268b3aee2e1f354e1b/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b2aeb14ff6e22b9c87235ab71adfaad6/index.m3u8"}]}      
-    ]
-    }, 
-  {
-    "title": "Fifties Professionals มือโปรห้าสิบพลัส (2026)",
-    "updated": "2026-06-28",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย",
-    "poster": "https://320hdr.com/wp-content/uploads/2026/05/550-1-214x300.jpg",
-    "latest_ep": 12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c7a7b593706b23216deb91c7cab4dbee/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c58512865dff792cd2a7f7fb3edfe8a1/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/57c7c95140276210edf912988b4e575c/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/444fd08abf3445f28fc2836da917654d/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4546fd38d4592f06f1ec03e3aca34267/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b69e16aa74d4e3f73616876b212f0283/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/28b78eecf62b7a541e0367d5eb47f9a3/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cfd32ffc715edc0a66c10a44ffd6823a/index.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d82426c0bb7f19ef67c7632679f411b1/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/77fc359da43fc8935e06d7d426647c35/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9526a8c3d1dfd99fd1ab7ce9c9b5f979/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/18b561c3b36df320291631b40fbe4405/index.m3u8"}]}
-       ]
-    }, 
-
-  {
-    "title": "Filing for Love ยื่นคำร้องฉบับเลิฟ (2026) ",
-    "updated": "2026-05-28",
-    "groups": ["series-update","series-korea"],
-    "language": "ซับไทย",
-    "poster": "https://320hdg.com/wp-content/uploads/2026/04/44000.jpg",
-    "latest_ep": 12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f95e041b416059f46128511c4561928a/index.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5f1ba5e2dbe34d9ede3bb90060e0a724/index.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/be1598e440483fb02b8c7d9a9d9ebab2/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7f425c6c3aaa9c9d0be4caf6f82fa5ab/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/534cd0e216cd6230d7e7f2dc8278bdcf/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8d48ab6c8d9242952b717d82d66f6f42/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/81d5b5147f2f36c62f9bfc7e8f2fe720/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2ee645c1b15dc53af38f23e63e302617/index.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/04a77f3b0b77134cdb154b656c48a35f/index.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/0aaa122598ce34e2b1deb2a8e724cd11/index.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d4d4f4c096fe0792ff7f69c865d68eea/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/c2abe53e097518ffffe208b5aeba610e/index.m3u8"}]}  
-       ]
-    }, 
       {
-    "title": "หญิงเหล็กศาลเยาวชน พากย์ไทย Juvenile Justice 2022",
-    "updated": "2026-06-11",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://series99.net/wp-content/uploads/2026/06/หญิงเหล็กศาลเยาวชน-2022-Juvenile-Justice.webp",
-    "latest_ep": 10,
-    "total_ep": 10,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/h/B2/KoreanSeriesThaiDub/JuvenileJustice/EP.1.SD.mp4/chunk.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/h/B2/KoreanSeriesThaiDub/JuvenileJustice/EP.2.SD.mp4/chunk.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/h/B2/KoreanSeriesThaiDub/JuvenileJustice/EP.3.SD.mp4/chunk.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/h/B2/KoreanSeriesThaiDub/JuvenileJustice/EP.4.SD.mp4/chunk.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/h/B2/KoreanSeriesThaiDub/JuvenileJustice/EP.5.SD.mp4/chunk.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/h/B2/KoreanSeriesThaiDub/JuvenileJustice/EP.6.SD.mp4/chunk.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/h/B2/KoreanSeriesThaiDub/JuvenileJustice/EP.7.SD.mp4/chunk.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/h/B2/KoreanSeriesThaiDub/JuvenileJustice/EP.8.SD.mp4/chunk.m3u8"}]},
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/h/B2/KoreanSeriesThaiDub/JuvenileJustice/EP.9.SD.mp4/chunk.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/h/B2/KoreanSeriesThaiDub/JuvenileJustice/EP.10.SD.mp4/chunk.m3u8"}]}
-      ]
-    },     
- {
-    "title": "The Scarecrow หุ่นลวงเชือด (2026) พากย์ไทย",
-    "updated": "2026-07-11",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://320hdr.com/wp-content/uploads/2026/04/5.20-4.jpg",
-    "latest_ep": 12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f23a947ca4d8f2c27a1bc0591ac91750/index.m3u8" }]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fe7fcc9bbe78a7beca1513024ed90586/index.m3u8" }]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/306a8fb018d9b488ddf91643197f2d07/index.m3u8" }]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4c4343dfa10cd69c3f338a4c33dab728/index.m3u8" }]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/009c7abab2a60c698f5e3ec392d051c0/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d97cd8d0694b18246d0e1a9bc2ebb2b9/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f264f076094dc1077fb0a011b37631ec/index.m3u8" }]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a14cdc174b1e00bd0c7bb97654b011c9/index.m3u8"}]},    
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f2ad0bd7dd7c9fc9c055fa82ab433c57/index.m3u8" }]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6b73bcb68b354939b064765f91fd8b30/index.m3u8"}]},    
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/fa586749dd93734fc3a224f99f8f184e/index.m3u8"}]},    
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/62edb00693d04d10de4107809feb9aa2/index.m3u8"}]}    
-
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/ed608660b9a2f38e26e97539/ed608660b9a2f38e26e97539438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/5556e41fe3bd9c593cdae6c0/5556e41fe3bd9c593cdae6c0438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/0925f7f4e22ff6c7b17e11e3/0925f7f4e22ff6c7b17e11e3438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/c933bc83cf11f60c5f87f727/c933bc83cf11f60c5f87f727438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/ab2d94f4bb3f9dff2cb6de45/ab2d94f4bb3f9dff2cb6de45438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/58ec3e592827b4239ddcff6c/58ec3e592827b4239ddcff6c438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/62ce2c6b08be6416bb6f366d/62ce2c6b08be6416bb6f366d438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/010a99c3e621b4ec79a0d0aa/010a99c3e621b4ec79a0d0aa438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://main.24playerhd.com/m3u8/e7722667fff7182096005dec/e7722667fff7182096005dec438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://main.24playerhd.com/m3u8/5d12f806289f13865bfa6c71/5d12f806289f13865bfa6c71438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      }
     ]
   },
   {
-    "title": " Teach You a Lesson อย่างนี้ต้องโดนสั่งสอน (2026)",
-    "updated": "2026-06-6",
-    "groups": ["series-update","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://320hdr.com/wp-content/uploads/2026/06/500.jpg",
+    "title": "Doctor on the Edge หมอติดเกาะรักติดเธอ (2026)",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
+    "language": "ซับไทย",
+    "poster": "https://seriesindy.com/wp-content/uploads/2026/06/Doctor-on-the-Edge-TH-225x300.jpg",
     "latest_ep": 10,
-    "total_ep": 10,
+    "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/d5e083e95836b1d124e3e04063b002d2/master.txt" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a07f4c2c0c0a554fa1416b7fd9e0796d/master.txt" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/e2f85660865d29c2e1fb236a3358289c/master.txt" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/0c73afabce92303cffd2eb7a0dff8380/master.txt" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/4db5d46e0a3d512ddbbf76986f6cd703/master.txt" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/a12591d2d5c4488afd79d41882f6b2dd/master.txt" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/e2e9a6bb27df2bdc313184070a3675c9/master.txt" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/e2e9a6bb27df2bdc313184070a3675c9/master.txt" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/58e7e6b4f584851b601a385c5bf853cd/master.txt" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://sddre03.oklive-2.xyz/api/files/5d300ca3401a30f1e5508fc5f72b2059/master.txt" }] }
+      {
+        "title": "EP1",
+        "url": "https://series-cdn.team-indy.net:8443/vod/kLa8OKv28R/video.mp4/playlist.m3u8",
+        "referer": "https://seriesindy.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://series-cdn.team-indy.net:8443/vod/I2tXgfSvp/video.mp4/playlist.m3u8",
+        "referer": "https://seriesindy.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://series-cdn.team-indy.net:8443/vod/XDVg97DV4/video.mp4/playlist.m3u8",
+        "referer": "https://seriesindy.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://series-cdn.team-indy.net:8443/vod/8Ll7Mbs6JN/video.mp4/playlist.m3u8",
+        "referer": "https://seriesindy.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://series-cdn.team-indy.net:8443/vod/gojP1thDER/video.mp4/playlist.m3u8",
+        "referer": "https://seriesindy.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://series-cdn.team-indy.net:8443/vod/7TzwEFtOLY/video.mp4/playlist.m3u8",
+        "referer": "https://seriesindy.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://series-cdn.team-indy.net:8443/vod/uCCT2u99cI/video.mp4/playlist.m3u8",
+        "referer": "https://seriesindy.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://series-cdn.team-indy.net:8443/vod/1oFaICqJ60/video.mp4/playlist.m3u8",
+        "referer": "https://seriesindy.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://series-cdn.team-indy.net:8443/vod/waNk97lkIq/video.mp4/playlist.m3u8",
+        "referer": "https://seriesindy.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://series-cdn.team-indy.net:8443/vod/MVfstGWm8c/video.mp4/playlist.m3u8",
+        "referer": "https://seriesindy.com/"
+      }
     ]
   },
-
- 
- {
-    "title": "The Legend of Kitchen Soldier บันทึกครัวค่ายทหาร (2026) ",
-    "updated": "2026-06-10",  
+  {
+    "title": "See You at Work Tomorrow! เจอกันที่ออฟฟิศพรุ่งนี้นะ! (2026)",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
     "language": "ซับไทย",
-    "groups": ["series-update","series-korea"],
-    "poster": "https://320hdr.com/wp-content/uploads/2026/05/800.jpg",
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/06/See-You-at-Work-Tomorrow-2026-187x269.jpg",
     "latest_ep": 12,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/887d79a1799dacefdf43189b15a7caca/index.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6513ba5b9e066611651c643643f2524b/index.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/79504de636b03e0d90d897fd1087a59d/index.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f532896bb04e8ddc0311cbbe7d7e2d0a/index.m3u8" }]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ad4c6d2e4dc9b90168f83ae302c4e36f/index.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7e0d53697e03993d761034e962c0e782/index.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/19252d2f0ebe8939afcd2268f97f8cf7/index.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/19252d2f0ebe8939afcd2268f97f8cf7/index.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f403fd248e83e59a3b8bc30349ac50c4/index.m3u8" }]},
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/df475c79c51cc6edb7b76e9196c65f6e/index.m3u8" }]},
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b1fed81c7044923c8878502267eb1b92/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/21914230d9ee464cc737fdb44954e947/index.m3u8"}]}    
+      {
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/002cdec3acfcc65aa88a0d03/002cdec3acfcc65aa88a0d03438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/6056c9ecfb478c7de4d4aa7e/6056c9ecfb478c7de4d4aa7e438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/55af999381c7114071be2091/55af999381c7114071be2091438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/174b7af676d2e5c069002a1f/174b7af676d2e5c069002a1f438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/af9b9d3c4252c37fdd1a0c9c/af9b9d3c4252c37fdd1a0c9c438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/57f85a96104bd96c414833d9/57f85a96104bd96c414833d9438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/e3810b6ecaa6e9bb28079a29/e3810b6ecaa6e9bb28079a29438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/fc7dd34f13f5150beb0e98c1/fc7dd34f13f5150beb0e98c1438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://main.24playerhd.com/m3u8/3abe02df06a4eeab72cc4303/3abe02df06a4eeab72cc4303438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://main.24playerhd.com/m3u8/580814bdbf0556db1843e7e7/580814bdbf0556db1843e7e7438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP11",
+        "url": "https://main.24playerhd.com/m3u8/c9b328f74bcd22c393c93fc4/c9b328f74bcd22c393c93fc4438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP12",
+        "url": "https://main.24playerhd.com/m3u8/19d249b674330f5c75ad98a9/19d249b674330f5c75ad98a9438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      }
     ]
   },
-  
-
- {
-    "title": "Phantom Lawyer (2026) ทนายผีเข้าผีออก พากย์ไทย ",
-    "language": "พากย์ไทย",
-    "groups": ["series","series-korea"],
-    "poster": "https://320hdr.com/wp-content/uploads/2026/03/510-2.jpg",
-    "latest_ep": 16,
-    "total_ep": 16,
+  {
+    "title": "Reborn Rookie มือใหม่หักแค้น (2026)",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
+    "language": "ซับไทย",
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/05/Reborn-Rookie-2026-187x269.jpg",
+    "latest_ep": 12,
+    "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d4f9d92bc96668fd5c92acd68a824c82/index.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/856a85793814bca6b931c6a94197d9dc/index.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/71bca2d347de21ae67b8fb274bd8ce7e/index.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/04e66d7589483d93aaa1d29fc47acd7c/index.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a8ade668dc9acd9cb019d4c65c64c1cd/index.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9c129a8c4b4cdba70e71474f831677b6/index.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9543b8595865ba29ba6a001a4cbd8100/index.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/58151c670d002c63fdb01359e0833b92/index.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/126277af8c95188f192738af20831f1f/index.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/16b0027ea98b6eaefce2236a8cf43142/index.m3u8" }] },
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6559a0d63303aad2f02b04131c7e205d/index.m3u8" }] }, 
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/726dee724e559ac40f9c2cc571cd81e4/index.m3u8" }] },
-      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b4e52ad00c4697de0dffb9d38a987af4/index.m3u8" }] },
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/876ced4144f416d2e7b6bdebc7313a5c/index.m3u8" }] },
-      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e8864c4735b4812dc6d80395f078481a/index.m3u8" }] },
-      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/75f7b9f1d0d03aceca88545a9a2aba99/index.m3u8" }] }
-    
+      {
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/f79ba2e32f29fbe1d686d76d/f79ba2e32f29fbe1d686d76d438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/bc762db62f64d2ce67e78318/bc762db62f64d2ce67e78318438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/35fccc3b39bccec993b4458f/35fccc3b39bccec993b4458f438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/3032996dd48c45a20929f1c9/3032996dd48c45a20929f1c9438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/a480a7d5bc962048bebc5fd0/a480a7d5bc962048bebc5fd0438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/903c0331c019542408cd4c36/903c0331c019542408cd4c36438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/98475f59dfa7feabb8a13733/98475f59dfa7feabb8a13733438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/ddd9dbce29cff6634f159c8b/ddd9dbce29cff6634f159c8b438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://main.24playerhd.com/m3u8/eb30d1d72e2a44e33d33f25d/eb30d1d72e2a44e33d33f25d438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://main.24playerhd.com/m3u8/4a4975c25480afb33f042696/4a4975c25480afb33f042696438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP11",
+        "url": "https://main.24playerhd.com/m3u8/b7420b8f9f68ec425860611f/b7420b8f9f68ec425860611f438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP12",
+        "url": "https://main.24playerhd.com/m3u8/ae93d7ed71f11189541bc67c/ae93d7ed71f11189541bc67c438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      }
     ]
-  },  
-     {
-    "title": "The Judge Returns (2026) คืนบัลลังก์พิพากษา",
-    "language": "พากย์ไทย",
-    "groups": ["series","series-korea"],
-    "poster": "https://www.24hd.net/wp-content/uploads/2026/05/The-Judge-Returns-2026.webp",
+  },
+  {
+    "title": "My Royal Nemesis ศัตรูหัวใจ นางร้ายวังหลวง (2026)",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
+    "language": "ซับไทย",
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/05/My-Royal-Nemesis-2026-187x269.jpg",
     "latest_ep": 14,
     "total_ep": 14,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/vzS_H8e-Y4viK/video.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/7IP-r8jCTC_dq/video.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/uXek-E_zPD4yC/video.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/fHRXfm_HLu-TR/video.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/0X-v02kd_HRt0/video.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/kE_bdPje-G9Xx/video.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/i_NvuUTI-Bno8/video.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/Ja6WZ_c-iWMBH/video.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/u-WoiUInB0_mA/video.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/hJz1vc-Kuo_uA/video.m3u8" }] },
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/u5hTl-m_IoZNI/video.m3u8" }] },
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/QZfVSMp-YK_pt/video.m3u8" }] },
-      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/M-D8SB_xTxTdq/video.m3u8" }] },
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://media.vdohls.com/J-nwwdSoRd_7S/video.m3u8" }] }
+      {
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/5067c03f9327482933979cd9/5067c03f9327482933979cd9438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/be31fcb8f35050e3ca497fea/be31fcb8f35050e3ca497fea438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/12c380e62810b144edf274c6/12c380e62810b144edf274c6438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/cd50c48bf3cbc96fa6adb579/cd50c48bf3cbc96fa6adb579438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/1a6727f3f135fb55db63aeca/1a6727f3f135fb55db63aeca438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/44389c5f8902bc3c48333251/44389c5f8902bc3c48333251438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/58c18cfe2f2d3f8abc336251/58c18cfe2f2d3f8abc336251438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/7b98477f07635b7a4b8cf831/7b98477f07635b7a4b8cf831438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://main.24playerhd.com/m3u8/d361d6fc863de5fe48f6398a/d361d6fc863de5fe48f6398a438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://main.24playerhd.com/m3u8/dc37d6f829c3364924bb405e/dc37d6f829c3364924bb405e438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP11",
+        "url": "https://main.24playerhd.com/m3u8/1b79508b33e16cf04eb30582/1b79508b33e16cf04eb30582438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP12",
+        "url": "https://main.24playerhd.com/m3u8/115d81ea3b5a0956182c4bfc/115d81ea3b5a0956182c4bfc438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP13",
+        "url": "https://main.24playerhd.com/m3u8/3c3c0f1830d04c4b6ecc538b/3c3c0f1830d04c4b6ecc538b438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP14",
+        "url": "https://main.24playerhd.com/m3u8/642b0c07e67b9d35f0577610/642b0c07e67b9d35f0577610438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      }
     ]
-  },  
+  },
   {
-    "title": "จิตไม่ลืมแค้น-2026-Reverse พากย์ไทย",
-    "groups": ["series","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://series99.net/wp-content/uploads/2026/04/จิตไม่ลืมแค้น-2026-Reverse-พากย์ไทย-200x300.webp",
-    "latest_ep": 8,
-    "total_ep": 8,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9513f0ddd7f6a1eeac48c39351be3b25/index.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b3177295fb0188a6bc3a2098857490df/index.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/00b8f986e9596026199fe85e06f662d2/index.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/efa068260b99f3e1fb706f97824e0ce1/index.m3u8"}]},
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/abecf4d122c99f852b82149c1976d5dd/index.m3u8"}]},
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d43ed51c654e55f57025e7155ec3a691/index.m3u8"}]},
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/87c23f80453623b516aa932221dc4309/index.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9c5d80769e11c9f126c935d9d4e9a77b/index.m3u8"}]}
-    ]
-  }, 
-  
-  {
-    "title": " Gold Land แผนล่าท้าคนโลภ (2026) พากย์ไทย",
-    "groups": ["series","series-korea"],
-    "language": "พากย์ไทย",
-    "poster": "https://320hdr.com/wp-content/uploads/2026/04/000.jpg",
-    "latest_ep": 10,
-    "total_ep": 10,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d6d10912f04454a2c9502e0a3a6303c2/index.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d6113df9d31289a5d556a4e69c1664a4/index.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7692c1865216e32a9ecc5f77d4555c9b/index.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/13621f16960105d725ed392b233c3da2/index.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7be966ef26751f441a571017d39b3093/index.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6461ea606d30ff7dd84ad46534fb8717/index.m3u8" }] },
-       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/e9c50badc60f23d21e42ad8058edbf54/index.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/44475d9369ce01aff25ae784e0d55b8c/index.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/27810432dbaad0432e9ed97c070f0a8e/index.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/39971b911f24cdd8ef58bf6db7dfaed5/index.m3u8" }] }
-    
-    ]
-  },  
-  {
-    "title": "ศัตรูหัวใจ นางร้ายวังหลวง",
-     "updated": "2026-06-21",  
+    "title": "Teach You a Lesson อย่างนี้ต้องโดนสั่งสอน (2026)",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
     "language": "ซับไทย",
-    "groups": ["series","series-korea"],
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/05/ศัตรูหัวใจ-นางร้ายวังหลวง-1.webp",
-    "latest_ep": 14,
-    "total_ep": 14,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d9467bf054221d8a95681a89ab30ac59/index.m3u8"}] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/694e9736e43654219f2b52cf2ac411d2/index.m3u8"}] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/25a00271168bcf2bde8bf7d338f9da3c/index.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/465ff0723ab79db0c6211adab3b7cda1/index.m3u8" }] },
-       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/f861fb26b907c2d8756e84a2183469ce/index.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/49d598f41b1b717ee3df244dc8f24cfd/index.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9e14aee4afb9adaed3936bd3eb6c78c9/index.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/a7e20eeb19f19ffd9c0653382f315708/index.m3u8" }] },   
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ff1c94e51a156301294731e9af36abdc/index.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/32e8cfd3695577c7d4dc842eb89649d5/index.m3u8" }] },   
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/cc952c14af1e3d849eb6b514b6d97423/index.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ab847884d41d6e75f7a602d2738824f1/index.m3u8"}]},
-      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3a03d2ada72b82a16bce2b983f84b263/index.m3u8"}]},
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b63235caf68cb639a49efd4b1b69f893/index.m3u8"}]}
-    ]
-  },
- {
-    "title": "Climax (2026) สุดจุดเดือด พากย์ไทย",
-    "language": "พากย์ไทย",
-    "groups": ["series","series-korea"],
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/05/สุดจุดเดือด-1.webp",
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/06/Teach-You-a-Lesson-2026-187x269.jpg",
     "latest_ep": 10,
     "total_ep": 10,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/6414ecd58ed72fcc255d5d0c8dab81d7/index.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/263310445598ad1a433c67b00b50e054/index.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/214d4a5411f01716be2ddd8b425a765e/index.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/00ce3a5d6479daaf9a593092cd0dd971/index.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/024bc35f75a77bba666531470ec2567c/index.m3u8" }] },  
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/ac2aa3a972fe87ab93996ca6060d5ac7/index.m3u8" }] },   
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/967106b85be63ebaed851c97d1c06a71/index.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/449096bbc6f3ed0ee5f761ef4931e75e/index.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7df06083b804835060ff734693a83d11/index.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5eb9c89f0c4befdc4b9695bec2e1355e/index.m3u8" }] }
+      {
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/ba6684fcbbf4033e00afc09e/ba6684fcbbf4033e00afc09e438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/cc0421b717608d9a6546aae7/cc0421b717608d9a6546aae7438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/b5545ce5b4615a66dd70b6ae/b5545ce5b4615a66dd70b6ae438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/fae097b85201b34e882af4e9/fae097b85201b34e882af4e9438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/f695a6d1707670d93528785c/f695a6d1707670d93528785c438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/6ff8371d9fe02ab3b6ff61d2/6ff8371d9fe02ab3b6ff61d2438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/5f689b875b878512b2ffe3de/5f689b875b878512b2ffe3de438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/48d3f00f0e3a99e54c35db0e/48d3f00f0e3a99e54c35db0e438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://main.24playerhd.com/m3u8/0fad9c246167ba27b17919b0/0fad9c246167ba27b17919b0438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://main.24playerhd.com/m3u8/3777e97967ce05056b8f1149/3777e97967ce05056b8f1149438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      }
     ]
   },
- {
-    "title": "Perfect Crown (2026) รักนี้มงลง",
-    "language": "พาย์ไทย",
-    "groups": ["series","series-korea"],
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/รักนี้มงลง-1.webp",
+  {
+    "title": "Perfect Crown รักนี้มงลง (2026)",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
+    "language": "ซับไทย",
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/04/Perfect-Crown-2026-187x269.jpg",
     "latest_ep": 12,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/4854b2ec0bb9818c26aa36acf988f6e8/index.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/8851877d81ce943a3b76f6ab0243a427/index.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/3e2081d96165a4d23c538bff1bffaa4e/index.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/5f210172f0c9ff1e006eb208c179dea1/index.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/78c59297040441f35a124086a3e756b4/index.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/60fc94f6f7f09c04b1d90a6fa0ce2f24/index.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7b3206c9f6e4f025f19313e9fd921cae/index.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/2efeaec62053b65f5b2b40f96a395943/index.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/56a6fb63da9cd916249925790d81149e/index.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/310519c8e1c6851509f1ce9ec311b8e8/index.m3u8" }] },
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/7814b5230259091eb1937d2c5336c636/index.m3u8" }]},
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/dd02ad7ca274dbc95c2330ff5346b005/index.m3u8" }] }
-
+      {
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/eba3f19d018ebf41cdd45305/eba3f19d018ebf41cdd45305438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/ee20196ebe9cdfd6692eada2/ee20196ebe9cdfd6692eada2438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/760ea050c20edae0a4c2aa7b/760ea050c20edae0a4c2aa7b438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/582361311b8b7bc567d1dc35/582361311b8b7bc567d1dc35438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/61c117d9b41fb3d6fd174e49/61c117d9b41fb3d6fd174e49438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/817a0397c682444095fc00ec/817a0397c682444095fc00ec438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/25536df0b134485d197476cf/25536df0b134485d197476cf438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/a6fab293274aab34795fc213/a6fab293274aab34795fc213438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://main.24playerhd.com/m3u8/6e048a146100395438485f26/6e048a146100395438485f26438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://main.24playerhd.com/m3u8/7ffa08dead0f8f6affa98c8a/7ffa08dead0f8f6affa98c8a438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP11",
+        "url": "https://main.24playerhd.com/m3u8/3e42513a9ec649d096825901/3e42513a9ec649d096825901438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP12",
+        "url": "https://main.24playerhd.com/m3u8/c219e3fbb2bdef86dedd3a42/c219e3fbb2bdef86dedd3a42438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      }
     ]
   },
- {
-    "title": "Reverse (2026) จิตไม่ลืมแค้น ซับไทย",
-    "language": "พากย์ไทย",
-    "groups": ["series","series-korea"],
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/04/จิตไม่ลืมแค้น-1.webp",
-    "latest_ep": 8,
-    "total_ep": 8,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9513f0ddd7f6a1eeac48c39351be3b25/index.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/b3177295fb0188a6bc3a2098857490df/index.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/00b8f986e9596026199fe85e06f662d2/index.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/efa068260b99f3e1fb706f97824e0ce1/index.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/abecf4d122c99f852b82149c1976d5dd/index.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/d43ed51c654e55f57025e7155ec3a691/index.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/87c23f80453623b516aa932221dc4309/index.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://torbo007.com/api/stream/9c5d80769e11c9f126c935d9d4e9a77b/index.m3u8" }] }
-    ]
-  },
- {
-    "title": "Phantom Lawyer ทนายสื่อวิญญาณ  ซับไทย",
-   "groups": ["series","series-korea"],
+  {
+    "title": "Can This Love Be Translated (2026) ยากชะมัด รักภาษาอะไร",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
     "language": "ซับไทย",
-    "poster": "https://series-fulls.com/wp-content/uploads/2026/03/ทนายผีเข้าผีออก-11.webp",
+    "poster": "https://www.seriedays.com/wp-content/uploads/2026/01/Can-This-Love-Be-Translated-2026-187x269.jpg",
+    "latest_ep": 12,
+    "total_ep": 12,
+    "episodes": [
+      {
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/d411ccde0eb48d8cc10e41de/d411ccde0eb48d8cc10e41de438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/c633563187b47d0d7a7189e1/c633563187b47d0d7a7189e1438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/dfcfca37e79e78dd00ea8bbb/dfcfca37e79e78dd00ea8bbb438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/98ae2d3cc26fcff3b9b555b9/98ae2d3cc26fcff3b9b555b9438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/65fbe95a81d8ed5c4d6b8cfa/65fbe95a81d8ed5c4d6b8cfa438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/f7a2358eea4958fb9c7795dc/f7a2358eea4958fb9c7795dc438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/d86b8fda9fe947dffc1059c8/d86b8fda9fe947dffc1059c8438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/a0522d9df65c5bd9d8eb705f/a0522d9df65c5bd9d8eb705f438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://main.24playerhd.com/m3u8/c7d8ef67cea95aa365d554d8/c7d8ef67cea95aa365d554d8438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://main.24playerhd.com/m3u8/9c86a33fd18f720509a885a3/9c86a33fd18f720509a885a3438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP11",
+        "url": "https://main.24playerhd.com/m3u8/153ed129c46cf8612729a64c/153ed129c46cf8612729a64c438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP12",
+        "url": "https://main.24playerhd.com/m3u8/df965cead7b02644ba70985d/df965cead7b02644ba70985d438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      }
+    ]
+  },
+  {
+    "title": "Love Scout รับจ้างจัดหารัก (2025)",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
+    "language": "ซับไทย",
+    "poster": "https://www.seriedays.com/wp-content/uploads/2025/01/Love-Scout-2025.jpg",
+    "latest_ep": 12,
+    "total_ep": 12,
+    "episodes": [
+      {
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/4c18c233725f301651009a60/4c18c233725f301651009a60438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/cbab7bfd94d38740187b82ac/cbab7bfd94d38740187b82ac438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/e2823251209f40102722dbb1/e2823251209f40102722dbb1438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/ec0f497c740da02b60541617/ec0f497c740da02b60541617438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/b6aae105bbeb77094c5b0c19/b6aae105bbeb77094c5b0c19438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/572dc7dfd1d35a3ff782fb26/572dc7dfd1d35a3ff782fb26438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/45aabeb8b017dab819f16e45/45aabeb8b017dab819f16e45438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/68be1519f49fd216ad29306f/68be1519f49fd216ad29306f438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://main.24playerhd.com/m3u8/7346428024d9c03d8c8bb901/7346428024d9c03d8c8bb901438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://main.24playerhd.com/m3u8/526f64b8a8dc6fc224b37ded/526f64b8a8dc6fc224b37ded438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP11",
+        "url": "https://main.24playerhd.com/m3u8/81d24f1d81a1f312e74954fd/81d24f1d81a1f312e74954fd438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP12",
+        "url": "https://main.24playerhd.com/m3u8/e18c6c9ae8e2b310cb39940b/e18c6c9ae8e2b310cb39940b438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      }
+    ]
+  },
+  {
+    "title": "Queen of Tears (2024) ราชินีแห่งน้ำตา",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
+    "language": "ซับไทย",
+    "poster": "https://www.seriedays.com/wp-content/uploads/2024/03/Queen-of-Tears-2024.jpg",
     "latest_ep": 16,
     "total_ep": 16,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP01.mp4/chunk.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP02.mp4/chunk.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP03.mp4/chunk.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP04.mp4/chunk.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP05.mp4/chunk.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP06.mp4/chunk.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP07.mp4/chunk.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP08.mp4/chunk.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP09.mp4/chunk.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP10.mp4/chunk.m3u8" }] },
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP11.mp4/chunk.m3u8" }] },
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP12.mp4/chunk.m3u8" }] },
-      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP13.mp4/chunk.m3u8" }] },
-      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP14.mp4/chunk.m3u8" }] },
-      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP15.mp4/chunk.m3u8" }] },
-      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaPhantomLawyer/EP16.mp4/chunk.m3u8" }] }
- ]
- },      
- {
-    "title": "The Secret Friends Club ซับไทย",
+      {
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/bc9fc5a164468136f2da21ad/bc9fc5a164468136f2da21ad438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/9aac65f910f61d11c16d9096/9aac65f910f61d11c16d9096438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/38366ab25c055e1b644c1eb9/38366ab25c055e1b644c1eb9438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/523a3144bf9576c9689b727f/523a3144bf9576c9689b727f438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/a36eb6faf84149506a6fae11/a36eb6faf84149506a6fae11438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/877c03e7967b1474cf2a3c9a/877c03e7967b1474cf2a3c9a438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/273564d513fe732b2aaec568/273564d513fe732b2aaec568438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/d9f77988739a05cc2ff1f6c5/d9f77988739a05cc2ff1f6c5438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://main.24playerhd.com/m3u8/6f86b5dde5e030e08a63032c/6f86b5dde5e030e08a63032c438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://main.24playerhd.com/m3u8/217f53b74dffdf05495894fd/217f53b74dffdf05495894fd438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP11",
+        "url": "https://main.24playerhd.com/m3u8/1ee8c480ce345b1e5930c4ad/1ee8c480ce345b1e5930c4ad438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP12",
+        "url": "https://main.24playerhd.com/m3u8/d9d9e0a28a00092eb88bd9ba/d9d9e0a28a00092eb88bd9ba438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP13",
+        "url": "https://main.24playerhd.com/m3u8/547bdc674c0d2513372d4caf/547bdc674c0d2513372d4caf438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP14",
+        "url": "https://main.24playerhd.com/m3u8/24b85c850aff6b79740ccbf5/24b85c850aff6b79740ccbf5438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP15",
+        "url": "https://main.24playerhd.com/m3u8/1c57afb36c22b92ea0ecaf0d/1c57afb36c22b92ea0ecaf0d438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP16",
+        "url": "https://main.24playerhd.com/m3u8/65437a6571db3e93783d2555/65437a6571db3e93783d2555438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      }
+    ]
+  },
+  {
+    "title": "Lovestruck in the City (2020) ความรักในเมืองใหญ่",
+    "updated": "2026-08-24",
+    "groups": [
+      "series-update",
+      "series-korea"
+    ],
     "language": "ซับไทย",
-    "groups": ["series","series-korea"],
-    "poster": "https://www.baan-series.org/wp-content/uploads/2026/03/The-Secret-Friends-Club.jpg",
-    "latest_ep": 12,
-    "total_ep": 12,
+    "poster": "https://www.seriedays.com/wp-content/uploads/2023/09/Lovestruck-in-the-City-2020.jpg",
+    "latest_ep": 17,
+    "total_ep": 17,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP01.mp4/chunk.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP02.mp4/chunk.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP03.mp4/chunk.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP04.mp4/chunk.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP05.mp4/chunk.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP06.mp4/chunk.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP07.mp4/chunk.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP08.mp4/chunk.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP09.mp4/chunk.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP10.mp4/chunk.m3u8" }] },
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP11.mp4/chunk.m3u8" }] },
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaTheSecretFriendsClub/EP12.mp4/chunk.m3u8" }] }
-
- ]
- },      
- {
-    "title": "Climax สุดจุดเดือด ซับไทย",
-    "language": "ซับไทย",
-    "groups": ["series","series-korea"],
-    "poster": "https://www.baan-series.org/wp-content/uploads/2026/03/Climax-สุดจุดเดือด-e1773719109330.jpg",
-    "latest_ep": 10,
-    "total_ep": 10,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP01.mp4/chunk.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP02.mp4/chunk.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP03.mp4/chunk.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP04.mp4/chunk.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP05.mp4/chunk.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP06.mp4/chunk.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP07.mp4/chunk.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP08.mp4/chunk.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP09.mp4/chunk.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2026KoreaClimax/EP10.mp4/chunk.m3u8" }] }
- ]
- },      
- {
-    "title": "Poong, the Joseon Psychiatrist 2 ยูเซพุง ยอดจิตแพทย์โชซอน ซีซั่น 2 ",
-    "language": "พากย์ไทย",
-    "groups": ["series","series-korea"],
-    "poster": "https://www.baan-series.org/wp-content/uploads/2026/03/ยูเซพุง-ยอดจิตแพทย์โชซอน-ซีซั่น-2-e1773717657323.jpg" ,
-    "latest_ep": 10,
-    "total_ep": 10,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2023KoreaPoongTheJoseonPsychiatristThai/EP01.mp4/playlist.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2023KoreaPoongTheJoseonPsychiatristThai/EP02.mp4/playlist.m3u8"  }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2023KoreaPoongTheJoseonPsychiatristThai/EP03.mp4/playlist.m3u8"  }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2023KoreaPoongTheJoseonPsychiatristThai/EP04.mp4/playlist.m3u8"  }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2023KoreaPoongTheJoseonPsychiatristThai/EP05.mp4/playlist.m3u8"  }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2023KoreaPoongTheJoseonPsychiatristThai/EP06.mp4/playlist.m3u8"  }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2023KoreaPoongTheJoseonPsychiatristThai/EP07.mp4/playlist.m3u8"  }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2023KoreaPoongTheJoseonPsychiatristThai/EP08.mp4/playlist.m3u8"  }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2023KoreaPoongTheJoseonPsychiatristThai/EP09.mp4/playlist.m3u8"  }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://c4d422e756cc1668.001140.xyz/GI/TVShows/Korea/2023KoreaPoongTheJoseonPsychiatristThai/EP10.mp4/playlist.m3u8"  }] }
-
- ]
- },      
- {
-    "title": "Poong, the Joseon Psychiatrist1 ยูเซพุง ยอดจิตแพทย์โชซอน ซีซั่น 1 ",
-    "language": "พากย์ไทย",
-    "groups": ["series","series-korea"],
-    "poster": "https://www.baan-series.org/wp-content/uploads/2026/03/ยูเซพุง-ยอดจิตแพทย์โชซอน-ซีซั่น-1-e1773717100541.jpg",
-    "latest_ep": 12,
-    "total_ep": 12,
-    "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP01.mp4/playlist.m3u8" }] },
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP02.mp4/playlist.m3u8" }] },
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP03.mp4/playlist.m3u8" }] },
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP04.mp4/playlist.m3u8" }] },
-      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP05.mp4/playlist.m3u8" }] },
-      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP06.mp4/playlist.m3u8" }] },
-      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP07.mp4/playlist.m3u8" }] },
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP08.mp4/playlist.m3u8" }] },
-      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP09.mp4/playlist.m3u8" }] },
-      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP10.mp4/playlist.m3u8" }] },
-      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP11.mp4/playlist.m3u8" }] },
-      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://bdbx5i74v8f9pk2i.010014.xyz/g/I/TVShows/Korea/2022KoreaPoongTheJoseonPsychiatristThai/EP12.mp4/playlist.m3u8" 
-
-          }
-        ]
+      {
+        "title": "EP1",
+        "url": "https://main.24playerhd.com/m3u8/228e8e753aaad6ead575e577/228e8e753aaad6ead575e577438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP2",
+        "url": "https://main.24playerhd.com/m3u8/1c6a44c0e6e644aa5baaee5a/1c6a44c0e6e644aa5baaee5a438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP3",
+        "url": "https://main.24playerhd.com/m3u8/8d011f549e5d5d1baa1b97a5/8d011f549e5d5d1baa1b97a5438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP4",
+        "url": "https://main.24playerhd.com/m3u8/3a8685281f12072a391cce50/3a8685281f12072a391cce50438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP5",
+        "url": "https://main.24playerhd.com/m3u8/b6064d30279cce068984a85b/b6064d30279cce068984a85b438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP6",
+        "url": "https://main.24playerhd.com/m3u8/832069e02a1edc94178a204a/832069e02a1edc94178a204a438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP7",
+        "url": "https://main.24playerhd.com/m3u8/e0513b1e52ae74a6f9668aa5/e0513b1e52ae74a6f9668aa5438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP8",
+        "url": "https://main.24playerhd.com/m3u8/9288d885061c18212c9bcd7e/9288d885061c18212c9bcd7e438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP9",
+        "url": "https://main.24playerhd.com/m3u8/9dee0a536a4b1ebad83e7ea7/9dee0a536a4b1ebad83e7ea7438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP10",
+        "url": "https://main.24playerhd.com/m3u8/5485ad5a3ea1bf0253070bbe/5485ad5a3ea1bf0253070bbe438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP11",
+        "url": "https://main.24playerhd.com/m3u8/475e982cb934004b084bcb88/475e982cb934004b084bcb88438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP12",
+        "url": "https://main.24playerhd.com/m3u8/31aaf9663530ebc384b2dbbc/31aaf9663530ebc384b2dbbc438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP13",
+        "url": "https://main.24playerhd.com/m3u8/2507741ce20d900865b3794a/2507741ce20d900865b3794a438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP14",
+        "url": "https://main.24playerhd.com/m3u8/56e2f0557022caae3d0e66a3/56e2f0557022caae3d0e66a3438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP15",
+        "url": "https://main.24playerhd.com/m3u8/3d64be4927a503ae8768486d/3d64be4927a503ae8768486d438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP16",
+        "url": "https://main.24playerhd.com/m3u8/30eb170607a4f3c570d4a250/30eb170607a4f3c570d4a250438.m3u8",
+        "referer": "https://www.seriedays.com/"
+      },
+      {
+        "title": "EP17",
+        "url": "https://main.24playerhd.com/m3u8/30097e189817eb5b927546db/30097e189817eb5b927546db438.m3u8",
+        "referer": "https://www.seriedays.com/"
       }
     ]
   }
