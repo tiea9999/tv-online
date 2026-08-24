@@ -8,7 +8,7 @@
     ],
     "language": "ซับไทย",
     "poster": "https://www.seriedays.com/wp-content/uploads/2026/07/Blossoms-of-Power-2026-บุหงาซ่อนคม-187x269.jpg",
-    "latest_ep": 28,
+    "latest_ep": 36,
     "total_ep": 36,
     "episodes": [
       {
@@ -148,8 +148,48 @@
       },
       {
         "title": "EP28",
-        "url": "https://main.24playerhd.com/m3u8/c61ef2ef141f06cdd7f5af6d/c61ef2ef141f06cdd7f5af6d438.m3u8",
+        "url": "https://main.24playerhd.com/newplaylist/ca0cd67c3e7f0a478d0431ac/ca0cd67c3e7f0a478d0431ac.m3u8",
         "referer": "https://www.serie-days.com/"
+      {
+        "title": "EP29",
+        "url": "https://main.24playerhd.com/m3u8/c492952b62d1d38aac8a5921/c492952b62d1d38aac8a5921438.m3u8",
+        "referer": "https://www.serie-days.com/"
+      },
+      {
+        "title": "EP30",
+        "url": "https://main.24playerhd.com/newplaylist/4ff60c27a57485aa79531966/4ff60c27a57485aa79531966.m3u8",
+        "referer": "https://www.serie-days.com/"
+      },
+      {
+        "title": "EP31",
+        "url": "https://main.24playerhd.com/newplaylist/56a7ed4ff5b9dbd3cf6dd8d0/56a7ed4ff5b9dbd3cf6dd8d0.m3u8",
+        "referer": "https://www.serie-days.com/"
+      },
+      {
+        "title": "EP32",
+        "url": "https://main.24playerhd.com/newplaylist/09627589dea2357716187c35/09627589dea2357716187c35.m3u8",
+        "referer": "https://www.serie-days.com/"
+      },
+      {
+        "title": "EP33",
+        "url": "https://main.24playerhd.com/newplaylist/d03b630c2e2d5c0068a67862/d03b630c2e2d5c0068a67862.m3u8",
+        "referer": "https://www.serie-days.com/"
+      },
+      {
+        "title": "EP34",
+        "url": "https://main.24playerhd.com/newplaylist/7d3ddb8f9afb74eed5e4270f/7d3ddb8f9afb74eed5e4270f.m3u8",
+        "referer": "https://www.serie-days.com/"
+      },
+      {
+        "title": "EP35",
+        "url": "https://main.24playerhd.com/newplaylist/4d2cf952c02b92428479d187/4d2cf952c02b92428479d187.m3u8",
+        "referer": "https://www.serie-days.com/"
+      },
+      {
+        "title": "EP36",
+        "url": "https://main.24playerhd.com/newplaylist/b41e34565221e4a0337c85f2/b41e34565221e4a0337c85f2.m3u8",
+        "referer": "https://www.serie-days.com/"
+      
       }
     ]
   },
