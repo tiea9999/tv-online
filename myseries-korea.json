@@ -252,9 +252,22 @@
         "title": "EP10",
         "url": "https://series-cdn.team-indy.net:8443/vod/MVfstGWm8c/video.mp4/playlist.m3u8",
         "referer": "https://seriesindy.com/"
+      },
+      {
+        "title": "EP11",
+        "url": "https://main.24playerhd.com/newplaylist/9000f5b5c0733014e863df65/9000f5b5c0733014e863df65.m3u8",
+        "referer": "https://seriesindy.com/"
+      },
+      {
+        "title": "EP12",
+        "url": "https://main.24playerhd.com/newplaylist/4f1e07899cfb0ec334168725/4f1e07899cfb0ec334168725.m3u8",
+        "referer": "https://seriesindy.com/"
       }
     ]
   },
+
+  
+  
   {
     "title": "See You at Work Tomorrow! เจอกันที่ออฟฟิศพรุ่งนี้นะ! (2026)",
     "updated": "2026-08-24",
