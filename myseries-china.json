@@ -17,9 +17,9 @@
       { "title": "EP7", "servers": [{ "name": "Main",  "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaHairpinFlowers/EP07.mp4/playlist.m3u8"}]},
       { "title": "EP8", "servers": [{ "name": "Main",  "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaHairpinFlowers/EP08.mp4/playlist.m3u8"}]},
       { "title": "EP9", "servers": [{ "name": "Main",  "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaHairpinFlowers/EP09.mp4/playlist.m3u8"}]},
-      { "title": "EP10", "servers": [{ "name": "Main",  "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaHairpinFlowers/EP010.mp4/playlist.m3u8"}]},
-      { "title": "EP11", "servers": [{ "name": "Main",  "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaHairpinFlowers/EP011.mp4/playlist.m3u8"}]},
-      { "title": "EP12", "servers": [{ "name": "Main",  "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaHairpinFlowers/EP012.mp4/playlist.m3u8"}]}
+      { "title": "EP10", "servers": [{ "name": "Main",  "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaHairpinFlowers/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main",  "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaHairpinFlowers/EP11.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main",  "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaHairpinFlowers/EP12.mp4/playlist.m3u8"}]}
 
     ]
   },
