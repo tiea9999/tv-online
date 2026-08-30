@@ -112,7 +112,41 @@
       { "title": "EP42", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2017ChinaBanShuLegendThai/EP42.mp4/playlist.m3u8"}]}
     ]
   },
-
+  {
+    "title": "บาปรัก (Dearest)",
+    "updated": "2026-08-30",
+    "groups": ["series-update","series-china"],
+    "language": "ซับไทย",
+    "poster": "https://goseries.co/wp-content/uploads/2026/08/poster_291881-185x278.webp",
+    "latest_ep":24,
+    "total_ep": 24,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP11.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP12.mp4/playlist.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP13.mp4/playlist.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP14.mp4/playlist.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP15.mp4/playlist.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP16.mp4/playlist.m3u8"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP17.mp4/playlist.m3u8"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP18.mp4/playlist.m3u8"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP19.mp4/playlist.m3u8"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP20.mp4/playlist.m3u8"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP21.mp4/playlist.m3u8"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP22.mp4/playlist.m3u8"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP23.mp4/playlist.m3u8"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaDearest/EP24.mp4/playlist.m3u8"}]}
+    ]
+  },
 
 
 
