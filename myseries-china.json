@@ -239,7 +239,50 @@
       { "title": "EP24", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaTheOutlaw/EP24.mp4/playlist.m3u8"}]}
     ]
   },
-
+  {
+    "title": "ตราชั่งยุติธรรม (Forging Justice)",
+    "updated": "2026-08-30",
+    "groups": ["series-update","series-china"],
+    "language": "ซับไทย",
+    "poster": "https://goseries.co/wp-content/uploads/2026/08/poster_291529-185x278.webp",
+    "latest_ep":33,
+    "total_ep": 33,
+    "episodes": [      
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP11.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP12.mp4/playlist.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP13.mp4/playlist.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP14.mp4/playlist.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP15.mp4/playlist.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP16.mp4/playlist.m3u8"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP17.mp4/playlist.m3u8"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP18.mp4/playlist.m3u8"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP19.mp4/playlist.m3u8"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP20.mp4/playlist.m3u8"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP21.mp4/playlist.m3u8"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP22.mp4/playlist.m3u8"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP23.mp4/playlist.m3u8"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP24.mp4/playlist.m3u8"}]},
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP25.mp4/playlist.m3u8"}]},
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP26.mp4/playlist.m3u8"}]},
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP27.mp4/playlist.m3u8"}]},
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP28.mp4/playlist.m3u8"}]},
+      { "title": "EP29", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP29.mp4/playlist.m3u8"}]},
+      { "title": "EP30", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP30.mp4/playlist.m3u8"}]},
+      { "title": "EP31", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP31.mp4/playlist.m3u8"}]},
+      { "title": "EP32", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP32.mp4/playlist.m3u8"}]},
+      { "title": "EP33", "servers": [{ "name": "Main", "url": "https://db89e1a1d792c0df.001140.xyz/GI/TVShows/China/2026ChinaForgingJustice/EP33.mp4/playlist.m3u8"}]}    
+    ]
+},
 
   
   {
