@@ -1,5 +1,31 @@
 [
   {
+    "title": "โรมานซ์สุดแปลก (Eccentric Romance) ",
+    "updated": "2026-09-3",
+    "groups": [ "series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.baan-series.org/wp-content/uploads/2026/09/%E0%B9%82%E0%B8%A3%E0%B8%A1%E0%B8%B2%E0%B8%99%E0%B8%8B%E0%B9%8C%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%81%E0%B8%9B%E0%B8%A5%E0%B8%81-Eccentric-Romance-e1788234029654.jpg",
+    "latest_ep":12,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP11.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://da4d1938bfd6103b.001140.xyz/GI/TVShows/Korea/2024KoreaEccentricRomance/EP12.mp4/playlist.m3u8"}]}
+    ]
+  },
+
+
+  
+  {
     "title": "The Apartment Job (2026) ท่านประธานกำมะลอ",
     "updated": "2026-08-24",
     "groups": [ "series-update","series-korea"],
