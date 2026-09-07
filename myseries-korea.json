@@ -1,5 +1,32 @@
 [
   {
+    "title": "คุณชายสายสืบ (Flex X Cop)",
+    "updated": "2026-09-7",
+    "groups": [ "series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.baan-series.net/wp-content/uploads/2026/08/%E0%B8%84%E0%B8%B8%E0%B8%93%E0%B8%8A%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B7%E0%B8%9A-Flex-X-Cop-scaled-e1786939815698.jpg",
+    "latest_ep":16,
+    "total_ep": 16,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP11.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP12.mp4/playlist.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP13.mp4/playlist.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP14.mp4/playlist.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP15.mp4/playlist.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2024KoreaFlexXCopThai/EP16.mp4/playlist.m3u8"}]}
+    ]
+  },  
+  {
     "title": "โรมานซ์สุดแปลก (Eccentric Romance) ",
     "updated": "2026-09-3",
     "groups": [ "series-update","series-korea"],
