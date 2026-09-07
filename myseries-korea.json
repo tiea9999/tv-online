@@ -1,5 +1,32 @@
 [
   {
+    "title": "อาวุธสังหารที่หายสาบสูญ (Adamas)",
+    "updated": "2026-09-7",
+    "groups": [ "series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.baan-series.net/wp-content/uploads/2026/08/%E0%B8%AD%E0%B8%B2%E0%B8%A7%E0%B8%B8%E0%B8%98%E0%B8%AA%E0%B8%B1%E0%B8%87%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%AB%E0%B8%B2%E0%B8%A2%E0%B8%AA%E0%B8%B2%E0%B8%9A%E0%B8%AA%E0%B8%B9%E0%B8%8D-Adamas-e1786939612844.webp",
+    "latest_ep":16,
+    "total_ep": 16,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP01.mp4/playlist.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP02.mp4/playlist.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP03.mp4/playlist.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP04.mp4/playlist.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP05.mp4/playlist.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP06.mp4/playlist.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP07.mp4/playlist.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP08.mp4/playlist.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP09.mp4/playlist.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP10.mp4/playlist.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP11.mp4/playlist.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP12.mp4/playlist.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP13.mp4/playlist.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP14.mp4/playlist.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP15.mp4/playlist.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://9c591dbc88e603f5.001140.xyz/GI/TVShows/Korea/2022KoreaAdamasThai/EP16.mp4/playlist.m3u8"}]}
+    ]
+  },  
+  {
     "title": "คุณชายสายสืบ (Flex X Cop)",
     "updated": "2026-09-7",
     "groups": [ "series-update","series-korea"],
