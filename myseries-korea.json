@@ -1,5 +1,30 @@
 [
   {
+    "title": " Dream to You (2026) เติมฝันในใจเธอ",
+    "updated": "2026-09-9",
+    "groups": [ "series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.seriedayz.com/wp-content/uploads/2026/07/Dream-to-You-2026-240x300.jpg",
+    "latest_ep":12,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/56e7ada1a7233a9c6c790e9e/56e7ada1a7233a9c6c790e9e.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/f5e2c92405998df43e238faf/f5e2c92405998df43e238faf.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/4d0b6979fca416870b735688/4d0b6979fca416870b735688.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/a60bfe001abbef88efef67a5/a60bfe001abbef88efef67a5.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/c8b9bbff604839ff96ad8eb0/c8b9bbff604839ff96ad8eb0.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/51fa4e96c2e0600ecfeab13f/51fa4e96c2e0600ecfeab13f.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/f7d57ac2e4f6804962ef750b/f7d57ac2e4f6804962ef750b.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/2d9f39ce99c5bc0ae241a03c/2d9f39ce99c5bc0ae241a03c.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/d448491bc7e4ac8fb0811644/d448491bc7e4ac8fb0811644.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/b498423ce430f79a573e98f0/b498423ce430f79a573e98f0.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/2f1e8ee7ebbd2cacb8586524/2f1e8ee7ebbd2cacb8586524.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/a62f2f02b4061827f7649210/a62f2f02b4061827f7649210.m3u8"}]}
+    ]
+  },
+
+  
+  {
     "title": "อาวุธสังหารที่หายสาบสูญ (Adamas)",
     "updated": "2026-09-7",
     "groups": [ "series-update","series-korea"],
