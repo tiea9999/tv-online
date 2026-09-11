@@ -1,5 +1,22 @@
 [
   {
+    "title": "Loki โลกิ ซับไทย (2021)",
+    "updated": "2026-09-10",
+    "groups": ["series-update","series-inter"],
+    "language": "พากย์ไทย",
+    "poster": "",
+    "latest_ep":6,
+    "total_ep": 6,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/af0351b8d878259c0ff925cf/af0351b8d878259c0ff925cf.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/500f2c63162706f7f84e4caf/500f2c63162706f7f84e4caf.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/43e3aa2526272bbaaf237f22/43e3aa2526272bbaaf237f22.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/1227e5a4a0850d2912793d50/1227e5a4a0850d2912793d50.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/e264b7f745bd96a66f934866/e264b7f745bd96a66f934866.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/1cd8de0185029aaa88104d93/1cd8de0185029aaa88104d93.m3u8"}]}
+          ]
+  },
+  {
     "title": "High Potential",
     "updated": "2026-08-9",
     "groups": ["series-update","series-inter"],  
