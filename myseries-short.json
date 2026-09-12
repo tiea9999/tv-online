@@ -1,4 +1,11 @@
 [
+  {
+    "title": "ทรยศรักหมอเทพชะตาขาด",
+    "groups": ["series-update","series-short"],
+    "poster": "https://หนังสั้น.online//uploads/posters/368b469dc59d5972d5a5ab631c0c6a25.png",
+    "language": "พากย์ไทย",
+    "servers": [
+{"name": "Main","url": "https://vz-b105018e-32f.b-cdn.net/43fc8efd-d6da-480d-ba20-574f77f03ad6/720p/video.m3u8"}]},
  {
     "title": "แผนร้ายคุณชายมาเฟีย",
     "groups": ["series-update","series-short"],
