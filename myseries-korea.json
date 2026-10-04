@@ -10,7 +10,7 @@
     "total_ep": 36,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/759fae523ddebf02c35dbc6a/759fae523ddebf02c35dbc6a438.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/0af6188c08e2fc7ac696d632/0af6188c08e2fc7ac696d632.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/0af6188c08e2fc7ac696d632/0af6188c08e2fc7ac696d632438.m3u8"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/bbb218e5e595ba8f22835484/bbb218e5e595ba8f22835484.m3u8"}]},
       { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/84baa6fff696f416762cec35/84baa6fff696f416762cec35.m3u8"}]},
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/9bff83d1aa24e27aff6461a0/9bff83d1aa24e27aff6461a0.m3u8"}]},
