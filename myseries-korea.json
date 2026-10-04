@@ -6,8 +6,8 @@
     "groups": [ "series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://www.123-hda.com/wp-content/uploads/2026/07/The-East-Palace-2026-บูรพาอาถรรพ์.jpg",
-    "latest_ep":36,
-    "total_ep": 36,
+    "latest_ep":8,
+    "total_ep": 8,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://series-cdn.team-indy.net:8443/vod/TKzWG6LoLA/video.mp4/playlist.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/0af6188c08e2fc7ac696d632/0af6188c08e2fc7ac696d632438.m3u8"}]},
