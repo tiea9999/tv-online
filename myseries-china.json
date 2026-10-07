@@ -1,5 +1,43 @@
 [
   {
+    "title": "As Promised (2026) เมื่อรักเป็นดั่งสัญญา",
+    "updated": "2026-10-7",
+    "groups": ["series-update","series-china"],
+    "language": "ซับไทย",
+    "poster": "",
+    "latest_ep":24,
+    "total_ep": 24,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/4b8b55545c974a071870ad26/4b8b55545c974a071870ad26438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/e5531a3ba27f1ecda34f5b96/e5531a3ba27f1ecda34f5b96438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/3b2ab645b276ad4e140fcd2f/3b2ab645b276ad4e140fcd2f438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/0c1ecb9ff20b4c4c1b1f6455/0c1ecb9ff20b4c4c1b1f6455438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/9ea35e242de97d920541dcec/9ea35e242de97d920541dcec438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/4a5c516d718012f335c2d0c0/4a5c516d718012f335c2d0c0438.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/af36b1c6bfea781a5f8c918b/af36b1c6bfea781a5f8c918b438.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/330dd287a221c259c2eac0ae/330dd287a221c259c2eac0ae438.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/9f7098f4cd48bac7276ac87a/9f7098f4cd48bac7276ac87a438.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/5827cfc98506e9ad615faec0/5827cfc98506e9ad615faec0438.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/beb3f47f4bd9ad4f6f175708/beb3f47f4bd9ad4f6f175708438.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/7f224460c65a1763bfbee83b/7f224460c65a1763bfbee83b438.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/cbc113027212e35268be6e61/cbc113027212e35268be6e61438.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f4f9bd60cf2041cd7dc5b495/f4f9bd60cf2041cd7dc5b495438.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/c7a934f537b18e6fa762f681/c7a934f537b18e6fa762f681438.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/574a842d6ece54e641848687/574a842d6ece54e641848687438.m3u8"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/d2543339c2aaaa958d6d5a51/d2543339c2aaaa958d6d5a51438.m3u8"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/dca9c8be6eeef405dc9281a0/dca9c8be6eeef405dc9281a0438.m3u8"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/72854ee79cb07965231ca1a1/72854ee79cb07965231ca1a1438.m3u8"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/4d57815649a81b31beaccc0a/4d57815649a81b31beaccc0a438.m3u8"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/95b43d2695c655c27e4cad80/95b43d2695c655c27e4cad80438.m3u8"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/034a61eb7425db7c046b785e/034a61eb7425db7c046b785e438.m3u8"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/7b8f8bc98c3835d6023a1040/7b8f8bc98c3835d6023a1040438.m3u8"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/9d2a6be263274682a8a8b9ef/9d2a6be263274682a8a8b9ef438.m3u8"}]}
+    ]
+  },
+
+
+
+  {
     "title": "Blossoms of Power (2026) บุหงาซ่อนคม",
     "updated": "2026-08-24",
     "groups": [
