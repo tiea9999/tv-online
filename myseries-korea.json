@@ -1,6 +1,6 @@
 [
   {
-    "title": "มรดกร้านนักฆ่า ซีซั่น 2 A Shop for Killers Season 2(2026)",
+    "title": "มรดกร้านนักฆ่า ซีซั่น 2 ",
     "updated": "2026-10-8",
     "groups": [ "series-update","series-korea"],
     "language": "พากย์ไทย",
@@ -16,7 +16,8 @@
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/5794de9309e56d97485c6d2d/5794de9309e56d97485c6d2d168438.m3u8"}]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/39c38cb18a707aac99547e1d/39c38cb18a707aac99547e1d168438.m3u8"}]},
       { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f30b44831a6124ab5a71e8a0/f30b44831a6124ab5a71e8a0168438.m3u8"}]},
-
+    ]
+  },
 
   {
     "title": "The East Palace (2026) บูรพาอาถรรพ์",
@@ -34,8 +35,9 @@
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://series-cdn.team-indy.net:8443/vod/dkN9xIhSWR/video.mp4/playlist.m3u8"}]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/e8fbd07ccee2761cdfa0a115/e8fbd07ccee2761cdfa0a115438.m3u8"}]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/02ad91b1e31da5d31a0cb064/02ad91b1e31da5d31a0cb064438.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/2f243092fd5deb12d1ce75d0/2f243092fd5deb12d1ce75d0438.m3u8"}]},
-
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/2f243092fd5deb12d1ce75d0/2f243092fd5deb12d1ce75d0438.m3u8"}]}
+    ]
+  },
  {
     "title": "The Apartment Job (2026) ท่านประธานกำมะลอ",
     "updated": "2026-08-24",
