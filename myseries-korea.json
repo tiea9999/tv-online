@@ -1,5 +1,22 @@
-[
-
+[  {
+    "title": "มรดกร้านนักฆ่า ซีซั่น 2 ",
+    "updated": "2026-10-8",
+    "groups": [ "series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://123hdi.com/assets/posters/a-shop-for-killers-season-2.webp",
+    "latest_ep":8,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f7cc0c60ab7b0b528fb8251f/f7cc0c60ab7b0b528fb8251f438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/2a90782a4df05d157c73fb2c/2a90782a4df05d157c73fb2c168438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/91f04d5887a8abfd3dba8ee8/91f04d5887a8abfd3dba8ee8438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f3cb8858a2f14f74ad0ce4a0/f3cb8858a2f14f74ad0ce4a0168438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/94f890ec2f5885c374ab358a/94f890ec2f5885c374ab358a168438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/5794de9309e56d97485c6d2d/5794de9309e56d97485c6d2d168438.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/39c38cb18a707aac99547e1d/39c38cb18a707aac99547e1d168438.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f30b44831a6124ab5a71e8a0/f30b44831a6124ab5a71e8a0168438.m3u8"}]},
+    ]
+  },
 
   {
     "title": "The East Palace (2026) บูรพาอาถรรพ์",
