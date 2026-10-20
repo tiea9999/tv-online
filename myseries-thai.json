@@ -17,6 +17,24 @@
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/7f02f2299f95129e6f197d0f/7f02f2299f95129e6f197d0f438.m3u8"}]}
     ]
   },
+  {
+    "Khom Khlang (2026) ข่มขลัง (Uncut Ver.)",
+    "updated": "2026-07-10",
+    "groups": [ "series-update","series-thai"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/09/Khom-Khlang-2026-ข่มขลัง-Uncut-Ver.jpg",
+    "latest_ep":7,
+    "total_ep": 10,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/408f4d7f3bb96c60d57c814f/408f4d7f3bb96c60d57c814f438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/0ef1f5e87445d9c3b9365124/0ef1f5e87445d9c3b9365124438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/ad5c87634c75b8b050a6c708/ad5c87634c75b8b050a6c708438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/6754c5a52475559d6766fb4c/6754c5a52475559d6766fb4c438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/47eb1878a6acafea48a9baad/47eb1878a6acafea48a9baad438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/4172ae17bedece8efbf75356/4172ae17bedece8efbf75356438.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/d624bcf3f56929285058d2ba/d624bcf3f56929285058d2ba438.m3u8"}]}
+    ]
+  },
 
 
 
