@@ -8,7 +8,7 @@
     "latest_ep":1,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://vdohls.com/PTY-Ijl_lwB2j/playlist.m3u8"}]}
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/ad698ad1cc2436bbcd79682c/ad698ad1cc2436bbcd79682c438.m3u8"}]}
       
     ]
   },  
