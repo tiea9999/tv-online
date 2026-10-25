@@ -1,5 +1,20 @@
 [
   {
+    "title": "Final Table (2026) สงครามนักปรุง",
+    "updated": "2026-10-25",
+    "groups": [ "series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/Final-Table-2026-สงครามนักปรุง.jpg",
+    "latest_ep":1,
+    "total_ep": 12,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://vdohls.com/PTY-Ijl_lwB2j/playlist.m3u8"}]}
+      
+    ]
+  },  
+
+  
+  {
     "title": "Between Steps (2026) ก้าวรักทีละนิด พากย์ไทย",
     "updated": "2026-10-21",
     "groups": [ "series-update","series-korea"],
