@@ -1,15 +1,15 @@
 [
   {
     "title": "Final Table (2026) สงครามนักปรุง",
-    "updated": "2026-10-25",
+    "updated": "2026-10-26",
     "groups": [ "series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/Final-Table-2026-สงครามนักปรุง.jpg",
-    "latest_ep":1,
+    "latest_ep":2,
     "total_ep": 12,
     "episodes": [
-      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/ad698ad1cc2436bbcd79682c/ad698ad1cc2436bbcd79682c438.m3u8"}]}
-      
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/ad698ad1cc2436bbcd79682c/ad698ad1cc2436bbcd79682c438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/fc2ef550fff71685fe28afbb/fc2ef550fff71685fe28afbb438.m3u8"}]}
     ]
   },  
 
