@@ -1,5 +1,22 @@
 [
   {
+    "title": "kiDnap GAME (2026)",
+    "updated": "2026-10-28",
+    "groups": [ "series-update","series-japan"],
+    "language": "ซับไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/kiDnap-GAME-2026.jpg",
+    "latest_ep":4,
+    "total_ep": 11,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/eb07ec68ffbb8f1313047260/eb07ec68ffbb8f1313047260438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/2bf6bb124e7f3feba116da54/2bf6bb124e7f3feba116da54438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/0de8cd633bfa4307c9e42220/0de8cd633bfa4307c9e42220438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/5b92d59428dbb09110c94750/5b92d59428dbb09110c94750438.m3u8"}]}
+    ]
+  },
+
+  
+  {
     "title": "Viral Hit นักสู้ทูปเบอร์ (2026)",
     "updated": "2026-06-12",
     "groups": ["series-update","series-japan"],
