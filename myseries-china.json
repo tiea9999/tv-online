@@ -1,4 +1,45 @@
 [
+
+  {
+    "title": "Where the Mask Ends (2026) ปลดหน้ากาก  พากย์ไทย",
+    "updated": "2026-11-3",
+    "groups": ["series-update","series-china"],
+    "language": "ซับไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/Where-the-Mask-Ends-2026-ปลดหน้ากาก.jpg",
+    "latest_ep":27,
+    "total_ep": 30,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/87320abb8bf1f473fd093497/87320abb8bf1f473fd093497438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/87320abb8bf1f473fd093497/87320abb8bf1f473fd093497438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/9077842540bbe61e65b965fb/9077842540bbe61e65b965fb438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/67a8b1db51a2ddc58fb2820b/67a8b1db51a2ddc58fb2820b438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/23fe6a6e9062c693dc5dd015/23fe6a6e9062c693dc5dd015438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/c57814650647b168534f3cc9/c57814650647b168534f3cc9.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/9acc732da05780e4d1d2c656/9acc732da05780e4d1d2c656438.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/a9013a5cf051e4b986c67f13/a9013a5cf051e4b986c67f13438.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/5822588064296844827bda56/5822588064296844827bda56438.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/6ae93999a50a79e2da508396/6ae93999a50a79e2da508396438.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/747aac36d8ad6cc4d38fa018/747aac36d8ad6cc4d38fa018438.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/b12c70951bf642690835ea91/b12c70951bf642690835ea91438.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/fc6aa9194db90a1c1d38fd2e/fc6aa9194db90a1c1d38fd2e438.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/bce257061de82a6c3faa5dc4/bce257061de82a6c3faa5dc4438.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/0860b059a1c9d9cf35e11979/0860b059a1c9d9cf35e11979438.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/1b779ee2ebb80b8bebf4a8ea/1b779ee2ebb80b8bebf4a8ea438.m3u8"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/7f235ac21996d753c4d7424c/7f235ac21996d753c4d7424c438.m3u8"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/11fe0112f5b6b86a85e29f2d/11fe0112f5b6b86a85e29f2d438.m3u8"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/3fe1be90e5dd81cddb2acdf1/3fe1be90e5dd81cddb2acdf1438.m3u8"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/8291a0856dd852652b1cc819/8291a0856dd852652b1cc819.m3u8"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/c0da6a553fbf28eed38d794d/c0da6a553fbf28eed38d794d438.m3u8"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/12688e214f0bd5aa40621878/12688e214f0bd5aa40621878438.m3u8"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/a0575cd303679af967eb24ca/a0575cd303679af967eb24ca438.m3u8"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/0ba1d6044d49267acb7e8b86/0ba1d6044d49267acb7e8b86438.m3u8"}]},
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f28ad848bcf4018135dbfea6/f28ad848bcf4018135dbfea6438.m3u8"}]},
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/dd26796dc07eab3d0983cf4b/dd26796dc07eab3d0983cf4b438.m3u8"}]},
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/56cfed63ca50734da3908b62/56cfed63ca50734da3908b62438.m3u8"}]}
+    ]
+  },
+
+
   {
     "title": "Royal Betrothal ฝ่าบาททรงพระเจริญหมื่นปี (2026) พากย์ไทย",
     "updated": "2026-10-21",
@@ -194654,7 +194695,6 @@
     ]
   }
 ]
-
 
 
 
