@@ -1,26 +1,30 @@
 [
   {
     "title": "Final Table (2026) สงครามนักปรุง",
-    "updated": "2026-10-26",
+    "updated": "2026-11-3",
     "groups": [ "series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/Final-Table-2026-สงครามนักปรุง.jpg",
-    "latest_ep":2,
+    "latest_ep":4,
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/ad698ad1cc2436bbcd79682c/ad698ad1cc2436bbcd79682c438.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/fc2ef550fff71685fe28afbb/fc2ef550fff71685fe28afbb438.m3u8"}]}
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/fc2ef550fff71685fe28afbb/fc2ef550fff71685fe28afbb438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f763283bba04eb34990c399e/f763283bba04eb34990c399e438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f81032da9c3b72e3475a1f4c/f81032da9c3b72e3475a1f4c438.m3u8"}]}
+
+    
     ]
   },  
 
   
   {
     "title": "Between Steps (2026) ก้าวรักทีละนิด พากย์ไทย",
-    "updated": "2026-10-28",
+    "updated": "2026-11-3",
     "groups": [ "series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/Between-Steps-2026-ก้าวรักทีละนิด.jpg",
-    "latest_ep":8,
+    "latest_ep":9,
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/a4e9ce2b57a8ec0778d5acf4/a4e9ce2b57a8ec0778d5acf4438.m3u8"}]},
@@ -30,30 +34,36 @@
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/defa4e98301c638f790fba46/defa4e98301c638f790fba46438.m3u8"}]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/e4dfad19e556599d6bf071db/e4dfad19e556599d6bf071db438.m3u8"}]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f01ee393f6fa10ae0ae1432f/f01ee393f6fa10ae0ae1432f438.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/51b84a09fff0308a2e9362ba/51b84a09fff0308a2e9362ba438.m3u8"}]}
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/51b84a09fff0308a2e9362ba/51b84a09fff0308a2e9362ba438.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/9d37c85534cf3c8b8e9431e6/9d37c85534cf3c8b8e9431e6438.m3u8"}]}
 
     ]
   },   
   {
     "title": " Love In Disguise รักต้องสงสัย (2026)   พากย์ไทย",
-    "updated": "2026-10-21",
+    "updated": "2026-11-3",
     "groups": [ "series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://goseries4k.com/wp-content/uploads/2026/10/99-3-foxywebp.webp",
-    "latest_ep":2,
+    "latest_ep":5,
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/823dc5916d874861af3f6e28/823dc5916d874861af3f6e28438.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f25e41ad95d12dbcb3763879/f25e41ad95d12dbcb3763879438.m3u8"}]}
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f25e41ad95d12dbcb3763879/f25e41ad95d12dbcb3763879438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/104a85da94bb35ec32f342d5/104a85da94bb35ec32f342d5438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/99d94928c447951293e1e408/99d94928c447951293e1e408438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/779f778b75bf2fa9b07833b6/779f778b75bf2fa9b07833b6438.m3u8"}]}
+
+    
     ]
   },
   {
-    "title": " Love on the Menu (2026) รักพร้อมเสิร์ฟ (ซับไทย)ย",
-    "updated": "2026-10-28",
+    "title": " Love on the Menu (2026) รักพร้อมเสิร์ฟ (ซับไทย)",
+    "updated": "2026-11-3",
     "groups": [ "series-update","series-korea"],
     "language": "ซับไทย",
     "poster": "https://www.serieday-z.com/wp-content/uploads/2026/08/Love-on-the-Menu-2026-รักมาแล้ว.jpg",
-    "latest_ep":23,
+    "latest_ep":24,
     "total_ep": 50,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/1471ddf024ef13fcf54b0d6a/1471ddf024ef13fcf54b0d6a438.m3u8"}]},
@@ -78,17 +88,18 @@
       { "title": "EP20", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f2d510a00acd43cae0d2b68d/f2d510a00acd43cae0d2b68d438.m3u8"}]},
       { "title": "EP21", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/4de871fe1a2adddcb34bd665/4de871fe1a2adddcb34bd665438.m3u8"}]},
       { "title": "EP22", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/7e50758f92b080323572089e/7e50758f92b080323572089e168.m3u8"}]},
-      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/3a126e89f6cc38da16ac6e65/3a126e89f6cc38da16ac6e65438.m3u8"}]}
- 
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/3a126e89f6cc38da16ac6e65/3a126e89f6cc38da16ac6e65438.m3u8"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/dae77accb878cd62a25b5102/dae77accb878cd62a25b5102438.m3u8"}]}
+  
     ]
   },
     {
     "title": "OK Let’s Get Divorced (2026) โอเคเราหย่ากันเถอะ (พากย์ไทย)",
-    "updated": "2026-10-28",
+    "updated": "2026-11-3",
     "groups": [ "series-update","series-korea"],
     "language": "พากย์ไทย",
     "poster": "https://www.123-hdc.com/wp-content/uploads/2026/08/OK-Lets-Get-Divorced-2026.jpg",
-    "latest_ep":8,
+    "latest_ep":10,
     "total_ep": 12,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/8a850d14db34a79e89b26260/8a850d14db34a79e89b26260438.m3u8"}]},
@@ -98,7 +109,9 @@
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f84ece6afc6548fb4fd7577a/f84ece6afc6548fb4fd7577a438.m3u8"}]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/35a189a19f5f514b7fd3b933/35a189a19f5f514b7fd3b933438.m3u8"}]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/eaa43215ee08d6d3117a780a/eaa43215ee08d6d3117a780a438.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/328b0697d74cebb9cef48f68/328b0697d74cebb9cef48f68438.m3u8"}]}
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/328b0697d74cebb9cef48f68/328b0697d74cebb9cef48f68438.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/c34006ca80d77e9b842d233b/c34006ca80d77e9b842d233b438.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/699a894fb9b4acbb577f8d67/699a894fb9b4acbb577f8d67438.m3u8"}]}
 
     ]
   },
