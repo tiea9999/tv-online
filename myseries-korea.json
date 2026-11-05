@@ -1,5 +1,22 @@
 [
   {
+    "title": "Merry Berry Love (2026) พากย์ไทย",
+    "updated": "2026-11-5",
+    "groups": [ "series-update","series-korea"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/Merry-Berry-Love-2026.jpg",
+    "latest_ep":36,
+    "total_ep": 36,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/8cdeb78177feeee222ea82db/8cdeb78177feeee222ea82db438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/2f32fc76a025541aec774db6/2f32fc76a025541aec774db6438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/06c62e8356df5b42db331c7a/06c62e8356df5b42db331c7a438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/19259cb6d53aec6706437e83/19259cb6d53aec6706437e83438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/6b94422eec03ea4b681fca76/6b94422eec03ea4b681fca76438.m3u8"}]}
+     ]
+  },  
+ 
+  {
     "title": "Final Table (2026) สงครามนักปรุง",
     "updated": "2026-11-3",
     "groups": [ "series-update","series-korea"],
