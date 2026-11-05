@@ -1,4 +1,76 @@
 [
+  {
+    "title": "Tigers Sniff the Rose (2026) พยัคฆ์หลงกลิ่นบุปผา",
+    "updated": "2026-11-5",
+    "groups": ["series-update","series-china"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/Tigers-Sniff-the-Rose-2026-พยัคฆ์หลงกลิ่นบุปผา.jpg",
+    "latest_ep":36,
+    "total_ep": 36,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/62861449d12313e45296252c/62861449d12313e45296252c438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/81e2f81d322eaff2d4cb21cf/81e2f81d322eaff2d4cb21cf438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/c9d397c0f6e868ee8cdb0836/c9d397c0f6e868ee8cdb0836438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/cde466eea98699130bddf4e0/cde466eea98699130bddf4e0438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/bf2d6e4346d9900ed4a51000/bf2d6e4346d9900ed4a51000438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/dd7dc45826b461e8834af265/dd7dc45826b461e8834af265438.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/bc9587ac6cc81b8e9d09a32e/bc9587ac6cc81b8e9d09a32e438.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/424f9170d239b69b2b9cb6d6/424f9170d239b69b2b9cb6d6438.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/54fbd7b2e169705b3805c939/54fbd7b2e169705b3805c939438.m3u8"}]}
+    ]
+  },
+  {
+    "title": "Against The Current (2026) หอมรักมิรู้เลือน",
+    "updated": "2026-11-5",
+    "groups": ["series-update","series-china"],
+    "language": "พากย์ไทย",
+    "poster": "https://goseries4k.com/wp-content/uploads/2026/10/9-1-foxywebp.webp",
+    "latest_ep":41,
+    "total_ep": 47,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/3fd708bf5a89f9f172097fa0/3fd708bf5a89f9f172097fa0438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/6335b5e8de5d98ccd9853423/6335b5e8de5d98ccd9853423438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/1f1bac1756a1a73ea0bfcc32/1f1bac1756a1a73ea0bfcc32438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/80b54d9255ce0c6dbf4760a7/80b54d9255ce0c6dbf4760a7438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/9f475d402221a88964668218/9f475d402221a88964668218438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/7a96212df68eaf667b091642/7a96212df68eaf667b091642438.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f839efa9d256eb38e6469e67/f839efa9d256eb38e6469e67438.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/a44bb573612ccfe7f543e52e/a44bb573612ccfe7f543e52e438.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/095b61cececff351ad95aaa6/095b61cececff351ad95aaa6438.m3u8"}]},
+      { "title": "EP10", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/e5c59f5cbcce1cf35682a747/e5c59f5cbcce1cf35682a747438.m3u8"}]},
+      { "title": "EP11", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/a3665c1cdd932c68a1dee13a/a3665c1cdd932c68a1dee13a438.m3u8"}]},
+      { "title": "EP12", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/12a95a332cf4146562d2c9d7/12a95a332cf4146562d2c9d7438.m3u8"}]},
+      { "title": "EP13", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/5cd927408a89a484f248340d/5cd927408a89a484f248340d438.m3u8"}]},
+      { "title": "EP14", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/95e95a2d2df5bd06019cfaf0/95e95a2d2df5bd06019cfaf0.m3u8"}]},
+      { "title": "EP15", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/1cd72a39ab22dc92de05ce86/1cd72a39ab22dc92de05ce86438.m3u8"}]},
+      { "title": "EP16", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f79119308b5474b65cd6c803/f79119308b5474b65cd6c803438.m3u8"}]},
+      { "title": "EP17", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f3ea90a23ecdd42ace35d443/f3ea90a23ecdd42ace35d443438.m3u8"}]},
+      { "title": "EP18", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/b8ba56f956adb6bc29be11d7/b8ba56f956adb6bc29be11d7438.m3u8"}]},
+      { "title": "EP19", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/ede54cc8e238ee3ae578c1ea/ede54cc8e238ee3ae578c1ea438.m3u8"}]},
+      { "title": "EP20", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/bf7f2b751cbe6853c96b7d30/bf7f2b751cbe6853c96b7d30438.m3u8"}]},
+      { "title": "EP21", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/6a1b34b2914ba6de0946f7d8/6a1b34b2914ba6de0946f7d8438.m3u8"}]},
+      { "title": "EP22", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/840a5ff6ca1adcbc109b9387/840a5ff6ca1adcbc109b9387438.m3u8"}]},
+      { "title": "EP23", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/56b3bbedea58040d489fa6ed/56b3bbedea58040d489fa6ed438.m3u8"}]},
+      { "title": "EP24", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/8f4a33485632af5a741abc27/8f4a33485632af5a741abc27438.m3u8"}]},
+      { "title": "EP25", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/532f413c6e014b6457df0848/532f413c6e014b6457df0848438.m3u8"}]},
+      { "title": "EP26", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/e841bad6833a2fcea3f837f8/e841bad6833a2fcea3f837f8438.m3u8"}]},
+      { "title": "EP27", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/5a094d659d9cf7cfb654a3ff/5a094d659d9cf7cfb654a3ff438.m3u8"}]},
+      { "title": "EP28", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/4eef49232f83e0a442db9906/4eef49232f83e0a442db9906438.m3u8"}]},
+      { "title": "EP29", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/54a7f719fb58e8dc5b523cd1/54a7f719fb58e8dc5b523cd1438.m3u8"}]},
+      { "title": "EP30", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/65b24eafeac2d4561540a582/65b24eafeac2d4561540a582438.m3u8"}]},
+      { "title": "EP31", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/3d75b0f57689fa9e763e6a94/3d75b0f57689fa9e763e6a94168.m3u8"}]},
+      { "title": "EP32", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/e4d1b9168821753a9b2812c4/e4d1b9168821753a9b2812c4438.m3u8"}]},
+      { "title": "EP33", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/6d80d79eb3fd44f66f55d281/6d80d79eb3fd44f66f55d281438.m3u8"}]},
+      { "title": "EP34", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/a75ba687bcb65b43f89c7f4d/a75ba687bcb65b43f89c7f4d438.m3u8"}]},
+      { "title": "EP35", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/2ce459ea03d332765910a0cb/2ce459ea03d332765910a0cb438.m3u8"}]},
+      { "title": "EP36", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/d4504f91ae8382debec280d8/d4504f91ae8382debec280d8438.m3u8"}]},
+      { "title": "EP37", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/5d3f9d81ebf3e7e870041a5b/5d3f9d81ebf3e7e870041a5b438.m3u8"}]},
+      { "title": "EP38", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/1f27af5379636eb9164065d0/1f27af5379636eb9164065d0438.m3u8"}]},
+      { "title": "EP39", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/2e41981b8322cceec13944f7/2e41981b8322cceec13944f7438.m3u8"}]},
+      { "title": "EP40", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/70724d6e3c2371b358737874/70724d6e3c2371b358737874438.m3u8"}]},
+      { "title": "EP41", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/057402066a58f362997d0797/057402066a58f362997d0797438.m3u8"}]}
+    ]
+  },
 
   {
     "title": "Where the Mask Ends (2026) ปลดหน้ากาก  พากย์ไทย",
@@ -194695,7 +194767,6 @@
     ]
   }
 ]
-
 
 
 
