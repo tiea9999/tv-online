@@ -1,4 +1,21 @@
 [
+
+  {
+    "title": " When I Meet the Moon (2026) เอื้อมรักคว้าจันทร์",
+    "updated": "2026-11-6",
+    "groups": ["series-update","series-china"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/11/When-I-Meet-the-Moon-2026-เอื้อมรักคว้าจันทร์.jpg",
+    "latest_ep":4,
+    "total_ep": 27,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/bd3588bb39c690d4d2bfcee1/bd3588bb39c690d4d2bfcee1438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/4e0000feae662858f7639c9d/4e0000feae662858f7639c9d438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/585cba96658b8795361e53e2/585cba96658b8795361e53e2438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/cbfce044d0a40c5076b58776/cbfce044d0a40c5076b58776438.m3u8"}]}
+    ]
+  },
+
   {
     "title": "Tigers Sniff the Rose (2026) พยัคฆ์หลงกลิ่นบุปผา",
     "updated": "2026-11-5",
@@ -194767,7 +194784,6 @@
     ]
   }
 ]
-
 
 
 
