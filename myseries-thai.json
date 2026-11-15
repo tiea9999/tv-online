@@ -1,18 +1,19 @@
 [
   {
     "title": "Love on Hire (2026) รับจ้างเลิกรัก (Uncut Ver.)",
-    "updated": "2026-11-6",
+    "updated": "2026-11-15",
     "groups": [ "series-update","series-thai"],
     "language": "พากย์ไทย",
     "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/Love-on-Hire-2026-รับจ้างเลิกรัก.jpg",
-    "latest_ep":4,
+    "latest_ep":5,
     "total_ep": 10,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/7d436a1589c0653824b82dc0/7d436a1589c0653824b82dc0438.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/ee54c06ef5c7a53633d621da/ee54c06ef5c7a53633d621da438.m3u8"}]},
       { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/8ef75e9096e4cb033bac3df5/8ef75e9096e4cb033bac3df5438.m3u8"}]},
-      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/020fed732e0ede5f4fb5fcb2/020fed732e0ede5f4fb5fcb2438.m3u8"}]}
-     ]
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/020fed732e0ede5f4fb5fcb2/020fed732e0ede5f4fb5fcb2438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/3c6ba1f6f2a293de96bbcf9d/3c6ba1f6f2a293de96bbcf9d438.m3u8"}]}
+    ]
   }, 
  
   {
@@ -31,30 +32,34 @@
   }, 
   {
     "title": "Built in Love (2026) ก่อร่างสร้างเลิฟ (Uncut Ver.)",
-    "updated": "2026-11-5",
+    "updated": "2026-11-15",
     "groups": [ "series-update","series-thai"],
     "language": "พากย์ไทย",
     "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/Built-in-Love-2026-ก่อร่างสร้างเลิฟ-Uncut-Ver.jpg",
-    "latest_ep":3,
+    "latest_ep":4,
     "total_ep": 10,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/d53e236ad4d7d7268d474451/d53e236ad4d7d7268d474451438.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/d1bca3eb5114f6330394061b/d1bca3eb5114f6330394061b438.m3u8"}]},
-      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/5dd3e97a7718dcccbf7b6b33/5dd3e97a7718dcccbf7b6b33.m3u8"}]}
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/5dd3e97a7718dcccbf7b6b33/5dd3e97a7718dcccbf7b6b33.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/d622c608f214f49a62fbde39/d622c608f214f49a62fbde39438.m3u8"}]}
+
     ]
   },
   {
     "title": "Scarlet Heart Ullavee (2026) ปาฏิหาริย์ข้ามกาลเวลา",
-    "updated": "2026-11-6",
+    "updated": "2026-11-15",
     "groups": [ "series-update","series-thai"],
     "language": "พากย์ไทย",
     "poster": "https://www.123-hdc.com/wp-content/uploads/2026/11/Scarlet-Heart-Ullavee-2026-ปาฏิหาริย์ข้ามกาลเวลา.jpg",
-    "latest_ep":2,
+    "latest_ep":4,
     "total_ep": 18,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/80d2c3d486cc60239bd95f16/80d2c3d486cc60239bd95f16438.m3u8"}]},
-      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/80d2c3d486cc60239bd95f16/80d2c3d486cc60239bd95f16438.m3u8"}]}
-  
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/80d2c3d486cc60239bd95f16/80d2c3d486cc60239bd95f16438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/63d36c75221573980cba21e6/63d36c75221573980cba21e6438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/7ad01bca0bf074042b9ed1f9/7ad01bca0bf074042b9ed1f9438.m3u8"}]}
+    
     ]
   },
 
