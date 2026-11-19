@@ -79,7 +79,7 @@
     "language": "ซับไทย ",
     "poster": "https://www.123-hdc.com/wp-content/uploads/2026/11/The-Gilded-Age-Season-4-2026-มหานครซ้อนกล-ซีซั่น-4.jpg",
     "latest_ep":2,
-    "total_ep": ,
+    "total_ep": 2,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/44e9004e80d3bfe9d0b3ca56/44e9004e80d3bfe9d0b3ca56438.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/987b2f3770f5bca2b56b20bb/987b2f3770f5bca2b56b20bb438.m3u8"}]}
@@ -92,7 +92,7 @@
     "language": "ซับไทย ",
     "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/War-2026.jpg",
     "latest_ep":7,
-    "total_ep": ,
+    "total_ep": 7,
     "episodes": [
       { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/6858e3d4bcd82e79f5da5ab9/6858e3d4bcd82e79f5da5ab9438.m3u8"}]},
       { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/ff31d81b5678d2cd3ecfc1b0/ff31d81b5678d2cd3ecfc1b0438.m3u8"}]},
