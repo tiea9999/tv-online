@@ -1,5 +1,166 @@
 [
   {
+    "title": "The Lord of the Rings The Rings of Power 3 (2026)",
+    "updated": "2026-11-19",
+    "groups": [ "series-update","series-inter"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/11/The-Lord-of-the-Rings-2026-The-Rings-of-Power-3.jpg",
+    "latest_ep":6,
+    "total_ep": 6,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/a5ec72042129b0f51cc9704c/a5ec72042129b0f51cc9704c438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/4dc0200714d26668262d2189/4dc0200714d26668262d2189438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/97b8128a667424307253bdf7/97b8128a667424307253bdf7438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/39a419aed43e82f96940beb6/39a419aed43e82f96940beb6438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/39dfc0ce3bda4b5293adc02f/39dfc0ce3bda4b5293adc02f438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/41c2c8daf2e1ecdc1b2fe3e0/41c2c8daf2e1ecdc1b2fe3e0438.m3u8"}]}
+    ]
+  },
+  {
+    "title": "The Body (2026) ลูกรักพระเจ้า",
+    "updated": "2026-11-19",
+    "groups": [ "series-update","series-inter"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/11/The-Body-2026-ลูกรักพระเจ้า.jpg",
+    "latest_ep":8,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/c69ff7cdea6f8aaa79ffe95d/c69ff7cdea6f8aaa79ffe95d438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/1723419c737de0132923ed0e/1723419c737de0132923ed0e438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f21d9a578a063bb18b3dfc78/f21d9a578a063bb18b3dfc78438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/1ae3b30b6012ac026909570c/1ae3b30b6012ac026909570c438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/cae34e50bb52cc272a96c5b0/cae34e50bb52cc272a96c5b0438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/92eef6beab2051346d9ffa09/92eef6beab2051346d9ffa09438.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/43abd09e19a7360221413c3a/43abd09e19a7360221413c3a438.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/c07b6696c9a0a51c154dcb45/c07b6696c9a0a51c154dcb45438.m3u8"}]}
+    ]
+  },
+  {
+    "title": "Made in Korea Season 2 (2026) พากย์ไทย",
+    "updated": "2026-11-19",
+    "groups": [ "series-update","series-inter"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/11/Black-Doves-Season-2-2026-พิราบเงา.jpg",
+    "latest_ep":6,
+    "total_ep": 6,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/ebf66e72b8130112cdc5477b/ebf66e72b8130112cdc5477b438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/cb38d5cf301ca37a2c934223/cb38d5cf301ca37a2c934223438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/48e52333c8ed6433eed1e50f/48e52333c8ed6433eed1e50f438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/34ffda5c3905993f51351907/34ffda5c3905993f51351907438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/66bbf11e76da08207bc96ed2/66bbf11e76da08207bc96ed2438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/7c5b8965abe82fcb079783f0/7c5b8965abe82fcb079783f0438.m3u8"}]}
+    ]
+  },
+  {
+    "title": "Mobland Season 2 (2026) ม็อบแลนด์ ซีซั่น 2 พากย์ไทย",
+    "updated": "2026-11-19",
+    "groups": [ "series-update","series-inter"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/11/Mobland-Season-2-2026-ม็อบแลนด์-ซีซั่น-2.jpg",
+    "latest_ep":9,
+    "total_ep": 9,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/5d6310a83bd45e6a57dc8e1f/5d6310a83bd45e6a57dc8e1f438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/2b92c9eb22e9970ab40f710f/2b92c9eb22e9970ab40f710f438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/e523c15fd4aba030ef6001df/e523c15fd4aba030ef6001df438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/7f7ca2bd1fadae982c7a4ec3/7f7ca2bd1fadae982c7a4ec3438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/20447f47346212ef5800153f/20447f47346212ef5800153f438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/615ed3bb71757b59a9922d33/615ed3bb71757b59a9922d33438.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/15751c10e6cf4245dd758e78/15751c10e6cf4245dd758e78438.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/b663243cfc4d8e87a805df28/b663243cfc4d8e87a805df28438.m3u8"}]},
+      { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/39530bc1647945230603eabc/39530bc1647945230603eabc438.m3u8"}]}
+    ]
+  },
+  {
+    "title": "The Gilded Age Season 4 (2026) มหานครซ้อนกล ซีซั่น 4",
+    "updated": "2026-11-19",
+    "groups": [ "series-update","series-inter"],
+    "language": "ซับไทย ",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/11/The-Gilded-Age-Season-4-2026-มหานครซ้อนกล-ซีซั่น-4.jpg",
+    "latest_ep":2,
+    "total_ep": ,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/44e9004e80d3bfe9d0b3ca56/44e9004e80d3bfe9d0b3ca56438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/987b2f3770f5bca2b56b20bb/987b2f3770f5bca2b56b20bb438.m3u8"}]}
+    ]
+  },
+  {
+    "title": "War (2026) ซับไทย",
+    "updated": "2026-11-19",
+    "groups": [ "series-update","series-inter"],
+    "language": "ซับไทย ",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/War-2026.jpg",
+    "latest_ep":7,
+    "total_ep": ,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/6858e3d4bcd82e79f5da5ab9/6858e3d4bcd82e79f5da5ab9438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/ff31d81b5678d2cd3ecfc1b0/ff31d81b5678d2cd3ecfc1b0438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/c53b18070d2a0593becf4634/c53b18070d2a0593becf4634438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/408569b7c22f6fc5a7f3a541/408569b7c22f6fc5a7f3a541438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f8d6e5b341b23e4184c0b249/f8d6e5b341b23e4184c0b249438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/c7aa897bce4e4637c8657b2c/c7aa897bce4e4637c8657b2c438.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/d2256eec54fa5b2b2e816540/d2256eec54fa5b2b2e816540438.m3u8"}]}
+    ]
+  },
+  {
+    "title": " VISIONQUEST (2026) วิกฤตวิชั่น พากย์ไทย ",
+    "updated": "2026-11-19",
+    "groups": [ "series-update","series-inter"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/VISIONQUEST-2026-วิกฤตวิชั่น.jpg",
+    "latest_ep":8,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/af8d0934b436184655ae28c2/af8d0934b436184655ae28c2438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/46291ed40b25057fafd11ac5/46291ed40b25057fafd11ac5438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/fa149354c9eaf9f9db10ead8/fa149354c9eaf9f9db10ead8438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/5526a5f9ea52efdb302c13ce/5526a5f9ea52efdb302c13ce438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/70963c1f76cbb2fcc397d942/70963c1f76cbb2fcc397d942438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/2ca80d8d93ea3892eb1f5530/2ca80d8d93ea3892eb1f5530438.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/325ee8652a41a958a9497d7c/325ee8652a41a958a9497d7c438.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/bdb8899812552ae190b14626/bdb8899812552ae190b14626438.m3u8"}]}
+    ]
+  },
+  {
+    "title": "Lupin Season 4 (2026) จอมโจรลูแปง ซีซั่น 4 ",
+    "updated": "2026-11-19",
+    "groups": [ "series-update","series-inter"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/Lupin-Season-4-2026-จอมโจรลูแปง-ซีซั่น-4.jpg",
+    "latest_ep":8,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/e334590c2751be7e596d811a/e334590c2751be7e596d811a438.m3u8#EXTM3U"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/db9b0909423670800f494531/db9b0909423670800f494531438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/0ac3eed4feb19be09fe849b4/0ac3eed4feb19be09fe849b4438.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/e89f33be62c4ab5d648733c6/e89f33be62c4ab5d648733c6438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/15b025646a797023fddcacf2/15b025646a797023fddcacf2438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/441b2a4b7d8d743f43318df9/441b2a4b7d8d743f43318df9438.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/9454cb2017d89ad263393933/9454cb2017d89ad263393933438.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/9b3c8b2eeeec422aff7881f9/9b3c8b2eeeec422aff7881f9438.m3u8"}]}
+    ]
+  },
+  {
+    "title": "The Terminal List Season 2 (2026) เดอะ เทอร์มินอล ลิสต์ ดับมือสังหาร ซีซั่น 2  ",
+    "updated": "2026-11-19",
+    "groups": [ "series-update","series-inter"],
+    "language": "พากย์ไทย",
+    "poster": "https://www.123-hdc.com/wp-content/uploads/2026/10/The-Terminal-List-Season-2-2026-เดอะ-เทอร์มินอล-ลิสต์-ดับมือสังหาร-ซีซั่น-2-1.jpg",
+    "latest_ep":8,
+    "total_ep": 8,
+    "episodes": [
+      { "title": "EP1", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/9ae7aef647084b364d52df2d/9ae7aef647084b364d52df2d438.m3u8"}]},
+      { "title": "EP2", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/0478f68fc435866d04bbb63e/0478f68fc435866d04bbb63e438.m3u8"}]},
+      { "title": "EP3", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/9130d64c3b489013a00ca64d/9130d64c3b489013a00ca64d.m3u8"}]},
+      { "title": "EP4", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/22d7314b50516bde96defdfe/22d7314b50516bde96defdfe438.m3u8"}]},
+      { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/5fb547e4cfff14ce132144c5/5fb547e4cfff14ce132144c5438.m3u8"}]},
+      { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/87985582a7e92214e0d7d804/87985582a7e92214e0d7d804438.m3u8"}]},
+      { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/f6227b7bb7a8c6e2257bc67e/f6227b7bb7a8c6e2257bc67e438.m3u8"}]},
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/73e1e250f9d0448adb8edf59/73e1e250f9d0448adb8edf59438.m3u8"}]}
+    ]
+  },
+{
     "title": "Loki โลกิ ซับไทย (2021)",
     "updated": "2026-09-10",
     "groups": ["series-update","series-inter"],
