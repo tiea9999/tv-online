@@ -106,7 +106,7 @@
       { "title": "EP5", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/d41ea88ff1bfdbcab9621e0c/d41ea88ff1bfdbcab9621e0c438.m3u8"}]},
       { "title": "EP6", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/8c32cd17a2781456a6d4f5e1/8c32cd17a2781456a6d4f5e1438.m3u8"}]},
       { "title": "EP7", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/2fff170294080aaf7f048307/2fff170294080aaf7f048307438.m3u8"}]},
-      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/d5e2839290894b1996202249/d5e2839290894b1996202249438.m3u8"}]}
+      { "title": "EP8", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/m3u8/d5e2839290894b1996202249/d5e2839290894b1996202249438.m3u8"}]},
       { "title": "EP9", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/f0aa8d0746fb3b7001a18434/f0aa8d0746fb3b7001a18434.m3u8"}]},
       { "title": "EP10", "servers": [{ "name": "Main", "url": "https://main.24playerhd.com/newplaylist/6497f46079fb074ba86dd1f6/6497f46079fb074ba86dd1f6.m3u8"}]}
 
